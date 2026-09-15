@@ -1,4 +1,270 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>11FL?</title>
+  <meta name="theme-color" content="#0a0a0a">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --text: #f5f5f5;
+      --text-muted: #a3a3a3;
+      --accent: #e50914;
+      --border: #262626;
+      --font-base: clamp(1.15rem, 4.5vw, 1.35rem);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: var(--font-base);
+      line-height: 1.6;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      padding: env(safe-area-inset-top) 1.5rem env(safe-area-inset-bottom) 1.5rem;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    .brand { font-weight: 700; color: var(--text); letter-spacing: 0.15em; }
+
+    .stats-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+      max-width: 480px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .floor-indicator {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .question-card {
+      font-size: var(--font-base);
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      width: 100%;
+    }
+
+    button.option-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    button.option-btn:active {
+      background: var(--border);
+    }
+
+    /* Modal / Stats Drawer */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      align-items: flex-end;
+      z-index: 100;
+    }
+    .drawer-overlay.open { display: flex; }
+
+    .drawer-content {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      width: 100%;
+      padding: 2rem 1.5rem 3rem 1.5rem;
+      border-radius: 16px 16px 0 0;
+      text-align: left;
+    }
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      font-weight: 600;
+    }
+    .close-drawer {
+      background: none; border: none; color: var(--text-muted); font-size: 1.25rem; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">11FL?</div>
+    <div id="floor-badge">FL 01 / 11</div>
+    <button class="stats-btn" onclick="toggleStats(true)">STATS</button>
+  </header>
+
+  <main id="game-container">
+    <div class="floor-indicator" id="stage-label">Gate 01</div>
+    <div class="question-card" id="question-text">Tap anywhere to initialize audio & begin the climb.</div>
+    <div class="options" id="options-box">
+      <button class="option-btn" onclick="advanceFloor()">Step Up</button>
+    </div>
+  </main>
+
+  <!-- Stats Drawer -->
+  <div class="drawer-overlay" id="stats-drawer" onclick="if(event.target===this) toggleStats(false)">
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <span>CLIMB RECORD</span>
+        <button class="close-drawer" onclick="toggleStats(false)">✕</button>
+      </div>
+      <p id="stats-summary" style="color: var(--text-muted); font-size: 0.95rem;">Climbs completed: <strong style="color:var(--text)">0</strong></p>
+    </div>
+  </div>
+
+  <script>
+    let currentFloor = 1;
+    let audioCtx = null;
+    let stats = JSON.parse(localStorage.getItem('11fl_stats') || '{"climbs":0}');
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function playWarmChime() {
+      initAudio();
+      if (!audioCtx) return;
+      const now = audioCtx.currentTime;
+      
+      // Warm dual-oscillator bell (softer/richer, low peak gain)
+      [520, 780].forEach((freq, idx) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = idx === 0 ? 'triangle' : 'sine';
+        osc.frequency.setValueAtTime(freq, now);
+        
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.linearRampToValueAtTime(idx === 0 ? 0.06 : 0.03, now + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.6);
+        
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.65);
+      });
+
+      if (navigator.vibrate) navigator.vibrate(15);
+    }
+
+    const sampleQuestions = [
+      { q: "First gate check. Status?", opts: ["Clear", "Hold"] },
+      { q: "Ascending sequence verified?", opts: ["Yes", "Override"] },
+      { q: "Floor 03 threshold reached.", opts: ["Proceed", "Scan"] },
+      { q: "Midpoint approach. Pressure normal?", opts: ["Confirmed", "Check"] },
+      { q: "Floor 05 sector quiet.", opts: ["Advance", "Wait"] },
+      { q: "Signal reflection stable.", opts: ["Locked", "Drop"] },
+      { q: "Floor 07 clearance granted.", opts: ["Go", "Review"] },
+      { q: "Upper tier boundary.", opts: ["Cross", "Hold"] },
+      { q: "Penultimate check. Ready?", opts: ["Ready", "Back"] },
+      { q: "Final approach vector.", opts: ["Enter Penthouse", "Abort"] }
+    ];
+
+    function renderFloor() {
+      const badge = document.getElementById('floor-badge');
+      const label = document.getElementById('stage-label');
+      const qText = document.getElementById('question-text');
+      const optsBox = document.getElementById('options-box');
+
+      badge.textContent = `FL ${String(currentFloor).padStart(2, '0')} / 11`;
+
+      if (currentFloor <= 10) {
+        const item = sampleQuestions[currentFloor - 1];
+        label.textContent = `Gate ${String(currentFloor).padStart(2, '0')}`;
+        qText.textContent = item.q;
+        optsBox.innerHTML = item.opts.map((opt, i) => `
+          <button class="option-btn" onclick="handleChoice(${i})">${opt}</button>
+        `).join('');
+      } else {
+        label.textContent = `Destination`;
+        qText.textContent = `Floor 11 Reached. Executive Suite Unlocked.`;
+        optsBox.innerHTML = `<button class="option-btn" onclick="resetClimb()">Reset Climb</button>`;
+        stats.climbs++;
+        localStorage.setItem('11fl_stats', JSON.stringify(stats));
+        updateStatsUI();
+      }
+    }
+
+    function handleChoice(i) {
+      playWarmChime();
+      currentFloor++;
+      renderFloor();
+    }
+
+    function resetClimb() {
+      playWarmChime();
+      currentFloor = 1;
+      renderFloor();
+    }
+
+    function toggleStats(show) {
+      playWarmChime();
+      document.getElementById('stats-drawer').classList.toggle('open', show);
+      updateStatsUI();
+    }
+
+    function updateStatsUI() {
+      document.getElementById('stats-summary').innerHTML = `Climbs completed: <strong style="color:var(--text)">${stats.climbs}</strong>`;
+    }
+
+    // First tap unlock binder
+    window.addEventListener('pointerdown', () => initAudio(), { once: true });
+    updateStatsUI();
+  </script>
+</body>
+</html><!DOCTYPE html>
 <html lang="en-GB">
 <head>
   <meta charset="UTF-8">
