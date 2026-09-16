@@ -46,16 +46,16 @@ function recordStats(isWin, highestFloor) {
   localStorage.setItem('11fl_stats', JSON.stringify(stats));
 }
 
-function openArchive() {
+function openArchiveModal() {
   vibrate(15);
   const stats = JSON.parse(localStorage.getItem('11fl_stats') || '{"played":0,"wins":0,"currentStreak":0,"maxStreak":0,"floorDrops":[0,0,0,0,0,0,0,0,0,0,0]}');
   const winPct = stats.played > 0 ? Math.round((stats.wins / stats.played) * 100) : 0;
   const historyItem = localStorage.getItem('11fl_last_result');
   const maxDrop = Math.max(1, ...stats.floorDrops);
   
-  const logEl = document.getElementById('archive-log-text');
-  if (logEl) {
-    logEl.innerHTML = `
+  const bodyEl = document.getElementById('stats-body');
+  if (bodyEl) {
+    bodyEl.innerHTML = `
       <div style="display:flex; justify-content:space-around; text-align:center; margin-bottom:14px; padding:10px 0; border-bottom:1px solid #262626;">
         <div><div style="font-size:1.3rem; font-weight:800; color:#fff;">${stats.played}</div><div style="font-size:0.55rem;">PLAYED</div></div>
         <div><div style="font-size:1.3rem; font-weight:800; color:#fff;">${winPct}%</div><div style="font-size:0.55rem;">WIN %</div></div>
@@ -79,7 +79,20 @@ function openArchive() {
       </div>
     `;
   }
-  show('screen-archive');
+  const modal = document.getElementById('stats-modal');
+  if (modal) {
+    modal.classList.remove('hidden');
+    modal.classList.add('active');
+  }
+}
+
+function closeStatsModal() {
+  vibrate(15);
+  const modal = document.getElementById('stats-modal');
+  if (modal) {
+    modal.classList.remove('active');
+    modal.classList.add('hidden');
+  }
 }
 
 function playTone(freq, type='sine', duration=0.1, gainVal=0.08) {
@@ -103,7 +116,6 @@ function playHotelBellDing() {
   try {
     if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const now = audioCtx.currentTime;
-    
     const osc1 = audioCtx.createOscillator();
     const gain1 = audioCtx.createGain();
     osc1.type = 'sine';
@@ -115,15 +127,6 @@ function playHotelBellDing() {
     osc1.start(now);
     osc1.stop(now + 0.55);
   } catch(e){}
-}
-
-function getStreak() { return parseInt(localStorage.getItem('11fl_streak') || '0', 10); }
-
-function updateStreakOnWin() {
-  let streak = getStreak() + 1;
-  localStorage.setItem('11fl_streak', streak);
-  const streakEl = document.getElementById('victory-streak');
-  if (streakEl) streakEl.innerText = `Streak: 🔥 ${streak} day${streak > 1 ? 's' : ''}`;
 }
 
 function renderBldg(id, active) {
@@ -144,7 +147,9 @@ function buildGridString(clearedFloorCount) {
 }
 
 function show(id) { 
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.screen').forEach(s => {
+    if (s.id !== 'stats-modal') s.classList.remove('active');
+  });
   const target = document.getElementById(id);
   if (target) target.classList.add('active'); 
 }
@@ -153,16 +158,13 @@ async function prepareActiveDeck() {
   if (!deck || deck.length === 0) {
     await initQuiz();
   }
-  // Maps your JSON questions directly without breaking answer indices
-  activeFloorDeck = deck.map((f, floorIndex) => {
-    return {
-      floorNum: floorIndex + 1,
-      tier: f.tier || `FLOOR ${floorIndex + 1}`,
-      q: f.question,
-      opts: f.options,
-      c: f.answer
-    };
-  });
+  activeFloorDeck = deck.map((f, floorIndex) => ({
+    floorNum: floorIndex + 1,
+    tier: f.tier || `FLOOR ${floorIndex + 1}`,
+    q: f.question,
+    opts: f.options,
+    c: f.answer
+  }));
 }
 
 async function startClimb() {
@@ -182,29 +184,28 @@ function loadFloor() {
   show('screen-game');
   const rawD = activeFloorDeck[currentFloor - 1];
   if (!rawD) {
-    // End of game victory if beyond available floors
     triggerVictory();
     return;
   }
 
   const floorLabel = document.getElementById('hud-floor-label');
-  if (floorLabel) floorLabel.innerText = rawD.tier || `FLOOR ${currentFloor < 10 ? '0'+currentFloor : currentFloor}`;
+  if (floorLabel) floorLabel.innerText = rawD.tier;
   
-  renderBldg('building-game', currentFloor);
+  renderBldg('floor-counter', currentFloor);
   
-  const qText = document.getElementById('question-text');
-  if (qText) qText.innerText = `${currentFloor}. ${rawD.q}`;
-  
-  const opts = document.getElementById('options-container');
-  if (opts) {
-    opts.style.display = 'flex'; 
-    opts.innerHTML = '';
+  const gameView = document.getElementById('game-view');
+  if (gameView) {
+    gameView.innerHTML = `
+      <div style="font-size: 1.05rem; font-weight: 700; width: 100%; line-height: 1.35; text-align: left; color: #f5f5f5; margin-bottom: 12px; flex-shrink: 0;">${currentFloor}. ${rawD.q}</div>
+      <div style="width: 100%; display: flex; flex-direction: column; gap: 8px; overflow-y: auto; flex: 1; padding-bottom: 4px;" id="options-container"></div>
+    `;
+    const optsContainer = document.getElementById('options-container');
     rawD.opts.forEach((o, i) => {
       const btn = document.createElement('button');
-      btn.className = 'btn-option'; 
+      btn.className = 'btn-option';
       btn.innerText = o;
       btn.onclick = () => answer(i, rawD.c, btn);
-      opts.appendChild(btn);
+      optsContainer.appendChild(btn);
     });
   }
   startTimer();
@@ -215,11 +216,11 @@ function startTimer() {
   left = 15;
   const bar = document.getElementById('timer-bar');
   if (bar) bar.style.width = '100%';
-  timer = setInterval(()=>{
+  timer = setInterval(() => {
     left--;
     if (bar) bar.style.width = Math.max(0, left/15*100) + '%';
-    if(left<=0){ clearInterval(timer); fail('Time expired.'); }
-  },1000);
+    if(left <= 0) { clearInterval(timer); fail('Time expired.'); }
+  }, 1000);
 }
 
 function answer(sel, corr, btn) {
@@ -231,7 +232,7 @@ function answer(sel, corr, btn) {
     btn.classList.add('selected-correct');
     vibrate(15);
     playHotelBellDing();
-    setTimeout(()=>{
+    setTimeout(() => {
       if(currentFloor >= activeFloorDeck.length) { 
         triggerVictory();
       } else {
@@ -243,20 +244,20 @@ function answer(sel, corr, btn) {
     btn.classList.add('selected-wrong');
     vibrate([40, 30, 40]);
     playTone(150, 'sawtooth', 0.2, 0.08);
-    setTimeout(()=>fail('Wrong choice.'), 500);
+    setTimeout(() => fail('Wrong choice.'), 500);
   }
 }
 
 function triggerVictory() {
   highestFloorReached = activeFloorDeck.length;
-  renderBldg('building-game', activeFloorDeck.length);
+  renderBldg('floor-counter', activeFloorDeck.length);
   setTimeout(() => {
     vibrate([40, 50, 60]);
     playHotelBellDing();
     recordStats(true, activeFloorDeck.length);
-    updateStreakOnWin();
     generateShareText('win');
-    show('screen-victory');
+    alert("Victory! You reached the top floor!");
+    resetToLobby();
   }, 400);
 }
 
@@ -266,7 +267,8 @@ function fail(reason) {
   const dropFloor = highestFloorReached + 1;
   recordStats(false, dropFloor);
   generateShareText('fail');
-  show('screen-gameover');
+  alert("Wrong answer! Dropped back to ground floor.");
+  resetToLobby();
 }
 
 function generateShareText(type) {
@@ -274,16 +276,6 @@ function generateShareText(type) {
   const txt = type === 'win' ? `11FL? // Cleared\n${grid}` : `11FL? // Drop F${String(highestFloorReached+1).padStart(2,'0')}\n${grid}`;
   localStorage.setItem('11fl_last_result', txt);
   return txt;
-}
-
-function shareResult(type) {
-  vibrate(15);
-  const text = generateShareText(type);
-  if(navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(()=>alert('Copied result.')).catch(()=>prompt('Copy result:', text));
-  } else {
-    prompt('Copy result:', text);
-  }
 }
 
 function resetToLobby() { 
