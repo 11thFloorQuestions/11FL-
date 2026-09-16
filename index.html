@@ -25,12 +25,12 @@
     .top-bar-controls { width: 100%; display: flex; justify-content: space-between; align-items: center; height: 28px; flex-shrink: 0; margin-bottom: 4px; }
     .btn-audio-toggle, .btn-archive-toggle { background: transparent; border: 1px solid #262626; color: var(--text-muted); border-radius: 50px; padding: 4px 10px; font-size: 0.60rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 4px; }
     .btn-audio-toggle.active { color: var(--accent-red); border-color: var(--accent-red); }
-
+  
     .brand-header { margin-top: 2px; flex-shrink: 0; text-align: center; }
     .logo-header { color: var(--accent-red); font-size: 2.3rem; font-weight: 800; line-height: 1; letter-spacing: -1px; }
     .logo-subtitle { font-size: 0.75rem; font-weight: 500; color: var(--text-white); letter-spacing: 2.5px; text-transform: uppercase; margin-top: 6px; }
     .logo-micro { font-size: 0.55rem; font-weight: 500; color: var(--text-muted); letter-spacing: 3.5px; text-transform: uppercase; margin-top: 3px; }
-
+  
     .game-main-content { width: 100%; flex: 1; display: flex; flex-direction: row; align-items: stretch; gap: 14px; margin: 16px 0; overflow: hidden; min-height: 0; }
     
     .building-tower-col { display: flex; flex-direction: column; align-items: center; justify-content: stretch; flex-shrink: 0; height: 100%; }
@@ -48,16 +48,17 @@
     .timer-wrapper { width: 100%; background: #1f1f1f; height: 2px; border-radius: 2px; overflow: hidden; margin-bottom: 12px; flex-shrink: 0; }
     .timer-bar { width: 100%; height: 100%; background: var(--accent-red); transition: width 1s linear; }
     
-    .question-box { font-size: 0.85rem; font-weight: 700; width: 100%; line-height: 1.4; text-align: left; color: #f5f5f5; margin-bottom: 16px; flex-shrink: 0; }
+    /* Tweaked for clearer readability (larger font) */
+    .question-box { font-size: 1.15rem; font-weight: 700; width: 100%; line-height: 1.4; text-align: left; color: #f5f5f5; margin-bottom: 16px; flex-shrink: 0; }
     .options-grid { width: 100%; display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
     
-    .btn-option { background: #141414; color: #fff; border: 1px solid #262626; border-radius: 50px; padding: 11px 16px; font-size: 0.75rem; font-weight: 700; cursor: pointer; width: 100%; text-align: left; transition: border-color 0.15s; white-space: normal; line-height: 1.25; }
+    .btn-option { background: #141414; color: #fff; border: 1px solid #262626; border-radius: 50px; padding: 12px 18px; font-size: 0.95rem; font-weight: 700; cursor: pointer; width: 100%; text-align: left; transition: border-color 0.15s; white-space: normal; line-height: 1.25; }
     .btn-option:active { border-color: #555; }
     .btn-option.correct-btn { background-color: var(--correct-green) !important; border-color: var(--correct-green) !important; color: #fff !important; }
     .btn-option.wrong-btn { background-color: var(--wrong-red) !important; border-color: var(--wrong-red) !important; color: #fff !important; }
     
     .btn-pill { background: #fff; color: #000; border: none; border-radius: 50px; padding: 12px 32px; font-size: 0.88rem; font-weight: 800; cursor: pointer; flex-shrink: 0; }
-    .btn-secondary { background: transparent; color: var(--text-muted); border: 1px solid #262626; border-radius: 50px; padding: 10px 24px; font-size: 0.75rem; font-weight: 700; cursor: pointer; margin-top: 12px; }
+    .btn-secondary { background: transparent; color: var(--text-muted); border: 1px solid #262626; border-radius: 50px; padding: 10px 24px; font-size: 0.75rem; font-weight: 700; cursor: pointer; margin-top: 8px; }
     
     .centered-stage { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; min-height: 0; padding: 0 10px; }
     .headline { font-size: 0.82rem; font-weight: 500; line-height: 1.6; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); white-space: pre-line; text-align: center; }
@@ -81,8 +82,7 @@
     </div>
     <div class="building-container-center" id="building-landing"></div>
     <div class="centered-stage">
-      <div class="headline">Can you reach the 11th Floor?
-Fail and you're back to the ground floor.</div>
+      <div class="headline">Can you reach the 11th Floor? Fail and you're back to the ground floor.</div>
       <button class="btn-pill" style="margin-top: 24px;" onclick="startClimb()">Start Climb</button>
     </div>
     <div></div>
@@ -102,7 +102,7 @@ Fail and you're back to the ground floor.</div>
     <button class="btn-secondary" onclick="show('screen-landing')">Return to Landing</button>
   </div>
 
-  <!-- GAME LOOP (Floors 1-10 gates, Floor 11 arrival/win) -->
+  <!-- GAME LOOP -->
   <div id="screen-game" class="screen">
     <div class="top-bar-controls">
       <button class="btn-audio-toggle" onclick="resetToLobby()">Exit</button>
@@ -139,13 +139,15 @@ Fail and you're back to the ground floor.</div>
     </div>
     <div class="centered-stage">
       <div class="headline" style="color:var(--wrong-red);">Back to the ground floor. See you tomorrow.</div>
-      <button class="btn-pill" style="margin-top: 24px;" onclick="shareResult('fail')">Share Result</button>
+      <button class="btn-pill" style="margin-top: 20px;" onclick="shareResult('fail')">Share Result</button>
+      <!-- Stats button added to final screen per request -->
+      <button class="btn-secondary" onclick="openArchive()">Stats / Archive</button>
       <button class="btn-secondary" onclick="resetToLobby()">Exit to Lobby</button>
     </div>
     <div></div>
   </div>
 
-  <!-- VICTORY (Penthouse 11th Floor Reached) -->
+  <!-- VICTORY -->
   <div id="screen-victory" class="screen">
     <div class="brand-header">
       <div class="logo-header">11FL?</div>
@@ -155,7 +157,9 @@ Fail and you're back to the ground floor.</div>
     <div class="centered-stage">
       <div class="headline">Penthouse Cleared. See you tomorrow.</div>
       <div class="subtext" id="victory-streak">Streak: 🔥 1 day</div>
-      <button class="btn-pill" style="margin-top: 24px;" onclick="shareResult('win')">Share Result</button>
+      <button class="btn-pill" style="margin-top: 20px;" onclick="shareResult('win')">Share Result</button>
+      <!-- Stats button added to final screen per request -->
+      <button class="btn-secondary" onclick="openArchive()">Stats / Archive</button>
       <button class="btn-secondary" onclick="resetToLobby()">Exit to Lobby</button>
     </div>
     <div></div>
@@ -251,15 +255,16 @@ Fail and you're back to the ground floor.</div>
       if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
-      osc.type = type; osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
       gain.gain.setValueAtTime(gainVal, audioCtx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
       osc.connect(gain); gain.connect(audioCtx.destination);
-      osc.start(); osc.stop(audioCtx.currentTime + duration);
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
     } catch(e){}
   }
 
-  // Crisp hotel reception desk bell ding synth (sharp strike + high ring tail)
   function playHotelBellDing() {
     if (!audioEnabled) return;
     try {
@@ -274,7 +279,8 @@ Fail and you're back to the ground floor.</div>
       gain1.gain.setValueAtTime(0.14, now);
       gain1.gain.exponentialRampToValueAtTime(0.0001, now + 0.55);
       osc1.connect(gain1); gain1.connect(audioCtx.destination);
-      osc1.start(now); osc1.stop(now + 0.55);
+      osc1.start(now);
+      osc1.stop(now + 0.55);
 
       const osc2 = audioCtx.createOscillator();
       const gain2 = audioCtx.createGain();
@@ -283,7 +289,8 @@ Fail and you're back to the ground floor.</div>
       gain2.gain.setValueAtTime(0.06, now);
       gain2.gain.exponentialRampToValueAtTime(0.0001, now + 0.22);
       osc2.connect(gain2); gain2.connect(audioCtx.destination);
-      osc2.start(now); osc2.stop(now + 0.22);
+      osc2.start(now);
+      osc2.stop(now + 0.22);
     } catch(e){}
   }
 
@@ -299,7 +306,7 @@ Fail and you're back to the ground floor.</div>
     const el = document.getElementById(id);
     if (!el) return;
     el.innerHTML = '';
-    for(let i=1;i<=11;i++){
+    for(let i=1; i<=11; i++){
       const b = document.createElement('div');
       b.className = 'floor-block' + (i<active?' completed':'') + (i===active?' active-floor':'');
       el.appendChild(b);
@@ -313,7 +320,7 @@ Fail and you're back to the ground floor.</div>
   }
 
   function show(id) { 
-    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); 
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
     document.getElementById(id).classList.add('active'); 
   }
 
@@ -342,7 +349,8 @@ Fail and you're back to the ground floor.</div>
   function startClimb() {
     vibrate(20);
     prepareActiveDeck();
-    currentFloor = 1; highestFloorReached = 0;
+    currentFloor = 1;
+    highestFloorReached = 0;
     loadFloor();
   }
 
@@ -380,7 +388,8 @@ Fail and you're back to the ground floor.</div>
 
   function answer(sel, corr, btn) {
     if(locked) return;
-    locked = true; clearInterval(timer);
+    locked = true;
+    clearInterval(timer);
     if(sel === corr) {
       highestFloorReached = currentFloor;
       btn.classList.add('correct-btn');
@@ -399,7 +408,9 @@ Fail and you're back to the ground floor.</div>
             generateShareText('win');
             show('screen-victory');
           }, 400);
-        } else { currentFloor++; loadFloor(); }
+        } else {
+          currentFloor++; loadFloor();
+        }
       }, 600);
     } else {
       btn.classList.add('wrong-btn');
@@ -430,7 +441,9 @@ Fail and you're back to the ground floor.</div>
     const text = generateShareText(type);
     if(navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(()=>alert('Copied result.')).catch(()=>prompt('Copy result:', text));
-    } else { prompt('Copy result:', text); }
+    } else {
+      prompt('Copy result:', text);
+    }
   }
 
   function resetToLobby() { 
