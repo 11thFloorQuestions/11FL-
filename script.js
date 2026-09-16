@@ -168,7 +168,7 @@ async function prepareActiveDeck() {
 
     return {
       floorNum: floorIndex + 1,
-      tier: f.tier || `FLOOR ${floorIndex + 1}`,
+      tier: f.tier || `FLOOR ${String(floorIndex + 1).padStart(2, '0')}`,
       q: f.question,
       opts: shuffledOpts,
       c: correctIndex >= 0 ? correctIndex : 0
@@ -269,7 +269,7 @@ function triggerVictory() {
     const gridStr = buildGridString(highestFloorReached);
     gameView.innerHTML = `
       <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%; gap:14px; padding:10px;">
-        <div style="font-size: 1.15rem; font-weight: 800; color: #fff; letter-spacing: 1px;">SUMMIT REACHED</div>
+        <div style="font-size: 1.15rem; font-weight: 800; color: #fff; letter-spacing: 1px;">11TH FLOOR REACHED</div>
         <div style="font-size: 0.65rem; color: var(--text-muted);">Congratulations, you've reached the 11th floor.</div>
         <div style="font-size: 0.8rem; font-family: monospace; color: #fff; background: #141414; padding: 10px 16px; border-radius: 4px; border: 1px solid #262626; width: 100%;">${gridStr}</div>
         <div style="display: flex; gap: 10px; width: 100%; margin-top: 10px;">
