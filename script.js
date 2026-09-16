@@ -1,74 +1,109 @@
-{
-  "floors": [
-    {
-      "tier": "SUB-LEVEL 1",
-      "choicesCount": 4,
-      "question": "Which subatomic particle was discovered by J.J. Thomson in 1897 through cathode ray experiments?",
-      "options": ["Electron", "Proton", "Neutron", "Positron"],
-      "answer": 0
-    },
-    {
-      "tier": "SUB-LEVEL 2",
-      "choicesCount": 4,
-      "question": "What is the primary structural protein found in vertebrate hair, nails, and outer skin layers?",
-      "options": ["Keratin", "Collagen", "Elastin", "Fibrin"],
-      "answer": 0
-    },
-    {
-      "tier": "SECTOR 3",
-      "choicesCount": 4,
-      "question": "Which deep-sea trench is located in the Pacific Ocean and contains Challenger Deep?",
-      "options": ["Mariana Trench", "Puerto Rico Trench", "Java Trench", "Peru-Chile Trench"],
-      "answer": 0
-    },
-    {
-      "tier": "SECTOR 4",
-      "choicesCount": 4,
-      "question": "In computer networking, what does the protocol acronym TCP stand for?",
-      "options": ["Transmission Control Protocol", "Transfer Communication Process", "Terminal Connection Point", "Telemetry Control Program"],
-      "answer": 0
-    },
-    {
-      "tier": "MID-TOWER 5",
-      "choicesCount": 4,
-      "question": "Which Renaissance astronomer proposed the heliocentric model with planets orbiting the Sun in circular paths?",
-      "options": ["Nicolaus Copernicus", "Johannes Kepler", "Galileo Galilei", "Tycho Brahe"],
-      "answer": 0
-    },
-    {
-      "tier": "MID-TOWER 6",
-      "choicesCount": 4,
-      "question": "What is the maximum number of legal moves a single chess piece (the Queen) can make from an unobstructed center square?",
-      "options": ["27", "21", "14", "32"],
-      "answer": 0
-    },
-    {
-      "tier": "UPPER DECK 7",
-      "choicesCount": 4,
-      "question": "Which chemical compound is commonly known as 'heavy water'?",
-      "options": ["Deuterium oxide", "Hydrogen peroxide", "Dihydrogen monoxide", "Lithium deuteride"],
-      "answer": 0
-    },
-    {
-      "tier": "UPPER DECK 8",
-      "choicesCount": 4,
-      "question": "Who composed the landmark 1913 avant-garde ballet score 'The Rite of Spring'?",
-      "options": ["Igor Stravinsky", "Claude Debussy", "Arnold Schoenberg", "Maurice Ravel"],
-      "answer": 0
-    },
-    {
-      "tier": "PENTHOUSE APPROACH 9",
-      "choicesCount": 4,
-      "question": "What is the primary alloy metal combined with copper to produce standard industrial bronze?",
-      "options": ["Tin", "Zinc", "Nickel", "Lead"],
-      "answer": 0
-    },
-    {
-      "tier": "PENTHOUSE ROOF 10",
-      "choicesCount": 4,
-      "question": "Which physical unit measures luminous flux in the International System of Units (SI)?",
-      "options": ["Lumen", "Lux", "Candela", "Watt"],
-      "answer": 0
-    }
-  ]
+let currentFloorIdx = -1;
+let score = 0;
+let quizData = null;
+const optionLabels = ['A', 'B', 'C', 'D'];
+
+async function initGame() {
+  try {
+    const res = await fetch('./questions.json?v=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    quizData = await res.json();
+    renderLobby();
+  } catch (err) {
+    console.error('Failed to load questions.json', err);
+    document.getElementById('game-view').innerHTML = `<p style="color:#f43f5e;">Failed to load tower data.</p>`;
+  }
 }
+
+function renderLobby() {
+  currentFloorIdx = -1;
+  document.getElementById('floor-counter').textContent = `LOBBY / B1`;
+  document.getElementById('game-view').innerHTML = `
+    <div class="lobby-container">
+      <div class="elevator-sigil">■ ELEVATOR 11 ■</div>
+      <h1 class="lobby-title">11TH FLOOR</h1>
+      <p class="lobby-sub">Vertical cognitive friction. 10 tiers. Zero safety net.</p>
+      <div class="final-actions" style="margin-top: 2rem;">
+        <button class="primary-btn" onclick="startClimb()">CALL LIFT (START)</button>
+        <button class="secondary-btn" onclick="openStatsModal()" style="margin-top: 12px;">Stats & History</button>
+      </div>
+    </div>
+  `;
+}
+
+function startClimb() { currentFloorIdx = 0; score = 0; renderFloor(); }
+
+function renderFloor() {
+  const container = document.getElementById('game-view');
+  const counter = document.getElementById('floor-counter');
+  if (!quizData || currentFloorIdx >= quizData.floors.length) { renderFinalScreen(); return; }
+  const floorData = quizData.floors[currentFloorIdx];
+  counter.textContent = `FLOOR ${String(currentFloorIdx + 1).padStart(2, '0')} / 10`;
+  const optionsHTML = floorData.options.map((opt, i) => `
+    <button class="choice-btn" onclick="handleChoice(${i})">
+      <strong>${optionLabels[i]})</strong> ${opt}
+    </button>
+  `).join('');
+  container.innerHTML = `
+    <div class="tier-badge">${floorData.tier} — ${floorData.choicesCount} CHOICES</div>
+    <div class="question-text">${floorData.question}</div>
+    <div class="choices-stack">${optionsHTML}</div>
+  `;
+}
+
+function handleChoice(selectedIndex) {
+  const floorData = quizData.floors[currentFloorIdx];
+  const buttons = document.querySelectorAll('.choice-btn');
+  const isCorrect = selectedIndex === floorData.answer;
+  buttons.forEach((btn, idx) => {
+    btn.disabled = true;
+    if (idx === floorData.answer) btn.classList.add('selected-correct');
+    if (idx === selectedIndex && !isCorrect) btn.classList.add('selected-wrong');
+  });
+  if (isCorrect) score++;
+  setTimeout(() => { currentFloorIdx++; renderFloor(); }, 750);
+}
+
+function renderFinalScreen() {
+  const container = document.getElementById('game-view');
+  document.getElementById('floor-counter').textContent = `ROOFTOP / 11`;
+  saveStats(score);
+  container.innerHTML = `
+    <div class="final-screen-container">
+      <h2>Summit Reached</h2>
+      <div class="score-display">${score} / 10</div>
+      <div class="final-actions">
+        <button class="primary-btn" onclick="startClimb()">Run Again</button>
+        <button class="secondary-btn" onclick="openStatsModal()">Stats & History</button>
+        <button class="secondary-btn" onclick="renderLobby()" style="margin-top:8px; opacity:0.7;">Return to Lobby</button>
+      </div>
+    </div>
+  `;
+}
+
+function saveStats(runScore) {
+  try {
+    const history = JSON.parse(localStorage.getItem('eleventh_floor_stats') || '[]');
+    history.push({ date: new Date().toISOString().split('T')[0], score: runScore });
+    localStorage.setItem('eleventh_floor_stats', JSON.stringify(history));
+  } catch (e) {}
+}
+
+function openStatsModal() {
+  const modal = document.getElementById('stats-modal');
+  const body = document.getElementById('stats-body');
+  let history = [];
+  try { history = JSON.parse(localStorage.getItem('eleventh_floor_stats') || '[]'); } catch (e) {}
+  const totalRuns = history.length;
+  const avgScore = totalRuns ? (history.reduce((a, b) => a + (b.score || 0), 0) / totalRuns).toFixed(1) : 0;
+  const bestScore = totalRuns ? Math.max(...history.map(h => h.score || 0)) : 0;
+  body.innerHTML = `
+    <p><strong>Total Runs:</strong> ${totalRuns}</p>
+    <p><strong>Best Summit:</strong> ${bestScore} / 10</p>
+    <p><strong>Average Score:</strong> ${avgScore}</p>
+  `;
+  modal.classList.remove('hidden');
+}
+
+function closeStatsModal() { document.getElementById('stats-modal').classList.add('hidden'); }
+window.addEventListener('DOMContentLoaded', initGame);
