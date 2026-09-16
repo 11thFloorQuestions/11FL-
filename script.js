@@ -93,6 +93,7 @@ function closeStatsModal() {
     modal.classList.remove('active');
     modal.classList.add('hidden');
   }
+  resetToLobby();
 }
 
 function playTone(freq, type='sine', duration=0.1, gainVal=0.08) {
@@ -264,7 +265,7 @@ function triggerVictory() {
     playHotelBellDing();
     recordStats(true, activeFloorDeck.length);
     generateShareText('win');
-    resetToLobby();
+    openArchiveModal(); // Displays your completed run and share grid cleanly without native pop-ups
   }, 400);
 }
 
@@ -274,7 +275,7 @@ function fail(reason) {
   const dropFloor = highestFloorReached + 1;
   recordStats(false, dropFloor);
   generateShareText('fail');
-  resetToLobby();
+  openArchiveModal(); // Shows drop stats and share grid cleanly
 }
 
 function generateShareText(type) {
