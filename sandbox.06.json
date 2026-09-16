@@ -6,118 +6,118 @@
     {
       "tier": "FLOOR 01",
       "choicesCount": 4,
-      "question": "What is the chemical symbol for gold?",
+      "question": "What celestial coordinate system uses right ascension and declination, mirroring Earth's latitude and longitude projected onto the night sky?",
       "options": [
-        "Au",
-        "Ag",
-        "Pb",
-        "Fe"
+        "Equatorial coordinate system",
+        "Horizontal coordinate system",
+        "Ecliptic coordinate system",
+        "Galactic coordinate system"
       ],
       "answer": 0
     },
     {
       "tier": "FLOOR 02",
       "choicesCount": 3,
-      "question": "Which layer of Earth's atmosphere lies directly above the troposphere?",
+      "question": "Which structural protein forms the primary fibrous component of vertebrate hair, nails, and outer skin layers?",
       "options": [
-        "Stratosphere",
-        "Mesosphere",
-        "Thermosphere"
+        "Keratin",
+        "Collagen",
+        "Elastin"
       ],
       "answer": 0
     },
     {
       "tier": "FLOOR 03",
       "choicesCount": 4,
-      "question": "Which major river flows northward through Egypt into the Mediterranean?",
+      "question": "What historic 18th-century intellectual movement centered in Edinburgh and Glasgow emphasized common sense, empirical science, and practical progress?",
       "options": [
-        "Nile",
-        "Amazon",
-        "Yangtze",
-        "Congo"
+        "Scottish Enlightenment",
+        "French Enlightenment",
+        "German Idealism",
+        "English Radicalism"
       ],
       "answer": 0
     },
     {
       "tier": "FLOOR 04",
       "choicesCount": 4,
-      "question": "What economic law states that higher prices lead to a lower quantity demanded?",
+      "question": "Which fundamental particle exchange mediates the strong nuclear interaction holding quarks together inside protons and neutrons?",
       "options": [
-        "Law of demand",
-        "Law of supply",
-        "Diminishing returns",
-        "Comparative advantage"
+        "Gluons",
+        "Photons",
+        "W and Z bosons",
+        "Gravitons"
       ],
       "answer": 0
     },
     {
       "tier": "FLOOR 05",
       "choicesCount": 4,
-      "question": "Which Renaissance master painted the Sistine Chapel ceiling?",
+      "question": "What specific term describes an economic market structure characterized by a single buyer and multiple sellers?",
       "options": [
-        "Michelangelo",
-        "Leonardo da Vinci",
-        "Raphael",
-        "Donatello"
+        "Monopsony",
+        "Monopoly",
+        "Oligopoly",
+        "Duopoly"
       ],
       "answer": 0
     },
     {
       "tier": "FLOOR 06",
       "choicesCount": 3,
-      "question": "What geological term defines a localized area where mantle magma breaches the crust?",
+      "question": "Which deep-sea trench runs parallel to the western coast of South America, formed by the subduction of the Nazca Plate?",
       "options": [
-        "Volcanic hotspot",
-        "Subduction zone",
-        "Transform fault"
+        "Peru-Chile Trench",
+        "Aleutian Trench",
+        "Kermadec Trench"
       ],
       "answer": 0
     },
     {
       "tier": "FLOOR 07",
       "choicesCount": 4,
-      "question": "Which ship carried Charles Darwin on his foundational natural selection voyage?",
+      "question": "Who authored the 1513 political treatise *The Prince*, breaking from medieval scholasticism to analyze realpolitik and statecraft?",
       "options": [
-        "HMS Beagle",
-        "HMS Challenger",
-        "HMS Endeavour",
-        "HMS Terror"
+        "Niccolò Machiavelli",
+        "Thomas Hobbes",
+        "Jean-Jacques Rousseau",
+        "Desiderius Erasmus"
       ],
       "answer": 0
     },
     {
       "tier": "FLOOR 08",
       "choicesCount": 4,
-      "question": "What type of cryptography uses a public and private key pair?",
+      "question": "What asymmetric cryptographic algorithm, developed by Rivest, Shamir, and Adleman, underpins modern secure web communication?",
       "options": [
-        "Asymmetric",
-        "Symmetric",
-        "Hash-based",
-        "Quantum"
+        "RSA encryption",
+        "AES standard",
+        "Diffie-Hellman key exchange",
+        "SHA-256 hashing"
       ],
       "answer": 0
     },
     {
       "tier": "FLOOR 09",
       "choicesCount": 4,
-      "question": "Which architectural style, featuring flying buttresses and pointed arches, dominated medieval Europe after Romanesque?",
+      "question": "Which mid-19th-century conflict on the Crimean Peninsula pitted the Russian Empire against an alliance of France, Britain, and the Ottomans?",
       "options": [
-        "Gothic",
-        "Baroque",
-        "Neoclassical",
-        "Beaux-Arts"
+        "Crimean War",
+        "Russo-Turkish War",
+        "Great Northern War",
+        "Livonian War"
       ],
       "answer": 0
     },
     {
       "tier": "FLOOR 10",
       "choicesCount": 4,
-      "question": "What theoretical mass limit prevents a white dwarf from avoiding core collapse?",
+      "question": "What theoretical limit defines the maximum possible rotational velocity of a Kerr black hole before its event horizon disappears?",
       "options": [
+        "Extremal Kerr limit",
         "Chandrasekhar limit",
-        "Eddington limit",
-        "Schwarzschild radius",
-        "Planck mass"
+        "Tolman–Oppenheimer–Volkoff limit",
+        "Eddington limit"
       ],
       "answer": 0
     }
