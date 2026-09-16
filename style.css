@@ -200,3 +200,10 @@ body {
   flex-direction: column;
   gap: 16px;
 }
+/* Paste these at the VERY BOTTOM of your existing style.css */
+.question-text {
+    font-size: 1.4rem !important; /* Bump higher like 1.6rem if you need massive */
+}
+.choice-btn {
+    font-size: 1.15rem !important;
+}
