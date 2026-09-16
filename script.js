@@ -93,7 +93,6 @@ function closeStatsModal() {
     modal.classList.remove('active');
     modal.classList.add('hidden');
   }
-  resetToLobby();
 }
 
 function playTone(freq, type='sine', duration=0.1, gainVal=0.08) {
@@ -260,13 +259,26 @@ function answer(sel, corr, btn) {
 function triggerVictory() {
   highestFloorReached = activeFloorDeck.length;
   renderBldg('floor-counter', activeFloorDeck.length);
-  setTimeout(() => {
-    vibrate([40, 50, 60]);
-    playHotelBellDing();
-    recordStats(true, activeFloorDeck.length);
-    generateShareText('win');
-    openArchiveModal(); // Displays your completed run and share grid cleanly without native pop-ups
-  }, 400);
+  vibrate([40, 50, 60]);
+  playHotelBellDing();
+  recordStats(true, activeFloorDeck.length);
+  generateShareText('win');
+  
+  const gameView = document.getElementById('game-view');
+  if (gameView) {
+    const gridStr = buildGridString(highestFloorReached);
+    gameView.innerHTML = `
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%; gap:14px; padding:10px;">
+        <div style="font-size: 1.15rem; font-weight: 800; color: #fff; letter-spacing: 1px;">SUMMIT REACHED</div>
+        <div style="font-size: 0.65rem; color: var(--text-muted);">Congratulations, you've reached the 11th floor.</div>
+        <div style="font-size: 0.8rem; font-family: monospace; color: #fff; background: #141414; padding: 10px 16px; border-radius: 4px; border: 1px solid #262626; width: 100%;">${gridStr}</div>
+        <div style="display: flex; gap: 10px; width: 100%; margin-top: 10px;">
+          <button onclick="openArchiveModal()" style="flex: 1; padding: 12px; background: #1f1f1f; color: #fff; border: 1px solid #333; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">STATS</button>
+          <button onclick="resetToLobby()" style="flex: 1; padding: 12px; background: var(--accent-red, #ff3b30); color: #fff; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">LOBBY</button>
+        </div>
+      </div>
+    `;
+  }
 }
 
 function fail(reason) {
@@ -275,7 +287,22 @@ function fail(reason) {
   const dropFloor = highestFloorReached + 1;
   recordStats(false, dropFloor);
   generateShareText('fail');
-  openArchiveModal(); // Shows drop stats and share grid cleanly
+  
+  const gameView = document.getElementById('game-view');
+  if (gameView) {
+    const gridStr = buildGridString(highestFloorReached);
+    gameView.innerHTML = `
+      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%; gap:14px; padding:10px;">
+        <div style="font-size: 1.15rem; font-weight: 800; color: var(--accent-red, #ff3b30); letter-spacing: 1px;">FLOOR DROP // F${String(dropFloor).padStart(2,'0')}</div>
+        <div style="font-size: 0.65rem; color: var(--text-muted);">Run terminated. Descent initiated.</div>
+        <div style="font-size: 0.8rem; font-family: monospace; color: #fff; background: #141414; padding: 10px 16px; border-radius: 4px; border: 1px solid #262626; width: 100%;">${gridStr}</div>
+        <div style="display: flex; gap: 10px; width: 100%; margin-top: 10px;">
+          <button onclick="openArchiveModal()" style="flex: 1; padding: 12px; background: #1f1f1f; color: #fff; border: 1px solid #333; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">STATS</button>
+          <button onclick="resetToLobby()" style="flex: 1; padding: 12px; background: #333; color: #fff; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">LOBBY</button>
+        </div>
+      </div>
+    `;
+  }
 }
 
 function generateShareText(type) {
