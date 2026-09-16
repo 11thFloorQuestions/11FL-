@@ -158,13 +158,23 @@ async function prepareActiveDeck() {
   if (!deck || deck.length === 0) {
     await initQuiz();
   }
-  activeFloorDeck = deck.map((f, floorIndex) => ({
-    floorNum: floorIndex + 1,
-    tier: f.tier || `FLOOR ${floorIndex + 1}`,
-    q: f.question,
-    opts: f.options,
-    c: f.answer
-  }));
+  activeFloorDeck = deck.map((f, floorIndex) => {
+    const rawOptions = f.options || [];
+    const correctText = rawOptions[f.answer ?? 0];
+    
+    // Shuffle options dynamically while tracking the correct answer's new position
+    let shuffledOpts = [...rawOptions];
+    shuffledOpts.sort(() => Math.random() - 0.5);
+    const correctIndex = shuffledOpts.indexOf(correctText);
+
+    return {
+      floorNum: floorIndex + 1,
+      tier: f.tier || `FLOOR ${floorIndex + 1}`,
+      q: f.question,
+      opts: shuffledOpts,
+      c: correctIndex >= 0 ? correctIndex : 0
+    };
+  });
 }
 
 async function startClimb() {
