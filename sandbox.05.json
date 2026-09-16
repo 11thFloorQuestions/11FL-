@@ -6,12 +6,12 @@
     {
       "tier": "FLOOR 01",
       "choicesCount": 4,
-      "question": "Which specific subatomic particle was discovered by J.J. Thomson in 1897 through cathode ray tube experiments?",
+      "question": "Which luminous optical phenomenon in the upper atmosphere is caused by the interaction of solar wind particles with Earth's magnetosphere?",
       "options": [
-        "Electron",
-        "Proton",
-        "Neutron",
-        "Positron"
+        "Aurora borealis",
+        "Zodiacal light",
+        "Airglow",
+        "St. Elmo's fire"
       ],
       "answer": 0
     },
@@ -29,12 +29,12 @@
     {
       "tier": "FLOOR 03",
       "choicesCount": 4,
-      "question": "Which deep-ocean trench contains Challenger Deep, the deepest known point of Earth's seabed?",
+      "question": "What specialized branch of geophysics studies the intensity, origin, and historical shifts of Earth's magnetic field recorded in rocks?",
       "options": [
-        "Mariana Trench",
-        "Puerto Rico Trench",
-        "Java Trench",
-        "Tonga Trench"
+        "Paleomagnetism",
+        "Seismology",
+        "Stratigraphy",
+        "Geodesy"
       ],
       "answer": 0
     },
