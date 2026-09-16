@@ -38,12 +38,12 @@
     {
       "tier": "FLOOR 04",
       "choicesCount": 4,
-      "question": "Which major historical development directly necessitated the adoption of Greenwich Mean Time (GMT) as a unified standard across Great Britain?",
+      "question": "What primary historical development drove the 19th-century adoption of standard time zones?",
       "options": [
-        "The rapid expansion of the railway network requiring synchronized timetables",
-        "The laying of transatlantic telegraph cables requiring precise global synchronization",
-        "The standardization of Royal Navy maritime navigation charts",
-        "The decimalization of the British monetary system"
+        "The expansion of interconnected railway networks",
+        "The laying of transatlantic telegraph cables",
+        "The standardization of maritime navigation charts",
+        "The global unification of postal systems"
       ],
       "answer": 0
     },
