@@ -18,11 +18,11 @@
     {
       "tier": "FLOOR 02",
       "choicesCount": 3,
-      "question": "Which additive color model is standard for digital computer and phone displays?",
+      "question": "Which layer of Earth's atmosphere lies directly above the troposphere?",
       "options": [
-        "RGB",
-        "CMYK",
-        "RYB"
+        "Stratosphere",
+        "Mesosphere",
+        "Thermosphere"
       ],
       "answer": 0
     },
