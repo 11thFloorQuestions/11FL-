@@ -1,0 +1,125 @@
+{
+  "sandbox_version": "0.1",
+  "archive_id": "archive_06",
+  "title": "ARCHIVE 06",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "choicesCount": 4,
+      "question": "Which common household and industrial gas is composed of two oxygen atoms bonded together?",
+      "options": [
+        "Dioxygen (Oxygen gas)",
+        "Ozone",
+        "Carbon dioxide",
+        "Nitrogen oxide"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 02",
+      "choicesCount": 3,
+      "question": "What primary color model is used for additive color mixing in digital electronic displays like computer and smartphone screens?",
+      "options": [
+        "RGB (Red, Green, Blue)",
+        "CMYK (Cyan, Magenta, Yellow, Key)",
+        "RYB (Red, Yellow, Blue)"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 03",
+      "choicesCount": 4,
+      "question": "Which major world river flows northward through Egypt and Sudan before emptying into the Mediterranean Sea?",
+      "options": [
+        "Nile River",
+        "Amazon River",
+        "Yangtze River",
+        "Congo River"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 04",
+      "choicesCount": 4,
+      "question": "What fundamental economic principle states that, all else being equal, an increase in the price of a good leads to a decrease in quantity demanded?",
+      "options": [
+        "Law of demand",
+        "Law of supply",
+        "Diminishing marginal returns",
+        "Comparative advantage"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 05",
+      "choicesCount": 4,
+      "question": "Which Renaissance polymath painted the monumental ceiling frescoes of the Sistine Chapel in Rome?",
+      "options": [
+        "Michelangelo",
+        "Leonardo da Vinci",
+        "Raphael",
+        "Donatello"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 06",
+      "choicesCount": 3,
+      "question": "What specialized geological term describes a localized region where molten rock erupts onto a planetary surface from a deep mantle plume?",
+      "options": [
+        "Volcanic hotspot",
+        "Subduction zone",
+        "Transform fault"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 07",
+      "choicesCount": 4,
+      "question": "Which 19th-century scientific expedition aboard HMS Beagle provided Charles Darwin with the foundational observations for his theory of natural selection?",
+      "options": [
+        "The Beagle survey voyage",
+        "The Challenger expedition",
+        "The Erebus and Terror expedition",
+        "The Endeavour voyage"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 08",
+      "choicesCount": 4,
+      "question": "What subfield of cryptography relies on pairs of cryptographic keys—public and private—to secure data transmission?",
+      "options": [
+        "Asymmetric cryptography",
+        "Symmetric cryptography",
+        "Hash-based cryptography",
+        "Quantum cryptography"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 09",
+      "choicesCount": 4,
+      "question": "Which historic treaty of 1919 officially concluded the state of war between Germany and the Allied Powers following World War I?",
+      "options": [
+        "Treaty of Versailles",
+        "Treaty of Saint-Germain-en-Laye",
+        "Treaty of Trianon",
+        "Treaty of Sèvres"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 10",
+      "choicesCount": 4,
+      "question": "What theoretical limit defines the maximum mass a white dwarf star can hold before collapsing into a neutron star or black hole?",
+      "options": [
+        "Chandrasekhar limit",
+        "Tolman–Oppenheimer–Volkoff limit",
+        "Eddington limit",
+        "Schwarzschild radius"
+      ],
+      "answer": 0
+    }
+  ]
+}
