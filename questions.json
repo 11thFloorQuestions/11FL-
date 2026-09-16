@@ -3,42 +3,42 @@
     {
       "tier": "SUB-LEVEL 1",
       "choicesCount": 4,
-      "question": "Which physical law dictates that the entropy of an isolated system always increases over time?",
+      "question": "Which country contains more than half of all the natural lakes in the entire world?",
       "options": [
-        "The Second Law of Thermodynamics",
-        "The Law of Conservation of Energy",
-        "Newton's Third Law of Motion",
-        "The Principle of Least Action"
+        "Canada",
+        "Russia",
+        "Brazil",
+        "United States"
       ],
       "answer": 0
     },
     {
       "tier": "SUB-LEVEL 2",
       "choicesCount": 3,
-      "question": "In typography, what specific term describes the vertical space between lines of type?",
+      "question": "In Greek mythology, who was the mortal woman gifted a pithos (jar) that mistakenly unleashed all the miseries of the world upon humanity?",
       "options": [
-        "Leading",
-        "Kerning",
-        "Tracking"
+        "Pandora",
+        "Persephone",
+        "Psyche"
       ],
       "answer": 0
     },
     {
       "tier": "SECTOR 3",
       "choicesCount": 4,
-      "question": "Which architectural structural element transfers the weight of a dome or roof down to square or rectangular piers?",
+      "question": "Which essential vitamin is synthesized naturally by the human body through exposure to ultraviolet B (UVB) sunlight?",
       "options": [
-        "Pendentive",
-        "Buttress",
-        "Cornice",
-        "Lintel"
+        "Vitamin D",
+        "Vitamin C",
+        "Vitamin B12",
+        "Vitamin A"
       ],
       "answer": 0
     },
     {
       "tier": "SECTOR 4",
       "choicesCount": 2,
-      "question": "True or False: In chess, a stalemate results in a draw rather than a win for the player who delivered it.",
+      "question": "True or False: Lightning can strike the same place multiple times, and tall structures are frequently hit repeatedly during a single storm.",
       "options": [
         "True",
         "False"
@@ -48,70 +48,70 @@
     {
       "tier": "MID-TOWER 5",
       "choicesCount": 4,
-      "question": "Which chemical element possesses the highest melting point of all pure metals?",
+      "question": "The ancient civilization and mercantile empire of Carthage was located in which present-day North African country?",
       "options": [
-        "Tungsten",
-        "Platinum",
-        "Titanium",
-        "Chromium"
+        "Tunisia",
+        "Libya",
+        "Algeria",
+        "Morocco"
       ],
       "answer": 0
     },
     {
       "tier": "MID-TOWER 6",
       "choicesCount": 3,
-      "question": "In classical music theory, what interval is formed by the frequency ratio of 3:2?",
+      "question": "What meteorological scale is used to classify wind speed and environmental impact based on observational conditions, ranging from force 0 to 12?",
       "options": [
-        "Perfect Fifth",
-        "Major Third",
-        "Octave"
+        "Beaufort scale",
+        "Richter scale",
+        "Saffir-Simpson scale"
       ],
       "answer": 0
     },
     {
       "tier": "UPPER DECK 7",
       "choicesCount": 4,
-      "question": "Which geological epoch immediately preceded the current Holocene epoch?",
+      "question": "Which major engineering feat, opened in 1869, directly linked the Mediterranean Sea to the Red Sea?",
       "options": [
-        "Pleistocene",
-        "Pliocene",
-        "Miocene",
-        "Oligocene"
+        "Suez Canal",
+        "Panama Canal",
+        "Kiel Canal",
+        "Corinth Canal"
       ],
       "answer": 0
     },
     {
       "tier": "UPPER DECK 8",
-      "choicesCount": 4,
-      "question": "In game theory, what term describes a set of strategies where no player has an incentive to unilaterally change their chosen action?",
+      "choicesCount": 3,
+      "question": "Who authored the 1949 dystopian novel featuring 'Big Brother', the Thought Police, and Room 101?",
       "options": [
-        "Nash Equilibrium",
-        "Pareto Optimality",
-        "Zero-Sum Matrix",
-        "Minimax Theorem"
+        "George Orwell",
+        "Aldous Huxley",
+        "Ray Bradbury"
       ],
       "answer": 0
     },
     {
       "tier": "PENTHOUSE APPROACH 9",
-      "choicesCount": 3,
-      "question": "What optical phenomenon accounts for the blue appearance of the daytime sky due to the preferential scattering of shorter wavelengths?",
+      "choicesCount": 4,
+      "question": "What chemical compound makes up approximately 96% of the dense, runaway greenhouse atmosphere of Venus?",
       "options": [
-        "Rayleigh Scattering",
-        "Mie Scattering",
-        "Refraction Index Shift"
+        "Carbon dioxide",
+        "Nitrogen",
+        "Sulfur dioxide",
+        "Methane"
       ],
       "answer": 0
     },
     {
       "tier": "PENTHOUSE ROOF 10",
       "choicesCount": 4,
-      "question": "Which foundational 20th-century mathematical theorem proved that any consistent formal system capable of doing basic arithmetic contains true statements that cannot be proven within the system?",
+      "question": "Whose expedition completed the first recorded circumnavigation of the globe, though he was killed in the Philippines before the voyage finished?",
       "options": [
-        "Gödel's Incompleteness Theorem",
-        "Turing's Halting Theorem",
-        "Cantor's Diagonal Argument",
-        "Bayes' Theorem"
+        "Ferdinand Magellan",
+        "Vasco da Gama",
+        "Christopher Columbus",
+        "Francis Drake"
       ],
       "answer": 0
     }
