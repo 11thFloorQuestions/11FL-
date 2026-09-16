@@ -1,0 +1,31 @@
+{
+  "sandbox_version": "0.1",
+  "archive_catalog": {
+    "1": {
+      "title": "DAY 01 ARCHIVE",
+      "floors": [
+        {
+          "tier": "FLOOR 01",
+          "choicesCount": 4,
+          "question": "Which country contains more than half of all the natural lakes in the entire world?",
+          "options": ["Canada", "Russia", "Brazil", "United States"],
+          "answer": 0
+        }
+        /* ... floors 02 through 10 for Day 1 ... */
+      ]
+    },
+    "2": {
+      "title": "DAY 02 ARCHIVE",
+      "floors": [
+        {
+          "tier": "FLOOR 01",
+          "choicesCount": 3,
+          "question": "In Greek mythology, who was the mortal woman gifted a pithos (jar) that mistakenly unleashed all the miseries of the world?",
+          "options": ["Pandora", "Persephone", "Psyche"],
+          "answer": 0
+        }
+        /* ... floors 02 through 10 for Day 2 ... */
+      ]
+    }
+  }
+}
