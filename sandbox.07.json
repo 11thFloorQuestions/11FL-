@@ -1,0 +1,125 @@
+{
+  "sandbox_version": "0.1",
+  "archive_id": "archive_07",
+  "title": "ARCHIVE 07",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "choicesCount": 4,
+      "question": "What primary metallic element makes up the vast majority of Earth's solid inner core?",
+      "options": [
+        "Iron",
+        "Nickel",
+        "Copper",
+        "Titanium"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 02",
+      "choicesCount": 3,
+      "question": "What musical term indicates a gradual increase in loudness or volume over a passage of time?",
+      "options": [
+        "Crescendo",
+        "Diminuendo",
+        "Staccato"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 03",
+      "choicesCount": 4,
+      "question": "Which large desert spans much of northern Africa, stretching from the Atlantic coast to the Red Sea?",
+      "options": [
+        "Sahara Desert",
+        "Gobi Desert",
+        "Kalahari Desert",
+        "Atacama Desert"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 04",
+      "choicesCount": 4,
+      "question": "What basic accounting equation defines the foundational balance of a corporate balance sheet?",
+      "options": [
+        "Assets = Liabilities + Equity",
+        "Revenue - Expenses = Profit",
+        "Cash Inflows = Cash Outflows",
+        "Capital = Debt x Interest"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 05",
+      "choicesCount": 4,
+      "question": "Which classical Greek philosopher founded the Academy in Athens and wrote extensive philosophical dialogues featuring Socrates?",
+      "options": [
+        "Plato",
+        "Aristotle",
+        "Socrates",
+        "Pythagoras"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 06",
+      "choicesCount": 3,
+      "question": "What specialized meteorological instrument is used specifically to measure relative humidity in the air?",
+      "options": [
+        "Hygrometer",
+        "Anemometer",
+        "Barometer"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 07",
+      "choicesCount": 4,
+      "question": "Which historic 19th-century armed conflict between the British Empire and Qing China arose largely over trade disputes and the opium trade?",
+      "options": [
+        "First Opium War",
+        "Taiping Rebellion",
+        "Boxer Rebellion",
+        "Second Opium War"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 08",
+      "choicesCount": 4,
+      "question": "What fundamental law of thermodynamics states that energy cannot be created or destroyed, only transformed from one form to another?",
+      "options": [
+        "First law of thermodynamics",
+        "Second law of thermodynamics",
+        "Zeroth law of thermodynamics",
+        "Third law of thermodynamics"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 09",
+      "choicesCount": 4,
+      "question": "Which ancient Mesopotamian civilization is credited with developing cuneiform, one of the earliest systems of writing?",
+      "options": [
+        "Sumerians",
+        "Akkadians",
+        "Babylonians",
+        "Assyrians"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 10",
+      "choicesCount": 4,
+      "question": "What theoretical physics phenomenon describes radiation predicted to be emitted by black holes due to quantum effects near the event horizon?",
+      "options": [
+        "Hawking radiation",
+        "Cherenkov radiation",
+        "Synchrotron radiation",
+        "Bremsstrahlung radiation"
+      ],
+      "answer": 0
+    }
+  ]
+}
