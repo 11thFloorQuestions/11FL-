@@ -1,7 +1,7 @@
 {
   "floors": [
     {
-      "tier": "SUB-LEVEL 1",
+      "tier": "FLOOR 01",
       "choicesCount": 4,
       "question": "Which country contains more than half of all the natural lakes in the entire world?",
       "options": [
@@ -13,7 +13,7 @@
       "answer": 0
     },
     {
-      "tier": "SUB-LEVEL 2",
+      "tier": "FLOOR 02",
       "choicesCount": 3,
       "question": "In Greek mythology, who was the mortal woman gifted a pithos (jar) that mistakenly unleashed all the miseries of the world upon humanity?",
       "options": [
@@ -24,7 +24,7 @@
       "answer": 0
     },
     {
-      "tier": "SECTOR 3",
+      "tier": "FLOOR 03",
       "choicesCount": 4,
       "question": "Which essential vitamin is synthesized naturally by the human body through exposure to ultraviolet B (UVB) sunlight?",
       "options": [
@@ -36,17 +36,19 @@
       "answer": 0
     },
     {
-      "tier": "SECTOR 4",
-      "choicesCount": 2,
-      "question": "True or False: Lightning can strike the same place multiple times, and tall structures are frequently hit repeatedly during a single storm.",
+      "tier": "FLOOR 04",
+      "choicesCount": 4,
+      "question": "Which major historical development directly necessitated the adoption of Greenwich Mean Time (GMT) as a unified standard across Great Britain?",
       "options": [
-        "True",
-        "False"
+        "The rapid expansion of the railway network requiring synchronized timetables",
+        "The laying of transatlantic telegraph cables requiring precise global synchronization",
+        "The standardization of Royal Navy maritime navigation charts",
+        "The decimalization of the British monetary system"
       ],
       "answer": 0
     },
     {
-      "tier": "MID-TOWER 5",
+      "tier": "FLOOR 05",
       "choicesCount": 4,
       "question": "The ancient civilization and mercantile empire of Carthage was located in which present-day North African country?",
       "options": [
@@ -58,7 +60,7 @@
       "answer": 0
     },
     {
-      "tier": "MID-TOWER 6",
+      "tier": "FLOOR 06",
       "choicesCount": 3,
       "question": "What meteorological scale is used to classify wind speed and environmental impact based on observational conditions, ranging from force 0 to 12?",
       "options": [
@@ -69,7 +71,7 @@
       "answer": 0
     },
     {
-      "tier": "UPPER DECK 7",
+      "tier": "FLOOR 07",
       "choicesCount": 4,
       "question": "Which major engineering feat, opened in 1869, directly linked the Mediterranean Sea to the Red Sea?",
       "options": [
@@ -81,7 +83,7 @@
       "answer": 0
     },
     {
-      "tier": "UPPER DECK 8",
+      "tier": "FLOOR 08",
       "choicesCount": 3,
       "question": "Who authored the 1949 dystopian novel featuring 'Big Brother', the Thought Police, and Room 101?",
       "options": [
@@ -92,7 +94,7 @@
       "answer": 0
     },
     {
-      "tier": "PENTHOUSE APPROACH 9",
+      "tier": "FLOOR 09",
       "choicesCount": 4,
       "question": "What chemical compound makes up approximately 96% of the dense, runaway greenhouse atmosphere of Venus?",
       "options": [
@@ -104,7 +106,7 @@
       "answer": 0
     },
     {
-      "tier": "PENTHOUSE ROOF 10",
+      "tier": "FLOOR 10",
       "choicesCount": 4,
       "question": "Whose expedition completed the first recorded circumnavigation of the globe, though he was killed in the Philippines before the voyage finished?",
       "options": [
