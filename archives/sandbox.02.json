@@ -1,0 +1,125 @@
+{
+  "sandbox_version": "0.1",
+  "archive_id": "archive_02",
+  "title": "ARCHIVE 02",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "choicesCount": 4,
+      "question": "Which astronomical unit of distance is defined as the average distance from the Earth to the Sun?",
+      "options": [
+        "Astronomical Unit (AU)",
+        "Light-year",
+        "Parsec",
+        "Kiloparsec"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 02",
+      "choicesCount": 3,
+      "question": "What architectural order, characterized by ornate capitals carved with stylized acanthus leaves, is the most elaborate of the classical Greek styles?",
+      "options": [
+        "Corinthian",
+        "Ionic",
+        "Doric"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 03",
+      "choicesCount": 4,
+      "question": "Which geological epoch immediately preceded the current Holocene epoch, defined by repeated global glaciations?",
+      "options": [
+        "Pleistocene",
+        "Pliocene",
+        "Miocene",
+        "Oligocene"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 04",
+      "choicesCount": 4,
+      "question": "What biological process describes the evolutionary origin of eukaryotic cells through the engulfment of independent prokaryotic organisms?",
+      "options": [
+        "Endosymbiotic theory",
+        "Horizontal gene transfer",
+        "Adaptive radiation",
+        "Punctuated equilibrium"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 05",
+      "choicesCount": 4,
+      "question": "Which treaty concluded the Thirty Years' War in 1648, establishing the foundational principles of modern state sovereignty?",
+      "options": [
+        "Peace of Westphalia",
+        "Treaty of Utrecht",
+        "Congress of Vienna",
+        "Treaty of Versailles"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 06",
+      "choicesCount": 3,
+      "question": "What rare metallic chemical element, valued for its extreme density and corrosion resistance, has the atomic symbol 'Os'?",
+      "options": [
+        "Osmium",
+        "Palladium",
+        "Tantalum"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 07",
+      "choicesCount": 4,
+      "question": "Which mountain range serves as the traditional natural geographic divider separating the continents of Europe and Asia?",
+      "options": [
+        "Ural Mountains",
+        "Caucasus Mountains",
+        "Carpathian Mountains",
+        "Alps"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 08",
+      "choicesCount": 4,
+      "question": "Who published the foundational 1543 treatise 'De revolutionibus orbium coelestium', mathematically formalizing the heliocentric model?",
+      "options": [
+        "Nicolaus Copernicus",
+        "Johannes Kepler",
+        "Galileo Galilei",
+        "Tycho Brahe"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 09",
+      "choicesCount": 4,
+      "question": "What physical phenomenon describes the bending of waves around obstacles or the spreading of waves past small openings?",
+      "options": [
+        "Diffraction",
+        "Refraction",
+        "Dispersion",
+        "Polarization"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 10",
+      "choicesCount": 4,
+      "question": "Which historic empire was ruled from the capital city of Tenochtitlan before its collapse in the 16th century?",
+      "options": [
+        "Aztec Empire",
+        "Inca Empire",
+        "Maya Civilization",
+        "Olmec Civilization"
+      ],
+      "answer": 0
+    }
+  ]
+}
