@@ -1,112 +1,112 @@
 [
   {
     "id": 1,
-    "question": "Which famous monument stands on the Champ de Mars in Paris, France?",
+    "question": "Which European city's historic underground labyrinth of sewer tunnels served as the setting for the iconic climax of Carol Reed's 1949 film 'The Third Man'?",
     "options": [
-      "Eiffel Tower",
-      "Arc de Triomphe",
-      "Louvre Museum",
-      "Notre-Dame Cathedral"
+      "Vienna",
+      "Prague",
+      "Budapest",
+      "Berlin"
     ],
-    "answer": "Eiffel Tower"
+    "answer": "Vienna"
   },
   {
     "id": 2,
-    "question": "Which planet in our solar system is widely known as the Red Planet?",
+    "question": "In classical painting and fine art, which prestigious blue pigment was historically manufactured by grinding semi-precious lapis lazuli stones imported from ancient Afghan mines?",
     "options": [
-      "Mars",
-      "Venus",
-      "Jupiter",
-      "Saturn"
+      "Ultramarine",
+      "Prussian Blue",
+      "Cobalt Blue",
+      "Smalt"
     ],
-    "answer": "Mars"
+    "answer": "Ultramarine"
   },
   {
     "id": 3,
-    "question": "Which iconic rock band released the legendary album Abbey Road in 1969?",
+    "question": "Which visionary Renaissance architect engineered the massive, self-supporting masonry dome of the Florence Cathedral (Il Duomo) without relying on traditional wooden centering scaffolding?",
     "options": [
-      "The Beatles",
-      "The Rolling Stones",
-      "Led Zeppelin",
-      "Pink Floyd"
+      "Filippo Brunelleschi",
+      "Leon Battista Alberti",
+      "Donato Bramante",
+      "Lorenzo Ghiberti"
     ],
-    "answer": "The Beatles"
+    "answer": "Filippo Brunelleschi"
   },
   {
     "id": 4,
-    "question": "Who wrote the classic dystopian novel 1984?",
+    "question": "Which prominent Catalan surrealist artist famously designed the vibrant daisy logo and wrapper layout for Chupa Chups lollipops in 1969?",
     "options": [
-      "George Orwell",
-      "Aldous Huxley",
-      "Ray Bradbury",
-      "Ernest Hemingway"
+      "Salvador Dalí",
+      "Joan Miró",
+      "Antoni Tàpies",
+      "Pablo Picasso"
     ],
-    "answer": "George Orwell"
+    "answer": "Salvador Dalí"
   },
   {
     "id": 5,
-    "question": "In what sport would an athlete perform a move known as a slam dunk?",
+    "question": "Which ancient seafaring civilization established the powerful Mediterranean trading empire of Carthage on the North African coast around 814 BC?",
     "options": [
-      "Basketball",
-      "Tennis",
-      "Volleyball",
-      "Rugby"
+      "Phoenicians",
+      "Minoans",
+      "Etruscans",
+      "Mycenaeans"
     ],
-    "answer": "Basketball"
+    "answer": "Phoenicians"
   },
   {
     "id": 6,
-    "question": "Which 1994 comedy-drama film features the famous line, 'Life is like a box of chocolates'?",
+    "question": "Originally patented in 1904 under the name 'The Landlord's Game' by anti-monopolist Lizzie Magie, which classic board game was designed specifically to illustrate the economic harm of land grabbing?",
     "options": [
-      "Forrest Gump",
-      "Pulp Fiction",
-      "The Shawshank Redemption",
-      "The Lion King"
+      "Monopoly",
+      "The Game of Life",
+      "Risk",
+      "Easy Money"
     ],
-    "answer": "Forrest Gump"
+    "answer": "Monopoly"
   },
   {
     "id": 7,
-    "question": "What is recognized as the fastest land animal in the world?",
+    "question": "Which narrow, strategic strait divides the European and Asian landmasses of Turkey, connecting the Sea of Marmara directly to the Black Sea?",
     "options": [
-      "Cheetah",
-      "Pronghorn",
-      "Lion",
-      "Quarter Horse"
+      "The Bosphorus",
+      "The Dardanelles",
+      "The Strait of Messina",
+      "The Kerch Strait"
     ],
-    "answer": "Cheetah"
+    "answer": "The Bosphorus"
   },
   {
     "id": 8,
-    "question": "Which Renaissance master painted the Mona Lisa?",
+    "question": "Which legendary mountain pass through the Hindu Kush range served as a vital historic choke point along the ancient trade routes connecting Central Asia and the Indian subcontinent?",
     "options": [
-      "Leonardo da Vinci",
-      "Michelangelo",
-      "Raphael",
-      "Donatello"
+      "Khyber Pass",
+      "Brenner Pass",
+      "Karakoram Pass",
+      "Bolan Pass"
     ],
-    "answer": "Leonardo da Vinci"
+    "answer": "Khyber Pass"
   },
   {
     "id": 9,
-    "question": "How many red and white stripes are featured on the flag of the United States?",
+    "question": "Which 19th-century gothic horror novel features a protagonist who spends years in a solitary laboratory assembling a creature from charnel houses before abandoning it in terror?",
     "options": [
-      "13",
-      "15",
-      "50",
-      "10"
+      "Frankenstein",
+      "The Strange Case of Dr Jekyll and Mr Hyde",
+      "The Picture of Dorian Gray",
+      "Melmoth the Wanderer"
     ],
-    "answer": "13"
+    "answer": "Frankenstein"
   },
   {
     "id": 10,
-    "question": "Which chemical element has the atomic symbol 'Au'?",
+    "question": "Which revolutionary composer completed his monumental Ninth Symphony while entirely deaf, conducting the premiere from behind the orchestra to feel the vibrations of the instruments?",
     "options": [
-      "Gold",
-      "Silver",
-      "Argon",
-      "Aluminum"
+      "Ludwig van Beethoven",
+      "Wolfgang Amadeus Mozart",
+      "Franz Schubert",
+      "Gustav Mahler"
     ],
-    "answer": "Gold"
+    "answer": "Ludwig van Beethoven"
   }
 ]
