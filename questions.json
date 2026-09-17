@@ -1,35 +1,112 @@
 [
   {
     "id": 1,
-    "question": "Which software is commonly used for basic audio conversion and converting MP4 audio files to MP3 format?",
+    "question": "Which famous monument stands on the Champ de Mars in Paris, France?",
     "options": [
-      "VLC Media Player",
-      "Notepad",
-      "Microsoft Paint",
-      "Adobe Acrobat"
+      "Eiffel Tower",
+      "Arc de Triomphe",
+      "Louvre Museum",
+      "Notre-Dame Cathedral"
     ],
-    "answer": "VLC Media Player"
+    "answer": "Eiffel Tower"
   },
   {
     "id": 2,
-    "question": "What is the name of the web mapping service owned by Verizon that historically competed early on with digital mapping pioneers?",
+    "question": "Which planet in our solar system is widely known as the Red Planet?",
     "options": [
-      "MapQuest",
-      "GeoCities",
-      "Netscape",
-      "AltaVista"
+      "Mars",
+      "Venus",
+      "Jupiter",
+      "Saturn"
     ],
-    "answer": "MapQuest"
+    "answer": "Mars"
   },
   {
     "id": 3,
-    "question": "Which popular web browser is frequently used on mobile devices to play daily word games like Wordle?",
+    "question": "Which iconic rock band released the legendary album Abbey Road in 1969?",
     "options": [
-      "Brave",
-      "Telnet",
-      "Cygwin",
-      "PuTTY"
+      "The Beatles",
+      "The Rolling Stones",
+      "Led Zeppelin",
+      "Pink Floyd"
     ],
-    "answer": "Brave"
+    "answer": "The Beatles"
+  },
+  {
+    "id": 4,
+    "question": "Who wrote the classic dystopian novel 1984?",
+    "options": [
+      "George Orwell",
+      "Aldous Huxley",
+      "Ray Bradbury",
+      "Ernest Hemingway"
+    ],
+    "answer": "George Orwell"
+  },
+  {
+    "id": 5,
+    "question": "In what sport would an athlete perform a move known as a slam dunk?",
+    "options": [
+      "Basketball",
+      "Tennis",
+      "Volleyball",
+      "Rugby"
+    ],
+    "answer": "Basketball"
+  },
+  {
+    "id": 6,
+    "question": "Which 1994 comedy-drama film features the famous line, 'Life is like a box of chocolates'?",
+    "options": [
+      "Forrest Gump",
+      "Pulp Fiction",
+      "The Shawshank Redemption",
+      "The Lion King"
+    ],
+    "answer": "Forrest Gump"
+  },
+  {
+    "id": 7,
+    "question": "What is recognized as the fastest land animal in the world?",
+    "options": [
+      "Cheetah",
+      "Pronghorn",
+      "Lion",
+      "Quarter Horse"
+    ],
+    "answer": "Cheetah"
+  },
+  {
+    "id": 8,
+    "question": "Which Renaissance master painted the Mona Lisa?",
+    "options": [
+      "Leonardo da Vinci",
+      "Michelangelo",
+      "Raphael",
+      "Donatello"
+    ],
+    "answer": "Leonardo da Vinci"
+  },
+  {
+    "id": 9,
+    "question": "How many red and white stripes are featured on the flag of the United States?",
+    "options": [
+      "13",
+      "15",
+      "50",
+      "10"
+    ],
+    "answer": "13"
+  },
+  {
+    "id": 10,
+    "question": "Which chemical element has the atomic symbol 'Au'?",
+    "options": [
+      "Gold",
+      "Silver",
+      "Argon",
+      "Aluminum"
+    ],
+    "answer": "Gold"
   }
 ]
