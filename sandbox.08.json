@@ -1,0 +1,125 @@
+{
+  "sandbox_version": "0.1",
+  "archive_id": "archive_08",
+  "title": "ARCHIVE 08",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "choicesCount": 4,
+      "question": "Which big cat is the largest species in the world by body mass?",
+      "options": [
+        "Tiger",
+        "Lion",
+        "Jaguar",
+        "Leopard"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 02",
+      "choicesCount": 3,
+      "question": "What primary color of light is combined with red and blue in standard digital display technology?",
+      "options": [
+        "Green",
+        "Yellow",
+        "Cyan"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 03",
+      "choicesCount": 4,
+      "question": "Which European capital city is built across an archipelago of islands where Lake Mälaren flows into the Baltic Sea?",
+      "options": [
+        "Stockholm",
+        "Copenhagen",
+        "Helsinki",
+        "Oslo"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 04",
+      "choicesCount": 4,
+      "question": "What psychological phenomenon describes a person's tendency to attribute their own successes to internal traits while blaming failures on external circumstances?",
+      "options": [
+        "Self-serving bias",
+        "Confirmation bias",
+        "Dunning-Kruger effect",
+        "Fundamental attribution error"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 05",
+      "choicesCount": 4,
+      "question": "Which iconic post-impressionist artist painted *The Starry Night* while staying at an asylum in Saint-Rémy-de-Provence?",
+      "options": [
+        "Vincent van Gogh",
+        "Claude Monet",
+        "Paul Cézanne",
+        "Edvard Munch"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 06",
+      "choicesCount": 3,
+      "question": "What major tectonic boundary type occurs where two plates slide past each other horizontally, famously seen at the San Andreas Fault?",
+      "options": [
+        "Transform fault",
+        "Subduction zone",
+        "Divergent boundary"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 07",
+      "choicesCount": 4,
+      "question": "Which 17th-century English physicist formulated the laws of motion and universal gravitation in his work *Principia Mathematica*?",
+      "options": [
+        "Isaac Newton",
+        "Robert Hooke",
+        "Michael Faraday",
+        "James Clerk Maxwell"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 08",
+      "choicesCount": 4,
+      "question": "What historic document, sealed by King John in 1215 at Runnymede, established the principle that royal authority is subject to the law?",
+      "options": [
+        "Magna Carta",
+        "The Petition of Right",
+        "The Bill of Rights 1689",
+        "The Instrument of Government"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 09",
+      "choicesCount": 4,
+      "question": "Which revolutionary 20th-century physics framework describes the physical properties of nature on the scale of atoms and subatomic particles?",
+      "options": [
+        "Quantum mechanics",
+        "General relativity",
+        "Thermodynamics",
+        "Classical mechanics"
+      ],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 10",
+      "choicesCount": 4,
+      "question": "What term designates the threshold distance from a black hole's singularity where escape velocity equals the speed of light?",
+      "options": [
+        "Event horizon",
+        "Accretion disk",
+        "Photon sphere",
+        "Ergosphere"
+      ],
+      "answer": 0
+    }
+  ]
+}
