@@ -1,112 +1,112 @@
 [
   {
     "id": 1,
-    "question": "Which country boasts the longest coastline in the world?",
+    "question": "Which science-fiction author coined the term 'cyberspace' in his 1982 short story 'Burning Chrome' and popularized it in 'Neuromancer'?",
     "options": [
-      "Canada",
-      "Australia",
-      "Russia",
-      "Norway"
+      "William Gibson",
+      "Philip K. Dick",
+      "Neal Stephenson",
+      "Isaac Asimov"
     ],
-    "answer": "Canada"
+    "answer": "William Gibson"
   },
   {
     "id": 2,
-    "question": "What is the only mammal capable of true, sustained flight?",
+    "question": "In typography, what specific name is given to the small decorative projections or strokes at the end of a letter's main vertical and horizontal stems?",
     "options": [
-      "Bat",
-      "Flying Squirrel",
-      "Sugar Glider",
-      "Fruit Rat"
+      "Serif",
+      "Sans",
+      "Kerning",
+      "Ligature"
     ],
-    "answer": "Bat"
+    "answer": "Serif"
   },
   {
     "id": 3,
-    "question": "Which board game features properties like Boardwalk and Park Place?",
+    "question": "Which iconic post-punk band released the landmark 1979 double album 'London Calling'?",
     "options": [
-      "Monopoly",
-      "Risk",
-      "Catan",
-      "Clue"
+      "The Clash",
+      "Joy Division",
+      "Sex Pistols",
+      "The Cure"
     ],
-    "answer": "Monopoly"
+    "answer": "The Clash"
   },
   {
     "id": 4,
-    "question": "Who directed the 1994 cult classic film Pulp Fiction?",
+    "question": "What is the primary organic polymer that gives structural strength to the cell walls of green plants?",
     "options": [
-      "Quentin Tarantino",
-      "Martin Scorsese",
-      "David Fincher",
-      "Christopher Nolan"
+      "Cellulose",
+      "Keratin",
+      "Chitin",
+      "Collagen"
     ],
-    "answer": "Quentin Tarantino"
+    "answer": "Cellulose"
   },
   {
     "id": 5,
-    "question": "Which element makes up roughly 78 percent of Earth's atmosphere?",
+    "question": "Which historic thoroughfare in London served as the traditional center of the British newspaper publishing industry for centuries?",
     "options": [
-      "Nitrogen",
-      "Oxygen",
-      "Carbon Dioxide",
-      "Argon"
+      "Fleet Street",
+      "Abbey Road",
+      "Baker Street",
+      "Lombard Street"
     ],
-    "answer": "Nitrogen"
+    "answer": "Fleet Street"
   },
   {
     "id": 6,
-    "question": "What is the capital city of Australia?",
+    "question": "Which mathematical constant, approximately equal to 1.618, is commonly referred to as the golden ratio?",
     "options": [
-      "Canberra",
-      "Sydney",
-      "Melbourne",
-      "Brisbane"
+      "Phi",
+      "Pi",
+      "Euler's number",
+      "Lambda"
     ],
-    "answer": "Canberra"
+    "answer": "Phi"
   },
   {
     "id": 7,
-    "question": "Which instrument family does the saxophone belong to?",
+    "question": "In analog photography and optics, what precise chemical compound is traditionally used as the light-sensitive component in photographic film emulsion?",
     "options": [
-      "Woodwind",
-      "Brass",
-      "Percussion",
-      "Strings"
+      "Silver halide",
+      "Sodium chloride",
+      "Copper sulfate",
+      "Zinc oxide"
     ],
-    "answer": "Woodwind"
+    "answer": "Silver halide"
   },
   {
     "id": 8,
-    "question": "In computing, what does CPU stand for?",
+    "question": "Which architectural movement, prominent from the 1950s to the 1970s, is characterized by heavy, blocky structures built from raw, unadorned concrete?",
     "options": [
-      "Central Processing Unit",
-      "Computer Personal Utility",
-      "Central Program Utility",
-      "Core Processing Utility"
+      "Brutalism",
+      "Art Deco",
+      "Bauhaus",
+      "Neoclassicism"
     ],
-    "answer": "Central Processing Unit"
+    "answer": "Brutalism"
   },
   {
     "id": 9,
-    "question": "Which artist famously cut off a portion of his own left ear in 1888?",
+    "question": "Which legendary jazz trumpeter and composer pioneered the modal jazz movement with his 1959 masterpiece album 'Kind of Blue'?",
     "options": [
-      "Vincent van Gogh",
-      "Claude Monet",
-      "Edvard Munch",
-      "Paul Gauguin"
+      "Miles Davis",
+      "John Coltrane",
+      "Thelonious Monk",
+      "Charles Mingus"
     ],
-    "answer": "Vincent van Gogh"
+    "answer": "Miles Davis"
   },
   {
     "id": 10,
-    "question": "How many squares are there on a standard chess board in total?",
+    "question": "In networking terminology, what specific three-letter acronym refers to the standardized system that translates human-readable domain names into IP addresses?",
     "options": [
-      "64",
-      "32",
-      "100",
-      "81"
+      "DNS",
+      "TCP",
+      "SSL",
+      "VPN"
     ],
-    "answer": "64"
+    "answer": "DNS"
   }
 ]
