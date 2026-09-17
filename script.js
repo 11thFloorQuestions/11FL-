@@ -1,4 +1,5 @@
 let deck = [];
+let archiveDeckData = {};
 let currentFloor = 1, timer = null, left = 15, locked = false, highestFloorReached = 0;
 let audioEnabled = false, audioCtx = null;
 let activeFloorDeck = [];
@@ -14,13 +15,28 @@ async function initQuiz() {
   }
 }
 
-// Archive function temporarily disabled to protect the daily game state
 async function initArchiveSandbox() {
-  // Bypassed completely so it cannot interfere
+  // Scan sandbox archive files sequentially (e.g., sandbox.01.json, sandbox.02.json)
+  for (let i = 1; i <= 10; i++) {
+    const padNum = String(i).padStart(2, '0');
+    const filename = `./sandbox.${padNum}.json`;
+    try {
+      const res = await fetch(`${filename}?v=` + Date.now());
+      if (!res.ok) break; // Stop scanning when a file doesn't exist yet
+      const data = await res.json();
+      archiveDeckData[data.archive_id || `archive_${padNum}`] = {
+        title: data.title || `ARCHIVE ${padNum}`,
+        floors: data.floors
+      };
+    } catch (err) {
+      break;
+    }
+  }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
   initQuiz();
+  initArchiveSandbox();
   renderBldg('building-landing', 0);
 });
 
@@ -64,6 +80,8 @@ function openArchiveModal() {
   
   const bodyEl = document.getElementById('stats-body');
   if (bodyEl) {
+    const archiveKeys = Object.keys(archiveDeckData);
+    
     bodyEl.innerHTML = `
       <div style="display:flex; justify-content:space-around; text-align:center; margin-bottom:14px; padding:10px 0; border-bottom:1px solid #262626;">
         <div><div style="font-size:1.3rem; font-weight:800; color:#fff;">${stats.played}</div><div style="font-size:0.55rem;">PLAYED</div></div>
@@ -84,6 +102,16 @@ function openArchiveModal() {
         `).join('')}
       </div>
       
+      <div style="font-size:0.6rem; color:#fff; font-weight:700; margin-bottom:6px; letter-spacing:1px; border-top:1px solid #262626; padding-top:10px;">ARCHIVE VAULT</div>
+      <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:12px; max-height:120px; overflow-y:auto;">
+        ${archiveKeys.length > 0 ? archiveKeys.map(key => `
+          <button onclick="launchArchiveDeck('${key}')" style="display:flex; justify-content:space-between; align-items:center; padding:8px 10px; background:#141414; color:#fff; border:1px solid #333; border-radius:4px; font-weight:700; cursor:pointer; font-size:0.65rem;">
+            <span>${archiveDeckData[key].title}</span>
+            <span style="color:var(--accent-red);">PLAY &gt;</span>
+          </button>
+        `).join('') : '<div style="font-size:0.6rem; color:var(--text-muted);">No archive packs detected yet.</div>'}
+      </div>
+
       <div style="font-size:0.6rem; color:var(--text-muted); border-top:1px solid #262626; padding-top:10px;">
         <strong>Last Run:</strong><br><pre style="font-family:inherit; margin-top:2px;">${historyItem || 'No prior daily logs recorded yet.'}</pre>
       </div>
@@ -103,6 +131,33 @@ function closeStatsModal() {
     modal.classList.remove('active');
     modal.classList.add('hidden');
   }
+}
+
+async function launchArchiveDeck(archiveKey) {
+  if (!archiveDeckData[archiveKey]) return;
+  vibrate(20);
+  closeStatsModal();
+  
+  const rawDeck = archiveDeckData[archiveKey].floors;
+  activeFloorDeck = rawDeck.map((f, floorIndex) => {
+    const rawOptions = f.options || [];
+    const correctText = rawOptions[f.answer ?? 0];
+    let shuffledOpts = [...rawOptions];
+    shuffledOpts.sort(() => Math.random() - 0.5);
+    const correctIndex = shuffledOpts.indexOf(correctText);
+
+    return {
+      floorNum: floorIndex + 1,
+      tier: f.tier || `FLOOR ${String(floorIndex + 1).padStart(2, '0')}`,
+      q: f.question,
+      opts: shuffledOpts,
+      c: correctIndex >= 0 ? correctIndex : 0
+    };
+  });
+
+  currentFloor = 1;
+  highestFloorReached = 0;
+  loadFloor();
 }
 
 function playTone(freq, type='sine', duration=0.1, gainVal=0.08) {
