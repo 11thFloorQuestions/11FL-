@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "archives": [
+    { "id": "sandbox.01", "file": "sandbox.01.json" },
+    { "id": "sandbox.02", "file": "sandbox.02.json" },
+    { "id": "sandbox.03", "file": "sandbox.03.json" },
+    { "id": "sandbox.04", "file": "sandbox.04.json" },
+    { "id": "sandbox.05", "file": "sandbox.05.json" },
+    { "id": "sandbox.06", "file": "sandbox.06.json" },
+    { "id": "sandbox.07", "file": "sandbox.07.json" },
+    { "id": "sandbox.08", "file": "sandbox.08.json" }
+  ]
+}
