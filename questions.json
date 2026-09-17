@@ -1,112 +1,112 @@
 [
   {
     "id": 1,
-    "question": "Which European city's historic underground labyrinth of sewer tunnels served as the setting for the iconic climax of Carol Reed's 1949 film 'The Third Man'?",
+    "question": "Which country boasts the longest coastline in the world?",
     "options": [
-      "Vienna",
-      "Prague",
-      "Budapest",
-      "Berlin"
+      "Canada",
+      "Australia",
+      "Russia",
+      "Norway"
     ],
-    "answer": "Vienna"
+    "answer": "Canada"
   },
   {
     "id": 2,
-    "question": "In classical painting and fine art, which prestigious blue pigment was historically manufactured by grinding semi-precious lapis lazuli stones imported from ancient Afghan mines?",
+    "question": "What is the only mammal capable of true, sustained flight?",
     "options": [
-      "Ultramarine",
-      "Prussian Blue",
-      "Cobalt Blue",
-      "Smalt"
+      "Bat",
+      "Flying Squirrel",
+      "Sugar Glider",
+      "Fruit Rat"
     ],
-    "answer": "Ultramarine"
+    "answer": "Bat"
   },
   {
     "id": 3,
-    "question": "Which visionary Renaissance architect engineered the massive, self-supporting masonry dome of the Florence Cathedral (Il Duomo) without relying on traditional wooden centering scaffolding?",
-    "options": [
-      "Filippo Brunelleschi",
-      "Leon Battista Alberti",
-      "Donato Bramante",
-      "Lorenzo Ghiberti"
-    ],
-    "answer": "Filippo Brunelleschi"
-  },
-  {
-    "id": 4,
-    "question": "Which prominent Catalan surrealist artist famously designed the vibrant daisy logo and wrapper layout for Chupa Chups lollipops in 1969?",
-    "options": [
-      "Salvador Dalí",
-      "Joan Miró",
-      "Antoni Tàpies",
-      "Pablo Picasso"
-    ],
-    "answer": "Salvador Dalí"
-  },
-  {
-    "id": 5,
-    "question": "Which ancient seafaring civilization established the powerful Mediterranean trading empire of Carthage on the North African coast around 814 BC?",
-    "options": [
-      "Phoenicians",
-      "Minoans",
-      "Etruscans",
-      "Mycenaeans"
-    ],
-    "answer": "Phoenicians"
-  },
-  {
-    "id": 6,
-    "question": "Originally patented in 1904 under the name 'The Landlord's Game' by anti-monopolist Lizzie Magie, which classic board game was designed specifically to illustrate the economic harm of land grabbing?",
+    "question": "Which board game features properties like Boardwalk and Park Place?",
     "options": [
       "Monopoly",
-      "The Game of Life",
       "Risk",
-      "Easy Money"
+      "Catan",
+      "Clue"
     ],
     "answer": "Monopoly"
   },
   {
-    "id": 7,
-    "question": "Which narrow, strategic strait divides the European and Asian landmasses of Turkey, connecting the Sea of Marmara directly to the Black Sea?",
+    "id": 4,
+    "question": "Who directed the 1994 cult classic film Pulp Fiction?",
     "options": [
-      "The Bosphorus",
-      "The Dardanelles",
-      "The Strait of Messina",
-      "The Kerch Strait"
+      "Quentin Tarantino",
+      "Martin Scorsese",
+      "David Fincher",
+      "Christopher Nolan"
     ],
-    "answer": "The Bosphorus"
+    "answer": "Quentin Tarantino"
+  },
+  {
+    "id": 5,
+    "question": "Which element makes up roughly 78 percent of Earth's atmosphere?",
+    "options": [
+      "Nitrogen",
+      "Oxygen",
+      "Carbon Dioxide",
+      "Argon"
+    ],
+    "answer": "Nitrogen"
+  },
+  {
+    "id": 6,
+    "question": "What is the capital city of Australia?",
+    "options": [
+      "Canberra",
+      "Sydney",
+      "Melbourne",
+      "Brisbane"
+    ],
+    "answer": "Canberra"
+  },
+  {
+    "id": 7,
+    "question": "Which instrument family does the saxophone belong to?",
+    "options": [
+      "Woodwind",
+      "Brass",
+      "Percussion",
+      "Strings"
+    ],
+    "answer": "Woodwind"
   },
   {
     "id": 8,
-    "question": "Which legendary mountain pass through the Hindu Kush range served as a vital historic choke point along the ancient trade routes connecting Central Asia and the Indian subcontinent?",
+    "question": "In computing, what does CPU stand for?",
     "options": [
-      "Khyber Pass",
-      "Brenner Pass",
-      "Karakoram Pass",
-      "Bolan Pass"
+      "Central Processing Unit",
+      "Computer Personal Utility",
+      "Central Program Utility",
+      "Core Processing Utility"
     ],
-    "answer": "Khyber Pass"
+    "answer": "Central Processing Unit"
   },
   {
     "id": 9,
-    "question": "Which 19th-century gothic horror novel features a protagonist who spends years in a solitary laboratory assembling a creature from charnel houses before abandoning it in terror?",
+    "question": "Which artist famously cut off a portion of his own left ear in 1888?",
     "options": [
-      "Frankenstein",
-      "The Strange Case of Dr Jekyll and Mr Hyde",
-      "The Picture of Dorian Gray",
-      "Melmoth the Wanderer"
+      "Vincent van Gogh",
+      "Claude Monet",
+      "Edvard Munch",
+      "Paul Gauguin"
     ],
-    "answer": "Frankenstein"
+    "answer": "Vincent van Gogh"
   },
   {
     "id": 10,
-    "question": "Which revolutionary composer completed his monumental Ninth Symphony while entirely deaf, conducting the premiere from behind the orchestra to feel the vibrations of the instruments?",
+    "question": "How many squares are there on a standard chess board in total?",
     "options": [
-      "Ludwig van Beethoven",
-      "Wolfgang Amadeus Mozart",
-      "Franz Schubert",
-      "Gustav Mahler"
+      "64",
+      "32",
+      "100",
+      "81"
     ],
-    "answer": "Ludwig van Beethoven"
+    "answer": "64"
   }
 ]
