@@ -1,1 +1,78 @@
+{
+  "sandbox_version": "0.1",
+  "archive_id": "archive_01",
+  "title": "ARCHIVE 01",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "choicesCount": 4,
+      "question": "Which country contains more than half of all the natural lakes in the entire world?",
+      "options": ["Canada", "Russia", "Brazil", "United States"],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 02",
+      "choicesCount": 3,
+      "question": "In Greek mythology, who was the mortal woman gifted a pithos (jar) that mistakenly unleashed all the miseries of the world?",
+      "options": ["Pandora", "Persephone", "Psyche"],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 03",
+      "choicesCount": 4,
+      "question": "Which essential vitamin is synthesized naturally by the human body through exposure to ultraviolet B (UVB) sunlight?",
+      "options": ["Vitamin D", "Vitamin C", "Vitamin B12", "Vitamin A"],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 04",
+      "choicesCount": 4,
+      "question": "What primary historical development drove the 19th-century adoption of standard time zones?",
+      "options": ["The expansion of interconnected railway networks", "The laying of transatlantic telegraph cables", "The standardization of maritime navigation charts", "The global unification of postal systems"],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 05",
+      "choicesCount": 4,
+      "question": "The ancient civilization and mercantile empire of Carthage was located in which present-day North African country?",
+      "options": ["Tunisia", "Libya", "Algeria", "Morocco"],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 06",
+      "choicesCount": 3,
+      "question": "What meteorological scale is used to classify wind speed and environmental impact based on observational conditions, ranging from force 0 to 12?",
+      "options": ["Beaufort scale", "Richter scale", "Saffir-Simpson scale"],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 07",
+      "choicesCount": 4,
+      "question": "Which major engineering feat, opened in 1869, directly linked the Mediterranean Sea to the Red Sea?",
+      "options": ["Suez Canal", "Panama Canal", "Kiel Canal", "Corinth Canal"],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 08",
+      "choicesCount": 3,
+      "question": "Who authored the 1949 dystopian novel featuring 'Big Brother', the Thought Police, and Room 101?",
+      "options": ["George Orwell", "Aldous Huxley", "Ray Bradbury"],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 09",
+      "choicesCount": 4,
+      "question": "What chemical compound makes up approximately 96% of the dense, runaway greenhouse atmosphere of Venus?",
+      "options": ["Carbon dioxide", "Nitrogen", "Sulfur dioxide", "Methane"],
+      "answer": 0
+    },
+    {
+      "tier": "FLOOR 10",
+      "choicesCount": 4,
+      "question": "Whose expedition completed the first recorded circumnavigation of the globe, though he was killed in the Philippines before the voyage finished?",
+      "options": ["Ferdinand Magellan", "Vasco da Gama", "Christopher Columbus", "Francis Drake"],
+      "answer": 0
+    }
+  ]
+}
 
