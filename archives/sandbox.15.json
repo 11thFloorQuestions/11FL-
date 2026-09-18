@@ -4,9 +4,9 @@
   "floors": [
     {
       "tier": "FLOOR 01",
-      "question": "Which domestic pet is biologically classified under the canine family and is often referred to as 'man's best friend'?",
-      "options": ["Cat", "Dog", "Ferret", "Rabbit"],
-      "answer": "Dog"
+      "question": "Which spice, harvested from the inner bark of certain tree species native to Southeast Asia, is commonly used in baking and warm beverages?",
+      "options": ["Nutmeg", "Cinnamon", "Cloves", "Cardamom"],
+      "answer": "Cinnamon"
     },
     {
       "tier": "FLOOR 02",
@@ -58,9 +58,9 @@
     },
     {
       "tier": "FLOOR 10",
-      "question": "In chess notation and terminology, what unique name is given to the defensive maneuver where a king moves two squares toward a rook, and the rook leaps over it?",
-      "options": ["En Passant", "Zugzwang", "Castling", "Fianchetto"],
-      "answer": "Castling"
+      "question": "In typography, what is the term for the small decorative strokes or extensions attached to the ends of a letter's main stems?",
+      "options": ["Sans", "Glyph", "Serif", "Kerning"],
+      "answer": "Serif"
     }
   ]
 }
