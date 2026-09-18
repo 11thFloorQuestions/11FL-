@@ -1,1 +1,66 @@
-
+{
+  "archive_id": "sandbox_18",
+  "title": "ARCHIVE 18",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which domestic mammal, domesticated over 4,000 years ago, is traditionally used for its wool, meat, and milk?",
+      "options": ["Goat", "Sheep", "Alpaca", "Llama"],
+      "answer": "Sheep"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "What is the primary currency used in Japan?",
+      "options": ["Won", "Yuan", "Yen", "Ringgit"],
+      "answer": "Yen"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "Which planet in our solar system is known for having the most prominent and complex ring system?",
+      "options": ["Jupiter", "Saturn", "Uranus", "Neptune"],
+      "answer": "Saturn"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "Which wind instrument features a single-reed mouthpiece, a cylindrical tube, and keys, distinguishing it from the flute and oboe?",
+      "options": ["Flute", "Clarinet", "Saxophone", "Bassoon"],
+      "answer": "Clarinet"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "Which African nation, formerly known as Abyssinia, was never formally colonized by a European power?",
+      "options": ["Kenya", "Ethiopia", "Nigeria", "Ghana"],
+      "answer": "Ethiopia"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "In mathematics, what term describes a polygon with eight sides and eight angles?",
+      "options": ["Hexagon", "Heptagon", "Octagon", "Nonagon"],
+      "answer": "Octagon"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which 1851 whaling epic by Herman Melville opens with the famous line 'Call me Ishmael'?",
+      "options": ["Treasure Island", "Moby-Dick", "Robinson Crusoe", "The Old Man and the Sea"],
+      "answer": "Moby-Dick"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "Which Italian physicist and astronomer formulated the laws of motion and was tried by the Inquisition for defending heliocentrism?",
+      "options": ["Johannes Kepler", "Nicolaus Copernicus", "Galileo Galilei", "Tycho Brahe"],
+      "answer": "Galileo Galilei"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "What is the term for a word formed from the first letters of a series of words, such as 'laser' or 'scuba', which can be pronounced as a single word?",
+      "options": ["Acronym", "Initialism", "Portmanteau", "Palindrome"],
+      "answer": "Acronym"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "In economics, what term describes a market structure dominated by a small number of large firms that control the majority of market share?",
+      "options": ["Monopoly", "Oligopoly", "Monopsony", "Duopoly"],
+      "answer": "Oligopoly"
+    }
+  ]
+}
