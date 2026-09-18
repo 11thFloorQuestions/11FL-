@@ -1,1 +1,67 @@
 
+{
+  "archive_id": "sandbox_10",
+  "title": "ARCHIVE 10",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which Scandinavian capital city is built on an archipelago of 14 islands connected by 57 bridges?",
+      "options": ["Oslo", "Copenhagen", "Stockholm", "Helsinki"],
+      "answer": "Stockholm"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "Which English theoretical physicist co-wrote 'The Large Scale Structure of Space-Time' with George Ellis?",
+      "options": ["Paul Dirac", "Stephen Hawking", "Roger Penrose", "Brian Cox"],
+      "answer": "Stephen Hawking"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "The chemical element polonium was discovered in 1898 by Marie Curie and her husband Pierre, and was named in honor of what?",
+      "options": ["Marie Curie's birth name", "Poland, Marie's homeland", "The polar regions", "A Polish mineral deposit"],
+      "answer": "Poland, Marie's homeland"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "Which Renaissance master painted the monumental fresco 'The School of Athens' in the Apostolic Palace in the Vatican?",
+      "options": ["Leonardo da Vinci", "Michelangelo", "Raphael", "Caravaggio"],
+      "answer": "Raphael"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "In what year did the Berlin Wall fall, marking a pivotal moment in the collapse of the Eastern Bloc?",
+      "options": ["1987", "1989", "1991", "1985"],
+      "answer": "1989"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "Which playwright wrote the 1953 absurdist masterpiece 'Waiting for Godot'?",
+      "options": ["Eugene Ionesco", "Samuel Beckett", "Harold Pinter", "Jean-Paul Sartre"],
+      "answer": "Samuel Beckett"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "The Atacama Desert, known as one of the driest places on Earth, is primarily located within which country?",
+      "options": ["Peru", "Argentina", "Chile", "Bolivia"],
+      "answer": "Chile"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "Which monarch ruled the Kingdom of England during the defeat of the Spanish Armada in 1588?",
+      "options": ["Henry VIII", "Mary I", "Elizabeth I", "James I"],
+      "answer": "Elizabeth I"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "What is the primary active chemical compound found in natural psilocybin mushrooms?",
+      "options": ["Mescaline", "Psilocybin", "DMT", "LSD-25"],
+      "answer": "Psilocybin"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "Which river is the longest in the European Union and flows into the Black Sea via a massive delta?",
+      "options": ["Rhine", "Volga", "Danube", "Elbe"],
+      "answer": "Danube"
+    }
+  ]
+}
