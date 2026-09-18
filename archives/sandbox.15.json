@@ -58,9 +58,9 @@
     },
     {
       "tier": "FLOOR 10",
-      "question": "In astrophysics, what is the name of the theoretical boundary surrounding a black hole beyond which nothing, not even light, can escape?",
-      "options": ["Accretion Disk", "Event Horizon", "Singularity", "Photon Sphere"],
-      "answer": "Event Horizon"
+      "question": "Derived from a Greek term meaning 'flat-bottomed boat', what is the architectural name for a shallow, box-like canal lock chamber or a flat barge used for dredging?",
+      "options": ["Pontoon", "Caisson", "Pound Lock", "Drydock"],
+      "answer": "Pound Lock"
     }
   ]
 }
