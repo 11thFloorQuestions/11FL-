@@ -10,45 +10,45 @@
     },
     {
       "tier": "FLOOR 02",
-      "question": "Which classical composer wrote the famous Enigma Variations (Op. 36), featuring a well-known theme that is never actually heard?",
+      "question": "Which classical composer wrote the famous Enigma Variations (Op. 36)?",
       "options": ["Gustav Holst", "Edward Elgar", "Ralph Vaughan Williams", "Benjamin Britten"],
       "answer": "Edward Elgar"
     },
     {
       "tier": "FLOOR 03",
       "question": "In physics, the SI unit of electrical conductance is named after which scientist?",
-      "options": ["André-Marie Ampère", "Alessandro Volta", "Werner von Siemens", "Georg Ohm"],
+      "options": ["André-Manager Ampère", "Alessandro Volta", "Werner von Siemens", "Georg Ohm"],
       "answer": "Werner von Siemens"
     },
     {
       "tier": "FLOOR 04",
-      "question": "The historical region of Transylvania, famous for its association with Vlad the Impaler, is primarily located within the borders of which modern country?",
+      "question": "The historical region of Transylvania is primarily located within the borders of which modern country?",
       "options": ["Hungary", "Romania", "Serbia", "Bulgaria"],
       "answer": "Romania"
     },
     {
       "tier": "FLOOR 05",
-      "question": "Written in 1942, Albert Camus's philosophical novel The Stranger (L'Étranger) is set in which major coastal city?",
+      "question": "Written in 1942, Albert Camus's philosophical novel The Stranger is set in which major coastal city?",
       "options": ["Algiers", "Marseille", "Tunis", "Cairo"],
       "answer": "Algiers"
     },
     {
       "tier": "FLOOR 06",
-      "question": "Which chemical element, essential for modern electronics and semiconductors, takes its name from the Latin word for flint?",
+      "question": "Which chemical element takes its name from the Latin word for flint?",
       "options": ["Germanium", "Silicon", "Gallium", "Boron"],
       "answer": "Silicon"
     },
     {
       "tier": "FLOOR 07",
-      "question": "The ancient archaeological site of Petra, carved directly into rose-colored rock faces, is located in which contemporary Middle Eastern country?",
+      "question": "The ancient archaeological site of Petra is located in which contemporary Middle Eastern country?",
       "options": ["Syria", "Lebanon", "Jordan", "Iraq"],
       "answer": "Jordan"
     },
     {
       "tier": "FLOOR 08",
-      "question": "Built in the 6th century by Emperor Justinian I, the Hagia Sophia is located in which major historical city?",
-      "options": ["Athens", "Rome", "Istanbul", "Cairo"],
-      "answer": "Istanbul"
+      "question": "Which 17th-century Dutch painter created Girl with a Pearl Earring?",
+      "options": ["Rembrandt van Rijn", "Johannes Vermeer", "Frans Hals", "Jan Steen"],
+      "answer": "Johannes Vermeer"
     },
     {
       "tier": "FLOOR 09",
@@ -58,7 +58,7 @@
     },
     {
       "tier": "FLOOR 10",
-      "question": "Which mountaineer became the first person to reach the summit of all 14 of the world's eight-thousanders, completing the feat in 1986?",
+      "question": "Which mountaineer became the first person to reach the summit of all 14 of the world's eight-thousanders?",
       "options": ["Sir Edmund Hillary", "Reinhold Messner", "Tenzing Norgay", "Jerzy Kukuczka"],
       "answer": "Reinhold Messner"
     }
