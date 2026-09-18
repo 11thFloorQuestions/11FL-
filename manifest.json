@@ -1,13 +1,5 @@
 {
-  "version": "1.0",
   "archives": [
-    { "id": "sandbox.01", "file": "archives/sandbox.01.json" },
-    { "id": "sandbox.02", "file": "archives/sandbox.02.json" },
-    { "id": "sandbox.03", "file": "archives/sandbox.03.json" },
-    { "id": "sandbox.04", "file": "archives/sandbox.04.json" },
-    { "id": "sandbox.05", "file": "archives/sandbox.05.json" },
-    { "id": "sandbox.06", "file": "archives/sandbox.06.json" },
-    { "id": "sandbox.07", "file": "archives/sandbox.07.json" },
-    { "id": "sandbox.08", "file": "archives/sandbox.08.json" }
+    "archives/sandbox.01.json"
   ]
 }
