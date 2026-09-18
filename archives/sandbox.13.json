@@ -4,63 +4,63 @@
   "floors": [
     {
       "tier": "FLOOR 01",
-      "question": "Which venomous spider, native to Australia, is famous for its distinct red stripe on the dorsal side of its abdomen?",
-      "options": ["Sydney Funnel-web", "Redback Spider", "Huntsman Spider", "Brown Recluse"],
-      "answer": "Redback Spider"
+      "question": "Which domestic animal was famously venerated in ancient Egypt and associated with the goddess Bastet?",
+      "options": ["Dog", "Cat", "Horse", "Baboon"],
+      "answer": "Cat"
     },
     {
       "tier": "FLOOR 02",
-      "question": "Which landmark 1936 film by Charlie Chaplin serves as a satirical critique of industrialization and modern factory labor?",
-      "options": ["The Kid", "City Lights", "Modern Times", "The Great Dictator"],
-      "answer": "Modern Times"
+      "question": "Which musical instrument features a large curved horn wrapped around the player's body, derived from military signal horns?",
+      "options": ["Tuba", "French Horn", "Trombone", "Sousaphone"],
+      "answer": "French Horn"
     },
     {
       "tier": "FLOOR 03",
-      "question": "In organic chemistry, what is the functional group characterized by a carbonyl carbon bonded to a hydroxyl group?",
-      "options": ["Aldehyde", "Ketone", "Carboxylic Acid", "Ester"],
-      "answer": "Carboxylic Acid"
+      "question": "What is the primary currency used in the nation of Japan?",
+      "options": ["Yuan", "Won", "Yen", "Ringgit"],
+      "answer": "Yen"
     },
     {
       "tier": "FLOOR 04",
-      "question": "The ancient Phoenician city-state of Carthage was located on the coast of which modern-day North African country?",
-      "options": ["Morocco", "Egypt", "Tunisia", "Libya"],
-      "answer": "Tunisia"
+      "question": "Which iconic New York City skyscraper, completed in 1930, was briefly the tallest building in the world and features distinctive triangular crown spires?",
+      "options": ["Empire State Building", "Chrysler Building", "Flatiron Building", "Woolworth Building"],
+      "answer": "Chrysler Building"
     },
     {
       "tier": "FLOOR 05",
-      "question": "Which theoretical physicist proposed the existence of quantum spin and formulated a relativistic wave equation for electrons that predicted antimatter?",
-      "options": ["Erwin Schrödinger", "Paul Dirac", "Max Planck", "Werner Heisenberg"],
-      "answer": "Paul Dirac"
+      "question": "In the standard English alphabet, which letter is the most frequently used in written text?",
+      "options": ["T", "A", "E", "I"],
+      "answer": "E"
     },
     {
       "tier": "FLOOR 06",
-      "question": "Which sovereign island country in the Caribbean has Kingston as its capital and largest city?",
-      "options": ["Bahamas", "Barbados", "Jamaica", "Trinidad and Tobago"],
-      "answer": "Jamaica"
+      "question": "Which major world religion follows the teachings codified in the Noble Eightfold Path?",
+      "options": ["Hinduism", "Taoism", "Buddhism", "Jainism"],
+      "answer": "Buddhism"
     },
     {
       "tier": "FLOOR 07",
-      "question": "Which literary masterpiece by Miguel de Cervantes, published in two parts in 1605 and 1615, parodies chivalric romances?",
-      "options": ["Don Quixote", "The Decameron", "Gargantua and Pantagruel", "The Canterbury Tales"],
-      "answer": "Don Quixote"
+      "question": "Which famous Victorian novel features the characters Ebenezer Scrooge, Bob Cratchit, and Tiny Tim?",
+      "options": ["Great Expectations", "A Christmas Carol", "Oliver Twist", "David Copperfield"],
+      "answer": "A Christmas Carol"
     },
     {
       "tier": "FLOOR 08",
-      "question": "The radioactive isotope carbon-14 decays primarily into stable nitrogen-14 through which type of radioactive decay?",
-      "options": ["Alpha decay", "Beta-minus decay", "Gamma emission", "Positron emission"],
-      "answer": "Beta-minus decay"
+      "question": "Which landlocked South American country has two constitutional capitals: Sucre and La Paz?",
+      "options": ["Paraguay", "Bolivia", "Uruguay", "Ecuador"],
+      "answer": "Bolivia"
     },
     {
       "tier": "FLOOR 09",
-      "question": "Which mountain pass, historically crucial for trade and military campaigns, connects modern-day Pakistan and Afghanistan?",
-      "options": ["Khyber Pass", "Brenner Pass", "Kunjjerab Pass", "Bolor Pass"],
-      "answer": "Khyber Pass"
+      "question": "Which pioneering computer scientist and U.S. Navy Rear Admiral is credited with developing the concept of compiler-independent programming languages, leading to COBOL?",
+      "options": ["Alan Turing", "Ada Lovelace", "Grace Hopper", "John von Neumann"],
+      "answer": "Grace Hopper"
     },
     {
       "tier": "FLOOR 10",
-      "question": "Which director helmed the acclaimed 1979 psychological horror-sci-fi film 'Alien' before it became a massive multimedia franchise?",
-      "options": ["John Carpenter", "David Cronenberg", "Ridley Scott", "James Cameron"],
-      "answer": "Ridley Scott"
+      "question": "Published in 1687, Sir Isaac Newton's groundbreaking work establishing the laws of motion and universal gravitation is commonly known by what abbreviated Latin title?",
+      "options": ["Opticks", "Principia", "Arithmetica", "Almagest"],
+      "answer": "Principia"
     }
   ]
 }
