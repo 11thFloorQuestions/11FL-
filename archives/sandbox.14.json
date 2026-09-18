@@ -1,0 +1,66 @@
+{
+  "archive_id": "sandbox_14",
+  "title": "ARCHIVE 14",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which yellow citrus fruit is well-known for its high concentration of citric acid and sour juice?",
+      "options": ["Orange", "Lemon", "Lime", "Grapefruit"],
+      "answer": "Lemon"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "Which celestial body is the only natural satellite of planet Earth?",
+      "options": ["Titan", "Phobos", "The Moon", "Europa"],
+      "answer": "The Moon"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "What is the primary official language spoken in Brazil?",
+      "options": ["Spanish", "Portuguese", "French", "Italian"],
+      "answer": "Portuguese"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "Which classical element has the chemical symbol 'Hg', originating from the Greek word for liquid silver?",
+      "options": ["Lead", "Silver", "Mercury", "Tin"],
+      "answer": "Mercury"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "Which Renaissance master painted the world-famous portrait known as the Mona Lisa?",
+      "options": ["Donatello", "Leonardo da Vinci", "Raphael", "Michelangelo"],
+      "answer": "Leonardo da Vinci"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "Which mountain range forms a massive natural backbone stretching along the western coast of South America?",
+      "options": ["The Rockies", "The Alps", "The Andes", "The Himalayas"],
+      "answer": "The Andes"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which British author created the famous detective Hercule Poirot and the amateur sleuth Miss Marple?",
+      "options": ["Arthur Conan Doyle", "Agatha Christie", "Dorothy L. Sayers", "Ian Fleming"],
+      "answer": "Agatha Christie"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "In economics and finance, what does the acronym 'GDP' stand for?",
+      "options": ["Global Domestic Product", "Gross Domestic Product", "General Debt Portfolio", "Gross Distribution Price"],
+      "answer": "Gross Domestic Product"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "The historical region of Mesopotamia was primarily located between which two major rivers?",
+      "options": ["Tigris and Euphrates", "Nile and Congo", "Ganges and Indus", "Danube and Rhine"],
+      "answer": "Tigris and Euphrates"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "Which subatomic particle, discovered by J.J. Thomson in 1897, carries a fundamental negative electric charge?",
+      "options": ["Proton", "Neutron", "Electron", "Positron"],
+      "answer": "Electron"
+    }
+  ]
+}
