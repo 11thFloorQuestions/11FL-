@@ -1,0 +1,66 @@
+{
+  "archive_id": "sandbox_12",
+  "title": "ARCHIVE 12",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which instrument shares its name with a large, spotted wild cat native to the Americas?",
+      "options": ["Ocarina", "Marimba", "Jaguar", "Bandura"],
+      "answer": "Jaguar"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "Which British ocean liner sank on her maiden voyage in April 1912 after striking an iceberg in the North Atlantic?",
+      "options": ["RMS Lusitania", "RMS Titanic", "HMHS Britannic", "RMS Olympic"],
+      "answer": "RMS Titanic"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "In mathematics, what is the value of pi rounded to two decimal places?",
+      "options": ["3.12", "3.14", "3.16", "3.18"],
+      "answer": "3.14"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "Which celestial body is the closest planet to the Sun?",
+      "options": ["Venus", "Earth", "Mercury", "Mars"],
+      "answer": "Mercury"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "What is the capital city of Australia, chosen as a compromise between rivals Sydney and Melbourne?",
+      "options": ["Sydney", "Melbourne", "Brisbane", "Canberra"],
+      "answer": "Canberra"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "Which literary detective created by Arthur Conan Doyle famously resided at 221B Baker Street?",
+      "options": ["Hercule Poirot", "Sherlock Holmes", "Miss Marple", "Father Brown"],
+      "answer": "Sherlock Holmes"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which chemical element has the symbol 'Fe', derived from its Latin name ferrum?",
+      "options": ["Lead", "Copper", "Iron", "Tin"],
+      "answer": "Iron"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "The historic structure known as the Colosseum is located in which European capital city?",
+      "options": ["Athens", "Paris", "Rome", "Madrid"],
+      "answer": "Rome"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "Which gas makes up the majority of Earth's atmosphere by volume?",
+      "options": ["Oxygen", "Carbon Dioxide", "Nitrogen", "Argon"],
+      "answer": "Nitrogen"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "Which artist painted the ceiling of the Sistine Chapel in Vatican City between 1508 and 1512?",
+      "options": ["Leonardo da Vinci", "Raphael", "Michelangelo", "Donatello"],
+      "answer": "Michelangelo"
+    }
+  ]
+}
