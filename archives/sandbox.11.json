@@ -4,63 +4,63 @@
   "floors": [
     {
       "tier": "FLOOR 01",
-      "question": "Which African nation has Lusaka as its capital city?",
-      "options": ["Zimbabwe", "Zambia", "Mozambique", "Malawi"],
-      "answer": "Zambia"
+      "question": "Which venomous snake is native to the rainforests and savannas of Central and South America and is the longest venomous snake in the Americas?",
+      "options": ["Fer-de-lance", "Bushmaster", "Cascabel", "Eyelash Viper"],
+      "answer": "Bushmaster"
     },
     {
       "tier": "FLOOR 02",
-      "question": "Which classical composer wrote the famous Enigma Variations (Op. 36), featuring a well-known theme that is never actually heard?",
-      "options": ["Gustav Holst", "Edward Elgar", "Ralph Vaughan Williams", "Benjamin Britten"],
-      "answer": "Edward Elgar"
+      "question": "Which French impressionist painter created the famous water lily series ('Nymphéas') at his home in Giverny?",
+      "options": ["Pierre-Auguste Renoir", "Édouard Manet", "Claude Monet", "Camille Pissarro"],
+      "answer": "Claude Monet"
     },
     {
       "tier": "FLOOR 03",
-      "question": "In physics, the SI unit of electrical conductance is named after which scientist?",
-      "options": ["André-Marie Ampère", "Alessandro Volta", "Werner von Siemens", "Georg Ohm"],
-      "answer": "Werner von Siemens"
+      "question": "In computing, what does the acronym BIOS stand for?",
+      "options": ["Binary Input Output System", "Basic Input Output System", "Built-in Integrated Operating System", "Basic Internal Operation Sequence"],
+      "answer": "Basic Input Output System"
     },
     {
       "tier": "FLOOR 04",
-      "question": "The historical region of Transylvania, famous for its association with Vlad the Impaler, is primarily located within the borders of which modern country?",
-      "options": ["Hungary", "Romania", "Serbia", "Bulgaria"],
-      "answer": "Romania"
+      "question": "The island of Crete, the largest of the Greek islands, was the center of which ancient, highly sophisticated Bronze Age civilization?",
+      "options": ["Mycenaean civilization", "Minoan civilization", "Trojan civilization", "Cycladic civilization"],
+      "answer": "Minoan civilization"
     },
     {
       "tier": "FLOOR 05",
-      "question": "Written in 1942, Albert Camus's philosophical novel The Stranger (L'Étranger) is set in which major coastal city?",
-      "options": ["Algiers", "Marseille", "Tunis", "Cairo"],
-      "answer": "Algiers"
+      "question": "Which Nobel Prize-winning physicist developed the general theory of relativity, published in 1915?",
+      "options": ["Niels Bohr", "Max Planck", "Albert Einstein", "Erwin Schrödinger"],
+      "answer": "Albert Einstein"
     },
     {
       "tier": "FLOOR 06",
-      "question": "Which chemical element, essential for modern electronics and semiconductors, takes its name from the Latin word for flint?",
-      "options": ["Germanium", "Silicon", "Gallium", "Boron"],
-      "answer": "Silicon"
+      "question": "What is the primary language spoken in the autonomous region of Macau, alongside Cantonese?",
+      "options": ["English", "Portuguese", "Spanish", "Mandarin"],
+      "answer": "Portuguese"
     },
     {
       "tier": "FLOOR 07",
-      "question": "The ancient archaeological site of Petra, carved directly into rose-colored rock faces, is located in which contemporary Middle Eastern country?",
-      "options": ["Syria", "Lebanon", "Jordan", "Iraq"],
-      "answer": "Jordan"
+      "question": "Which epic poem by Homer recounts the adventures of the Greek hero Odysseus on his long journey home after the fall of Troy?",
+      "options": ["The Iliad", "The Odyssey", "The Aeneid", "The Epic of Gilgamesh"],
+      "answer": "The Odyssey"
     },
     {
       "tier": "FLOOR 08",
-      "question": "Built in the 6th century by Emperor Justinian I, the Hagia Sophia is located in which major historical city?",
-      "options": ["Athens", "Rome", "Istanbul", "Cairo"],
-      "answer": "Istanbul"
+      "question": "The chemical element with the atomic number 79 is what precious metal?",
+      "options": ["Silver", "Platinum", "Gold", "Mercury"],
+      "answer": "Gold"
     },
     {
       "tier": "FLOOR 09",
-      "question": "The Treaty of Utrecht, signed in 1713, ended which major European conflict?",
-      "options": ["The Thirty Years' War", "The War of the Spanish Succession", "The Great Northern War", "The Seven Years' War"],
-      "answer": "The War of the Spanish Succession"
+      "question": "Which mountain range separates Europe from Asia, running north-to-south through western Russia?",
+      "options": ["The Caucasus Mountains", "The Ural Mountains", "The Carpathian Mountains", "The Altai Mountains"],
+      "answer": "The Ural Mountains"
     },
     {
       "tier": "FLOOR 10",
-      "question": "Which mountaineer became the first person to reach the summit of all 14 of the world's eight-thousanders, completing the feat in 1986?",
-      "options": ["Sir Edmund Hillary", "Reinhold Messner", "Tenzing Norgay", "Jerzy Kukuczka"],
-      "answer": "Reinhold Messner"
+      "question": "Which visionary filmmaker directed the 1968 science fiction masterpiece '2001: A Space Odyssey'?",
+      "options": ["Steven Spielberg", "Stanley Kubrick", "Ridley Scott", "George Lucas"],
+      "answer": "Stanley Kubrick"
     }
   ]
 }
