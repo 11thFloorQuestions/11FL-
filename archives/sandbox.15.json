@@ -52,15 +52,15 @@
     },
     {
       "tier": "FLOOR 09",
-      "question": "Which treaty, signed in 1919, officially concluded the state of war between Germany and the Allied Powers after World War I?",
-      "options": ["Treaty of Ghent", "Treaty of Utrecht", "Treaty of Versailles", "Treaty of Westphalia"],
-      "answer": "Treaty of Versailles"
+      "question": "Commissioned by Pope Gregory XIII in 1582 to correct an accumulating seasonal drift in the Julian calendar, what is the name of the calendar used by most of the modern world today?",
+      "options": ["Gregorian Calendar", "Byzantine Calendar", "Republic Calendar", "Babylonian Calendar"],
+      "answer": "Gregorian Calendar"
     },
     {
       "tier": "FLOOR 10",
-      "question": "In typography, what is the term for the small decorative strokes or extensions attached to the ends of a letter's main stems?",
-      "options": ["Sans", "Glyph", "Serif", "Kerning"],
-      "answer": "Serif"
+      "question": "In astrophysics, what is the name of the theoretical boundary surrounding a black hole beyond which nothing, not even light, can escape?",
+      "options": ["Accretion Disk", "Event Horizon", "Singularity", "Photon Sphere"],
+      "answer": "Event Horizon"
     }
   ]
 }
