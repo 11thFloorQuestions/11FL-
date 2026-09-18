@@ -16,20 +16,30 @@ async function initQuiz() {
 }
 
 async function initArchiveSandbox() {
-  for (let i = 1; i <= 10; i++) {
-    const padNum = String(i).padStart(2, '0');
-    const filename = `./sandbox.${padNum}.json`;
-    try {
-      const res = await fetch(`${filename}?v=` + Date.now());
-      if (!res.ok) break; 
-      const data = await res.json();
-      archiveDeckData[data.archive_id || `archive_${padNum}`] = {
-        title: data.title || `ARCHIVE ${padNum}`,
-        floors: data.floors
-      };
-    } catch (err) {
-      break;
+  try {
+    const manifestRes = await fetch('./manifest.json?v=' + Date.now());
+    if (!manifestRes.ok) throw new Error('Failed to load manifest.json');
+    const manifest = await manifestRes.json();
+    
+    const archiveFiles = manifest.archives || [];
+    for (let i = 0; i < archiveFiles.length; i++) {
+      const filename = archiveFiles[i];
+      try {
+        const res = await fetch(`${filename}?v=` + Date.now());
+        if (!res.ok) continue;
+        const data = await res.json();
+        
+        const key = data.archive_id || filename.replace(/^.*[\\\/]/, '').replace('.json', '');
+        archiveDeckData[key] = {
+          title: data.title || `ARCHIVE ${i + 1}`,
+          floors: data.floors
+        };
+      } catch (err) {
+        console.error(`Failed to load archive: ${filename}`, err);
+      }
     }
+  } catch (err) {
+    console.error('Failed to initialize archives from manifest', err);
   }
 }
 
