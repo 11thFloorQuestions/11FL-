@@ -1,0 +1,66 @@
+{
+  "archive_id": "sandbox_19",
+  "title": "ARCHIVE 19",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which popular handheld puzzle cube, invented by a Hungarian professor in 1974, features six multicolored faces?",
+      "options": ["Rubik's Cube", "Soma Cube", "Snake Cube", "Pyraminx"],
+      "answer": "Rubik's Cube"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "What is the primary ingredient in the traditional Italian dish gnocchi?",
+      "options": ["Potato", "Rice", "Chickpea", "Semolina"],
+      "answer": "Potato"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "Which large feline native to the Americas is the largest cat species in the Western Hemisphere?",
+      "options": ["Cougar", "Jaguar", "Ocelot", "Lynx"],
+      "answer": "Jaguar"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "In meteorology, what scale is used to classify the intensity of tropical cyclones and hurricanes based on sustained wind speed?",
+      "options": ["Richter Scale", "Beaufort Scale", "Saffir-Simpson Scale", "Fujita Scale"],
+      "answer": "Saffir-Simpson Scale"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "Which European capital city is built across an archipelago of 14 islands where Lake Mälaren flows into the Baltic Sea?",
+      "options": ["Oslo", "Helsinki", "Copenhagen", "Stockholm"],
+      "answer": "Stockholm"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "Which 1899 novella by Joseph Conrad explores the brutal realities of European colonial exploitation along the Congo River?",
+      "options": ["Heart of Darkness", "The Time Machine", "Treasure Island", "Kim"],
+      "answer": "Heart of Darkness"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which architectural movement of the early 20th century, championed by Le Corbusier, emphasized functionalism, steel frames, and a lack of ornamental facade?",
+      "options": ["Art Deco", "Brutalism", "International Style", "Beaux-Arts"],
+      "answer": "International Style"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "What is the proper astronomical term for the point in an elliptical orbit where a planet or moon is farthest from the Sun?",
+      "options": ["Aphelion", "Perihelion", "Apogee", "Perigee"],
+      "answer": "Aphelion"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "Which historic document, sealed by King John in 1215 at Runnymede, established the principle that nobody, including the monarch, was above the law?",
+      "options": ["The Petition of Right", "Magna Carta", "The Habeas Corpus Act", "The Bill of Rights"],
+      "answer": "Magna Carta"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "In linguistics, what term describes a word that reads the same forwards and backwards, such as 'kayak' or 'racecar'?",
+      "options": ["Anagram", "Palindrome", "Tautogram", "Heteronym"],
+      "answer": "Palindrome"
+    }
+  ]
+}
