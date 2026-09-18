@@ -4,63 +4,63 @@
   "floors": [
     {
       "tier": "FLOOR 01",
-      "question": "Which traditional board game, originating in ancient India as Chaturanga, is played on an 8x8 checkered grid?",
-      "options": ["Checkers", "Chess", "Backgammon", "Go"],
-      "answer": "Chess"
+      "question": "Which traditional British baked good consists of minced spiced meat enclosed in a hot water crust pastry, traditionally eaten cold?",
+      "options": ["Cornish Pasty", "Pork Pie", "Sausage Roll", "Beef Wellington"],
+      "answer": "Pork Pie"
     },
     {
       "tier": "FLOOR 02",
-      "question": "What is the primary sparkling wine style produced in the Champagne region of France that must undergo secondary bottle fermentation?",
-      "options": ["Prosecco", "Cava", "Champagne", "Asti"],
-      "answer": "Champagne"
+      "question": "What is the primary organic polymer that gives plant cell walls their structural rigidity and strength?",
+      "options": ["Starch", "Glycogen", "Cellulose", "Chitin"],
+      "answer": "Cellulose"
     },
     {
       "tier": "FLOOR 03",
-      "question": "Which mountain range stretches across North America from British Columbia down to New Mexico, forming the Continental Divide?",
-      "options": ["The Appalachians", "The Rocky Mountains", "The Sierra Nevada", "The Cascades"],
-      "answer": "The Rocky Mountains"
+      "question": "Which historic London theatre, originally built by Shakespeare's playing company in 1599, was famously reconstructed near its original Southwark site in the late 20th century?",
+      "options": ["The Rose", "The Swan", "The Globe", "The Fortune"],
+      "answer": "The Globe"
     },
     {
       "tier": "FLOOR 04",
-      "question": "In oceanography, what term describes the vast, deep-sea floor lying typically between 3,000 and 6,000 meters below sea level?",
-      "options": ["Continental Shelf", "Abyssal Plain", "Trench", "Seamount"],
-      "answer": "Abyssal Plain"
+      "question": "In heraldry and vexillology, what term describes the tincture or heraldic color representing yellow or gold?",
+      "options": ["Gules", "Azure", "Or", "Vert"],
+      "answer": "Or"
     },
     {
       "tier": "FLOOR 05",
-      "question": "Which historic trade network, active for over a millennium, connected China with the Mediterranean Sea and facilitated cultural exchange across Eurasia?",
-      "options": ["The Amber Road", "The Silk Road", "The Incense Route", "The Tea Horse Road"],
-      "answer": "The Silk Road"
+      "question": "Which 19th-century clinical pioneer discovered that antiseptic methods, such as using carbolic acid to sterilize surgical instruments and wounds, drastically reduced post-operative infections?",
+      "options": ["Edward Jenner", "Joseph Lister", "Robert Koch", "Alexander Fleming"],
+      "answer": "Joseph Lister"
     },
     {
       "tier": "FLOOR 06",
-      "question": "Which optical instrument, utilizing mirrors and a tube to reflect light around corners or obstacles, is famously used in submarines to view above the water surface?",
-      "options": ["Kaleidoscope", "Periscope", "Sextant", "Spectroscope"],
-      "answer": "Periscope"
+      "question": "Which majestic mountain pass connects Pakistan and Afghanistan, serving as a vital historic trade route through the Spin Ghar mountains?",
+      "options": ["Khyber Pass", "Brenner Pass", "Karakoram Pass", "St. Gotthard Pass"],
+      "answer": "Khyber Pass"
     },
     {
       "tier": "FLOOR 07",
-      "question": "Which 1954 dystopian novel by William Golding explores the descent into savagery of a group of British boys stranded on an uninhabited island?",
-      "options": ["Brave New World", "Lord of the Flies", "Fahrenheit 451", "Animal Farm"],
-      "answer": "Lord of the Flies"
+      "question": "In classical music, what Italian term indicates that a movement or piece should be performed at a fast, lively tempo, literally translating to 'cheerful'?",
+      "options": ["Adagio", "Andante", "Allegro", "Presto"],
+      "answer": "Allegro"
     },
     {
       "tier": "FLOOR 08",
-      "question": "In typography and printing, what unit of measurement—traditionally equal to roughly 1/72 of an inch—is used to specify font sizes?",
-      "options": ["Pica", "Point", "Cicero", "Em"],
-      "answer": "Point"
+      "question": "Which 1949 dystopian masterpiece by George Orwell introduced iconic cultural concepts such as Big Brother, Room 101, and Newspeak?",
+      "options": ["Brave New World", "Nineteen Eighty-Four", "Fahrenheit 451", "We"],
+      "answer": "Nineteen Eighty-Four"
     },
     {
       "tier": "FLOOR 09",
-      "question": "Which legendary jazz musician, nicknamed 'Satchmo', was a foundational trumpet virtuoso and gravelly-voiced vocalist from New Orleans?",
-      "options": ["Miles Davis", "Louis Armstrong", "Duke Ellington", "Charlie Parker"],
-      "answer": "Louis Armstrong"
+      "question": "Which chemical element, carrying the atomic number 79, is prized for its high malleability, resistance to corrosion, and dense monetary history?",
+      "options": ["Silver", "Platinum", "Gold", "Copper"],
+      "answer": "Gold"
     },
     {
       "tier": "FLOOR 10",
-      "question": "In cartography, what specific term describes a map projection that preserves local shapes and angles accurately across small areas, even if it distorts relative landmass sizes?",
-      "options": ["Mercator Projection", "Conformal Projection", "Equal-Area Projection", "Robinson Projection"],
-      "answer": "Conformal Projection"
+      "question": "In quantum mechanics, what principle formulated by Werner Heisenberg states that it is impossible to simultaneously measure certain pairs of physical properties, such as position and momentum, with absolute precision?",
+      "options": ["Pauli Exclusion Principle", "Uncertainty Principle", "Superposition Principle", "Aufbau Principle"],
+      "answer": "Uncertainty Principle"
     }
   ]
 }
