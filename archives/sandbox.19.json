@@ -4,63 +4,63 @@
   "floors": [
     {
       "tier": "FLOOR 01",
-      "question": "Which popular handheld puzzle cube, invented by a Hungarian professor in 1974, features six multicolored faces?",
-      "options": ["Rubik's Cube", "Soma Cube", "Snake Cube", "Pyraminx"],
-      "answer": "Rubik's Cube"
+      "question": "Which traditional board game, originating in ancient India as Chaturanga, is played on an 8x8 checkered grid?",
+      "options": ["Checkers", "Chess", "Backgammon", "Go"],
+      "answer": "Chess"
     },
     {
       "tier": "FLOOR 02",
-      "question": "What is the primary ingredient in the traditional Italian dish gnocchi?",
-      "options": ["Potato", "Rice", "Chickpea", "Semolina"],
-      "answer": "Potato"
+      "question": "What is the primary sparkling wine style produced in the Champagne region of France that must undergo secondary bottle fermentation?",
+      "options": ["Prosecco", "Cava", "Champagne", "Asti"],
+      "answer": "Champagne"
     },
     {
       "tier": "FLOOR 03",
-      "question": "Which large feline native to the Americas is the largest cat species in the Western Hemisphere?",
-      "options": ["Cougar", "Jaguar", "Ocelot", "Lynx"],
-      "answer": "Jaguar"
+      "question": "Which mountain range stretches across North America from British Columbia down to New Mexico, forming the Continental Divide?",
+      "options": ["The Appalachians", "The Rocky Mountains", "The Sierra Nevada", "The Cascades"],
+      "answer": "The Rocky Mountains"
     },
     {
       "tier": "FLOOR 04",
-      "question": "In meteorology, what scale is used to classify the intensity of tropical cyclones and hurricanes based on sustained wind speed?",
-      "options": ["Richter Scale", "Beaufort Scale", "Saffir-Simpson Scale", "Fujita Scale"],
-      "answer": "Saffir-Simpson Scale"
+      "question": "In oceanography, what term describes the vast, deep-sea floor lying typically between 3,000 and 6,000 meters below sea level?",
+      "options": ["Continental Shelf", "Abyssal Plain", "Trench", "Seamount"],
+      "answer": "Abyssal Plain"
     },
     {
       "tier": "FLOOR 05",
-      "question": "Which European capital city is built across an archipelago of 14 islands where Lake Mälaren flows into the Baltic Sea?",
-      "options": ["Oslo", "Helsinki", "Copenhagen", "Stockholm"],
-      "answer": "Stockholm"
+      "question": "Which historic trade network, active for over a millennium, connected China with the Mediterranean Sea and facilitated cultural exchange across Eurasia?",
+      "options": ["The Amber Road", "The Silk Road", "The Incense Route", "The Tea Horse Road"],
+      "answer": "The Silk Road"
     },
     {
       "tier": "FLOOR 06",
-      "question": "Which 1899 novella by Joseph Conrad explores the brutal realities of European colonial exploitation along the Congo River?",
-      "options": ["Heart of Darkness", "The Time Machine", "Treasure Island", "Kim"],
-      "answer": "Heart of Darkness"
+      "question": "Which optical instrument, utilizing mirrors and a tube to reflect light around corners or obstacles, is famously used in submarines to view above the water surface?",
+      "options": ["Kaleidoscope", "Periscope", "Sextant", "Spectroscope"],
+      "answer": "Periscope"
     },
     {
       "tier": "FLOOR 07",
-      "question": "Which architectural movement of the early 20th century, championed by Le Corbusier, emphasized functionalism, steel frames, and a lack of ornamental facade?",
-      "options": ["Art Deco", "Brutalism", "International Style", "Beaux-Arts"],
-      "answer": "International Style"
+      "question": "Which 1954 dystopian novel by William Golding explores the descent into savagery of a group of British boys stranded on an uninhabited island?",
+      "options": ["Brave New World", "Lord of the Flies", "Fahrenheit 451", "Animal Farm"],
+      "answer": "Lord of the Flies"
     },
     {
       "tier": "FLOOR 08",
-      "question": "What is the proper astronomical term for the point in an elliptical orbit where a planet or moon is farthest from the Sun?",
-      "options": ["Aphelion", "Perihelion", "Apogee", "Perigee"],
-      "answer": "Aphelion"
+      "question": "In typography and printing, what unit of measurement—traditionally equal to roughly 1/72 of an inch—is used to specify font sizes?",
+      "options": ["Pica", "Point", "Cicero", "Em"],
+      "answer": "Point"
     },
     {
       "tier": "FLOOR 09",
-      "question": "Which historic document, sealed by King John in 1215 at Runnymede, established the principle that nobody, including the monarch, was above the law?",
-      "options": ["The Petition of Right", "Magna Carta", "The Habeas Corpus Act", "The Bill of Rights"],
-      "answer": "Magna Carta"
+      "question": "Which legendary jazz musician, nicknamed 'Satchmo', was a foundational trumpet virtuoso and gravelly-voiced vocalist from New Orleans?",
+      "options": ["Miles Davis", "Louis Armstrong", "Duke Ellington", "Charlie Parker"],
+      "answer": "Louis Armstrong"
     },
     {
       "tier": "FLOOR 10",
-      "question": "In linguistics, what term describes a word that reads the same forwards and backwards, such as 'kayak' or 'racecar'?",
-      "options": ["Anagram", "Palindrome", "Tautogram", "Heteronym"],
-      "answer": "Palindrome"
+      "question": "In cartography, what specific term describes a map projection that preserves local shapes and angles accurately across small areas, even if it distorts relative landmass sizes?",
+      "options": ["Mercator Projection", "Conformal Projection", "Equal-Area Projection", "Robinson Projection"],
+      "answer": "Conformal Projection"
     }
   ]
 }
