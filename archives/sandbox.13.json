@@ -1,1 +1,66 @@
-
+{
+  "archive_id": "sandbox_13",
+  "title": "ARCHIVE 13",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which venomous spider, native to Australia, is famous for its distinct red stripe on the dorsal side of its abdomen?",
+      "options": ["Sydney Funnel-web", "Redback Spider", "Huntsman Spider", "Brown Recluse"],
+      "answer": "Redback Spider"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "Which landmark 1936 film by Charlie Chaplin serves as a satirical critique of industrialization and modern factory labor?",
+      "options": ["The Kid", "City Lights", "Modern Times", "The Great Dictator"],
+      "answer": "Modern Times"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "In organic chemistry, what is the functional group characterized by a carbonyl carbon bonded to a hydroxyl group?",
+      "options": ["Aldehyde", "Ketone", "Carboxylic Acid", "Ester"],
+      "answer": "Carboxylic Acid"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "The ancient Phoenician city-state of Carthage was located on the coast of which modern-day North African country?",
+      "options": ["Morocco", "Egypt", "Tunisia", "Libya"],
+      "answer": "Tunisia"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "Which theoretical physicist proposed the existence of quantum spin and formulated a relativistic wave equation for electrons that predicted antimatter?",
+      "options": ["Erwin Schrödinger", "Paul Dirac", "Max Planck", "Werner Heisenberg"],
+      "answer": "Paul Dirac"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "Which sovereign island country in the Caribbean has Kingston as its capital and largest city?",
+      "options": ["Bahamas", "Barbados", "Jamaica", "Trinidad and Tobago"],
+      "answer": "Jamaica"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which literary masterpiece by Miguel de Cervantes, published in two parts in 1605 and 1615, parodies chivalric romances?",
+      "options": ["Don Quixote", "The Decameron", "Gargantua and Pantagruel", "The Canterbury Tales"],
+      "answer": "Don Quixote"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "The radioactive isotope carbon-14 decays primarily into stable nitrogen-14 through which type of radioactive decay?",
+      "options": ["Alpha decay", "Beta-minus decay", "Gamma emission", "Positron emission"],
+      "answer": "Beta-minus decay"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "Which mountain pass, historically crucial for trade and military campaigns, connects modern-day Pakistan and Afghanistan?",
+      "options": ["Khyber Pass", "Brenner Pass", "Kunjjerab Pass", "Bolor Pass"],
+      "answer": "Khyber Pass"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "Which director helmed the acclaimed 1979 psychological horror-sci-fi film 'Alien' before it became a massive multimedia franchise?",
+      "options": ["John Carpenter", "David Cronenberg", "Ridley Scott", "James Cameron"],
+      "answer": "Ridley Scott"
+    }
+  ]
+}
