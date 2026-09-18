@@ -1,0 +1,66 @@
+{
+  "archive_id": "sandbox_16",
+  "title": "ARCHIVE 16",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which popular yellow fruit grows in large hanging clusters known as 'hands' on a giant herbaceous plant?",
+      "options": ["Apple", "Banana", "Peach", "Pear"],
+      "answer": "Banana"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "Which traditional Scottish dish consists of sheep's pluck minced with onion, oatmeal, suet, spices, and stock, traditionally encased in the animal's stomach?",
+      "options": ["Bangers and Mash", "Haggis", "Black Pudding", "Shepherd's Pie"],
+      "answer": "Haggis"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "What is the primary precious metal used to award the first-place winner at the Olympic Games?",
+      "options": ["Gold", "Silver", "Bronze", "Platinum"],
+      "answer": "Gold"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "Which large flightless bird native to Australia is the second-largest living bird by height?",
+      "options": ["Ostrich", "Emu", "Cassowary", "Rhea"],
+      "answer": "Emu"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "In meteorology, what specific term describes the lowest layer of Earth's atmosphere where all weather phenomena take place?",
+      "options": ["Stratosphere", "Troposphere", "Mesosphere", "Thermosphere"],
+      "answer": "Troposphere"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "Which Italian city is globally famous for its network of canals, gondolas, and historic architecture built across more than 100 small islands in a lagoon?",
+      "options": ["Florence", "Milan", "Venice", "Naples"],
+      "answer": "Venice"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which major Pablo Picasso masterpiece, painted in 1937, powerfully depicts the suffering and chaos brought by the bombing of a Basque town during the Spanish Civil War?",
+      "options": ["The Old Guitarist", "Guernica", "The Weeping Woman", "Les Demoiselles d'Avignon"],
+      "answer": "Guernica"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "In classical mythology, which hero is famous for completing twelve laborious tasks assigned by King Eurystheus?",
+      "options": ["Perseus", "Theseus", "Achilles", "Hercules"],
+      "answer": "Hercules"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "Which chemical element, represented by the symbol 'W', derives its symbol and name from wolframite?",
+      "options": ["Tungsten", "Bismuth", "Antimony", "Zirconium"],
+      "answer": "Tungsten"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "Invented in the early 19th century by a French weaver, what mechanical device used interchangeable punched cards to automate complex patterns on looms?",
+      "options": ["Babbage Engine", "Jacquard Loom", "Linotype Machine", "Pianola"],
+      "answer": "Jacquard Loom"
+    }
+  ]
+}
