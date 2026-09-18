@@ -1,0 +1,66 @@
+{
+  "archive_id": "sandbox_15",
+  "title": "ARCHIVE 15",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which domestic pet is biologically classified under the canine family and is often referred to as 'man's best friend'?",
+      "options": ["Cat", "Dog", "Ferret", "Rabbit"],
+      "answer": "Dog"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "What is the primary ingredient in traditional Japanese miso soup?",
+      "options": ["Soybean paste", "Fish sauce", "Rice vinegar", "Coconut milk"],
+      "answer": "Soybean paste"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "Which North American waterfall system sits on the border between the United States and Canada?",
+      "options": ["Victoria Falls", "Iguazu Falls", "Niagara Falls", "Angel Falls"],
+      "answer": "Niagara Falls"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "In meteorology, an anemometer is an instrument specifically designed to measure what atmospheric property?",
+      "options": ["Air pressure", "Wind speed", "Humidity", "Rainfall volume"],
+      "answer": "Wind speed"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "Which island nation in the Mediterranean Sea has Valletta as its capital and shares its name with the historic order of knights?",
+      "options": ["Cyprus", "Malta", "Sicily", "Sardinia"],
+      "answer": "Malta"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "Which 19th-century author penned the gothic horror classic 'Frankenstein; or, The Modern Prometheus'?",
+      "options": ["Bram Stoker", "Edgar Allan Poe", "Mary Shelley", "Charles Dickens"],
+      "answer": "Mary Shelley"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which architectural style, dominant in Western Europe during the Late Middle Ages, is characterized by flying buttresses and pointed arches?",
+      "options": ["Romanesque", "Gothic", "Baroque", "Neoclassical"],
+      "answer": "Gothic"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "What is the traditional name for the navigational star Polaris, located nearly at the northern celestial pole?",
+      "options": ["Dog Star", "North Star", "Shepherd's Star", "Evening Star"],
+      "answer": "North Star"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "Which treaty, signed in 1919, officially concluded the state of war between Germany and the Allied Powers after World War I?",
+      "options": ["Treaty of Ghent", "Treaty of Utrecht", "Treaty of Versailles", "Treaty of Westphalia"],
+      "answer": "Treaty of Versailles"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "In chess notation and terminology, what unique name is given to the defensive maneuver where a king moves two squares toward a rook, and the rook leaps over it?",
+      "options": ["En Passant", "Zugzwang", "Castling", "Fianchetto"],
+      "answer": "Castling"
+    }
+  ]
+}
