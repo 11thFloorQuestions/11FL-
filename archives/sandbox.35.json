@@ -1,0 +1,66 @@
+{
+  "archive_id": "sandbox_35",
+  "title": "ARCHIVE 35",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which popular Caribbean spice blend is traditionally rubbed onto meats and features a fiery base of Scotch bonnet chillies, allspice, and thyme?",
+      "options": ["Jerk spice", "Creole seasoning", "Adobo"],
+      "answer": "Jerk spice"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "In professional cartography, what specific term describes the study, creation, and design of geographical maps and charts?",
+      "options": ["Cartography", "Topography", "Geodesy", "Demography"],
+      "answer": "Cartography"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "Which celebrated 20th-century American abstract expressionist painter is renowned for his pioneering 'drip painting' technique, creating complex webs of paint poured directly onto canvas?",
+      "options": ["Jackson Pollock", "Mark Rothko", "Willem de Kooning", "Franz Kline"],
+      "answer": "Jackson Pollock"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "In marine biology, what mutualistic biological relationship allows stony corals to thrive in nutrient-poor tropical waters through microscopic algae living inside their tissues?",
+      "options": ["Zooxanthellae symbiosis", "Mycorrhizal association", "Bioluminescent pairing", "Epiphytic hosting"],
+      "answer": "Zooxanthellae symbiosis"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "Which acclaimed 1966 post-modern novel by Argentine writer Julio Cortázar is structured as an interactive maze of chapters that readers can sequence in multiple alternative orders?",
+      "options": ["Hopscotch", "Ficciones", "The Aleph", "Labyrinths"],
+      "answer": "Hopscotch"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "What traditional textile craft involves interlocking loops of yarn using a single hooked needle to create garments, blankets, and intricate patterns?",
+      "options": ["Crochet", "Knitting", "Tatting", "Macrame"],
+      "answer": "Crochet"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which pioneering 1970s Jamaican reggae and dub producer revolutionized studio recording by treating the mixing console as a musical instrument, heavily utilizing echo, reverb, and heavy bass lines?",
+      "options": ["Lee 'Scratch' Perry", "King Tubby", "Scientist", "Augustus Pablo"],
+      "answer": "King Tubby"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "In corporate finance and business strategy, what popular term describes a newly established private company with high growth potential, typically operating with limited resources?",
+      "options": ["Start-up", "Franchise", "Holding company", "Consortium"],
+      "answer": "Start-up"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "Which historic 11th-century manuscript survey, commissioned by William the Conqueror across England, provided an extraordinarily detailed inventory of landholdings, wealth, and livestock?",
+      "options": ["Domesday Book", "Magna Carta", "Pipe Rolls", "Hundred Rolls"],
+      "answer": "Domesday Book"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "In chess notation and strategy, what traditional term describes a defensive maneuver where a player sacrifices material to gain a strategic tempo or positional advantage?",
+      "options": ["Gambit", "Stalemate", "En passant", "Fianchetto"],
+      "answer": "Gambit"
+    }
+  ]
+}
