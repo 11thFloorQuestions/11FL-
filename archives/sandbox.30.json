@@ -1,0 +1,66 @@
+{
+  "archive_id": "sandbox_30",
+  "title": "ARCHIVE 30",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which traditional British bakery item is a small, round flatbread typically toasted and eaten warm with butter?",
+      "options": ["Crumpet", "Muffin", "Pikelet"],
+      "answer": "Crumpet"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "What traditional plucked string instrument of the Middle East features a short, fretless neck and a deep pear-shaped body, serving as a cornerstone of regional classical ensembles?",
+      "options": ["Oud", "Sitar", "Bouzouki", "Tar"],
+      "answer": "Oud"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "Which celebrated 20th-century American realist painter is best known for capturing moody, solitary urban scenes, most notably the 1942 diner painting 'Nighthawks'?",
+      "options": ["Edward Hopper", "Grant Wood", "Norman Rockwell", "Georgia O'Keeffe"],
+      "answer": "Edward Hopper"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "In equestrian sports, what term describes the synchronized dressage movement where a horse trots on the spot with high, graceful knee action?",
+      "options": ["Passage", "Piaffe", "Canter", "Piaffer"],
+      "answer": "Piaffe"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "Which acclaimed 1936 novel by Margaret Mitchell explores the turbulent lives of Southern characters against the backdrop of the American Civil War and Reconstruction era?",
+      "options": ["Gone with the Wind", "To Kill a Mockingbird", "The Grapes of Wrath", "East of Eden"],
+      "answer": "Gone with the Wind"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "What traditional Italian glassmaking technique involves fusing thin coloured glass canes together in a mould to create intricate star-like or mosaic patterns?",
+      "options": ["Millefiori", "Murrine", "Cameo glass", "Slumping"],
+      "answer": "Millefiori"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which influential 1980s British alternative rock band, formed in Manchester by Johnny Marr and Morrissey, released critically acclaimed indie anthems such as 'There Is a Light That Never Goes Out'?",
+      "options": ["The Smiths", "The Stone Roses", "Joy Division", "New Order"],
+      "answer": "The Smiths"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "In textile production, what specific mechanical process involves untangling, cleaning, and intermeshing raw staple fibres to prepare them for spinning into yarn?",
+      "options": ["Carding", "Combing", "Fulling", "Roving"],
+      "answer": "Carding"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "Which historic 14th-century West African monarch of the Mali Empire embarked on an legendary pilgrimage to Mecca that famously disrupted Mediterranean gold markets through his lavish spending?",
+      "options": ["Mansa Musa", "Sundiata Keita", "Askia Mohammad", "Sunni Ali"],
+      "answer": "Mansa Musa"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "What complex socio-cultural concept, popularized by French sociologist Pierre Bourdieu, denotes the accumulation of non-financial social assets such as education, speech, and credentials that promote social mobility?",
+      "options": ["Cultural capital", "Habitus", "Symbolic interaction", "Social stratification"],
+      "answer": "Cultural capital"
+    }
+  ]
+}
