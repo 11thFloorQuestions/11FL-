@@ -40,9 +40,9 @@
     },
     {
       "tier": "FLOOR 07",
-      "question": "Which iconic 1980s post-punk band, fronted by Robert Smith, became renowned for their melancholic lyricism, atmospheric guitar textures, and gothic aesthetic?",
-      "options": ["The Cure", "Depeche Mode", "The Smiths", "New Order"],
-      "answer": "The Cure"
+      "question": "Which pioneering 19th-century French culinary master codified the system of the five 'mother sauces' that remains foundational to classical Western cooking?",
+      "options": ["Auguste Escoffier", "Antonin Carême", "François Vatel", "Paul Bocuse"],
+      "answer": "Antonin Carême"
     },
     {
       "tier": "FLOOR 08",
