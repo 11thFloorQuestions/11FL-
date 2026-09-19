@@ -1,0 +1,66 @@
+{
+  "archive_id": "sandbox_21",
+  "title": "ARCHIVE 21",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which sweet, sticky confectionery spread made from inverted sugar syrup and lemon juice is a staple of British baking, famously produced in a golden tin?",
+      "options": ["Treacle", "Golden Syrup", "Melassine"],
+      "answer": "Golden Syrup"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "What pigment family, derived primarily from iron oxides and clay, provides the warm earthy yellow and red hues frequently found in prehistoric cave paintings?",
+      "options": ["Ochre", "Ultramarine", "Cinnabar", "Malachite"],
+      "answer": "Ochre"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "Which Italian Renaissance artist and inventor famously kept meticulous notebooks filled with mirror-script observations, anatomical studies, and flying machine designs?",
+      "options": ["Michelangelo", "Leonardo da Vinci", "Raphael", "Donatello"],
+      "answer": "Leonardo da Vinci"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "In textiles, what ancient spinning technique involves twisting and drawing out staple fibres by hand using a weighted spindle?",
+      "options": ["Drop spindling", "Carding", "Bobbin lace", "Weaving"],
+      "answer": "Drop spindling"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "Which classic 19th-century gothic novel by Mary Shelley features a doomed scientist who manages to animate lifeless matter, only to be horrified by his creation?",
+      "options": ["Dracula", "Frankenstein", "The Strange Case of Dr Jekyll and Mr Hyde", "The Picture of Dorian Gray"],
+      "answer": "Frankenstein"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "What acoustic phenomenon describes the apparent change in frequency of a wave in relation to an observer who is moving relative to the wave source?",
+      "options": ["Doppler effect", "Resonance", "Diffraction", "Refraction"],
+      "answer": "Doppler effect"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which traditional Japanese theatrical art form, established in the Edo period, is characterised by elaborate makeup, stylized dance, and all-male casts performing dramatic historical tales?",
+      "options": ["Noh", "Kabuki", "Bunraku", "Kyogen"],
+      "answer": "Kabuki"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "In linguistics, what term describes a word formed from the initial letters of other words that is pronounced as a single word, such as NASA or scuba?",
+      "options": ["Acronym", "Portmanteau", "Palindrome", "Metonym"],
+      "answer": "Acronym"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "Which historic Central Asian city served as a vital commercial and cultural nexus along the Silk Road, famed for its striking turquoise-domed Islamic architecture?",
+      "options": ["Samarkand", "Damascus", "Baghdad", "Timbuktu"],
+      "answer": "Samarkand"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "What 20th-century artistic movement, spearheaded by André Breton, sought to release the creative potential of the unconscious mind through dreamlike imagery and automatic writing?",
+      "options": ["Cubism", "Surrealism", "Dadaism", "Futurism"],
+      "answer": "Surrealism"
+    }
+  ]
+}
