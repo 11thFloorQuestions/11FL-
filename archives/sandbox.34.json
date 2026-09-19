@@ -1,0 +1,66 @@
+{
+  "archive_id": "sandbox_34",
+  "title": "ARCHIVE 34",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which popular French pastry consists of sweet choux pastry dough formed into a cylindrical shape and filled with cream or custard, typically topped with chocolate icing?",
+      "options": ["Éclair", "Croissant", "Macaron"],
+      "answer": "Éclair"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "What traditional Indigenous North American storytelling medium involves carving intricate genealogical records, crests, and historical narratives into tall cedar totem poles?",
+      "options": ["Totem carving", "Sandpainting", "Wampum weaving", "Beadwork"],
+      "answer": "Totem carving"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "Which celebrated 20th-century Mexican muralist is internationally renowned for large-scale fresco works depicting socialist political themes, historical labour struggles, and indigenous heritage?",
+      "options": ["Diego Rivera", "David Alfaro Siqueiros", "José Clemente Orozco", "Rufino Tamayo"],
+      "answer": "Diego Rivera"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "In film production, what specific term describes the artistic department responsible for designing, sourcing, and arranging movable objects and decorative items on a set?",
+      "options": ["Set dressing", "Wardrobe", "Cinematography", "Key grip"],
+      "answer": "Set dressing"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "Which acclaimed 1951 novel by J.D. Salinger follows the disillusioned teenager Holden Caulfield as he wanders the streets of New York City after being expelled from his prep school?",
+      "options": ["The Catcher in the Rye", "On the Road", "Lord of the Flies", "The Great Gatsby"],
+      "answer": "The Catcher in the Rye"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "What traditional East Asian culinary technique involves immersing food in a seasoned master stock or broth and simmering it over low heat for extended periods to tenderise and infuse rich flavours?",
+      "options": ["Master-stock braising", "Dry roasting", "Flash frying", "Salt curing"],
+      "answer": "Master-stock braising"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which pioneering 1980s American hip-hop group released the critically acclaimed 1989 sample-dense masterpiece 'Paul's Boutique'?",
+      "options": ["Beastie Boys", "Public Enemy", "Run-DMC", "De La Soul"],
+      "answer": "Beastie Boys"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "In long-distance cycling, what tactical peloton strategy involves slipstreaming directly behind another rider to reduce wind resistance and conserve energy?",
+      "options": ["Drafting", "Breakaway", "Echeloning", "Lead-out"],
+      "answer": "Drafting"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "Which historic 18th-century European intellectual movement championed reason, individual liberty, and scientific skepticism while challenging traditional absolute monarchy and church authority?",
+      "options": ["The Enlightenment", "The Renaissance", "The Reformation", "Romanticism"],
+      "answer": "The Enlightenment"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "In sociolinguistics, what specific term describes a linguistic variety associated with a particular social class, occupation, or demographic group within a speech community?",
+      "options": ["Sociolect", "Idiolect", "Dialect", "Register"],
+      "answer": "Sociolect"
+    }
+  ]
+}
