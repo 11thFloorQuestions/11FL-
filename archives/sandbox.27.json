@@ -22,21 +22,21 @@
     },
     {
       "tier": "FLOOR 04",
-      "question": "In typography, what specific term describes the adjustable spacing placed between two individual characters to correct optical gaps and achieve visual harmony?",
-      "options": ["Kerning", "Tracking", "Leading", "Ligature"],
-      "answer": "Kerning"
+      "question": "Which classic board game, invented by Elizabeth Magie in 1903 under the title 'The Landlord's Game', was originally designed to illustrate the economic consequences of land monopolies?",
+      "options": ["Monopoly", "The Game of Life", "Risk", "Cluedo"],
+      "answer": "Monopoly"
     },
     {
       "tier": "FLOOR 05",
-      "question": "Which classic 1961 breakfast cookbook and culinary memoir by Elizabeth David helped revolutionise home cooking in Britain by celebrating Mediterranean ingredients?",
-      "options": ["French Provincial Cooking", "Mastering the Art of French Cooking", "The Alice B. Toklas Cookbook", "A Book of Mediterranean Food"],
-      "answer": "A Book of Mediterranean Food"
+      "question": "Which landmark 19th-century domestic comedy-drama by Henrik Ibsen concludes with the protagonist Nora Helmer walking out and slamming the front door on her patriarchal marriage?",
+      "options": ["A Doll's House", "Hedda Gabler", "The Seagull", "Pygmalion"],
+      "answer": "A Doll's House"
     },
     {
       "tier": "FLOOR 06",
-      "question": "What architectural term describes a covered walkway or colonnade open to the air on one side, typically featured in traditional Italian palazzos and gardens?",
-      "options": ["Loggia", "Portico", "Atrium", "Peristyle"],
-      "answer": "Loggia"
+      "question": "Which traditional East Asian plucked string instrument features a pear-shaped wooden body and has been a staple of Chinese classical and folk music for over two millennia?",
+      "options": ["Pipa", "Guzheng", "Erhu", "Sanxian"],
+      "answer": "Pipa"
     },
     {
       "tier": "FLOOR 07",
@@ -52,9 +52,9 @@
     },
     {
       "tier": "FLOOR 09",
-      "question": "Which historic 13th-century trade and political alliance of merchant guilds and market towns dominated commercial activity across Northern Europe and the Baltic Sea?",
-      "options": ["Hanseatic League", "Lombard League", "Swabian League", "Venetian Republic"],
-      "answer": "Hanseatic League"
+      "question": "Which legendary 1960s Motown vocal group delivered soul classics such as 'My Girl' and 'Baby Love'?",
+      "options": ["The Supremes", "The Temptations", "The Four Tops", "Martha and the Vandellas"],
+      "answer": "The Supremes"
     },
     {
       "tier": "FLOOR 10",
