@@ -40,7 +40,7 @@
     },
     {
       "tier": "FLOOR 07",
-      "question": "Which legendary 1970s American funk and soul band, led by Earth, Wind & Fire founder Maurice White, dominated global charts with timeless anthems like 'September'?",
+      "question": "Which legendary 1970s global vocal group, founded by Maurice White, blended R&B, soul, and jazz into timeless anthems such as 'September' and 'Boogie Wonderland'?",
       "options": ["Earth, Wind & Fire", "Kool & the Gang", "Commodores", "Sly and the Family Stone"],
       "answer": "Earth, Wind & Fire"
     },
@@ -58,9 +58,9 @@
     },
     {
       "tier": "FLOOR 10",
-      "question": "In structural linguistics, what precise term refers to the minimal distinctive unit of sound in a language that can distinguish meaning between words, such as the sound difference between 'bat' and 'pat'?",
-      "options": ["Phoneme", "Morpheme", "Allophone", "Grapheme"],
-      "answer": "Phoneme"
+      "question": "In modern human geography, what term describes the rapid, uncontrolled expansion of urban areas into surrounding low-density agricultural or natural land?",
+      "options": ["Urban sprawl", "Gentrification", "Redevelopment", "Zoning"],
+      "answer": "Urban sprawl"
     }
   ]
 }
