@@ -1,0 +1,66 @@
+{
+  "archive_id": "sandbox_33",
+  "title": "ARCHIVE 33",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which popular Italian dessert consists of baked cream thickened with gelatine, often served with a fruit coulis or caramel sauce?",
+      "options": ["Panna cotta", "Tiramisu", "Gelato"],
+      "answer": "Panna cotta"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "Which traditional Japanese theatrical art form, originating in the Edo period, features elaborate makeup, exaggerated stylized acting, and all-male casts?",
+      "options": ["Kabuki", "Noh", "Bunraku", "Kyogen"],
+      "answer": "Kabuki"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "Which celebrated 19th-century French sculptor is renowned for monumental bronze and marble works such as 'The Thinker' and 'The Kiss'?",
+      "options": ["Auguste Rodin", "Camille Claudel", "Edgar Degas", "Jean-Baptiste Carpeaux"],
+      "answer": "Auguste Rodin"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "In interior design, what specific term describes the psychological and visual weight of a room that immediately draws the eye upon entering?",
+      "options": ["Focal point", "Accent wall", "Datum line", "Negative space"],
+      "answer": "Focal point"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "Which acclaimed 1960 American novel by Harper Lee explores racial injustice and moral growth in a small Southern town through the eyes of a young girl nicknamed Scout?",
+      "options": ["To Kill a Mockingbird", "The Catcher in the Rye", "Of Mice and Men", "The Grapes of Wrath"],
+      "answer": "To Kill a Mockingbird"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "What traditional culinary method involves submerging food in an acidic marinade, typically citrus juice or vinegar, to chemically cook proteins without heat?",
+      "options": ["Curing", "Fermenting", "Pickling", "Poaching"],
+      "answer": "Curing"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which influential 1990s American alternative rock band, fronted by Kurt Cobain, propelled grunge into global mainstream culture with anthems like 'Smells Like Teen Spirit'?",
+      "options": ["Nirvana", "Pearl Jam", "Soundgarden", "Alice in Chains"],
+      "answer": "Nirvana"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "In marathon running, what popular term describes the psychological and physical wall of extreme fatigue that many runners encounter around the 20-mile mark?",
+      "options": ["Hitting the wall", "Bonking", "The twilight zone", "The fatigue threshold"],
+      "answer": "Hitting the wall"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "Which historic 19th-century literary movement emphasized emotion, individualism, and the sublime beauty of nature in reaction against the industrial revolution and rationalism?",
+      "options": ["Romanticism", "Realism", "Naturalism", "Enlightenment"],
+      "answer": "Romanticism"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "In cultural anthropology, what term describes the traditional transmission of customs, beliefs, and stories from generation to generation through spoken word rather than written records?",
+      "options": ["Oral tradition", "Folklore transmission", "Verbal heritage", "Mnemonic lineage"],
+      "answer": "Oral tradition"
+    }
+  ]
+}
