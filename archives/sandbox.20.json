@@ -1,0 +1,66 @@
+{
+  "archive_id": "sandbox_20",
+  "title": "ARCHIVE 20",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which luminous nocturnal insect is known for its ability to produce biological light through a chemical reaction involving luciferin?",
+      "options": ["Firefly", "Cicada", "Mayfly"],
+      "answer": "Firefly"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "What primary textile fiber, harvested from the protective capsule of a tropical shrub, has been spun into cloth for over five millennia?",
+      "options": ["Cotton", "Linen", "Hemp", "Wool"],
+      "answer": "Cotton"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "Which distinctive green liqueur, historically flavoured with grand wormwood and anise, became a cultural touchstone for late 19th-century Parisian bohemian artists?",
+      "options": ["Absinthe", "Chartreuse", "Vermouth", "Campari"],
+      "answer": "Absinthe"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "In typography, what name is given to the small decorative stroke or tail attached to the end of a main stroke in certain letterforms?",
+      "options": ["Serif", "Glyph", "Ascender", "Ligature"],
+      "answer": "Serif"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "Which visionary 20th-century Mexican architect and engineer designed the sculptural Torres de Satélite and collaborated extensively with Luis Barragán?",
+      "options": ["Mathias Goeritz", "Oscar Niemeyer", "Carlos Raúl Villanueva", "Lina Bo Bardi"],
+      "answer": "Mathias Goeritz"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "What botanical term describes a fruit that develops from multiple flowers fusing together into a single mass, such as a pineapple or a fig?",
+      "options": ["Aggregate fruit", "Multiple fruit", "Pome", "Drupe"],
+      "answer": "Multiple fruit"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which pivotal 1913 modernist ballet score by Igor Stravinsky famously provoked a riot among the audience at its premiere in Paris?",
+      "options": ["The Firebird", "Petrushka", "The Rite of Spring", "Daphnis et Chloé"],
+      "answer": "The Rite of Spring"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "In classical literary theory, what dramatic device involves a character speaking their private thoughts aloud while alone on stage?",
+      "options": ["Soliloquy", "Monologue", "Aside", "Prologue"],
+      "answer": "Soliloquy"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "Which fundamental quantum phenomenon describes how particles can pass through a physical barrier that classical mechanics dictates they lack the energy to surmount?",
+      "options": ["Quantum entanglement", "Quantum tunneling", "Wave-particle duality", "Casimir effect"],
+      "answer": "Quantum tunneling"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "What historic 14th-century manuscript, written in an unencrypted yet entirely unreadable artificial script and illustrated with bizarre botanical and astrological drawings, remains one of the world's most famous unsolved cryptological puzzles?",
+      "options": ["Codex Seraphinianus", "Voynich Manuscript", "Rohonc Codex", "Liber Isidori"],
+      "answer": "Voynich Manuscript"
+    }
+  ]
+}
