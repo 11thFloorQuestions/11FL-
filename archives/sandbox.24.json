@@ -22,9 +22,9 @@
     },
     {
       "tier": "FLOOR 04",
-      "question": "In typography, what term describes the vertical space measured between lines of baseline text?",
-      "options": ["Leading", "Kerning", "Tracking", "Em dash"],
-      "answer": "Leading"
+      "question": "Which traditional Portuguese musical genre, characterized by melancholic tunes and lyrics often expressing a profound sense of longing or fate, is traditionally accompanied by a Portuguese guitar?",
+      "options": ["Fado", "Flamenco", "Tango", "Bossa nova"],
+      "answer": "Fado"
     },
     {
       "tier": "FLOOR 05",
@@ -40,9 +40,9 @@
     },
     {
       "tier": "FLOOR 07",
-      "question": "Which influential mid-20th-century design movement, originating in Germany, emphasized functionalism, clean geometric forms, and the integration of art, craft, and technology?",
-      "options": ["Bauhaus", "Art Deco", "De Stijl", "Arts and Crafts movement"],
-      "answer": "Bauhaus"
+      "question": "Which intricate Japanese art of repairing broken pottery with a lacquer dusted or mixed with powdered gold, silver, or platinum highlights breakage rather than disguising it?",
+      "options": ["Kintsugi", "Origami", "Ikebana", "Cloisonné"],
+      "answer": "Kintsugi"
     },
     {
       "tier": "FLOOR 08",
@@ -59,7 +59,7 @@
     {
       "tier": "FLOOR 10",
       "question": "What fundamental theorem in topology states that any continuous mapping from a compact, convex set to itself must have at least one fixed point?",
-      "options": ["Brouwer fixed-point theorem", "Jordan curve theorem", "Hairy ball theorem", " Borsuk-Ulam theorem"],
+      "options": ["Brouwer fixed-point theorem", "Jordan curve theorem", "Hairy ball theorem", "Borsuk-Ulam theorem"],
       "answer": "Brouwer fixed-point theorem"
     }
   ]
