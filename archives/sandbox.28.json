@@ -1,0 +1,66 @@
+{
+  "archive_id": "sandbox_28",
+  "title": "ARCHIVE 28",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which traditional British baked good consists of a sweet spiced bun containing dried fruits, marked with a pastry cross on top to signify Good Friday?",
+      "options": ["Hot cross bun", "Scone", "Mince pie"],
+      "answer": "Hot cross bun"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "What traditional Latin American stringed instrument, typically smaller than a guitar, usually features four or five courses of strings and is widely used in folk music from the Andes to Mexico?",
+      "options": ["Charango", "Ukulele", "Bandura", "Mandolin"],
+      "answer": "Charango"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "Which influential 20th-century American sculptor is celebrated for her monumental, spider-like bronze and steel arachnid structures titled 'Maman'?",
+      "options": ["Louise Bourgeois", "Barbara Hepworth", "Georgia O'Keeffe", "Louise Nevelson"],
+      "answer": "Louise Bourgeois"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "In classical theatrical terminology, what specific name is given to the platform or structural area where actors perform, distinct from the backstage and seating areas?",
+      "options": ["Stage", "Proscenium", "Apron", "Fly loft"],
+      "answer": "Stage"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "Which critically acclaimed 1957 Japanese cinematic masterpiece by Akira Kurosawa reimagines Shakespeare's 'Macbeth' within a feudal samurai setting?",
+      "options": ["Throne of Blood", "Ran", "Rashomon", "Seven Samurai"],
+      "answer": "Throne of Blood"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "What traditional textile printing method involves carving a design into a wooden block, applying ink or dye, and hand-stamping it onto fabric?",
+      "options": ["Block printing", "Screen printing", "Rotary printing", "Stencilling"],
+      "answer": "Block printing"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which legendary 1990s American hip-hop duo, consisting of members Q-Tip and Phife Dawg, pioneered alternative rap with jazzy, conscious sampling on albums like 'The Low End Theory'?",
+      "options": ["A Tribe Called Quest", "Outkast", "De La Soul", "Mobb Deep"],
+      "answer": "A Tribe Called Quest"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "In long-distance track running, what tactical strategy involves running behind a lead runner or group to shelter from the wind before making a finishing burst?",
+      "options": ["Drafting", "Pacing", "Surging", "Boxing"],
+      "answer": "Drafting"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "Which historic 11th-century Japanese literary masterpiece, written by the noblewoman Sei Shōnagon, offers a fascinating collection of personal lists, observations, and court gossip?",
+      "options": ["The Pillow Book", "As I Crossed a Bridge of Dreams", "The Confessions of Lady Nijō", "Tsurezuregusa"],
+      "answer": "The Pillow Book"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "What intricate traditional Andean weaving technique utilizes tightly spun alpaca or llama wool to produce garments adorned with complex, narrative geometric iconography?",
+      "options": ["Backstrap weaving", "Tablet weaving", "Inca tapestry", "Pampas braiding"],
+      "answer": "Backstrap weaving"
+    }
+  ]
+}
