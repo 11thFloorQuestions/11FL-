@@ -4,9 +4,9 @@
   "floors": [
     {
       "tier": "FLOOR 01",
-      "question": "Which popular fermented dairy product, strained to remove its liquid whey, is a staple of Greek cuisine and Mediterranean cooking?",
-      "options": ["Greek yogurt", "Kefir", "Cottage cheese"],
-      "answer": "Greek yogurt"
+      "question": "Which popular handheld lawn care machine uses a rotating nylon cord to trim grass and weeds around garden borders?",
+      "options": ["Strimmer", "Lawnmower", "Hedge trimmer"],
+      "answer": "Strimmer"
     },
     {
       "tier": "FLOOR 02",
@@ -16,7 +16,7 @@
     },
     {
       "tier": "FLOOR 03",
-      "question": "Which famous 19th-century French impressionist series of paintings by Claude Monet depicts the dramatic facade of a historic cathedral under varying light and weather conditions?",
+      "question": "Which acclaimed 19th-century French impressionist series of canvases by Claude Monet depicts the shifting atmospheric effects of light upon a grand Gothic facade in Normandy?",
       "options": ["Rouen Cathedral", "Water Lilies", "Haystacks", "The Gare Saint-Lazare"],
       "answer": "Rouen Cathedral"
     },
@@ -46,9 +46,9 @@
     },
     {
       "tier": "FLOOR 08",
-      "question": "In phonetics, what term refers to a variant pronunciation of a phoneme that does not change the meaning of a word, such as the aspirated 'p' in 'pin' versus the unaspirated 'p' in 'spin'?",
-      "options": ["Allophone", "Morpheme", "Grafeme", "Phoneme"],
-      "answer": "Allophone"
+      "question": "Which legendary 1970s Swedish pop group dominated global charts with harmony-heavy hits like 'Dancing Queen' and 'Waterloo'?",
+      "options": ["ABBA", "Boney M.", "Fleetwood Mac", "Bee Gees"],
+      "answer": "ABBA"
     },
     {
       "tier": "FLOOR 09",
@@ -58,9 +58,9 @@
     },
     {
       "tier": "FLOOR 10",
-      "question": "What fundamental theorem of calculus establishes the formal mathematical connection between the concepts of differentiation and integration?",
-      "options": ["Fundamental theorem of calculus", "Mean value theorem", "Stokes' theorem", "Green's theorem"],
-      "answer": "Fundamental theorem of calculus"
+      "question": "In association football, what term defines the tactical position of a player who operates directly behind the central striker to create scoring opportunities?",
+      "options": ["Playmaker", "Sweeper", "Winger", "Full-back"],
+      "answer": "Playmaker"
     }
   ]
 }
