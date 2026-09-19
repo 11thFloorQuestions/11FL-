@@ -1,0 +1,66 @@
+{
+  "archive_id": "sandbox_26",
+  "title": "ARCHIVE 26",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which popular board game involves buying, trading, and developing properties such as Mayfair and Old Kent Road?",
+      "options": ["Monopoly", "Scrabble", "Cluedo"],
+      "answer": "Monopoly"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "What traditional British dessert consists of crushed meringue, whipped cream, and fresh strawberries or other berries folded together?",
+      "options": ["Eton Mess", "Trifle", "Spotted Dick", "Summer Pudding"],
+      "answer": "Eton Mess"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "Which iconic 1960s British fashion designer is widely credited with popularising the miniskirt and shifting youth culture style in London?",
+      "options": ["Mary Quant", "Vivienne Westwood", "Barbara Hulanicki", "Zandra Rhodes"],
+      "answer": "Mary Quant"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "In cinema, what specific term describes a camera movement where the entire camera is mounted on a wheeled platform and tracks horizontally alongside moving subjects?",
+      "options": ["Dolly shot", "Pan", "Tilt", "Zoom"],
+      "answer": "Dolly shot"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "Which acclaimed 1938 play by Thornton Wilder depicts the everyday lives of citizens in the fictional small American town of Grover's Corners?",
+      "options": ["Our Town", "The Glass Menagerie", "A Streetcar Named Desire", "Death of a Salesman"],
+      "answer": "Our Town"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "What traditional Indonesian textile craft involves using wax-resist dyeing techniques to create intricate, patterned fabrics?",
+      "options": ["Batik", "Ikat", "Songket", "Tapestry"],
+      "answer": "Batik"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which influential 1970s German electronic music group, founded by Ralf Hütter and Florian Schneider, pioneered synth-pop and mechanized rhythms with albums like 'Autobahn'?",
+      "options": ["Kraftwerk", "Tangerine Dream", "Can", "Neu!"],
+      "answer": "Kraftwerk"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "In competitive figure skating, what jump features a takeoff from the back outside edge and a landing on the back outside edge after completing multiple full rotations?",
+      "options": ["Lutz", "Axel", "Salchow", "Toe loop"],
+      "answer": "Lutz"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "Which historic 17th-century artistic movement in Europe emphasized exuberant motion, dramatic contrast, and grand scale across painting, sculpture, and architecture?",
+      "options": ["Baroque", "Rococo", "Neoclassicism", "Mannerism"],
+      "answer": "Baroque"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "What intricate traditional form of Japanese puppetry, developed in the late 16th century, involves three puppeteers operating a single elaborately costumed doll in full view of the audience?",
+      "options": ["Bunraku", "Kabuki", "Noh", "Gagaku"],
+      "answer": "Bunraku"
+    }
+  ]
+}
