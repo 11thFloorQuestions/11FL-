@@ -1,0 +1,66 @@
+{
+  "archive_id": "sandbox_32",
+  "title": "ARCHIVE 32",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which popular fermented Korean side dish is traditionally made from napa cabbage and radishes seasoned with chilli, garlic, ginger, and salted seafood?",
+      "options": ["Kimchi", "Bibimbap", "Bulgogi"],
+      "answer": "Kimchi"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "What traditional European folk instrument, often associated with Alpine regions, is an extremely long wooden natural horn traditionally used by herdsmen to call cattle?",
+      "options": ["Alphorn", "Zither", "Accordion", "Dulcimer"],
+      "answer": "Alphorn"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "Which acclaimed 20th-century American modernist painter is celebrated for her monumental, close-up abstract studies of desert flowers and animal skulls?",
+      "options": ["Georgia O'Keeffe", "Mary Cassatt", "Lee Krasner", "Helen Frankenthaler"],
+      "answer": "Georgia O'Keeffe"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "In the culinary arts, what specific term describes the French technique of lightly browning flour in melted fat to create a thick base for sauces such as velouté and béchamel?",
+      "options": ["Roux", "Buerre manié", "Slurry", "Emulsion"],
+      "answer": "Roux"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "Which landmark 1958 novel by Nigerian author Chinua Achebe chronicles the tragic collapse of traditional Igbo society following the arrival of British colonial administrators and missionaries?",
+      "options": ["Things Fall Apart", "No Longer at Ease", "Arrow of God", "The Palm-Wine Drinkard"],
+      "answer": "Things Fall Apart"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "What traditional Japanese art of paper folding, distinct for its use of precision geometric creases without cutting or gluing, produces intricate animal and botanical sculptures?",
+      "options": ["Origami", "Kirigami", "Kusudama", "Washi"],
+      "answer": "Origami"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which legendary 1970s American funk and soul band, led by Earth, Wind & Fire founder Maurice White, dominated global charts with timeless anthems like 'September'?",
+      "options": ["Earth, Wind & Fire", "Kool & the Gang", "Commodores", "Sly and the Family Stone"],
+      "answer": "Earth, Wind & Fire"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "In competitive mountaineering, what specific technical term describes the narrow, steep ridge connecting two mountain peaks or forming the crest of a jagged ridge?",
+      "options": ["Arete", "Col", "Cirque", "Moraine"],
+      "answer": "Arete"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "Which historic 15th-century maritime explorer commanded the massive Chinese treasure fleets during the Ming dynasty, leading diplomatic expeditions across the Indian Ocean and East Africa?",
+      "options": ["Zheng He", "Marco Polo", "Ibn Battuta", "Wang Dayuan"],
+      "answer": "Zheng He"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "In structural linguistics, what precise term refers to the minimal distinctive unit of sound in a language that can distinguish meaning between words, such as the sound difference between 'bat' and 'pat'?",
+      "options": ["Phoneme", "Morpheme", "Allophone", "Grapheme"],
+      "answer": "Phoneme"
+    }
+  ]
+}
