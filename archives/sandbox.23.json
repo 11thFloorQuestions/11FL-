@@ -16,9 +16,9 @@
     },
     {
       "tier": "FLOOR 03",
-      "question": "Which iconic post-impressionist Dutch painter created 'The Starry Night' while staying at an asylum in Saint-Rémy-de-Provence in 1889?",
-      "options": ["Vincent van Gogh", "Claude Monet", "Paul Cézanne", "Edvard Munch"],
-      "answer": "Vincent van Gogh"
+      "question": "Which influential 20th-century textile designer and printmaker co-founded the Omega Workshops and was a central figure in the Bloomsbury Group's visual arts output?",
+      "options": ["Vanessa Bell", "William Morris", "Sonia Delaunay", "Anni Albers"],
+      "answer": "Vanessa Bell"
     },
     {
       "tier": "FLOOR 04",
@@ -52,9 +52,9 @@
     },
     {
       "tier": "FLOOR 09",
-      "question": "Which historical trade route network spanned Eurasia, connecting China to the Mediterranean and facilitating cultural, commercial, and technological exchange across continents?",
-      "options": ["Amber Road", "Silk Road", "Incense Route", "Trans-Saharan Highway"],
-      "answer": "Silk Road"
+      "question": "Which historic trans-Saharan trade route hub, located in present-day Mali, flourished as a legendary centre of Islamic learning, scholarship, and gold exchange during the Middle Ages?",
+      "options": ["Timbuktu", "Gao", "Djenne", "Kano"],
+      "answer": "Timbuktu"
     },
     {
       "tier": "FLOOR 10",
