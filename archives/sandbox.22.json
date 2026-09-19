@@ -1,0 +1,66 @@
+{
+  "archive_id": "sandbox_22",
+  "title": "ARCHIVE 22",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which popular handheld percussion instrument consists of a wooden frame with pairs of jingling metal discs set into the sides?",
+      "options": ["Tambourine", "Maracas", "Triangle"],
+      "answer": "Tambourine"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "What traditional Japanese art form involves the precise cultivation of miniaturized trees in containers?",
+      "options": ["Ikebana", "Bonsai", "Origami", "Kintsugi"],
+      "answer": "Bonsai"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "Which distinctive green gemstone, a variety of the mineral beryl, has been treasured since antiquity for its vibrant hue caused by trace amounts of chromium and vanadium?",
+      "options": ["Emerald", "Sapphire", "Ruby", "Topaz"],
+      "answer": "Emerald"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "In culinary terminology, what French phrase describes the process of lightly browning food—typically meat or vegetables—at a high temperature before slow-cooking it in liquid?",
+      "options": ["Searing", "Flambé", "Braising", "Julienne"],
+      "answer": "Searing"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "Which influential 20th-century American modern dancer and choreographer revolutionized contemporary movement by emphasizing the natural contraction and release of the pelvis?",
+      "options": ["Isadora Duncan", "Martha Graham", "Alvin Ailey", "Twyla Tharp"],
+      "answer": "Martha Graham"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "What celestial body, classified as a dwarf planet, orbits in the Kuiper Belt and is famously accompanied by its massive moon Charon?",
+      "options": ["Eris", "Pluto", "Haumea", "Makemake"],
+      "answer": "Pluto"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which landmark 18th-century philosophical text by Adam Smith laid the foundational principles of modern classical economics and free-market theory?",
+      "options": ["Das Kapital", "The Wealth of Nations", "The Social Contract", "Leviathan"],
+      "answer": "The Wealth of Nations"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "In graphic design and colour theory, what term refers to the complete range of colours that can be reproduced or perceived within a specific device or colour space?",
+      "options": ["Gamut", "Hue", "Saturation", "Palette"],
+      "answer": "Gamut"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "Which ancient Mesoamerican civilization developed a sophisticated hieroglyphic writing system, a complex calendar, and monumental step-pyramids in the rainforests of the Yucatán Peninsula?",
+      "options": ["Aztec", "Inca", "Maya", "Olmec"],
+      "answer": "Maya"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "What intricate typographic method, developed in 15th-century Europe, involved casting individual movable metal letters to mechanize book production?",
+      "options": ["Woodcut printing", "Relief etching", "Letterpress printing", "Lithography"],
+      "answer": "Letterpress printing"
+    }
+  ]
+}
