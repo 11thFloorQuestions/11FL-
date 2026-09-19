@@ -1,0 +1,66 @@
+{
+  "archive_id": "sandbox_27",
+  "title": "ARCHIVE 27",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which classic Italian dessert consists of ladyfingers dipped in espresso, layered with a whipped mixture of eggs, sugar, and mascarpone cheese, and dusted with cocoa powder?",
+      "options": ["Tiramisu", "Panna cotta", "Cannoli"],
+      "answer": "Tiramisu"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "What traditional Caribbean percussion instrument consists of a hollowed-out dried gourd filled with seeds or dried beans, played in pairs by shaking?",
+      "options": ["Maracas", "Guiro", "Bongo", "Conga"],
+      "answer": "Maracas"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "Which influential 20th-century Mexican painter is celebrated globally for her uncompromising self-portraits incorporating surrealist elements and traditional indigenous folk art motifs?",
+      "options": ["Frida Kahlo", "Remedios Varo", "Leonora Carrington", "Diego Rivera"],
+      "answer": "Frida Kahlo"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "In typography, what specific term describes the adjustable spacing placed between two individual characters to correct optical gaps and achieve visual harmony?",
+      "options": ["Kerning", "Tracking", "Leading", "Ligature"],
+      "answer": "Kerning"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "Which classic 1961 breakfast cookbook and culinary memoir by Elizabeth David helped revolutionise home cooking in Britain by celebrating Mediterranean ingredients?",
+      "options": ["French Provincial Cooking", "Mastering the Art of French Cooking", "The Alice B. Toklas Cookbook", "A Book of Mediterranean Food"],
+      "answer": "A Book of Mediterranean Food"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "What architectural term describes a covered walkway or colonnade open to the air on one side, typically featured in traditional Italian palazzos and gardens?",
+      "options": ["Loggia", "Portico", "Atrium", "Peristyle"],
+      "answer": "Loggia"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which iconic 1980s post-punk band, fronted by Robert Smith, became renowned for their melancholic lyricism, atmospheric guitar textures, and gothic aesthetic?",
+      "options": ["The Cure", "Depeche Mode", "The Smiths", "New Order"],
+      "answer": "The Cure"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "In classical ballet, what graceful turning movement involves a dancer spinning on one leg while the other leg is raised and bent at the knee?",
+      "options": ["Pirouette", "Plié", "Arabesque", "Jeté"],
+      "answer": "Pirouette"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "Which historic 13th-century trade and political alliance of merchant guilds and market towns dominated commercial activity across Northern Europe and the Baltic Sea?",
+      "options": ["Hanseatic League", "Lombard League", "Swabian League", "Venetian Republic"],
+      "answer": "Hanseatic League"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "What intricate traditional Japanese art form involves creating delicate decorative boxes, trays, and vessels by applying successive layers of refined tree sap lacquer and polishing them to a brilliant sheen?",
+      "options": ["Urushi", "Cloisonné", "Netsuke", "Shibori"],
+      "answer": "Urushi"
+    }
+  ]
+}
