@@ -1,0 +1,66 @@
+{
+  "archive_id": "sandbox_23",
+  "title": "ARCHIVE 23",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which perennial culinary herb features delicate needle-like leaves and fragrant purple-blue flowers, traditionally associated with the Mediterranean and roast lamb?",
+      "options": ["Rosemary", "Thyme", "Parsley"],
+      "answer": "Rosemary"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "What traditional East Asian board game uses a grid of 19 by 19 lines, where players take turns placing black and white stones to encircle territory?",
+      "options": ["Go", "Mahjong", "Shogi", "Xiangqi"],
+      "answer": "Go"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "Which iconic post-impressionist Dutch painter created 'The Starry Night' while staying at an asylum in Saint-Rémy-de-Provence in 1889?",
+      "options": ["Vincent van Gogh", "Claude Monet", "Paul Cézanne", "Edvard Munch"],
+      "answer": "Vincent van Gogh"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "In classical mythology, who is the ancient Greek Titan condemned to hold up the celestial spheres for eternity?",
+      "options": ["Prometheus", "Atlas", "Cronus", "Hyperion"],
+      "answer": "Atlas"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "Which pioneering 19th-century mathematician is widely celebrated as the world's first computer programmer for her extensive notes on Charles Babbage's mechanical general-purpose computer, the Analytical Engine?",
+      "options": ["Ada Lovelace", "Marie Curie", "Florence Nightingale", "Rosalind Franklin"],
+      "answer": "Ada Lovelace"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "What primary geological process forms stalactites and stalagmites within limestone caves through the deposition of calcium carbonate?",
+      "options": ["Erosion", "Metamorphism", "Precipitation", "Sublimation"],
+      "answer": "Precipitation"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which landmark 1949 sociological and feminist treatise by Simone de Beauvoir famously asserted that 'one is not born, but rather becomes, a woman'?",
+      "options": ["The Feminine Mystique", "The Second Sex", "A Room of One's Own", "Gender Trouble"],
+      "answer": "The Second Sex"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "In international phonetics, what specific name is given to the punctuation mark representing a glottal stop or used as a letter modifier in various writing systems?",
+      "options": ["Apostrophe", "Cedilla", "Saltillo", "Tilde"],
+      "answer": "Saltillo"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "Which historical trade route network spanned Eurasia, connecting China to the Mediterranean and facilitating cultural, commercial, and technological exchange across continents?",
+      "options": ["Amber Road", "Silk Road", "Incense Route", "Trans-Saharan Highway"],
+      "answer": "Silk Road"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "What fundamental theorem in mathematical logic, formulated by Kurt Gödel in 1931, proves that in any consistent formal logical system capable of doing basic arithmetic, there are true propositions that cannot be proven within the system?",
+      "options": ["Incompleteness theorem", "Central limit theorem", "Four colour theorem", "Bayes' theorem"],
+      "answer": "Incompleteness theorem"
+    }
+  ]
+}
