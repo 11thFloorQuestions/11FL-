@@ -1,0 +1,66 @@
+{
+  "archive_id": "sandbox_29",
+  "title": "ARCHIVE 29",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which popular Spanish culinary dish is made from rice cooked in a broad, shallow pan with saffron, broth, and a variety of ingredients such as seafood, meat, or vegetables?",
+      "options": ["Paella", "Risotto", "Jambalaya"],
+      "answer": "Paella"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "What traditional West African percussion instrument consists of a carved gourd shell covered with a net strung with beads or cowrie shells, played by shaking and striking?",
+      "options": ["Shekere", "Djembe", "Talking drum", "Agogo"],
+      "answer": "Shekere"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "Which influential 20th-century American pop artist is celebrated for his vibrant silkscreen prints of Campbell's soup cans, Marilyn Monroe, and Coca-Cola bottles?",
+      "options": ["Andy Warhol", "Roy Lichtenstein", "Keith Haring", "Jackson Pollock"],
+      "answer": "Andy Warhol"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "In the culinary arts, what specific French term describes the delicate technique of gently folding whipped egg whites or cream into a heavier batter to maintain light, airy volume?",
+      "options": ["Folding", "Whisking", "Creaming", "Basting"],
+      "answer": "Folding"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "Which critically acclaimed 1950 film by director Billy Wilder satirises the ruthless television industry through the tragic decline of a faded silent-film star?",
+      "options": ["Sunset Boulevard", "All About Eve", "Citizen Kane", "In a Lonely Place"],
+      "answer": "Sunset Boulevard"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "What traditional Korean ceramic art form, originating in the Goryeo dynasty, is renowned for its distinctive translucent pale-green glaze and intricate inlaid designs?",
+      "options": ["Celadon", "Majolica", "Terracotta", "Porcelain"],
+      "answer": "Celadon"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which iconic 1970s American rock band released the multi-platinum album 'Rumours' amidst high interpersonal tension within the group?",
+      "options": ["Fleetwood Mac", "Eagles", "The Doobie Brothers", "Creedence Clearwater Revival"],
+      "answer": "Fleetwood Mac"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "In long-distance swimming, what prestigious endurance challenge involves crossing the tidal waters separating England from France?",
+      "options": ["English Channel swim", "Catalina Channel swim", "Molokai Channel swim", "Rottnest Channel swim"],
+      "answer": "English Channel swim"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "Which historic 16th-century Mughal emperor commissioned the construction of Fatehpur Sikri and established a syncretic religious movement known as Din-i Ilahi?",
+      "options": ["Akbar", "Babur", "Shah Jahan", "Aurangzeb"],
+      "answer": "Akbar"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "What complex linguistic phenomenon describes the historical process whereby a language gradually loses its inflectional morphology and shifts towards analytic sentence structures?",
+      "options": ["Syntactic drift", "Grammaticalisation", "Creolisation", "Morphological leveling"],
+      "answer": "Grammaticalisation"
+    }
+  ]
+}
