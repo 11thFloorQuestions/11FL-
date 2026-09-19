@@ -4,9 +4,9 @@
   "floors": [
     {
       "tier": "FLOOR 01",
-      "question": "Which traditional British bakery item is a small, round flatbread typically toasted and eaten warm with butter?",
-      "options": ["Crumpet", "Muffin", "Pikelet"],
-      "answer": "Crumpet"
+      "question": "Which popular Italian flatbread is typically baked in a stone oven, brushed with olive oil, and often seasoned with rosemary and coarse sea salt?",
+      "options": ["Focaccia", "Ciabatta", "Naan"],
+      "answer": "Focaccia"
     },
     {
       "tier": "FLOOR 02",
@@ -58,9 +58,9 @@
     },
     {
       "tier": "FLOOR 10",
-      "question": "What complex socio-cultural concept, popularized by French sociologist Pierre Bourdieu, denotes the accumulation of non-financial social assets such as education, speech, and credentials that promote social mobility?",
-      "options": ["Cultural capital", "Habitus", "Symbolic interaction", "Social stratification"],
-      "answer": "Cultural capital"
+      "question": "In lexicography, what specific term describes a word that has accidentally been printed in a dictionary without ever having any actual historical usage or existence?",
+      "options": ["Ghost word", "Orphan lemma", "Blind lexeme", "Phantom entry"],
+      "answer": "Ghost word"
     }
   ]
 }
