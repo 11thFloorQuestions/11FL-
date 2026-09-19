@@ -1,0 +1,66 @@
+{
+  "archive_id": "sandbox_31",
+  "title": "ARCHIVE 31",
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which popular South American citrus-based seafood dish features raw fish cured in fresh lime or lemon juice, traditionally seasoned with chillies, onions, and coriander?",
+      "options": ["Ceviche", "Carpaccio", "Poke"],
+      "answer": "Ceviche"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "What traditional West African stringed instrument, often constructed from a large calabash gourd cut in half and covered with cowhide, features 21 strings played with both hands?",
+      "options": ["Kora", "Ngoni", "Valiha", "Mbira"],
+      "answer": "Kora"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "Which influential 19th-century French Impressionist canvas, painted by Claude Monet in 1872, gave the artistic movement its name due to its hazy depiction of a harbour at dawn?",
+      "options": ["Impression, Sunrise", "The Luncheon on the Grass", "Woman with a Parasol", "The Boulevard Montmartre"],
+      "answer": "Impression, Sunrise"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "In the performing arts, what technical term describes the rehearsal period where technical elements such as lighting, sound cues, and set changes are integrated with the actors for the first time?",
+      "options": ["Tech run", "Dress rehearsal", "Dry table read", "Blocking session"],
+      "answer": "Tech run"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "Which celebrated 1965 post-colonial novel by Nigerian author Chinua Achebe examines the complexities of political corruption and idealism in a newly independent African nation?",
+      "options": ["A Man of the People", "Things Fall Apart", "Arrow of God", "No Longer at Ease"],
+      "answer": "A Man of the People"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "What traditional Scandinavian textile technique involves weaving multicoloured geometric patterns using a vertical loom, historically associated with heavy decorative wall hangings?",
+      "options": ["Rödlakan", "Gobelin", "Kilim", "Biedermeier"],
+      "answer": "Rödlakan"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which pioneering 1990s trip-hop band from Bristol, featuring singer Beth Gibbons and instrumentalist Geoff Barrow, defined a moody, cinematic sound with tracks like 'Glory Box'?",
+      "options": ["Portishead", "Massive Attack", "Morcheeba", "Tricky"],
+      "answer": "Portishead"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "In competitive archery, what specific term describes the device attached to the bow used to steady the aim and absorb vibrations after releasing an arrow?",
+      "options": ["Stabiliser", "Clicker", "Plunger", "Sight pin"],
+      "answer": "Stabiliser"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "Which historic 10th-century Islamic caliphate, originating in North Africa, established Cairo as its capital and built the renowned Al-Azhar Mosque as a centre of learning?",
+      "options": ["Fatimid Caliphate", "Abbasid Caliphate", "Umayyad Caliphate", "Almoravid Dynasty"],
+      "answer": "Fatimid Caliphate"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "What specialized branch of historical linguistics studies the origin, evolution, and etymological lineage of proper geographical names, such as towns, rivers, and mountains?",
+      "options": ["Toponymy", "Lexicology", "Semantics", "Morphology"],
+      "answer": "Toponymy"
+    }
+  ]
+}
