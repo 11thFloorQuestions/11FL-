@@ -4,63 +4,63 @@
   "floors": [
     {
       "tier": "FLOOR 01",
-      "question": "Which popular French pastry consists of sweet choux pastry dough formed into a cylindrical shape and filled with cream or custard, typically topped with chocolate icing?",
-      "options": ["Éclair", "Croissant", "Macaron"],
-      "answer": "Éclair"
+      "question": "Which popular Japanese confectionery consists of a small, round ball of sweet glutinous rice flour wrapped around a rich filling such as sweetened red bean paste?",
+      "options": ["Mochi", "Dango", "Daifuku"],
+      "answer": "Daifuku"
     },
     {
       "tier": "FLOOR 02",
-      "question": "What traditional Indigenous North American storytelling medium involves carving intricate genealogical records, crests, and historical narratives into tall cedar totem poles?",
-      "options": ["Totem carving", "Sandpainting", "Wampum weaving", "Beadwork"],
-      "answer": "Totem carving"
+      "question": "Which perennial culinary herb, native to the Mediterranean and prized for its aromatic needle-like leaves, is commonly used to roast lamb and potatoes?",
+      "options": ["Rosemary", "Thyme", "Oregano", "Sage"],
+      "answer": "Rosemary"
     },
     {
       "tier": "FLOOR 03",
-      "question": "Which celebrated 20th-century Mexican muralist is internationally renowned for large-scale fresco works depicting socialist political themes, historical labour struggles, and indigenous heritage?",
-      "options": ["Diego Rivera", "David Alfaro Siqueiros", "José Clemente Orozco", "Rufino Tamayo"],
-      "answer": "Diego Rivera"
+      "question": "Which influential 19th-century British scientist co-developed the theory of evolution by natural selection alongside Charles Darwin, independently formulating the concept during fieldwork in Southeast Asia?",
+      "options": ["Alfred Russel Wallace", "Thomas Henry Huxley", "Charles Lyell", "Gregor Mendel"],
+      "answer": "Alfred Russel Wallace"
     },
     {
       "tier": "FLOOR 04",
-      "question": "In film production, what specific term describes the artistic department responsible for designing, sourcing, and arranging movable objects and decorative items on a set?",
-      "options": ["Set dressing", "Wardrobe", "Cinematography", "Key grip"],
-      "answer": "Set dressing"
+      "question": "In orchestral music, what specific term describes a composition written for a solo instrument accompanied by a full symphony orchestra?",
+      "options": ["Concerto", "Symphony", "Sonata", "Suite"],
+      "answer": "Concerto"
     },
     {
       "tier": "FLOOR 05",
-      "question": "Which acclaimed 1951 novel by J.D. Salinger follows the disillusioned teenager Holden Caulfield as he wanders the streets of New York City after being expelled from his prep school?",
-      "options": ["The Catcher in the Rye", "On the Road", "Lord of the Flies", "The Great Gatsby"],
-      "answer": "The Catcher in the Rye"
+      "question": "Which acclaimed 19th-century Russian epic novel by Leo Tolstoy chronicles the intertwined lives of aristocratic families against the backdrop of the Napoleonic Wars?",
+      "options": ["War and Peace", "Anna Karenina", "Crime and Punishment", "The Brothers Karamazov"],
+      "answer": "War and Peace"
     },
     {
       "tier": "FLOOR 06",
-      "question": "What traditional East Asian culinary technique involves immersing food in a seasoned master stock or broth and simmering it over low heat for extended periods to tenderise and infuse rich flavours?",
-      "options": ["Master-stock braising", "Dry roasting", "Flash frying", "Salt curing"],
-      "answer": "Master-stock braising"
+      "question": "What traditional West African textile technique, widely practised by the Yoruba people, involves tying, stitching, or folding cotton cloth before dyeing it with indigo to create intricate geometric patterns?",
+      "options": ["Adire", "Kente", "Bogolanfini", "Ankara"],
+      "answer": "Adire"
     },
     {
       "tier": "FLOOR 07",
-      "question": "Which pioneering 1980s American hip-hop group released the critically acclaimed 1989 sample-dense masterpiece 'Paul's Boutique'?",
-      "options": ["Beastie Boys", "Public Enemy", "Run-DMC", "De La Soul"],
-      "answer": "Beastie Boys"
+      "question": "Which legendary 1990s electronic music duo, consisting of Thomas Bangalter and Guy-Manuel de Homem-Christo, gained global fame wearing iconic robot helmets and producing dance anthems like 'One More Time'?",
+      "options": ["Daft Punk", "The Chemical Brothers", "The Prodigy", "Underworld"],
+      "answer": "Daft Punk"
     },
     {
       "tier": "FLOOR 08",
-      "question": "In long-distance cycling, what tactical peloton strategy involves slipstreaming directly behind another rider to reduce wind resistance and conserve energy?",
-      "options": ["Drafting", "Breakaway", "Echeloning", "Lead-out"],
-      "answer": "Drafting"
+      "question": "In human physiology, what specific biological process describes the programmed cell death that allows multicellular organisms to eliminate damaged or unneeded cells efficiently?",
+      "options": ["Apoptosis", "Necrosis", "Mitosis", "Autophagy"],
+      "answer": "Apoptosis"
     },
     {
       "tier": "FLOOR 09",
-      "question": "Which historic 18th-century European intellectual movement championed reason, individual liberty, and scientific skepticism while challenging traditional absolute monarchy and church authority?",
-      "options": ["The Enlightenment", "The Renaissance", "The Reformation", "Romanticism"],
-      "answer": "The Enlightenment"
+      "question": "Which historic 17th-century scientific conflict pitted the Roman Catholic Church against astronomers defending Nicolaus Copernicus's model of a Sun-centred solar system?",
+      "options": ["Galileo affair", "Kepler trial", "Ptolemaic dispute", "Cartesian controversy"],
+      "answer": "Galileo affair"
     },
     {
       "tier": "FLOOR 10",
-      "question": "In sociolinguistics, what specific term describes a linguistic variety associated with a particular social class, occupation, or demographic group within a speech community?",
-      "options": ["Sociolect", "Idiolect", "Dialect", "Register"],
-      "answer": "Sociolect"
+      "question": "In modern human geography, what term describes the process of neighbourhood renewal and upgrading that typically leads to rising property values and the displacement of lower-income residents?",
+      "options": ["Gentrification", "Urbanisation", "Suburbanisation", "Zoning"],
+      "answer": "Gentrification"
     }
   ]
 }
