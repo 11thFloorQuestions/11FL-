@@ -1,0 +1,78 @@
+{
+  "entry_id": "sandbox_36",
+  "theme": "Cross-Disciplinary Archive",
+  "difficulty_curve": "WWTBAM 1-10",
+  "locale": "en-GB",
+  "floors": [
+    {
+      "floor": 1,
+      "subject": "Geography / Architecture",
+      "question": "Which iconic London bridge features high-level twin pedestrian walkways spanning the River Thames?",
+      "options": ["Tower Bridge", "London Bridge", "Westminster Bridge", "Millennium Bridge"],
+      "answer": "Tower Bridge"
+    },
+    {
+      "floor": 2,
+      "subject": "Linguistics",
+      "question": "What linguistic term describes a word formed from the initial letters of other words that is pronounced as its own word, such as 'laser'?",
+      "options": ["Acronym", "Initialism", "Portmanteau", "Blend"],
+      "answer": "Acronym"
+    },
+    {
+      "floor": 3,
+      "subject": "Culinary Science",
+      "question": "In baking, what chemical leavening agent is pure sodium hydrogen carbonate, requiring an acid to activate its carbon dioxide release?",
+      "options": ["Bicarbonate of soda", "Cream of tartar", "Active dry yeast", "Ammonium carbonate"],
+      "answer": "Bicarbonate of soda"
+    },
+    {
+      "floor": 4,
+      "subject": "Botanical Morphology",
+      "question": "What technical term denotes a modified stem that grows horizontally underground, producing shoots and roots at its nodes, characteristic of ginger and iris?",
+      "options": ["Rhizome", "Bulb", "Tuber", "Corm"],
+      "answer": "Rhizome"
+    },
+    {
+      "floor": 5,
+      "subject": "Textile Engineering",
+      "question": "What traditional Scottish woollen fabric, traditionally woven with a distinct twill structure and earthy tones, shares its name with a famous highland river valley?",
+      "options": ["Tweed", "Tartan", "Cashmere", "Gabardine"],
+      "answer": "Tweed"
+    },
+    {
+      "floor": 6,
+      "subject": "Art History",
+      "question": "Which 20th-century avant-garde movement, founded in Zurich in 1916, deliberately embraced absurdity, anti-art, and anarchic critique in reaction to the First World War?",
+      "options": ["Dada", "Futurism", "Constructivism", "Vorticism"],
+      "answer": "Dada"
+    },
+    {
+      "floor": 7,
+      "subject": "Classical Literature",
+      "question": "Which ancient Greek epic poem attributed to Homer recounts the wrath of Achilles during the final year of the Trojan War?",
+      "options": ["The Iliad", "The Odyssey", "The Aeneid", "The Argonautica"],
+      "answer": "The Iliad"
+    },
+    {
+      "floor": 8,
+      "subject": "Marine Biology",
+      "question": "What specialized, highly elastic organ do toothed whales use to focus and modulate outgoing echolocation clicks?",
+      "options": ["Melon", "Blowhole", "Baleen", "Rostral plate"],
+      "answer": "Melon"
+    },
+    {
+      "floor": 9,
+      "subject": "Global Economics",
+      "question": "Established alongside the World Bank at the 1944 Bretton Woods conference, which international financial institution oversees the global monetary system?",
+      "options": ["International Monetary Fund", "Bank for International Settlements", "World Trade Organization", "OECD"],
+      "answer": "International Monetary Fund"
+    },
+    {
+      "floor": 10,
+      "subject": "Philosophy of Science",
+      "question": "What philosophical criterion proposed by Karl Popper argues that a scientific theory must be inherently disprovable to be considered genuinely scientific?",
+      "options": ["Falsifiability", "Paradigm shift", "Occam's razor", "Empirical induction"],
+      "answer": "Falsifiability"
+    }
+  ]
+}
