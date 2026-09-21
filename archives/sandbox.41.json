@@ -1,0 +1,78 @@
+{
+  "entry_id": "sandbox_41",
+  "theme": "Cultural Traditions & Material Marvels",
+  "difficulty_curve": "WWTBAM 1-10",
+  "locale": "en-GB",
+  "floors": [
+    {
+      "floor": 1,
+      "subject": "Pop Music History",
+      "question": "Which iconic Swedish pop group achieved international stardom after winning the 1974 Eurovision Song Contest with the song 'Waterloo'?",
+      "options": ["ABBA", "Roxette", "Ace of Base", "The Cardigans"],
+      "answer": "ABBA"
+    },
+    {
+      "floor": 2,
+      "subject": "Etymology & Idioms",
+      "question": "Originally referring to an unexpected contestant in horse racing, what common idiom describes a previously little-known contender who unexpectedly wins?",
+      "options": ["A dark horse", "An underdog", "A long shot", "A wild card"],
+      "answer": "A dark horse"
+    },
+    {
+      "floor": 3,
+      "subject": "Food Science",
+      "question": "What naturally occurring substance found in egg yolks acts as the primary emulsifier that keeps oil and vinegar stable in mayonnaise?",
+      "options": ["Lecithin", "Albumin", "Casein", "Keratin"],
+      "answer": "Lecithin"
+    },
+    {
+      "floor": 4,
+      "subject": "Folk Vocal Traditions",
+      "question": "What distinctive vocal technique, featuring rapid pitch changes between chest voice and falsetto, is traditionally associated with Alpine folk music?",
+      "options": ["Yodelling", "Keening", "Throat singing", "Scatting"],
+      "answer": "Yodelling"
+    },
+    {
+      "floor": 5,
+      "subject": "Modern Social History",
+      "question": "Which Suffragette became an enduring figure in the UK women's rights movement after her fatal collision with King George V's horse at the 1913 Epsom Derby?",
+      "options": ["Emily Davison", "Emmeline Pankhurst", "Millicent Fawcett", "Sylvia Pankhurst"],
+      "answer": "Emily Davison"
+    },
+    {
+      "floor": 6,
+      "subject": "Photography & Aesthetics",
+      "question": "Derived from the Japanese word for 'blur', what term describes the aesthetic quality of the out-of-focus background in a photograph?",
+      "options": ["Bokeh", "Vignetting", "Aberration", "Moiré"],
+      "answer": "Bokeh"
+    },
+    {
+      "floor": 7,
+      "subject": "Theatrical Literature",
+      "question": "In Samuel Beckett's landmark absurdist play 'Waiting for Godot', what are the names of the two central tramps who converse while waiting near a tree?",
+      "options": ["Vladimir and Estragon", "Rosencrantz and Guildenstern", "Mercutio and Benvolio", "Pozzo and Lucky"],
+      "answer": "Vladimir and Estragon"
+    },
+    {
+      "floor": 8,
+      "subject": "Renaissance Art",
+      "question": "Coined from the Italian word for 'smoky', what painting technique uses subtle gradations of tone and colour to create soft, imperceptible transitions?",
+      "options": ["Sfumato", "Pentimento", "Grisaille", "Tenebrism"],
+      "answer": "Sfumato"
+    },
+    {
+      "floor": 9,
+      "subject": "Botanical Ecology",
+      "question": "What ecological term describes non-parasitic plants, such as many species of orchids and bromeliads, that grow on other plants purely for mechanical support?",
+      "options": ["Epiphytes", "Saprophytes", "Halophytes", "Xerophytes"],
+      "answer": "Epiphytes"
+    },
+    {
+      "floor": 10,
+      "subject": "Evolutionary Genetics",
+      "question": "What genetic phenomenon occurs when a single gene influences multiple, seemingly unrelated physical or physiological traits?",
+      "options": ["Pleiotropy", "Epistasis", "Polygeny", "Phenotypic plasticity"],
+      "answer": "Pleiotropy"
+    }
+  ]
+}
