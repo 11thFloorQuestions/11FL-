@@ -1,0 +1,78 @@
+{
+  "entry_id": "sandbox_42",
+  "theme": "Cross-Disciplinary Archive",
+  "difficulty_curve": "WWTBAM 1-10",
+  "locale": "en-GB",
+  "floors": [
+    {
+      "floor": 1,
+      "subject": "Culinary History",
+      "question": "Originating in Naples, which classic pizza featuring tomato, mozzarella, and fresh basil was created to honour a visiting Queen of Italy in 1889?",
+      "options": ["Margherita", "Marinara", "Quattro Formaggi", "Capricciosa"],
+      "answer": "Margherita"
+    },
+    {
+      "floor": 2,
+      "subject": "Modern Music History",
+      "question": "Released in 1982, which Michael Jackson record remains the best-selling album of all time worldwide?",
+      "options": ["Thriller", "Bad", "Off the Wall", "Dangerous"],
+      "answer": "Thriller"
+    },
+    {
+      "floor": 3,
+      "subject": "Classic Literature",
+      "question": "In Lewis Carroll's 'Alice's Adventures in Wonderland', what distinctive physical feature does the Cheshire Cat leave behind after fading away?",
+      "options": ["Its grin", "Its tail", "Its whiskers", "Its top hat"],
+      "answer": "Its grin"
+    },
+    {
+      "floor": 4,
+      "subject": "Food Science",
+      "question": "What chemical reaction between amino acids and reducing sugars upon heating causes the browning and complex flavours in seared food?",
+      "options": ["The Maillard reaction", "Caramelisation", "Fermentation", "Oxidation"],
+      "answer": "The Maillard reaction"
+    },
+    {
+      "floor": 5,
+      "subject": "Polar Exploration",
+      "question": "In 1911, which Norwegian explorer led the first expedition to successfully reach the Geographic South Pole?",
+      "options": ["Roald Amundsen", "Fridtjof Nansen", "Ernest Shackleton", "Otto Sverdrup"],
+      "answer": "Roald Amundsen"
+    },
+    {
+      "floor": 6,
+      "subject": "Fashion History",
+      "question": "Introduced by Christian Dior in 1947, what iconic fashion collection featured cinched waists and full skirts, revolutionising post-war women's style?",
+      "options": ["The New Look", "The Mod Look", "The Flapper Line", "The Empire Line"],
+      "answer": "The New Look"
+    },
+    {
+      "floor": 7,
+      "subject": "Performing Arts",
+      "question": "What term in classical ballet describes a rapid, continuous full turn of the body executed on one leg?",
+      "options": ["Pirouette", "Plié", "Arabesque", "Grand jeté"],
+      "answer": "Pirouette"
+    },
+    {
+      "floor": 8,
+      "subject": "Mycology & Ecology",
+      "question": "What subterranean, mutually beneficial symbiotic network forms between fungal hyphae and plant roots, aiding water and mineral absorption?",
+      "options": ["Mycorrhiza", "Lichen", "Sclerotium", "Rhizomorph"],
+      "answer": "Mycorrhiza"
+    },
+    {
+      "floor": 9,
+      "subject": "Cinematography",
+      "question": "First popularized by Alfred Hitchcock in 'Vertigo', what camera technique combines a forward optical zoom with a backward camera track to distort visual perspective?",
+      "options": ["Dolly zoom", "Dutch angle", "Whip pan", "Rack focus"],
+      "answer": "Dolly zoom"
+    },
+    {
+      "floor": 10,
+      "subject": "Ancient Metallurgy",
+      "question": "Mentioned in classical texts and Plato's account of Atlantis, what golden-hued alloy of copper and zinc derived its name from the Greek for 'mountain copper'?",
+      "options": ["Orichalcum", "Electrum", "Pewter", "Shakudō"],
+      "answer": "Orichalcum"
+    }
+  ]
+}
