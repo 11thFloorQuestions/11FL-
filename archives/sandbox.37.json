@@ -1,0 +1,157 @@
+{
+  "sandbox_id": "37",
+  "subjects": [
+    "Global Pop Culture Milestones",
+    "Historical Fashion & Textiles",
+    "Culinary Innovations",
+    "Modern Art Movements",
+    "Folk Traditions",
+    "Theatrical History",
+    "Broadcasting Milestones",
+    "Architectural Marvels",
+    "Iconic Design",
+    "Literary Milestones"
+  ],
+  "questions": [
+    {
+      "floor": 1,
+      "tier": "Accessible Hook",
+      "subject": "Global Pop Culture Milestones",
+      "question": "Which iconic Japanese arcade game, released in 1980, was designed around the visual motif of a pizza with a slice missing?",
+      "options": [
+        "Pac-Man",
+        "Space Invaders",
+        "Donkey Kong",
+        "Galaga"
+      ],
+      "answer": "Pac-Man",
+      "explanation": "Toru Iwatani famously drew inspiration for the character's round, yellow shape and hungry mouth from a pizza lacking a single slice."
+    },
+    {
+      "floor": 2,
+      "tier": "Accessible Hook",
+      "subject": "Historical Fashion & Textiles",
+      "question": "Originating in Scotland, what distinctive patterned wool cloth is traditionally woven with a broken twill weave creating a zig-zag motif?",
+      "options": [
+        "Houndstooth",
+        "Tweed",
+        "Paisley",
+        "Gingham"
+      ],
+      "answer": "Houndstooth",
+      "explanation": "Houndstooth (or dogtooth) is a duotone textile pattern historically associated with woolen tailoring and Scottish heritage."
+    },
+    {
+      "floor": 3,
+      "tier": "Accessible Hook",
+      "subject": "Culinary Innovations",
+      "question": "What common kitchen appliance was originally marketed to domestic households in the 1940s under the brand name 'Vitamix' or early high-speed blending devices?",
+      "options": [
+        "The electric blender",
+        "The microwave oven",
+        "The food processor",
+        "The immersion mixer"
+      ],
+      "answer": "The electric blender",
+      "explanation": "High-speed countertop blenders revolutionised home food preparation in the mid-20th century by rapidly liquefying and emulsifying ingredients."
+    },
+    {
+      "floor": 4,
+      "tier": "Intermediate Challenge",
+      "subject": "Modern Art Movements",
+      "question": "Which early 20th-century avant-garde movement, co-founded by Pablo Picasso and Georges Braque, broke objects down into geometric planes viewed from multiple angles simultaneously?",
+      "options": [
+        "Cubism",
+        "Surrealism",
+        "Fauvism",
+        "Dadaism"
+      ],
+      "answer": "Cubism",
+      "explanation": "Cubism rejected traditional single-point perspective, presenting fragmented subject matter across a flattened pictorial space."
+    },
+    {
+      "floor": 5,
+      "tier": "Intermediate Challenge",
+      "subject": "Folk Traditions",
+      "question": "Celebrated primarily in Mexico, what vibrant annual festival honours deceased loved ones with altars decorated with marigolds and sugar skulls?",
+      "options": [
+        "Día de los Muertos",
+        "Cinco de Mayo",
+        "La Tomatina",
+        "Feria de Abril"
+      ],
+      "answer": "Día de los Muertos",
+      "explanation": "The Day of the Dead blends indigenous Mesoamerican ritual with Spanish Catholic traditions, viewing mourning as a celebration of life and memory."
+    },
+    {
+      "floor": 6,
+      "tier": "Intermediate Challenge",
+      "subject": "Theatrical History",
+      "question": "What major theatrical innovation was first permanently installed at London's Savoy Theatre in 1881, transforming stage design and audience safety?",
+      "options": [
+        "Electric incandescent lighting",
+        "Revolving stage mechanisms",
+        "Retractable domed ceilings",
+        "Automated acoustic curtains"
+      ],
+      "answer": "Electric incandescent lighting",
+      "explanation": "The Savoy Theatre became the first public building in the world to be lit entirely by electricity, replacing dangerous gas lighting."
+    },
+    {
+      "floor": 7,
+      "tier": "Intermediate Challenge",
+      "subject": "Broadcasting Milestones",
+      "question": "What was the subject of the very first high-definition regular television service broadcast by the BBC from Alexandra Palace in 1936?",
+      "options": [
+        "A variety show featuring musical acts and comedy",
+        "The coronation procession of King George VI",
+        "A live theatrical performance of a Shakespeare play",
+        "A news broadcast covering international diplomacy"
+      ],
+      "answer": "A variety show featuring musical acts and comedy",
+      "explanation": "The inaugural broadcast showcased a lavish variety bill to demonstrate the new 405-line electronic television system to viewers."
+    },
+    {
+      "floor": 8,
+      "tier": "Expert Depth",
+      "subject": "Architectural Marvels",
+      "question": "Designed by Jørn Utzon, the distinctive ceramic tile shells of the Sydney Opera House are geometrically derived from sections of what single sphere?",
+      "options": [
+        "A single imagined sphere",
+        "Parabolic drop curves",
+        "Hyperbolic paraboloid cones",
+        "Elliptical elliptical domes"
+      ],
+      "answer": "A single imagined sphere",
+      "explanation": "Known as the 'spherical solution', casting all shell ribs as uniform segments of one giant sphere allowed for prefabricated, repeatable construction."
+    },
+    {
+      "floor": 9,
+      "tier": "Expert Depth",
+      "subject": "Iconic Design",
+      "question": "Created by Massimo and Lella Vignelli in 1972, what famous transit graphic design system revolutionised passenger navigation?",
+      "options": [
+        "The New York City Subway diagram",
+        "The London Underground map scheme",
+        "The Tokyo Metro colour-coded grid",
+        "The Paris Métro signage typography"
+      ],
+      "answer": "The New York City Subway diagram",
+      "explanation": "The Vignellis introduced a clean, modernist, geometric map using colour-coded trunk lines, setting a new global benchmark for public transit wayfinding."
+    },
+    {
+      "floor": 10,
+      "tier": "Expert Depth",
+      "subject": "Literary Milestones",
+      "question": "Which influential 1929 essay by Virginia Woolf argued passionately for women's financial autonomy and creative space as a prerequisite for artistic production?",
+      "options": [
+        "A Room of One's Own",
+        "Three Guineas",
+        "The Common Reader",
+        "Moments of Being"
+      ],
+      "answer": "A Room of One's Own",
+      "explanation": "Woolf famously asserted that 'a woman must have money and a room of her own if she is to write fiction'."
+    }
+  ]
+}
