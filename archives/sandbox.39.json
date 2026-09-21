@@ -1,0 +1,78 @@
+{
+  "entry_id": "sandbox_39",
+  "theme": "Global Expressions & Innovations",
+  "difficulty_curve": "WWTBAM 1-10",
+  "locale": "en-GB",
+  "floors": [
+    {
+      "floor": 1,
+      "subject": "Culinary History",
+      "question": "Which beloved dessert, consisting of a crisp meringue base topped with whipped cream and fresh fruit, was named in honour of a famous touring Russian ballerina?",
+      "options": ["Pavlova", "Eton Mess", "Peach Melba", "Victoria Sponge"],
+      "answer": "Pavlova"
+    },
+    {
+      "floor": 2,
+      "subject": "Children's Literature",
+      "question": "What kind of animal is the fiercely loyal, armour-clad companion named 'Iorek Byrnison' in Philip Pullman’s acclaimed 'His Dark Materials' trilogy?",
+      "options": ["A polar bear", "A snow leopard", "A golden eagle", "A dire wolf"],
+      "answer": "A polar bear"
+    },
+    {
+      "floor": 3,
+      "subject": "Aviation History",
+      "question": "Introduced into commercial service in 1976, which supersonic passenger jet featured a distinctively 'drooped' nose to improve pilot visibility during take-off and landing?",
+      "options": ["Concorde", "Tupolev Tu-144", "Boeing 2707", "Lockheed L-2000"],
+      "answer": "Concorde"
+    },
+    {
+      "floor": 4,
+      "subject": "Equestrian Traditions",
+      "question": "Still widely used in the equestrian world today, what traditional unit of measurement, equal to exactly four inches, is used to calculate the height of a horse?",
+      "options": ["A hand", "A span", "A palm", "A stride"],
+      "answer": "A hand"
+    },
+    {
+      "floor": 5,
+      "subject": "Modern Psychology",
+      "question": "What term describes the psychological phenomenon where individuals with objective competence severely underestimate their own abilities, fearing they will be exposed as a fraud?",
+      "options": ["Imposter syndrome", "Dunning-Kruger effect", "Confirmation bias", "Cognitive dissonance"],
+      "answer": "Imposter syndrome"
+    },
+    {
+      "floor": 6,
+      "subject": "Geological Wonders",
+      "question": "Located on the coast of Northern Ireland, the Giant's Causeway is composed of tens of thousands of interlocking, hexagonal columns made from what type of volcanic rock?",
+      "options": ["Basalt", "Granite", "Pumice", "Obsidian"],
+      "answer": "Basalt"
+    },
+    {
+      "floor": 7,
+      "subject": "Classical Architecture",
+      "question": "Used famously in the dome of the Pantheon, what term describes the decorative, sunken panels in a ceiling designed to significantly reduce the overall weight of the structure?",
+      "options": ["Coffers", "Cornices", "Corbels", "Cupolas"],
+      "answer": "Coffers"
+    },
+    {
+      "floor": 8,
+      "subject": "Ancient Linguistics",
+      "question": "Deciphered by Michael Ventris in 1952, the ancient syllabic script known as 'Linear B' was proven to represent the earliest attested form of which European language?",
+      "options": ["Greek", "Latin", "Etruscan", "Basque"],
+      "answer": "Greek"
+    },
+    {
+      "floor": 9,
+      "subject": "Historic Dyes",
+      "question": "Extracted from the glands of predatory sea snails, what exceedingly rare and expensive ancient dye was heavily restricted by sumptuary laws to Roman emperors?",
+      "options": ["Tyrian purple", "Carmine red", "Woad blue", "Saffron yellow"],
+      "answer": "Tyrian purple"
+    },
+    {
+      "floor": 10,
+      "subject": "Biological Taxonomy",
+      "question": "In modern biological classification, what domain represents single-celled microorganisms that lack a distinct nucleus and possess unique lipid cell walls distinct from standard bacteria?",
+      "options": ["Archaea", "Eukarya", "Protista", "Monera"],
+      "answer": "Archaea"
+    }
+  ]
+}
