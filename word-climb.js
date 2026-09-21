@@ -1,22 +1,21 @@
 // 11th Floor Word Climb - Main Game Logic
 
 const DAILY_PUZZLE = {
-  // 9 letters: 8 outer + 1 center
-  letters: ['C', 'L', 'I', 'M', 'B', 'A', 'T', 'O', 'R'],
+  // 8 letters placed around the dial
+  letters: ['C', 'L', 'I', 'M', 'B', 'A', 'T', 'O'],
   
-  // Valid words organized by floor length (no proper nouns, allows US/UK & plurals)
+  // Valid words organized by floor length
   dictionary: {
     4: ['CLIM', 'BAIT', 'BART', 'BOAT', 'COAT', 'ROAM', 'TALK', 'COAL', 'BALT', 'COMB', 'CALM', 'LIMA', 'MOAT'],
     5: ['CLIMB', 'ACTOR', 'CAROT', 'TABOR', 'MORTA', 'COBAT', 'ATOMIC', 'TRAIL', 'TRAMP'],
-    6: ['CLIMBER', 'COMBAT', 'BARIUM', 'ACTORS', 'COBALT', 'TRAILOR'],
+    6: ['CLIMBER', 'COMBAT', 'BARIUM', 'ACTORS', 'COBALT'],
     7: ['CLIMBER', 'COMBATS', 'COBALTS'],
-    8: ['ACROBAT'],
-    9: ['ACROBATIC']
+    8: ['ACROBAT']
   }
 };
 
 let currentFloor = 4; // Game starts on Floor 4
-const maxFloor = 9;
+const maxFloor = 8;
 let currentGuess = [];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -43,13 +42,11 @@ function setupWheel() {
   wheelContainer.style.position = 'relative';
 
   const totalLetters = DAILY_PUZZLE.letters.length;
-  const outerLetters = DAILY_PUZZLE.letters.slice(0, totalLetters - 1);
-  const centerLetter = DAILY_PUZZLE.letters[totalLetters - 1];
+  const radius = 100; // Radius in pixels for outer nodes
 
   // Render 8 Outer Letters in a Ring
-  const radius = 100; // Radius in pixels for outer nodes
-  outerLetters.forEach((letter, index) => {
-    const angle = (index / outerLetters.length) * (2 * Math.PI) - (Math.PI / 2);
+  DAILY_PUZZLE.letters.forEach((letter, index) => {
+    const angle = (index / totalLetters) * (2 * Math.PI) - (Math.PI / 2);
     const x = Math.round(radius * Math.cos(angle));
     const y = Math.round(radius * Math.sin(angle));
 
@@ -63,15 +60,18 @@ function setupWheel() {
     wheelContainer.appendChild(btn);
   });
 
-  // Render Center Letter Node
-  const centerBtn = document.createElement('button');
-  centerBtn.className = 'letter-node center-node';
-  centerBtn.textContent = centerLetter;
-  centerBtn.style.position = 'absolute';
-  centerBtn.style.left = 'calc(50% - 25px)';
-  centerBtn.style.top = 'calc(50% - 25px)';
-  centerBtn.addEventListener('click', () => selectLetter(centerLetter));
-  wheelContainer.appendChild(centerBtn);
+  // Render Empty Center Hub (No letter)
+  const centerHub = document.createElement('div');
+  centerHub.className = 'center-hub';
+  centerHub.style.position = 'absolute';
+  centerHub.style.left = 'calc(50% - 25px)';
+  centerHub.style.top = 'calc(50% - 25px)';
+  centerHub.style.width = '50px';
+  centerHub.style.height = '50px';
+  centerHub.style.borderRadius = '50%';
+  centerHub.style.border = '2px solid #d4af37'; // Brass accent border
+  centerHub.style.backgroundColor = '#1a1a1a';
+  wheelContainer.appendChild(centerHub);
 }
 
 function selectLetter(letter) {
@@ -88,8 +88,30 @@ function clearGuess() {
 
 function updateGuessDisplay() {
   const display = document.getElementById('guess-display') || document.querySelector('.guess-box');
-  if (display) {
-    display.textContent = currentGuess.join('');
+  if (!display) return;
+
+  display.innerHTML = ''; // Clear container
+
+  // Create slot boxes for each required letter on current floor
+  for (let i = 0; i < currentFloor; i++) {
+    const slot = document.createElement('div');
+    slot.className = 'letter-slot';
+    slot.textContent = currentGuess[i] || '';
+    
+    // Inline styles for slot blocks if CSS isn't present
+    slot.style.display = 'inline-block';
+    slot.style.width = '35px';
+    slot.style.height = '40px';
+    slot.style.lineHeight = '40px';
+    slot.style.margin = '0 4px';
+    slot.style.border = '2px solid #d4af37';
+    slot.style.color = '#fff';
+    slot.style.fontSize = '20px';
+    slot.style.fontWeight = 'bold';
+    slot.style.textAlign = 'center';
+    slot.style.backgroundColor = currentGuess[i] ? '#333' : '#111';
+    
+    display.appendChild(slot);
   }
 }
 
@@ -112,7 +134,6 @@ function handleSubmit() {
 
   const validWords = DAILY_PUZZLE.dictionary[targetLength] || [];
   
-  // STRICT DICTIONARY CHECK
   if (validWords.includes(word)) {
     showMessage('VALID WORD! ASCENDING...', 'success');
     
