@@ -1,10 +1,7 @@
 // 11th Floor Word Climb - Main Game Logic
 
 const DAILY_PUZZLE = {
-  // Full 9-letter pool on outer ring
   letters: ['C', 'L', 'I', 'M', 'B', 'A', 'T', 'O', 'R'],
-  
-  // Valid dictionary words by floor length
   dictionary: {
     4: ['CLIM', 'BAIT', 'BART', 'BOAT', 'COAT', 'ROAM', 'TALK', 'COAL', 'BALT', 'COMB', 'CALM', 'LIMA', 'MOAT', 'MORT', 'TOMB', 'ROTA', 'TACO', 'BOAR', 'LOOT', 'TOOL', 'BOOT', 'MOOR'],
     5: ['CLIMB', 'ACTOR', 'CAROT', 'TABOR', 'MORTA', 'COBAT', 'ATOMIC', 'TRAIL', 'TRAMP', 'TALOR', 'CAROL', 'ROBOT'],
@@ -15,7 +12,7 @@ const DAILY_PUZZLE = {
   }
 };
 
-let currentFloor = 4; // Starts on Floor 4
+let currentFloor = 4;
 const maxFloor = 9;
 let currentGuess = [];
 
@@ -28,12 +25,11 @@ function initGame() {
   currentGuess = [];
   setupUIContainers();
   setupWheel();
-  updateFloorUI();
   attachControlHandlers();
+  updateFloorUI();
 }
 
 function setupUIContainers() {
-  // In-game message banner
   let msgBox = document.getElementById('message-box') || document.querySelector('.message');
   if (!msgBox) {
     msgBox = document.createElement('div');
@@ -53,7 +49,6 @@ function setupUIContainers() {
     }
   }
 
-  // Guess slots container
   let display = document.getElementById('guess-display') || document.querySelector('.guess-box');
   if (!display) {
     display = document.createElement('div');
@@ -93,7 +88,6 @@ function setupWheel() {
   const totalLetters = DAILY_PUZZLE.letters.length;
   const radius = 100;
 
-  // Render 9 letters around the outer dial ring
   DAILY_PUZZLE.letters.forEach((letter, index) => {
     const angle = (index / totalLetters) * (2 * Math.PI) - (Math.PI / 2);
     const x = Math.round(radius * Math.cos(angle));
@@ -119,7 +113,6 @@ function setupWheel() {
     wheelContainer.appendChild(btn);
   });
 
-  // Empty Center Brass Elevator Hub
   const centerHub = document.createElement('div');
   centerHub.className = 'center-hub';
   centerHub.style.position = 'absolute';
@@ -136,15 +129,54 @@ function setupWheel() {
 function attachControlHandlers() {
   const allButtons = Array.from(document.querySelectorAll('button'));
   
-  const deleteBtn = allButtons.find(b => b.textContent.includes('DELETE') || b.textContent.includes('⌫'));
-  if (deleteBtn) {
-    deleteBtn.onclick = handleDelete;
+  let deleteBtn = allButtons.find(b => b.textContent.includes('DELETE') || b.textContent.includes('⌫'));
+  let submitBtn = allButtons.find(b => b.textContent.includes('SUBMIT') || b.textContent.includes('↵'));
+
+  // If HTML control buttons are missing or unbound, dynamically build control row
+  if (!deleteBtn || !submitBtn) {
+    let controlsContainer = document.getElementById('controls-container');
+    if (!controlsContainer) {
+      controlsContainer = document.createElement('div');
+      controlsContainer.id = 'controls-container';
+      controlsContainer.style.display = 'flex';
+      controlsContainer.style.justifyContent = 'center';
+      controlsContainer.style.gap = '15px';
+      controlsContainer.style.margin = '15px auto';
+
+      const wheelContainer = document.getElementById('wheel-container') || document.querySelector('.wheel');
+      if (wheelContainer && wheelContainer.parentNode) {
+        wheelContainer.parentNode.insertBefore(controlsContainer, wheelContainer.nextSibling);
+      } else {
+        document.body.appendChild(controlsContainer);
+      }
+    }
+
+    controlsContainer.innerHTML = '';
+
+    deleteBtn = document.createElement('button');
+    deleteBtn.textContent = '⌫ DELETE';
+    styleControlBtn(deleteBtn);
+    controlsContainer.appendChild(deleteBtn);
+
+    submitBtn = document.createElement('button');
+    submitBtn.textContent = '↵ SUBMIT';
+    styleControlBtn(submitBtn);
+    controlsContainer.appendChild(submitBtn);
   }
 
-  const submitBtn = allButtons.find(b => b.textContent.includes('SUBMIT') || b.textContent.includes('↵'));
-  if (submitBtn) {
-    submitBtn.onclick = handleSubmit;
-  }
+  deleteBtn.onclick = handleDelete;
+  submitBtn.onclick = handleSubmit;
+}
+
+function styleControlBtn(btn) {
+  btn.style.padding = '10px 20px';
+  btn.style.fontSize = '16px';
+  btn.style.fontWeight = 'bold';
+  btn.style.color = '#d4af37';
+  btn.style.backgroundColor = '#222';
+  btn.style.border = '2px solid #d4af37';
+  btn.style.borderRadius = '6px';
+  btn.style.cursor = 'pointer';
 }
 
 function selectLetter(letter) {
