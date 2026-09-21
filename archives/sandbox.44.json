@@ -1,0 +1,78 @@
+{
+  "entry_id": "sandbox_44",
+  "theme": "Cross-Disciplinary Archive",
+  "difficulty_curve": "WWTBAM 1-10",
+  "locale": "en-GB",
+  "floors": [
+    {
+      "floor": 1,
+      "subject": "Animation & Pop Culture",
+      "question": "In the 2003 Pixar animated film 'Finding Nemo', what specific type of fish is Nemo?",
+      "options": ["Clownfish", "Blue tang", "Angelfish", "Damselfish"],
+      "answer": "Clownfish"
+    },
+    {
+      "floor": 2,
+      "subject": "British History",
+      "question": "Which English monarch was forced by rebellious barons to seal the Magna Carta at Runnymede in 1215?",
+      "options": ["King John", "King Henry II", "King Richard I", "King Edward I"],
+      "answer": "King John"
+    },
+    {
+      "floor": 3,
+      "subject": "Linguistics & Phraseology",
+      "question": "Meaning formed or done for a particular purpose only, which Latin phrase literally translates as 'to this'?",
+      "options": ["Ad hoc", "Pro bono", "Carpe diem", "Status quo"],
+      "answer": "Ad hoc"
+    },
+    {
+      "floor": 4,
+      "subject": "Space Exploration",
+      "question": "Launched in 1990, which iconic space telescope revolutionised astronomy by capturing ultra-deep field imagery free from Earth's atmospheric distortion?",
+      "options": ["Hubble Space Telescope", "James Webb Space Telescope", "Spitzer Space Telescope", "Kepler Space Telescope"],
+      "answer": "Hubble Space Telescope"
+    },
+    {
+      "floor": 5,
+      "subject": "Food Science",
+      "question": "What process of heating liquid food or beverages to a precise temperature for a set duration eliminates harmful pathogens without altering taste or composition?",
+      "options": ["Pasteurisation", "Homogenisation", "Sterilisation", "Fermentation"],
+      "answer": "Pasteurisation"
+    },
+    {
+      "floor": 6,
+      "subject": "Marine Biology",
+      "question": "Which marine creatures belong to the genus Hippocampus and are notable for having males that carry and give birth to offspring?",
+      "options": ["Seahorses", "Pipefish", "Sea dragons", "Needlefish"],
+      "answer": "Seahorses"
+    },
+    {
+      "floor": 7,
+      "subject": "Music History",
+      "question": "Composed by George Gershwin in 1924, which famous orchestral work blends classical music with jazz and opens with an iconic clarinet glissando?",
+      "options": ["Rhapsody in Blue", "An American in Paris", "Concerto in F", "Cuban Overture"],
+      "answer": "Rhapsody in Blue"
+    },
+    {
+      "floor": 8,
+      "subject": "Ethnobotany & Aroma",
+      "question": "Extracted from the dried flower buds of an evergreen tree native to Indonesia, which aromatic spice contains high levels of eugenol, giving it a warm, numbing quality?",
+      "options": ["Clove", "Nutmeg", "Star anise", "Cardamom"],
+      "answer": "Clove"
+    },
+    {
+      "floor": 9,
+      "subject": "Economic Botany & History",
+      "question": "During the 17th-century 'Tulip Mania' in the Netherlands, what plant infection was responsible for producing the highly prized flame-like patterns on tulip petals?",
+      "options": ["Tulip breaking virus", "Tobacco mosaic virus", "Cucumber mosaic virus", "Tomato spotted wilt virus"],
+      "answer": "Tulip breaking virus"
+    },
+    {
+      "floor": 10,
+      "subject": "Historical Linguistics",
+      "question": "Discovered in 1799, the Rosetta Stone provided the key to deciphering ancient Egyptian hieroglyphs because its decree was recorded in Hieroglyphic, Demotic, and which third script?",
+      "options": ["Ancient Greek", "Latin", "Coptic", "Aramaic"],
+      "answer": "Ancient Greek"
+    }
+  ]
+}
