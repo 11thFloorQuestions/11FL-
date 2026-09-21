@@ -1,4 +1,4 @@
-// 11th Floor Word Climb - Main Game Logic
+// 11th Floor Word Climb - Main Game Logic & Resistant UI Controls
 
 const DAILY_PUZZLE = {
   letters: ['C', 'L', 'I', 'M', 'B', 'A', 'T', 'O', 'R'],
@@ -18,6 +18,12 @@ let currentGuess = [];
 
 document.addEventListener('DOMContentLoaded', () => {
   initGame();
+  
+  // Guard observer: Re-inject controls if DOM updates clear them
+  const observer = new MutationObserver(() => {
+    ensureControlsExist();
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
 });
 
 function initGame() {
@@ -25,7 +31,7 @@ function initGame() {
   currentGuess = [];
   setupUIContainers();
   setupWheel();
-  attachControlHandlers();
+  ensureControlsExist();
   updateFloorUI();
 }
 
@@ -126,46 +132,38 @@ function setupWheel() {
   wheelContainer.appendChild(centerHub);
 }
 
-function attachControlHandlers() {
-  const allButtons = Array.from(document.querySelectorAll('button'));
+function ensureControlsExist() {
+  let controlsContainer = document.getElementById('controls-container');
   
-  let deleteBtn = allButtons.find(b => b.textContent.includes('DELETE') || b.textContent.includes('⌫'));
-  let submitBtn = allButtons.find(b => b.textContent.includes('SUBMIT') || b.textContent.includes('↵'));
+  if (!controlsContainer) {
+    controlsContainer = document.createElement('div');
+    controlsContainer.id = 'controls-container';
+    controlsContainer.style.display = 'flex';
+    controlsContainer.style.justifyContent = 'center';
+    controlsContainer.style.gap = '15px';
+    controlsContainer.style.margin = '15px auto';
 
-  // If HTML control buttons are missing or unbound, dynamically build control row
-  if (!deleteBtn || !submitBtn) {
-    let controlsContainer = document.getElementById('controls-container');
-    if (!controlsContainer) {
-      controlsContainer = document.createElement('div');
-      controlsContainer.id = 'controls-container';
-      controlsContainer.style.display = 'flex';
-      controlsContainer.style.justifyContent = 'center';
-      controlsContainer.style.gap = '15px';
-      controlsContainer.style.margin = '15px auto';
-
-      const wheelContainer = document.getElementById('wheel-container') || document.querySelector('.wheel');
-      if (wheelContainer && wheelContainer.parentNode) {
-        wheelContainer.parentNode.insertBefore(controlsContainer, wheelContainer.nextSibling);
-      } else {
-        document.body.appendChild(controlsContainer);
-      }
+    const wheelContainer = document.getElementById('wheel-container') || document.querySelector('.wheel');
+    if (wheelContainer && wheelContainer.parentNode) {
+      wheelContainer.parentNode.insertBefore(controlsContainer, wheelContainer.nextSibling);
+    } else {
+      document.body.appendChild(controlsContainer);
     }
 
-    controlsContainer.innerHTML = '';
-
-    deleteBtn = document.createElement('button');
+    const deleteBtn = document.createElement('button');
+    deleteBtn.id = 'action-delete-btn';
     deleteBtn.textContent = '⌫ DELETE';
     styleControlBtn(deleteBtn);
+    deleteBtn.onclick = handleDelete;
     controlsContainer.appendChild(deleteBtn);
 
-    submitBtn = document.createElement('button');
+    const submitBtn = document.createElement('button');
+    submitBtn.id = 'action-submit-btn';
     submitBtn.textContent = '↵ SUBMIT';
     styleControlBtn(submitBtn);
+    submitBtn.onclick = handleSubmit;
     controlsContainer.appendChild(submitBtn);
   }
-
-  deleteBtn.onclick = handleDelete;
-  submitBtn.onclick = handleSubmit;
 }
 
 function styleControlBtn(btn) {
