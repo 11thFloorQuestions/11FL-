@@ -1,1 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>11th Floor Word Climb - 11th Floor Games</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body class="word-climb-body">
 
+  <!-- TOP HEADER -->
+  <header class="app-header">
+    <div class="header-left">
+      <a href="index.html" class="lobby-link" title="Back to 11th Floor Games Lobby">🏢 LOBBY</a>
+    </div>
+    <div class="header-center">
+      <span class="suite-title">11TH FLOOR GAMES</span>
+      <h1 class="game-title">11th Floor Word Climb</h1>
+    </div>
+    <div class="header-right">
+      <div class="streak-badge">
+        <span class="flame-icon">🔥</span>
+        <span id="streak-count">0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN ELEVATOR CONTAINER -->
+  <main class="elevator-container">
+    
+    <!-- ELEVATOR SHAFT / ACTIVE FLOOR DISPLAY -->
+    <section class="floor-display-panel">
+      <div class="floor-indicator">
+        <span class="floor-label">ELEVATOR LOCATION</span>
+        <div class="floor-number-box">
+          <span id="current-floor-display">FLOOR 04</span>
+        </div>
+        <span class="target-length-label">FIND A <span id="target-length">4</span>-LETTER WORD</span>
+      </div>
+
+      <!-- ACTIVE FLOOR WORD INPUT SLOTS -->
+      <div class="word-slots-container" id="word-slots">
+        <!-- Tile slots will be populated dynamically by JS -->
+      </div>
+
+      <!-- FEEDBACK MESSAGE -->
+      <div class="status-message" id="status-message"></div>
+    </section>
+
+    <!-- 9-LETTER CIRCULAR WHEEL DECK -->
+    <section class="wheel-deck">
+      <div class="wheel-container" id="wheel-container">
+        <!-- 9 Outer Letter Nodes -->
+        <div class="letter-ring" id="letter-ring">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Center Shuffle Button -->
+        <button type="button" class="wheel-center-btn" id="shuffle-btn" aria-label="Shuffle Letters">
+          <span class="shuffle-icon">🔄</span>
+          <span class="shuffle-text">SHUFFLE</span>
+        </button>
+      </div>
+
+      <!-- ACTION BUTTONS -->
+      <div class="action-bar">
+        <button type="button" class="action-btn delete-btn" id="delete-btn">⌫ DELETE</button>
+        <button type="button" class="action-btn submit-btn" id="submit-btn">↵ SUBMIT</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- JAVASCRIPT LINK -->
+  <script src="word-climb.js"></script>
+</body>
+</html>
