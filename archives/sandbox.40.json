@@ -1,0 +1,78 @@
+{
+  "entry_id": "sandbox_40",
+  "theme": "Material & Cultural Ingenuity",
+  "difficulty_curve": "WWTBAM 1-10",
+  "locale": "en-GB",
+  "floors": [
+    {
+      "floor": 1,
+      "subject": "Classic Cinema",
+      "question": "To take full advantage of new Technicolor film, the magical slippers in the 1939 film 'The Wizard of Oz' were changed to ruby from what original colour in the book?",
+      "options": ["Silver", "Gold", "Emerald", "Diamond"],
+      "answer": "Silver"
+    },
+    {
+      "floor": 2,
+      "subject": "Everyday Design",
+      "question": "What is the specific name for the small plastic or metal sheath situated at the end of a shoelace to stop the fibres from unravelling?",
+      "options": ["An aglet", "A ferrule", "A toggle", "A grommet"],
+      "answer": "An aglet"
+    },
+    {
+      "floor": 3,
+      "subject": "Tea Traditions",
+      "question": "What specific citrus fruit provides the distinctive floral flavour and aroma characteristic of Earl Grey tea?",
+      "options": ["Bergamot", "Seville orange", "Yuzu", "Meyer lemon"],
+      "answer": "Bergamot"
+    },
+    {
+      "floor": 4,
+      "subject": "Painting Techniques",
+      "question": "What term describes the technique of applying paint so thickly to a canvas that the brush or palette knife strokes remain distinctly visible in the dried surface?",
+      "options": ["Impasto", "Sfumato", "Chiaroscuro", "Fresco"],
+      "answer": "Impasto"
+    },
+    {
+      "floor": 5,
+      "subject": "Horticultural Science",
+      "question": "What agricultural technique involves inserting the tissue of one plant into the stem or root system of another so they continue to grow together as a single organism?",
+      "options": ["Grafting", "Pollarding", "Coppicing", "Layering"],
+      "answer": "Grafting"
+    },
+    {
+      "floor": 6,
+      "subject": "Architectural Landmarks",
+      "question": "Despite initial plans to paint it with black and yellow stripes, San Francisco's Golden Gate Bridge is famously painted in what officially named colour?",
+      "options": ["International Orange", "Vermilion Red", "Goldenrod", "Terracotta"],
+      "answer": "International Orange"
+    },
+    {
+      "floor": 7,
+      "subject": "Ancient Infrastructure",
+      "question": "Originating in ancient Persia, what is the name for a gently sloping underground channel constructed to lead water from the interior of a hill to a village below?",
+      "options": ["A qanat", "An aqueduct", "A cistern", "A shaduf"],
+      "answer": "A qanat"
+    },
+    {
+      "floor": 8,
+      "subject": "Optical History",
+      "question": "Pre-dating modern photography, what optical device consisting of a darkened room or box with a small hole was widely used by Renaissance artists to project external scenes onto flat surfaces for tracing?",
+      "options": ["Camera obscura", "Magic lantern", "Zoetrope", "Stereoscope"],
+      "answer": "Camera obscura"
+    },
+    {
+      "floor": 9,
+      "subject": "Horology",
+      "question": "In traditional mechanical watchmaking, what critical mechanism connects the gear train to the regulating oscillator, producing the characteristic 'ticking' sound?",
+      "options": ["The escapement", "The mainspring", "The tourbillon", "The balance wheel"],
+      "answer": "The escapement"
+    },
+    {
+      "floor": 10,
+      "subject": "Urban Planning",
+      "question": "Initiated by Ebenezer Howard in 1898, what influential movement proposed self-contained communities surrounded by agricultural greenbelts to blend town and country living?",
+      "options": ["The Garden City movement", "The City Beautiful movement", "New Urbanism", "The Radiant City"],
+      "answer": "The Garden City movement"
+    }
+  ]
+}
