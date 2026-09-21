@@ -406,7 +406,104 @@ body {
 .shake {
   animation: shake 0.4s ease-in-out;
 }
+/* ==========================================================================
+   11TH FLOOR GAMES LOBBY STYLES
+   ========================================================================== */
 
+.lobby-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.lobby-container {
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+
+.lobby-header {
+  margin-bottom: 30px;
+}
+
+.suite-tagline {
+  color: #888;
+  font-size: 0.85rem;
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+
+.lobby-streak {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #111;
+  border: 1px solid #d4af37;
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.streak-label {
+  font-size: 0.7rem;
+  color: #aaa;
+  letter-spacing: 1px;
+}
+
+.games-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.game-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 18px 20px;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.game-card:hover {
+  border-color: #d4af37;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.2);
+}
+
+.card-icon {
+  font-size: 2rem;
+}
+
+.card-info {
+  text-align: left;
+  flex-grow: 1;
+}
+
+.card-info h2 {
+  font-size: 1.1rem;
+  margin: 0;
+  color: #fff;
+}
+
+.card-info p {
+  font-size: 0.75rem;
+  color: #888;
+  margin: 4px 0 0 0;
+}
+
+.card-arrow {
+  font-size: 1.4rem;
+  color: #d4af37;
+}
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
   20%, 60% { transform: translateX(-6px); }
