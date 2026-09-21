@@ -1,0 +1,78 @@
+{
+  "entry_id": "sandbox_38",
+  "theme": "Cultural & Scientific Ingenuity",
+  "difficulty_curve": "WWTBAM 1-10",
+  "locale": "en-GB",
+  "floors": [
+    {
+      "floor": 1,
+      "subject": "Animation History",
+      "question": "Which pioneering 1995 Pixar release was the world's first fully computer-animated feature film?",
+      "options": ["Toy Story", "Shrek", "A Bug's Life", "Antz"],
+      "answer": "Toy Story"
+    },
+    {
+      "floor": 2,
+      "subject": "Zoology",
+      "question": "What is the specific, colourful collective noun used to describe a flock of flamingos?",
+      "options": ["A flamboyance", "A murder", "A parliament", "A crash"],
+      "answer": "A flamboyance"
+    },
+    {
+      "floor": 3,
+      "subject": "Musical Instruments",
+      "question": "Operated entirely without physical contact, which electronic instrument relies on the performer's hands interrupting two radio frequency fields to control pitch and volume?",
+      "options": ["Theremin", "Synthesiser", "Mellotron", "Ondes Martenot"],
+      "answer": "Theremin"
+    },
+    {
+      "floor": 4,
+      "subject": "Classical Mythology",
+      "question": "In Greek mythology, who was cursed to stand in a pool of water beneath a fruit tree, with the water and fruit always receding from his grasp?",
+      "options": ["Tantalus", "Sisyphus", "Ixion", "Prometheus"],
+      "answer": "Tantalus"
+    },
+    {
+      "floor": 5,
+      "subject": "Medical History",
+      "question": "Discovered by Alexander Fleming in 1928, the world's first broadly effective antibiotic was derived from which type of organism?",
+      "options": ["A fungus", "A bacterium", "A sea sponge", "A moss"],
+      "answer": "A fungus"
+    },
+    {
+      "floor": 6,
+      "subject": "Global Cinema",
+      "question": "Winning the Palme d'Or and multiple Academy Awards, which 2019 South Korean thriller became the first non-English language movie to win Best Picture?",
+      "options": ["Parasite", "Roma", "Minari", "Crouching Tiger, Hidden Dragon"],
+      "answer": "Parasite"
+    },
+    {
+      "floor": 7,
+      "subject": "Literary Geography",
+      "question": "Thomas Hardy’s novels, such as 'Tess of the d'Urbervilles' and 'Far from the Madding Crowd', are primarily set in which fictionalised region of south-west England?",
+      "options": ["Wessex", "Mercia", "Barsetshire", "Albion"],
+      "answer": "Wessex"
+    },
+    {
+      "floor": 8,
+      "subject": "Sociology",
+      "question": "What term, introduced by sociologist Thorstein Veblen in 1899, describes the purchase of luxury goods and services primarily to publicly display economic power?",
+      "options": ["Conspicuous consumption", "Pecuniary emulation", "Commodity fetishism", "Affluenza"],
+      "answer": "Conspicuous consumption"
+    },
+    {
+      "floor": 9,
+      "subject": "Classical Physics",
+      "question": "First exhibited at the Panthéon in Paris in 1851, what elegant experimental device provides a simple, observable physical proof of the Earth's rotation?",
+      "options": ["Foucault's pendulum", "The Atwood machine", "The Crookes radiometer", "The Cavendish balance"],
+      "answer": "Foucault's pendulum"
+    },
+    {
+      "floor": 10,
+      "subject": "Botanical Chemistry",
+      "question": "What potent alkaloid, historically extracted from the bark of the South American cinchona tree, provided the first effective chemical treatment for malaria?",
+      "options": ["Quinine", "Atropine", "Digitalis", "Artemisinin"],
+      "answer": "Quinine"
+    }
+  ]
+}
