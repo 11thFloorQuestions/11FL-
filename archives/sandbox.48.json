@@ -1,0 +1,78 @@
+{
+  "entry_id": "sandbox_48",
+  "theme": "Cross-Disciplinary Archive",
+  "difficulty_curve": "WWTBAM 1-10",
+  "locale": "en-GB",
+  "floors": [
+    {
+      "floor": 1,
+      "subject": "Children's Literature",
+      "question": "In Julia Donaldson's picture book 'The Gruffalo', what distinctive feature on the end of the Gruffalo's nose turns out to be poisonous?",
+      "options": ["A poisonous wart", "A poisonous spike", "A poisonous spot", "A poisonous horn"],
+      "answer": "A poisonous wart"
+    },
+    {
+      "floor": 2,
+      "subject": "Everyday Inventions",
+      "question": "Invented by Earle Dickson in 1920 to help his wife dress minor kitchen burns and cuts, what medical product became a famous household essential?",
+      "options": ["Adhesive bandage (Band-Aid)", "Safety pin", "Cotton swab", "Rubber glove"],
+      "answer": "Adhesive bandage (Band-Aid)"
+    },
+    {
+      "floor": 3,
+      "subject": "Botany & Carnivorous Plants",
+      "question": "Native to the coastal wetlands of North and South Carolina, which carnivorous plant captures prey using sensitive trigger hairs on its hinged leaves?",
+      "options": ["Venus flytrap", "Pitcher plant", "Sundew", "Bladderwort"],
+      "answer": "Venus flytrap"
+    },
+    {
+      "floor": 4,
+      "subject": "Pop Music Milestones",
+      "question": "Which pop icon broke records in 2024 by becoming the first musical artist in Grammy history to win Album of the Year four times?",
+      "options": ["Taylor Swift", "Adele", "Beyoncé", "Lady Gaga"],
+      "answer": "Taylor Swift"
+    },
+    {
+      "floor": 5,
+      "subject": "Human Sensory Biology",
+      "question": "What medical term refers to the sense of body position and self-movement, allowing a person to touch their nose with their eyes closed?",
+      "options": ["Proprioception", "Equilibrium", "Nociception", "Thermoception"],
+      "answer": "Proprioception"
+    },
+    {
+      "floor": 6,
+      "subject": "Olympic Games History",
+      "question": "Which artistic sport was officially added to the Olympic Games programme at the 1984 Los Angeles Games, featuring routines with ribbons, hoops, and balls?",
+      "options": ["Rhythmic gymnastics", "Artistic swimming", "Figure skating", "Trampolining"],
+      "answer": "Rhythmic gymnastics"
+    },
+    {
+      "floor": 7,
+      "subject": "Animal Behaviour & Ethology",
+      "question": "Honeybees communicate the precise direction and distance of rich flower patches to hive mates using which famous figure-of-eight movement?",
+      "options": ["Waggle dance", "Round dance", "Tremble dance", "Sickle dance"],
+      "answer": "Waggle dance"
+    },
+    {
+      "floor": 8,
+      "subject": "Economic Botany & Food Science",
+      "question": "Natural vanilla flavouring is harvested from the cured seed pods of a specific climbing plant belonging to which plant family?",
+      "options": ["Orchid", "Rose", "Lily", "Nightshade"],
+      "answer": "Orchid"
+    },
+    {
+      "floor": 9,
+      "subject": "Planetary Astronomy",
+      "question": "Known for its vivid blue appearance caused by methane gas, which planet in our solar system experiences the fastest recorded winds, exceeding 1,200 mph?",
+      "options": ["Neptune", "Uranus", "Saturn", "Jupiter"],
+      "answer": "Neptune"
+    },
+    {
+      "floor": 10,
+      "subject": "Modern History & Human Rights",
+      "question": "Adopted by the United Nations General Assembly in 1948, who chaired the committee responsible for drafting the Universal Declaration of Human Rights?",
+      "options": ["Eleanor Roosevelt", "René Cassin", "Hansa Mehta", "Charles Malik"],
+      "answer": "Eleanor Roosevelt"
+    }
+  ]
+}
