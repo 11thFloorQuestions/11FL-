@@ -1,0 +1,78 @@
+{
+  "entry_id": "sandbox_46",
+  "theme": "Cross-Disciplinary Archive",
+  "difficulty_curve": "WWTBAM 1-10",
+  "locale": "en-GB",
+  "floors": [
+    {
+      "floor": 1,
+      "subject": "Popular Culture & Toys",
+      "question": "In Pixar's 'Toy Story' film series, what specific type of toy is the character Woody?",
+      "options": ["Pull-string cowboy doll", "Plastic space ranger", "Stuffed teddy bear", "Action figure astronaut"],
+      "answer": "Pull-string cowboy doll"
+    },
+    {
+      "floor": 2,
+      "subject": "Food & Beverage History",
+      "question": "Which hot drink, made from ground cocoa beans, was originally consumed by ancient Olmec and Maya civilizations as a bitter spiced beverage?",
+      "options": ["Hot chocolate", "Matcha tea", "Chai latte", "Espresso"],
+      "answer": "Hot chocolate"
+    },
+    {
+      "floor": 3,
+      "subject": "World Geography",
+      "question": "Which city was purpose-built in the early 20th century to serve as the capital of Australia?",
+      "options": ["Canberra", "Sydney", "Melbourne", "Brisbane"],
+      "answer": "Canberra"
+    },
+    {
+      "floor": 4,
+      "subject": "Film & Cinema Music",
+      "question": "Which famous film composer wrote the iconic musical themes for 'Jaws', 'Star Wars', and 'Indiana Jones'?",
+      "options": ["John Williams", "Hans Zimmer", "Ennio Morricone", "Danny Elfman"],
+      "answer": "John Williams"
+    },
+    {
+      "floor": 5,
+      "subject": "Classical Mythology",
+      "question": "In Greek mythology, what winged horse sprang from the neck of Medusa when she was slain by Perseus?",
+      "options": ["Pegasus", "Bucephalus", "Sleipnir", "Chiron"],
+      "answer": "Pegasus"
+    },
+    {
+      "floor": 6,
+      "subject": "Classic Theatre",
+      "question": "In William Shakespeare's tragedy 'Romeo and Juliet', to which noble family does Juliet belong?",
+      "options": ["Capulet", "Montague", "Medici", "Sforza"],
+      "answer": "Capulet"
+    },
+    {
+      "floor": 7,
+      "subject": "Visual Arts & Painting",
+      "question": "Painted by Grant Wood in 1930, which iconic American painting depicts a farmer holding a pitchfork alongside a woman standing in front of a Gothic revival house?",
+      "options": ["American Gothic", "Whistler's Mother", "Nighthawks", "Christina's World"],
+      "answer": "American Gothic"
+    },
+    {
+      "floor": 8,
+      "subject": "Rhetoric & Language",
+      "question": "Which figure of speech brings together two apparently contradictory terms for rhetorical effect, such as 'deafening silence' or 'deafening roar'?",
+      "options": ["Oxymoron", "Hyperbole", "Synecdoche", "Metonymy"],
+      "answer": "Oxymoron"
+    },
+    {
+      "floor": 9,
+      "subject": "Opera & Performing Arts",
+      "question": "Set in China, which Giacomo Puccini opera features the famous tenor aria 'Nessun dorma'?",
+      "options": ["Turandot", "Tosca", "La Bohème", "Madama Butterfly"],
+      "answer": "Turandot"
+    },
+    {
+      "floor": 10,
+      "subject": "Cartography & Exploration",
+      "question": "First published in 1569, which cylindrical map projection created by a Flemish cartographer represented lines of constant compass bearing as straight lines, revolutionising nautical navigation?",
+      "options": ["Mercator projection", "Gall-Peters projection", "Robinson projection", "Winkel tripel projection"],
+      "answer": "Mercator projection"
+    }
+  ]
+}
