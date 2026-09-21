@@ -1,0 +1,78 @@
+{
+  "entry_id": "sandbox_50",
+  "theme": "Cross-Disciplinary Archive",
+  "difficulty_curve": "WWTBAM 1-10",
+  "locale": "en-GB",
+  "floors": [
+    {
+      "floor": 1,
+      "subject": "Animation & Pop Culture",
+      "question": "In Disney's animated feature film 'Moana', what type of animal is Moana's bumbling companion Heihei?",
+      "options": ["Rooster", "Pig", "Turtle", "Gecko"],
+      "answer": "Rooster"
+    },
+    {
+      "floor": 2,
+      "subject": "Culinary Heritage",
+      "question": "Which staple Korean dish consists of salted and fermented vegetables, most commonly Napa cabbage or daikon radishes, seasoned with chilli and garlic?",
+      "options": ["Kimchi", "Bibimbap", "Bulgogi", "Japchae"],
+      "answer": "Kimchi"
+    },
+    {
+      "floor": 3,
+      "subject": "Sports & Racquet Games",
+      "question": "In the sport of badminton, what is the official name of the feathered or synthetic high-drag projectile struck back and forth across the net?",
+      "options": ["Shuttlecock", "Birdie", "Pelota", "Volley"],
+      "answer": "Shuttlecock"
+    },
+    {
+      "floor": 4,
+      "subject": "Ornithology & Adaptations",
+      "question": "Endemic to New Zealand, which flightless bird is unique among avian species for having nostrils located at the very tip of its long beak?",
+      "options": ["Kiwi", "Kākāpō", "Takahe", "Weka"],
+      "answer": "Kiwi"
+    },
+    {
+      "floor": 5,
+      "subject": "Human Neuroendocrinology",
+      "question": "Which pinecone-shaped endocrine gland in the human brain synthesises and secretes the hormone melatonin to regulate sleep-wake cycles?",
+      "options": ["Pineal gland", "Pituitary gland", "Thyroid gland", "Adrenal gland"],
+      "answer": "Pineal gland"
+    },
+    {
+      "floor": 6,
+      "subject": "History of Engineering",
+      "question": "In 1852, Elisha Otis designed a revolutionary safety brake that prevented which apparatus from plummeting if its hoisting cables snapped?",
+      "options": ["Passenger lift", "Mining cage", "Cable car", "Funicular railway"],
+      "answer": "Passenger lift"
+    },
+    {
+      "floor": 7,
+      "subject": "Pop Music History",
+      "question": "Which British singer-songwriter released the landmark 1985 album 'Hounds of Love', featuring the iconic single 'Running Up That Hill'?",
+      "options": ["Kate Bush", "Annie Lennox", "Siouxsie Sioux", "Alison Moyet"],
+      "answer": "Kate Bush"
+    },
+    {
+      "floor": 8,
+      "subject": "Economic Botany",
+      "question": "Saffron, renowned as one of the world's most expensive spices by weight, is harvested from the delicate dried stigmas of which flowering plant?",
+      "options": ["Crocus", "Orchid", "Iris", "Gladiolus"],
+      "answer": "Crocus"
+    },
+    {
+      "floor": 9,
+      "subject": "Oceanography & Earth Systems",
+      "question": "What oceanographic process occurs when wind drives surface water away, allowing cold, nutrient-rich deep ocean water to rise toward the sea surface?",
+      "options": ["Upwelling", "Downwelling", "Thermohaline circulation", "Littoral drift"],
+      "answer": "Upwelling"
+    },
+    {
+      "floor": 10,
+      "subject": "Jurisprudence & Civil Law",
+      "question": "In common law legal systems, what term describes a civil wrong—other than a breach of contract—that unfairly causes loss or harm, resulting in legal liability?",
+      "options": ["Tort", "Misdemeanour", "Estoppel", "Indictment"],
+      "answer": "Tort"
+    }
+  ]
+}
