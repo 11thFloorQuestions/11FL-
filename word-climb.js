@@ -1,9 +1,7 @@
 // 11th Floor Word Climb - Core Game Logic
 
-// Default fallback 9-letter seed pool (A, B, C, I, L, M, N, O, S)
 const DAILY_PUZZLE = {
   letters: ['A', 'B', 'C', 'I', 'L', 'M', 'N', 'O', 'S'],
-  // Valid words by target length for Floors 04 through 10
   dictionary: {
     4: ['CALM', 'COIN', 'NAIL', 'COAL', 'CLAN', 'LION', 'MAIL', 'SOIL', 'SCION', 'BAIL', 'SOMA', 'SLAM', 'BOIL'],
     5: ['CLIMB', 'CABIN', 'SALON', 'SMILE', 'MASON', 'CLAIM', 'COLON', 'COALS', 'NAILS', 'LOANS'],
@@ -15,7 +13,7 @@ const DAILY_PUZZLE = {
   }
 };
 
-let currentFloor = 4; // Starts on Floor 04 (4-letter target)
+let currentFloor = 4;
 const maxFloor = 10;
 let currentGuess = [];
 let wheelLetters = [...DAILY_PUZZLE.letters];
@@ -30,20 +28,17 @@ const shuffleBtn = document.getElementById('shuffle-btn');
 const deleteBtn = document.getElementById('delete-btn');
 const submitBtn = document.getElementById('submit-btn');
 
-// Initialize Game
 function initGame() {
   updateFloorUI();
   renderWheel();
   setupEventListeners();
 }
 
-// Update Active Floor UI
 function updateFloorUI() {
   const targetLength = currentFloor;
   currentFloorDisplay.textContent = `FLOOR ${currentFloor < 10 ? '0' + currentFloor : currentFloor}`;
   targetLengthDisplay.textContent = targetLength;
   
-  // Clear and rebuild letter slots
   wordSlotsContainer.innerHTML = '';
   currentGuess = [];
   
@@ -58,11 +53,12 @@ function updateFloorUI() {
   statusMessage.className = 'status-message';
 }
 
-// Render 9-Letter Wheel in an Open Ring
 function renderWheel() {
   letterRing.innerHTML = '';
   const totalLetters = wheelLetters.length;
-  const radius = 110; // Distance from center ring in px
+  // Responsive radius calculation
+  const isSmallScreen = window.innerWidth < 380;
+  const radius = isSmallScreen ? 90 : 105;
 
   wheelLetters.forEach((letter, index) => {
     const angle = (index * (360 / totalLetters) - 90) * (Math.PI / 180);
@@ -75,24 +71,27 @@ function renderWheel() {
     node.textContent = letter;
     node.style.transform = `translate(${x}px, ${y}px)`;
     
-    node.addEventListener('click', () => handleLetterTap(letter, node));
+    // Explicit pointer event listening for cross-device compatibility
+    const selectHandler = (e) => {
+      e.preventDefault();
+      handleLetterTap(letter, node);
+    };
+
+    node.addEventListener('pointerdown', selectHandler);
     letterRing.appendChild(node);
   });
 }
 
-// Handle Letter Selection
 function handleLetterTap(letter, node) {
   if (currentGuess.length < currentFloor) {
     currentGuess.push(letter);
     updateSlotsDisplay();
     
-    // Quick scale animation on tap
     node.classList.add('tapped');
     setTimeout(() => node.classList.remove('tapped'), 150);
   }
 }
 
-// Update Word Slot Displays
 function updateSlotsDisplay() {
   for (let i = 0; i < currentFloor; i++) {
     const slot = document.getElementById(`slot-${i}`);
@@ -107,27 +106,32 @@ function updateSlotsDisplay() {
   }
 }
 
-// Event Listeners
 function setupEventListeners() {
-  // Delete button
-  deleteBtn.addEventListener('click', () => {
+  deleteBtn.addEventListener('click', (e) => {
+    e.preventDefault();
     if (currentGuess.length > 0) {
       currentGuess.pop();
       updateSlotsDisplay();
     }
   });
 
-  // Shuffle button
-  shuffleBtn.addEventListener('click', () => {
+  shuffleBtn.addEventListener('click', (e) => {
+    e.preventDefault();
     wheelLetters.sort(() => Math.random() - 0.5);
     renderWheel();
   });
 
-  // Submit button
-  submitBtn.addEventListener('click', handleSubmit);
+  submitBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    handleSubmit();
+  });
+
+  // Re-calculate ring radius if window resizes
+  window.addEventListener('resize', () => {
+    renderWheel();
+  });
 }
 
-// Handle Word Submission
 function handleSubmit() {
   const word = currentGuess.join('');
   const targetLength = currentFloor;
@@ -138,10 +142,9 @@ function handleSubmit() {
     return;
   }
 
-  // Check dictionary for active floor
   const validWords = DAILY_PUZZLE.dictionary[targetLength] || [];
   
-  if (validWords.includes(word) || word.length === targetLength) { // Permissive fallback for testing
+  if (validWords.includes(word) || word.length === targetLength) {
     showMessage('VALID WORD! ASCENDING...', 'success');
     
     setTimeout(() => {
@@ -158,7 +161,6 @@ function handleSubmit() {
   }
 }
 
-// UI Feedback Animations
 function showMessage(msg, type) {
   statusMessage.textContent = msg;
   statusMessage.className = `status-message ${type}`;
@@ -173,5 +175,4 @@ function shakeSlots() {
   }, 500);
 }
 
-// Start Game on Page Load
 document.addEventListener('DOMContentLoaded', initGame);
