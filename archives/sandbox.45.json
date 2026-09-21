@@ -1,0 +1,78 @@
+{
+  "entry_id": "sandbox_45",
+  "theme": "Cross-Disciplinary Archive",
+  "difficulty_curve": "WWTBAM 1-10",
+  "locale": "en-GB",
+  "floors": [
+    {
+      "floor": 1,
+      "subject": "Children's Literature",
+      "question": "In Lewis Carroll's 1865 novel 'Alice's Adventures in Wonderland', which creature sits on a mushroom while smoking a hookah pipe?",
+      "options": ["The Caterpillar", "The March Hare", "The Cheshire Cat", "The Gryphon"],
+      "answer": "The Caterpillar"
+    },
+    {
+      "floor": 2,
+      "subject": "Sweets & Confectionery",
+      "question": "Which iconic chewy sweets, originally created in Germany in 1922 by Hans Riegel, were inspired by trained dancing bears seen at street festivals?",
+      "options": ["Gummy bears", "Jelly babies", "Marshmallow chicks", "Licorice wheels"],
+      "answer": "Gummy bears"
+    },
+    {
+      "floor": 3,
+      "subject": "Mythology & Folklore",
+      "question": "In Norse mythology, what is the name of the burning rainbow bridge that connects Midgard to Asgard?",
+      "options": ["Bifröst", "Yggdrasil", "Valhalla", "Ginnungagap"],
+      "answer": "Bifröst"
+    },
+    {
+      "floor": 4,
+      "subject": "Fashion & Costume History",
+      "question": "Popularised during the 1920s, which tubular, drop-waisted dress style became a celebrated symbol of the modern, liberated female silhouette?",
+      "options": ["Flapper dress", "Empire dress", "Prairie dress", "Tea gown"],
+      "answer": "Flapper dress"
+    },
+    {
+      "floor": 5,
+      "subject": "Musical Theatre",
+      "question": "Featuring iconic songs such as 'Defying Gravity', the musical 'Wicked' explores the early life and rivalry of the witches from which classic story?",
+      "options": ["The Wonderful Wizard of Oz", "Peter and Wendy", "Alice's Adventures in Wonderland", "The Chronicles of Narnia"],
+      "answer": "The Wonderful Wizard of Oz"
+    },
+    {
+      "floor": 6,
+      "subject": "Geography & Natural Wonders",
+      "question": "Situated on the border between Peru and Bolivia in the Andes mountain range, which lake is recognized as the world's highest commercially navigable body of water?",
+      "options": ["Lake Titicaca", "Lake Maracaibo", "Lake Poopó", "Lake General Carrera"],
+      "answer": "Lake Titicaca"
+    },
+    {
+      "floor": 7,
+      "subject": "Culinary Arts",
+      "question": "In French cuisine, what specific term refers to a finely diced mixture of onions, carrots, and celery cooked gently in butter to form an aromatic base for sauces and stews?",
+      "options": ["Mirepoix", "Sofrito", "Duxelles", "Macedoine"],
+      "answer": "Mirepoix"
+    },
+    {
+      "floor": 8,
+      "subject": "Classical Literature",
+      "question": "In Homer's epic poem 'The Odyssey', what clever false name does Odysseus give to the Cyclops Polyphemus to prevent him calling for help?",
+      "options": ["Nobody", "Stranger", "Wanderer", "Noman"],
+      "answer": "Nobody"
+    },
+    {
+      "floor": 9,
+      "subject": "Musical Theory",
+      "question": "In musical composition, what Italian term describes a short, repeating rhythmic or melodic pattern played continuously throughout a section or entire work?",
+      "options": ["Ostinato", "Glissando", "Arpeggio", "Tremolo"],
+      "answer": "Ostinato"
+    },
+    {
+      "floor": 10,
+      "subject": "Linguistics & Etymology",
+      "question": "Which linguistic term describes a blend formed by merging the sounds and meanings of two distinct words, such as 'brunch' from 'breakfast' and 'lunch'?",
+      "options": ["Portmanteau", "Neologism", "Spoonerism", "Calque"],
+      "answer": "Portmanteau"
+    }
+  ]
+}
