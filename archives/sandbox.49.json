@@ -1,0 +1,78 @@
+{
+  "entry_id": "sandbox_49",
+  "theme": "Cross-Disciplinary Archive",
+  "difficulty_curve": "WWTBAM 1-10",
+  "locale": "en-GB",
+  "floors": [
+    {
+      "floor": 1,
+      "subject": "Animation & Pop Culture",
+      "question": "In the hit animated television series 'Bluey', what specific breed of dog is Bluey and her family?",
+      "options": ["Australian Cattle Dog", "Golden Retriever", "Jack Russell Terrier", "Cocker Spaniel"],
+      "answer": "Australian Cattle Dog"
+    },
+    {
+      "floor": 2,
+      "subject": "Games & Pastimes",
+      "question": "In the standard English edition of the board game Scrabble, which two letter tiles carry the highest individual score of 10 points each?",
+      "options": ["Q and Z", "X and Z", "Q and J", "K and Z"],
+      "answer": "Q and Z"
+    },
+    {
+      "floor": 3,
+      "subject": "Human Biology",
+      "question": "Which natural pigment, produced by specialised cells called melanocytes, gives human skin, hair, and eyes their colour?",
+      "options": ["Melanin", "Keratin", "Carotene", "Collagen"],
+      "answer": "Melanin"
+    },
+    {
+      "floor": 4,
+      "subject": "Pop Music Milestones",
+      "question": "Released in 2011, which Adele single was inspired by a broken relationship and became the UK's best-selling single of that year?",
+      "options": ["Someone Like You", "Rolling in the Deep", "Hello", "Set Fire to the Rain"],
+      "answer": "Someone Like You"
+    },
+    {
+      "floor": 5,
+      "subject": "Animal Behaviour & Ethology",
+      "question": "What unique physical behaviour do sea otters exhibit while sleeping in open water to prevent themselves from drifting apart in sea currents?",
+      "options": ["Holding paws", "Tying kelp to their tails", "Locking teeth", "Linking tails"],
+      "answer": "Holding paws"
+    },
+    {
+      "floor": 6,
+      "subject": "Sports History",
+      "question": "At the 1976 Summer Olympics in Montreal, which 14-year-old Romanian gymnast became the first person in Olympic history to receive a perfect score of 10.0?",
+      "options": ["Nadia Comăneci", "Nelli Kim", "Olga Korbut", "Mary Lou Retton"],
+      "answer": "Nadia Comăneci"
+    },
+    {
+      "floor": 7,
+      "subject": "Plant Physiology",
+      "question": "Which biological process describes the movement of water from a plant's roots up through its vascular system and its eventual evaporation through stomata in the leaves?",
+      "options": ["Transpiration", "Photosynthesis", "Osmosis", "Respiration"],
+      "answer": "Transpiration"
+    },
+    {
+      "floor": 8,
+      "subject": "Legal History & Human Rights",
+      "question": "In legal systems, what Latin phrase—literally translating as 'you shall have the body'—refers to a fundamental writ protecting individuals from arbitrary or unlawful detention?",
+      "options": ["Habeas corpus", "Subpoena", "Amicus curiae", "Certiorari"],
+      "answer": "Habeas corpus"
+    },
+    {
+      "floor": 9,
+      "subject": "Space Exploration",
+      "question": "Launched by NASA in 1977, which robotic space probe became the first human-made object to cross the heliopause and enter interstellar space in 2012?",
+      "options": ["Voyager 1", "Voyager 2", "Pioneer 10", "New Horizons"],
+      "answer": "Voyager 1"
+    },
+    {
+      "floor": 10,
+      "subject": "World Folklore",
+      "question": "In Japanese folklore, what amphibious water-dwelling creatures are known for holding water in a cavity atop their heads and possessing a legendary fondness for cucumbers?",
+      "options": ["Kappa", "Tengu", "Kitsune", "Tanuki"],
+      "answer": "Kappa"
+    }
+  ]
+}
