@@ -716,3 +716,68 @@ html, body {
 }
 
 .submit-btn { background: #d4af37; color: #000; border-color: #d4af37; }
+/* ==========================================================================
+   WORD CLIMB - CLEAN LAYOUT & STACKING FIX
+   ========================================================================== */
+
+/* FORCE VERTICAL STACKING */
+.elevator-container {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 440px !important;
+  margin: 0 auto !important;
+}
+
+.floor-display-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin-bottom: 20px !important;
+}
+
+/* WORD SLOTS WRAPPING & CLEARANCE */
+.word-slots-container {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-content: center !important;
+  gap: 5px !important;
+  width: 100% !important;
+  min-height: 55px !important;
+  margin: 15px 0 !important;
+  padding: 0 10px !important;
+}
+
+.word-slot {
+  width: 36px !important;
+  height: 42px !important;
+  border: 2px solid #333 !important;
+  border-radius: 5px !important;
+  background: #151515 !important;
+  color: #d4af37 !important;
+  font-family: monospace, monospace !important;
+  font-size: 1.2rem !important;
+  font-weight: bold !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.word-slot.filled {
+  border-color: #d4af37 !important;
+  background: #252010 !important;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.3) !important;
+}
+
+/* WHEEL DECK SPACING */
+.wheel-deck {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 100% !important;
+  margin-top: 10px !important;
+  clear: both !important;
+}
