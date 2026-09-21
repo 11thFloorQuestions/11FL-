@@ -1,0 +1,78 @@
+{
+  "entry_id": "sandbox_47",
+  "theme": "Cross-Disciplinary Archive",
+  "difficulty_curve": "WWTBAM 1-10",
+  "locale": "en-GB",
+  "floors": [
+    {
+      "floor": 1,
+      "subject": "Animation & Film",
+      "question": "In the 'Paddington' film series, what food item is Paddington Bear famous for keeping hidden under his hat?",
+      "options": ["Marmalade sandwich", "Jam donut", "Peanut butter toast", "Honey biscuit"],
+      "answer": "Marmalade sandwich"
+    },
+    {
+      "floor": 2,
+      "subject": "Culinary Arts & Baking",
+      "question": "Which basic baking ingredient, chemically known as sodium bicarbonate, acts as a leavening agent that helps dough or batter rise?",
+      "options": ["Baking soda", "Yeast", "Cornstarch", "Cream of tartar"],
+      "answer": "Baking soda"
+    },
+    {
+      "floor": 3,
+      "subject": "Pop Music History",
+      "question": "Which American singer-songwriter released the landmark 1971 album 'Tapestry', featuring hit singles like 'It's Too Late' and 'You've Got a Friend'?",
+      "options": ["Carole King", "Carly Simon", "Joni Mitchell", "Joan Baez"],
+      "answer": "Carole King"
+    },
+    {
+      "floor": 4,
+      "subject": "Zoology & Wildlife",
+      "question": "What scientific term describes animals, such as owls and bats, that are predominantly active during the night?",
+      "options": ["Nocturnal", "Diurnal", "Crepuscular", "Arboreal"],
+      "answer": "Nocturnal"
+    },
+    {
+      "floor": 5,
+      "subject": "Physical Geography",
+      "question": "Which landmass is recognized as the world's largest island that is not classified as a continent?",
+      "options": ["Greenland", "Madagascar", "New Guinea", "Borneo"],
+      "answer": "Greenland"
+    },
+    {
+      "floor": 6,
+      "subject": "Classical Mythology",
+      "question": "In ancient Roman mythology, who is the god of desire and love, counterpart to the Greek god Eros?",
+      "options": ["Cupid", "Mars", "Apollo", "Mercury"],
+      "answer": "Cupid"
+    },
+    {
+      "floor": 7,
+      "subject": "Visual Arts",
+      "question": "Which French Impressionist master painted the celebrated series depicting his water lily garden in Giverny?",
+      "options": ["Claude Monet", "Pierre-Auguste Renoir", "Edgar Degas", "Camille Pissarro"],
+      "answer": "Claude Monet"
+    },
+    {
+      "floor": 8,
+      "subject": "Games & Pastimes",
+      "question": "In standard chess, which piece is unique for being able to move in an 'L' shape and jump over other pieces?",
+      "options": ["Knight", "Bishop", "Rook", "Pawn"],
+      "answer": "Knight"
+    },
+    {
+      "floor": 9,
+      "subject": "Linguistics & Wordplay",
+      "question": "What term refers to a word, phrase, or sequence that reads the exact same backwards as forwards, such as 'kayak' or 'radar'?",
+      "options": ["Palindrome", "Anagram", "Acronym", "Homophone"],
+      "answer": "Palindrome"
+    },
+    {
+      "floor": 10,
+      "subject": "Philosophy & Ethics",
+      "question": "First articulated by Immanuel Kant in 'Groundwork of the Metaphysics of Morals', what term describes an unconditional moral obligation that is binding in all circumstances?",
+      "options": ["Categorical imperative", "Hypothetical imperative", "Utilitarian calculus", "Golden mean"],
+      "answer": "Categorical imperative"
+    }
+  ]
+}
