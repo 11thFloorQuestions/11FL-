@@ -1,0 +1,78 @@
+{
+  "entry_id": "sandbox_43",
+  "theme": "Cross-Disciplinary Archive",
+  "difficulty_curve": "WWTBAM 1-10",
+  "locale": "en-GB",
+  "floors": [
+    {
+      "floor": 1,
+      "subject": "Animation & Pop Culture",
+      "question": "In Disney's animated feature film 'The Lion King', what species of animal is the energetic character Timon?",
+      "options": ["Meerkat", "Mongoose", "Lemur", "Prairie dog"],
+      "answer": "Meerkat"
+    },
+    {
+      "floor": 2,
+      "subject": "Linguistics & Idioms",
+      "question": "Which French phrase, literally translating to 'already seen', describes the psychological phenomenon of feeling that a current event has occurred before?",
+      "options": ["Déjà vu", "Presque vu", "Jamais vu", "Vis-à-vis"],
+      "answer": "Déjà vu"
+    },
+    {
+      "floor": 3,
+      "subject": "Classical Mythology",
+      "question": "In Greek myth, which part of the hero Achilles' body was left vulnerable when his mother dipped him into the River Styx?",
+      "options": ["His heel", "His shoulder", "His wrist", "His knee"],
+      "answer": "His heel"
+    },
+    {
+      "floor": 4,
+      "subject": "Nordic Folklore",
+      "question": "In Scandinavian folklore, what mythical sea creature of immense, tentacled size is said to dwell off the coasts of Norway and Greenland to terrorise sailors?",
+      "options": ["Kraken", "Leviathan", "Jörmungandr", "Scylla"],
+      "answer": "Kraken"
+    },
+    {
+      "floor": 5,
+      "subject": "Horticultural Etymology",
+      "question": "Which aromatic purple-flowered shrub derives its botanical and common name from the Latin verb 'lavare', meaning 'to wash'?",
+      "options": ["Lavender", "Jasmine", "Rosemary", "Chamomile"],
+      "answer": "Lavender"
+    },
+    {
+      "floor": 6,
+      "subject": "Musical Theatre",
+      "question": "Featuring iconic songs such as 'Willkommen', John Kander and Fred Ebb's musical 'Cabaret' is set in which city during the twilight of the Weimar Republic?",
+      "options": ["Berlin", "Vienna", "Munich", "Hamburg"],
+      "answer": "Berlin"
+    },
+    {
+      "floor": 7,
+      "subject": "Culinary Arts",
+      "question": "Which delicate French pastry consists of two rounded, almond-meringue shells sandwiched around a buttercream or ganache filling?",
+      "options": ["Macaron", "Profiterole", "Madeleine", "Canelé"],
+      "answer": "Macaron"
+    },
+    {
+      "floor": 8,
+      "subject": "Art Techniques",
+      "question": "Dating back to classical antiquity, which painting technique involves using heated beeswax mixed with coloured pigments to fix images onto a wooden surface?",
+      "options": ["Encaustic", "Gouache", "Tempera", "Sanguine"],
+      "answer": "Encaustic"
+    },
+    {
+      "floor": 9,
+      "subject": "World Literature",
+      "question": "Written by Murasaki Shikibu during the Heian period in 11th-century Japan, which celebrated work is widely considered the world's first novel?",
+      "options": ["The Tale of Genji", "The Pillow Book", "Tales of Ise", "The Tale of the Bamboo Cutter"],
+      "answer": "The Tale of Genji"
+    },
+    {
+      "floor": 10,
+      "subject": "Acoustic Physics",
+      "question": "Famously observed inside the dome of St Paul's Cathedral, what acoustic phenomenon allows low-volume whispers to travel clearly along a concave surface?",
+      "options": ["Whispering gallery effect", "Doppler effect", "Resonance cascade", "Acoustic levitation"],
+      "answer": "Whispering gallery effect"
+    }
+  ]
+}
