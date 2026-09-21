@@ -62,10 +62,10 @@
     },
     {
       "floor": 9,
-      "subject": "Economic Botany & History",
-      "question": "During the 17th-century 'Tulip Mania' in the Netherlands, what plant infection was responsible for producing the highly prized flame-like patterns on tulip petals?",
-      "options": ["Tulip breaking virus", "Tobacco mosaic virus", "Cucumber mosaic virus", "Tomato spotted wilt virus"],
-      "answer": "Tulip breaking virus"
+      "subject": "Astronomy & Planetary History",
+      "question": "Discovered by Italian astronomer Giuseppe Piazzi in 1801, what was the first body found in the main asteroid belt, later reclassified as a dwarf planet?",
+      "options": ["Ceres", "Vesta", "Pallas", "Juno"],
+      "answer": "Ceres"
     },
     {
       "floor": 10,
