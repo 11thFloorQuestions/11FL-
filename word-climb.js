@@ -1,13 +1,13 @@
 // 11th Floor Word Climb - Main Game Logic
 
 const DAILY_PUZZLE = {
-  // Full 9-letter pool on the outer ring
+  // Full 9-letter pool on outer ring
   letters: ['C', 'L', 'I', 'M', 'B', 'A', 'T', 'O', 'R'],
   
   // Valid dictionary words by floor length
   dictionary: {
-    4: ['CLIM', 'BAIT', 'BART', 'BOAT', 'COAT', 'ROAM', 'TALK', 'COAL', 'BALT', 'COMB', 'CALM', 'LIMA', 'MOAT', 'MORT', 'TOMB', 'ROTA', 'TACO', 'BOAR', 'ROAM'],
-    5: ['CLIMB', 'ACTOR', 'CAROT', 'TABOR', 'MORTA', 'COBAT', 'ATOMIC', 'TRAIL', 'TRAMP', 'TALOR', 'CAROL'],
+    4: ['CLIM', 'BAIT', 'BART', 'BOAT', 'COAT', 'ROAM', 'TALK', 'COAL', 'BALT', 'COMB', 'CALM', 'LIMA', 'MOAT', 'MORT', 'TOMB', 'ROTA', 'TACO', 'BOAR', 'LOOT', 'TOOL', 'BOOT', 'MOOR'],
+    5: ['CLIMB', 'ACTOR', 'CAROT', 'TABOR', 'MORTA', 'COBAT', 'ATOMIC', 'TRAIL', 'TRAMP', 'TALOR', 'CAROL', 'ROBOT'],
     6: ['CLIMBER', 'COMBAT', 'BARIUM', 'ACTORS', 'COBALT', 'TRACTOR'],
     7: ['CLIMBER', 'COMBATS', 'COBALTS'],
     8: ['ACROBAT'],
@@ -18,7 +18,6 @@ const DAILY_PUZZLE = {
 let currentFloor = 4; // Starts on Floor 4
 const maxFloor = 9;
 let currentGuess = [];
-let usedIndices = []; // Tracks selected node indices
 
 document.addEventListener('DOMContentLoaded', () => {
   initGame();
@@ -27,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
 function initGame() {
   currentFloor = 4;
   currentGuess = [];
-  usedIndices = [];
   setupUIContainers();
   setupWheel();
   updateFloorUI();
@@ -35,7 +33,7 @@ function initGame() {
 }
 
 function setupUIContainers() {
-  // In-game message banner (replaces alert popups)
+  // In-game message banner
   let msgBox = document.getElementById('message-box') || document.querySelector('.message');
   if (!msgBox) {
     msgBox = document.createElement('div');
@@ -92,10 +90,10 @@ function setupWheel() {
   wheelContainer.style.height = '260px';
   wheelContainer.style.margin = '15px auto';
 
-  const totalLetters = DAILY_PUZZLE.letters.length; // All 9 letters
+  const totalLetters = DAILY_PUZZLE.letters.length;
   const radius = 100;
 
-  // Render all 9 letters in an even circle on the outer ring
+  // Render 9 letters around the outer dial ring
   DAILY_PUZZLE.letters.forEach((letter, index) => {
     const angle = (index / totalLetters) * (2 * Math.PI) - (Math.PI / 2);
     const x = Math.round(radius * Math.cos(angle));
@@ -103,7 +101,6 @@ function setupWheel() {
 
     const btn = document.createElement('button');
     btn.className = 'letter-node';
-    btn.dataset.index = index;
     btn.textContent = letter;
     btn.style.position = 'absolute';
     btn.style.left = `calc(50% + ${x}px - 22px)`;
@@ -118,7 +115,7 @@ function setupWheel() {
     btn.style.fontWeight = 'bold';
     btn.style.cursor = 'pointer';
     
-    btn.addEventListener('click', () => selectLetter(letter, index, btn));
+    btn.addEventListener('click', () => selectLetter(letter));
     wheelContainer.appendChild(btn);
   });
 
@@ -150,11 +147,9 @@ function attachControlHandlers() {
   }
 }
 
-function selectLetter(letter, index, button) {
-  if (currentGuess.length < currentFloor && !usedIndices.includes(index)) {
+function selectLetter(letter) {
+  if (currentGuess.length < currentFloor) {
     currentGuess.push(letter);
-    usedIndices.push(index);
-    button.style.opacity = '0.3'; // Dims node once picked
     updateGuessDisplay();
   }
 }
@@ -162,13 +157,6 @@ function selectLetter(letter, index, button) {
 function handleDelete() {
   if (currentGuess.length > 0) {
     currentGuess.pop();
-    const lastIndex = usedIndices.pop();
-    
-    const button = document.querySelector(`.letter-node[data-index="${lastIndex}"]`);
-    if (button) {
-      button.style.opacity = '1';
-    }
-    
     updateGuessDisplay();
   }
 }
@@ -179,7 +167,6 @@ function updateGuessDisplay() {
 
   display.innerHTML = '';
 
-  // Responsive slot sizing matrix
   let boxWidth = 38;
   let boxHeight = 42;
   let fontSize = 20;
@@ -227,9 +214,6 @@ function updateFloorUI() {
   }
   
   currentGuess = [];
-  usedIndices = [];
-  document.querySelectorAll('.letter-node').forEach(btn => btn.style.opacity = '1');
-  
   showMessage('', 'info');
   updateGuessDisplay();
 }
