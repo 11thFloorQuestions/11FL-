@@ -13,7 +13,7 @@
     }
 
     body {
-      background-color: #121212;
+      background-color: #0b0b0b;
       color: #ffffff;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       display: flex;
@@ -23,125 +23,182 @@
       overflow: hidden;
     }
 
-    /* --- Top Branding Header (Matching Red Theme) --- */
+    /* --- Top Utility Bar & Branding Header --- */
     header {
-      text-align: center;
-      padding: 12px 10px 8px;
-      background: #1a1a1a;
-      border-bottom: 2px solid #e50914;
+      padding: 12px 16px 16px;
+      background: #0b0b0b;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
       flex-shrink: 0;
     }
 
-    .logo-title {
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      color: #e50914; /* Match red theme */
-      text-transform: uppercase;
-      line-height: 1.1;
+    .top-bar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: absolute;
+      top: 12px;
+      padding: 0 16px;
     }
 
-    .subtitle {
-      font-size: 13px;
+    .pill-btn {
+      background: transparent;
+      border: 1px solid #333333;
+      color: #888888;
+      font-size: 11px;
       font-weight: 600;
-      color: #aaaaaa;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-top: 2px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      cursor: pointer;
     }
 
-    /* --- Central Game Layout --- */
-    .game-container {
+    .brand-logo {
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #ff1f2d;
+      line-height: 1;
+      margin-top: 4px;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+
+    .brand-game {
+      font-size: 10px;
+      font-weight: 600;
+      color: #666666;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    /* --- Central Game Area --- */
+    .game-layout {
       flex: 1;
       display: flex;
+      gap: 12px;
+      padding: 0 16px 12px;
+      max-width: 480px;
       width: 100%;
-      max-width: 500px;
       margin: 0 auto;
       overflow: hidden;
     }
 
-    /* --- Left Elevator / Floor Indicator --- */
-    .floor-elevator {
-      width: 50px;
-      background-color: #181818;
-      border-right: 1px solid #2a2a2a;
+    /* --- Vertical Elevator Shaft (Matches Image) --- */
+    .elevator-shaft {
+      width: 28px;
       display: flex;
-      flex-direction: column-reverse; /* Floor 4 at bottom, 9 at top */
-      justify-content: space-around;
-      align-items: center;
-      padding: 10px 0;
+      flex-direction: column-reverse; /* Bottom is Floor 1 */
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid #222222;
+      border-radius: 4px;
+      background: #0d0d0d;
       flex-shrink: 0;
     }
 
-    .elevator-floor {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      border: 1px solid #444;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 13px;
-      font-weight: bold;
-      color: #777;
-      background-color: #111;
-      transition: all 0.2s ease;
-    }
-
-    .elevator-floor.active {
-      border-color: #e50914;
-      background-color: #e50914;
-      color: #ffffff;
-      box-shadow: 0 0 8px rgba(229, 9, 20, 0.6);
-    }
-
-    .elevator-floor.passed {
-      border-color: #4cd964;
-      color: #4cd964;
-      background-color: #111;
-    }
-
-    /* --- Main Play Area --- */
-    main {
+    .elevator-block {
       flex: 1;
+      border: 1px solid #222222;
+      border-radius: 2px;
+      background-color: transparent;
+      transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .elevator-block.active {
+      background-color: #ff1f2d;
+      border-color: #ff1f2d;
+      box-shadow: 0 0 10px rgba(255, 31, 45, 0.6);
+    }
+
+    .elevator-block.passed {
+      background-color: #a0141e;
+      border-color: #a0141e;
+    }
+
+    /* --- Main Playing Card Container --- */
+    main.play-card {
+      flex: 1;
+      background: #121212;
+      border: 1px solid #222222;
+      border-radius: 12px;
+      padding: 16px 12px;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      justify-content: space-evenly;
-      padding: 10px;
       position: relative;
     }
 
+    .card-floor-header {
+      width: 100%;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #222222;
+      position: relative;
+      margin-bottom: 8px;
+    }
+
+    .card-floor-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: #ff1f2d;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .card-floor-line {
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      height: 2px;
+      background-color: #ff1f2d;
+      width: 45%;
+      transition: width 0.3s ease;
+    }
+
     #message-box {
-      min-height: 20px;
-      font-size: 14px;
-      font-weight: bold;
-      color: #e50914;
+      min-height: 18px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #ff1f2d;
       text-align: center;
+      letter-spacing: 0.5px;
     }
 
     #guess-display {
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 48px;
+      min-height: 44px;
+      width: 100%;
     }
 
     #wheel-container {
       position: relative;
-      width: 250px;
-      height: 250px;
+      width: 230px;
+      height: 230px;
       margin: 0 auto;
     }
 
     /* --- Bottom Fixed Control Bar --- */
     footer {
       padding: 12px 16px;
-      background: #1a1a1a;
-      border-top: 1px solid #333333;
+      background: #0b0b0b;
+      border-top: 1px solid #1a1a1a;
       display: flex;
       justify-content: center;
-      gap: 16px;
+      gap: 12px;
       flex-shrink: 0;
     }
 
@@ -149,44 +206,62 @@
       flex: 1;
       max-width: 160px;
       padding: 12px 0;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
       color: #ffffff;
-      background-color: #222222;
-      border: 2px solid #e50914;
-      border-radius: 8px;
+      background-color: #161616;
+      border: 1px solid #333333;
+      border-radius: 24px;
       cursor: pointer;
       text-align: center;
-      transition: background-color 0.15s ease;
+      letter-spacing: 0.5px;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
     }
 
     .control-btn:active {
-      background-color: #e50914;
+      background-color: #ff1f2d;
+      border-color: #ff1f2d;
       color: #ffffff;
     }
   </style>
 </head>
 <body>
 
-  <!-- Red Logo Header -->
+  <!-- Branding Header -->
   <header>
-    <div class="logo-title">11FL?</div>
-    <div class="subtitle">Word Climb</div>
+    <div class="top-bar">
+      <button class="pill-btn">Exit</button>
+      <button class="pill-btn">SOUND: OFF</button>
+    </div>
+    <div class="brand-logo">11FL?</div>
+    <div class="brand-sub">ELEVENTH FLOOR</div>
+    <div class="brand-game">WORD CLIMB</div>
   </header>
 
-  <div class="game-container">
-    <!-- Left Floor Indicator (Elevator Style) -->
-    <aside class="floor-elevator">
-      <div class="elevator-floor" data-floor="9">F9</div>
-      <div class="elevator-floor" data-floor="8">F8</div>
-      <div class="elevator-floor" data-floor="7">F7</div>
-      <div class="elevator-floor" data-floor="6">F6</div>
-      <div class="elevator-floor" data-floor="5">F5</div>
-      <div class="elevator-floor" data-floor="4">F4</div>
+  <!-- Central Game Layout -->
+  <div class="game-layout">
+    <!-- Continuous Vertical Elevator Shaft (11 Floors) -->
+    <aside class="elevator-shaft" id="elevator-shaft">
+      <div class="elevator-block" data-floor="11"></div>
+      <div class="elevator-block" data-floor="10"></div>
+      <div class="elevator-block" data-floor="9"></div>
+      <div class="elevator-block" data-floor="8"></div>
+      <div class="elevator-block" data-floor="7"></div>
+      <div class="elevator-block" data-floor="6"></div>
+      <div class="elevator-block" data-floor="5"></div>
+      <div class="elevator-block" data-floor="4"></div>
+      <div class="elevator-block" data-floor="3"></div>
+      <div class="elevator-block" data-floor="2"></div>
+      <div class="elevator-block" data-floor="1"></div>
     </aside>
 
-    <!-- Main Game Play Board -->
-    <main>
+    <!-- Play Card Container -->
+    <main class="play-card">
+      <div class="card-floor-header">
+        <div class="card-floor-label" id="card-floor-text">FLOOR 04</div>
+        <div class="card-floor-line" id="card-floor-progress"></div>
+      </div>
+
       <div id="message-box"></div>
       <div id="guess-display"></div>
       <div id="wheel-container"></div>
