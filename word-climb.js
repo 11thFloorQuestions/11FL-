@@ -35,7 +35,9 @@ function setupWheel() {
   wheelContainer.innerHTML = '';
 
   const totalLetters = DAILY_PUZZLE.letters.length;
-  const radius = 95; // Sized for compact mobile/desktop alignment
+  // Radius reduced to 82px and letter size increased to 50px for larger/tighter layout
+  const radius = 82; 
+  const nodeSize = 50;
 
   DAILY_PUZZLE.letters.forEach((letter, index) => {
     const angle = (index / totalLetters) * (2 * Math.PI) - (Math.PI / 2);
@@ -46,15 +48,15 @@ function setupWheel() {
     btn.className = 'letter-node';
     btn.textContent = letter;
     btn.style.position = 'absolute';
-    btn.style.left = `calc(50% + ${x}px - 21px)`;
-    btn.style.top = `calc(50% + ${y}px - 21px)`;
-    btn.style.width = '42px';
-    btn.style.height = '42px';
+    btn.style.left = `calc(50% + ${x}px - ${nodeSize / 2}px)`;
+    btn.style.top = `calc(50% + ${y}px - ${nodeSize / 2}px)`;
+    btn.style.width = `${nodeSize}px`;
+    btn.style.height = `${nodeSize}px`;
     btn.style.borderRadius = '50%';
-    btn.style.border = '2px solid #d4af37';
+    btn.style.border = '2px solid #e50914';
     btn.style.backgroundColor = '#222';
     btn.style.color = '#fff';
-    btn.style.fontSize = '18px';
+    btn.style.fontSize = '20px';
     btn.style.fontWeight = 'bold';
     btn.style.cursor = 'pointer';
     
@@ -65,12 +67,12 @@ function setupWheel() {
   const centerHub = document.createElement('div');
   centerHub.className = 'center-hub';
   centerHub.style.position = 'absolute';
-  centerHub.style.left = 'calc(50% - 21px)';
-  centerHub.style.top = 'calc(50% - 21px)';
-  centerHub.style.width = '42px';
-  centerHub.style.height = '42px';
+  centerHub.style.left = `calc(50% - ${nodeSize / 2}px)`;
+  centerHub.style.top = `calc(50% - ${nodeSize / 2}px)`;
+  centerHub.style.width = `${nodeSize}px`;
+  centerHub.style.height = `${nodeSize}px`;
   centerHub.style.borderRadius = '50%';
-  centerHub.style.border = '2px solid #d4af37';
+  centerHub.style.border = '2px solid #e50914';
   centerHub.style.backgroundColor = '#111';
   wheelContainer.appendChild(centerHub);
 }
@@ -130,7 +132,7 @@ function updateGuessDisplay() {
     slot.style.height = `${boxHeight}px`;
     slot.style.lineHeight = `${boxHeight}px`;
     slot.style.margin = `0 ${margin}px`;
-    slot.style.border = '2px solid #d4af37';
+    slot.style.border = '2px solid #e50914';
     slot.style.color = '#fff';
     slot.style.fontSize = `${fontSize}px`;
     slot.style.fontWeight = 'bold';
@@ -144,11 +146,19 @@ function updateGuessDisplay() {
 }
 
 function updateFloorUI() {
-  const floorIndicator = document.getElementById('floor-display');
-  if (floorIndicator) {
-    floorIndicator.textContent = `FLOOR ${currentFloor} (${currentFloor} LETTERS)`;
-  }
-  
+  // Update left floor elevator indicators
+  const elevatorFloors = document.querySelectorAll('.elevator-floor');
+  elevatorFloors.forEach(el => {
+    const floorNum = parseInt(el.getAttribute('data-floor'), 10);
+    el.classList.remove('active', 'passed');
+    
+    if (floorNum === currentFloor) {
+      el.classList.add('active');
+    } else if (floorNum < currentFloor) {
+      el.classList.add('passed');
+    }
+  });
+
   currentGuess = [];
   showMessage('', 'info');
   updateGuessDisplay();
@@ -185,6 +195,6 @@ function showMessage(msg, type) {
   const msgBox = document.getElementById('message-box');
   if (msgBox) {
     msgBox.textContent = msg;
-    msgBox.style.color = type === 'error' ? '#ff4d4d' : '#d4af37';
+    msgBox.style.color = type === 'error' ? '#ff4d4d' : '#e50914';
   }
 }
