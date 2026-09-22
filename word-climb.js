@@ -28,12 +28,10 @@ async function loadDictionaryAndInit() {
           window.MASTER_DICTIONARY.add(word);
         }
       }
-      console.log(`[11th Floor] Dictionary ready: ${window.MASTER_DICTIONARY.size} words.`);
-    } else {
-      console.error('[11th Floor] Could not find words.js file.');
+      console.log(`[11th Floor] Dictionary loaded: ${window.MASTER_DICTIONARY.size} words.`);
     }
   } catch (err) {
-    console.error('[11th Floor] Failed to load dictionary:', err);
+    console.error('[11th Floor] Failed to load dictionary file:', err);
   }
 
   initGame();
@@ -53,13 +51,8 @@ function setupWheel() {
   if (!wheelContainer) return;
   
   wheelContainer.innerHTML = '';
-  wheelContainer.style.position = 'relative';
-  wheelContainer.style.width = '200px';
-  wheelContainer.style.height = '200px';
-  wheelContainer.style.margin = '20px auto 0 auto';
-
   const totalLetters = DAILY_PUZZLE.letters.length;
-  const radius = 70; 
+  const radius = 68; 
   const nodeSize = 44;
 
   DAILY_PUZZLE.letters.forEach((letter, index) => {
@@ -76,11 +69,12 @@ function setupWheel() {
     btn.style.width = `${nodeSize}px`;
     btn.style.height = `${nodeSize}px`;
     btn.style.borderRadius = '50%';
+    // Thin red outer border and subtle glow as requested
     btn.style.border = '1px solid #ff1f2d';
     btn.style.boxShadow = '0 0 5px rgba(255, 31, 45, 0.3)';
     btn.style.backgroundColor = '#181818';
     btn.style.color = '#ffffff';
-    btn.style.fontSize = '20px';
+    btn.style.fontSize = '18px';
     btn.style.fontWeight = 'bold';
     btn.style.cursor = 'pointer';
     
@@ -90,10 +84,10 @@ function setupWheel() {
 
   const centerHub = document.createElement('div');
   centerHub.style.position = 'absolute';
-  centerHub.style.left = `calc(50% - 20px)`;
-  centerHub.style.top = `calc(50% - 20px)`;
-  centerHub.style.width = '40px';
-  centerHub.style.height = '40px';
+  centerHub.style.left = `calc(50% - 22px)`;
+  centerHub.style.top = `calc(50% - 22px)`;
+  centerHub.style.width = '44px';
+  centerHub.style.height = '44px';
   centerHub.style.borderRadius = '50%';
   centerHub.style.border = '1px solid #ff1f2d';
   centerHub.style.backgroundColor = '#0e0e0e';
@@ -131,39 +125,34 @@ function updateGuessDisplay() {
 
   display.innerHTML = '';
 
-  let boxWidth = 32;
-  let boxHeight = 36;
+  let boxWidth = 34;
+  let boxHeight = 38;
   let fontSize = 16;
-  let margin = 2;
 
   if (currentFloor >= 9) {
-    boxWidth = 22;
+    boxWidth = 24;
     boxHeight = 30;
     fontSize = 12;
-    margin = 1;
   } else if (currentFloor >= 7) {
-    boxWidth = 26;
-    boxHeight = 32;
+    boxWidth = 28;
+    boxHeight = 34;
     fontSize = 14;
-    margin = 2;
   }
 
   for (let i = 0; i < currentFloor; i++) {
     const slot = document.createElement('div');
     slot.textContent = currentGuess[i] || '';
     
-    slot.style.display = 'inline-block';
     slot.style.width = `${boxWidth}px`;
     slot.style.height = `${boxHeight}px`;
     slot.style.lineHeight = `${boxHeight}px`;
-    slot.style.margin = `0 ${margin}px`;
     slot.style.border = '1px solid #2a2a2a';
     slot.style.color = '#ffffff';
     slot.style.fontSize = `${fontSize}px`;
     slot.style.fontWeight = 'bold';
     slot.style.textAlign = 'center';
-    slot.style.borderRadius = '6px';
-    slot.style.backgroundColor = currentGuess[i] ? '#222222' : '#141414';
+    slot.style.borderRadius = '8px';
+    slot.style.backgroundColor = currentGuess[i] ? '#222222' : '#161616';
     slot.style.boxSizing = 'border-box';
     
     display.appendChild(slot);
@@ -177,15 +166,13 @@ function updateFloorUI() {
     cardFloorText.textContent = `FLOOR ${formattedFloor}`;
   }
 
-  const elevatorBlocks = document.querySelectorAll('.elevator-block, [data-floor]');
-  elevatorBlocks.forEach(block => {
-    const floorNum = parseInt(block.getAttribute('data-floor'), 10);
+  const elevatorSlots = document.querySelectorAll('.elevator-slot');
+  elevatorSlots.forEach(slot => {
+    const floorNum = parseInt(slot.getAttribute('data-floor'), 10);
     if (floorNum === currentFloor) {
-      block.style.border = '1px solid #ff1f2d';
-      block.style.backgroundColor = 'rgba(255, 31, 45, 0.2)';
+      slot.classList.add('active');
     } else {
-      block.style.border = '1px solid #222';
-      block.style.backgroundColor = 'transparent';
+      slot.classList.remove('active');
     }
   });
 
@@ -238,6 +225,6 @@ function showMessage(msg, type) {
   let msgBox = document.getElementById('message-box');
   if (msgBox) {
     msgBox.textContent = msg;
-    msgBox.style.color = (type === 'error') ? '#ff4d4d' : ((type === 'success' || type === 'victory') ? '#4dff79' : '#ff1f2d');
+    msgBox.style.color = (type === 'error') ? '#ff1f2d' : ((type === 'success' || type === 'victory') ? '#4dff79' : '#ff1f2d');
   }
 }
