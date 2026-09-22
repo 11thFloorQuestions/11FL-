@@ -1,276 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>11FL? Word Climb</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>11th Floor Word Climb</title>
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       user-select: none;
     }
-
     body {
-      background-color: #0b0b0b;
+      background-color: #080808;
       color: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       display: flex;
-      flex-direction: column;
-      height: 100vh;
-      height: 100dvh;
-      overflow: hidden;
-    }
-
-    /* --- Top Utility Bar & Branding Header --- */
-    header {
-      padding: 12px 16px 14px;
-      background: #0b0b0b;
-      display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      position: relative;
-      flex-shrink: 0;
+      min-height: 100vh;
+      padding: 12px;
     }
-
-    .top-bar {
+    .app-container {
       width: 100%;
+      max-width: 380px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    /* Top Header */
+    .top-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: absolute;
-      top: 12px;
-      padding: 0 16px;
+      position: relative;
+      padding: 4px 0;
     }
-
     .pill-btn {
-      background: transparent;
-      border: 1px solid #282828;
+      background: #121212;
+      border: 1px solid #2a2a2a;
+      border-radius: 14px;
       color: #888888;
       font-size: 11px;
       font-weight: 600;
-      padding: 5px 14px;
-      border-radius: 20px;
-      letter-spacing: 0.5px;
+      padding: 6px 14px;
       cursor: pointer;
+      text-decoration: none;
     }
-
     .brand-logo {
-      font-size: 34px;
-      font-weight: 900;
-      letter-spacing: 1px;
+      text-align: center;
+    }
+    .brand-title {
       color: #ff1f2d;
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
       line-height: 1;
-      margin-top: 4px;
     }
-
-    .brand-sub {
-      font-size: 11px;
-      font-weight: 700;
+    .brand-subtitle-main {
       color: #ffffff;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-top: 8px;
-    }
-
-    .brand-game {
       font-size: 10px;
-      font-weight: 600;
-      color: #666666;
+      font-weight: 800;
       letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-top: 3px;
+      margin-top: 6px;
+    }
+    .brand-subtitle-sub {
+      color: #666666;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      margin-top: 2px;
     }
 
-    /* --- Central Game Layout --- */
-    .game-layout {
-      flex: 1;
+    /* Main Workspace Layout */
+    .workspace {
       display: flex;
-      gap: 12px;
-      padding: 0 16px 12px;
-      max-width: 480px;
-      width: 100%;
-      margin: 0 auto;
-      overflow: hidden;
+      gap: 10px;
+      align-items: stretch;
+      min-height: 480px;
     }
 
-    /* --- Vertical Elevator Shaft --- */
+    /* Left Elevator Shaft */
     .elevator-shaft {
-      width: 28px;
       display: flex;
-      flex-direction: column; /* Stacked 11 down to 1 top-to-bottom */
-      gap: 4px;
-      padding: 4px;
+      flex-direction: column-reverse;
+      justify-content: space-between;
+      width: 24px;
+      background-color: #0f0f0f;
       border: 1px solid #1a1a1a;
-      border-radius: 6px;
-      background: #090909;
-      flex-shrink: 0;
+      border-radius: 12px;
+      padding: 6px 3px;
     }
-
-    .elevator-block {
-      flex: 1;
-      border: 1px solid #1c1c1c;
-      border-radius: 3px;
+    .elevator-slot {
+      height: 42px;
+      border: 1px solid #222222;
+      border-radius: 4px;
       background-color: transparent;
-      transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      transition: all 0.2s ease;
     }
-
-    /* Active floor block glows red */
-    .elevator-block.active {
+    .elevator-slot.active {
       background-color: #ff1f2d;
       border-color: #ff1f2d;
-      box-shadow: 0 0 12px rgba(255, 31, 45, 0.8);
+      box-shadow: 0 0 10px rgba(255, 31, 45, 0.6);
     }
 
-    /* --- Main Playing Card Container --- */
-    main.play-card {
+    /* Main Play Card */
+    .play-card {
       flex: 1;
-      background: #111111;
-      border: 1px solid #222222;
-      border-radius: 16px;
-      padding: 16px 12px;
+      background-color: #111111;
+      border: 1px solid #1e1e1e;
+      border-radius: 18px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       align-items: center;
       position: relative;
     }
-
-    .card-floor-header {
+    .card-header {
       width: 100%;
-      padding-bottom: 8px;
+      text-align: left;
       border-bottom: 1px solid #222222;
+      padding-bottom: 8px;
+      margin-bottom: 24px;
       position: relative;
-      margin-bottom: 4px;
     }
-
     .card-floor-label {
-      font-size: 11px;
-      font-weight: 800;
       color: #ff1f2d;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
     }
-
-    .card-floor-line {
+    .card-header-line {
       position: absolute;
       bottom: -1px;
       left: 0;
+      width: 90px;
       height: 2px;
       background-color: #ff1f2d;
-      width: 45%;
-      transition: width 0.3s ease;
     }
 
+    /* Status Message */
     #message-box {
-      min-height: 18px;
-      font-size: 12px;
-      font-weight: 700;
       color: #ff1f2d;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      min-height: 20px;
+      margin-bottom: 20px;
       text-align: center;
-      letter-spacing: 0.5px;
     }
 
+    /* Letter Slots */
     #guess-display {
       display: flex;
       justify-content: center;
-      align-items: center;
-      min-height: 44px;
-      width: 100%;
+      gap: 6px;
+      margin-bottom: 30px;
     }
 
+    /* Wheel Container */
     #wheel-container {
+      width: 200px;
+      height: 200px;
       position: relative;
-      width: 240px;
-      height: 240px;
-      margin: 0 auto;
+      margin-top: auto;
+      margin-bottom: auto;
     }
 
-    /* --- Bottom Control Bar --- */
-    footer {
-      padding: 12px 16px;
-      background: #0b0b0b;
-      border-top: 1px solid #181818;
+    /* Bottom Action Controls */
+    .controls {
       display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-shrink: 0;
+      gap: 10px;
+      margin-top: 4px;
     }
-
-    /* Added thin red outer border to action buttons */
-    .control-btn {
+    .btn-action {
       flex: 1;
-      max-width: 160px;
-      padding: 12px 0;
-      font-size: 13px;
-      font-weight: 700;
-      color: #ffffff;
-      background-color: #141414;
+      padding: 14px 10px;
+      border-radius: 20px;
       border: 1px solid #ff1f2d;
-      box-shadow: 0 0 4px rgba(255, 31, 45, 0.25);
-      border-radius: 24px;
-      cursor: pointer;
-      text-align: center;
-      letter-spacing: 0.5px;
-      transition: background-color 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .control-btn:active {
-      background-color: #ff1f2d;
-      box-shadow: 0 0 10px rgba(255, 31, 45, 0.8);
+      background-color: #121212;
       color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 0 6px rgba(255, 31, 45, 0.25);
+    }
+    .btn-action:active {
+      background-color: #1c1c1c;
     }
   </style>
 </head>
 <body>
 
-  <!-- Branding Header -->
-  <header>
-    <div class="top-bar">
-      <button class="pill-btn">Exit</button>
+  <div class="app-container">
+    <!-- Top Header -->
+    <div class="top-header">
+      <a href="index.html" class="pill-btn">Exit</a>
+      <div class="brand-logo">
+        <div class="brand-title">11FL?</div>
+        <div class="brand-subtitle-main">ELEVENTH FLOOR</div>
+        <div class="brand-subtitle-sub">WORD CLIMB</div>
+      </div>
       <button class="pill-btn">SOUND: OFF</button>
     </div>
-    <div class="brand-logo">11FL?</div>
-    <div class="brand-sub">ELEVENTH FLOOR</div>
-    <div class="brand-game">WORD CLIMB</div>
-  </header>
 
-  <!-- Central Game Layout -->
-  <div class="game-layout">
-    <!-- Correctly mapped Shaft: Top is 11, Bottom is 1 -->
-    <aside class="elevator-shaft" id="elevator-shaft">
-      <div class="elevator-block" data-floor="11"></div>
-      <div class="elevator-block" data-floor="10"></div>
-      <div class="elevator-block" data-floor="9"></div>
-      <div class="elevator-block" data-floor="8"></div>
-      <div class="elevator-block" data-floor="7"></div>
-      <div class="elevator-block" data-floor="6"></div>
-      <div class="elevator-block" data-floor="5"></div>
-      <div class="elevator-block" data-floor="4"></div>
-      <div class="elevator-block" data-floor="3"></div>
-      <div class="elevator-block" data-floor="2"></div>
-      <div class="elevator-block" data-floor="1"></div>
-    </aside>
-
-    <!-- Play Card Container -->
-    <main class="play-card">
-      <div class="card-floor-header">
-        <div class="card-floor-label" id="card-floor-text">FLOOR 04</div>
-        <div class="card-floor-line" id="card-floor-progress"></div>
+    <!-- Main Workspace -->
+    <div class="workspace">
+      <!-- Left Elevator Shaft -->
+      <div class="elevator-shaft">
+        <div class="elevator-slot" data-floor="4"></div>
+        <div class="elevator-slot" data-floor="5"></div>
+        <div class="elevator-slot" data-floor="6"></div>
+        <div class="elevator-slot" data-floor="7"></div>
+        <div class="elevator-slot" data-floor="8"></div>
+        <div class="elevator-slot" data-floor="9"></div>
+        <div class="elevator-slot" data-floor="10"></div>
       </div>
 
-      <div id="message-box"></div>
-      <div id="guess-display"></div>
-      <div id="wheel-container"></div>
-    </main>
-  </div>
+      <!-- Main Game Card -->
+      <div class="play-card">
+        <div class="card-header">
+          <span id="card-floor-text" class="card-floor-label">FLOOR 04</span>
+          <div class="card-header-line"></div>
+        </div>
 
-  <!-- Bottom Control Bar -->
-  <footer>
-    <button id="action-delete-btn" class="control-btn">⌫ DELETE</button>
-    <button id="action-submit-btn" class="control-btn">↵ SUBMIT</button>
-  </footer>
+        <div id="message-box"></div>
+        <div id="guess-display"></div>
+        <div id="wheel-container"></div>
+      </div>
+    </div>
+
+    <!-- Bottom Controls -->
+    <div class="controls">
+      <button id="action-delete-btn" class="btn-action">
+        <span>⌫</span> DELETE
+      </button>
+      <button id="action-submit-btn" class="btn-action">
+        <span>↵</span> SUBMIT
+      </button>
+    </div>
+  </div>
 
   <script src="word-climb.js"></script>
 </body>
