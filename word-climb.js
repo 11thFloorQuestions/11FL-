@@ -1,7 +1,7 @@
-// 11th Floor Word Climb - Production Engine
+// 11th Floor Word Climb - Game Engine
 
 const DAILY_PUZZLE = {
-  // Active daily letters: U - N - D - E - R - S - T - A
+  // Active wheel letters: U - N - D - E - R - S - T - A
   letters: ['U', 'N', 'D', 'E', 'R', 'S', 'T', 'A']
 };
 
@@ -10,7 +10,7 @@ const maxFloor = 10;
 let currentGuess = [];
 let isTransitioning = false;
 
-// Global set to hold valid dictionary words
+// Global set holding master dictionary
 window.MASTER_DICTIONARY = new Set();
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -18,8 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function loadDictionaryAndInit() {
+  showMessage('LOADING DICTIONARY...', 'info');
   try {
-    // Automatically reads the words.js text file from your repository
+    // Reads words.js directly as a text file
     const response = await fetch('words.js');
     if (response.ok) {
       const text = await response.text();
@@ -30,13 +31,15 @@ async function loadDictionaryAndInit() {
           window.MASTER_DICTIONARY.add(word);
         }
       }
-      console.log(`[11th Floor] Master dictionary loaded: ${window.MASTER_DICTIONARY.size} words.`);
+      console.log(`[11th Floor] Dictionary ready: ${window.MASTER_DICTIONARY.size} words.`);
+    } else {
+      console.error('[11th Floor] Could not find words.js file.');
     }
   } catch (err) {
-    console.warn('[11th Floor] Could not load local dictionary file:', err);
+    console.error('[11th Floor] Failed to load dictionary:', err);
   }
 
-  // Draw the game UI
+  // Draw UI after dictionary load
   initGame();
 }
 
@@ -108,12 +111,6 @@ function attachControlHandlers() {
 
   if (deleteBtn) deleteBtn.onclick = handleDelete;
   if (submitBtn) submitBtn.onclick = handleSubmit;
-
-  const buttons = document.querySelectorAll('button');
-  buttons.forEach(btn => {
-    if (btn.textContent.includes('DELETE')) btn.onclick = handleDelete;
-    if (btn.textContent.includes('SUBMIT')) btn.onclick = handleSubmit;
-  });
 }
 
 function selectLetter(letter) {
@@ -137,8 +134,6 @@ function updateGuessDisplay() {
   if (!display) return;
 
   display.innerHTML = '';
-  display.style.textAlign = 'center';
-  display.style.margin = '15px 0';
 
   let boxWidth = 32;
   let boxHeight = 36;
