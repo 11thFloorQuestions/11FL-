@@ -1,16 +1,40 @@
 // 11th Floor Word Climb - Main Game Logic
 
 const DAILY_PUZZLE = {
-  letters: ['C', 'L', 'I', 'M', 'B', 'A', 'T', 'O', 'R'],
-  dictionary: {
-    4: ['CLIM', 'BAIT', 'BART', 'BOAT', 'COAT', 'ROAM', 'TALK', 'COAL', 'BALT', 'COMB', 'CALM', 'LIMA', 'MOAT', 'MORT', 'TOMB', 'ROTA', 'TACO', 'BOAR', 'LOOT', 'TOOL', 'BOOT', 'MOOR', 'BAIL', 'CLAM', 'OATM', 'AMIT', 'BOLT', 'COLT', 'ROMA', 'TRAM', 'ATOM', 'LIMO', 'MIRO', 'MALT', 'BLOT', 'BOMA'],
-    5: ['CLIMB', 'ACTOR', 'CAROT', 'TABOR', 'MORTA', 'COBAT', 'ATOMIC', 'TRAIL', 'TRAMP', 'TALOR', 'CAROL', 'ROBOT', 'ALTIM', 'CLARO', 'CLOAM', 'LOBAR', 'MOTAR', 'RABIC', 'TCOAL', 'MARTO', 'TIMAR'],
-    6: ['CLIMBER', 'COMBAT', 'BARIUM', 'ACTORS', 'COBALT', 'TRACTOR', 'BORTAM', 'MORTAL', 'CARLOM', 'TAILOR'],
-    7: ['CLIMBER', 'COMBATS', 'COBALTS', 'ACROBAT', 'CLIMBAT'],
-    8: ['ACROBAT', 'ACROBATS'],
-    9: ['ACROBATIC', 'CLIMBATOR']
-  }
+  // New wheel letter set: P - A - N - T - H - E - R - S - O
+  letters: ['P', 'A', 'N', 'T', 'H', 'E', 'R', 'S', 'O']
 };
+
+// Expanded dictionary of valid English words formed from P-A-N-T-H-E-R-S-O
+const VALID_WORDS = new Set([
+  // 4-letter words
+  "PATH", "PART", "PAST", "PEAR", "PEST", "PEAT", "POND", "PONT", "POTS", 
+  "PORT", "POST", "POTS", "PALE", "PANE", "PATS", "PROS", "PETS", "POET",
+  "HOPE", "HORN", "HOST", "HEAT", "HEAR", "HERO", "HATE", "HATS", "HERB",
+  "SHOP", "SNAP", "STAR", "STOP", "SOAP", "SOAR", "SORT", "SHOT", "SHOE",
+  "ROSE", "ROPE", "ROAN", "RENT", "REST", "RATE", "RATS", "TORN", "TRAP",
+  "TOES", "TORE", "TONE", "TAPS", "TEAR", "THEN", "NEAR", "NEAT", "NEST",
+  
+  // 5-letter words
+  "PANTHER", "EARTH", "HEART", "SHAPE", "SHARE", "STORE", "STONE", "SHARP",
+  "SHORT", "PHASE", "PHONE", "PRONE", "PASTE", "PANEL", "PANES", "PARTS",
+  "PANTS", "PORTS", "POSTS", "PROSE", "HORNS", "HATES", "HEATS", "HEROES",
+  "TRAPS", "TEARS", "TONES", "STARE", "SNORT", "OTHER", "AFTER", "NORTH",
+
+  // 6-letter words
+  "PANTHER", "PANTHERS", "PASTHER", "PARSON", "PATRON", "PASTER", "POTHER",
+  "PASTEL", "PLANET", "PYTHON", "PRONTS", "REPATH", "HORNET", "THORNS",
+  "ASTERN", "REPOST", "POSHER", "PARENT", "PATRONS", "STROP",
+
+  // 7-letter words
+  "PANTHER", "PATRONS", "PASTERN", "PORTANS", "PRONETS", "SHORTER", "PARENTS",
+
+  // 8-letter words
+  "PANTHERS", "PATRONESS", "PANTHROS",
+
+  // 9-letter words
+  "PANTHERSO"
+]);
 
 let currentFloor = 4;
 const maxFloor = 9;
@@ -56,7 +80,6 @@ function setupWheel() {
     // Thin red outer border with subtle red glow
     btn.style.border = '1px solid #ff1f2d';
     btn.style.boxShadow = '0 0 5px rgba(255, 31, 45, 0.3)';
-    
     btn.style.backgroundColor = '#181818';
     btn.style.color = '#ffffff';
     btn.style.fontSize = '22px';
@@ -75,8 +98,6 @@ function setupWheel() {
   centerHub.style.width = `${nodeSize}px`;
   centerHub.style.height = `${nodeSize}px`;
   centerHub.style.borderRadius = '50%';
-  
-  // Matching thin red outer border for center hub
   centerHub.style.border = '1px solid #ff1f2d';
   centerHub.style.boxShadow = '0 0 5px rgba(255, 31, 45, 0.2)';
   centerHub.style.backgroundColor = '#0e0e0e';
@@ -165,7 +186,7 @@ function updateFloorUI() {
     cardFloorProgress.style.width = `${progressPercent}%`;
   }
 
-  // Highlight only the current floor
+  // Active Floor Block Lighting Fix
   const elevatorBlocks = document.querySelectorAll('.elevator-block');
   elevatorBlocks.forEach(block => {
     const floorNum = parseInt(block.getAttribute('data-floor'), 10);
@@ -181,6 +202,17 @@ function updateFloorUI() {
   updateGuessDisplay();
 }
 
+// Checks if word can be made from ring letters
+function canBeFormedFromWheel(word) {
+  const availableLetters = [...DAILY_PUZZLE.letters];
+  for (let char of word) {
+    const index = availableLetters.indexOf(char);
+    if (index === -1) return false;
+    availableLetters.splice(index, 1);
+  }
+  return true;
+}
+
 function handleSubmit() {
   const word = currentGuess.join('').toUpperCase();
   const targetLength = currentFloor;
@@ -190,9 +222,10 @@ function handleSubmit() {
     return;
   }
 
-  const validWords = DAILY_PUZZLE.dictionary[targetLength] || [];
-  
-  if (validWords.includes(word)) {
+  const isValidLetterCombination = canBeFormedFromWheel(word);
+  const isRecognizedWord = VALID_WORDS.has(word);
+
+  if (isValidLetterCombination && isRecognizedWord) {
     showMessage('VALID WORD! ASCENDING...', 'success');
     
     setTimeout(() => {
