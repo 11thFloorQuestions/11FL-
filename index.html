@@ -4,16 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>11th Floor Games Hub</title>
+  <!-- Google Font for geometric clean subtitle look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       user-select: none;
     }
     body {
-      background-color: #080808;
+      background-color: #000000;
       color: #ffffff;
       display: flex;
       flex-direction: column;
@@ -21,39 +25,58 @@
       justify-content: center;
       min-height: 100vh;
       padding: 20px;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
     }
     .hub-container {
       width: 100%;
       max-width: 400px;
       text-align: center;
     }
-    .hub-header {
-      margin-bottom: 32px;
+
+    /* Exact Logo Styling matching image */
+    .brand-header {
+      margin-bottom: 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    .brand-title {
-      color: #ff1f2d;
-      font-size: 32px;
+    .logo-main {
+      color: #ff0000;
+      font-family: Impact, 'Arial Black', 'Trebuchet MS', sans-serif;
+      font-size: 72px;
+      line-height: 0.9;
+      letter-spacing: -1px;
       font-weight: 900;
-      letter-spacing: 1px;
-      line-height: 1;
     }
-    .brand-subtitle {
-      color: #888888;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      margin-top: 8px;
+    .logo-sub-title {
+      color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 24px;
+      font-weight: 300;
+      margin-top: 10px;
+      letter-spacing: 0.5px;
     }
+    .logo-category {
+      color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 4px;
+      margin-top: 12px;
+      text-transform: uppercase;
+    }
+
+    /* Cards Layout */
     .game-grid {
       display: flex;
       flex-direction: column;
       gap: 16px;
     }
     .game-card {
-      background-color: #121212;
+      background-color: #111111;
       border: 1px solid #222222;
       border-radius: 16px;
-      padding: 24px;
+      padding: 22px;
       text-decoration: none;
       color: #ffffff;
       display: flex;
@@ -61,32 +84,33 @@
       align-items: flex-start;
       text-align: left;
       transition: all 0.2s ease;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     }
     .game-card:active {
       transform: scale(0.98);
-      border-color: #ff1f2d;
+      border-color: #ff0000;
     }
     .game-title {
-      color: #ff1f2d;
-      font-size: 18px;
+      color: #ff0000;
+      font-size: 17px;
       font-weight: 800;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
       margin-bottom: 6px;
     }
     .game-desc {
       color: #aaaaaa;
-      font-size: 13px;
+      font-size: 12px;
       line-height: 1.4;
       margin-bottom: 16px;
+      font-weight: 300;
     }
     .play-badge {
       align-self: flex-end;
-      background-color: #1a1a1a;
-      border: 1px solid #ff1f2d;
+      background-color: #181818;
+      border: 1px solid #ff0000;
       color: #ffffff;
       font-size: 11px;
-      font-weight: 800;
+      font-weight: 700;
       padding: 6px 16px;
       border-radius: 12px;
       letter-spacing: 1px;
@@ -96,13 +120,16 @@
 <body>
 
   <div class="hub-container">
-    <div class="hub-header">
-      <div class="brand-title">11FL GAMES</div>
-      <div class="brand-subtitle">SELECT YOUR CHALLENGE</div>
+    <!-- Brand Logo Header -->
+    <div class="brand-header">
+      <div class="logo-main">11FL?</div>
+      <div class="logo-sub-title">Eleventh Floor</div>
+      <div class="logo-category">GAMES</div>
     </div>
 
+    <!-- Game List -->
     <div class="game-grid">
-      <!-- Game 1: 11th Floor Questions (TOP) -->
+      <!-- Game 1: Questions (TOP) -->
       <a href="questions.html" class="game-card">
         <div class="game-title">11TH FLOOR QUESTIONS</div>
         <div class="game-desc">Test your knowledge with daily elevator trivia and questions.</div>
