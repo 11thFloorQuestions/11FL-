@@ -36,7 +36,7 @@ function setupWheel() {
 
   const totalLetters = DAILY_PUZZLE.letters.length;
   const radius = 78; 
-  const nodeSize = 54; // Enlarge buttons and text for better visibility
+  const nodeSize = 54;
 
   DAILY_PUZZLE.letters.forEach((letter, index) => {
     const angle = (index / totalLetters) * (2 * Math.PI) - (Math.PI / 2);
@@ -52,7 +52,11 @@ function setupWheel() {
     btn.style.width = `${nodeSize}px`;
     btn.style.height = `${nodeSize}px`;
     btn.style.borderRadius = '50%';
-    btn.style.border = '1px solid #282828';
+    
+    // Thin red outer border with subtle red glow
+    btn.style.border = '1px solid #ff1f2d';
+    btn.style.boxShadow = '0 0 5px rgba(255, 31, 45, 0.3)';
+    
     btn.style.backgroundColor = '#181818';
     btn.style.color = '#ffffff';
     btn.style.fontSize = '22px';
@@ -71,8 +75,12 @@ function setupWheel() {
   centerHub.style.width = `${nodeSize}px`;
   centerHub.style.height = `${nodeSize}px`;
   centerHub.style.borderRadius = '50%';
-  centerHub.style.border = '1px solid #1f1f1f';
+  
+  // Matching thin red outer border for center hub
+  centerHub.style.border = '1px solid #ff1f2d';
+  centerHub.style.boxShadow = '0 0 5px rgba(255, 31, 45, 0.2)';
   centerHub.style.backgroundColor = '#0e0e0e';
+  
   wheelContainer.appendChild(centerHub);
 }
 
@@ -145,21 +153,19 @@ function updateGuessDisplay() {
 }
 
 function updateFloorUI() {
-  // Update card header floor text
   const cardFloorText = document.getElementById('card-floor-text');
   if (cardFloorText) {
     const formattedFloor = currentFloor < 10 ? `0${currentFloor}` : currentFloor;
     cardFloorText.textContent = `FLOOR ${formattedFloor}`;
   }
 
-  // Update header red accent line width
   const cardFloorProgress = document.getElementById('card-floor-progress');
   if (cardFloorProgress) {
     const progressPercent = Math.min(100, Math.round((currentFloor / maxFloor) * 100));
     cardFloorProgress.style.width = `${progressPercent}%`;
   }
 
-  // Update left elevator blocks - ONLY current active floor turns RED
+  // Highlight only the current floor
   const elevatorBlocks = document.querySelectorAll('.elevator-block');
   elevatorBlocks.forEach(block => {
     const floorNum = parseInt(block.getAttribute('data-floor'), 10);
