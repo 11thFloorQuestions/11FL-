@@ -35,9 +35,8 @@ function setupWheel() {
   wheelContainer.innerHTML = '';
 
   const totalLetters = DAILY_PUZZLE.letters.length;
-  // Radius reduced to 82px and letter size increased to 50px for larger/tighter layout
-  const radius = 82; 
-  const nodeSize = 50;
+  const radius = 75; 
+  const nodeSize = 48;
 
   DAILY_PUZZLE.letters.forEach((letter, index) => {
     const angle = (index / totalLetters) * (2 * Math.PI) - (Math.PI / 2);
@@ -53,10 +52,10 @@ function setupWheel() {
     btn.style.width = `${nodeSize}px`;
     btn.style.height = `${nodeSize}px`;
     btn.style.borderRadius = '50%';
-    btn.style.border = '2px solid #e50914';
-    btn.style.backgroundColor = '#222';
-    btn.style.color = '#fff';
-    btn.style.fontSize = '20px';
+    btn.style.border = '1px solid #333333';
+    btn.style.backgroundColor = '#181818';
+    btn.style.color = '#ffffff';
+    btn.style.fontSize = '18px';
     btn.style.fontWeight = 'bold';
     btn.style.cursor = 'pointer';
     
@@ -72,8 +71,8 @@ function setupWheel() {
   centerHub.style.width = `${nodeSize}px`;
   centerHub.style.height = `${nodeSize}px`;
   centerHub.style.borderRadius = '50%';
-  centerHub.style.border = '2px solid #e50914';
-  centerHub.style.backgroundColor = '#111';
+  centerHub.style.border = '1px solid #222222';
+  centerHub.style.backgroundColor = '#0f0f0f';
   wheelContainer.appendChild(centerHub);
 }
 
@@ -105,20 +104,20 @@ function updateGuessDisplay() {
 
   display.innerHTML = '';
 
-  let boxWidth = 36;
-  let boxHeight = 40;
-  let fontSize = 18;
+  let boxWidth = 34;
+  let boxHeight = 38;
+  let fontSize = 17;
   let margin = 3;
 
   if (currentFloor >= 8) {
-    boxWidth = 26;
+    boxWidth = 25;
     boxHeight = 32;
-    fontSize = 14;
+    fontSize = 13;
     margin = 2;
   } else if (currentFloor >= 6) {
-    boxWidth = 30;
-    boxHeight = 36;
-    fontSize = 16;
+    boxWidth = 28;
+    boxHeight = 34;
+    fontSize = 15;
     margin = 2;
   }
 
@@ -132,13 +131,13 @@ function updateGuessDisplay() {
     slot.style.height = `${boxHeight}px`;
     slot.style.lineHeight = `${boxHeight}px`;
     slot.style.margin = `0 ${margin}px`;
-    slot.style.border = '2px solid #e50914';
-    slot.style.color = '#fff';
+    slot.style.border = '1px solid #333333';
+    slot.style.color = '#ffffff';
     slot.style.fontSize = `${fontSize}px`;
     slot.style.fontWeight = 'bold';
     slot.style.textAlign = 'center';
-    slot.style.borderRadius = '4px';
-    slot.style.backgroundColor = currentGuess[i] ? '#333' : '#1a1a1a';
+    slot.style.borderRadius = '6px';
+    slot.style.backgroundColor = currentGuess[i] ? '#222222' : '#141414';
     slot.style.boxSizing = 'border-box';
     
     display.appendChild(slot);
@@ -146,16 +145,30 @@ function updateGuessDisplay() {
 }
 
 function updateFloorUI() {
-  // Update left floor elevator indicators
-  const elevatorFloors = document.querySelectorAll('.elevator-floor');
-  elevatorFloors.forEach(el => {
-    const floorNum = parseInt(el.getAttribute('data-floor'), 10);
-    el.classList.remove('active', 'passed');
-    
+  // Update card header text
+  const cardFloorText = document.getElementById('card-floor-text');
+  if (cardFloorText) {
+    const formattedFloor = currentFloor < 10 ? `0${currentFloor}` : currentFloor;
+    cardFloorText.textContent = `FLOOR ${formattedFloor}`;
+  }
+
+  // Update header red accent line width
+  const cardFloorProgress = document.getElementById('card-floor-progress');
+  if (cardFloorProgress) {
+    const progressPercent = Math.min(100, Math.round((currentFloor / maxFloor) * 100));
+    cardFloorProgress.style.width = `${progressPercent}%`;
+  }
+
+  // Update left elevator blocks (Fill from floor 1 up to current floor)
+  const elevatorBlocks = document.querySelectorAll('.elevator-block');
+  elevatorBlocks.forEach(block => {
+    const floorNum = parseInt(block.getAttribute('data-floor'), 10);
+    block.classList.remove('active', 'passed');
+
     if (floorNum === currentFloor) {
-      el.classList.add('active');
+      block.classList.add('active');
     } else if (floorNum < currentFloor) {
-      el.classList.add('passed');
+      block.classList.add('passed');
     }
   });
 
@@ -195,6 +208,6 @@ function showMessage(msg, type) {
   const msgBox = document.getElementById('message-box');
   if (msgBox) {
     msgBox.textContent = msg;
-    msgBox.style.color = type === 'error' ? '#ff4d4d' : '#e50914';
+    msgBox.style.color = type === 'error' ? '#ff4d4d' : '#ff1f2d';
   }
 }
