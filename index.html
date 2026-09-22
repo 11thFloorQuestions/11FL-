@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>11th Floor Word Climb</title>
+  <title>11th Floor Games Hub</title>
   <style>
     * {
       box-sizing: border-box;
@@ -16,235 +16,107 @@
       background-color: #080808;
       color: #ffffff;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 12px;
-    }
-    .app-container {
-      width: 100%;
-      max-width: 380px;
-      display: flex;
       flex-direction: column;
-      gap: 12px;
-    }
-    /* Top Header */
-    .top-header {
-      display: flex;
-      justify-content: space-between;
       align-items: center;
-      position: relative;
-      padding: 4px 0;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
     }
-    .pill-btn {
-      background: #121212;
-      border: 1px solid #2a2a2a;
-      border-radius: 14px;
-      color: #888888;
-      font-size: 11px;
-      font-weight: 600;
-      padding: 6px 14px;
-      cursor: pointer;
-    }
-    .brand-logo {
+    .hub-container {
+      width: 100%;
+      max-width: 400px;
       text-align: center;
+    }
+    .hub-header {
+      margin-bottom: 32px;
     }
     .brand-title {
       color: #ff1f2d;
-      font-size: 26px;
+      font-size: 32px;
       font-weight: 900;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
       line-height: 1;
     }
-    .brand-subtitle-main {
-      color: #ffffff;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      margin-top: 6px;
-    }
-    .brand-subtitle-sub {
-      color: #666666;
-      font-size: 9px;
+    .brand-subtitle {
+      color: #888888;
+      font-size: 12px;
       font-weight: 700;
-      letter-spacing: 1.5px;
-      margin-top: 2px;
+      letter-spacing: 2px;
+      margin-top: 8px;
     }
-
-    /* Main Workspace Layout */
-    .workspace {
-      display: flex;
-      gap: 10px;
-      align-items: stretch;
-      min-height: 480px;
-    }
-
-    /* Left Elevator Shaft */
-    .elevator-shaft {
-      display: flex;
-      flex-direction: column-reverse;
-      justify-content: space-between;
-      width: 24px;
-      background-color: #0f0f0f;
-      border: 1px solid #1a1a1a;
-      border-radius: 12px;
-      padding: 6px 3px;
-    }
-    .elevator-slot {
-      height: 42px;
-      border: 1px solid #222222;
-      border-radius: 4px;
-      background-color: transparent;
-      transition: all 0.2s ease;
-    }
-    .elevator-slot.active {
-      background-color: #ff1f2d;
-      border-color: #ff1f2d;
-      box-shadow: 0 0 10px rgba(255, 31, 45, 0.6);
-    }
-
-    /* Main Play Card */
-    .play-card {
-      flex: 1;
-      background-color: #111111;
-      border: 1px solid #1e1e1e;
-      border-radius: 18px;
-      padding: 16px;
+    .game-grid {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      position: relative;
+      gap: 16px;
     }
-    .card-header {
-      width: 100%;
-      text-align: left;
-      border-bottom: 1px solid #222222;
-      padding-bottom: 8px;
-      margin-bottom: 24px;
-      position: relative;
-    }
-    .card-floor-label {
-      color: #ff1f2d;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-    .card-header-line {
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 90px;
-      height: 2px;
-      background-color: #ff1f2d;
-    }
-
-    /* Status Message */
-    #message-box {
-      color: #ff1f2d;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      min-height: 20px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    /* Letter Slots */
-    #guess-display {
-      display: flex;
-      justify-content: center;
-      gap: 6px;
-      margin-bottom: 30px;
-    }
-
-    /* Wheel Container */
-    #wheel-container {
-      width: 200px;
-      height: 200px;
-      position: relative;
-      margin-top: auto;
-      margin-bottom: auto;
-    }
-
-    /* Bottom Action Controls */
-    .controls {
-      display: flex;
-      gap: 10px;
-      margin-top: 4px;
-    }
-    .btn-action {
-      flex: 1;
-      padding: 14px 10px;
-      border-radius: 20px;
-      border: 1px solid #ff1f2d; /* Thin red border */
+    .game-card {
       background-color: #121212;
+      border: 1px solid #222222;
+      border-radius: 16px;
+      padding: 24px;
+      text-decoration: none;
       color: #ffffff;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      cursor: pointer;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      box-shadow: 0 0 6px rgba(255, 31, 45, 0.25);
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     }
-    .btn-action:active {
-      background-color: #1c1c1c;
+    .game-card:active {
+      transform: scale(0.98);
+      border-color: #ff1f2d;
+    }
+    .game-title {
+      color: #ff1f2d;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .game-desc {
+      color: #aaaaaa;
+      font-size: 13px;
+      line-height: 1.4;
+      margin-bottom: 16px;
+    }
+    .play-badge {
+      align-self: flex-end;
+      background-color: #1a1a1a;
+      border: 1px solid #ff1f2d;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 6px 16px;
+      border-radius: 12px;
+      letter-spacing: 1px;
     }
   </style>
 </head>
 <body>
 
-  <div class="app-container">
-    <!-- Top Header -->
-    <div class="top-header">
-      <button class="pill-btn">Exit</button>
-      <div class="brand-logo">
-        <div class="brand-title">11FL?</div>
-        <div class="brand-subtitle-main">ELEVENTH FLOOR</div>
-        <div class="brand-subtitle-sub">WORD CLIMB</div>
-      </div>
-      <button class="pill-btn">SOUND: OFF</button>
+  <div class="hub-container">
+    <div class="hub-header">
+      <div class="brand-title">11FL GAMES</div>
+      <div class="brand-subtitle">SELECT YOUR CHALLENGE</div>
     </div>
 
-    <!-- Main Workspace -->
-    <div class="workspace">
-      <!-- Left Elevator Shaft -->
-      <div class="elevator-shaft">
-        <div class="elevator-slot" data-floor="4"></div>
-        <div class="elevator-slot" data-floor="5"></div>
-        <div class="elevator-slot" data-floor="6"></div>
-        <div class="elevator-slot" data-floor="7"></div>
-        <div class="elevator-slot" data-floor="8"></div>
-        <div class="elevator-slot" data-floor="9"></div>
-        <div class="elevator-slot" data-floor="10"></div>
-      </div>
+    <div class="game-grid">
+      <!-- Game 1: Word Climb -->
+      <a href="word-climb.html" class="game-card">
+        <div class="game-title">WORD CLIMB</div>
+        <div class="game-desc">Ascend from Floor 04 to Floor 10 by spelling valid words from the letter wheel.</div>
+        <div class="play-badge">PLAY NOW ↵</div>
+      </a>
 
-      <!-- Main Game Card -->
-      <div class="play-card">
-        <div class="card-header">
-          <span id="card-floor-text" class="card-floor-label">FLOOR 04</span>
-          <div class="card-header-line"></div>
-        </div>
-
-        <div id="message-box"></div>
-        <div id="guess-display"></div>
-        <div id="wheel-container"></div>
-      </div>
-    </div>
-
-    <!-- Bottom Controls -->
-    <div class="controls">
-      <button id="action-delete-btn" class="btn-action">
-        <span>⌫</span> DELETE
-      </button>
-      <button id="action-submit-btn" class="btn-action">
-        <span>↵</span> SUBMIT
-      </button>
+      <!-- Game 2: Placeholder for Second Game -->
+      <a href="#" class="game-card" style="opacity: 0.6; cursor: not-allowed;" onclick="event.preventDefault();">
+        <div class="game-title">SECOND GAME</div>
+        <div class="game-desc">Coming soon to the 11th Floor hub.</div>
+        <div class="play-badge" style="border-color: #444; color: #888;">LOCKED</div>
+      </a>
     </div>
   </div>
 
-  <script src="word-climb.js"></script>
 </body>
 </html>
