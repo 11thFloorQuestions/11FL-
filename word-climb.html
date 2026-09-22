@@ -19,24 +19,24 @@
       display: flex;
       flex-direction: column;
       height: 100vh;
-      height: 100dvh; /* Mobile viewport fix */
+      height: 100dvh;
       overflow: hidden;
     }
 
-    /* --- Top Branding Header (11FL? Style) --- */
+    /* --- Top Branding Header (Matching Red Theme) --- */
     header {
       text-align: center;
       padding: 12px 10px 8px;
       background: #1a1a1a;
-      border-bottom: 2px solid #d4af37;
+      border-bottom: 2px solid #e50914;
       flex-shrink: 0;
     }
 
     .logo-title {
-      font-size: 26px;
+      font-size: 28px;
       font-weight: 900;
       letter-spacing: 2px;
-      color: #d4af37;
+      color: #e50914; /* Match red theme */
       text-transform: uppercase;
       line-height: 1.1;
     }
@@ -50,15 +50,58 @@
       margin-top: 2px;
     }
 
-    .floor-indicator {
-      margin-top: 6px;
-      font-size: 14px;
-      font-weight: 700;
-      color: #d4af37;
-      letter-spacing: 1px;
+    /* --- Central Game Layout --- */
+    .game-container {
+      flex: 1;
+      display: flex;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      overflow: hidden;
     }
 
-    /* --- Central Game Area --- */
+    /* --- Left Elevator / Floor Indicator --- */
+    .floor-elevator {
+      width: 50px;
+      background-color: #181818;
+      border-right: 1px solid #2a2a2a;
+      display: flex;
+      flex-direction: column-reverse; /* Floor 4 at bottom, 9 at top */
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px 0;
+      flex-shrink: 0;
+    }
+
+    .elevator-floor {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid #444;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 13px;
+      font-weight: bold;
+      color: #777;
+      background-color: #111;
+      transition: all 0.2s ease;
+    }
+
+    .elevator-floor.active {
+      border-color: #e50914;
+      background-color: #e50914;
+      color: #ffffff;
+      box-shadow: 0 0 8px rgba(229, 9, 20, 0.6);
+    }
+
+    .elevator-floor.passed {
+      border-color: #4cd964;
+      color: #4cd964;
+      background-color: #111;
+    }
+
+    /* --- Main Play Area --- */
     main {
       flex: 1;
       display: flex;
@@ -73,7 +116,7 @@
       min-height: 20px;
       font-size: 14px;
       font-weight: bold;
-      color: #d4af37;
+      color: #e50914;
       text-align: center;
     }
 
@@ -86,8 +129,8 @@
 
     #wheel-container {
       position: relative;
-      width: 240px;
-      height: 240px;
+      width: 250px;
+      height: 250px;
       margin: 0 auto;
     }
 
@@ -108,9 +151,9 @@
       padding: 12px 0;
       font-size: 15px;
       font-weight: 700;
-      color: #d4af37;
+      color: #ffffff;
       background-color: #222222;
-      border: 2px solid #d4af37;
+      border: 2px solid #e50914;
       border-radius: 8px;
       cursor: pointer;
       text-align: center;
@@ -118,26 +161,37 @@
     }
 
     .control-btn:active {
-      background-color: #d4af37;
-      color: #121212;
+      background-color: #e50914;
+      color: #ffffff;
     }
   </style>
 </head>
 <body>
 
-  <!-- Branding Header -->
+  <!-- Red Logo Header -->
   <header>
     <div class="logo-title">11FL?</div>
     <div class="subtitle">Word Climb</div>
-    <div class="floor-indicator" id="floor-display">FLOOR 4 (4 LETTERS)</div>
   </header>
 
-  <!-- Game Play Area -->
-  <main>
-    <div id="message-box"></div>
-    <div id="guess-display"></div>
-    <div id="wheel-container"></div>
-  </main>
+  <div class="game-container">
+    <!-- Left Floor Indicator (Elevator Style) -->
+    <aside class="floor-elevator">
+      <div class="elevator-floor" data-floor="9">F9</div>
+      <div class="elevator-floor" data-floor="8">F8</div>
+      <div class="elevator-floor" data-floor="7">F7</div>
+      <div class="elevator-floor" data-floor="6">F6</div>
+      <div class="elevator-floor" data-floor="5">F5</div>
+      <div class="elevator-floor" data-floor="4">F4</div>
+    </aside>
+
+    <!-- Main Game Play Board -->
+    <main>
+      <div id="message-box"></div>
+      <div id="guess-display"></div>
+      <div id="wheel-container"></div>
+    </main>
+  </div>
 
   <!-- Bottom Control Bar -->
   <footer>
