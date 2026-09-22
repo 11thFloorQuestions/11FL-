@@ -1,7 +1,6 @@
 // 11th Floor Word Climb - Game Engine
 
 const DAILY_PUZZLE = {
-  // Active wheel letters: U - N - D - E - R - S - T - A
   letters: ['U', 'N', 'D', 'E', 'R', 'S', 'T', 'A']
 };
 
@@ -10,7 +9,6 @@ const maxFloor = 10;
 let currentGuess = [];
 let isTransitioning = false;
 
-// Global set holding master dictionary
 window.MASTER_DICTIONARY = new Set();
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
 async function loadDictionaryAndInit() {
   showMessage('LOADING DICTIONARY...', 'info');
   try {
-    // Reads words.js directly as a text file
     const response = await fetch('words.js');
     if (response.ok) {
       const text = await response.text();
@@ -39,7 +36,6 @@ async function loadDictionaryAndInit() {
     console.error('[11th Floor] Failed to load dictionary:', err);
   }
 
-  // Draw UI after dictionary load
   initGame();
 }
 
