@@ -3,12 +3,12 @@
 const DAILY_PUZZLE = {
   letters: ['C', 'L', 'I', 'M', 'B', 'A', 'T', 'O', 'R'],
   dictionary: {
-    4: ['CLIM', 'BAIT', 'BART', 'BOAT', 'COAT', 'ROAM', 'TALK', 'COAL', 'BALT', 'COMB', 'CALM', 'LIMA', 'MOAT', 'MORT', 'TOMB', 'ROTA', 'TACO', 'BOAR', 'LOOT', 'TOOL', 'BOOT', 'MOOR'],
-    5: ['CLIMB', 'ACTOR', 'CAROT', 'TABOR', 'MORTA', 'COBAT', 'ATOMIC', 'TRAIL', 'TRAMP', 'TALOR', 'CAROL', 'ROBOT'],
-    6: ['CLIMBER', 'COMBAT', 'BARIUM', 'ACTORS', 'COBALT', 'TRACTOR'],
-    7: ['CLIMBER', 'COMBATS', 'COBALTS'],
-    8: ['ACROBAT'],
-    9: ['ACROBATIC']
+    4: ['CLIM', 'BAIT', 'BART', 'BOAT', 'COAT', 'ROAM', 'TALK', 'COAL', 'BALT', 'COMB', 'CALM', 'LIMA', 'MOAT', 'MORT', 'TOMB', 'ROTA', 'TACO', 'BOAR', 'LOOT', 'TOOL', 'BOOT', 'MOOR', 'BAIL', 'CLAM', 'OATM', 'AMIT', 'BOLT', 'COLT', 'ROMA', 'TRAM', 'ATOM', 'LIMO', 'MIRO', 'MALT', 'BLOT', 'BOMA'],
+    5: ['CLIMB', 'ACTOR', 'CAROT', 'TABOR', 'MORTA', 'COBAT', 'ATOMIC', 'TRAIL', 'TRAMP', 'TALOR', 'CAROL', 'ROBOT', 'ALTIM', 'CLARO', 'CLOAM', 'LOBAR', 'MOTAR', 'RABIC', 'TCOAL', 'MARTO', 'TIMAR'],
+    6: ['CLIMBER', 'COMBAT', 'BARIUM', 'ACTORS', 'COBALT', 'TRACTOR', 'BORTAM', 'MORTAL', 'CARLOM', 'TAILOR'],
+    7: ['CLIMBER', 'COMBATS', 'COBALTS', 'ACROBAT', 'CLIMBAT'],
+    8: ['ACROBAT', 'ACROBATS'],
+    9: ['ACROBATIC', 'CLIMBATOR']
   }
 };
 
@@ -35,8 +35,8 @@ function setupWheel() {
   wheelContainer.innerHTML = '';
 
   const totalLetters = DAILY_PUZZLE.letters.length;
-  const radius = 75; 
-  const nodeSize = 48;
+  const radius = 78; 
+  const nodeSize = 54; // Enlarge buttons and text for better visibility
 
   DAILY_PUZZLE.letters.forEach((letter, index) => {
     const angle = (index / totalLetters) * (2 * Math.PI) - (Math.PI / 2);
@@ -52,10 +52,10 @@ function setupWheel() {
     btn.style.width = `${nodeSize}px`;
     btn.style.height = `${nodeSize}px`;
     btn.style.borderRadius = '50%';
-    btn.style.border = '1px solid #333333';
+    btn.style.border = '1px solid #282828';
     btn.style.backgroundColor = '#181818';
     btn.style.color = '#ffffff';
-    btn.style.fontSize = '18px';
+    btn.style.fontSize = '22px';
     btn.style.fontWeight = 'bold';
     btn.style.cursor = 'pointer';
     
@@ -71,8 +71,8 @@ function setupWheel() {
   centerHub.style.width = `${nodeSize}px`;
   centerHub.style.height = `${nodeSize}px`;
   centerHub.style.borderRadius = '50%';
-  centerHub.style.border = '1px solid #222222';
-  centerHub.style.backgroundColor = '#0f0f0f';
+  centerHub.style.border = '1px solid #1f1f1f';
+  centerHub.style.backgroundColor = '#0e0e0e';
   wheelContainer.appendChild(centerHub);
 }
 
@@ -131,7 +131,7 @@ function updateGuessDisplay() {
     slot.style.height = `${boxHeight}px`;
     slot.style.lineHeight = `${boxHeight}px`;
     slot.style.margin = `0 ${margin}px`;
-    slot.style.border = '1px solid #333333';
+    slot.style.border = '1px solid #2a2a2a';
     slot.style.color = '#ffffff';
     slot.style.fontSize = `${fontSize}px`;
     slot.style.fontWeight = 'bold';
@@ -145,7 +145,7 @@ function updateGuessDisplay() {
 }
 
 function updateFloorUI() {
-  // Update card header text
+  // Update card header floor text
   const cardFloorText = document.getElementById('card-floor-text');
   if (cardFloorText) {
     const formattedFloor = currentFloor < 10 ? `0${currentFloor}` : currentFloor;
@@ -159,16 +159,14 @@ function updateFloorUI() {
     cardFloorProgress.style.width = `${progressPercent}%`;
   }
 
-  // Update left elevator blocks (Fill from floor 1 up to current floor)
+  // Update left elevator blocks - ONLY current active floor turns RED
   const elevatorBlocks = document.querySelectorAll('.elevator-block');
   elevatorBlocks.forEach(block => {
     const floorNum = parseInt(block.getAttribute('data-floor'), 10);
-    block.classList.remove('active', 'passed');
+    block.classList.remove('active');
 
     if (floorNum === currentFloor) {
       block.classList.add('active');
-    } else if (floorNum < currentFloor) {
-      block.classList.add('passed');
     }
   });
 
@@ -178,7 +176,7 @@ function updateFloorUI() {
 }
 
 function handleSubmit() {
-  const word = currentGuess.join('');
+  const word = currentGuess.join('').toUpperCase();
   const targetLength = currentFloor;
 
   if (word.length < targetLength) {
