@@ -1,28 +1,28 @@
-// 11th Floor Word Climb - Main Game Logic
+// 11th Floor Word Climb - Fixed Validation & State Logic
 
 const DAILY_PUZZLE = {
-  // New wheel letter set: P - A - N - T - H - E - R - S - O
+  // Wheel letters: P - A - N - T - H - E - R - S - O
   letters: ['P', 'A', 'N', 'T', 'H', 'E', 'R', 'S', 'O']
 };
 
-// Expanded dictionary of valid English words formed from P-A-N-T-H-E-R-S-O
+// Comprehensive list of valid English words formed from P-A-N-T-H-E-R-S-O
 const VALID_WORDS = new Set([
   // 4-letter words
-  "PATH", "PART", "PAST", "PEAR", "PEST", "PEAT", "POND", "PONT", "POTS", 
+  "SHOP", "PATH", "PART", "PAST", "PEAR", "PEST", "PEAT", "POND", "PONT", 
   "PORT", "POST", "POTS", "PALE", "PANE", "PATS", "PROS", "PETS", "POET",
   "HOPE", "HORN", "HOST", "HEAT", "HEAR", "HERO", "HATE", "HATS", "HERB",
-  "SHOP", "SNAP", "STAR", "STOP", "SOAP", "SOAR", "SORT", "SHOT", "SHOE",
+  "SNAP", "STAR", "STOP", "SOAP", "SOAR", "SORT", "SHOT", "SHOE", "POTS",
   "ROSE", "ROPE", "ROAN", "RENT", "REST", "RATE", "RATS", "TORN", "TRAP",
-  "TOES", "TORE", "TONE", "TAPS", "TEAR", "THEN", "NEAR", "NEAT", "NEST",
+  "TOES", "TORE", "TONE", "TAPS", "TEAR", "THEN", "NEAR", "NEAT", "NEST", "POTS",
   
   // 5-letter words
   "PANTHER", "EARTH", "HEART", "SHAPE", "SHARE", "STORE", "STONE", "SHARP",
   "SHORT", "PHASE", "PHONE", "PRONE", "PASTE", "PANEL", "PANES", "PARTS",
   "PANTS", "PORTS", "POSTS", "PROSE", "HORNS", "HATES", "HEATS", "HEROES",
-  "TRAPS", "TEARS", "TONES", "STARE", "SNORT", "OTHER", "AFTER", "NORTH",
+  "TRAPS", "TEARS", "TONES", "STARE", "SNORT", "OTHER", "AFTER", "NORTH", "SHOPS",
 
   // 6-letter words
-  "PANTHER", "PANTHERS", "PASTHER", "PARSON", "PATRON", "PASTER", "POTHER",
+  "PANTHER", "PANTHERS", "PARSON", "PATRON", "PASTER", "POTHER",
   "PASTEL", "PLANET", "PYTHON", "PRONTS", "REPATH", "HORNET", "THORNS",
   "ASTERN", "REPOST", "POSHER", "PARENT", "PATRONS", "STROP",
 
@@ -39,6 +39,7 @@ const VALID_WORDS = new Set([
 let currentFloor = 4;
 const maxFloor = 9;
 let currentGuess = [];
+let isTransitioning = false;
 
 document.addEventListener('DOMContentLoaded', () => {
   initGame();
@@ -47,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function initGame() {
   currentFloor = 4;
   currentGuess = [];
+  isTransitioning = false;
   setupWheel();
   attachControlHandlers();
   updateFloorUI();
@@ -77,7 +79,7 @@ function setupWheel() {
     btn.style.height = `${nodeSize}px`;
     btn.style.borderRadius = '50%';
     
-    // Thin red outer border with subtle red glow
+    // Red outer border style matching header buttons
     btn.style.border = '1px solid #ff1f2d';
     btn.style.boxShadow = '0 0 5px rgba(255, 31, 45, 0.3)';
     btn.style.backgroundColor = '#181818';
@@ -114,6 +116,7 @@ function attachControlHandlers() {
 }
 
 function selectLetter(letter) {
+  if (isTransitioning) return;
   if (currentGuess.length < currentFloor) {
     currentGuess.push(letter);
     updateGuessDisplay();
@@ -121,6 +124,7 @@ function selectLetter(letter) {
 }
 
 function handleDelete() {
+  if (isTransitioning) return;
   if (currentGuess.length > 0) {
     currentGuess.pop();
     updateGuessDisplay();
@@ -186,7 +190,7 @@ function updateFloorUI() {
     cardFloorProgress.style.width = `${progressPercent}%`;
   }
 
-  // Active Floor Block Lighting Fix
+  // Active elevator block update (Only current floor is active)
   const elevatorBlocks = document.querySelectorAll('.elevator-block');
   elevatorBlocks.forEach(block => {
     const floorNum = parseInt(block.getAttribute('data-floor'), 10);
@@ -202,7 +206,6 @@ function updateFloorUI() {
   updateGuessDisplay();
 }
 
-// Checks if word can be made from ring letters
 function canBeFormedFromWheel(word) {
   const availableLetters = [...DAILY_PUZZLE.letters];
   for (let char of word) {
@@ -214,6 +217,8 @@ function canBeFormedFromWheel(word) {
 }
 
 function handleSubmit() {
+  if (isTransitioning) return;
+
   const word = currentGuess.join('').toUpperCase();
   const targetLength = currentFloor;
 
@@ -226,6 +231,7 @@ function handleSubmit() {
   const isRecognizedWord = VALID_WORDS.has(word);
 
   if (isValidLetterCombination && isRecognizedWord) {
+    isTransitioning = true;
     showMessage('VALID WORD! ASCENDING...', 'success');
     
     setTimeout(() => {
@@ -235,8 +241,10 @@ function handleSubmit() {
       } else {
         showMessage('CONGRATULATIONS! TOP FLOOR REACHED!', 'victory');
       }
+      isTransitioning = false;
     }, 1000);
   } else {
+    // If invalid, show message and KEEP current floor state intact
     showMessage('NOT IN WORD LIST', 'error');
   }
 }
@@ -245,6 +253,12 @@ function showMessage(msg, type) {
   const msgBox = document.getElementById('message-box');
   if (msgBox) {
     msgBox.textContent = msg;
-    msgBox.style.color = type === 'error' ? '#ff4d4d' : '#ff1f2d';
+    if (type === 'error') {
+      msgBox.style.color = '#ff4d4d';
+    } else if (type === 'success' || type === 'victory') {
+      msgBox.style.color = '#4dff79';
+    } else {
+      msgBox.style.color = '#ff1f2d';
+    }
   }
 }
