@@ -25,7 +25,7 @@
 
     /* --- Top Utility Bar & Branding Header --- */
     header {
-      padding: 12px 16px 16px;
+      padding: 12px 16px 14px;
       background: #0b0b0b;
       display: flex;
       flex-direction: column;
@@ -46,7 +46,7 @@
 
     .pill-btn {
       background: transparent;
-      border: 1px solid #333333;
+      border: 1px solid #282828;
       color: #888888;
       font-size: 11px;
       font-weight: 600;
@@ -83,7 +83,7 @@
       margin-top: 3px;
     }
 
-    /* --- Central Game Area --- */
+    /* --- Central Game Layout --- */
     .game-layout {
       flex: 1;
       display: flex;
@@ -95,44 +95,40 @@
       overflow: hidden;
     }
 
-    /* --- Vertical Elevator Shaft (Matches Image) --- */
+    /* --- Vertical Elevator Shaft --- */
     .elevator-shaft {
       width: 28px;
       display: flex;
-      flex-direction: column-reverse; /* Bottom is Floor 1 */
+      flex-direction: column-reverse; /* Floor 1 at bottom, 11 at top */
       gap: 4px;
       padding: 4px;
-      border: 1px solid #222222;
-      border-radius: 4px;
-      background: #0d0d0d;
+      border: 1px solid #1a1a1a;
+      border-radius: 6px;
+      background: #090909;
       flex-shrink: 0;
     }
 
     .elevator-block {
       flex: 1;
-      border: 1px solid #222222;
-      border-radius: 2px;
+      border: 1px solid #1c1c1c;
+      border-radius: 3px;
       background-color: transparent;
       transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
+    /* ONLY the active current floor glows red */
     .elevator-block.active {
       background-color: #ff1f2d;
       border-color: #ff1f2d;
-      box-shadow: 0 0 10px rgba(255, 31, 45, 0.6);
-    }
-
-    .elevator-block.passed {
-      background-color: #a0141e;
-      border-color: #a0141e;
+      box-shadow: 0 0 12px rgba(255, 31, 45, 0.8);
     }
 
     /* --- Main Playing Card Container --- */
     main.play-card {
       flex: 1;
-      background: #121212;
+      background: #111111;
       border: 1px solid #222222;
-      border-radius: 12px;
+      border-radius: 16px;
       padding: 16px 12px;
       display: flex;
       flex-direction: column;
@@ -144,9 +140,9 @@
     .card-floor-header {
       width: 100%;
       padding-bottom: 8px;
-      border-bottom: 2px solid #222222;
+      border-bottom: 1px solid #222222;
       position: relative;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
 
     .card-floor-label {
@@ -159,7 +155,7 @@
 
     .card-floor-line {
       position: absolute;
-      bottom: -2px;
+      bottom: -1px;
       left: 0;
       height: 2px;
       background-color: #ff1f2d;
@@ -186,8 +182,8 @@
 
     #wheel-container {
       position: relative;
-      width: 230px;
-      height: 230px;
+      width: 240px;
+      height: 240px;
       margin: 0 auto;
     }
 
@@ -195,7 +191,7 @@
     footer {
       padding: 12px 16px;
       background: #0b0b0b;
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid #181818;
       display: flex;
       justify-content: center;
       gap: 12px;
@@ -206,11 +202,11 @@
       flex: 1;
       max-width: 160px;
       padding: 12px 0;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       color: #ffffff;
-      background-color: #161616;
-      border: 1px solid #333333;
+      background-color: #141414;
+      border: 1px solid #2a2a2a;
       border-radius: 24px;
       cursor: pointer;
       text-align: center;
