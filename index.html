@@ -2,50 +2,139 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>11th Floor Games</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>11th Floor Word Climb</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    body {
+      background-color: #080808;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .game-card {
+      background-color: #121212;
+      border: 1px solid #222222;
+      border-radius: 16px;
+      padding: 24px;
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .title {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: #888888;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .elevator-tracker {
+      display: flex;
+      justify-content: space-between;
+      gap: 4px;
+      margin-bottom: 20px;
+      background-color: #0a0a0a;
+      padding: 6px;
+      border-radius: 8px;
+      border: 1px solid #1a1a1a;
+    }
+    .elevator-block {
+      flex: 1;
+      height: 12px;
+      background-color: #1a1a1a;
+      border-radius: 3px;
+      border: 1px solid #222;
+      transition: all 0.3s ease;
+    }
+    #guess-display {
+      min-height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      margin: 15px 0;
+    }
+    #message-box {
+      font-size: 14px;
+      font-weight: 700;
+      min-height: 20px;
+      margin-bottom: 15px;
+      letter-spacing: 0.5px;
+    }
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .btn-action {
+      flex: 1;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #2a2a2a;
+      background-color: #1a1a1a;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .btn-action:hover {
+      background-color: #252525;
+    }
+    .btn-submit {
+      border-color: #ff1f2d;
+      background-color: #ff1f2d;
+    }
+    .btn-submit:hover {
+      background-color: #e01b27;
+    }
+  </style>
 </head>
-<body class="lobby-body">
+<body>
 
-  <div class="lobby-container">
-    <!-- UMBRELLA HEADER -->
-    <header class="lobby-header">
-      <h1 class="suite-title">11TH FLOOR GAMES</h1>
-      <p class="suite-tagline">Elevator Puzzle & Trivia Suite</p>
-      <div class="streak-badge lobby-streak">
-        <span class="flame-icon">🔥</span>
-        <span id="streak-count">0</span>
-        <span class="streak-label">DAY STREAK</span>
-      </div>
-    </header>
+  <div class="game-card">
+    <div class="title">11TH FLOOR WORD CLIMB</div>
+    <div id="card-floor-text" class="subtitle">FLOOR 04</div>
 
-    <!-- GAME LAUNCHER CARDS -->
-    <main class="games-grid">
-      
-      <!-- 11th Floor Questions Card -->
-      <a href="questions.html" class="game-card">
-        <div class="card-icon">🏢</div>
-        <div class="card-info">
-          <h2>11th Floor Questions</h2>
-          <p>10-Floor Daily Trivia Elevator</p>
-        </div>
-        <div class="card-arrow">→</div>
-      </a>
+    <div class="elevator-tracker">
+      <div class="elevator-block" data-floor="4"></div>
+      <div class="elevator-block" data-floor="5"></div>
+      <div class="elevator-block" data-floor="6"></div>
+      <div class="elevator-block" data-floor="7"></div>
+      <div class="elevator-block" data-floor="8"></div>
+      <div class="elevator-block" data-floor="9"></div>
+      <div class="elevator-block" data-floor="10"></div>
+    </div>
 
-      <!-- 11th Floor Word Climb Card -->
-      <a href="word-climb.html" class="game-card">
-        <div class="card-icon">🪜</div>
-        <div class="card-info">
-          <h2>11th Floor Word Climb</h2>
-          <p>9-Letter Daily Word Elevator</p>
-        </div>
-        <div class="card-arrow">→</div>
-      </a>
+    <div id="guess-display"></div>
+    <div id="message-box">LOADING DICTIONARY...</div>
 
-    </main>
+    <div id="wheel-container"></div>
+
+    <div class="controls">
+      <button id="action-delete-btn" class="btn-action">DELETE</button>
+      <button id="action-submit-btn" class="btn-action btn-submit">SUBMIT</button>
+    </div>
   </div>
 
+  <!-- ONLY LOAD THE GAME ENGINE SCRIPT -->
+  <script src="word-climb.js"></script>
 </body>
 </html>
