@@ -99,7 +99,7 @@
     .elevator-shaft {
       width: 28px;
       display: flex;
-      flex-direction: column-reverse; /* Floor 1 at bottom, 11 at top */
+      flex-direction: column; /* Stacked 11 down to 1 top-to-bottom */
       gap: 4px;
       padding: 4px;
       border: 1px solid #1a1a1a;
@@ -116,7 +116,7 @@
       transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    /* ONLY the active current floor glows red */
+    /* Active floor block glows red */
     .elevator-block.active {
       background-color: #ff1f2d;
       border-color: #ff1f2d;
@@ -187,7 +187,7 @@
       margin: 0 auto;
     }
 
-    /* --- Bottom Fixed Control Bar --- */
+    /* --- Bottom Control Bar --- */
     footer {
       padding: 12px 16px;
       background: #0b0b0b;
@@ -198,6 +198,7 @@
       flex-shrink: 0;
     }
 
+    /* Added thin red outer border to action buttons */
     .control-btn {
       flex: 1;
       max-width: 160px;
@@ -206,17 +207,18 @@
       font-weight: 700;
       color: #ffffff;
       background-color: #141414;
-      border: 1px solid #2a2a2a;
+      border: 1px solid #ff1f2d;
+      box-shadow: 0 0 4px rgba(255, 31, 45, 0.25);
       border-radius: 24px;
       cursor: pointer;
       text-align: center;
       letter-spacing: 0.5px;
-      transition: background-color 0.15s ease, border-color 0.15s ease;
+      transition: background-color 0.15s ease, box-shadow 0.15s ease;
     }
 
     .control-btn:active {
       background-color: #ff1f2d;
-      border-color: #ff1f2d;
+      box-shadow: 0 0 10px rgba(255, 31, 45, 0.8);
       color: #ffffff;
     }
   </style>
@@ -236,7 +238,7 @@
 
   <!-- Central Game Layout -->
   <div class="game-layout">
-    <!-- Continuous Vertical Elevator Shaft (11 Floors) -->
+    <!-- Correctly mapped Shaft: Top is 11, Bottom is 1 -->
     <aside class="elevator-shaft" id="elevator-shaft">
       <div class="elevator-block" data-floor="11"></div>
       <div class="elevator-block" data-floor="10"></div>
