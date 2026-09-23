@@ -46,7 +46,12 @@ async function initArchiveSandbox() {
 window.addEventListener('DOMContentLoaded', () => {
   initQuiz();
   initArchiveSandbox();
-  show('screen-landing');
+  
+  // FORCE landing screen explicitly on boot
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const landing = document.getElementById('screen-landing');
+  if (landing) landing.classList.add('active');
+  
   renderBldg('building-landing', 0);
 });
 
