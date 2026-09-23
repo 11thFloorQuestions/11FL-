@@ -77,7 +77,6 @@ function clearTargetSlots() {
     const wordLengths = Object.keys(currentFloorData.words);
     if (wordLengths.length === 0) return;
     
-    // Render empty placeholders based on the length of the first available word
     const sampleWord = currentFloorData.words[wordLengths[0]][0] || "WORD";
     
     for (let i = 0; i < sampleWord.length; i++) {
@@ -186,17 +185,13 @@ function handleSubmission() {
     } else if (allValidWords.has(word)) {
         foundWords.add(word);
         showMessage(`Correct! '${word}'`, false);
-        
-        // Show the successfully guessed word in the slots temporarily or update state
         displaySolvedWordInSlots(word);
 
-        if (foundWords.size === allValidWords.size) {
-            showMessage(`FLOOR ${currentFloorData.floor} CLEARED!`, false);
-            setTimeout(() => {
-                const nextFloor = Math.min(currentFloorData.floor + 1, 11);
-                loadAndPlayFloor(nextFloor);
-            }, 1500);
-        }
+        // Advance to the next floor immediately on any correct word
+        setTimeout(() => {
+            const nextFloor = Math.min(currentFloorData.floor + 1, 11);
+            loadAndPlayFloor(nextFloor);
+        }, 1200);
     } else {
         showMessage(`'${word}' is not valid.`, true);
     }
