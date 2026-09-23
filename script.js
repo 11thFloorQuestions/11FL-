@@ -274,7 +274,7 @@ async function populateVaultList() {
         if (res && res.ok) {
             archiveFiles = await res.json();
         } else {
-            archiveFiles = Array.from({ length: 10 }, (_, i) => ({
+            archiveFiles = Array.from({ length: 50 }, (_, i) => ({
                 id: `set_${i + 1}`,
                 title: `Archive Set #${String(i + 1).padStart(2, '0')}`,
                 path: `archives/set_${i + 1}.json`
@@ -351,5 +351,5 @@ document.getElementById('btn-back-vault').addEventListener('click', () => {
     modalVault.classList.remove('hidden');
 });
 
-// Initial Page Load: Show Landing Screen Only (No timer running)
+// Initial Page Load Setup
 updateStatsUI();
