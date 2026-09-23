@@ -33,6 +33,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 4px 0;
+      width: 100%;
     }
     .pill-btn {
       background: #121212;
@@ -44,29 +45,33 @@
       padding: 6px 14px;
       cursor: pointer;
       text-decoration: none;
+      flex-shrink: 0;
     }
     .brand-logo {
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       text-align: center;
+      flex: 1;
+      margin: 0 8px;
     }
     .brand-title {
       color: #ff1f2d;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 900;
-      line-height: 1;
+      line-height: 1.1;
     }
     .brand-subtitle-main {
       color: #ffffff;
-      font-size: 9px;
+      font-size: 8.5px;
       font-weight: 800;
       letter-spacing: 2px;
-      margin-top: 3px;
+      margin-top: 2px;
     }
     .brand-subtitle-sub {
       color: #666666;
-      font-size: 8px;
+      font-size: 7.5px;
       font-weight: 700;
       letter-spacing: 1.5px;
       margin-top: 1px;
@@ -133,14 +138,13 @@
       background-color: #ff1f2d;
     }
     #message-box {
-      color: #ff1f2d;
+      color: #2ecc71; /* Green feedback messaging */
       font-size: 11px;
       font-weight: 800;
       min-height: 18px;
       margin-bottom: 6px;
       text-align: center;
     }
-    /* Target Word Boxes Container */
     #target-word-slots {
       display: flex;
       gap: 6px;
@@ -163,9 +167,9 @@
       color: #ffffff;
     }
     .target-slot.revealed {
-      border-color: #ff1f2d;
-      color: #ff1f2d;
-      background: #1c1415;
+      border-color: #2ecc71; /* Green border for solved letters */
+      color: #2ecc71;         /* Green text for solved letters */
+      background: #122218;
     }
     #guess-display {
       display: flex;
@@ -239,7 +243,6 @@
           <div class="card-header-line"></div>
         </div>
         <div id="message-box"></div>
-        <!-- Target boxes container -->
         <div id="target-word-slots"></div>
         <div id="guess-display"></div>
         <div id="wheel-container"></div>
