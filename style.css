@@ -1,5 +1,5 @@
 /* ==========================================
-   11TH FLOOR WORD CLIMB - FIXED STYLESHEET
+   11TH FLOOR WORD CLIMB - STYLESHEET
    ========================================== */
 
 * {
@@ -18,7 +18,43 @@ body, html {
     overflow: hidden;
 }
 
-/* Main Container */
+.app-screen {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Landing Screen Styling */
+.landing-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 480px;
+    height: 100%;
+    padding: 24px;
+    text-align: center;
+}
+
+.landing-play-btn {
+    margin-top: 48px;
+    width: 80%;
+    max-width: 240px;
+    padding: 16px 0;
+    background: #ff1f2d;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+/* Game Container Wrapper */
 .game-container {
     display: flex;
     flex-direction: column;
@@ -51,7 +87,7 @@ body, html {
     cursor: pointer;
 }
 
-/* Logo Section - Matching Landing Page Style */
+/* Logo Section - Exact Branding Match */
 .header-section {
     display: flex;
     flex-direction: column;
@@ -62,20 +98,29 @@ body, html {
 }
 
 .logo-title {
-    font-size: 2.8rem;
+    font-size: 3.2rem;
     font-weight: 900;
     color: #ff1f2d;
     letter-spacing: 2px;
-    line-height: 1;
+    line-height: 0.95;
 }
 
 .logo-subtitle {
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #ffffff;
+    letter-spacing: 1px;
+    margin-top: 8px;
+    text-transform: none;
+}
+
+.logo-sub-bottom {
+    font-size: 0.7rem;
+    font-weight: 700;
     color: #cccccc;
     letter-spacing: 4px;
     text-transform: uppercase;
-    margin-top: 4px;
+    margin-top: 2px;
 }
 
 /* Game Card Board Area */
@@ -94,7 +139,6 @@ body, html {
     position: relative;
 }
 
-/* Floor Indicator */
 #card-floor-text {
     position: absolute;
     top: 14px;
@@ -105,7 +149,6 @@ body, html {
     letter-spacing: 1px;
 }
 
-/* Target Word Slots */
 .target-slots-container {
     display: flex;
     gap: 8px;
@@ -134,7 +177,6 @@ body, html {
     background: rgba(46, 204, 113, 0.1);
 }
 
-/* Guess Display */
 #guess-display {
     display: flex;
     gap: 6px;
@@ -152,7 +194,6 @@ body, html {
     font-weight: bold;
 }
 
-/* Message Box */
 #message-box {
     font-size: 0.85rem;
     font-weight: bold;
@@ -161,7 +202,6 @@ body, html {
     margin-bottom: 8px;
 }
 
-/* Letter Wheel Wrapper & Container */
 #wheel-wrapper {
     position: relative;
     width: 180px;
@@ -178,7 +218,6 @@ body, html {
     height: 100%;
 }
 
-/* Bottom Action Buttons */
 .action-buttons-container {
     display: flex;
     gap: 12px;
