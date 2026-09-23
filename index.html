@@ -8,22 +8,22 @@
 </head>
 <body>
 
-  <!-- LANDING HUB SCREEN -->
-  <div id="landing-screen" class="app-screen" style="display: flex;">
+  <!-- LANDING HUB -->
+  <div id="landing-screen" class="app-screen">
     <div class="landing-content">
       <div class="landing-logo-title">11FL?</div>
       <div class="landing-logo-subtitle">ELEVATOR TRIVIA CLIMB</div>
       <div class="landing-logo-sub-bottom">GAME HUB</div>
       
       <div class="game-select-container">
-        <!-- GAME 01: WORD CLIMB -->
-        <div class="game-card-btn active-game" id="goto-wordclimb-btn" style="cursor: pointer;">
+        <!-- GAME 01 -->
+        <div class="game-card-btn active-game" id="goto-wordclimb-btn">
           <div class="game-num">GAME 01</div>
           <div class="game-name">WORD CLIMB</div>
         </div>
 
-        <!-- GAME 02: 11TH FLOOR QUESTIONS -->
-        <div class="game-card-btn" id="goto-questions-btn" style="cursor: pointer;">
+        <!-- GAME 02 -->
+        <div class="game-card-btn" id="goto-questions-btn">
           <div class="game-num">GAME 02</div>
           <div class="game-name">11TH FLOOR QUESTIONS</div>
         </div>
@@ -31,7 +31,7 @@
     </div>
   </div>
 
-  <!-- GAME 01 SCREEN: WORD CLIMB -->
+  <!-- GAME 01: WORD CLIMB -->
   <div id="game-screen" class="app-screen" style="display: none;">
     <div class="game-container">
       
@@ -49,6 +49,7 @@
       <div class="game-card">
         <div id="card-floor-text">FLOOR 01</div>
         
+        <!-- Target slots wrapper matching CSS -->
         <div class="target-slots-container" id="target-word-slots"></div>
 
         <div id="message-box"></div>
@@ -68,7 +69,7 @@
     </div>
   </div>
 
-  <!-- GAME 02 SCREEN: QUESTIONS / TRIVIA -->
+  <!-- GAME 02: QUESTIONS -->
   <div id="questions-screen" class="app-screen" style="display: none;">
     <div class="game-container">
       
@@ -85,49 +86,38 @@
 
       <div class="game-card">
         <div id="card-floor-text">TRIVIA VAULT</div>
-        <div id="message-box" style="margin-top: 20px; font-size: 1rem;">11th Floor Questions Mode</div>
+        <div id="message-box" style="margin-top: 24px; font-size: 1rem;">11th Floor Questions Mode</div>
       </div>
 
     </div>
   </div>
 
-  <!-- MAIN GAME LOGIC -->
+  <!-- SCRIPTS -->
   <script src="./word-climb.js"></script>
 
-  <!-- SCREEN NAVIGATION CONTROLLER -->
   <script>
-    function showScreen(screenId) {
-      document.querySelectorAll('.app-screen').forEach(function(screen) {
-        screen.style.display = 'none';
-      });
-      var target = document.getElementById(screenId);
+    function openScreen(screenId) {
+      document.querySelectorAll('.app-screen').forEach(s => s.style.display = 'none');
+      const target = document.getElementById(screenId);
       if (target) {
         target.style.display = 'flex';
+        // Trigger resize event so wheel/canvas recalculates dimensions after un-hiding
+        window.dispatchEvent(new Event('resize'));
       }
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-      var wordClimbBtn = document.getElementById('goto-wordclimb-btn');
-      var questionsBtn = document.getElementById('goto-questions-btn');
-      var exitBtns = document.querySelectorAll('.exit-btn');
+    document.getElementById('goto-wordclimb-btn').addEventListener('click', () => {
+      openScreen('game-screen');
+      if (typeof initGame === 'function') initGame();
+    });
 
-      if (wordClimbBtn) {
-        wordClimbBtn.addEventListener('click', function() {
-          showScreen('game-screen');
-        });
-      }
+    document.getElementById('goto-questions-btn').addEventListener('click', () => {
+      openScreen('questions-screen');
+      if (typeof initQuestions === 'function') initQuestions();
+    });
 
-      if (questionsBtn) {
-        questionsBtn.addEventListener('click', function() {
-          showScreen('questions-screen');
-        });
-      }
-
-      exitBtns.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          showScreen('landing-screen');
-        });
-      });
+    document.querySelectorAll('.exit-btn').forEach(btn => {
+      btn.addEventListener('click', () => openScreen('landing-screen'));
     });
   </script>
 </body>
