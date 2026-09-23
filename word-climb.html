@@ -19,20 +19,20 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      padding: 8px;
+      padding: 12px;
     }
     .app-container {
       width: 100%;
       max-width: 380px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 12px;
     }
     .top-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 2px 0;
+      padding: 4px 0;
     }
     .pill-btn {
       background: #121212;
@@ -41,7 +41,7 @@
       color: #888888;
       font-size: 11px;
       font-weight: 600;
-      padding: 5px 12px;
+      padding: 6px 14px;
       cursor: pointer;
       text-decoration: none;
     }
@@ -50,40 +50,40 @@
     }
     .brand-title {
       color: #ff1f2d;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 900;
       line-height: 1;
     }
     .brand-subtitle-main {
       color: #ffffff;
-      font-size: 8px;
+      font-size: 9px;
       font-weight: 800;
       letter-spacing: 2px;
-      margin-top: 3px;
+      margin-top: 4px;
     }
     .brand-subtitle-sub {
       color: #666666;
-      font-size: 7px;
+      font-size: 8px;
       font-weight: 700;
       letter-spacing: 1.5px;
     }
     .workspace {
       display: flex;
-      gap: 8px;
+      gap: 10px;
       align-items: stretch;
     }
     .elevator-shaft {
       display: flex;
-      flex-direction: column-reverse;
+      flex-direction: column; /* Floor 1 at bottom, 11 at top normally */
       justify-content: space-between;
-      width: 24px;
+      width: 26px;
       background-color: #0f0f0f;
       border: 1px solid #1a1a1a;
       border-radius: 12px;
-      padding: 4px 3px;
+      padding: 6px 3px;
     }
     .elevator-slot {
-      height: 22px;
+      height: 28px;
       border: 1px solid #222222;
       border-radius: 4px;
       background-color: transparent;
@@ -99,8 +99,8 @@
       flex: 1;
       background-color: #111111;
       border: 1px solid #1e1e1e;
-      border-radius: 16px;
-      padding: 10px;
+      border-radius: 18px;
+      padding: 14px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -110,8 +110,8 @@
       width: 100%;
       text-align: left;
       border-bottom: 1px solid #222222;
-      padding-bottom: 4px;
-      margin-bottom: 6px;
+      padding-bottom: 6px;
+      margin-bottom: 12px;
       position: relative;
     }
     .card-floor-label {
@@ -124,39 +124,39 @@
       position: absolute;
       bottom: -1px;
       left: 0;
-      width: 70px;
+      width: 80px;
       height: 2px;
       background-color: #ff1f2d;
     }
     #message-box {
       color: #ff1f2d;
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 800;
-      min-height: 16px;
-      margin-bottom: 6px;
+      min-height: 18px;
+      margin-bottom: 8px;
       text-align: center;
     }
     #guess-display {
       display: flex;
       justify-content: center;
-      gap: 4px;
-      min-height: 32px;
-      margin-bottom: 6px;
+      gap: 5px;
+      min-height: 36px;
+      margin-bottom: 8px;
     }
     #wheel-container {
-      width: 160px;
-      height: 160px;
+      width: 180px;
+      height: 180px;
       position: relative;
-      margin: 4px 0;
+      margin: 6px 0;
     }
     .controls {
       display: flex;
-      gap: 8px;
+      gap: 10px;
     }
     .btn-action {
       flex: 1;
-      padding: 10px 8px;
-      border-radius: 14px;
+      padding: 12px 10px;
+      border-radius: 16px;
       border: 1px solid #ff1f2d;
       background-color: #121212;
       color: #ffffff;
@@ -167,7 +167,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 6px;
       box-shadow: 0 0 6px rgba(255, 31, 45, 0.25);
     }
     .btn-action:active {
@@ -188,6 +188,7 @@
     </div>
 
     <div class="workspace">
+      <!-- Elevator Shaft ordered from 11 at top down to 1 at bottom -->
       <div class="elevator-shaft">
         <div class="elevator-slot" data-floor="11"></div>
         <div class="elevator-slot" data-floor="10"></div>
