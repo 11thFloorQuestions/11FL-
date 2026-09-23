@@ -31,7 +31,6 @@ function initElevatorSlots() {
 }
 
 async function loadAndPlayFloor(floorNum) {
-    // If user clicks or reaches Floor 11, handle it as the final destination
     if (floorNum === 11) {
         triggerDestinationView();
         return;
@@ -152,28 +151,28 @@ function renderWheel(letters) {
     
     container.innerHTML = "";
     const letterArray = letters.split("");
-    const radius = 60; // Increased radius for larger circle spacing
-    const centerX = container.offsetWidth / 2 || 90;
-    const centerY = container.offsetHeight / 2 || 90;
+    const radius = 68; // Wider radius to accommodate larger circles nicely
+    const centerX = container.offsetWidth / 2 || 95;
+    const centerY = container.offsetHeight / 2 || 95;
 
     letterArray.forEach((letter, index) => {
         const angle = (index * 2 * Math.PI) / letterArray.length - Math.PI / 2;
-        const x = centerX + radius * Math.cos(angle) - 20;
-        const y = centerY + radius * Math.sin(angle) - 20;
+        const x = centerX + radius * Math.cos(angle) - 24;
+        const y = centerY + radius * Math.sin(angle) - 24;
 
         const btn = document.createElement("button");
         btn.textContent = letter;
         btn.style.position = "absolute";
         btn.style.left = `${x}px`;
         btn.style.top = `${y}px`;
-        btn.style.width = "40px"; // Larger touch targets
-        btn.style.height = "40px";
+        btn.style.width = "48px";  // Enlarged circle size for better tapping/visibility
+        btn.style.height = "48px"; // Enlarged circle size for better tapping/visibility
         btn.style.borderRadius = "50%";
         btn.style.background = "#1c1c1c";
         btn.style.border = "2px solid #ff1f2d";
         btn.style.color = "#ffffff";
         btn.style.fontWeight = "bold";
-        btn.style.fontSize = "1rem";
+        btn.style.fontSize = "1.1rem";
         btn.style.cursor = "pointer";
 
         btn.addEventListener("click", () => {
