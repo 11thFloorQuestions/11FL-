@@ -64,7 +64,7 @@ body, html {
     flex-direction: column;
     gap: 14px;
     width: 100%;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .game-card-btn {
@@ -77,9 +77,10 @@ body, html {
     align-items: flex-start;
     cursor: pointer;
     text-align: left;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-.game-card-btn.active-game {
+.game-card-btn:hover, .game-card-btn.active-game {
     border-color: #ff1f2d;
     background: rgba(255, 31, 45, 0.05);
 }
@@ -130,6 +131,11 @@ body, html {
     cursor: pointer;
 }
 
+.util-btn.active {
+    border-color: #2ecc71;
+    color: #2ecc71;
+}
+
 .header-section {
     display: flex;
     flex-direction: column;
@@ -164,6 +170,48 @@ body, html {
     margin-top: 2px;
 }
 
+/* Building Shaft / Floor Indicators */
+.building-shaft {
+    display: flex;
+    gap: 4px;
+    width: 100%;
+    justify-content: center;
+    margin: 6px 0;
+}
+
+.floor-block {
+    flex: 1;
+    height: 6px;
+    background: #262626;
+    border-radius: 2px;
+}
+
+.floor-block.completed {
+    background: #ff1f2d;
+}
+
+.floor-block.active-floor {
+    background: #ffffff;
+    box-shadow: 0 0 8px #ffffff;
+}
+
+/* Timer Bar */
+.timer-bar-wrap {
+    width: 100%;
+    height: 4px;
+    background: #1c1c1c;
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 4px 0;
+}
+
+#timer-bar {
+    width: 100%;
+    height: 100%;
+    background: #ff1f2d;
+    transition: width 0.2s linear;
+}
+
 /* Game Board Card Area */
 .game-card {
     background: #141414;
@@ -178,6 +226,14 @@ body, html {
     margin: 6px 0;
     padding: 16px;
     position: relative;
+}
+
+.game-view-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 #card-floor-text {
@@ -288,4 +344,88 @@ body, html {
     background: #ff1f2d;
     border: 1px solid #ff1f2d;
     color: #ffffff;
+}
+
+/* Question Option Buttons */
+.btn-option {
+    width: 100%;
+    padding: 14px 16px;
+    background: #1c1c1c;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.btn-option:active {
+    background: #262626;
+}
+
+.btn-option.selected-correct {
+    border-color: #2ecc71 !important;
+    background: rgba(46, 204, 113, 0.2) !important;
+    color: #2ecc71 !important;
+}
+
+.btn-option.selected-wrong {
+    border-color: #ff1f2d !important;
+    background: rgba(255, 31, 45, 0.2) !important;
+    color: #ff1f2d !important;
+}
+
+/* Modal Overlay & Stats Window */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 16px;
+}
+
+.modal-overlay.hidden {
+    display: none !important;
+}
+
+.modal-content {
+    background: #141414;
+    border: 1px solid #262626;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+    color: #ffffff;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #262626;
+    padding-bottom: 10px;
+}
+
+.modal-title {
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #ff1f2d;
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    color: #888888;
+    font-size: 1.2rem;
+    cursor: pointer;
 }
