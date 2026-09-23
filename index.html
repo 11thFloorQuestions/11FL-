@@ -1,150 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>11th Floor Games Hub</title>
-  <!-- Google Fonts for exact tall condensed logo and geometric subtitles -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-  
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      user-select: none;
-    }
-    body {
-      background-color: #000000;
-      color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
-      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-    .hub-container {
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-    }
-
-    /* Exact Tall Condensed Logo Styling */
-    .brand-header {
-      margin-bottom: 36px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .logo-main {
-      color: #ff0000;
-      font-family: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
-      font-size: 88px;
-      line-height: 0.85;
-      letter-spacing: 1px;
-      font-weight: 900;
-      transform: scaleY(1.15); /* Adds vertical tallness matching your image */
-    }
-    .logo-sub-title {
-      color: #ffffff;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 24px;
-      font-weight: 300;
-      margin-top: 14px;
-      letter-spacing: 0.5px;
-    }
-    .logo-category {
-      color: #ffffff;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 4px;
-      margin-top: 10px;
-      text-transform: uppercase;
-    }
-
-    /* Cards Layout */
-    .game-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .game-card {
-      background-color: #111111;
-      border: 1px solid #222222;
-      border-radius: 16px;
-      padding: 22px;
-      text-decoration: none;
-      color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      text-align: left;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    }
-    .game-card:active {
-      transform: scale(0.98);
-      border-color: #ff0000;
-    }
-    .game-title {
-      color: #ff0000;
-      font-size: 17px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      margin-bottom: 6px;
-    }
-    .game-desc {
-      color: #aaaaaa;
-      font-size: 12px;
-      line-height: 1.4;
-      margin-bottom: 16px;
-      font-weight: 300;
-    }
-    .play-badge {
-      align-self: flex-end;
-      background-color: #181818;
-      border: 1px solid #ff0000;
-      color: #ffffff;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 6px 16px;
-      border-radius: 12px;
-      letter-spacing: 1px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>11th Floor Word Climb</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="game-container">
+        <!-- Top Utility Bar: Exit & Future Archive Button -->
+        <div class="top-utility-bar">
+            <button id="exit-btn" class="util-btn">Exit</button>
+            <button id="archive-btn" class="util-btn">Archive</button>
+        </div>
 
-  <div class="hub-container">
-    <!-- Brand Logo Header -->
-    <div class="brand-header">
-      <div class="logo-main">11FL?</div>
-      <div class="logo-sub-title">Eleventh Floor</div>
-      <div class="logo-category">GAMES</div>
+        <!-- Centered, Un-squashed Logo Section -->
+        <div class="header-section">
+            <h1 class="logo-title">11FL?</h1>
+            <p class="logo-subtitle">Eleventh Floor Word Climb</p>
+        </div>
+
+        <!-- Main Game Board Card -->
+        <div class="game-card">
+            <div id="card-floor-text">FLOOR 01</div>
+            
+            <div id="target-word-slots" class="target-slots-container">
+                <!-- Word length slots rendered dynamically -->
+            </div>
+
+            <div id="guess-display">
+                <!-- Active typing display -->
+            </div>
+
+            <div id="message-box"></div>
+
+            <div id="wheel-wrapper">
+                <div id="wheel-container">
+                    <!-- Letter wheel buttons rendered dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Action Buttons -->
+        <div class="action-buttons-container">
+            <button id="action-delete-btn" class="action-btn">Delete</button>
+            <button id="action-submit-btn" class="action-btn">Submit</button>
+        </div>
     </div>
 
-    <!-- Game List -->
-    <div class="game-grid">
-      <!-- Game 1: Questions (TOP) -->
-      <a href="questions.html" class="game-card">
-        <div class="game-title">11TH FLOOR QUESTIONS</div>
-        <div class="game-desc">Test your knowledge with daily elevator trivia and questions.</div>
-        <div class="play-badge">PLAY NOW ↵</div>
-      </a>
-
-      <!-- Game 2: Word Climb (BOTTOM) -->
-      <a href="word-climb.html" class="game-card">
-        <div class="game-title">WORD CLIMB</div>
-        <div class="game-desc">Ascend from Floor 04 to Floor 10 by spelling valid words from the letter wheel.</div>
-        <div class="play-badge">PLAY NOW ↵</div>
-      </a>
-    </div>
-  </div>
-
+    <script src="word-climb.js"></script>
 </body>
 </html>
