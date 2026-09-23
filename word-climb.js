@@ -6,28 +6,33 @@ let currentFloorData = null;
 let foundWords = new Set();
 let allValidWords = new Set();
 let currentWordString = "";
-
-// Permanent master letter pool locked once initialized from Floor 1
 let masterLetters = null; 
 
 document.addEventListener("DOMContentLoaded", () => {
-    initElevatorSlots();
-    loadAndPlayFloor(1);
+    setupScreenNavigation();
 });
 
-function initElevatorSlots() {
-    document.querySelectorAll(".elevator-slot").forEach(slot => {
-        slot.addEventListener("click", () => {
-            const floorNum = parseInt(slot.getAttribute("data-floor"));
-            if (floorNum >= 1 && floorNum <= 11) {
-                if (floorNum === 11) {
-                    triggerDestinationView();
-                } else {
-                    loadAndPlayFloor(floorNum);
-                }
-            }
+function setupScreenNavigation() {
+    const playBtn = document.getElementById("play-btn");
+    const exitBtn = document.getElementById("exit-btn");
+    const landingScreen = document.getElementById("landing-screen");
+    const gameScreen = document.getElementById("game-screen");
+
+    if (playBtn) {
+        playBtn.addEventListener("click", () => {
+            landingScreen.style.display = "none";
+            gameScreen.style.display = "flex";
+            loadAndPlayFloor(1);
         });
-    });
+    }
+
+    if (exitBtn) {
+        exitBtn.addEventListener("click", () => {
+            gameScreen.style.display = "none";
+            landingScreen.style.display = "flex";
+            masterLetters = null; // Reset pool on exit if desired
+        });
+    }
 }
 
 async function loadAndPlayFloor(floorNum) {
@@ -79,7 +84,6 @@ function setupGameSession(data) {
     }
 
     updateText("card-floor-text", `FLOOR ${String(data.floor).padStart(2, '0')}`);
-    updateElevatorActiveState(data.floor);
     showMessage("");
 
     currentWordString = "";
@@ -91,7 +95,6 @@ function setupGameSession(data) {
 
 function triggerDestinationView() {
     updateText("card-floor-text", "PENTHOUSE (11FL)");
-    updateElevatorActiveState(11);
     showMessage("CONGRATULATIONS! YOU REACHED THE 11TH FLOOR PENTHOUSE!", false);
 
     const container = document.getElementById("target-word-slots");
@@ -103,17 +106,6 @@ function triggerDestinationView() {
     if (wheelContainer) {
         wheelContainer.innerHTML = "";
     }
-}
-
-function updateElevatorActiveState(activeFloor) {
-    document.querySelectorAll(".elevator-slot").forEach(slot => {
-        const floor = parseInt(slot.getAttribute("data-floor"));
-        if (floor === activeFloor) {
-            slot.classList.add("active");
-        } else {
-            slot.classList.remove("active");
-        }
-    });
 }
 
 function renderTargetSlots(floorNum) {
@@ -151,9 +143,9 @@ function renderWheel(letters) {
     
     container.innerHTML = "";
     const letterArray = letters.split("");
-    const radius = 68; // Wider radius to accommodate larger circles nicely
-    const centerX = container.offsetWidth / 2 || 95;
-    const centerY = container.offsetHeight / 2 || 95;
+    const radius = 64; 
+    const centerX = container.offsetWidth / 2 || 90;
+    const centerY = container.offsetHeight / 2 || 90;
 
     letterArray.forEach((letter, index) => {
         const angle = (index * 2 * Math.PI) / letterArray.length - Math.PI / 2;
@@ -165,8 +157,8 @@ function renderWheel(letters) {
         btn.style.position = "absolute";
         btn.style.left = `${x}px`;
         btn.style.top = `${y}px`;
-        btn.style.width = "48px";  // Enlarged circle size for better tapping/visibility
-        btn.style.height = "48px"; // Enlarged circle size for better tapping/visibility
+        btn.style.width = "48px";
+        btn.style.height = "48px";
         btn.style.borderRadius = "50%";
         btn.style.background = "#1c1c1c";
         btn.style.border = "2px solid #ff1f2d";
