@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <!-- LANDING SCREEN (GAME HUB) -->
+  <!-- LANDING HUB -->
   <div id="landing-screen" class="app-screen screen active">
     <div class="landing-content">
       <div class="landing-logo-title">11FL?</div>
@@ -18,22 +18,50 @@
       <div id="building-landing" class="building-shaft"></div>
 
       <div class="game-select-container">
-        <!-- GAME 01: WORD CLIMB -->
-        <div class="game-card-btn active-game" id="goto-wordclimb-btn">
+        <!-- GAME 01: 11TH FLOOR QUESTIONS -->
+        <div class="game-card-btn active-game" id="goto-questions-btn">
           <div class="game-num">GAME 01</div>
-          <div class="game-name">WORD CLIMB</div>
+          <div class="game-name">11TH FLOOR QUESTIONS</div>
         </div>
 
-        <!-- GAME 02: 11TH FLOOR QUESTIONS -->
-        <div class="game-card-btn" id="goto-questions-btn">
+        <!-- GAME 02: WORD CLIMB -->
+        <div class="game-card-btn" id="goto-wordclimb-btn">
           <div class="game-num">GAME 02</div>
-          <div class="game-name">11TH FLOOR QUESTIONS</div>
+          <div class="game-name">WORD CLIMB</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- GAME 01 SCREEN: WORD CLIMB -->
+  <!-- GAME 01 SCREEN: 11TH FLOOR QUESTIONS -->
+  <div id="questions-screen" class="app-screen screen" style="display: none;">
+    <div class="game-container">
+      
+      <div class="top-utility-bar">
+        <button class="util-btn" id="exit-questions-btn" onclick="resetToLobby()">✕ LOBBY</button>
+        <button class="util-btn btn-audio-toggle" onclick="toggleAudio()">SOUND: OFF</button>
+      </div>
+
+      <div class="header-section">
+        <div class="logo-title">11FL?</div>
+        <div class="logo-subtitle">ELEVATOR TRIVIA CLIMB</div>
+        <div class="logo-sub-bottom" id="hud-floor-label">FLOOR 01</div>
+      </div>
+
+      <div class="timer-bar-wrap">
+        <div id="timer-bar"></div>
+      </div>
+
+      <div id="floor-counter" class="building-shaft"></div>
+
+      <div class="game-card">
+        <div id="game-view" class="game-view-content"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GAME 02 SCREEN: WORD CLIMB -->
   <div id="game-screen" class="app-screen screen" style="display: none;">
     <div class="game-container">
       
@@ -65,34 +93,6 @@
       <div class="action-buttons-container">
         <button class="action-btn" id="action-delete-btn">DELETE</button>
         <button class="action-btn" id="action-submit-btn">SUBMIT</button>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- GAME 02 SCREEN: 11TH FLOOR QUESTIONS -->
-  <div id="questions-screen" class="app-screen screen" style="display: none;">
-    <div class="game-container">
-      
-      <div class="top-utility-bar">
-        <button class="util-btn" id="exit-questions-btn" onclick="resetToLobby()">✕ LOBBY</button>
-        <button class="util-btn btn-audio-toggle" onclick="toggleAudio()">SOUND: OFF</button>
-      </div>
-
-      <div class="header-section">
-        <div class="logo-title">11FL?</div>
-        <div class="logo-subtitle">ELEVATOR TRIVIA CLIMB</div>
-        <div class="logo-sub-bottom" id="hud-floor-label">FLOOR 01</div>
-      </div>
-
-      <div class="timer-bar-wrap">
-        <div id="timer-bar"></div>
-      </div>
-
-      <div id="floor-counter" class="building-shaft"></div>
-
-      <div class="game-card">
-        <div id="game-view" class="game-view-content"></div>
       </div>
 
     </div>
