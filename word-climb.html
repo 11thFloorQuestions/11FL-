@@ -46,6 +46,9 @@
       text-decoration: none;
     }
     .brand-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
     }
     .brand-title {
@@ -59,13 +62,14 @@
       font-size: 9px;
       font-weight: 800;
       letter-spacing: 2px;
-      margin-top: 4px;
+      margin-top: 3px;
     }
     .brand-subtitle-sub {
       color: #666666;
       font-size: 8px;
       font-weight: 700;
       letter-spacing: 1.5px;
+      margin-top: 1px;
     }
     .workspace {
       display: flex;
@@ -74,7 +78,7 @@
     }
     .elevator-shaft {
       display: flex;
-      flex-direction: column; /* Floor 1 at bottom, 11 at top normally */
+      flex-direction: column;
       justify-content: space-between;
       width: 26px;
       background-color: #0f0f0f;
@@ -111,7 +115,7 @@
       text-align: left;
       border-bottom: 1px solid #222222;
       padding-bottom: 6px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       position: relative;
     }
     .card-floor-label {
@@ -133,21 +137,48 @@
       font-size: 11px;
       font-weight: 800;
       min-height: 18px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       text-align: center;
+    }
+    /* Target Word Boxes Container */
+    #target-word-slots {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      margin-bottom: 8px;
+      min-height: 32px;
+      align-items: center;
+    }
+    .target-slot {
+      width: 26px;
+      height: 30px;
+      border: 1px solid #333333;
+      border-radius: 4px;
+      background: #181818;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+      color: #ffffff;
+    }
+    .target-slot.revealed {
+      border-color: #ff1f2d;
+      color: #ff1f2d;
+      background: #1c1415;
     }
     #guess-display {
       display: flex;
       justify-content: center;
       gap: 5px;
-      min-height: 36px;
-      margin-bottom: 8px;
+      min-height: 32px;
+      margin-bottom: 6px;
     }
     #wheel-container {
-      width: 180px;
-      height: 180px;
+      width: 160px;
+      height: 160px;
       position: relative;
-      margin: 6px 0;
+      margin: 4px 0;
     }
     .controls {
       display: flex;
@@ -188,7 +219,6 @@
     </div>
 
     <div class="workspace">
-      <!-- Elevator Shaft ordered from 11 at top down to 1 at bottom -->
       <div class="elevator-shaft">
         <div class="elevator-slot" data-floor="11"></div>
         <div class="elevator-slot" data-floor="10"></div>
@@ -209,6 +239,8 @@
           <div class="card-header-line"></div>
         </div>
         <div id="message-box"></div>
+        <!-- Target boxes container -->
+        <div id="target-word-slots"></div>
         <div id="guess-display"></div>
         <div id="wheel-container"></div>
       </div>
