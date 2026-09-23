@@ -2,115 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>11FL?</title>
-  <link rel="stylesheet" href="./style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>11th Floor Questions</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- LANDING HUB -->
-  <div id="landing-screen" class="app-screen screen active">
-    <div class="landing-content">
-      <div class="landing-logo-title">11FL?</div>
-      <div class="landing-logo-subtitle">ELEVATOR TRIVIA CLIMB</div>
-      <div class="landing-logo-sub-bottom">SELECT GAME</div>
-      
-      <div id="building-landing" class="building-shaft"></div>
+  <!-- LANDING SCREEN -->
+  <div id="landing-screen" class="app-screen">
+    <div class="landing-hero">
+      <h1 class="logo-title">11FL?</h1>
+      <p class="subtitle">ELEVATOR TRIVIA CLIMB</p>
+    </div>
+    
+    <div class="game-select-container">
+      <button id="goto-questions-btn" class="game-card-btn">
+        <div class="card-tag">GAME 01</div>
+        <h3>11TH FLOOR QUESTIONS</h3>
+        <p>Answer trivia under pressure to climb 11 floors to the Penthouse.</p>
+      </button>
 
-      <div class="game-select-container">
-        <!-- GAME 01: 11TH FLOOR QUESTIONS -->
-        <div class="game-card-btn active-game" id="goto-questions-btn">
-          <div class="game-num">GAME 01</div>
-          <div class="game-name">11TH FLOOR QUESTIONS</div>
-        </div>
-
-        <!-- GAME 02: WORD CLIMB -->
-        <div class="game-card-btn" id="goto-wordclimb-btn">
-          <div class="game-num">GAME 02</div>
-          <div class="game-name">WORD CLIMB</div>
-        </div>
-      </div>
+      <button id="goto-wordclimb-btn" class="game-card-btn" onclick="showScreen('wordclimb-screen')">
+        <div class="card-tag">GAME 02</div>
+        <h3>WORD CLIMB</h3>
+        <p>Decipher 5-letter codes to reach the top level.</p>
+      </button>
     </div>
   </div>
 
-  <!-- GAME 01 SCREEN: 11TH FLOOR QUESTIONS -->
-  <div id="questions-screen" class="app-screen screen" style="display: none;">
-    <div class="game-container">
-      
-      <div class="top-utility-bar">
-        <button class="util-btn" id="exit-questions-btn" onclick="resetToLobby()">✕ LOBBY</button>
-        <button class="util-btn btn-audio-toggle" onclick="toggleAudio()">SOUND: OFF</button>
+  <!-- QUESTIONS GAME SCREEN -->
+  <div id="questions-screen" class="app-screen hidden">
+    <header class="game-header">
+      <button class="nav-btn" onclick="resetToLobby()">✕ LOBBY</button>
+      <div class="hud-display">
+        <span id="hud-floor-label">FLOOR 01</span>
       </div>
+      <button id="sound-toggle" class="nav-btn">🔊 SOUND: ON</button>
+    </header>
 
-      <div class="header-section">
-        <div class="logo-title">11FL?</div>
-        <div class="logo-subtitle">ELEVATOR TRIVIA CLIMB</div>
-        <div class="logo-sub-bottom" id="hud-floor-label">FLOOR 01</div>
-      </div>
+    <main class="game-layout">
+      <!-- Elevator Shaft Column -->
+      <aside id="floor-counter" class="shaft-column"></aside>
 
-      <div class="timer-bar-wrap">
-        <div id="timer-bar"></div>
-      </div>
-
-      <div id="floor-counter" class="building-shaft"></div>
-
-      <div class="game-card">
-        <div id="game-view" class="game-view-content"></div>
-      </div>
-
-    </div>
+      <!-- Main Play View -->
+      <section id="game-view" class="game-card-view"></section>
+    </main>
   </div>
 
-  <!-- GAME 02 SCREEN: WORD CLIMB -->
-  <div id="game-screen" class="app-screen screen" style="display: none;">
-    <div class="game-container">
-      
-      <div class="top-utility-bar">
-        <button class="util-btn" id="exit-btn">✕ LOBBY</button>
-        <button class="util-btn btn-audio-toggle" onclick="toggleAudio()">SOUND: OFF</button>
+  <!-- WORD CLIMB SCREEN -->
+  <div id="wordclimb-screen" class="app-screen hidden">
+    <header class="game-header">
+      <button class="nav-btn" onclick="resetToLobby()">✕ LOBBY</button>
+      <div class="hud-display">
+        <span>WORD CLIMB</span>
       </div>
-
-      <div class="header-section">
-        <div class="logo-title">11FL?</div>
-        <div class="logo-subtitle">ELEVATOR TRIVIA CLIMB</div>
-        <div class="logo-sub-bottom">WORD CLIMB</div>
-      </div>
-
-      <div class="game-card">
-        <div id="card-floor-text">FLOOR 01</div>
-        
-        <div class="target-slots-container" id="target-word-slots"></div>
-
-        <div id="message-box"></div>
-
-        <div id="guess-display"></div>
-
-        <div id="wheel-wrapper">
-          <div id="wheel-container"></div>
-        </div>
-      </div>
-
-      <div class="action-buttons-container">
-        <button class="action-btn" id="action-delete-btn">DELETE</button>
-        <button class="action-btn" id="action-submit-btn">SUBMIT</button>
-      </div>
-
-    </div>
+    </header>
+    <div id="wordclimb-view" class="game-card-view"></div>
   </div>
 
-  <!-- STATS & ARCHIVE MODAL -->
-  <div id="stats-modal" class="modal-overlay hidden">
-    <div class="modal-content">
-      <div class="modal-header">
-        <span class="modal-title">PLAYER STATS & VAULT</span>
-        <button class="modal-close-btn" onclick="closeStatsModal()">✕</button>
-      </div>
-      <div id="stats-body"></div>
-    </div>
-  </div>
-
-  <!-- SCRIPTS -->
-  <script src="./script.js"></script>
-  <script src="./word-climb.js"></script>
+  <script src="script.js"></script>
+  <script src="word-climb.js"></script>
 </body>
 </html>
