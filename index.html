@@ -10,7 +10,7 @@
   <div id="app-container">
     
     <!-- LANDING SCREEN -->
-    <div id="screen-landing" class="screen active" style="display: flex; flex-direction: column;">
+    <div id="landing-screen" class="screen" style="display: flex;">
       <div class="landing-header">
         <div class="game-title">11FL?</div>
         <div class="game-subtitle">ELEVATOR TRIVIA CLIMB</div>
@@ -28,23 +28,23 @@
     </div>
 
     <!-- GAME SCREEN -->
-    <div id="game-screen" class="screen" style="display: none; flex-direction: column;">
+    <div id="game-screen" class="screen" style="display: none;">
       <div class="game-header">
         <div class="hud-floor" id="card-floor-text">FLOOR 01</div>
         <button class="btn-hud-icon" id="exit-btn">✕</button>
       </div>
 
-      <div id="message-box" style="text-align: center; font-size: 0.75rem; min-height: 18px; margin-bottom: 8px;"></div>
+      <div id="message-box"></div>
 
-      <div class="target-word-slots" id="target-word-slots" style="display: flex; justify-content: center; gap: 6px; margin-bottom: 15px;"></div>
+      <div class="target-word-slots" id="target-word-slots"></div>
 
-      <div id="guess-display" style="display: flex; justify-content: center; gap: 4px; min-height: 36px; margin-bottom: 15px;"></div>
+      <div id="guess-display"></div>
 
-      <div class="wheel-container" id="wheel-container" style="position: relative; width: 180px; height: 180px; margin: 0 auto 20px auto;"></div>
+      <div class="wheel-container" id="wheel-container"></div>
 
       <div style="display: flex; gap: 10px; width: 100%; max-width: 280px; margin: 0 auto;">
-        <button id="action-delete-btn" style="flex: 1; padding: 12px; background: #222; color: #fff; border: 1px solid #444; border-radius: 4px; font-weight: bold; cursor: pointer;">DELETE</button>
-        <button id="action-submit-btn" style="flex: 1; padding: 12px; background: #ff1f2d; color: #fff; border: none; border-radius: 4px; font-weight: bold; cursor: pointer;">SUBMIT</button>
+        <button id="action-delete-btn" class="btn-secondary" style="flex:1;">DELETE</button>
+        <button id="action-submit-btn" class="btn-primary" style="flex:1;">SUBMIT</button>
       </div>
     </div>
 
