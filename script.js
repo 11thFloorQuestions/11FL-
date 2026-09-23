@@ -4,7 +4,6 @@ let currentFloorIndex = 0; // 0 to 9 (Floor 01 to Floor 10)
 let timerInterval = null;
 let timeLeft = 15;
 let isAnswerLocked = false;
-let activeSetId = 'daily';
 
 // Local Stats
 let stats = JSON.parse(localStorage.getItem('11th_floor_stats')) || {
@@ -15,7 +14,7 @@ let stats = JSON.parse(localStorage.getItem('11th_floor_stats')) || {
     bestFloor: 1
 };
 
-// Audio Context for Elevator Sounds
+// Audio Context
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 let audioCtx = null;
 
@@ -33,8 +32,8 @@ function playSound(type) {
     gain.connect(audioCtx.destination);
 
     if (type === 'correct') {
-        osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
-        osc.frequency.exponentialRampToValueAtTime(659.25, audioCtx.currentTime + 0.15); // E5
+        osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(659.25, audioCtx.currentTime + 0.15);
         gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
         osc.start();
@@ -49,7 +48,6 @@ function playSound(type) {
     }
 }
 
-// Format floor label according to strict project guidelines: Floor 01 to Floor 11
 function formatFloorText(floorNum) {
     const padded = String(floorNum).padStart(2, '0');
     return `Floor ${padded}`;
@@ -60,7 +58,6 @@ const landingScreen = document.getElementById('landing-screen');
 const gameScreen = document.getElementById('game-screen');
 const cardFloorText = document.getElementById('card-floor-text');
 const questionText = document.getElementById('question-text');
-const optionsContainer = document.getElementById('options-container');
 const optionButtons = document.querySelectorAll('.btn-option');
 const timerBar = document.getElementById('timer-bar');
 const buildingShaftBlocks = document.querySelectorAll('.building-shaft .floor-block');
@@ -70,14 +67,13 @@ const modalGameOver = document.getElementById('modal-game-over');
 const modalVault = document.getElementById('modal-vault');
 const modalStats = document.getElementById('modal-stats');
 
-// Data Loading Functions
+// Data Fetching
 async function loadQuestionsData(sourcePath = 'questions.json') {
     try {
         const response = await fetch(sourcePath);
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
         
-        // Handle both direct array format or wrapped object format
         if (Array.isArray(data)) {
             currentQuestions = data;
         } else if (data.questions && Array.isArray(data.questions)) {
@@ -85,17 +81,17 @@ async function loadQuestionsData(sourcePath = 'questions.json') {
         } else if (data.floors && Array.isArray(data.floors)) {
             currentQuestions = data.floors;
         } else {
-            throw new Error('Unrecognized questions JSON structure');
+            throw new Error('Unrecognized JSON structure');
         }
         return true;
     } catch (err) {
         console.error("Failed to load question set:", err);
-        questionText.textContent = "Error loading question set from JSON file.";
+        questionText.textContent = "Error loading question set from JSON.";
         return false;
     }
 }
 
-// Game Flow Functions
+// Game Flow
 async function startNewGame(sourcePath = 'questions.json') {
     initAudio();
     currentFloorIndex = 0;
@@ -121,10 +117,8 @@ function loadFloorQuestion() {
     isAnswerLocked = false;
     const currentQuestion = currentQuestions[currentFloorIndex];
 
-    // Update Header Floor Text
     cardFloorText.textContent = formatFloorText(currentFloorIndex + 1);
 
-    // Update Shaft Floor Indicators
     buildingShaftBlocks.forEach((block, index) => {
         block.classList.remove('completed', 'active-floor');
         if (index < currentFloorIndex) {
@@ -134,7 +128,6 @@ function loadFloorQuestion() {
         }
     });
 
-    // Populate Question & Options
     questionText.textContent = currentQuestion.question || currentQuestion.text;
     
     const options = currentQuestion.options || currentQuestion.answers || [];
@@ -213,7 +206,6 @@ function handleFailure(reasonText) {
     clearInterval(timerInterval);
     const floorReachedNum = currentFloorIndex + 1;
 
-    // Update Local Stats
     stats.played += 1;
     stats.currentStreak = 0;
     if (floorReachedNum > stats.bestFloor) {
@@ -221,7 +213,6 @@ function handleFailure(reasonText) {
     }
     saveStats();
 
-    // Setup Game Over Modal State
     document.getElementById('game-over-title').textContent = "ELEVATOR STOPPED";
     document.getElementById('game-over-message').textContent = reasonText;
     document.getElementById('final-floor-reached').textContent = `Stopped at ${formatFloorText(floorReachedNum)}`;
@@ -231,8 +222,6 @@ function handleFailure(reasonText) {
 
 function triggerVictory() {
     clearInterval(timerInterval);
-    
-    // Set Header State to Floor 11 for Victory State
     cardFloorText.textContent = formatFloorText(11);
     
     buildingShaftBlocks.forEach(block => {
@@ -240,7 +229,6 @@ function triggerVictory() {
         block.classList.add('completed');
     });
 
-    // Update Local Stats
     stats.played += 1;
     stats.wins += 1;
     stats.currentStreak += 1;
@@ -250,7 +238,6 @@ function triggerVictory() {
     stats.bestFloor = 11;
     saveStats();
 
-    // Setup Victory Modal State
     document.getElementById('game-over-title').textContent = "11th FLOOR REACHED";
     document.getElementById('game-over-message').textContent = "Elevator Climb Completed!";
     document.getElementById('final-floor-reached').textContent = "Victory State: Floor 11";
@@ -281,14 +268,12 @@ async function populateVaultList() {
     vaultList.innerHTML = '<div style="color:#888; text-align:center; padding:10px;">Loading Vault Archives...</div>';
 
     try {
-        // Attempt to fetch vault index if available, otherwise build dynamic file links
         const res = await fetch('archives/index.json').catch(() => null);
         let archiveFiles = [];
         
         if (res && res.ok) {
             archiveFiles = await res.json();
         } else {
-            // Default archive path mapping matching repository structure
             archiveFiles = Array.from({ length: 10 }, (_, i) => ({
                 id: `set_${i + 1}`,
                 title: `Archive Set #${String(i + 1).padStart(2, '0')}`,
@@ -322,7 +307,6 @@ optionButtons.forEach((btn, index) => {
     btn.addEventListener('click', () => handleAnswerSelection(index));
 });
 
-// Utility Bar Listeners
 document.getElementById('btn-util-lobby').addEventListener('click', () => {
     clearInterval(timerInterval);
     gameScreen.style.display = 'none';
@@ -335,19 +319,25 @@ document.getElementById('btn-util-vault').addEventListener('click', () => {
     modalVault.classList.remove('hidden');
 });
 
+document.getElementById('btn-landing-vault').addEventListener('click', () => {
+    populateVaultList();
+    modalVault.classList.remove('hidden');
+});
+
 document.getElementById('btn-util-stats').addEventListener('click', () => {
     updateStatsUI();
     modalStats.classList.remove('hidden');
 });
 
-// Modal Close Listeners
+document.getElementById('btn-landing-stats').addEventListener('click', () => {
+    updateStatsUI();
+    modalStats.classList.remove('hidden');
+});
+
 document.getElementById('btn-close-vault').addEventListener('click', () => modalVault.classList.add('hidden'));
 document.getElementById('btn-close-stats').addEventListener('click', () => modalStats.classList.add('hidden'));
 
-// Game Over Modal Action Choices
-document.getElementById('btn-try-again').addEventListener('click', () => {
-    startNewGame('questions.json');
-});
+document.getElementById('btn-try-again').addEventListener('click', () => startNewGame('questions.json'));
 
 document.getElementById('btn-view-stats').addEventListener('click', () => {
     closeModals();
@@ -361,5 +351,5 @@ document.getElementById('btn-back-vault').addEventListener('click', () => {
     modalVault.classList.remove('hidden');
 });
 
-// Initialization
+// Initial Page Load: Show Landing Screen Only (No timer running)
 updateStatsUI();
