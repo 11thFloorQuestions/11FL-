@@ -6,7 +6,6 @@ let currentFloorData = null;
 let foundWords = new Set();
 let allValidWords = new Set();
 let currentWordString = "";
-let currentFloorNum = 1;
 
 document.addEventListener("DOMContentLoaded", () => {
     initElevatorSlots();
@@ -25,7 +24,6 @@ function initElevatorSlots() {
 }
 
 async function loadAndPlayFloor(floorNum) {
-    currentFloorNum = floorNum;
     const formattedNum = String(floorNum).padStart(2, '0');
     const filePath = `assets/data/floors/floor_${formattedNum}.json`;
 
@@ -79,6 +77,7 @@ function renderTargetSlots() {
     const wordLengths = Object.keys(currentFloorData.words);
     if (wordLengths.length === 0) return;
     
+    // Render placeholders based on the length of the first available word (e.g., 4 slots)
     const sampleWord = currentFloorData.words[wordLengths[0]][0] || "WORD";
     
     for (let i = 0; i < sampleWord.length; i++) {
@@ -173,8 +172,9 @@ function handleSubmission() {
         showMessage(`Already found '${word}'!`, true);
     } else if (allValidWords.has(word)) {
         foundWords.add(word);
-        showMessage(`Correct! '${word}'`, false); // Green confirmation
+        showMessage(`Correct! '${word}'`, false);
         
+        // Populate slots when a valid word matching slot length is submitted
         const slots = document.querySelectorAll(".target-slot");
         if (slots.length === word.length) {
             slots.forEach((slot, idx) => {
@@ -183,13 +183,8 @@ function handleSubmission() {
             });
         }
 
-        // Check if floor complete, then automatically advance to the next floor after a short delay
-        if (foundWords.size === allValidWords.size || foundWords.size > 0) {
-            showMessage(`FLOOR ${currentFloorData.floor} CLEARED! Ascending...`, false);
-            setTimeout(() => {
-                const nextFloor = Math.min(currentFloorNum + 1, 11);
-                loadAndPlayFloor(nextFloor);
-            }, 1200);
+        if (foundWords.size === allValidWords.size) {
+            showMessage(`FLOOR ${currentFloorData.floor} CLEARED!`, false);
         }
     } else {
         showMessage(`'${word}' is not valid.`, true);
@@ -208,6 +203,6 @@ function showMessage(text, isError = false) {
     const msg = document.getElementById("message-box");
     if (msg) {
         msg.textContent = text;
-        msg.style.color = isError ? "#ff1f2d" : "#2ecc71"; // Red for errors, Green for correct answers
+        msg.style.color = isError ? "#ff1f2d" : "#2ecc71";
     }
 }
