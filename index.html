@@ -159,23 +159,23 @@
         }
 
         .game-logo-title {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             font-weight: 900;
             color: #ff1f2d;
             letter-spacing: 2px;
-            line-height: 0.95;
+            line-height: 1;
         }
 
         .game-logo-subtitle {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 400;
             color: #ffffff;
             letter-spacing: 1px;
-            margin-top: 4px;
+            margin-top: 2px;
         }
 
         .game-logo-sub-bottom {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             font-weight: 700;
             color: #cccccc;
             letter-spacing: 4px;
@@ -200,7 +200,7 @@
 
         /* Questions Game Styles */
         #q-text {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 600;
             text-align: center;
             margin-bottom: 20px;
@@ -246,7 +246,7 @@
             position: absolute;
             top: 14px;
             left: 16px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: bold;
             color: #ff1f2d;
             letter-spacing: 1px;
@@ -255,24 +255,49 @@
         #guess-display {
             display: flex;
             gap: 6px;
-            min-height: 36px;
+            min-height: 40px;
             justify-content: center;
             align-items: center;
-            margin-bottom: 12px;
-            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
             font-weight: bold;
-            color: #ff1f2d;
-            letter-spacing: 2px;
+            color: #ffffff;
+            letter-spacing: 3px;
         }
 
-        #wheel-wrapper {
+        .letter-wheel {
             position: relative;
             width: 180px;
             height: 180px;
-            margin: 4px auto;
+            margin: 10px auto;
+            border: 2px dashed #333;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        .wheel-node {
+            position: absolute;
+            width: 44px;
+            height: 44px;
+            background: #1c1c1c;
+            border: 1px solid #444;
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .wheel-node:hover, .wheel-node.selected {
+            background: #ff1f2d;
+            border-color: #ff1f2d;
+            color: #ffffff;
         }
 
         .action-buttons-container {
@@ -296,13 +321,12 @@
 
         #action-delete-btn {
             background: #1c1c1c;
-            border: 1px solid #ff1f2d;
-            color: #ffffff;
+            border: 1px solid #444;
+            color: #cccccc;
         }
 
         #action-submit-btn {
             background: #ff1f2d;
-            border: 1px solid #ff1f2d;
             color: #ffffff;
         }
     </style>
@@ -317,11 +341,11 @@
             <div class="logo-sub-bottom">Games</div>
             
             <div class="game-select-container">
-                <button class="game-card-btn" onclick="startQuestionsGame()">
+                <button class="game-card-btn" onclick="openQuestionsGame()">
                     <span class="game-num">GAME 01</span>
                     <span class="game-name">11th Floor Questions</span>
                 </button>
-                <button class="game-card-btn" onclick="startWordClimbGame()">
+                <button class="game-card-btn" onclick="openWordClimbGame()">
                     <span class="game-num">GAME 02</span>
                     <span class="game-name">11th Floor Word Climb</span>
                 </button>
@@ -334,7 +358,7 @@
         <div class="game-container">
             <div class="top-utility-bar">
                 <button class="util-btn" onclick="returnToLanding()">Exit</button>
-                <button class="util-btn" onclick="nextQuestion()">Next</button>
+                <button class="util-btn" onclick="loadNextQuestion()">Next</button>
             </div>
             
             <div class="header-section">
@@ -344,7 +368,7 @@
             </div>
 
             <div class="game-card">
-                <div id="q-text">Loading question...</div>
+                <div id="q-text">Loading...</div>
                 <div class="options-container" id="q-options"></div>
             </div>
         </div>
@@ -355,7 +379,7 @@
         <div class="game-container">
             <div class="top-utility-bar">
                 <button class="util-btn" onclick="returnToLanding()">Exit</button>
-                <button class="util-btn" onclick="alert('Archive loaded')">Archive</button>
+                <button class="util-btn" onclick="resetWordClimb()">Reset</button>
             </div>
             
             <div class="header-section">
@@ -366,91 +390,158 @@
 
             <div class="game-card">
                 <div id="card-floor-text">FLOOR 01</div>
-                <div id="guess-display">SELECT LETTERS</div>
-                <div id="wheel-wrapper">
-                    <!-- Interactive wheel representation -->
-                    <p style="color: #888; font-size: 0.9rem;">[Wheel Active]</p>
+                <div id="guess-display">_ _ _ _</div>
+                <div class="letter-wheel" id="letter-wheel">
+                    <!-- Dynamic wheel nodes generated via JS -->
                 </div>
             </div>
 
             <div class="action-buttons-container">
-                <button class="action-btn" id="action-delete-btn">Delete</button>
-                <button class="action-btn" id="action-submit-btn">Submit</button>
+                <button class="action-btn" id="action-delete-btn" onclick="clearLastLetter()">Delete</button>
+                <button class="action-btn" id="action-submit-btn" onclick="submitWordGuess()">Submit</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Game Data & Logic
-        const questionsData = [
+        // Questions Game Data & Logic
+        const questionsList = [
             {
-                q: "What is the primary theme of the Eleventh Floor?",
-                options: ["Dark aesthetic & interactive puzzles", "Bright corporate minimalism", "Classic retro arcade", "Random trivia"],
-                answer: 0
-            },
-            {
-                q: "How many games are featured in the initial suite?",
-                options: ["1 Game", "2 Games", "5 Games", "10 Games"],
+                q: "What is the custom background shade for the 11th Floor UI?",
+                options: ["#000000 Pure Black", "#0b0b0b Dark Theme", "#111111 Charcoal", "#1a1a1a Dark Slate"],
                 answer: 1
             },
             {
-                q: "What color accent defines the 11FL? brand?",
-                options: ["Neon Blue", "Electric Green", "Signature Red", "Bright Yellow"],
-                answer: 2
+                q: "What accent color defines the 11FL? brand identity?",
+                options: ["Signature Red (#ff1f2d)", "Electric Blue", "Neon Green", "Bright Orange"],
+                answer: 0
+            },
+            {
+                q: "How are the games accessed from the main hub?",
+                options: ["Dropdown menus", "Direct card selection buttons", "Swipe gestures", "Sidebar links"],
+                answer: 1
             }
         ];
 
-        let currentQIndex = 0;
+        let currentQuestionIdx = 0;
+
+        function openQuestionsGame() {
+            document.getElementById('landing-screen').classList.add('hidden');
+            document.getElementById('questions-screen').classList.remove('hidden');
+            currentQuestionIdx = 0;
+            loadQuestionContent();
+        }
+
+        function loadQuestionContent() {
+            const currentItem = questionsList[currentQuestionIdx];
+            document.getElementById('q-text').innerText = currentItem.q;
+            
+            const optionsBox = document.getElementById('q-options');
+            optionsBox.innerHTML = '';
+
+            currentItem.options.forEach((optText, idx) => {
+                const optButton = document.createElement('button');
+                optButton.className = 'option-btn';
+                optButton.innerText = optText;
+                optButton.onclick = () => verifyAnswer(idx, currentItem.answer, optButton);
+                optionsBox.appendChild(optButton);
+            });
+        }
+
+        function verifyAnswer(selectedIndex, correctIndex, clickedBtn) {
+            const allBtns = document.querySelectorAll('.option-btn');
+            allBtns.forEach(btn => btn.style.pointerEvents = 'none');
+
+            if (selectedIndex === correctIndex) {
+                clickedBtn.classList.add('correct');
+            } else {
+                clickedBtn.classList.add('incorrect');
+                allBtns[correctIndex].classList.add('correct');
+            }
+        }
+
+        function loadNextQuestion() {
+            currentQuestionIdx = (currentQuestionIdx + 1) % questionsList.length;
+            loadQuestionContent();
+        }
+
+        // Word Climb Game Data & Logic
+        const currentWheelLetters = ['E', 'L', 'V', 'N'];
+        let currentGuess = [];
+
+        function openWordClimbGame() {
+            document.getElementById('landing-screen').classList.add('hidden');
+            document.getElementById('wordclimb-screen').classList.remove('hidden');
+            renderWheelNodes();
+            resetWordClimb();
+        }
+
+        function renderWheelNodes() {
+            const wheelContainer = document.getElementById('letter-wheel');
+            wheelContainer.innerHTML = '';
+            
+            const radius = 60;
+            const centerX = 90;
+            const centerY = 90;
+            const totalLetters = currentWheelLetters.length;
+
+            currentWheelLetters.forEach((letter, index) => {
+                const angle = (index * 2 * Math.PI) / totalLetters - Math.PI / 2;
+                const x = centerX + radius * Math.cos(angle) - 22;
+                const y = centerY + radius * Math.sin(angle) - 22;
+
+                const node = document.createElement('div');
+                node.className = 'wheel-node';
+                node.innerText = letter;
+                node.style.left = `${x}px`;
+                node.style.top = `${y}px`;
+                node.onclick = () => selectLetterNode(letter, node);
+                wheelContainer.appendChild(node);
+            });
+        }
+
+        function selectLetterNode(letter, nodeElem) {
+            currentGuess.push(letter);
+            nodeElem.classList.add('selected');
+            updateGuessDisplay();
+        }
+
+        function clearLastLetter() {
+            currentGuess.pop();
+            renderWheelNodes();
+            updateGuessDisplay();
+        }
+
+        function updateGuessDisplay() {
+            const displayBox = document.getElementById('guess-display');
+            if (currentGuess.length === 0) {
+                displayBox.innerText = "_ _ _ _";
+            } else {
+                displayBox.innerText = currentGuess.join(" ");
+            }
+        }
+
+        function submitWordGuess() {
+            const word = currentGuess.join("");
+            if (word === "ELEV") {
+                alert("Correct! Level Cleared!");
+                resetWordClimb();
+            } else {
+                alert(`Tried: ${word}. Keep climbing!`);
+                resetWordClimb();
+            }
+        }
+
+        function resetWordClimb() {
+            currentGuess = [];
+            renderWheelNodes();
+            updateGuessDisplay();
+        }
 
         function returnToLanding() {
             document.getElementById('questions-screen').classList.add('hidden');
             document.getElementById('wordclimb-screen').classList.add('hidden');
             document.getElementById('landing-screen').classList.remove('hidden');
-        }
-
-        function startQuestionsGame() {
-            document.getElementById('landing-screen').classList.add('hidden');
-            document.getElementById('questions-screen').classList.remove('hidden');
-            currentQIndex = 0;
-            loadQuestion();
-        }
-
-        function loadQuestion() {
-            const currentData = questionsData[currentQIndex];
-            document.getElementById('q-text').innerText = currentData.q;
-            
-            const optionsContainer = document.getElementById('q-options');
-            optionsContainer.innerHTML = '';
-
-            currentData.options.forEach((opt, index) => {
-                const btn = document.createElement('button');
-                btn.className = 'option-btn';
-                btn.innerText = opt;
-                btn.onclick = () => checkAnswer(index, currentData.answer, btn);
-                optionsContainer.appendChild(btn);
-            });
-        }
-
-        function checkAnswer(selectedIndex, correctIndex, btnElement) {
-            const buttons = document.querySelectorAll('.option-btn');
-            buttons.forEach(b => b.style.pointerEvents = 'none'); // Lock choices
-
-            if (selectedIndex === correctIndex) {
-                btnElement.classList.add('correct');
-            } else {
-                btnElement.classList.add('incorrect');
-                buttons[correctIndex].classList.add('correct');
-            }
-        }
-
-        function nextQuestion() {
-            currentQIndex = (currentQIndex + 1) % questionsData.length;
-            loadQuestion();
-        }
-
-        function startWordClimbGame() {
-            document.getElementById('landing-screen').classList.add('hidden');
-            document.getElementById('wordclimb-screen').classList.remove('hidden');
         }
     </script>
 </body>
