@@ -1,277 +1,322 @@
-/**
- * 11th Floor Questions - Original Gameplay Logic
- */
+// Default Founding Daily Set Fallback (50 Sets available via JSON fetch or fallback)
+const DEFAULT_GAME_SET = [
+    { question: "Which planet in our solar system has the highest density?", options: ["Earth", "Jupiter", "Mercury", "Saturn"], answer: 0 },
+    { question: "What was the highest-grossing film of the 1980s?", options: ["E.T. the Extra-Terrestrial", "Star Wars: The Empire Strikes Back", "Back to the Future", "Raiders of the Lost Ark"], answer: 0 },
+    { question: "In what year did the Berlin Wall fall?", options: ["1987", "1989", "1991", "1993"], answer: 1 },
+    { question: "Which element on the periodic table has the chemical symbol 'W'?", options: ["Tungsten", "Mercury", "Bismuth", "Wolframite"], answer: 0 },
+    { question: "Who composed the opera 'The Marriage of Figaro'?", options: ["Wolfgang Amadeus Mozart", "Ludwig van Beethoven", "Johann Sebastian Bach", "Franz Schubert"], answer: 0 },
+    { question: "What is the longest river in South America?", options: ["Amazon River", "Paraná River", "Orinoco River", "Magdalena River"], answer: 0 },
+    { question: "Which country won the inaugural FIFA World Cup in 1930?", options: ["Uruguay", "Argentina", "Brazil", "Italy"], answer: 0 },
+    { question: "What is the hardest naturally occurring substance on Earth?", options: ["Diamond", "Corundum", "Quartz", "Topaz"], answer: 0 },
+    { question: "Who wrote the 1897 Gothic horror novel 'Dracula'?", options: ["Bram Stoker", "Mary Shelley", "Oscar Wilde", "Edgar Allan Poe"], answer: 0 },
+    { question: "Which organ in the human body consumes approximately 20% of its oxygen?", options: ["Brain", "Heart", "Liver", "Lungs"], answer: 0 }
+];
 
-let questions = [];
-let currentFloor = 1;
-let currentQuestion = null;
+// State Variables
+let currentQuestions = [...DEFAULT_GAME_SET];
+let currentFloorIndex = 0; // 0 to 9 (Floor 01 to Floor 10)
 let timerInterval = null;
 let timeLeft = 15;
-let floorHistory = []; // Array of booleans or scores per floor
-let isSoundEnabled = true;
+let isAnswerLocked = false;
 
-// Sound Synthesizer via Web Audio API
-const playTone = (freq, type = 'sine', duration = 0.15) => {
-  if (!isSoundEnabled) return;
-  try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = type;
-    osc.frequency.setValueAtTime(freq, ctx.currentTime);
-    gain.gain.setValueAtTime(0.1, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start();
-    osc.stop(ctx.currentTime + duration);
-  } catch (e) {
-    // Audio Context fallback handling
-  }
+// Local Stats
+let stats = JSON.parse(localStorage.getItem('11th_floor_stats')) || {
+    played: 0,
+    wins: 0,
+    currentStreak: 0,
+    maxStreak: 0,
+    bestFloor: 1
 };
 
-// Initialize Application
-document.addEventListener('DOMContentLoaded', async () => {
-  await loadQuestionDeck();
-  setupEventListeners();
-});
+// Audio Context for Elevator Sounds
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+let audioCtx = null;
 
-async function loadQuestionDeck() {
-  try {
-    const res = await fetch('questions.json');
-    questions = await res.json();
-  } catch (err) {
-    console.error('Failed to load questions deck:', err);
-    // Fallback question generator if json is unreachable
-    questions = Array.from({ length: 11 }, (_, i) => ({
-      floor: i + 1,
-      category: 'GENERAL KNOWLEDGE',
-      question: `Elevator Question for Floor ${i + 1}?`,
-      options: ['Option A', 'Option B', 'Option C', 'Option D'],
-      answer: 'Option A'
-    }));
-  }
+function initAudio() {
+    if (!audioCtx) {
+        audioCtx = new AudioContext();
+    }
 }
 
-function setupEventListeners() {
-  const gotoQuestionsBtn = document.getElementById('goto-questions-btn');
-  if (gotoQuestionsBtn) {
-    gotoQuestionsBtn.addEventListener('click', () => {
-      startClimb();
+function playSound(type) {
+    if (!audioCtx) return;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    if (type === 'correct') {
+        osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+        osc.frequency.exponentialRampToValueAtTime(659.25, audioCtx.currentTime + 0.15); // E5
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.3);
+    } else if (type === 'wrong') {
+        osc.frequency.setValueAtTime(180, audioCtx.currentTime);
+        osc.frequency.linearRampToValueAtTime(110, audioCtx.currentTime + 0.25);
+        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.3);
+    }
+}
+
+// Format floor label according to strict project guidelines: Floor 01 to Floor 11
+function formatFloorText(floorNum) {
+    const padded = String(floorNum).padStart(2, '0');
+    return `Floor ${padded}`;
+}
+
+// DOM Elements
+const landingScreen = document.getElementById('landing-screen');
+const gameScreen = document.getElementById('game-screen');
+const cardFloorText = document.getElementById('card-floor-text');
+const questionText = document.getElementById('question-text');
+const optionsContainer = document.getElementById('options-container');
+const optionButtons = document.querySelectorAll('.btn-option');
+const timerBar = document.getElementById('timer-bar');
+const buildingShaftBlocks = document.querySelectorAll('.building-shaft .floor-block');
+
+// Modals
+const modalGameOver = document.getElementById('modal-game-over');
+const modalVault = document.getElementById('modal-vault');
+const modalStats = document.getElementById('modal-stats');
+
+// Game Flow Functions
+function startNewGame() {
+    initAudio();
+    currentFloorIndex = 0;
+    isAnswerLocked = false;
+    
+    landingScreen.style.display = 'none';
+    gameScreen.style.display = 'flex';
+    closeModals();
+    
+    loadFloorQuestion();
+}
+
+function loadFloorQuestion() {
+    if (currentFloorIndex >= 10) {
+        triggerVictory();
+        return;
+    }
+
+    isAnswerLocked = false;
+    const currentQuestion = currentQuestions[currentFloorIndex];
+
+    // Update Header Floor Text
+    cardFloorText.textContent = formatFloorText(currentFloorIndex + 1);
+
+    // Update Shaft Floor Indicators
+    buildingShaftBlocks.forEach((block, index) => {
+        block.classList.remove('completed', 'active-floor');
+        if (index < currentFloorIndex) {
+            block.classList.add('completed');
+        } else if (index === currentFloorIndex) {
+            block.classList.add('active-floor');
+        }
     });
-  }
 
-  const soundToggle = document.getElementById('sound-toggle');
-  if (soundToggle) {
-    soundToggle.addEventListener('click', () => {
-      isSoundEnabled = !isSoundEnabled;
-      soundToggle.innerText = isSoundEnabled ? '🔊 SOUND: ON' : '🔇 SOUND: OFF';
+    // Populate Question & Options
+    questionText.textContent = currentQuestion.question;
+    optionButtons.forEach((btn, idx) => {
+        btn.textContent = currentQuestion.options[idx];
+        btn.className = 'btn-option';
+        btn.disabled = false;
     });
-  }
-}
 
-function showScreen(screenId) {
-  document.querySelectorAll('.app-screen').forEach(s => s.classList.add('hidden'));
-  const target = document.getElementById(screenId);
-  if (target) target.classList.remove('hidden');
-}
-
-// Direct Game Start
-function startClimb() {
-  currentFloor = 1;
-  floorHistory = [];
-  showScreen('questions-screen');
-  loadFloor(currentFloor);
-}
-
-function loadFloor(floorNum) {
-  clearInterval(timerInterval);
-  timeLeft = 15;
-
-  const hudFloor = document.getElementById('hud-floor-label');
-  if (hudFloor) {
-    hudFloor.innerText = floorNum === 11 ? 'PENTHOUSE // 11TH FLOOR' : `FLOOR ${String(floorNum).padStart(2, '0')}`;
-  }
-
-  renderBuildingShaft(floorNum);
-  
-  // Find floor question
-  const floorQuestions = questions.filter(q => q.floor === floorNum);
-  currentQuestion = floorQuestions[Math.floor(Math.random() * floorQuestions.length)] || questions[0];
-
-  renderQuestionCard(currentQuestion);
-  startTimer();
-}
-
-function renderBuildingShaft(activeFloor) {
-  const bldg = document.getElementById('floor-counter');
-  if (!bldg) return;
-
-  let html = '';
-  for (let f = 11; f >= 1; f--) {
-    const isActive = f === activeFloor ? 'active-floor' : '';
-    const isPassed = f < activeFloor ? 'passed-floor' : '';
-    const label = f === 11 ? 'PH' : String(f).padStart(2, '0');
-    html += `<div class="shaft-floor ${isActive} ${isPassed}">${label}</div>`;
-  }
-  bldg.innerHTML = html;
-}
-
-function renderQuestionCard(q) {
-  const gameView = document.getElementById('game-view');
-  if (!gameView) return;
-
-  // Shuffle options display order
-  const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
-
-  gameView.innerHTML = `
-    <div class="timer-container">
-      <div id="timer-bar" class="timer-bar" style="width: 100%;"></div>
-    </div>
-    <div class="question-header">
-      <span class="category-badge">${q.category || 'GENERAL TRIVIA'}</span>
-    </div>
-    <div class="question-text">${q.question}</div>
-    <div class="options-grid">
-      ${shuffledOptions.map(opt => `
-        <button class="btn-option" onclick="handleAnswer('${escapeQuotes(opt)}', '${escapeQuotes(q.answer)}', this)">
-          ${opt}
-        </button>
-      `).join('')}
-    </div>
-  `;
-}
-
-function escapeQuotes(str) {
-  return str.replace(/'/g, "\\'");
+    startTimer();
 }
 
 function startTimer() {
-  const timerBar = document.getElementById('timer-bar');
-  const startTime = Date.now();
-  const duration = 15000;
+    clearInterval(timerInterval);
+    timeLeft = 15;
+    updateTimerBar();
 
-  timerInterval = setInterval(() => {
-    const elapsed = Date.now() - startTime;
-    const remaining = Math.max(0, duration - elapsed);
-    const pct = (remaining / duration) * 100;
+    timerInterval = setInterval(() => {
+        timeLeft -= 0.1;
+        updateTimerBar();
 
-    if (timerBar) {
-      timerBar.style.width = `${pct}%`;
-      if (pct < 30) {
-        timerBar.style.backgroundColor = '#ff4444';
-      } else {
-        timerBar.style.backgroundColor = '#00ffcc';
-      }
-    }
-
-    if (remaining <= 0) {
-      clearInterval(timerInterval);
-      playTone(180, 'sawtooth', 0.4);
-      triggerFloorDrop('TIME EXPIRED');
-    }
-  }, 50);
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            handleFailure("Time Expired!");
+        }
+    }, 100);
 }
 
-function handleAnswer(selected, correct, buttonElem) {
-  clearInterval(timerInterval);
+function updateTimerBar() {
+    const percentage = Math.max(0, (timeLeft / 15) * 100);
+    timerBar.style.width = `${percentage}%`;
+}
 
-  // Disable all option buttons
-  const allBtns = document.querySelectorAll('.btn-option');
-  allBtns.forEach(btn => btn.disabled = true);
+function handleAnswerSelection(selectedIndex) {
+    if (isAnswerLocked) return;
+    isAnswerLocked = true;
+    clearInterval(timerInterval);
 
-  if (selected === correct) {
-    buttonElem.classList.add('selected-correct');
-    playTone(523.25, 'sine', 0.15); // C5
-    setTimeout(() => playTone(659.25, 'sine', 0.2), 150); // E5
-    floorHistory.push(true);
+    const currentQuestion = currentQuestions[currentFloorIndex];
+    const isCorrect = selectedIndex === currentQuestion.answer;
 
-    setTimeout(() => {
-      if (currentFloor >= 11) {
-        triggerVictory();
-      } else {
-        currentFloor++;
-        loadFloor(currentFloor);
-      }
-    }, 1000);
-  } else {
-    buttonElem.classList.add('selected-wrong');
-    // Highlight the correct answer
-    allBtns.forEach(btn => {
-      if (btn.innerText.trim() === correct) {
-        btn.classList.add('selected-correct');
-      }
+    optionButtons.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === currentQuestion.answer) {
+            btn.classList.add('selected-correct');
+        } else if (idx === selectedIndex && !isCorrect) {
+            btn.classList.add('selected-wrong');
+        }
     });
-    playTone(150, 'sawtooth', 0.35);
-    floorHistory.push(false);
 
-    setTimeout(() => {
-      triggerFloorDrop(`INCORRECT ANSWER AT FLOOR ${String(currentFloor).padStart(2, '0')}`);
-    }, 1200);
-  }
+    if (isCorrect) {
+        playSound('correct');
+        setTimeout(() => {
+            currentFloorIndex++;
+            if (currentFloorIndex === 10) {
+                triggerVictory();
+            } else {
+                loadFloorQuestion();
+            }
+        }, 1100);
+    } else {
+        playSound('wrong');
+        setTimeout(() => {
+            handleFailure("Incorrect Answer!");
+        }, 1100);
+    }
+}
+
+function handleFailure(reasonText) {
+    clearInterval(timerInterval);
+    const floorReachedNum = currentFloorIndex + 1;
+
+    // Update Local Stats
+    stats.played += 1;
+    stats.currentStreak = 0;
+    if (floorReachedNum > stats.bestFloor) {
+        stats.bestFloor = floorReachedNum;
+    }
+    saveStats();
+
+    // Setup Game Over Modal State
+    document.getElementById('game-over-title').textContent = "ELEVATOR STOPPED";
+    document.getElementById('game-over-message').textContent = reasonText;
+    document.getElementById('final-floor-reached').textContent = `Stopped at ${formatFloorText(floorReachedNum)}`;
+
+    modalGameOver.classList.remove('hidden');
 }
 
 function triggerVictory() {
-  const gameView = document.getElementById('game-view');
-  if (!gameView) return;
+    clearInterval(timerInterval);
+    
+    // Set Header State to Floor 11 for Victory State
+    cardFloorText.textContent = formatFloorText(11);
+    
+    buildingShaftBlocks.forEach(block => {
+        block.classList.remove('active-floor');
+        block.classList.add('completed');
+    });
 
-  playTone(880, 'triangle', 0.4);
-  saveCareerStats(true, 11);
+    // Update Local Stats
+    stats.played += 1;
+    stats.wins += 1;
+    stats.currentStreak += 1;
+    if (stats.currentStreak > stats.maxStreak) {
+        stats.maxStreak = stats.currentStreak;
+    }
+    stats.bestFloor = 11;
+    saveStats();
 
-  const gridShare = floorHistory.map(h => h ? '🟩' : '🟥').join('');
+    // Setup Victory Modal State
+    document.getElementById('game-over-title').textContent = "11th FLOOR REACHED";
+    document.getElementById('game-over-message').textContent = "Elevator Climb Completed!";
+    document.getElementById('final-floor-reached').textContent = "Victory State: Floor 11";
 
-  gameView.innerHTML = `
-    <div class="result-card victory-card">
-      <div class="result-badge">PENTHOUSE REACHED</div>
-      <h2>11TH FLOOR CLEARED!</h2>
-      <p>Flawless ascension to the top floor.</p>
-      <div class="share-grid-box">${gridShare}</div>
-      <div class="result-actions">
-        <button class="btn-primary" onclick="startClimb()">PLAY AGAIN</button>
-        <button class="btn-secondary" onclick="resetToLobby()">MAIN MENU</button>
-      </div>
-    </div>
-  `;
+    modalGameOver.classList.remove('hidden');
 }
 
-function triggerFloorDrop(reason) {
-  const gameView = document.getElementById('game-view');
-  if (!gameView) return;
-
-  saveCareerStats(false, currentFloor);
-
-  const gridShare = floorHistory.map(h => h ? '🟩' : '🟥').join('');
-
-  gameView.innerHTML = `
-    <div class="result-card failure-card">
-      <div class="result-badge failure">ELEVATOR DROPPED</div>
-      <h2>STOPPED AT FLOOR ${String(currentFloor).padStart(2, '0')}</h2>
-      <p class="reason-text">${reason}</p>
-      <div class="share-grid-box">${gridShare}</div>
-      <div class="result-actions">
-        <button class="btn-primary" onclick="startClimb()">RETRY CLIMB</button>
-        <button class="btn-secondary" onclick="resetToLobby()">MAIN MENU</button>
-      </div>
-    </div>
-  `;
+function saveStats() {
+    localStorage.setItem('11th_floor_stats', JSON.stringify(stats));
+    updateStatsUI();
 }
 
-function resetToLobby() {
-  clearInterval(timerInterval);
-  showScreen('landing-screen');
+function updateStatsUI() {
+    document.getElementById('stat-played').textContent = stats.played;
+    document.getElementById('stat-wins').textContent = stats.wins;
+    document.getElementById('stat-streak').textContent = stats.currentStreak;
+    document.getElementById('stat-best').textContent = formatFloorText(stats.bestFloor);
 }
 
-function saveCareerStats(isWin, reachedFloor) {
-  const statsKey = '11th_floor_stats';
-  let stats = JSON.parse(localStorage.getItem(statsKey)) || {
-    played: 0,
-    wins: 0,
-    highestFloor: 1
-  };
-
-  stats.played += 1;
-  if (isWin) stats.wins += 1;
-  stats.highestFloor = Math.max(stats.highestFloor, reachedFloor);
-
-  localStorage.setItem(statsKey, JSON.stringify(stats));
+function closeModals() {
+    modalGameOver.classList.add('hidden');
+    modalVault.classList.add('hidden');
+    modalStats.classList.add('hidden');
 }
+
+function populateVaultList() {
+    const vaultList = document.getElementById('vault-list');
+    vaultList.innerHTML = '';
+
+    for (let i = 1; i <= 50; i++) {
+        const item = document.createElement('button');
+        item.className = 'game-card-btn';
+        item.style.padding = '12px 16px';
+        item.innerHTML = `
+            <span class="game-num">SET ${String(i).padStart(2, '0')}</span>
+            <span class="game-name" style="font-size: 0.95rem;">11th Floor Questions Archive #${i}</span>
+        `;
+        item.addEventListener('click', () => {
+            closeModals();
+            startNewGame();
+        });
+        vaultList.appendChild(item);
+    }
+}
+
+// Event Listeners
+document.getElementById('btn-start-game-1').addEventListener('click', startNewGame);
+
+optionButtons.forEach((btn, index) => {
+    btn.addEventListener('click', () => handleAnswerSelection(index));
+});
+
+// Utility Bar Listeners
+document.getElementById('btn-util-lobby').addEventListener('click', () => {
+    clearInterval(timerInterval);
+    gameScreen.style.display = 'none';
+    landingScreen.style.display = 'flex';
+    closeModals();
+});
+
+document.getElementById('btn-util-vault').addEventListener('click', () => {
+    populateVaultList();
+    modalVault.classList.remove('hidden');
+});
+
+document.getElementById('btn-util-stats').addEventListener('click', () => {
+    updateStatsUI();
+    modalStats.classList.remove('hidden');
+});
+
+// Modal Close Listeners
+document.getElementById('btn-close-vault').addEventListener('click', () => modalVault.classList.add('hidden'));
+document.getElementById('btn-close-stats').addEventListener('click', () => modalStats.classList.add('hidden'));
+
+// Game Over Modal Action Choices
+document.getElementById('btn-try-again').addEventListener('click', () => {
+    startNewGame();
+});
+
+document.getElementById('btn-view-stats').addEventListener('click', () => {
+    closeModals();
+    updateStatsUI();
+    modalStats.classList.remove('hidden');
+});
+
+document.getElementById('btn-back-vault').addEventListener('click', () => {
+    closeModals();
+    populateVaultList();
+    modalVault.classList.remove('hidden');
+});
+
+// Initialization
+updateStatsUI();
