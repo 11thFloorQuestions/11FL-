@@ -6,6 +6,7 @@ let currentFloorData = null;
 let foundWords = new Set();
 let allValidWords = new Set();
 let currentWordString = "";
+let masterLetters = null; // Persistent letter pool locked across all floors
 
 document.addEventListener("DOMContentLoaded", () => {
     initElevatorSlots();
@@ -57,16 +58,15 @@ function setupGameSession(data) {
         lengthGroup.forEach(word => allValidWords.add(word));
     }
 
-    // Ensure letters remain consistent and never disappear across floors
-    let floorLetters = data.letters;
-    if (!floorLetters || typeof floorLetters !== 'string' || floorLetters.length === 0) {
+    // Lock letters to the initial set so they remain identical throughout the game
+    if (!masterLetters && data.letters) {
+        masterLetters = data.letters;
+    } else if (!masterLetters) {
         const letterSet = new Set();
         allValidWords.forEach(word => {
-            for (const char of word) {
-                letterSet.add(char);
-            }
+            for (const char of word) letterSet.add(char);
         });
-        floorLetters = Array.from(letterSet).join("");
+        masterLetters = Array.from(letterSet).join("");
     }
 
     updateText("card-floor-text", `FLOOR ${String(data.floor).padStart(2, '0')}`);
@@ -76,7 +76,7 @@ function setupGameSession(data) {
     currentWordString = "";
     renderGuessDisplay();
     renderTargetSlots(data.floor);
-    renderWheel(floorLetters);
+    renderWheel(masterLetters);
     setupActionButtons();
 }
 
@@ -149,7 +149,7 @@ function renderWheel(letters) {
         btn.style.fontWeight = "bold";
         btn.style.cursor = "pointer";
 
-        // Allow reuse of letters freely by keeping buttons active
+        // Allow free reuse of letters without disabling them
         btn.addEventListener("click", () => {
             currentWordString += letter;
             renderGuessDisplay();
