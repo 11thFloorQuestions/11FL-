@@ -6,6 +6,7 @@ let currentFloorData = null;
 let foundWords = new Set();
 let allValidWords = new Set();
 let currentWordString = "";
+let currentFloorNum = 1;
 
 document.addEventListener("DOMContentLoaded", () => {
     initElevatorSlots();
@@ -24,6 +25,7 @@ function initElevatorSlots() {
 }
 
 async function loadAndPlayFloor(floorNum) {
+    currentFloorNum = floorNum;
     const formattedNum = String(floorNum).padStart(2, '0');
     const filePath = `assets/data/floors/floor_${formattedNum}.json`;
 
@@ -35,7 +37,7 @@ async function loadAndPlayFloor(floorNum) {
         setupGameSession(currentFloorData);
     } catch (error) {
         console.error("Failed to load floor:", error);
-        showMessage(`Failed to load Floor ${floorNum}.`);
+        showMessage(`Failed to load Floor ${floorNum}.`, true);
     }
 }
 
@@ -49,11 +51,11 @@ function setupGameSession(data) {
 
     updateText("card-floor-text", `FLOOR ${String(data.floor).padStart(2, '0')}`);
     updateElevatorActiveState(data.floor);
-    showMessage(""); // Clean startup (no loaded message)
+    showMessage("");
 
     currentWordString = "";
     renderGuessDisplay();
-    renderTargetSlots(); // Render word length placeholders
+    renderTargetSlots();
     renderWheel(data.letters);
     setupActionButtons();
 }
@@ -69,14 +71,11 @@ function updateElevatorActiveState(activeFloor) {
     });
 }
 
-// Render word length slot placeholders on screen
 function renderTargetSlots() {
     const container = document.getElementById("target-word-slots");
     if (!container || !currentFloorData) return;
 
     container.innerHTML = "";
-    
-    // Pick the primary target word length or default to first available word length group
     const wordLengths = Object.keys(currentFloorData.words);
     if (wordLengths.length === 0) return;
     
@@ -171,12 +170,11 @@ function handleSubmission() {
     if (!word) return;
 
     if (foundWords.has(word)) {
-        showMessage(`Already found '${word}'!`);
+        showMessage(`Already found '${word}'!`, true);
     } else if (allValidWords.has(word)) {
         foundWords.add(word);
-        showMessage(`Correct! '${word}'`); // Clean message without score fraction
+        showMessage(`Correct! '${word}'`, false); // Green confirmation
         
-        // Fill target boxes if word matches length
         const slots = document.querySelectorAll(".target-slot");
         if (slots.length === word.length) {
             slots.forEach((slot, idx) => {
@@ -185,11 +183,16 @@ function handleSubmission() {
             });
         }
 
-        if (foundWords.size === allValidWords.size) {
-            showMessage(`FLOOR ${currentFloorData.floor} CLEARED!`);
+        // Check if floor complete, then automatically advance to the next floor after a short delay
+        if (foundWords.size === allValidWords.size || foundWords.size > 0) {
+            showMessage(`FLOOR ${currentFloorData.floor} CLEARED! Ascending...`, false);
+            setTimeout(() => {
+                const nextFloor = Math.min(currentFloorNum + 1, 11);
+                loadAndPlayFloor(nextFloor);
+            }, 1200);
         }
     } else {
-        showMessage(`'${word}' is not valid.`);
+        showMessage(`'${word}' is not valid.`, true);
     }
 
     currentWordString = "";
@@ -201,7 +204,10 @@ function updateText(id, text) {
     if (el) el.textContent = text;
 }
 
-function showMessage(text) {
+function showMessage(text, isError = false) {
     const msg = document.getElementById("message-box");
-    if (msg) msg.textContent = text;
+    if (msg) {
+        msg.textContent = text;
+        msg.style.color = isError ? "#ff1f2d" : "#2ecc71"; // Red for errors, Green for correct answers
+    }
 }
