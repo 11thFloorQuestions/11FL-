@@ -8,22 +8,22 @@
 </head>
 <body>
 
-  <!-- LANDING HUB -->
+  <!-- LANDING SCREEN -->
   <div id="landing-screen" class="app-screen">
     <div class="landing-content">
       <div class="landing-logo-title">11FL?</div>
       <div class="landing-logo-subtitle">ELEVATOR TRIVIA CLIMB</div>
-      <div class="landing-logo-sub-bottom">GAME HUB</div>
+      <div class="landing-logo-sub-bottom">WORD CLIMB</div>
       
       <div class="game-select-container">
-        <!-- GAME 01 -->
-        <div class="game-card-btn active-game" id="goto-wordclimb-btn">
+        <!-- GAME 01: WORD CLIMB -->
+        <div class="game-card-btn active-game" id="goto-wordclimb-btn" style="cursor: pointer;">
           <div class="game-num">GAME 01</div>
           <div class="game-name">WORD CLIMB</div>
         </div>
 
-        <!-- GAME 02 -->
-        <div class="game-card-btn" id="goto-questions-btn">
+        <!-- GAME 02: 11TH FLOOR QUESTIONS -->
+        <div class="game-card-btn" id="goto-questions-btn" style="cursor: pointer;">
           <div class="game-num">GAME 02</div>
           <div class="game-name">11TH FLOOR QUESTIONS</div>
         </div>
@@ -31,12 +31,12 @@
     </div>
   </div>
 
-  <!-- GAME 01: WORD CLIMB -->
+  <!-- GAME SCREEN -->
   <div id="game-screen" class="app-screen" style="display: none;">
     <div class="game-container">
       
       <div class="top-utility-bar">
-        <button class="util-btn exit-btn">✕ LOBBY</button>
+        <button class="util-btn" id="exit-btn">✕ EXIT</button>
         <button class="util-btn btn-audio-toggle">SOUND: OFF</button>
       </div>
 
@@ -49,7 +49,6 @@
       <div class="game-card">
         <div id="card-floor-text">FLOOR 01</div>
         
-        <!-- Target slots wrapper matching CSS -->
         <div class="target-slots-container" id="target-word-slots"></div>
 
         <div id="message-box"></div>
@@ -69,56 +68,7 @@
     </div>
   </div>
 
-  <!-- GAME 02: QUESTIONS -->
-  <div id="questions-screen" class="app-screen" style="display: none;">
-    <div class="game-container">
-      
-      <div class="top-utility-bar">
-        <button class="util-btn exit-btn">✕ LOBBY</button>
-        <button class="util-btn btn-audio-toggle">SOUND: OFF</button>
-      </div>
-
-      <div class="header-section">
-        <div class="logo-title">11FL?</div>
-        <div class="logo-subtitle">ELEVATOR TRIVIA CLIMB</div>
-        <div class="logo-sub-bottom">QUESTIONS & VAULT</div>
-      </div>
-
-      <div class="game-card">
-        <div id="card-floor-text">TRIVIA VAULT</div>
-        <div id="message-box" style="margin-top: 24px; font-size: 1rem;">11th Floor Questions Mode</div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- SCRIPTS -->
+  <!-- GAME LOGIC -->
   <script src="./word-climb.js"></script>
-
-  <script>
-    function openScreen(screenId) {
-      document.querySelectorAll('.app-screen').forEach(s => s.style.display = 'none');
-      const target = document.getElementById(screenId);
-      if (target) {
-        target.style.display = 'flex';
-        // Trigger resize event so wheel/canvas recalculates dimensions after un-hiding
-        window.dispatchEvent(new Event('resize'));
-      }
-    }
-
-    document.getElementById('goto-wordclimb-btn').addEventListener('click', () => {
-      openScreen('game-screen');
-      if (typeof initGame === 'function') initGame();
-    });
-
-    document.getElementById('goto-questions-btn').addEventListener('click', () => {
-      openScreen('questions-screen');
-      if (typeof initQuestions === 'function') initQuestions();
-    });
-
-    document.querySelectorAll('.exit-btn').forEach(btn => {
-      btn.addEventListener('click', () => openScreen('landing-screen'));
-    });
-  </script>
 </body>
 </html>
