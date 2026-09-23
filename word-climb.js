@@ -5,189 +5,191 @@
 let currentFloorData = null;
 let foundWords = new Set();
 let allValidWords = new Set();
+let currentSelection = []; // indices of selected letters on the wheel
+let currentWordString = "";
 
-// Initialize the game when the page loads
+// Initialize game on page load
 document.addEventListener("DOMContentLoaded", () => {
-    setupMenuListeners();
+    initElevatorSlots();
+    loadAndPlayFloor(1); // Start cleanly on Floor 1
 });
 
-// Setup listeners for floor selection menu
-function setupMenuListeners() {
-    const floorButtons = document.querySelectorAll(".floor-btn, [data-floor]");
-    
-    // If your HTML uses menu buttons or cards for floors 1-11
-    floorButtons.forEach(btn => {
-        btn.addEventListener("click", (e) => {
-            const floorNum = parseInt(e.target.getAttribute("data-floor") || e.target.textContent);
+// Setup click listeners for elevator floor selection
+function initElevatorSlots() {
+    const slots = document.querySelectorAll(".elevator-slot");
+    slots.forEach(slot => {
+        slot.addEventListener("click", () => {
+            const floorNum = parseInt(slot.getAttribute("data-floor"));
             if (floorNum >= 1 && floorNum <= 11) {
                 loadAndPlayFloor(floorNum);
             }
         });
     });
-
-    // Auto-load Floor 1 if a direct floor container exists on the page
-    const gameContainer = document.getElementById("game-container");
-    if (gameContainer && gameContainer.dataset.autoLoadFloor) {
-        loadAndPlayFloor(parseInt(gameContainer.dataset.autoLoadFloor));
-    }
 }
 
-// Fetch and load the specific floor JSON from the correct folder path
+// Fetch and load specific floor JSON
 async function loadAndPlayFloor(floorNum) {
-    // Format floor number with leading zero: 1 -> "01", 11 -> "11"
     const formattedNum = String(floorNum).padStart(2, '0');
     const filePath = `assets/data/floors/floor_${formattedNum}.json`;
 
     try {
-        console.log(`Loading floor from: ${filePath}`);
         const response = await fetch(filePath);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         
         currentFloorData = await response.json();
-        initializeGameSession(currentFloorData);
-
+        setupGameSession(currentFloorData);
     } catch (error) {
         console.error("Failed to load floor:", error);
-        alert(`Failed to load floor ${floorNum}. Please check that ${filePath} exists in your repository.`);
+        showMessage(`Failed to load Floor ${floorNum}.`, "error");
     }
 }
 
-// Set up the game board with the loaded JSON data
-function initializeGameSession(data) {
+// Setup game session with loaded data
+function setupGameSession(data) {
     foundWords.clear();
     allValidWords.clear();
 
-    // Compile all valid words across lengths into a single lookup set
+    // Flatten valid words into a lookup set
     for (const lengthGroup of Object.values(data.words)) {
         lengthGroup.forEach(word => allValidWords.add(word));
     }
 
-    // Update UI elements if they exist in your HTML
-    updateUIElement("floor-title", `Floor ${data.floor} of 11`);
-    updateUIElement("letter-bank", data.letters.split("").join(" "));
-    updateUIElement("total-words-count", data.total_words);
-    updateUIElement("found-words-count", "0");
+    // Update UI elements
+    updateText("card-floor-text", `FLOOR ${String(data.floor).padStart(2, '0')}`);
+    updateElevatorActiveState(data.floor);
+    showMessage(`Floor ${data.floor} loaded! Find ${allValidWords.size} words.`);
 
-    // Display word slots/banks by length if elements exist
-    renderWordBanks(data.words);
+    // Reset word builder
+    currentSelection = [];
+    currentWordString = "";
+    renderGuessDisplay();
 
-    // Setup input submission listener if input box exists
-    const submitBtn = document.getElementById("submit-word-btn");
-    const wordInput = document.getElementById("word-input");
+    // Render interactive wheel
+    renderWheel(data.letters);
 
-    if (submitBtn && wordInput) {
-        // Clear previous event listeners by cloning
-        const newSubmitBtn = submitBtn.cloneNode(true);
-        submitBtn.parentNode.replaceChild(newSubmitBtn, submitBtn);
+    // Setup action buttons
+    setupActionButtons();
+}
 
-        newSubmitBtn.addEventListener("click", () => handleWordSubmission(wordInput));
-        wordInput.addEventListener("keypress", (e) => {
-            if (e.key === "Enter") {
-                handleWordSubmission(wordInput);
-            }
+// Highlight the active elevator slot
+function updateElevatorActiveState(activeFloor) {
+    document.querySelectorAll(".elevator-slot").forEach(slot => {
+        const floor = parseInt(slot.getAttribute("data-floor"));
+        if (floor === activeFloor) {
+            slot.classList.add("active");
+        } else {
+            slot.classList.remove("active");
+        }
+    });
+}
+
+// Render circular letter wheel
+function renderWheel(letters) {
+    const container = document.getElementById("wheel-container");
+    if (!container) return;
+    
+    container.innerHTML = "";
+    const letterArray = letters.split("");
+    const radius = 70; // distance from center
+    const centerX = container.offsetWidth / 2 || 100;
+    const centerY = container.offsetHeight / 2 || 100;
+
+    letterArray.forEach((letter, index) => {
+        const angle = (index * 2 * Math.PI) / letterArray.length - Math.PI / 2;
+        const x = centerX + radius * Math.cos(angle) - 20; // 20 is half button width
+        const y = centerY + radius * Math.sin(angle) - 20;
+
+        const btn = document.createElement("button");
+        btn.textContent = letter;
+        btn.className = "wheel-letter-btn";
+        btn.style.position = "absolute";
+        btn.style.left = `${x}px`;
+        btn.style.top = `${y}px`;
+        btn.style.width = "40px";
+        btn.style.height = "40px";
+        btn.style.borderRadius = "50%";
+        btn.style.background = "#1c1c1c";
+        btn.style.border = "1px solid #ff1f2d";
+        btn.style.color = "#ffffff";
+        btn.style.fontWeight = "bold";
+        btn.style.cursor = "pointer";
+
+        btn.addEventListener("click", () => {
+            currentWordString += letter;
+            renderGuessDisplay();
+        });
+
+        container.appendChild(btn);
+    });
+}
+
+// Update guess display letters
+function renderGuessDisplay() {
+    const display = document.getElementById("guess-display");
+    if (!display) return;
+
+    display.innerHTML = "";
+    currentWordString.split("").forEach(char => {
+        const span = document.createElement("span");
+        span.textContent = char;
+        span.style.padding = "6px 10px";
+        span.style.background = "#1c1c1c";
+        span.style.border = "1px solid #ff1f2d";
+        span.style.borderRadius = "6px";
+        span.style.fontWeight = "bold";
+        display.appendChild(span);
+    });
+}
+
+// Setup delete and submit buttons
+function setupActionButtons() {
+    const deleteBtn = document.getElementById("action-delete-btn");
+    const submitBtn = document.getElementById("action-submit-btn");
+
+    if (deleteBtn) {
+        const newDel = deleteBtn.cloneNode(true);
+        deleteBtn.parentNode.replaceChild(newDel, deleteBtn);
+        newDel.addEventListener("click", () => {
+            currentWordString = currentWordString.slice(0, -1);
+            renderGuessDisplay();
         });
     }
 
-    // Switch view to game board if using view toggles
-    showGameScreen();
+    if (submitBtn) {
+        const newSub = submitBtn.cloneNode(true);
+        submitBtn.parentNode.replaceChild(newSub, submitBtn);
+        newSub.addEventListener("click", () => handleSubmission());
+    }
 }
 
-// Handle user word submission logic
-function handleWordSubmission(inputElement) {
-    const word = inputElement.value.trim().toUpperCase();
-    inputElement.value = "";
-
+// Validate word submission
+function handleSubmission() {
+    const word = currentWordString.trim().toUpperCase();
     if (!word) return;
 
-    if (word === "MENU") {
-        returnToMenu();
-        return;
-    }
-
-    const messageEl = document.getElementById("game-message");
-
     if (foundWords.has(word)) {
-        showFeedback(`-> Already found '${word}'!`, "warning");
-        return;
-    }
-
-    if (allValidWords.has(word)) {
+        showMessage(`Already found '${word}'!`, "warning");
+    } else if (allValidWords.has(word)) {
         foundWords.add(word);
-        updateUIElement("found-words-count", foundWords.size);
-        revealWordOnBoard(word);
-        
+        showMessage(`EXCELLENT! '${word}' found! (${foundWords.size}/${allValidWords.size})`, "success");
         if (foundWords.size === allValidWords.size) {
-            showFeedback(`CONGRATULATIONS! You cleared Floor ${currentFloorData.floor}!`, "success");
-        } else {
-            showFeedback(`-> EXCELLENT! '${word}' is correct.`, "success");
+            showMessage(`CONGRATULATIONS! Floor ${currentFloorData.floor} Cleared!`, "success");
         }
     } else {
-        showFeedback(`-> '${word}' is not a valid word for this board.`, "error");
+        showMessage(`'${word}' is not valid.`, "error");
     }
+
+    currentWordString = "";
+    renderGuessDisplay();
 }
 
-// UI Helper: Update text content safely
-function updateUIElement(id, text) {
+// Helpers
+updateText = (id, text) => {
     const el = document.getElementById(id);
     if (el) el.textContent = text;
-}
+};
 
-// UI Helper: Show feedback messages
-function showFeedback(message, type) {
-    const msgEl = document.getElementById("game-message");
-    if (msgEl) {
-        msgEl.textContent = message;
-        msgEl.className = `game-message ${type}`;
-    }
-}
-
-// UI Helper: Render word bank placeholders
-function renderWordBanks(wordsByLength) {
-    const container = document.getElementById("word-banks-container");
-    if (!container) return;
-
-    container.innerHTML = "";
-    for (const [length, words] of Object.entries(wordsByLength)) {
-        if (words.length === 0) continue;
-        
-        const groupDiv = document.createElement("div");
-        groupDiv.className = `word-group length-${length}`;
-        groupDiv.innerHTML = `<h3>${length} Letters (${words.length})</h3><div class="word-slots" id="slots-${length}"></div>`;
-        container.appendChild(groupDiv);
-
-        const slotsContainer = groupDiv.querySelector(`#slots-${length}`);
-        words.forEach(word => {
-            const span = document.createElement("span");
-            span.className = "word-slot hidden-word";
-            span.id = `word-${word}`;
-            span.textContent = "_ ".repeat(word.length);
-            slotsContainer.appendChild(span);
-        });
-    }
-}
-
-// Reveal successfully guessed word on the board
-function revealWordOnBoard(word) {
-    const wordEl = document.getElementById(`word-${word}`);
-    if (wordEl) {
-        wordEl.textContent = word;
-        wordEl.className = "word-slot revealed-word";
-    }
-}
-
-function showGameScreen() {
-    const menu = document.getElementById("menu-screen");
-    const game = document.getElementById("game-screen");
-    if (menu) menu.style.display = "none";
-    if (game) game.style.display = "block";
-}
-
-function returnToMenu() {
-    const menu = document.getElementById("menu-screen");
-    const game = document.getElementById("game-screen");
-    if (menu) menu.style.display = "block";
-    if (game) game.style.display = "none";
+function showMessage(text) {
+    const msg = document.getElementById("message-box");
+    if (msg) msg.textContent = text;
 }
