@@ -3,22 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>11th Floor Word Climb</title>
+    <title>11th Floor Hub</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- LANDING PAGE VIEW -->
+    <!-- LANDING HUB VIEW -->
     <div id="landing-screen" class="app-screen">
         <div class="landing-content">
-            <h1 class="landing-logo-title">11FL?</h1>
-            <p class="landing-logo-subtitle">Eleventh Floor</p>
-            <p class="landing-logo-sub-bottom">WORD CLIMB</p>
-            <button id="play-btn" class="landing-play-btn">PLAY</button>
+            <div class="header-section">
+                <h1 class="landing-logo-title">11FL?</h1>
+                <p class="landing-logo-subtitle">Eleventh Floor</p>
+                <p class="landing-logo-sub-bottom">GAMES</p>
+            </div>
+
+            <div class="game-select-container">
+                <button id="goto-questions-btn" class="game-card-btn">
+                    <span class="game-num">GAME 01</span>
+                    <span class="game-name">11th Floor Questions</span>
+                </button>
+                <button id="goto-wordclimb-btn" class="game-card-btn active-game">
+                    <span class="game-num">GAME 02</span>
+                    <span class="game-name">11th Floor Word Climb</span>
+                </button>
+            </div>
         </div>
     </div>
 
-    <!-- GAMEPLAY SCREEN VIEW (Hidden initially) -->
+    <!-- GAMEPLAY SCREEN VIEW (Hidden until Word Climb is selected) -->
     <div id="game-screen" class="app-screen" style="display: none;">
         <div class="game-container">
             <!-- Top Utility Bar -->
