@@ -13,16 +13,23 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function setupScreenNavigation() {
-    const playBtn = document.getElementById("play-btn");
+    const wordClimbBtn = document.getElementById("goto-wordclimb-btn");
+    const questionsBtn = document.getElementById("goto-questions-btn");
     const exitBtn = document.getElementById("exit-btn");
     const landingScreen = document.getElementById("landing-screen");
     const gameScreen = document.getElementById("game-screen");
 
-    if (playBtn) {
-        playBtn.addEventListener("click", () => {
+    if (wordClimbBtn) {
+        wordClimbBtn.addEventListener("click", () => {
             landingScreen.style.display = "none";
             gameScreen.style.display = "flex";
             loadAndPlayFloor(1);
+        });
+    }
+
+    if (questionsBtn) {
+        questionsBtn.addEventListener("click", () => {
+            alert("11th Floor Questions is coming soon!");
         });
     }
 
@@ -30,7 +37,7 @@ function setupScreenNavigation() {
         exitBtn.addEventListener("click", () => {
             gameScreen.style.display = "none";
             landingScreen.style.display = "flex";
-            masterLetters = null; // Reset pool on exit if desired
+            masterLetters = null; 
         });
     }
 }
