@@ -9,7 +9,6 @@ async function initQuiz() {
     const res = await fetch('./questions.json?v=' + Date.now());
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
-    // Handles either a wrapped object { floors: [...] } or a direct array [...]
     deck = Array.isArray(data) ? data : (data.floors || []);
   } catch (err) {
     console.error('Failed to load questions.json', err);
@@ -47,6 +46,7 @@ async function initArchiveSandbox() {
 window.addEventListener('DOMContentLoaded', () => {
   initQuiz();
   initArchiveSandbox();
+  show('screen-landing');
   renderBldg('building-landing', 0);
 });
 
