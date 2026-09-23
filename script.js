@@ -47,10 +47,13 @@ window.addEventListener('DOMContentLoaded', () => {
   initQuiz();
   initArchiveSandbox();
   
-  // FORCE landing screen explicitly on boot
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  const landing = document.getElementById('screen-landing');
-  if (landing) landing.classList.add('active');
+  // Setup click handler for Game 02 on landing screen
+  const questionsBtn = document.getElementById('goto-questions-btn');
+  if (questionsBtn) {
+    questionsBtn.addEventListener('click', () => {
+      startClimb();
+    });
+  }
   
   renderBldg('building-landing', 0);
 });
@@ -99,18 +102,18 @@ function openArchiveModal() {
     
     bodyEl.innerHTML = `
       <div style="display:flex; justify-content:space-around; text-align:center; margin-bottom:14px; padding:10px 0; border-bottom:1px solid #262626;">
-        <div><div style="font-size:1.3rem; font-weight:800; color:#fff;">${stats.played}</div><div style="font-size:0.55rem;">PLAYED</div></div>
-        <div><div style="font-size:1.3rem; font-weight:800; color:#fff;">${winPct}%</div><div style="font-size:0.55rem;">WIN %</div></div>
-        <div><div style="font-size:1.3rem; font-weight:800; color:#fff;">${stats.currentStreak}</div><div style="font-size:0.55rem;">STREAK</div></div>
-        <div><div style="font-size:1.3rem; font-weight:800; color:#fff;">${stats.maxStreak}</div><div style="font-size:0.55rem;">MAX</div></div>
+        <div><div style="font-size:1.3rem; font-weight:800; color:#fff;">${stats.played}</div><div style="font-size:0.55rem; color:#888;">PLAYED</div></div>
+        <div><div style="font-size:1.3rem; font-weight:800; color:#fff;">${winPct}%</div><div style="font-size:0.55rem; color:#888;">WIN %</div></div>
+        <div><div style="font-size:1.3rem; font-weight:800; color:#fff;">${stats.currentStreak}</div><div style="font-size:0.55rem; color:#888;">STREAK</div></div>
+        <div><div style="font-size:1.3rem; font-weight:800; color:#fff;">${stats.maxStreak}</div><div style="font-size:0.55rem; color:#888;">MAX</div></div>
       </div>
       <div style="font-size:0.6rem; color:#fff; font-weight:700; margin-bottom:6px; letter-spacing:1px;">FLOOR DROP PROFILE</div>
       <div style="display:flex; flex-direction:column; gap:3px; margin-bottom:12px;">
         ${stats.floorDrops.map((count, i) => `
           <div style="display:flex; align-items:center; gap:6px; font-size:0.6rem;">
-            <span style="width:22px; color:var(--text-muted);">F${String(i+1).padStart(2,'0')}</span>
+            <span style="width:22px; color:#888;">Floor ${String(i+1).padStart(2,'0')}</span>
             <div style="flex:1; background:#141414; height:5px; border-radius:2px; overflow:hidden;">
-              <div style="background:var(--accent-red); width:${Math.min(100, (count / maxDrop) * 100)}%; height:100%;"></div>
+              <div style="background:#ff1f2d; width:${Math.min(100, (count / maxDrop) * 100)}%; height:100%;"></div>
             </div>
             <span style="width:14px; text-align:right;">${count}</span>
           </div>
@@ -122,12 +125,12 @@ function openArchiveModal() {
         ${archiveKeys.length > 0 ? archiveKeys.map(key => `
           <button onclick="launchArchiveDeck('${key}')" style="display:flex; justify-content:space-between; align-items:center; padding:8px 10px; background:#141414; color:#fff; border:1px solid #333; border-radius:4px; font-weight:700; cursor:pointer; font-size:0.65rem;">
             <span>${archiveDeckData[key].title}</span>
-            <span style="color:var(--accent-red);">PLAY &gt;</span>
+            <span style="color:#ff1f2d;">PLAY &gt;</span>
           </button>
-        `).join('') : '<div style="font-size:0.6rem; color:var(--text-muted);">No archive packs detected yet.</div>'}
+        `).join('') : '<div style="font-size:0.6rem; color:#888;">No archive packs detected yet.</div>'}
       </div>
 
-      <div style="font-size:0.6rem; color:var(--text-muted); border-top:1px solid #262626; padding-top:10px;">
+      <div style="font-size:0.6rem; color:#888; border-top:1px solid #262626; padding-top:10px;">
         <strong>Last Run:</strong><br><pre style="font-family:inherit; margin-top:2px;">${historyItem || 'No prior daily logs recorded yet.'}</pre>
       </div>
     `;
@@ -135,7 +138,6 @@ function openArchiveModal() {
   const modal = document.getElementById('stats-modal');
   if (modal) {
     modal.classList.remove('hidden');
-    modal.classList.add('active');
   }
 }
 
@@ -143,7 +145,6 @@ function closeStatsModal() {
   vibrate(15);
   const modal = document.getElementById('stats-modal');
   if (modal) {
-    modal.classList.remove('active');
     modal.classList.add('hidden');
   }
 }
@@ -166,7 +167,7 @@ async function launchArchiveDeck(archiveKey) {
 
     return {
       floorNum: floorIndex + 1,
-      tier: f.tier || `FLOOR ${String(floorIndex + 1).padStart(2, '0')}`,
+      tier: `Floor ${String(floorIndex + 1).padStart(2, '0')}`,
       q: f.question,
       opts: shuffledOpts,
       c: correctIndex >= 0 ? correctIndex : 0
@@ -229,12 +230,12 @@ function buildGridString(clearedFloorCount) {
   return `[${blocks}]`;
 }
 
-function show(id) { 
-  document.querySelectorAll('.screen').forEach(s => {
-    if (s.id !== 'stats-modal') s.classList.remove('active');
+function showScreen(id) { 
+  document.querySelectorAll('.app-screen').forEach(s => {
+    s.style.display = 'none';
   });
   const target = document.getElementById(id);
-  if (target) target.classList.add('active'); 
+  if (target) target.style.display = 'flex'; 
 }
 
 async function prepareActiveDeck() {
@@ -254,7 +255,7 @@ async function prepareActiveDeck() {
 
     return {
       floorNum: floorIndex + 1,
-      tier: f.tier || `FLOOR ${String(floorIndex + 1).padStart(2, '0')}`,
+      tier: `Floor ${String(floorIndex + 1).padStart(2, '0')}`,
       q: f.question,
       opts: shuffledOpts,
       c: correctIndex >= 0 ? correctIndex : 0
@@ -275,7 +276,7 @@ async function startClimb() {
 
 function loadFloor() {
   locked = false;
-  show('screen-game');
+  showScreen('questions-screen');
   const rawD = activeFloorDeck[currentFloor - 1];
   if (!rawD) {
     triggerVictory();
@@ -345,6 +346,9 @@ function answer(sel, corr, btn) {
 function triggerVictory() {
   highestFloorReached = activeFloorDeck.length;
   renderBldg('floor-counter', activeFloorDeck.length);
+  const floorLabel = document.getElementById('hud-floor-label');
+  if (floorLabel) floorLabel.innerText = "Floor 11";
+  
   vibrate([40, 50, 60]);
   playHotelBellDing();
   recordStats(true, activeFloorDeck.length);
@@ -356,11 +360,11 @@ function triggerVictory() {
     gameView.innerHTML = `
       <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%; gap:14px; padding:10px;">
         <div style="font-size: 1.15rem; font-weight: 800; color: #fff; letter-spacing: 1px;">11TH FLOOR REACHED</div>
-        <div style="font-size: 0.65rem; color: var(--text-muted);">Congratulations, you've reached the 11th floor.</div>
+        <div style="font-size: 0.65rem; color: #cccccc;">Congratulations, you've reached the 11th floor.</div>
         <div style="font-size: 0.8rem; font-family: monospace; color: #fff; background: #141414; padding: 10px 16px; border-radius: 4px; border: 1px solid #262626; width: 100%;">${gridStr}</div>
         <div style="display: flex; gap: 10px; width: 100%; margin-top: 10px;">
           <button onclick="openArchiveModal()" style="flex: 1; padding: 12px; background: #1f1f1f; color: #fff; border: 1px solid #333; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">STATS</button>
-          <button onclick="resetToLobby()" style="flex: 1; padding: 12px; background: var(--accent-red, #ff3b30); color: #fff; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">LOBBY</button>
+          <button onclick="resetToLobby()" style="flex: 1; padding: 12px; background: #ff1f2d; color: #fff; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">LOBBY</button>
         </div>
       </div>
     `;
@@ -379,10 +383,11 @@ function fail(reason) {
     const gridStr = buildGridString(highestFloorReached);
     gameView.innerHTML = `
       <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%; gap:14px; padding:10px;">
-        <div style="font-size: 1.15rem; font-weight: 800; color: var(--accent-red, #ff3b30); letter-spacing: 1px;">FLOOR DROP // F${String(dropFloor).padStart(2,'0')}</div>
-        <div style="font-size: 0.65rem; color: var(--text-muted);">Run terminated. Descent initiated.</div>
+        <div style="font-size: 1.15rem; font-weight: 800; color: #ff1f2d; letter-spacing: 1px;">FLOOR DROP // Floor ${String(dropFloor).padStart(2,'0')}</div>
+        <div style="font-size: 0.65rem; color: #cccccc;">Run terminated. Descent initiated.</div>
         <div style="font-size: 0.8rem; font-family: monospace; color: #fff; background: #141414; padding: 10px 16px; border-radius: 4px; border: 1px solid #262626; width: 100%;">${gridStr}</div>
         <div style="display: flex; gap: 10px; width: 100%; margin-top: 10px;">
+          <button onclick="startClimb()" style="flex: 1.2; padding: 12px; background: #ff1f2d; color: #fff; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">TRY AGAIN</button>
           <button onclick="openArchiveModal()" style="flex: 1; padding: 12px; background: #1f1f1f; color: #fff; border: 1px solid #333; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">STATS</button>
           <button onclick="resetToLobby()" style="flex: 1; padding: 12px; background: #333; color: #fff; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">LOBBY</button>
         </div>
@@ -393,7 +398,7 @@ function fail(reason) {
 
 function generateShareText(type) {
   const grid = buildGridString(highestFloorReached);
-  const txt = type === 'win' ? `11FL? // Cleared\n${grid}` : `11FL? // Drop F${String(highestFloorReached+1).padStart(2,'0')}\n${grid}`;
+  const txt = type === 'win' ? `11FL? // Cleared\n${grid}` : `11FL? // Drop Floor ${String(highestFloorReached+1).padStart(2,'0')}\n${grid}`;
   localStorage.setItem('11fl_last_result', txt);
   return txt;
 }
@@ -401,6 +406,6 @@ function generateShareText(type) {
 function resetToLobby() { 
   clearInterval(timer); 
   vibrate(15);
-  show('screen-landing'); 
+  showScreen('landing-screen'); 
   renderBldg('building-landing', 0); 
 }
