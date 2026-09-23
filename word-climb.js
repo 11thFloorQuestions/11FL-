@@ -7,8 +7,8 @@ let foundWords = new Set();
 let allValidWords = new Set();
 let currentWordString = "";
 
-// Permanent, immutable letter pool that never changes across any floor
-const MASTER_LETTERS = "AEGINRSTL"; 
+// Permanent master letter pool locked once initialized from Floor 1
+let masterLetters = null; 
 
 document.addEventListener("DOMContentLoaded", () => {
     initElevatorSlots();
@@ -62,6 +62,16 @@ function setupGameSession(data) {
         }
     }
 
+    // Lock the master letters permanently on the very first load (includes 'C', etc.)
+    if (!masterLetters) {
+        if (data.letters && typeof data.letters === 'string' && data.letters.length > 0) {
+            masterLetters = data.letters;
+        } else {
+            // Fallback that includes all necessary letters if JSON is missing them
+            masterLetters = "ACEGILNRST"; 
+        }
+    }
+
     updateText("card-floor-text", `FLOOR ${String(data.floor).padStart(2, '0')}`);
     updateElevatorActiveState(data.floor);
     showMessage("");
@@ -69,7 +79,7 @@ function setupGameSession(data) {
     currentWordString = "";
     renderGuessDisplay();
     renderTargetSlots(data.floor);
-    renderWheel(MASTER_LETTERS); // Always use the permanent master pool
+    renderWheel(masterLetters); // Always use the locked master pool
     setupActionButtons();
 }
 
@@ -209,8 +219,8 @@ function handleSubmission() {
         return;
     }
 
-    // Validate that letters come from the permanent master wheel pool
-    const availableLetters = MASTER_LETTERS.toUpperCase();
+    // Validate that letters come from the locked master wheel pool
+    const availableLetters = masterLetters.toUpperCase();
     let isValidFromWheel = true;
     for (let char of word) {
         if (!availableLetters.includes(char)) {
