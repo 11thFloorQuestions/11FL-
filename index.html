@@ -1,66 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>11th Floor Questions</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>11th Floor Questions</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- LANDING SCREEN -->
-  <div id="landing-screen" class="app-screen">
-    <div class="landing-hero">
-      <h1 class="logo-title">11FL?</h1>
-      <p class="subtitle">ELEVATOR TRIVIA CLIMB</p>
+    <!-- Landing Screen / Lobby -->
+    <div id="landing-screen" class="app-screen">
+        <div class="landing-content">
+            <h1 class="landing-logo-title">11th FLOOR</h1>
+            <div class="landing-logo-subtitle">QUESTIONS</div>
+            <div class="landing-logo-sub-bottom">DAILY TRIVIA DROP</div>
+
+            <div class="game-select-container">
+                <button id="btn-start-game-1" class="game-card-btn active-game">
+                    <span class="game-num">GAME 01</span>
+                    <span class="game-name">11th Floor Questions</span>
+                </button>
+            </div>
+        </div>
     </div>
-    
-    <div class="game-select-container">
-      <button id="goto-questions-btn" class="game-card-btn">
-        <div class="card-tag">GAME 01</div>
-        <h3>11TH FLOOR QUESTIONS</h3>
-        <p>Answer trivia under pressure to climb 11 floors to the Penthouse.</p>
-      </button>
 
-      <button id="goto-wordclimb-btn" class="game-card-btn" onclick="showScreen('wordclimb-screen')">
-        <div class="card-tag">GAME 02</div>
-        <h3>WORD CLIMB</h3>
-        <p>Decipher 5-letter codes to reach the top level.</p>
-      </button>
+    <!-- Active Game Screen (Hidden initially) -->
+    <div id="game-screen" class="app-screen" style="display: none;">
+        <div class="game-container">
+            
+            <!-- Utility Header Bar -->
+            <div class="top-utility-bar">
+                <button id="btn-util-lobby" class="util-btn">🏠 Lobby</button>
+                <button id="btn-util-vault" class="util-btn">📂 The Vault</button>
+                <button id="btn-util-stats" class="util-btn">📊 Stats</button>
+            </div>
+
+            <!-- Game Branding Header -->
+            <div class="header-section">
+                <div class="logo-title">11th FLOOR</div>
+                <div class="logo-subtitle">QUESTIONS</div>
+                <div class="logo-sub-bottom">ELEVATOR TRIVIA CLIMB</div>
+            </div>
+
+            <!-- Shaft Progress Blocks (Floors 01 to 10) -->
+            <div class="building-shaft" id="building-shaft">
+                <div class="floor-block"></div>
+                <div class="floor-block"></div>
+                <div class="floor-block"></div>
+                <div class="floor-block"></div>
+                <div class="floor-block"></div>
+                <div class="floor-block"></div>
+                <div class="floor-block"></div>
+                <div class="floor-block"></div>
+                <div class="floor-block"></div>
+                <div class="floor-block"></div>
+            </div>
+
+            <!-- 15-Second Timer Bar -->
+            <div class="timer-bar-wrap">
+                <div id="timer-bar"></div>
+            </div>
+
+            <!-- Main Question Elevator Card -->
+            <div class="game-card">
+                <div id="card-floor-text">Floor 01</div>
+
+                <div class="game-view-content">
+                    <div style="margin-top: 28px; margin-bottom: 12px;">
+                        <h2 id="question-text" style="font-size: 1.15rem; font-weight: 700; color: #ffffff; line-height: 1.35; text-align: center; min-height: 52px; display: flex; align-items: center; justify-content: center;">
+                            Loading Question...
+                        </h2>
+                    </div>
+
+                    <!-- 4 Answer Options -->
+                    <div id="options-container" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+                        <button class="btn-option" data-index="0"></button>
+                        <button class="btn-option" data-index="1"></button>
+                        <button class="btn-option" data-index="2"></button>
+                        <button class="btn-option" data-index="3"></button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-  </div>
 
-  <!-- QUESTIONS GAME SCREEN -->
-  <div id="questions-screen" class="app-screen hidden">
-    <header class="game-header">
-      <button class="nav-btn" onclick="resetToLobby()">✕ LOBBY</button>
-      <div class="hud-display">
-        <span id="hud-floor-label">FLOOR 01</span>
-      </div>
-      <button id="sound-toggle" class="nav-btn">🔊 SOUND: ON</button>
-    </header>
+    <!-- Game Over / Victory Modal -->
+    <div id="modal-game-over" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div id="game-over-title" class="modal-title">ELEVATOR STOPPED</div>
+            </div>
+            <div style="text-align: center; padding: 12px 0 20px 0;">
+                <p id="game-over-message" style="font-size: 1.1rem; font-weight: bold; margin-bottom: 8px; color: #ffffff;"></p>
+                <div id="final-floor-reached" style="font-size: 0.9rem; color: #888888; letter-spacing: 1px; text-transform: uppercase;"></div>
+            </div>
 
-    <main class="game-layout">
-      <!-- Elevator Shaft Column -->
-      <aside id="floor-counter" class="shaft-column"></aside>
+            <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+                <button id="btn-try-again" class="action-btn" style="background: #ff1f2d; color: #ffffff;">Try Again</button>
+                <button id="btn-view-stats" class="action-btn" style="background: #1c1c1c; border: 1px solid #333333; color: #ffffff;">View Stats</button>
+                <button id="btn-back-vault" class="action-btn" style="background: transparent; border: none; color: #888888;">Back to Vault</button>
+            </div>
+        </div>
+    </div>
 
-      <!-- Main Play View -->
-      <section id="game-view" class="game-card-view"></section>
-    </main>
-  </div>
+    <!-- The Vault Modal -->
+    <div id="modal-vault" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">THE VAULT</div>
+                <button id="btn-close-vault" class="modal-close-btn">&times;</button>
+            </div>
+            <div id="vault-list" style="display: flex; flex-direction: column; gap: 10px; max-height: 320px; overflow-y: auto; padding-right: 4px;">
+                <!-- Dynamically populated archive list -->
+            </div>
+        </div>
+    </div>
 
-  <!-- WORD CLIMB SCREEN -->
-  <div id="wordclimb-screen" class="app-screen hidden">
-    <header class="game-header">
-      <button class="nav-btn" onclick="resetToLobby()">✕ LOBBY</button>
-      <div class="hud-display">
-        <span>WORD CLIMB</span>
-      </div>
-    </header>
-    <div id="wordclimb-view" class="game-card-view"></div>
-  </div>
+    <!-- Stats Modal -->
+    <div id="modal-stats" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">PERFORMANCE METRICS</div>
+                <button id="btn-close-stats" class="modal-close-btn">&times;</button>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0;">
+                <div style="background: #1c1c1c; border: 1px solid #262626; border-radius: 8px; padding: 12px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 900; color: #ff1f2d;" id="stat-played">0</div>
+                    <div style="font-size: 0.7rem; color: #aaaaaa; text-transform: uppercase; margin-top: 4px;">Played</div>
+                </div>
+                <div style="background: #1c1c1c; border: 1px solid #262626; border-radius: 8px; padding: 12px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 900; color: #2ecc71;" id="stat-wins">0</div>
+                    <div style="font-size: 0.7rem; color: #aaaaaa; text-transform: uppercase; margin-top: 4px;">11th Floor Wins</div>
+                </div>
+                <div style="background: #1c1c1c; border: 1px solid #262626; border-radius: 8px; padding: 12px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 900; color: #ffffff;" id="stat-streak">0</div>
+                    <div style="font-size: 0.7rem; color: #aaaaaa; text-transform: uppercase; margin-top: 4px;">Current Streak</div>
+                </div>
+                <div style="background: #1c1c1c; border: 1px solid #262626; border-radius: 8px; padding: 12px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 900; color: #ffffff;" id="stat-best">Floor 01</div>
+                    <div style="font-size: 0.7rem; color: #aaaaaa; text-transform: uppercase; margin-top: 4px;">Best Floor</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  <script src="script.js"></script>
-  <script src="word-climb.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
