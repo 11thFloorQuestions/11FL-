@@ -16,7 +16,7 @@ function setupScreenNavigation() {
     const wordClimbBtn = document.getElementById("goto-wordclimb-btn");
     const questionsBtn = document.getElementById("goto-questions-btn");
     const exitBtn = document.getElementById("exit-btn");
-    const landingScreen = document.getElementById("landing-screen");
+    const landingScreen = document.getElementById("screen-landing");
     const gameScreen = document.getElementById("game-screen");
 
     if (wordClimbBtn) {
@@ -29,7 +29,7 @@ function setupScreenNavigation() {
 
     if (questionsBtn) {
         questionsBtn.addEventListener("click", () => {
-            alert("11th Floor Questions is coming soon!");
+            alert("11th Floor Stats & Vault is coming soon!");
         });
     }
 
@@ -126,7 +126,16 @@ function renderTargetSlots(floorNum) {
         const slot = document.createElement("div");
         slot.className = "target-slot";
         slot.id = `target-slot-${i}`;
-        slot.textContent = "";
+        slot.style.width = "36px";
+        slot.style.height = "42px";
+        slot.style.border = "2px solid #444";
+        slot.style.display = "flex";
+        slot.style.alignItems = "center";
+        slot.style.justifyContent = "center";
+        slot.style.fontWeight = "bold";
+        slot.style.fontSize = "1.1rem";
+        slot.style.background = "#181818";
+        slot.style.color = "#fff";
         container.appendChild(slot);
     }
 }
@@ -140,6 +149,16 @@ function displaySolvedWordInSlots(word) {
         const slot = document.createElement("div");
         slot.className = "target-slot revealed";
         slot.textContent = word[i];
+        slot.style.width = "36px";
+        slot.style.height = "42px";
+        slot.style.border = "2px solid #2ecc71";
+        slot.style.display = "flex";
+        slot.style.alignItems = "center";
+        slot.style.justifyContent = "center";
+        slot.style.fontWeight = "bold";
+        slot.style.fontSize = "1.1rem";
+        slot.style.background = "#112211";
+        slot.style.color = "#2ecc71";
         container.appendChild(slot);
     }
 }
@@ -150,9 +169,9 @@ function renderWheel(letters) {
     
     container.innerHTML = "";
     const letterArray = letters.split("");
-    const radius = 64; 
-    const centerX = container.offsetWidth / 2 || 90;
-    const centerY = container.offsetHeight / 2 || 90;
+    const radius = 60; 
+    const centerX = 90;
+    const centerY = 90;
 
     letterArray.forEach((letter, index) => {
         const angle = (index * 2 * Math.PI) / letterArray.length - Math.PI / 2;
@@ -191,11 +210,12 @@ function renderGuessDisplay() {
     currentWordString.split("").forEach(char => {
         const span = document.createElement("span");
         span.textContent = char;
-        span.style.padding = "6px 10px";
+        span.style.padding = "6px 12px";
         span.style.background = "#1c1c1c";
         span.style.border = "1px solid #ff1f2d";
         span.style.borderRadius = "4px";
         span.style.fontWeight = "bold";
+        span.style.color = "#fff";
         display.appendChild(span);
     });
 }
