@@ -1,23 +1,10 @@
-// Default Founding Daily Set Fallback (50 Sets available via JSON fetch or fallback)
-const DEFAULT_GAME_SET = [
-    { question: "Which planet in our solar system has the highest density?", options: ["Earth", "Jupiter", "Mercury", "Saturn"], answer: 0 },
-    { question: "What was the highest-grossing film of the 1980s?", options: ["E.T. the Extra-Terrestrial", "Star Wars: The Empire Strikes Back", "Back to the Future", "Raiders of the Lost Ark"], answer: 0 },
-    { question: "In what year did the Berlin Wall fall?", options: ["1987", "1989", "1991", "1993"], answer: 1 },
-    { question: "Which element on the periodic table has the chemical symbol 'W'?", options: ["Tungsten", "Mercury", "Bismuth", "Wolframite"], answer: 0 },
-    { question: "Who composed the opera 'The Marriage of Figaro'?", options: ["Wolfgang Amadeus Mozart", "Ludwig van Beethoven", "Johann Sebastian Bach", "Franz Schubert"], answer: 0 },
-    { question: "What is the longest river in South America?", options: ["Amazon River", "Paraná River", "Orinoco River", "Magdalena River"], answer: 0 },
-    { question: "Which country won the inaugural FIFA World Cup in 1930?", options: ["Uruguay", "Argentina", "Brazil", "Italy"], answer: 0 },
-    { question: "What is the hardest naturally occurring substance on Earth?", options: ["Diamond", "Corundum", "Quartz", "Topaz"], answer: 0 },
-    { question: "Who wrote the 1897 Gothic horror novel 'Dracula'?", options: ["Bram Stoker", "Mary Shelley", "Oscar Wilde", "Edgar Allan Poe"], answer: 0 },
-    { question: "Which organ in the human body consumes approximately 20% of its oxygen?", options: ["Brain", "Heart", "Liver", "Lungs"], answer: 0 }
-];
-
 // State Variables
-let currentQuestions = [...DEFAULT_GAME_SET];
+let currentQuestions = [];
 let currentFloorIndex = 0; // 0 to 9 (Floor 01 to Floor 10)
 let timerInterval = null;
 let timeLeft = 15;
 let isAnswerLocked = false;
+let activeSetId = 'daily';
 
 // Local Stats
 let stats = JSON.parse(localStorage.getItem('11th_floor_stats')) || {
@@ -83,21 +70,50 @@ const modalGameOver = document.getElementById('modal-game-over');
 const modalVault = document.getElementById('modal-vault');
 const modalStats = document.getElementById('modal-stats');
 
+// Data Loading Functions
+async function loadQuestionsData(sourcePath = 'questions.json') {
+    try {
+        const response = await fetch(sourcePath);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const data = await response.json();
+        
+        // Handle both direct array format or wrapped object format
+        if (Array.isArray(data)) {
+            currentQuestions = data;
+        } else if (data.questions && Array.isArray(data.questions)) {
+            currentQuestions = data.questions;
+        } else if (data.floors && Array.isArray(data.floors)) {
+            currentQuestions = data.floors;
+        } else {
+            throw new Error('Unrecognized questions JSON structure');
+        }
+        return true;
+    } catch (err) {
+        console.error("Failed to load question set:", err);
+        questionText.textContent = "Error loading question set from JSON file.";
+        return false;
+    }
+}
+
 // Game Flow Functions
-function startNewGame() {
+async function startNewGame(sourcePath = 'questions.json') {
     initAudio();
     currentFloorIndex = 0;
     isAnswerLocked = false;
     
+    questionText.textContent = "Loading Questions...";
     landingScreen.style.display = 'none';
     gameScreen.style.display = 'flex';
     closeModals();
-    
-    loadFloorQuestion();
+
+    const loaded = await loadQuestionsData(sourcePath);
+    if (loaded && currentQuestions.length > 0) {
+        loadFloorQuestion();
+    }
 }
 
 function loadFloorQuestion() {
-    if (currentFloorIndex >= 10) {
+    if (currentFloorIndex >= 10 || currentFloorIndex >= currentQuestions.length) {
         triggerVictory();
         return;
     }
@@ -119,11 +135,18 @@ function loadFloorQuestion() {
     });
 
     // Populate Question & Options
-    questionText.textContent = currentQuestion.question;
+    questionText.textContent = currentQuestion.question || currentQuestion.text;
+    
+    const options = currentQuestion.options || currentQuestion.answers || [];
     optionButtons.forEach((btn, idx) => {
-        btn.textContent = currentQuestion.options[idx];
-        btn.className = 'btn-option';
-        btn.disabled = false;
+        if (options[idx] !== undefined) {
+            btn.style.display = 'block';
+            btn.textContent = options[idx];
+            btn.className = 'btn-option';
+            btn.disabled = false;
+        } else {
+            btn.style.display = 'none';
+        }
     });
 
     startTimer();
@@ -156,11 +179,12 @@ function handleAnswerSelection(selectedIndex) {
     clearInterval(timerInterval);
 
     const currentQuestion = currentQuestions[currentFloorIndex];
-    const isCorrect = selectedIndex === currentQuestion.answer;
+    const correctAnswerIndex = currentQuestion.answer !== undefined ? currentQuestion.answer : currentQuestion.correctIndex;
+    const isCorrect = selectedIndex === correctAnswerIndex;
 
     optionButtons.forEach((btn, idx) => {
         btn.disabled = true;
-        if (idx === currentQuestion.answer) {
+        if (idx === correctAnswerIndex) {
             btn.classList.add('selected-correct');
         } else if (idx === selectedIndex && !isCorrect) {
             btn.classList.add('selected-wrong');
@@ -171,7 +195,7 @@ function handleAnswerSelection(selectedIndex) {
         playSound('correct');
         setTimeout(() => {
             currentFloorIndex++;
-            if (currentFloorIndex === 10) {
+            if (currentFloorIndex === 10 || currentFloorIndex === currentQuestions.length) {
                 triggerVictory();
             } else {
                 loadFloorQuestion();
@@ -252,28 +276,47 @@ function closeModals() {
     modalStats.classList.add('hidden');
 }
 
-function populateVaultList() {
+async function populateVaultList() {
     const vaultList = document.getElementById('vault-list');
-    vaultList.innerHTML = '';
+    vaultList.innerHTML = '<div style="color:#888; text-align:center; padding:10px;">Loading Vault Archives...</div>';
 
-    for (let i = 1; i <= 50; i++) {
-        const item = document.createElement('button');
-        item.className = 'game-card-btn';
-        item.style.padding = '12px 16px';
-        item.innerHTML = `
-            <span class="game-num">SET ${String(i).padStart(2, '0')}</span>
-            <span class="game-name" style="font-size: 0.95rem;">11th Floor Questions Archive #${i}</span>
-        `;
-        item.addEventListener('click', () => {
-            closeModals();
-            startNewGame();
+    try {
+        // Attempt to fetch vault index if available, otherwise build dynamic file links
+        const res = await fetch('archives/index.json').catch(() => null);
+        let archiveFiles = [];
+        
+        if (res && res.ok) {
+            archiveFiles = await res.json();
+        } else {
+            // Default archive path mapping matching repository structure
+            archiveFiles = Array.from({ length: 10 }, (_, i) => ({
+                id: `set_${i + 1}`,
+                title: `Archive Set #${String(i + 1).padStart(2, '0')}`,
+                path: `archives/set_${i + 1}.json`
+            }));
+        }
+
+        vaultList.innerHTML = '';
+        archiveFiles.forEach((item, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'game-card-btn';
+            btn.style.padding = '12px 16px';
+            btn.innerHTML = `
+                <span class="game-num">SET ${String(idx + 1).padStart(2, '0')}</span>
+                <span class="game-name" style="font-size: 0.95rem;">${item.title || item.name || `Archive Set #${idx + 1}`}</span>
+            `;
+            btn.addEventListener('click', () => {
+                startNewGame(item.path || `archives/${item.id}.json`);
+            });
+            vaultList.appendChild(btn);
         });
-        vaultList.appendChild(item);
+    } catch (err) {
+        vaultList.innerHTML = '<div style="color:#ff1f2d; text-align:center; padding:10px;">Failed to load vault files.</div>';
     }
 }
 
 // Event Listeners
-document.getElementById('btn-start-game-1').addEventListener('click', startNewGame);
+document.getElementById('btn-start-game-1').addEventListener('click', () => startNewGame('questions.json'));
 
 optionButtons.forEach((btn, index) => {
     btn.addEventListener('click', () => handleAnswerSelection(index));
@@ -303,7 +346,7 @@ document.getElementById('btn-close-stats').addEventListener('click', () => modal
 
 // Game Over Modal Action Choices
 document.getElementById('btn-try-again').addEventListener('click', () => {
-    startNewGame();
+    startNewGame('questions.json');
 });
 
 document.getElementById('btn-view-stats').addEventListener('click', () => {
