@@ -172,7 +172,18 @@ function handleAnswerSelection(selectedIndex) {
     clearInterval(timerInterval);
 
     const currentQuestion = currentQuestions[currentFloorIndex];
-    const correctAnswerIndex = currentQuestion.answer !== undefined ? currentQuestion.answer : currentQuestion.correctIndex;
+    
+    let correctAnswerIndex = currentQuestion.answer;
+    if (correctAnswerIndex === undefined) correctAnswerIndex = currentQuestion.correctIndex;
+    if (correctAnswerIndex === undefined && currentQuestion.correct !== undefined) {
+        if (typeof currentQuestion.correct === 'number') {
+            correctAnswerIndex = currentQuestion.correct;
+        } else {
+            const options = currentQuestion.options || currentQuestion.answers || [];
+            correctAnswerIndex = options.indexOf(currentQuestion.correct);
+        }
+    }
+
     const isCorrect = selectedIndex === correctAnswerIndex;
 
     optionButtons.forEach((btn, idx) => {
@@ -319,17 +330,7 @@ document.getElementById('btn-util-vault').addEventListener('click', () => {
     modalVault.classList.remove('hidden');
 });
 
-document.getElementById('btn-landing-vault').addEventListener('click', () => {
-    populateVaultList();
-    modalVault.classList.remove('hidden');
-});
-
 document.getElementById('btn-util-stats').addEventListener('click', () => {
-    updateStatsUI();
-    modalStats.classList.remove('hidden');
-});
-
-document.getElementById('btn-landing-stats').addEventListener('click', () => {
     updateStatsUI();
     modalStats.classList.remove('hidden');
 });
