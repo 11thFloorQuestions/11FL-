@@ -7,44 +7,61 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="game-container">
-        <!-- Top Utility Bar: Exit & Future Archive Button -->
-        <div class="top-utility-bar">
-            <button id="exit-btn" class="util-btn">Exit</button>
-            <button id="archive-btn" class="util-btn">Archive</button>
-        </div>
 
-        <!-- Centered, Un-squashed Logo Section -->
-        <div class="header-section">
-            <h1 class="logo-title">11FL?</h1>
-            <p class="logo-subtitle">Eleventh Floor Word Climb</p>
+    <!-- LANDING SCREEN VIEW -->
+    <div id="landing-screen" class="app-screen">
+        <div class="landing-card">
+            <div class="header-section">
+                <h1 class="logo-title">11FL?</h1>
+                <p class="logo-subtitle">Eleventh Floor</p>
+                <p class="logo-sub-bottom">Word Climb</p>
+            </div>
+            <button id="play-btn" class="landing-play-btn">PLAY</button>
         </div>
+    </div>
 
-        <!-- Main Game Board Card -->
-        <div class="game-card">
-            <div id="card-floor-text">FLOOR 01</div>
-            
-            <div id="target-word-slots" class="target-slots-container">
-                <!-- Word length slots rendered dynamically -->
+    <!-- GAMEPLAY SCREEN VIEW (Hidden until Play is clicked) -->
+    <div id="game-screen" class="app-screen" style="display: none;">
+        <div class="game-container">
+            <!-- Top Utility Bar -->
+            <div class="top-utility-bar">
+                <button id="exit-btn" class="util-btn">Exit</button>
+                <button id="archive-btn" class="util-btn">Archive</button>
             </div>
 
-            <div id="guess-display">
-                <!-- Active typing display -->
+            <!-- In-Game Logo Header -->
+            <div class="header-section">
+                <h1 class="logo-title">11FL?</h1>
+                <p class="logo-subtitle">Eleventh Floor</p>
+                <p class="logo-sub-bottom">Word Climb</p>
             </div>
 
-            <div id="message-box"></div>
+            <!-- Main Game Board Card -->
+            <div class="game-card">
+                <div id="card-floor-text">FLOOR 01</div>
+                
+                <div id="target-word-slots" class="target-slots-container">
+                    <!-- Slots rendered dynamically -->
+                </div>
 
-            <div id="wheel-wrapper">
-                <div id="wheel-container">
-                    <!-- Letter wheel buttons rendered dynamically -->
+                <div id="guess-display">
+                    <!-- Guess display -->
+                </div>
+
+                <div id="message-box"></div>
+
+                <div id="wheel-wrapper">
+                    <div id="wheel-container">
+                        <!-- Wheel rendered dynamically -->
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Bottom Action Buttons -->
-        <div class="action-buttons-container">
-            <button id="action-delete-btn" class="action-btn">Delete</button>
-            <button id="action-submit-btn" class="action-btn">Submit</button>
+            <!-- Bottom Action Buttons -->
+            <div class="action-buttons-container">
+                <button id="action-delete-btn" class="action-btn">Delete</button>
+                <button id="action-submit-btn" class="action-btn">Submit</button>
+            </div>
         </div>
     </div>
 
