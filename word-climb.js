@@ -49,10 +49,11 @@ function setupGameSession(data) {
 
     updateText("card-floor-text", `FLOOR ${String(data.floor).padStart(2, '0')}`);
     updateElevatorActiveState(data.floor);
-    showMessage(`Floor ${data.floor} Loaded!`);
+    showMessage(""); // Clean startup (no loaded message)
 
     currentWordString = "";
     renderGuessDisplay();
+    renderTargetSlots(); // Render word length placeholders
     renderWheel(data.letters);
     setupActionButtons();
 }
@@ -68,28 +69,50 @@ function updateElevatorActiveState(activeFloor) {
     });
 }
 
+// Render word length slot placeholders on screen
+function renderTargetSlots() {
+    const container = document.getElementById("target-word-slots");
+    if (!container || !currentFloorData) return;
+
+    container.innerHTML = "";
+    
+    // Pick the primary target word length or default to first available word length group
+    const wordLengths = Object.keys(currentFloorData.words);
+    if (wordLengths.length === 0) return;
+    
+    const sampleWord = currentFloorData.words[wordLengths[0]][0] || "WORD";
+    
+    for (let i = 0; i < sampleWord.length; i++) {
+        const slot = document.createElement("div");
+        slot.className = "target-slot";
+        slot.id = `target-slot-${i}`;
+        slot.textContent = "";
+        container.appendChild(slot);
+    }
+}
+
 function renderWheel(letters) {
     const container = document.getElementById("wheel-container");
     if (!container) return;
     
     container.innerHTML = "";
     const letterArray = letters.split("");
-    const radius = 55; 
+    const radius = 52; 
     const centerX = container.offsetWidth / 2 || 80;
     const centerY = container.offsetHeight / 2 || 80;
 
     letterArray.forEach((letter, index) => {
         const angle = (index * 2 * Math.PI) / letterArray.length - Math.PI / 2;
-        const x = centerX + radius * Math.cos(angle) - 17;
-        const y = centerY + radius * Math.sin(angle) - 17;
+        const x = centerX + radius * Math.cos(angle) - 16;
+        const y = centerY + radius * Math.sin(angle) - 16;
 
         const btn = document.createElement("button");
         btn.textContent = letter;
         btn.style.position = "absolute";
         btn.style.left = `${x}px`;
         btn.style.top = `${y}px`;
-        btn.style.width = "34px";
-        btn.style.height = "34px";
+        btn.style.width = "32px";
+        btn.style.height = "32px";
         btn.style.borderRadius = "50%";
         btn.style.background = "#1c1c1c";
         btn.style.border = "1px solid #ff1f2d";
@@ -151,7 +174,17 @@ function handleSubmission() {
         showMessage(`Already found '${word}'!`);
     } else if (allValidWords.has(word)) {
         foundWords.add(word);
-        showMessage(`CORRECT! '${word}' (${foundWords.size}/${allValidWords.size})`);
+        showMessage(`Correct! '${word}'`); // Clean message without score fraction
+        
+        // Fill target boxes if word matches length
+        const slots = document.querySelectorAll(".target-slot");
+        if (slots.length === word.length) {
+            slots.forEach((slot, idx) => {
+                slot.textContent = word[idx];
+                slot.classList.add("revealed");
+            });
+        }
+
         if (foundWords.size === allValidWords.size) {
             showMessage(`FLOOR ${currentFloorData.floor} CLEARED!`);
         }
