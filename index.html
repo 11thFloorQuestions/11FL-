@@ -117,7 +117,7 @@
             color: #ffffff;
         }
 
-        /* Generic Game Screen Styles */
+        /* Game Layout Common */
         .game-container {
             display: flex;
             flex-direction: column;
@@ -128,25 +128,59 @@
             height: 100vh;
             height: 100dvh;
             margin: 0 auto;
-            padding: 16px;
+            padding: 12px 16px;
         }
 
         .top-utility-bar {
             display: flex;
             justify-content: space-between;
             width: 100%;
-            margin-bottom: 10px;
+            padding: 2px 0;
         }
 
         .util-btn {
             background: #141414;
             border: 1px solid #333333;
             color: #cccccc;
-            padding: 8px 16px;
+            padding: 6px 14px;
             border-radius: 6px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: bold;
             cursor: pointer;
+        }
+
+        .header-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            margin: 2px 0;
+        }
+
+        .game-logo-title {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #ff1f2d;
+            letter-spacing: 2px;
+            line-height: 0.95;
+        }
+
+        .game-logo-subtitle {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: #ffffff;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .game-logo-sub-bottom {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #cccccc;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 2px;
         }
 
         .game-card {
@@ -159,22 +193,117 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin: 10px 0;
-            padding: 20px;
+            margin: 6px 0;
+            padding: 16px;
             position: relative;
+        }
+
+        /* Questions Game Styles */
+        #q-text {
+            font-size: 1.2rem;
+            font-weight: 600;
             text-align: center;
+            margin-bottom: 20px;
+            padding: 0 10px;
+            color: #ffffff;
         }
 
-        .game-card h2 {
-            font-size: 1.5rem;
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            max-width: 360px;
+        }
+
+        .option-btn {
+            background: #1c1c1c;
+            border: 1px solid #333333;
+            color: #ffffff;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .option-btn.correct {
+            background: rgba(46, 204, 113, 0.2);
+            border-color: #2ecc71;
+            color: #2ecc71;
+        }
+
+        .option-btn.incorrect {
+            background: rgba(255, 31, 45, 0.2);
+            border-color: #ff1f2d;
             color: #ff1f2d;
-            margin-bottom: 15px;
         }
 
-        .game-card p {
-            font-size: 1rem;
-            color: #cccccc;
-            line-height: 1.5;
+        /* Word Climb Styles */
+        #card-floor-text {
+            position: absolute;
+            top: 14px;
+            left: 16px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #ff1f2d;
+            letter-spacing: 1px;
+        }
+
+        #guess-display {
+            display: flex;
+            gap: 6px;
+            min-height: 36px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ff1f2d;
+            letter-spacing: 2px;
+        }
+
+        #wheel-wrapper {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 4px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .action-buttons-container {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 12px 0;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+        }
+
+        #action-delete-btn {
+            background: #1c1c1c;
+            border: 1px solid #ff1f2d;
+            color: #ffffff;
+        }
+
+        #action-submit-btn {
+            background: #ff1f2d;
+            border: 1px solid #ff1f2d;
+            color: #ffffff;
         }
     </style>
 </head>
@@ -188,11 +317,11 @@
             <div class="logo-sub-bottom">Games</div>
             
             <div class="game-select-container">
-                <button class="game-card-btn" onclick="switchScreen('questions-screen')">
+                <button class="game-card-btn" onclick="startQuestionsGame()">
                     <span class="game-num">GAME 01</span>
                     <span class="game-name">11th Floor Questions</span>
                 </button>
-                <button class="game-card-btn" onclick="switchScreen('wordclimb-screen')">
+                <button class="game-card-btn" onclick="startWordClimbGame()">
                     <span class="game-num">GAME 02</span>
                     <span class="game-name">11th Floor Word Climb</span>
                 </button>
@@ -200,16 +329,23 @@
         </div>
     </div>
 
-    <!-- 11TH FLOOR QUESTIONS SCREEN -->
+    <!-- QUESTIONS GAME SCREEN -->
     <div id="questions-screen" class="app-screen hidden">
         <div class="game-container">
             <div class="top-utility-bar">
-                <button class="util-btn" onclick="switchScreen('landing-screen')">Exit</button>
-                <button class="util-btn" onclick="alert('Next Question feature active!')">Next</button>
+                <button class="util-btn" onclick="returnToLanding()">Exit</button>
+                <button class="util-btn" onclick="nextQuestion()">Next</button>
             </div>
+            
+            <div class="header-section">
+                <div class="game-logo-title">11FL?</div>
+                <div class="game-logo-subtitle">Eleventh Floor</div>
+                <div class="game-logo-sub-bottom">QUESTIONS</div>
+            </div>
+
             <div class="game-card">
-                <h2>11th Floor Questions</h2>
-                <p>Welcome to Game 01! Fully operational and ready to play.</p>
+                <div id="q-text">Loading question...</div>
+                <div class="options-container" id="q-options"></div>
             </div>
         </div>
     </div>
@@ -218,22 +354,103 @@
     <div id="wordclimb-screen" class="app-screen hidden">
         <div class="game-container">
             <div class="top-utility-bar">
-                <button class="util-btn" onclick="switchScreen('landing-screen')">Exit</button>
-                <button class="util-btn" onclick="alert('Archive feature active!')">Archive</button>
+                <button class="util-btn" onclick="returnToLanding()">Exit</button>
+                <button class="util-btn" onclick="alert('Archive loaded')">Archive</button>
             </div>
+            
+            <div class="header-section">
+                <div class="game-logo-title">11FL?</div>
+                <div class="game-logo-subtitle">Eleventh Floor</div>
+                <div class="game-logo-sub-bottom">WORD CLIMB</div>
+            </div>
+
             <div class="game-card">
-                <h2>Word Climb</h2>
-                <p>Welcome to Game 02! Wheel and gameplay mechanics active.</p>
+                <div id="card-floor-text">FLOOR 01</div>
+                <div id="guess-display">SELECT LETTERS</div>
+                <div id="wheel-wrapper">
+                    <!-- Interactive wheel representation -->
+                    <p style="color: #888; font-size: 0.9rem;">[Wheel Active]</p>
+                </div>
+            </div>
+
+            <div class="action-buttons-container">
+                <button class="action-btn" id="action-delete-btn">Delete</button>
+                <button class="action-btn" id="action-submit-btn">Submit</button>
             </div>
         </div>
     </div>
 
     <script>
-        function switchScreen(screenId) {
-            document.querySelectorAll('.app-screen').forEach(screen => {
-                screen.classList.add('hidden');
+        // Game Data & Logic
+        const questionsData = [
+            {
+                q: "What is the primary theme of the Eleventh Floor?",
+                options: ["Dark aesthetic & interactive puzzles", "Bright corporate minimalism", "Classic retro arcade", "Random trivia"],
+                answer: 0
+            },
+            {
+                q: "How many games are featured in the initial suite?",
+                options: ["1 Game", "2 Games", "5 Games", "10 Games"],
+                answer: 1
+            },
+            {
+                q: "What color accent defines the 11FL? brand?",
+                options: ["Neon Blue", "Electric Green", "Signature Red", "Bright Yellow"],
+                answer: 2
+            }
+        ];
+
+        let currentQIndex = 0;
+
+        function returnToLanding() {
+            document.getElementById('questions-screen').classList.add('hidden');
+            document.getElementById('wordclimb-screen').classList.add('hidden');
+            document.getElementById('landing-screen').classList.remove('hidden');
+        }
+
+        function startQuestionsGame() {
+            document.getElementById('landing-screen').classList.add('hidden');
+            document.getElementById('questions-screen').classList.remove('hidden');
+            currentQIndex = 0;
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const currentData = questionsData[currentQIndex];
+            document.getElementById('q-text').innerText = currentData.q;
+            
+            const optionsContainer = document.getElementById('q-options');
+            optionsContainer.innerHTML = '';
+
+            currentData.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = opt;
+                btn.onclick = () => checkAnswer(index, currentData.answer, btn);
+                optionsContainer.appendChild(btn);
             });
-            document.getElementById(screenId).classList.remove('hidden');
+        }
+
+        function checkAnswer(selectedIndex, correctIndex, btnElement) {
+            const buttons = document.querySelectorAll('.option-btn');
+            buttons.forEach(b => b.style.pointerEvents = 'none'); // Lock choices
+
+            if (selectedIndex === correctIndex) {
+                btnElement.classList.add('correct');
+            } else {
+                btnElement.classList.add('incorrect');
+                buttons[correctIndex].classList.add('correct');
+            }
+        }
+
+        function nextQuestion() {
+            currentQIndex = (currentQIndex + 1) % questionsData.length;
+            loadQuestion();
+        }
+
+        function startWordClimbGame() {
+            document.getElementById('landing-screen').classList.add('hidden');
+            document.getElementById('wordclimb-screen').classList.remove('hidden');
         }
     </script>
 </body>
