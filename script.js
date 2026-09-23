@@ -1,438 +1,277 @@
-let deck = [];
-let archiveDeckData = {};
-let currentFloor = 1, timer = null, left = 15, locked = false, highestFloorReached = 0;
-let audioEnabled = false, audioCtx = null;
-let activeFloorDeck = [];
+/**
+ * 11th Floor Questions - Original Gameplay Logic
+ */
 
-async function initQuiz() {
+let questions = [];
+let currentFloor = 1;
+let currentQuestion = null;
+let timerInterval = null;
+let timeLeft = 15;
+let floorHistory = []; // Array of booleans or scores per floor
+let isSoundEnabled = true;
+
+// Sound Synthesizer via Web Audio API
+const playTone = (freq, type = 'sine', duration = 0.15) => {
+  if (!isSoundEnabled) return;
   try {
-    const res = await fetch('./questions.json?v=' + Date.now());
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = await res.json();
-    deck = Array.isArray(data) ? data : (data.floors || []);
-  } catch (err) {
-    console.error('Failed to load questions.json', err);
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, ctx.currentTime);
+    gain.gain.setValueAtTime(0.1, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + duration);
+  } catch (e) {
+    // Audio Context fallback handling
   }
-}
+};
 
-async function initArchiveSandbox() {
-  try {
-    const manifestRes = await fetch('./manifest.json?v=' + Date.now());
-    if (!manifestRes.ok) throw new Error('Failed to load manifest.json');
-    const manifest = await manifestRes.json();
-    
-    const archiveFiles = manifest.archives || [];
-    for (let i = 0; i < archiveFiles.length; i++) {
-      const filename = archiveFiles[i];
-      try {
-        const res = await fetch(`${filename}?v=` + Date.now());
-        if (!res.ok) continue;
-        const data = await res.json();
-        
-        const key = data.archive_id || filename.replace(/^.*[\\\/]/, '').replace('.json', '');
-        archiveDeckData[key] = {
-          title: data.title || `ARCHIVE PACK ${i + 1}`,
-          floors: data.floors || data
-        };
-      } catch (err) {
-        console.error(`Failed to load archive: ${filename}`, err);
-      }
-    }
-  } catch (err) {
-    console.error('Failed to initialize archives from manifest', err);
-  }
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-  initQuiz();
-  initArchiveSandbox();
-  
-  const questionsBtn = document.getElementById('goto-questions-btn');
-  if (questionsBtn) {
-    questionsBtn.addEventListener('click', () => {
-      openQuestionsLobby();
-    });
-  }
-  
-  renderBldg('building-landing', 0);
+// Initialize Application
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadQuestionDeck();
+  setupEventListeners();
 });
 
-function vibrate(pattern) {
-  if (typeof navigator !== 'undefined' && navigator.vibrate) {
-    try { navigator.vibrate(pattern); } catch(e){}
-  }
-}
-
-function toggleAudio() {
-  audioEnabled = !audioEnabled;
-  vibrate(15);
-  document.querySelectorAll('.btn-audio-toggle').forEach(btn => {
-    btn.innerText = audioEnabled ? 'SOUND: ON' : 'SOUND: OFF';
-    btn.classList.toggle('active', audioEnabled);
-  });
-}
-
-function recordStats(isWin, highestFloor) {
-  const stats = JSON.parse(localStorage.getItem('11fl_stats') || '{"played":0,"wins":0,"currentStreak":0,"maxStreak":0,"floorDrops":[0,0,0,0,0,0,0,0,0,0,0]}');
-  stats.played++;
-  if (isWin) {
-    stats.wins++;
-    stats.currentStreak++;
-    stats.maxStreak = Math.max(stats.maxStreak, stats.currentStreak);
-    stats.floorDrops[10]++;
-  } else {
-    stats.currentStreak = 0;
-    const dropIdx = Math.min(Math.max(highestFloor - 1, 0), 10);
-    stats.floorDrops[dropIdx]++;
-  }
-  localStorage.setItem('11fl_stats', JSON.stringify(stats));
-}
-
-// 11TH FLOOR QUESTIONS MINI-LOBBY
-function openQuestionsLobby() {
-  showScreen('questions-screen');
-  if (timer) clearInterval(timer);
-  const bar = document.getElementById('timer-bar');
-  if (bar) bar.style.width = '100%';
-  
-  const floorLabel = document.getElementById('hud-floor-label');
-  if (floorLabel) floorLabel.innerText = "LOBBY";
-  
-  renderBldg('floor-counter', 0);
-
-  const gameView = document.getElementById('game-view');
-  if (gameView) {
-    const archiveKeys = Object.keys(archiveDeckData);
-    gameView.innerHTML = `
-      <div style="display:flex; flex-direction:column; width:100%; height:100%; gap:12px; justify-space-between;">
-        <div>
-          <div style="font-size:1.1rem; font-weight:800; color:#ff1f2d; margin-bottom:4px;">11TH FLOOR QUESTIONS</div>
-          <div style="font-size:0.75rem; color:#888;">Select your game deck to start the elevator climb.</div>
-        </div>
-
-        <div style="display:flex; flex-direction:column; gap:8px;">
-          <button onclick="startClimb()" style="width:100%; padding:14px; background:#ff1f2d; color:#fff; border:none; border-radius:8px; font-weight:800; cursor:pointer; font-size:0.9rem; letter-spacing:1px; text-align:center;">
-            PLAY TODAY'S QUIZ
-          </button>
-        </div>
-
-        <div style="display:flex; flex-direction:column; flex:1; min-height:0;">
-          <div style="font-size:0.7rem; font-weight:700; color:#ccc; letter-spacing:1px; margin-bottom:6px;">ARCHIVE VAULT (${archiveKeys.length} PACKS)</div>
-          <div style="display:flex; flex-direction:column; gap:6px; overflow-y:auto; flex:1; padding-right:4px;">
-            ${archiveKeys.length > 0 ? archiveKeys.map((key, idx) => `
-              <button onclick="launchArchiveDeck('${key}')" style="display:flex; justify-content:space-between; align-items:center; padding:10px 12px; background:#1c1c1c; color:#fff; border:1px solid #333; border-radius:6px; font-weight:700; cursor:pointer; font-size:0.75rem;">
-                <span>#${String(idx + 1).padStart(2, '0')} -${archiveDeckData[key].title}</span>
-                <span style="color:#ff1f2d;">START &gt;</span>
-              </button>
-            `).join('') : '<div style="font-size:0.7rem; color:#666;">No archive packs loaded.</div>'}
-          </div>
-        </div>
-
-        <button onclick="openArchiveModal()" style="width:100%; padding:10px; background:#1c1c1c; color:#aaa; border:1px solid #333; border-radius:6px; font-weight:700; cursor:pointer; font-size:0.75rem;">
-          VIEW CAREER STATS
-        </button>
-      </div>
-    `;
-  }
-}
-
-function openArchiveModal() {
-  vibrate(15);
-  const stats = JSON.parse(localStorage.getItem('11fl_stats') || '{"played":0,"wins":0,"currentStreak":0,"maxStreak":0,"floorDrops":[0,0,0,0,0,0,0,0,0,0,0]}');
-  const winPct = stats.played > 0 ? Math.round((stats.wins / stats.played) * 100) : 0;
-  const historyItem = localStorage.getItem('11fl_last_result');
-  const maxDrop = Math.max(1, ...stats.floorDrops);
-  
-  const bodyEl = document.getElementById('stats-body');
-  if (bodyEl) {
-    bodyEl.innerHTML = `
-      <div style="display:flex; justify-content:space-around; text-align:center; margin-bottom:14px; padding:10px 0; border-bottom:1px solid #262626;">
-        <div><div style="font-size:1.3rem; font-weight:800; color:#fff;">${stats.played}</div><div style="font-size:0.55rem; color:#888;">PLAYED</div></div>
-        <div><div style="font-size:1.3rem; font-weight:800; color:#fff;">${winPct}%</div><div style="font-size:0.55rem; color:#888;">WIN %</div></div>
-        <div><div style="font-size:1.3rem; font-weight:800; color:#fff;">${stats.currentStreak}</div><div style="font-size:0.55rem; color:#888;">STREAK</div></div>
-        <div><div style="font-size:1.3rem; font-weight:800; color:#fff;">${stats.maxStreak}</div><div style="font-size:0.55rem; color:#888;">MAX</div></div>
-      </div>
-      <div style="font-size:0.6rem; color:#fff; font-weight:700; margin-bottom:6px; letter-spacing:1px;">FLOOR DROP PROFILE</div>
-      <div style="display:flex; flex-direction:column; gap:3px; margin-bottom:12px;">
-        ${stats.floorDrops.map((count, i) => `
-          <div style="display:flex; align-items:center; gap:6px; font-size:0.6rem;">
-            <span style="width:22px; color:#888;">Floor ${String(i+1).padStart(2,'0')}</span>
-            <div style="flex:1; background:#141414; height:5px; border-radius:2px; overflow:hidden;">
-              <div style="background:#ff1f2d; width:${Math.min(100, (count / maxDrop) * 100)}%; height:100%;"></div>
-            </div>
-            <span style="width:14px; text-align:right;">${count}</span>
-          </div>
-        `).join('')}
-      </div>
-      
-      <div style="font-size:0.6rem; color:#888; border-top:1px solid #262626; padding-top:10px;">
-        <strong>Last Run:</strong><br><pre style="font-family:inherit; margin-top:2px;">${historyItem || 'No prior daily logs recorded yet.'}</pre>
-      </div>
-    `;
-  }
-  const modal = document.getElementById('stats-modal');
-  if (modal) modal.classList.remove('hidden');
-}
-
-function closeStatsModal() {
-  vibrate(15);
-  const modal = document.getElementById('stats-modal');
-  if (modal) modal.classList.add('hidden');
-}
-
-async function launchArchiveDeck(archiveKey) {
-  if (!archiveDeckData[archiveKey]) return;
-  vibrate(20);
-  closeStatsModal();
-  
-  const rawDeck = archiveDeckData[archiveKey].floors;
-  activeFloorDeck = rawDeck.map((f, floorIndex) => {
-    const rawOptions = f.options || [];
-    let correctText = f.answer;
-    if (typeof f.answer === 'number') {
-      correctText = rawOptions[f.answer];
-    }
-    let shuffledOpts = [...rawOptions];
-    shuffledOpts.sort(() => Math.random() - 0.5);
-    const correctIndex = shuffledOpts.indexOf(correctText);
-
-    return {
-      floorNum: floorIndex + 1,
-      tier: `Floor ${String(floorIndex + 1).padStart(2, '0')}`,
-      q: f.question,
-      opts: shuffledOpts,
-      c: correctIndex >= 0 ? correctIndex : 0
-    };
-  });
-
-  currentFloor = 1;
-  highestFloorReached = 0;
-  loadFloor();
-}
-
-function playTone(freq, type='sine', duration=0.1, gainVal=0.08) {
-  if (!audioEnabled) return;
+async function loadQuestionDeck() {
   try {
-    if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.type = type;
-    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-    gain.gain.setValueAtTime(gainVal, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-    osc.connect(gain); gain.connect(audioCtx.destination);
-    osc.start();
-    osc.stop(audioCtx.currentTime + duration);
-  } catch(e){}
-}
-
-function playHotelBellDing() {
-  if (!audioEnabled) return;
-  try {
-    if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const now = audioCtx.currentTime;
-    const osc1 = audioCtx.createOscillator();
-    const gain1 = audioCtx.createGain();
-    osc1.type = 'sine';
-    osc1.frequency.setValueAtTime(2600, now);
-    osc1.frequency.exponentialRampToValueAtTime(2480, now + 0.45);
-    gain1.gain.setValueAtTime(0.14, now);
-    gain1.gain.exponentialRampToValueAtTime(0.0001, now + 0.55);
-    osc1.connect(gain1); gain1.connect(audioCtx.destination);
-    osc1.start(now);
-    osc1.stop(now + 0.55);
-  } catch(e){}
-}
-
-function renderBldg(id, active) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.innerHTML = '';
-  for(let i=1; i<=10; i++){
-    const b = document.createElement('div');
-    b.className = 'floor-block' + (i<active?' completed':'') + (i===active?' active-floor':'');
-    el.appendChild(b);
+    const res = await fetch('questions.json');
+    questions = await res.json();
+  } catch (err) {
+    console.error('Failed to load questions deck:', err);
+    // Fallback question generator if json is unreachable
+    questions = Array.from({ length: 11 }, (_, i) => ({
+      floor: i + 1,
+      category: 'GENERAL KNOWLEDGE',
+      question: `Elevator Question for Floor ${i + 1}?`,
+      options: ['Option A', 'Option B', 'Option C', 'Option D'],
+      answer: 'Option A'
+    }));
   }
 }
 
-function buildGridString(clearedFloorCount) {
-  let blocks = '';
-  for(let i=1; i<=10; i++) { blocks += (i <= clearedFloorCount) ? '■' : '□'; }
-  return `[${blocks}]`;
-}
-
-function showScreen(id) { 
-  document.querySelectorAll('.app-screen').forEach(s => {
-    s.style.display = 'none';
-  });
-  const target = document.getElementById(id);
-  if (target) target.style.display = 'flex'; 
-}
-
-async function prepareActiveDeck() {
-  if (!deck || deck.length === 0) {
-    await initQuiz();
-  }
-  activeFloorDeck = deck.map((f, floorIndex) => {
-    const rawOptions = f.options || [];
-    let correctText = f.answer;
-    if (typeof f.answer === 'number') {
-      correctText = rawOptions[f.answer];
-    }
-    
-    let shuffledOpts = [...rawOptions];
-    shuffledOpts.sort(() => Math.random() - 0.5);
-    const correctIndex = shuffledOpts.indexOf(correctText);
-
-    return {
-      floorNum: floorIndex + 1,
-      tier: `Floor ${String(floorIndex + 1).padStart(2, '0')}`,
-      q: f.question,
-      opts: shuffledOpts,
-      c: correctIndex >= 0 ? correctIndex : 0
-    };
-  });
-}
-
-async function startClimb() {
-  vibrate(20);
-  await prepareActiveDeck();
-  if (!activeFloorDeck || activeFloorDeck.length === 0) return;
-  currentFloor = 1;
-  highestFloorReached = 0;
-  loadFloor();
-}
-
-function loadFloor() {
-  locked = false;
-  showScreen('questions-screen');
-  const rawD = activeFloorDeck[currentFloor - 1];
-  if (!rawD) {
-    triggerVictory();
-    return;
-  }
-
-  const floorLabel = document.getElementById('hud-floor-label');
-  if (floorLabel) floorLabel.innerText = rawD.tier;
-  
-  renderBldg('floor-counter', currentFloor);
-  
-  const gameView = document.getElementById('game-view');
-  if (gameView) {
-    gameView.innerHTML = `
-      <div style="font-size: 1.05rem; font-weight: 700; width: 100%; line-height: 1.35; text-align: left; color: #f5f5f5; margin-bottom: 12px; flex-shrink: 0;">${currentFloor}. ${rawD.q}</div>
-      <div style="width: 100%; display: flex; flex-direction: column; gap: 8px; overflow-y: auto; flex: 1; padding-bottom: 4px;" id="options-container"></div>
-    `;
-    const optsContainer = document.getElementById('options-container');
-    rawD.opts.forEach((o, i) => {
-      const btn = document.createElement('button');
-      btn.className = 'btn-option';
-      btn.innerText = o;
-      btn.onclick = () => answer(i, rawD.c, btn);
-      optsContainer.appendChild(btn);
+function setupEventListeners() {
+  const gotoQuestionsBtn = document.getElementById('goto-questions-btn');
+  if (gotoQuestionsBtn) {
+    gotoQuestionsBtn.addEventListener('click', () => {
+      startClimb();
     });
   }
+
+  const soundToggle = document.getElementById('sound-toggle');
+  if (soundToggle) {
+    soundToggle.addEventListener('click', () => {
+      isSoundEnabled = !isSoundEnabled;
+      soundToggle.innerText = isSoundEnabled ? '🔊 SOUND: ON' : '🔇 SOUND: OFF';
+    });
+  }
+}
+
+function showScreen(screenId) {
+  document.querySelectorAll('.app-screen').forEach(s => s.classList.add('hidden'));
+  const target = document.getElementById(screenId);
+  if (target) target.classList.remove('hidden');
+}
+
+// Direct Game Start
+function startClimb() {
+  currentFloor = 1;
+  floorHistory = [];
+  showScreen('questions-screen');
+  loadFloor(currentFloor);
+}
+
+function loadFloor(floorNum) {
+  clearInterval(timerInterval);
+  timeLeft = 15;
+
+  const hudFloor = document.getElementById('hud-floor-label');
+  if (hudFloor) {
+    hudFloor.innerText = floorNum === 11 ? 'PENTHOUSE // 11TH FLOOR' : `FLOOR ${String(floorNum).padStart(2, '0')}`;
+  }
+
+  renderBuildingShaft(floorNum);
+  
+  // Find floor question
+  const floorQuestions = questions.filter(q => q.floor === floorNum);
+  currentQuestion = floorQuestions[Math.floor(Math.random() * floorQuestions.length)] || questions[0];
+
+  renderQuestionCard(currentQuestion);
   startTimer();
 }
 
-function startTimer() {
-  if(timer) clearInterval(timer);
-  left = 15;
-  const bar = document.getElementById('timer-bar');
-  if (bar) bar.style.width = '100%';
-  timer = setInterval(() => {
-    left--;
-    if (bar) bar.style.width = Math.max(0, left/15*100) + '%';
-    if(left <= 0) { clearInterval(timer); fail('Time expired.'); }
-  }, 1000);
+function renderBuildingShaft(activeFloor) {
+  const bldg = document.getElementById('floor-counter');
+  if (!bldg) return;
+
+  let html = '';
+  for (let f = 11; f >= 1; f--) {
+    const isActive = f === activeFloor ? 'active-floor' : '';
+    const isPassed = f < activeFloor ? 'passed-floor' : '';
+    const label = f === 11 ? 'PH' : String(f).padStart(2, '0');
+    html += `<div class="shaft-floor ${isActive} ${isPassed}">${label}</div>`;
+  }
+  bldg.innerHTML = html;
 }
 
-function answer(sel, corr, btn) {
-  if(locked) return;
-  locked = true;
-  clearInterval(timer);
-  if(sel === corr) {
-    highestFloorReached = currentFloor;
-    btn.classList.add('selected-correct');
-    vibrate(15);
-    playHotelBellDing();
+function renderQuestionCard(q) {
+  const gameView = document.getElementById('game-view');
+  if (!gameView) return;
+
+  // Shuffle options display order
+  const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
+
+  gameView.innerHTML = `
+    <div class="timer-container">
+      <div id="timer-bar" class="timer-bar" style="width: 100%;"></div>
+    </div>
+    <div class="question-header">
+      <span class="category-badge">${q.category || 'GENERAL TRIVIA'}</span>
+    </div>
+    <div class="question-text">${q.question}</div>
+    <div class="options-grid">
+      ${shuffledOptions.map(opt => `
+        <button class="btn-option" onclick="handleAnswer('${escapeQuotes(opt)}', '${escapeQuotes(q.answer)}', this)">
+          ${opt}
+        </button>
+      `).join('')}
+    </div>
+  `;
+}
+
+function escapeQuotes(str) {
+  return str.replace(/'/g, "\\'");
+}
+
+function startTimer() {
+  const timerBar = document.getElementById('timer-bar');
+  const startTime = Date.now();
+  const duration = 15000;
+
+  timerInterval = setInterval(() => {
+    const elapsed = Date.now() - startTime;
+    const remaining = Math.max(0, duration - elapsed);
+    const pct = (remaining / duration) * 100;
+
+    if (timerBar) {
+      timerBar.style.width = `${pct}%`;
+      if (pct < 30) {
+        timerBar.style.backgroundColor = '#ff4444';
+      } else {
+        timerBar.style.backgroundColor = '#00ffcc';
+      }
+    }
+
+    if (remaining <= 0) {
+      clearInterval(timerInterval);
+      playTone(180, 'sawtooth', 0.4);
+      triggerFloorDrop('TIME EXPIRED');
+    }
+  }, 50);
+}
+
+function handleAnswer(selected, correct, buttonElem) {
+  clearInterval(timerInterval);
+
+  // Disable all option buttons
+  const allBtns = document.querySelectorAll('.btn-option');
+  allBtns.forEach(btn => btn.disabled = true);
+
+  if (selected === correct) {
+    buttonElem.classList.add('selected-correct');
+    playTone(523.25, 'sine', 0.15); // C5
+    setTimeout(() => playTone(659.25, 'sine', 0.2), 150); // E5
+    floorHistory.push(true);
+
     setTimeout(() => {
-      if(currentFloor >= activeFloorDeck.length) { 
+      if (currentFloor >= 11) {
         triggerVictory();
       } else {
-        currentFloor++; 
-        loadFloor();
+        currentFloor++;
+        loadFloor(currentFloor);
       }
-    }, 600);
+    }, 1000);
   } else {
-    btn.classList.add('selected-wrong');
-    vibrate([40, 30, 40]);
-    playTone(150, 'sawtooth', 0.2, 0.08);
-    setTimeout(() => fail('Wrong choice.'), 500);
+    buttonElem.classList.add('selected-wrong');
+    // Highlight the correct answer
+    allBtns.forEach(btn => {
+      if (btn.innerText.trim() === correct) {
+        btn.classList.add('selected-correct');
+      }
+    });
+    playTone(150, 'sawtooth', 0.35);
+    floorHistory.push(false);
+
+    setTimeout(() => {
+      triggerFloorDrop(`INCORRECT ANSWER AT FLOOR ${String(currentFloor).padStart(2, '0')}`);
+    }, 1200);
   }
 }
 
 function triggerVictory() {
-  highestFloorReached = activeFloorDeck.length;
-  renderBldg('floor-counter', activeFloorDeck.length);
-  const floorLabel = document.getElementById('hud-floor-label');
-  if (floorLabel) floorLabel.innerText = "Floor 11";
-  
-  vibrate([40, 50, 60]);
-  playHotelBellDing();
-  recordStats(true, activeFloorDeck.length);
-  generateShareText('win');
-  
   const gameView = document.getElementById('game-view');
-  if (gameView) {
-    const gridStr = buildGridString(highestFloorReached);
-    gameView.innerHTML = `
-      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%; gap:14px; padding:10px;">
-        <div style="font-size: 1.15rem; font-weight: 800; color: #fff; letter-spacing: 1px;">11TH FLOOR REACHED</div>
-        <div style="font-size: 0.65rem; color: #cccccc;">Congratulations, you've reached the 11th floor.</div>
-        <div style="font-size: 0.8rem; font-family: monospace; color: #fff; background: #141414; padding: 10px 16px; border-radius: 4px; border: 1px solid #262626; width: 100%;">${gridStr}</div>
-        <div style="display: flex; gap: 10px; width: 100%; margin-top: 10px;">
-          <button onclick="openQuestionsLobby()" style="flex: 1; padding: 12px; background: #ff1f2d; color: #fff; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">GAME LOBBY</button>
-        </div>
+  if (!gameView) return;
+
+  playTone(880, 'triangle', 0.4);
+  saveCareerStats(true, 11);
+
+  const gridShare = floorHistory.map(h => h ? '🟩' : '🟥').join('');
+
+  gameView.innerHTML = `
+    <div class="result-card victory-card">
+      <div class="result-badge">PENTHOUSE REACHED</div>
+      <h2>11TH FLOOR CLEARED!</h2>
+      <p>Flawless ascension to the top floor.</p>
+      <div class="share-grid-box">${gridShare}</div>
+      <div class="result-actions">
+        <button class="btn-primary" onclick="startClimb()">PLAY AGAIN</button>
+        <button class="btn-secondary" onclick="resetToLobby()">MAIN MENU</button>
       </div>
-    `;
-  }
+    </div>
+  `;
 }
 
-function fail(reason) {
-  clearInterval(timer);
-  vibrate([60, 40, 60]);
-  const dropFloor = highestFloorReached + 1;
-  recordStats(false, dropFloor);
-  generateShareText('fail');
-  
+function triggerFloorDrop(reason) {
   const gameView = document.getElementById('game-view');
-  if (gameView) {
-    const gridStr = buildGridString(highestFloorReached);
-    gameView.innerHTML = `
-      <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:100%; width:100%; gap:14px; padding:10px;">
-        <div style="font-size: 1.15rem; font-weight: 800; color: #ff1f2d; letter-spacing: 1px;">FLOOR DROP // Floor ${String(dropFloor).padStart(2,'0')}</div>
-        <div style="font-size: 0.65rem; color: #cccccc;">Run terminated. Descent initiated.</div>
-        <div style="font-size: 0.8rem; font-family: monospace; color: #fff; background: #141414; padding: 10px 16px; border-radius: 4px; border: 1px solid #262626; width: 100%;">${gridStr}</div>
-        <div style="display: flex; gap: 10px; width: 100%; margin-top: 10px;">
-          <button onclick="startClimb()" style="flex: 1.2; padding: 12px; background: #ff1f2d; color: #fff; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">TRY AGAIN</button>
-          <button onclick="openQuestionsLobby()" style="flex: 1; padding: 12px; background: #333; color: #fff; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">LOBBY</button>
-        </div>
+  if (!gameView) return;
+
+  saveCareerStats(false, currentFloor);
+
+  const gridShare = floorHistory.map(h => h ? '🟩' : '🟥').join('');
+
+  gameView.innerHTML = `
+    <div class="result-card failure-card">
+      <div class="result-badge failure">ELEVATOR DROPPED</div>
+      <h2>STOPPED AT FLOOR ${String(currentFloor).padStart(2, '0')}</h2>
+      <p class="reason-text">${reason}</p>
+      <div class="share-grid-box">${gridShare}</div>
+      <div class="result-actions">
+        <button class="btn-primary" onclick="startClimb()">RETRY CLIMB</button>
+        <button class="btn-secondary" onclick="resetToLobby()">MAIN MENU</button>
       </div>
-    `;
-  }
+    </div>
+  `;
 }
 
-function generateShareText(type) {
-  const grid = buildGridString(highestFloorReached);
-  const txt = type === 'win' ? `11FL? // Cleared\n${grid}` : `11FL? // Drop Floor ${String(highestFloorReached+1).padStart(2,'0')}\n${grid}`;
-  localStorage.setItem('11fl_last_result', txt);
-  return txt;
+function resetToLobby() {
+  clearInterval(timerInterval);
+  showScreen('landing-screen');
 }
 
-function resetToLobby() { 
-  if (timer) clearInterval(timer); 
-  vibrate(15);
-  showScreen('landing-screen'); 
-  renderBldg('building-landing', 0); 
+function saveCareerStats(isWin, reachedFloor) {
+  const statsKey = '11th_floor_stats';
+  let stats = JSON.parse(localStorage.getItem(statsKey)) || {
+    played: 0,
+    wins: 0,
+    highestFloor: 1
+  };
+
+  stats.played += 1;
+  if (isWin) stats.wins += 1;
+  stats.highestFloor = Math.max(stats.highestFloor, reachedFloor);
+
+  localStorage.setItem(statsKey, JSON.stringify(stats));
 }
