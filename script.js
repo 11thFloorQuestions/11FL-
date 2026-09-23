@@ -31,7 +31,7 @@ async function initArchiveSandbox() {
         
         const key = data.archive_id || filename.replace(/^.*[\\\/]/, '').replace('.json', '');
         archiveDeckData[key] = {
-          title: data.title || `ARCHIVE ${i + 1}`,
+          title: data.title || `ARCHIVE PACK ${i + 1}`,
           floors: data.floors || data
         };
       } catch (err) {
@@ -47,11 +47,10 @@ window.addEventListener('DOMContentLoaded', () => {
   initQuiz();
   initArchiveSandbox();
   
-  // Setup click handler for Game 02 on landing screen
   const questionsBtn = document.getElementById('goto-questions-btn');
   if (questionsBtn) {
     questionsBtn.addEventListener('click', () => {
-      startClimb();
+      openQuestionsLobby();
     });
   }
   
@@ -89,6 +88,54 @@ function recordStats(isWin, highestFloor) {
   localStorage.setItem('11fl_stats', JSON.stringify(stats));
 }
 
+// 11TH FLOOR QUESTIONS MINI-LOBBY
+function openQuestionsLobby() {
+  showScreen('questions-screen');
+  if (timer) clearInterval(timer);
+  const bar = document.getElementById('timer-bar');
+  if (bar) bar.style.width = '100%';
+  
+  const floorLabel = document.getElementById('hud-floor-label');
+  if (floorLabel) floorLabel.innerText = "LOBBY";
+  
+  renderBldg('floor-counter', 0);
+
+  const gameView = document.getElementById('game-view');
+  if (gameView) {
+    const archiveKeys = Object.keys(archiveDeckData);
+    gameView.innerHTML = `
+      <div style="display:flex; flex-direction:column; width:100%; height:100%; gap:12px; justify-space-between;">
+        <div>
+          <div style="font-size:1.1rem; font-weight:800; color:#ff1f2d; margin-bottom:4px;">11TH FLOOR QUESTIONS</div>
+          <div style="font-size:0.75rem; color:#888;">Select your game deck to start the elevator climb.</div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <button onclick="startClimb()" style="width:100%; padding:14px; background:#ff1f2d; color:#fff; border:none; border-radius:8px; font-weight:800; cursor:pointer; font-size:0.9rem; letter-spacing:1px; text-align:center;">
+            PLAY TODAY'S QUIZ
+          </button>
+        </div>
+
+        <div style="display:flex; flex-direction:column; flex:1; min-height:0;">
+          <div style="font-size:0.7rem; font-weight:700; color:#ccc; letter-spacing:1px; margin-bottom:6px;">ARCHIVE VAULT (${archiveKeys.length} PACKS)</div>
+          <div style="display:flex; flex-direction:column; gap:6px; overflow-y:auto; flex:1; padding-right:4px;">
+            ${archiveKeys.length > 0 ? archiveKeys.map((key, idx) => `
+              <button onclick="launchArchiveDeck('${key}')" style="display:flex; justify-content:space-between; align-items:center; padding:10px 12px; background:#1c1c1c; color:#fff; border:1px solid #333; border-radius:6px; font-weight:700; cursor:pointer; font-size:0.75rem;">
+                <span>#${String(idx + 1).padStart(2, '0')} -${archiveDeckData[key].title}</span>
+                <span style="color:#ff1f2d;">START &gt;</span>
+              </button>
+            `).join('') : '<div style="font-size:0.7rem; color:#666;">No archive packs loaded.</div>'}
+          </div>
+        </div>
+
+        <button onclick="openArchiveModal()" style="width:100%; padding:10px; background:#1c1c1c; color:#aaa; border:1px solid #333; border-radius:6px; font-weight:700; cursor:pointer; font-size:0.75rem;">
+          VIEW CAREER STATS
+        </button>
+      </div>
+    `;
+  }
+}
+
 function openArchiveModal() {
   vibrate(15);
   const stats = JSON.parse(localStorage.getItem('11fl_stats') || '{"played":0,"wins":0,"currentStreak":0,"maxStreak":0,"floorDrops":[0,0,0,0,0,0,0,0,0,0,0]}');
@@ -98,8 +145,6 @@ function openArchiveModal() {
   
   const bodyEl = document.getElementById('stats-body');
   if (bodyEl) {
-    const archiveKeys = Object.keys(archiveDeckData);
-    
     bodyEl.innerHTML = `
       <div style="display:flex; justify-content:space-around; text-align:center; margin-bottom:14px; padding:10px 0; border-bottom:1px solid #262626;">
         <div><div style="font-size:1.3rem; font-weight:800; color:#fff;">${stats.played}</div><div style="font-size:0.55rem; color:#888;">PLAYED</div></div>
@@ -120,33 +165,19 @@ function openArchiveModal() {
         `).join('')}
       </div>
       
-      <div style="font-size:0.6rem; color:#fff; font-weight:700; margin-bottom:6px; letter-spacing:1px; border-top:1px solid #262626; padding-top:10px;">ARCHIVE VAULT</div>
-      <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:12px; max-height:120px; overflow-y:auto;">
-        ${archiveKeys.length > 0 ? archiveKeys.map(key => `
-          <button onclick="launchArchiveDeck('${key}')" style="display:flex; justify-content:space-between; align-items:center; padding:8px 10px; background:#141414; color:#fff; border:1px solid #333; border-radius:4px; font-weight:700; cursor:pointer; font-size:0.65rem;">
-            <span>${archiveDeckData[key].title}</span>
-            <span style="color:#ff1f2d;">PLAY &gt;</span>
-          </button>
-        `).join('') : '<div style="font-size:0.6rem; color:#888;">No archive packs detected yet.</div>'}
-      </div>
-
       <div style="font-size:0.6rem; color:#888; border-top:1px solid #262626; padding-top:10px;">
         <strong>Last Run:</strong><br><pre style="font-family:inherit; margin-top:2px;">${historyItem || 'No prior daily logs recorded yet.'}</pre>
       </div>
     `;
   }
   const modal = document.getElementById('stats-modal');
-  if (modal) {
-    modal.classList.remove('hidden');
-  }
+  if (modal) modal.classList.remove('hidden');
 }
 
 function closeStatsModal() {
   vibrate(15);
   const modal = document.getElementById('stats-modal');
-  if (modal) {
-    modal.classList.add('hidden');
-  }
+  if (modal) modal.classList.add('hidden');
 }
 
 async function launchArchiveDeck(archiveKey) {
@@ -266,9 +297,7 @@ async function prepareActiveDeck() {
 async function startClimb() {
   vibrate(20);
   await prepareActiveDeck();
-  if (!activeFloorDeck || activeFloorDeck.length === 0) {
-    return;
-  }
+  if (!activeFloorDeck || activeFloorDeck.length === 0) return;
   currentFloor = 1;
   highestFloorReached = 0;
   loadFloor();
@@ -363,8 +392,7 @@ function triggerVictory() {
         <div style="font-size: 0.65rem; color: #cccccc;">Congratulations, you've reached the 11th floor.</div>
         <div style="font-size: 0.8rem; font-family: monospace; color: #fff; background: #141414; padding: 10px 16px; border-radius: 4px; border: 1px solid #262626; width: 100%;">${gridStr}</div>
         <div style="display: flex; gap: 10px; width: 100%; margin-top: 10px;">
-          <button onclick="openArchiveModal()" style="flex: 1; padding: 12px; background: #1f1f1f; color: #fff; border: 1px solid #333; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">STATS</button>
-          <button onclick="resetToLobby()" style="flex: 1; padding: 12px; background: #ff1f2d; color: #fff; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">LOBBY</button>
+          <button onclick="openQuestionsLobby()" style="flex: 1; padding: 12px; background: #ff1f2d; color: #fff; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">GAME LOBBY</button>
         </div>
       </div>
     `;
@@ -388,8 +416,7 @@ function fail(reason) {
         <div style="font-size: 0.8rem; font-family: monospace; color: #fff; background: #141414; padding: 10px 16px; border-radius: 4px; border: 1px solid #262626; width: 100%;">${gridStr}</div>
         <div style="display: flex; gap: 10px; width: 100%; margin-top: 10px;">
           <button onclick="startClimb()" style="flex: 1.2; padding: 12px; background: #ff1f2d; color: #fff; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">TRY AGAIN</button>
-          <button onclick="openArchiveModal()" style="flex: 1; padding: 12px; background: #1f1f1f; color: #fff; border: 1px solid #333; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">STATS</button>
-          <button onclick="resetToLobby()" style="flex: 1; padding: 12px; background: #333; color: #fff; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">LOBBY</button>
+          <button onclick="openQuestionsLobby()" style="flex: 1; padding: 12px; background: #333; color: #fff; border: none; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.75rem;">LOBBY</button>
         </div>
       </div>
     `;
@@ -404,7 +431,7 @@ function generateShareText(type) {
 }
 
 function resetToLobby() { 
-  clearInterval(timer); 
+  if (timer) clearInterval(timer); 
   vibrate(15);
   showScreen('landing-screen'); 
   renderBldg('building-landing', 0); 
