@@ -20,13 +20,23 @@ function initElevatorSlots() {
         slot.addEventListener("click", () => {
             const floorNum = parseInt(slot.getAttribute("data-floor"));
             if (floorNum >= 1 && floorNum <= 11) {
-                loadAndPlayFloor(floorNum);
+                if (floorNum === 11) {
+                    triggerDestinationView();
+                } else {
+                    loadAndPlayFloor(floorNum);
+                }
             }
         });
     });
 }
 
 async function loadAndPlayFloor(floorNum) {
+    // If user clicks or reaches Floor 11, handle it as the final destination
+    if (floorNum === 11) {
+        triggerDestinationView();
+        return;
+    }
+
     const formattedNum = String(floorNum).padStart(2, '0');
     const filePath = `assets/data/floors/floor_${formattedNum}.json`;
 
@@ -48,7 +58,6 @@ function getRequiredWordLength(floorNum) {
     if (floorNum >= 7 && floorNum <= 8) return 7;
     if (floorNum === 9) return 8;
     if (floorNum === 10) return 9;
-    if (floorNum === 11) return 10;
     return 5;
 }
 
@@ -62,12 +71,10 @@ function setupGameSession(data) {
         }
     }
 
-    // Lock the master letters permanently on the very first load (includes 'C', etc.)
     if (!masterLetters) {
         if (data.letters && typeof data.letters === 'string' && data.letters.length > 0) {
             masterLetters = data.letters;
         } else {
-            // Fallback that includes all necessary letters if JSON is missing them
             masterLetters = "ACEGILNRST"; 
         }
     }
@@ -79,8 +86,24 @@ function setupGameSession(data) {
     currentWordString = "";
     renderGuessDisplay();
     renderTargetSlots(data.floor);
-    renderWheel(masterLetters); // Always use the locked master pool
+    renderWheel(masterLetters);
     setupActionButtons();
+}
+
+function triggerDestinationView() {
+    updateText("card-floor-text", "PENTHOUSE (11FL)");
+    updateElevatorActiveState(11);
+    showMessage("CONGRATULATIONS! YOU REACHED THE 11TH FLOOR PENTHOUSE!", false);
+
+    const container = document.getElementById("target-word-slots");
+    if (container) {
+        container.innerHTML = `<div style="color: #2ecc71; font-weight: bold; font-size: 1.2rem; text-align: center; padding: 20px;">DESTINATION REACHED 🏆</div>`;
+    }
+
+    const wheelContainer = document.getElementById("wheel-container");
+    if (wheelContainer) {
+        wheelContainer.innerHTML = "";
+    }
 }
 
 function updateElevatorActiveState(activeFloor) {
@@ -129,30 +152,30 @@ function renderWheel(letters) {
     
     container.innerHTML = "";
     const letterArray = letters.split("");
-    const radius = 52; 
-    const centerX = container.offsetWidth / 2 || 80;
-    const centerY = container.offsetHeight / 2 || 80;
+    const radius = 60; // Increased radius for larger circle spacing
+    const centerX = container.offsetWidth / 2 || 90;
+    const centerY = container.offsetHeight / 2 || 90;
 
     letterArray.forEach((letter, index) => {
         const angle = (index * 2 * Math.PI) / letterArray.length - Math.PI / 2;
-        const x = centerX + radius * Math.cos(angle) - 16;
-        const y = centerY + radius * Math.sin(angle) - 16;
+        const x = centerX + radius * Math.cos(angle) - 20;
+        const y = centerY + radius * Math.sin(angle) - 20;
 
         const btn = document.createElement("button");
         btn.textContent = letter;
         btn.style.position = "absolute";
         btn.style.left = `${x}px`;
         btn.style.top = `${y}px`;
-        btn.style.width = "32px";
-        btn.style.height = "32px";
+        btn.style.width = "40px"; // Larger touch targets
+        btn.style.height = "40px";
         btn.style.borderRadius = "50%";
         btn.style.background = "#1c1c1c";
-        btn.style.border = "1px solid #ff1f2d";
+        btn.style.border = "2px solid #ff1f2d";
         btn.style.color = "#ffffff";
         btn.style.fontWeight = "bold";
+        btn.style.fontSize = "1rem";
         btn.style.cursor = "pointer";
 
-        // Free reuse of letters without disabling them
         btn.addEventListener("click", () => {
             currentWordString += letter;
             renderGuessDisplay();
@@ -170,7 +193,7 @@ function renderGuessDisplay() {
     currentWordString.split("").forEach(char => {
         const span = document.createElement("span");
         span.textContent = char;
-        span.style.padding = "4px 8px";
+        span.style.padding = "6px 10px";
         span.style.background = "#1c1c1c";
         span.style.border = "1px solid #ff1f2d";
         span.style.borderRadius = "4px";
@@ -200,6 +223,8 @@ function setupActionButtons() {
 }
 
 function handleSubmission() {
+    if (!currentFloorData || currentFloorData.floor === 11) return;
+
     const word = currentWordString.trim().toUpperCase();
     if (!word) return;
 
@@ -219,7 +244,6 @@ function handleSubmission() {
         return;
     }
 
-    // Validate that letters come from the locked master wheel pool
     const availableLetters = masterLetters.toUpperCase();
     let isValidFromWheel = true;
     for (let char of word) {
@@ -234,9 +258,8 @@ function handleSubmission() {
         showMessage(`Correct! '${word}'`, false);
         displaySolvedWordInSlots(word);
 
-        // Immediate floor progression
         setTimeout(() => {
-            const nextFloor = Math.min(currentFloorData.floor + 1, 11);
+            const nextFloor = currentFloorData.floor + 1;
             loadAndPlayFloor(nextFloor);
         }, 1200);
     } else {
