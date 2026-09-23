@@ -8,22 +8,22 @@
 </head>
 <body>
 
-  <!-- LANDING SCREEN -->
+  <!-- LANDING SCREEN (GAME HUB) -->
   <div id="landing-screen" class="app-screen">
     <div class="landing-content">
       <div class="landing-logo-title">11FL?</div>
       <div class="landing-logo-subtitle">ELEVATOR TRIVIA CLIMB</div>
-      <div class="landing-logo-sub-bottom">WORD CLIMB</div>
+      <div class="landing-logo-sub-bottom">SELECT GAME</div>
       
       <div class="game-select-container">
         <!-- GAME 01: WORD CLIMB -->
-        <div class="game-card-btn active-game" id="goto-wordclimb-btn" style="cursor: pointer;">
+        <div class="game-card-btn active-game" id="goto-wordclimb-btn">
           <div class="game-num">GAME 01</div>
           <div class="game-name">WORD CLIMB</div>
         </div>
 
         <!-- GAME 02: 11TH FLOOR QUESTIONS -->
-        <div class="game-card-btn" id="goto-questions-btn" style="cursor: pointer;">
+        <div class="game-card-btn" id="goto-questions-btn">
           <div class="game-num">GAME 02</div>
           <div class="game-name">11TH FLOOR QUESTIONS</div>
         </div>
@@ -31,12 +31,12 @@
     </div>
   </div>
 
-  <!-- GAME SCREEN -->
+  <!-- GAME 01 SCREEN: WORD CLIMB -->
   <div id="game-screen" class="app-screen" style="display: none;">
     <div class="game-container">
       
       <div class="top-utility-bar">
-        <button class="util-btn" id="exit-btn">✕ EXIT</button>
+        <button class="util-btn" id="exit-btn">✕ LOBBY</button>
         <button class="util-btn btn-audio-toggle">SOUND: OFF</button>
       </div>
 
@@ -68,7 +68,29 @@
     </div>
   </div>
 
-  <!-- GAME LOGIC -->
+  <!-- GAME 02 SCREEN: 11TH FLOOR QUESTIONS -->
+  <div id="questions-screen" class="app-screen" style="display: none;">
+    <div class="game-container">
+      
+      <div class="top-utility-bar">
+        <button class="util-btn" id="exit-questions-btn">✕ LOBBY</button>
+        <button class="util-btn btn-audio-toggle">SOUND: OFF</button>
+      </div>
+
+      <div class="header-section">
+        <div class="logo-title">11FL?</div>
+        <div class="logo-subtitle">ELEVATOR TRIVIA CLIMB</div>
+        <div class="logo-sub-bottom">TRIVIA VAULT</div>
+      </div>
+
+      <div class="game-card">
+        <div id="card-floor-text">QUESTIONS</div>
+        <div id="message-box" style="margin-top: 20px; font-size: 1rem;">11th Floor Questions Mode</div>
+      </div>
+
+    </div>
+  </div>
+
   <script src="./word-climb.js"></script>
 </body>
 </html>
