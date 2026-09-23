@@ -47,6 +47,18 @@ function setupGameSession(data) {
         lengthGroup.forEach(word => allValidWords.add(word));
     }
 
+    // Fallback: If data.letters is missing from the JSON, generate letters from the available words
+    let floorLetters = data.letters;
+    if (!floorLetters || typeof floorLetters !== 'string') {
+        const letterSet = new Set();
+        allValidWords.forEach(word => {
+            for (const char of word) {
+                letterSet.add(char);
+            }
+        });
+        floorLetters = Array.from(letterSet).join("");
+    }
+
     updateText("card-floor-text", `FLOOR ${String(data.floor).padStart(2, '0')}`);
     updateElevatorActiveState(data.floor);
     showMessage("");
@@ -54,7 +66,7 @@ function setupGameSession(data) {
     currentWordString = "";
     renderGuessDisplay();
     clearTargetSlots();
-    renderWheel(data.letters);
+    renderWheel(floorLetters);
     setupActionButtons();
 }
 
@@ -187,7 +199,6 @@ function handleSubmission() {
         showMessage(`Correct! '${word}'`, false);
         displaySolvedWordInSlots(word);
 
-        // Advance to the next floor immediately on any correct word
         setTimeout(() => {
             const nextFloor = Math.min(currentFloorData.floor + 1, 11);
             loadAndPlayFloor(nextFloor);
