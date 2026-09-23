@@ -39,6 +39,16 @@ async function loadAndPlayFloor(floorNum) {
     }
 }
 
+function getRequiredWordLength(floorNum) {
+    if (floorNum >= 1 && floorNum <= 3) return 5;
+    if (floorNum >= 4 && floorNum <= 6) return 6;
+    if (floorNum >= 7 && floorNum <= 8) return 7;
+    if (floorNum === 9) return 8;
+    if (floorNum === 10) return 9;
+    if (floorNum === 11) return 10;
+    return 5;
+}
+
 function setupGameSession(data) {
     foundWords.clear();
     allValidWords.clear();
@@ -47,9 +57,9 @@ function setupGameSession(data) {
         lengthGroup.forEach(word => allValidWords.add(word));
     }
 
-    // Fallback: If data.letters is missing from the JSON, generate letters from the available words
+    // Ensure letters remain consistent and never disappear across floors
     let floorLetters = data.letters;
-    if (!floorLetters || typeof floorLetters !== 'string') {
+    if (!floorLetters || typeof floorLetters !== 'string' || floorLetters.length === 0) {
         const letterSet = new Set();
         allValidWords.forEach(word => {
             for (const char of word) {
@@ -65,7 +75,7 @@ function setupGameSession(data) {
 
     currentWordString = "";
     renderGuessDisplay();
-    clearTargetSlots();
+    renderTargetSlots(data.floor);
     renderWheel(floorLetters);
     setupActionButtons();
 }
@@ -81,17 +91,14 @@ function updateElevatorActiveState(activeFloor) {
     });
 }
 
-function clearTargetSlots() {
+function renderTargetSlots(floorNum) {
     const container = document.getElementById("target-word-slots");
-    if (!container || !currentFloorData) return;
+    if (!container) return;
 
     container.innerHTML = "";
-    const wordLengths = Object.keys(currentFloorData.words);
-    if (wordLengths.length === 0) return;
+    const targetLength = getRequiredWordLength(floorNum);
     
-    const sampleWord = currentFloorData.words[wordLengths[0]][0] || "WORD";
-    
-    for (let i = 0; i < sampleWord.length; i++) {
+    for (let i = 0; i < targetLength; i++) {
         const slot = document.createElement("div");
         slot.className = "target-slot";
         slot.id = `target-slot-${i}`;
@@ -142,6 +149,7 @@ function renderWheel(letters) {
         btn.style.fontWeight = "bold";
         btn.style.cursor = "pointer";
 
+        // Allow reuse of letters freely by keeping buttons active
         btn.addEventListener("click", () => {
             currentWordString += letter;
             renderGuessDisplay();
@@ -192,7 +200,11 @@ function handleSubmission() {
     const word = currentWordString.trim().toUpperCase();
     if (!word) return;
 
-    if (foundWords.has(word)) {
+    const requiredLength = getRequiredWordLength(currentFloorData.floor);
+
+    if (word.length !== requiredLength) {
+        showMessage(`Must be ${requiredLength} letters!`, true);
+    } else if (foundWords.has(word)) {
         showMessage(`Already found '${word}'!`, true);
     } else if (allValidWords.has(word)) {
         foundWords.add(word);
