@@ -9,7 +9,8 @@ async function initQuiz() {
     const res = await fetch('./questions.json?v=' + Date.now());
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
-    deck = data.floors || data;
+    // Handles either a wrapped object { floors: [...] } or a direct array [...]
+    deck = Array.isArray(data) ? data : (data.floors || []);
   } catch (err) {
     console.error('Failed to load questions.json', err);
   }
@@ -32,7 +33,7 @@ async function initArchiveSandbox() {
         const key = data.archive_id || filename.replace(/^.*[\\\/]/, '').replace('.json', '');
         archiveDeckData[key] = {
           title: data.title || `ARCHIVE ${i + 1}`,
-          floors: data.floors
+          floors: data.floors || data
         };
       } catch (err) {
         console.error(`Failed to load archive: ${filename}`, err);
