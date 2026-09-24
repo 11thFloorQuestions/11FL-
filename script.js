@@ -4,6 +4,7 @@ let currentFloorIndex = 0; // 0 to 9 (Floor 01 to Floor 10)
 let timerInterval = null;
 let timeLeft = 15;
 let isAnswerLocked = false;
+let soundEnabled = false;
 
 // Local Stats
 let stats = JSON.parse(localStorage.getItem('11th_floor_stats')) || {
@@ -14,7 +15,7 @@ let stats = JSON.parse(localStorage.getItem('11th_floor_stats')) || {
     bestFloor: 1
 };
 
-// Audio Context
+// Audio Context Setup
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 let audioCtx = null;
 
@@ -24,8 +25,16 @@ function initAudio() {
     }
 }
 
+function toggleSound() {
+    soundEnabled = !soundEnabled;
+    const label = soundEnabled ? 'SOUND: ON' : 'SOUND: OFF';
+    document.getElementById('btn-sound-toggle').textContent = label;
+    document.getElementById('btn-sound-toggle-game').textContent = label;
+    if (soundEnabled) initAudio();
+}
+
 function playSound(type) {
-    if (!audioCtx) return;
+    if (!soundEnabled || !audioCtx) return;
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
     osc.connect(gain);
@@ -50,7 +59,7 @@ function playSound(type) {
 
 function formatFloorText(floorNum) {
     const padded = String(floorNum).padStart(2, '0');
-    return `Floor ${padded}`;
+    return `FLOOR ${padded}`;
 }
 
 // DOM Elements
@@ -60,7 +69,6 @@ const cardFloorText = document.getElementById('card-floor-text');
 const questionText = document.getElementById('question-text');
 const optionButtons = document.querySelectorAll('.btn-option');
 const timerBar = document.getElementById('timer-bar');
-const buildingShaftBlocks = document.querySelectorAll('.building-shaft .floor-block');
 
 // Modals
 const modalGameOver = document.getElementById('modal-game-over');
@@ -91,13 +99,13 @@ async function loadQuestionsData(sourcePath = 'questions.json') {
     }
 }
 
-// Game Flow
+// Game Logic
 async function startNewGame(sourcePath = 'questions.json') {
-    initAudio();
+    if (soundEnabled) initAudio();
     currentFloorIndex = 0;
     isAnswerLocked = false;
     
-    questionText.textContent = "Loading Questions...";
+    questionText.textContent = "Loading Question...";
     landingScreen.style.display = 'none';
     gameScreen.style.display = 'flex';
     closeModals();
@@ -119,11 +127,15 @@ function loadFloorQuestion() {
 
     cardFloorText.textContent = formatFloorText(currentFloorIndex + 1);
 
-    buildingShaftBlocks.forEach((block, index) => {
+    // Update vertical shaft indicators (Floor 1 is at bottom, Floor 10 at top)
+    const floorBlocks = document.querySelectorAll('#building-shaft .floor-block');
+    floorBlocks.forEach((block) => {
+        const floorNum = parseInt(block.getAttribute('data-floor'), 10);
         block.classList.remove('completed', 'active-floor');
-        if (index < currentFloorIndex) {
+        
+        if (floorNum < currentFloorIndex + 1) {
             block.classList.add('completed');
-        } else if (index === currentFloorIndex) {
+        } else if (floorNum === currentFloorIndex + 1) {
             block.classList.add('active-floor');
         }
     });
@@ -235,7 +247,8 @@ function triggerVictory() {
     clearInterval(timerInterval);
     cardFloorText.textContent = formatFloorText(11);
     
-    buildingShaftBlocks.forEach(block => {
+    const floorBlocks = document.querySelectorAll('#building-shaft .floor-block');
+    floorBlocks.forEach(block => {
         block.classList.remove('active-floor');
         block.classList.add('completed');
     });
@@ -295,11 +308,10 @@ async function populateVaultList() {
         vaultList.innerHTML = '';
         archiveFiles.forEach((item, idx) => {
             const btn = document.createElement('button');
-            btn.className = 'game-card-btn';
-            btn.style.padding = '12px 16px';
+            btn.className = 'vault-item-btn';
             btn.innerHTML = `
-                <span class="game-num">SET ${String(idx + 1).padStart(2, '0')}</span>
-                <span class="game-name" style="font-size: 0.95rem;">${item.title || item.name || `Archive Set #${idx + 1}`}</span>
+                <span style="font-size: 0.75rem; color: #e50914; font-weight: 700;">SET ${String(idx + 1).padStart(2, '0')}</span>
+                <span style="font-size: 0.9rem; font-weight: 600;">${item.title || item.name || `Archive Set #${idx + 1}`}</span>
             `;
             btn.addEventListener('click', () => {
                 startNewGame(item.path || `archives/${item.id}.json`);
@@ -307,32 +319,30 @@ async function populateVaultList() {
             vaultList.appendChild(btn);
         });
     } catch (err) {
-        vaultList.innerHTML = '<div style="color:#ff1f2d; text-align:center; padding:10px;">Failed to load vault files.</div>';
+        vaultList.innerHTML = '<div style="color:#e50914; text-align:center; padding:10px;">Failed to load vault files.</div>';
     }
 }
 
 // Event Listeners
-document.getElementById('btn-start-game-1').addEventListener('click', () => startNewGame('questions.json'));
+document.getElementById('btn-start-climb').addEventListener('click', () => startNewGame('questions.json'));
+document.getElementById('btn-sound-toggle').addEventListener('click', toggleSound);
+document.getElementById('btn-sound-toggle-game').addEventListener('click', toggleSound);
 
 optionButtons.forEach((btn, index) => {
     btn.addEventListener('click', () => handleAnswerSelection(index));
 });
 
-document.getElementById('btn-util-lobby').addEventListener('click', () => {
+document.getElementById('btn-landing-stats').addEventListener('click', () => {
+    populateVaultList();
+    updateStatsUI();
+    modalStats.classList.remove('hidden');
+});
+
+document.getElementById('btn-util-exit').addEventListener('click', () => {
     clearInterval(timerInterval);
     gameScreen.style.display = 'none';
     landingScreen.style.display = 'flex';
     closeModals();
-});
-
-document.getElementById('btn-util-vault').addEventListener('click', () => {
-    populateVaultList();
-    modalVault.classList.remove('hidden');
-});
-
-document.getElementById('btn-util-stats').addEventListener('click', () => {
-    updateStatsUI();
-    modalStats.classList.remove('hidden');
 });
 
 document.getElementById('btn-close-vault').addEventListener('click', () => modalVault.classList.add('hidden'));
@@ -352,5 +362,5 @@ document.getElementById('btn-back-vault').addEventListener('click', () => {
     modalVault.classList.remove('hidden');
 });
 
-// Initial Page Load Setup
+// Initial Setup
 updateStatsUI();
