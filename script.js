@@ -145,20 +145,19 @@ function normalizeQuestions(data) {
 
 async function startDailyClimb() {
     try {
-        // Try questions.json first, then fallback to latest sandbox file (sandbox.50.json)
-        let response = await fetch('questions.json');
-        if (!response.ok) {
-            response = await fetch('sandbox.50.json');
+        let response = await fetch('./questions.json').catch(() => null);
+        if (!response || !response.ok) {
+            response = await fetch('./sandbox.50.json').catch(() => null);
         }
-        if (!response.ok) {
-            response = await fetch('sandbox.01.json');
+        if (!response || !response.ok) {
+            response = await fetch('./sandbox.01.json').catch(() => null);
         }
-        if (!response.ok) throw new Error('Failed to load questions');
+        if (!response || !response.ok) throw new Error('Could not fetch daily quiz files.');
         
         const data = await response.json();
         gameState.questions = normalizeQuestions(data);
     } catch (error) {
-        console.warn("Could not fetch quiz files, loading fallback:", error);
+        console.warn("Could not fetch quiz files directly (if running from file://, open via web server/Live Server):", error);
         gameState.questions = generateFallbackQuestions();
     }
     startGame();
@@ -166,15 +165,15 @@ async function startDailyClimb() {
 
 async function loadVaultSet(paddedId) {
     try {
-        const response = await fetch(`sandbox.${paddedId}.json`);
-        if (!response.ok) throw new Error(`Failed to load sandbox.${paddedId}.json`);
+        const response = await fetch(`./sandbox.${paddedId}.json`);
+        if (!response.ok) throw new Error(`HTTP status ${response.status}`);
         const data = await response.json();
         gameState.questions = normalizeQuestions(data);
         closeModal('modal-vault');
         startGame();
     } catch (error) {
-        console.error(`Error loading sandbox.${paddedId}.json:`, error);
-        alert(`Archive Set ${paddedId} (sandbox.${paddedId}.json) failed to load.`);
+        console.error(`Error loading ./sandbox.${paddedId}.json:`, error);
+        alert(`Archive Set ${paddedId} (sandbox.${paddedId}.json) failed to load. Make sure the site is running on a web server or GitHub Pages rather than double-clicking the HTML file.`);
     }
 }
 
