@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eleventh Floor Games</title>
+    <title>11th Floor Questions</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,71 +11,75 @@
 </head>
 <body>
 
-    <!-- Main Hub Landing Page (Eleventh Floor Games) -->
-    <div id="main-hub-screen" class="hub-container">
-        <div class="hub-logo-box">
-            <h1 class="hub-logo-red">11FL?</h1>
-            <p class="hub-logo-title">Eleventh Floor</p>
-            <p class="hub-logo-sub">GAMES</p>
-        </div>
-
-        <div class="hub-menu-box">
-            <button id="btn-select-questions" class="btn-hub-option">11th Floor Questions</button>
-            <button id="btn-select-word-climb" class="btn-hub-option">11th Floor Word Climb</button>
-        </div>
-    </div>
-
-    <!-- Original 11th Floor Questions Game Layout -->
-    <div id="landing-screen" class="screen-container" style="display: none;">
+    <!-- Lobby / Landing Screen -->
+    <div id="landing-screen" class="screen-container">
         <header class="header-nav">
-            <div class="header-brand">
-                <span class="brand-text">11TH FLOOR QUESTIONS</span>
-            </div>
-            <div class="header-controls">
-                <button id="btn-sound-toggle" class="btn-nav">SOUND: OFF</button>
-                <button id="btn-landing-stats" class="btn-nav">VAULT</button>
-            </div>
+            <button id="btn-landing-stats" class="btn-nav">STATS / ARCHIVE</button>
+            <button id="btn-sound-toggle" class="btn-nav">SOUND: OFF</button>
         </header>
 
         <main class="landing-content">
             <div class="logo-container">
                 <h1 class="logo-red">11FL?</h1>
-                <p class="logo-subtitle">Eleventh Floor</p>
+                <p class="logo-subtitle">ELEVENTH FLOOR</p>
                 <p class="logo-tagline">QUESTIONS</p>
             </div>
 
-            <div class="landing-actions">
-                <button id="btn-start-climb" class="btn-primary">START CLIMB</button>
-                <button id="btn-hub-back" class="btn-secondary">BACK TO GAMES</button>
+            <div class="lobby-shaft-graphic">
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
             </div>
+
+            <p class="lobby-tagline">
+                CAN YOU REACH THE 11TH FLOOR? FAIL AND YOU'RE BACK TO THE GROUND FLOOR.
+            </p>
+
+            <button id="btn-start-climb" class="btn-start-climb">Start Climb</button>
         </main>
     </div>
 
     <!-- Active Game Screen -->
     <div id="game-screen" class="screen-container" style="display: none;">
-        <header class="header-nav">
-            <button id="btn-util-exit" class="btn-nav-icon">← EXIT</button>
-            <div id="card-floor-text" class="floor-indicator">FLOOR 01</div>
+        <header class="header-nav header-game">
+            <button id="btn-util-exit" class="btn-nav btn-exit">Exit</button>
+            <div class="header-brand-center">
+                <h1 class="logo-red-small">11FL?</h1>
+                <p class="logo-subtitle-small">ELEVENTH FLOOR</p>
+                <p class="logo-tagline-small">QUESTIONS</p>
+            </div>
             <button id="btn-sound-toggle-game" class="btn-nav">SOUND: OFF</button>
         </header>
 
         <main class="game-layout">
+            <!-- Left Elevator Shaft Progress Bar -->
             <div id="building-shaft" class="building-shaft">
-                <div class="floor-block" data-floor="10">10</div>
-                <div class="floor-block" data-floor="9">09</div>
-                <div class="floor-block" data-floor="8">08</div>
-                <div class="floor-block" data-floor="7">07</div>
-                <div class="floor-block" data-floor="6">06</div>
-                <div class="floor-block" data-floor="5">05</div>
-                <div class="floor-block" data-floor="4">04</div>
-                <div class="floor-block" data-floor="3">03</div>
-                <div class="floor-block" data-floor="2">02</div>
-                <div class="floor-block" data-floor="1">01</div>
+                <div class="floor-block" data-floor="10"></div>
+                <div class="floor-block" data-floor="9"></div>
+                <div class="floor-block" data-floor="8"></div>
+                <div class="floor-block" data-floor="7"></div>
+                <div class="floor-block" data-floor="6"></div>
+                <div class="floor-block" data-floor="5"></div>
+                <div class="floor-block" data-floor="4"></div>
+                <div class="floor-block" data-floor="3"></div>
+                <div class="floor-block" data-floor="2"></div>
+                <div class="floor-block" data-floor="1"></div>
             </div>
 
-            <section class="question-container">
-                <div class="timer-wrapper">
-                    <div id="timer-bar" class="timer-bar"></div>
+            <!-- Question Card Container -->
+            <section class="question-card">
+                <div class="card-header">
+                    <div id="card-floor-text" class="floor-indicator">FLOOR 01</div>
+                    <div class="timer-wrapper">
+                        <div id="timer-bar" class="timer-bar"></div>
+                    </div>
                 </div>
 
                 <div id="question-text" class="question-text">Loading Question...</div>
@@ -108,19 +112,6 @@
             <h2>ARCHIVE VAULT</h2>
             <div id="vault-list" class="vault-grid"></div>
             <button id="btn-close-vault" class="btn-modal">CLOSE</button>
-        </div>
-    </div>
-
-    <div id="modal-stats" class="modal-overlay hidden">
-        <div class="modal-card">
-            <h2>PLAYER STATS</h2>
-            <div class="stats-grid">
-                <div><span>PLAYED:</span> <strong id="stat-played">0</strong></div>
-                <div><span>WINS:</span> <strong id="stat-wins">0</strong></div>
-                <div><span>STREAK:</span> <strong id="stat-streak">0</strong></div>
-                <div><span>BEST FLOOR:</span> <strong id="stat-best">FLOOR 01</strong></div>
-            </div>
-            <button id="btn-close-stats" class="btn-modal">CLOSE</button>
         </div>
     </div>
 
