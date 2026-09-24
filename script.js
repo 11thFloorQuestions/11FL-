@@ -75,7 +75,6 @@ function shuffleArray(array) {
 }
 
 // DOM Elements
-const mainHubScreen = document.getElementById('main-hub-screen');
 const landingScreen = document.getElementById('landing-screen');
 const gameScreen = document.getElementById('game-screen');
 const cardFloorText = document.getElementById('card-floor-text');
@@ -316,14 +315,17 @@ function populateVaultList() {
     const vaultList = document.getElementById('vault-list');
     vaultList.innerHTML = '';
 
+    // Generates sandbox.01.json through sandbox.50.json
     for (let i = 1; i <= 50; i++) {
         const paddedNum = String(i).padStart(2, '0');
+        
+        // Adjust path if files are in an archives subfolder (e.g., 'archives/sandbox.01.json')
         const filePath = `archives/sandbox.${paddedNum}.json`; 
 
         const btn = document.createElement('button');
         btn.className = 'vault-item-btn';
         btn.innerHTML = `
-            <span style="font-size: 0.75rem; color: #ff0000; font-weight: 700;">ARCHIVE #${paddedNum}</span>
+            <span style="font-size: 0.75rem; color: #e50914; font-weight: 700;">ARCHIVE #${paddedNum}</span>
             <span style="font-size: 0.9rem; font-weight: 600;">Sandbox Game #${paddedNum}</span>
         `;
         
@@ -335,22 +337,7 @@ function populateVaultList() {
     }
 }
 
-// Hub Menu Action Listeners
-document.getElementById('btn-select-questions').addEventListener('click', () => {
-    mainHubScreen.style.display = 'none';
-    landingScreen.style.display = 'flex';
-});
-
-document.getElementById('btn-select-word-climb').addEventListener('click', () => {
-    alert("11th Floor Word Climb is coming soon!");
-});
-
-document.getElementById('btn-hub-back').addEventListener('click', () => {
-    landingScreen.style.display = 'none';
-    mainHubScreen.style.display = 'flex';
-});
-
-// Event Listeners for 11th Floor Questions
+// Event Listeners
 document.getElementById('btn-start-climb').addEventListener('click', () => startNewGame('questions.json'));
 document.getElementById('btn-sound-toggle').addEventListener('click', toggleSound);
 document.getElementById('btn-sound-toggle-game').addEventListener('click', toggleSound);
@@ -359,6 +346,7 @@ optionButtons.forEach((btn, index) => {
     btn.addEventListener('click', () => handleAnswerSelection(index));
 });
 
+// Landing Page Header Action -> Open Vault directly
 document.getElementById('btn-landing-stats').addEventListener('click', () => {
     populateVaultList();
     closeModals();
