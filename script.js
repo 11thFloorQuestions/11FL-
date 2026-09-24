@@ -1,381 +1,251 @@
-// State Variables
-let currentQuestions = [];
-let currentFloorIndex = 0; // 0 to 9 (Floor 01 to Floor 10)
-let currentShuffledOptions = []; // Stores randomized options for active question
-let currentCorrectIndex = -1;    // Stores index of correct answer post-shuffle
-let timerInterval = null;
-let timeLeft = 15;
-let isAnswerLocked = false;
-let soundEnabled = false;
+// ==========================================
+// 1. HELPER FUNCTIONS & UTILITIES
+// ==========================================
 
-// Local Stats Storage
-let stats = JSON.parse(localStorage.getItem('11th_floor_stats')) || {
-    played: 0,
-    wins: 0,
-    currentStreak: 0,
-    maxStreak: 0,
-    bestFloor: 1
+// Safe event listener helper
+function safeAddListener(id, event, handler) {
+    const el = document.getElementById(id);
+    if (el) {
+        el.addEventListener(event, handler);
+    }
+}
+
+// Optional chaining helper for setting text
+function safeSetText(id, text) {
+    const el = document.getElementById(id);
+    if (el) {
+        el.textContent = text;
+    }
+}
+
+// Optional chaining helper for toggling classes
+function safeToggleClass(id, className, force) {
+    const el = document.getElementById(id);
+    if (el) {
+        el.classList.toggle(className, force);
+    }
+}
+
+
+// ==========================================
+// 2. STATE MANAGEMENT
+// ==========================================
+
+const gameState = {
+    currentFloor: 1,
+    maxFloors: 10,
+    soundEnabled: false,
+    timer: null,
+    timeLeft: 15,
+    questions: [],
+    currentQuestionIndex: 0,
+    stats: {
+        played: 0,
+        wins: 0,
+        streak: 0,
+        bestFloor: 1
+    }
 };
 
-// Audio Context Setup
-const AudioContext = window.AudioContext || window.webkitAudioContext;
-let audioCtx = null;
 
-function initAudio() {
-    if (!audioCtx) {
-        audioCtx = new AudioContext();
-    }
+// ==========================================
+// 3. NAVIGATION & SCREEN SWITCHING
+// ==========================================
+
+// Single-page Hub navigation (if using multi-screen in one HTML file)
+safeAddListener('btn-select-questions', 'click', () => {
+    showScreen('landing-screen');
+});
+
+safeAddListener('btn-hub-back', 'click', () => {
+    showScreen('main-hub-screen');
+});
+
+// Game flow navigation
+safeAddListener('btn-start-climb', 'click', () => {
+    startGame();
+});
+
+safeAddListener('btn-util-exit', 'click', () => {
+    resetGame();
+    showScreen('landing-screen');
+});
+
+function showScreen(screenId) {
+    const screens = ['main-hub-screen', 'landing-screen', 'game-screen'];
+    screens.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.style.display = (id === screenId) ? 'flex' : 'none';
+        }
+    });
 }
+
+
+// ==========================================
+// 4. SOUND TOGGLE CONTROLS
+// ==========================================
 
 function toggleSound() {
-    soundEnabled = !soundEnabled;
-    const label = soundEnabled ? 'SOUND: ON' : 'SOUND: OFF';
-    document.getElementById('btn-sound-toggle').textContent = label;
-    document.getElementById('btn-sound-toggle-game').textContent = label;
-    if (soundEnabled) initAudio();
+    gameState.soundEnabled = !gameState.soundEnabled;
+    const label = `SOUND: ${gameState.soundEnabled ? 'ON' : 'OFF'}`;
+    safeSetText('btn-sound-toggle', label);
+    safeSetText('btn-sound-toggle-game', label);
 }
 
-function playSound(type) {
-    if (!soundEnabled || !audioCtx) return;
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
+safeAddListener('btn-sound-toggle', 'click', toggleSound);
+safeAddListener('btn-sound-toggle-game', 'click', toggleSound);
 
-    if (type === 'correct') {
-        osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(659.25, audioCtx.currentTime + 0.15);
-        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.3);
-    } else if (type === 'wrong') {
-        osc.frequency.setValueAtTime(180, audioCtx.currentTime);
-        osc.frequency.linearRampToValueAtTime(110, audioCtx.currentTime + 0.25);
-        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.3);
-    }
+
+// ==========================================
+// 5. MODAL & VAULT CONTROLS
+// ==========================================
+
+// Open Vault
+safeAddListener('btn-landing-stats', 'click', () => {
+    openVault();
+});
+
+safeAddListener('btn-back-vault', 'click', () => {
+    closeModal('modal-game-over');
+    openVault();
+});
+
+// Close Modals
+safeAddListener('btn-close-vault', 'click', () => closeModal('modal-vault'));
+safeAddListener('btn-close-stats', 'click', () => closeModal('modal-stats'));
+safeAddListener('btn-try-again', 'click', () => {
+    closeModal('modal-game-over');
+    startGame();
+});
+
+function openModal(modalId) {
+    safeToggleClass(modalId, 'hidden', false);
 }
 
-function formatFloorText(floorNum) {
-    const padded = String(floorNum).padStart(2, '0');
-    return `FLOOR ${padded}`;
+function closeModal(modalId) {
+    safeToggleClass(modalId, 'hidden', true);
 }
 
-// Helper: Shuffle Array (Fisher-Yates)
-function shuffleArray(array) {
-    const arr = [...array];
-    for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
+function openVault() {
+    updateStatsUI();
+    openModal('modal-vault');
 }
 
-// DOM Elements
-const landingScreen = document.getElementById('landing-screen');
-const gameScreen = document.getElementById('game-screen');
-const cardFloorText = document.getElementById('card-floor-text');
-const questionText = document.getElementById('question-text');
-const optionButtons = document.querySelectorAll('.btn-option');
-const timerBar = document.getElementById('timer-bar');
 
-// Modals
-const modalGameOver = document.getElementById('modal-game-over');
-const modalVault = document.getElementById('modal-vault');
-const modalStats = document.getElementById('modal-stats');
+// ==========================================
+// 6. GAME LOGIC & TIMERS
+// ==========================================
 
-// Data Fetching
-async function loadQuestionsData(sourcePath = 'questions.json') {
-    try {
-        const response = await fetch(sourcePath);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        const data = await response.json();
-        
-        if (Array.isArray(data)) {
-            currentQuestions = data;
-        } else if (data.questions && Array.isArray(data.questions)) {
-            currentQuestions = data.questions;
-        } else if (data.floors && Array.isArray(data.floors)) {
-            currentQuestions = data.floors;
-        } else {
-            throw new Error('Unrecognized JSON structure');
-        }
-        return true;
-    } catch (err) {
-        console.error("Failed to load question set:", err);
-        questionText.textContent = "Error loading question set from JSON.";
-        return false;
-    }
+function startGame() {
+    gameState.currentFloor = 1;
+    gameState.currentQuestionIndex = 0;
+    showScreen('game-screen');
+    updateFloorUI();
+    loadNextQuestion();
 }
 
-// Game Loop Functions
-async function startNewGame(sourcePath = 'questions.json') {
-    if (soundEnabled) initAudio();
-    currentFloorIndex = 0;
-    isAnswerLocked = false;
+function resetGame() {
+    clearInterval(gameState.timer);
+    gameState.currentFloor = 1;
+}
+
+function updateFloorUI() {
+    const floorStr = String(gameState.currentFloor).padStart(2, '0');
+    safeSetText('card-floor-text', `FLOOR ${floorStr}`);
     
-    questionText.textContent = "Loading Question...";
-    landingScreen.style.display = 'none';
-    gameScreen.style.display = 'flex';
-    closeModals();
-
-    const loaded = await loadQuestionsData(sourcePath);
-    if (loaded && currentQuestions.length > 0) {
-        loadFloorQuestion();
-    }
-}
-
-function loadFloorQuestion() {
-    if (currentFloorIndex >= 10 || currentFloorIndex >= currentQuestions.length) {
-        triggerVictory();
-        return;
-    }
-
-    isAnswerLocked = false;
-    const currentQuestion = currentQuestions[currentFloorIndex];
-
-    cardFloorText.textContent = formatFloorText(currentFloorIndex + 1);
-
-    // Update vertical shaft floor indicators
-    const floorBlocks = document.querySelectorAll('#building-shaft .floor-block');
-    floorBlocks.forEach((block) => {
+    // Highlight floor block shaft
+    document.querySelectorAll('.floor-block').forEach(block => {
         const floorNum = parseInt(block.getAttribute('data-floor'), 10);
-        block.classList.remove('completed', 'active-floor');
-        
-        if (floorNum < currentFloorIndex + 1) {
-            block.classList.add('completed');
-        } else if (floorNum === currentFloorIndex + 1) {
-            block.classList.add('active-floor');
-        }
+        block.classList.toggle('active', floorNum === gameState.currentFloor);
     });
+}
 
-    questionText.textContent = currentQuestion.question || currentQuestion.text;
-    
-    const rawOptions = currentQuestion.options || currentQuestion.answers || [];
-
-    // Identify target correct answer text
-    let targetAnswer = currentQuestion.answer;
-    if (targetAnswer === undefined) targetAnswer = currentQuestion.correctIndex;
-    if (targetAnswer === undefined) targetAnswer = currentQuestion.correct;
-
-    let correctText = "";
-    if (typeof targetAnswer === 'number' && rawOptions[targetAnswer] !== undefined) {
-        correctText = String(rawOptions[targetAnswer]).trim();
-    } else if (typeof targetAnswer === 'string') {
-        correctText = String(targetAnswer).trim();
-    } else if (rawOptions.length > 0) {
-        correctText = String(rawOptions[0]).trim();
-    }
-
-    // Shuffle options dynamically
-    currentShuffledOptions = shuffleArray(rawOptions);
-    
-    // Locate where correct answer lands after shuffle
-    currentCorrectIndex = currentShuffledOptions.findIndex(
-        opt => String(opt).trim().toLowerCase() === correctText.toLowerCase()
-    );
-
-    // Render option buttons
-    optionButtons.forEach((btn, idx) => {
-        if (currentShuffledOptions[idx] !== undefined) {
-            btn.style.display = 'block';
-            btn.textContent = currentShuffledOptions[idx];
-            btn.className = 'btn-option';
-            btn.disabled = false;
-        } else {
-            btn.style.display = 'none';
-        }
-    });
-
+function loadNextQuestion() {
     startTimer();
+    safeSetText('question-text', `Sample Question for Floor ${gameState.currentFloor}?`);
+    
+    const optionButtons = document.querySelectorAll('.options-grid .btn-option');
+    optionButtons.forEach((btn, idx) => {
+        btn.textContent = `Option ${idx + 1}`;
+        btn.onclick = () => handleAnswerSelect(idx === 0); // Temporary logic: 1st option correct
+    });
 }
 
 function startTimer() {
-    clearInterval(timerInterval);
-    timeLeft = 15;
-    updateTimerBar();
-
-    timerInterval = setInterval(() => {
-        timeLeft -= 0.1;
-        updateTimerBar();
-
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            handleFailure("Time Expired!");
-        }
-    }, 100);
-}
-
-function updateTimerBar() {
-    const percentage = Math.max(0, (timeLeft / 15) * 100);
-    timerBar.style.width = `${percentage}%`;
-}
-
-function handleAnswerSelection(selectedIndex) {
-    if (isAnswerLocked) return;
-    isAnswerLocked = true;
-    clearInterval(timerInterval);
-
-    const isCorrect = (selectedIndex === currentCorrectIndex);
-
-    optionButtons.forEach((btn, idx) => {
-        btn.disabled = true;
-        if (idx === currentCorrectIndex) {
-            btn.classList.add('selected-correct');
-        } else if (idx === selectedIndex && !isCorrect) {
-            btn.classList.add('selected-wrong');
-        }
-    });
-
-    if (isCorrect) {
-        playSound('correct');
-        setTimeout(() => {
-            currentFloorIndex++;
-            if (currentFloorIndex === 10 || currentFloorIndex === currentQuestions.length) {
-                triggerVictory();
-            } else {
-                loadFloorQuestion();
-            }
-        }, 1100);
-    } else {
-        playSound('wrong');
-        setTimeout(() => {
-            handleFailure("Incorrect Answer!");
-        }, 1100);
-    }
-}
-
-function handleFailure(reasonText) {
-    clearInterval(timerInterval);
-    const floorReachedNum = currentFloorIndex + 1;
-
-    stats.played += 1;
-    stats.currentStreak = 0;
-    if (floorReachedNum > stats.bestFloor) {
-        stats.bestFloor = floorReachedNum;
-    }
-    saveStats();
-
-    document.getElementById('game-over-title').textContent = "ELEVATOR STOPPED";
-    document.getElementById('game-over-message').textContent = reasonText;
-    document.getElementById('final-floor-reached').textContent = `Stopped at ${formatFloorText(floorReachedNum)}`;
-
-    modalGameOver.classList.remove('hidden');
-}
-
-function triggerVictory() {
-    clearInterval(timerInterval);
-    cardFloorText.textContent = formatFloorText(11);
+    clearInterval(gameState.timer);
+    gameState.timeLeft = 15;
+    const timerBar = document.getElementById('timer-bar');
     
-    const floorBlocks = document.querySelectorAll('#building-shaft .floor-block');
-    floorBlocks.forEach(block => {
-        block.classList.remove('active-floor');
-        block.classList.add('completed');
-    });
-
-    stats.played += 1;
-    stats.wins += 1;
-    stats.currentStreak += 1;
-    if (stats.currentStreak > stats.maxStreak) {
-        stats.maxStreak = stats.currentStreak;
+    if (timerBar) {
+        timerBar.style.width = '100%';
     }
-    stats.bestFloor = 11;
-    saveStats();
 
-    document.getElementById('game-over-title').textContent = "11th FLOOR REACHED";
-    document.getElementById('game-over-message').textContent = "Elevator Climb Completed!";
-    document.getElementById('final-floor-reached').textContent = "Victory State: Floor 11";
+    gameState.timer = setInterval(() => {
+        gameState.timeLeft--;
+        if (timerBar) {
+            timerBar.style.width = `${(gameState.timeLeft / 15) * 100}%`;
+        }
 
-    modalGameOver.classList.remove('hidden');
+        if (gameState.timeLeft <= 0) {
+            clearInterval(gameState.timer);
+            handleGameOver('TIME EXPIRED');
+        }
+    }, 1000);
 }
 
-function saveStats() {
-    localStorage.setItem('11th_floor_stats', JSON.stringify(stats));
-    updateStatsUI();
+function handleAnswerSelect(isCorrect) {
+    clearInterval(gameState.timer);
+    
+    if (isCorrect) {
+        if (gameState.currentFloor >= gameState.maxFloors) {
+            handleVictory();
+        } else {
+            gameState.currentFloor++;
+            updateFloorUI();
+            loadNextQuestion();
+        }
+    } else {
+        handleGameOver('INCORRECT ANSWER');
+    }
+}
+
+function handleGameOver(reason) {
+    gameState.stats.played++;
+    gameState.stats.streak = 0;
+    
+    safeSetText('game-over-title', 'ELEVATOR STOPPED');
+    safeSetText('game-over-message', reason);
+    safeSetText('final-floor-reached', `Stopped at FLOOR ${String(gameState.currentFloor).padStart(2, '0')}`);
+    
+    openModal('modal-game-over');
+}
+
+function handleVictory() {
+    gameState.stats.played++;
+    gameState.stats.wins++;
+    gameState.stats.streak++;
+    gameState.stats.bestFloor = 10;
+    
+    safeSetText('game-over-title', 'PENTHOUSE REACHED!');
+    safeSetText('game-over-message', 'You completed all 10 floors!');
+    safeSetText('final-floor-reached', 'FLOOR 10 CLEARED');
+    
+    openModal('modal-game-over');
 }
 
 function updateStatsUI() {
-    document.getElementById('stat-played').textContent = stats.played;
-    document.getElementById('stat-wins').textContent = stats.wins;
-    document.getElementById('stat-streak').textContent = stats.currentStreak;
-    document.getElementById('stat-best').textContent = formatFloorText(stats.bestFloor);
+    safeSetText('stat-played', gameState.stats.played);
+    safeSetText('stat-wins', gameState.stats.wins);
+    safeSetText('stat-streak', gameState.stats.streak);
+    safeSetText('stat-best', `FLOOR ${String(gameState.stats.bestFloor).padStart(2, '0')}`);
 }
 
-function closeModals() {
-    modalGameOver.classList.add('hidden');
-    modalVault.classList.add('hidden');
-    modalStats.classList.add('hidden');
-}
 
-// Populate Vault List matching GitHub file structure
-function populateVaultList() {
-    const vaultList = document.getElementById('vault-list');
-    vaultList.innerHTML = '';
+// ==========================================
+// 7. INITIALIZATION
+// ==========================================
 
-    // Generates sandbox.01.json through sandbox.50.json
-    for (let i = 1; i <= 50; i++) {
-        const paddedNum = String(i).padStart(2, '0');
-        
-        // Adjust path if files are in an archives subfolder (e.g., 'archives/sandbox.01.json')
-        const filePath = `archives/sandbox.${paddedNum}.json`; 
-
-        const btn = document.createElement('button');
-        btn.className = 'vault-item-btn';
-        btn.innerHTML = `
-            <span style="font-size: 0.75rem; color: #e50914; font-weight: 700;">ARCHIVE #${paddedNum}</span>
-            <span style="font-size: 0.9rem; font-weight: 600;">Sandbox Game #${paddedNum}</span>
-        `;
-        
-        btn.addEventListener('click', () => {
-            startNewGame(filePath);
-        });
-
-        vaultList.appendChild(btn);
-    }
-}
-
-// Event Listeners
-document.getElementById('btn-start-climb').addEventListener('click', () => startNewGame('questions.json'));
-document.getElementById('btn-sound-toggle').addEventListener('click', toggleSound);
-document.getElementById('btn-sound-toggle-game').addEventListener('click', toggleSound);
-
-optionButtons.forEach((btn, index) => {
-    btn.addEventListener('click', () => handleAnswerSelection(index));
-});
-
-// Landing Page Header Action -> Open Vault directly
-document.getElementById('btn-landing-stats').addEventListener('click', () => {
-    populateVaultList();
-    closeModals();
-    modalVault.classList.remove('hidden');
-});
-
-document.getElementById('btn-util-exit').addEventListener('click', () => {
-    clearInterval(timerInterval);
-    gameScreen.style.display = 'none';
-    landingScreen.style.display = 'flex';
-    closeModals();
-});
-
-document.getElementById('btn-close-vault').addEventListener('click', () => modalVault.classList.add('hidden'));
-document.getElementById('btn-close-stats').addEventListener('click', () => modalStats.classList.add('hidden'));
-
-document.getElementById('btn-try-again').addEventListener('click', () => startNewGame('questions.json'));
-
-document.getElementById('btn-view-stats').addEventListener('click', () => {
-    closeModals();
+document.addEventListener('DOMContentLoaded', () => {
     updateStatsUI();
-    modalStats.classList.remove('hidden');
 });
-
-document.getElementById('btn-back-vault').addEventListener('click', () => {
-    closeModals();
-    populateVaultList();
-    modalVault.classList.remove('hidden');
-});
-
-// Initial Setup
-updateStatsUI();
