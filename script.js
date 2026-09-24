@@ -127,7 +127,7 @@ function loadFloorQuestion() {
 
     cardFloorText.textContent = formatFloorText(currentFloorIndex + 1);
 
-    // Update vertical shaft indicators (Floor 1 is at bottom, Floor 10 at top)
+    // Update vertical shaft indicators
     const floorBlocks = document.querySelectorAll('#building-shaft .floor-block');
     floorBlocks.forEach((block) => {
         const floorNum = parseInt(block.getAttribute('data-floor'), 10);
@@ -184,23 +184,30 @@ function handleAnswerSelection(selectedIndex) {
     clearInterval(timerInterval);
 
     const currentQuestion = currentQuestions[currentFloorIndex];
-    
-    let correctAnswerIndex = currentQuestion.answer;
-    if (correctAnswerIndex === undefined) correctAnswerIndex = currentQuestion.correctIndex;
-    if (correctAnswerIndex === undefined && currentQuestion.correct !== undefined) {
-        if (typeof currentQuestion.correct === 'number') {
-            correctAnswerIndex = currentQuestion.correct;
-        } else {
-            const options = currentQuestion.options || currentQuestion.answers || [];
-            correctAnswerIndex = options.indexOf(currentQuestion.correct);
-        }
+    const options = currentQuestion.options || currentQuestion.answers || [];
+    const selectedText = options[selectedIndex];
+
+    // Robust answer matching (handles index number, text match, or alternate keys)
+    let correctAnswerIndex = -1;
+
+    let targetAnswer = currentQuestion.answer;
+    if (targetAnswer === undefined) targetAnswer = currentQuestion.correctIndex;
+    if (targetAnswer === undefined) targetAnswer = currentQuestion.correct;
+
+    if (typeof targetAnswer === 'number') {
+        correctAnswerIndex = targetAnswer;
+    } else if (typeof targetAnswer === 'string') {
+        correctAnswerIndex = options.findIndex(
+            opt => String(opt).trim().toLowerCase() === String(targetAnswer).trim().toLowerCase()
+        );
     }
 
-    const isCorrect = selectedIndex === correctAnswerIndex;
+    const isCorrect = (selectedIndex === correctAnswerIndex) || 
+                      (selectedText && targetAnswer && String(selectedText).trim().toLowerCase() === String(targetAnswer).trim().toLowerCase());
 
     optionButtons.forEach((btn, idx) => {
         btn.disabled = true;
-        if (idx === correctAnswerIndex) {
+        if (idx === correctAnswerIndex || (options[idx] && targetAnswer && String(options[idx]).trim().toLowerCase() === String(targetAnswer).trim().toLowerCase())) {
             btn.classList.add('selected-correct');
         } else if (idx === selectedIndex && !isCorrect) {
             btn.classList.add('selected-wrong');
