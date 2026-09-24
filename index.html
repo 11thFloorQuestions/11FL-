@@ -10,76 +10,99 @@
 
     <!-- Landing Screen / Lobby -->
     <div id="landing-screen" class="app-screen">
-        <div class="landing-content">
-            <h1 class="landing-logo-title">11th FLOOR</h1>
-            <div class="landing-logo-subtitle">QUESTIONS</div>
-            <div class="landing-logo-sub-bottom">DAILY TRIVIA DROP</div>
+        <div class="top-utility-bar">
+            <button id="btn-landing-stats" class="util-btn">STATS / ARCHIVE</button>
+            <button id="btn-sound-toggle" class="util-btn">SOUND: OFF</button>
+        </div>
 
-            <div class="game-select-container">
-                <button id="btn-start-game-1" class="game-card-btn active-game">
-                    <span class="game-num">GAME 01</span>
-                    <span class="game-name">11th Floor Questions</span>
-                </button>
+        <div class="landing-content">
+            <div class="header-branding">
+                <h1 class="logo-title-red">11FL?</h1>
+                <div class="logo-subtitle">ELEVENTH FLOOR</div>
+                <div class="logo-sub-bottom">QUESTIONS</div>
             </div>
+
+            <div class="vertical-shaft-preview">
+                <div class="shaft-box">
+                    <div class="shaft-block"></div>
+                    <div class="shaft-block"></div>
+                    <div class="shaft-block"></div>
+                    <div class="shaft-block"></div>
+                    <div class="shaft-block"></div>
+                    <div class="shaft-block"></div>
+                    <div class="shaft-block"></div>
+                    <div class="shaft-block"></div>
+                    <div class="shaft-block"></div>
+                    <div class="shaft-block"></div>
+                </div>
+            </div>
+
+            <p class="landing-description">
+                CAN YOU REACH THE 11TH FLOOR? FAIL AND YOU'RE BACK TO THE GROUND FLOOR.
+            </p>
+
+            <button id="btn-start-climb" class="btn-start-climb">Start Climb</button>
         </div>
     </div>
 
-    <!-- Active Game Screen (Hidden initially) -->
+    <!-- Active Game Screen -->
     <div id="game-screen" class="app-screen" style="display: none;">
         <div class="game-container">
             
             <!-- Utility Header Bar -->
             <div class="top-utility-bar">
-                <button id="btn-util-lobby" class="util-btn">🏠 Lobby</button>
-                <button id="btn-util-vault" class="util-btn">📂 The Vault</button>
-                <button id="btn-util-stats" class="util-btn">📊 Stats</button>
+                <button id="btn-util-exit" class="util-btn">Exit</button>
+                <button id="btn-sound-toggle-game" class="util-btn">SOUND: OFF</button>
             </div>
 
-            <!-- Game Branding Header -->
-            <div class="header-section">
-                <div class="logo-title">11th FLOOR</div>
-                <div class="logo-subtitle">QUESTIONS</div>
-                <div class="logo-sub-bottom">ELEVATOR TRIVIA CLIMB</div>
+            <!-- Branding Header -->
+            <div class="header-branding">
+                <h1 class="logo-title-red">11FL?</h1>
+                <div class="logo-subtitle">ELEVENTH FLOOR</div>
+                <div class="logo-sub-bottom">QUESTIONS</div>
             </div>
 
-            <!-- Shaft Progress Blocks (Floors 01 to 10) -->
-            <div class="building-shaft" id="building-shaft">
-                <div class="floor-block"></div>
-                <div class="floor-block"></div>
-                <div class="floor-block"></div>
-                <div class="floor-block"></div>
-                <div class="floor-block"></div>
-                <div class="floor-block"></div>
-                <div class="floor-block"></div>
-                <div class="floor-block"></div>
-                <div class="floor-block"></div>
-                <div class="floor-block"></div>
-            </div>
+            <!-- Play Field: Vertical Shaft + Main Card -->
+            <div class="game-playfield">
+                
+                <!-- Left Vertical Elevator Shaft -->
+                <div class="building-shaft" id="building-shaft">
+                    <div class="floor-block" data-floor="10"></div>
+                    <div class="floor-block" data-floor="9"></div>
+                    <div class="floor-block" data-floor="8"></div>
+                    <div class="floor-block" data-floor="7"></div>
+                    <div class="floor-block" data-floor="6"></div>
+                    <div class="floor-block" data-floor="5"></div>
+                    <div class="floor-block" data-floor="4"></div>
+                    <div class="floor-block" data-floor="3"></div>
+                    <div class="floor-block" data-floor="2"></div>
+                    <div class="floor-block" data-floor="1"></div>
+                </div>
 
-            <!-- 15-Second Timer Bar -->
-            <div class="timer-bar-wrap">
-                <div id="timer-bar"></div>
-            </div>
+                <!-- Main Elevator Question Card -->
+                <div class="game-card">
+                    <div class="card-header">
+                        <span id="card-floor-text">FLOOR 01</span>
+                        <div class="timer-bar-wrap">
+                            <div id="timer-bar"></div>
+                        </div>
+                    </div>
 
-            <!-- Main Question Elevator Card -->
-            <div class="game-card">
-                <div id="card-floor-text">Floor 01</div>
-
-                <div class="game-view-content">
-                    <div style="margin-top: 28px; margin-bottom: 12px;">
-                        <h2 id="question-text" style="font-size: 1.15rem; font-weight: 700; color: #ffffff; line-height: 1.35; text-align: center; min-height: 52px; display: flex; align-items: center; justify-content: center;">
+                    <div class="game-view-content">
+                        <h2 id="question-text">
                             Loading Question...
                         </h2>
-                    </div>
 
-                    <!-- 4 Answer Options -->
-                    <div id="options-container" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
-                        <button class="btn-option" data-index="0"></button>
-                        <button class="btn-option" data-index="1"></button>
-                        <button class="btn-option" data-index="2"></button>
-                        <button class="btn-option" data-index="3"></button>
+                        <!-- 4 Answer Options -->
+                        <div id="options-container">
+                            <button class="btn-option" data-index="0"></button>
+                            <button class="btn-option" data-index="1"></button>
+                            <button class="btn-option" data-index="2"></button>
+                            <button class="btn-option" data-index="3"></button>
+                        </div>
                     </div>
                 </div>
+
             </div>
 
         </div>
@@ -91,15 +114,15 @@
             <div class="modal-header">
                 <div id="game-over-title" class="modal-title">ELEVATOR STOPPED</div>
             </div>
-            <div style="text-align: center; padding: 12px 0 20px 0;">
-                <p id="game-over-message" style="font-size: 1.1rem; font-weight: bold; margin-bottom: 8px; color: #ffffff;"></p>
-                <div id="final-floor-reached" style="font-size: 0.9rem; color: #888888; letter-spacing: 1px; text-transform: uppercase;"></div>
+            <div class="modal-body">
+                <p id="game-over-message"></p>
+                <div id="final-floor-reached"></div>
             </div>
 
-            <div style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
-                <button id="btn-try-again" class="action-btn" style="background: #ff1f2d; color: #ffffff;">Try Again</button>
-                <button id="btn-view-stats" class="action-btn" style="background: #1c1c1c; border: 1px solid #333333; color: #ffffff;">View Stats</button>
-                <button id="btn-back-vault" class="action-btn" style="background: transparent; border: none; color: #888888;">Back to Vault</button>
+            <div class="modal-actions">
+                <button id="btn-try-again" class="action-btn btn-primary">Try Again</button>
+                <button id="btn-view-stats" class="action-btn btn-secondary">View Stats</button>
+                <button id="btn-back-vault" class="action-btn btn-flat">Back to Vault</button>
             </div>
         </div>
     </div>
@@ -111,8 +134,8 @@
                 <div class="modal-title">THE VAULT</div>
                 <button id="btn-close-vault" class="modal-close-btn">&times;</button>
             </div>
-            <div id="vault-list" style="display: flex; flex-direction: column; gap: 10px; max-height: 320px; overflow-y: auto; padding-right: 4px;">
-                <!-- Dynamically populated archive list -->
+            <div id="vault-list">
+                <!-- Dynamic archives -->
             </div>
         </div>
     </div>
@@ -124,22 +147,22 @@
                 <div class="modal-title">PERFORMANCE METRICS</div>
                 <button id="btn-close-stats" class="modal-close-btn">&times;</button>
             </div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0;">
-                <div style="background: #1c1c1c; border: 1px solid #262626; border-radius: 8px; padding: 12px; text-align: center;">
-                    <div style="font-size: 1.5rem; font-weight: 900; color: #ff1f2d;" id="stat-played">0</div>
-                    <div style="font-size: 0.7rem; color: #aaaaaa; text-transform: uppercase; margin-top: 4px;">Played</div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value red" id="stat-played">0</div>
+                    <div class="stat-label">Played</div>
                 </div>
-                <div style="background: #1c1c1c; border: 1px solid #262626; border-radius: 8px; padding: 12px; text-align: center;">
-                    <div style="font-size: 1.5rem; font-weight: 900; color: #2ecc71;" id="stat-wins">0</div>
-                    <div style="font-size: 0.7rem; color: #aaaaaa; text-transform: uppercase; margin-top: 4px;">11th Floor Wins</div>
+                <div class="stat-card">
+                    <div class="stat-value green" id="stat-wins">0</div>
+                    <div class="stat-label">11th Floor Wins</div>
                 </div>
-                <div style="background: #1c1c1c; border: 1px solid #262626; border-radius: 8px; padding: 12px; text-align: center;">
-                    <div style="font-size: 1.5rem; font-weight: 900; color: #ffffff;" id="stat-streak">0</div>
-                    <div style="font-size: 0.7rem; color: #aaaaaa; text-transform: uppercase; margin-top: 4px;">Current Streak</div>
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-streak">0</div>
+                    <div class="stat-label">Current Streak</div>
                 </div>
-                <div style="background: #1c1c1c; border: 1px solid #262626; border-radius: 8px; padding: 12px; text-align: center;">
-                    <div style="font-size: 1.5rem; font-weight: 900; color: #ffffff;" id="stat-best">Floor 01</div>
-                    <div style="font-size: 0.7rem; color: #aaaaaa; text-transform: uppercase; margin-top: 4px;">Best Floor</div>
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-best">FLOOR 01</div>
+                    <div class="stat-label">Best Floor</div>
                 </div>
             </div>
         </div>
