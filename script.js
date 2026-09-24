@@ -310,41 +310,30 @@ function closeModals() {
     modalStats.classList.add('hidden');
 }
 
-// Populate and Display The Vault Modal
-async function populateVaultList() {
+// Populate Vault List matching GitHub file structure
+function populateVaultList() {
     const vaultList = document.getElementById('vault-list');
-    vaultList.innerHTML = '<div style="color:#888; text-align:center; padding:10px;">Loading Vault Archives...</div>';
+    vaultList.innerHTML = '';
 
-    try {
-        let archiveFiles = [];
-        const res = await fetch('archives/index.json').catch(() => null);
+    // Generates sandbox.01.json through sandbox.50.json
+    for (let i = 1; i <= 50; i++) {
+        const paddedNum = String(i).padStart(2, '0');
         
-        if (res && res.ok) {
-            archiveFiles = await res.json();
-        } else {
-            // Default generate 50 archive paths: archives/set_1.json through set_50.json
-            archiveFiles = Array.from({ length: 50 }, (_, i) => ({
-                id: `set_${i + 1}`,
-                title: `Archive Set #${String(i + 1).padStart(2, '0')}`,
-                path: `archives/set_${i + 1}.json`
-            }));
-        }
+        // Adjust path if files are in an archives subfolder (e.g., 'archives/sandbox.01.json')
+        const filePath = `archives/sandbox.${paddedNum}.json`; 
 
-        vaultList.innerHTML = '';
-        archiveFiles.forEach((item, idx) => {
-            const btn = document.createElement('button');
-            btn.className = 'vault-item-btn';
-            btn.innerHTML = `
-                <span style="font-size: 0.75rem; color: #e50914; font-weight: 700;">SET ${String(idx + 1).padStart(2, '0')}</span>
-                <span style="font-size: 0.9rem; font-weight: 600;">${item.title || item.name || `Archive Set #${idx + 1}`}</span>
-            `;
-            btn.addEventListener('click', () => {
-                startNewGame(item.path || `archives/${item.id}.json`);
-            });
-            vaultList.appendChild(btn);
+        const btn = document.createElement('button');
+        btn.className = 'vault-item-btn';
+        btn.innerHTML = `
+            <span style="font-size: 0.75rem; color: #e50914; font-weight: 700;">ARCHIVE #${paddedNum}</span>
+            <span style="font-size: 0.9rem; font-weight: 600;">Sandbox Game #${paddedNum}</span>
+        `;
+        
+        btn.addEventListener('click', () => {
+            startNewGame(filePath);
         });
-    } catch (err) {
-        vaultList.innerHTML = '<div style="color:#e50914; text-align:center; padding:10px;">Failed to load vault files.</div>';
+
+        vaultList.appendChild(btn);
     }
 }
 
