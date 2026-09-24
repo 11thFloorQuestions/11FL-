@@ -12,22 +12,83 @@ body {
     overflow-x: hidden;
 }
 
+/* New Eleventh Floor Games Hub Screen (Isolated styles that do not affect the game) */
+.hub-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: #000000;
+    text-align: center;
+    padding: 20px;
+}
+
+.hub-logo-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.hub-logo-red {
+    font-size: 6.5rem;
+    font-weight: 900;
+    color: #ff0000;
+    line-height: 0.9;
+    letter-spacing: -2px;
+}
+
+.hub-logo-title {
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: #ffffff;
+    margin-top: 10px;
+    letter-spacing: 1px;
+}
+
+.hub-logo-sub {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 5px;
+    margin-top: 6px;
+    text-transform: uppercase;
+}
+
+.hub-menu-box {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    max-width: 320px;
+}
+
+.btn-hub-option {
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    padding: 16px 20px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+    text-transform: uppercase;
+}
+
+.btn-hub-option:hover {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Original Game CSS below - completely untouched */
 .screen-container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     width: 100%;
-}
-
-/* Main Hub & Logo Styling */
-#main-hub-screen {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #000000;
-    text-align: center;
-    padding: 20px;
 }
 
 .logo-container {
@@ -62,34 +123,6 @@ body {
     text-transform: uppercase;
 }
 
-/* Hub Menu Buttons */
-.hub-buttons-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-    max-width: 320px;
-}
-
-.btn-hub {
-    background-color: transparent;
-    border: 2px solid #ffffff;
-    color: #ffffff;
-    padding: 16px 20px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: all 0.2s ease-in-out;
-    text-transform: uppercase;
-}
-
-.btn-hub:hover {
-    background-color: #ffffff;
-    color: #000000;
-}
-
-/* Header Navigation */
 .header-nav {
     display: flex;
     justify-content: space-between;
@@ -130,7 +163,6 @@ body {
     font-size: 1.2rem;
 }
 
-/* Landing Actions */
 .landing-content {
     display: flex;
     flex-direction: column;
@@ -179,7 +211,6 @@ body {
     border-color: #ffffff;
 }
 
-/* Game Layout */
 .game-layout {
     display: flex;
     flex-grow: 1;
@@ -278,7 +309,6 @@ body {
     border-color: #ff0000;
 }
 
-/* Modals */
 .modal-overlay {
     position: fixed;
     top: 0;
