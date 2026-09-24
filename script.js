@@ -123,10 +123,11 @@ function populateVault() {
     
     vaultList.innerHTML = '';
     for (let i = 1; i <= 50; i++) {
+        const paddedId = String(i).padStart(2, '0');
         const btn = document.createElement('button');
         btn.className = 'vault-item-btn';
-        btn.innerHTML = `<strong>SET ${String(i).padStart(2, '0')}</strong><span>Archive</span>`;
-        btn.onclick = () => loadVaultSet(i);
+        btn.innerHTML = `<strong>SET ${paddedId}</strong><span>Archive</span>`;
+        btn.onclick = () => loadVaultSet(paddedId);
         vaultList.appendChild(btn);
     }
 }
@@ -144,28 +145,36 @@ function normalizeQuestions(data) {
 
 async function startDailyClimb() {
     try {
-        const response = await fetch('questions.json');
-        if (!response.ok) throw new Error('Failed to load daily questions');
+        // Try questions.json first, then fallback to latest sandbox file (sandbox.50.json)
+        let response = await fetch('questions.json');
+        if (!response.ok) {
+            response = await fetch('sandbox.50.json');
+        }
+        if (!response.ok) {
+            response = await fetch('sandbox.01.json');
+        }
+        if (!response.ok) throw new Error('Failed to load questions');
+        
         const data = await response.json();
         gameState.questions = normalizeQuestions(data);
     } catch (error) {
-        console.warn("Could not fetch questions.json, loading fallback questions:", error);
+        console.warn("Could not fetch quiz files, loading fallback:", error);
         gameState.questions = generateFallbackQuestions();
     }
     startGame();
 }
 
-async function loadVaultSet(setId) {
+async function loadVaultSet(paddedId) {
     try {
-        const response = await fetch(`archives/set${setId}.json`);
-        if (!response.ok) throw new Error(`Failed to load archive set ${setId}`);
+        const response = await fetch(`sandbox.${paddedId}.json`);
+        if (!response.ok) throw new Error(`Failed to load sandbox.${paddedId}.json`);
         const data = await response.json();
         gameState.questions = normalizeQuestions(data);
         closeModal('modal-vault');
         startGame();
     } catch (error) {
-        console.error(`Error loading archives/set${setId}.json:`, error);
-        alert(`Archive Set ${setId} unavailable.`);
+        console.error(`Error loading sandbox.${paddedId}.json:`, error);
+        alert(`Archive Set ${paddedId} (sandbox.${paddedId}.json) failed to load.`);
     }
 }
 
@@ -298,9 +307,9 @@ function generateFallbackQuestions() {
     const fallback = [];
     for(let i = 1; i <= 10; i++) {
         fallback.push({
-            question: "Which pivotal 1913 modernist ballet score by Igor Stravinsky famously provoked a riot among the audience at its premiere in Paris?",
-            options: ["Petrushka", "The Firebird", "The Rite of Spring", "Daphnis et Chloé"],
-            answerIndex: 2
+            question: "Sample Question - replace or ensure sandbox.XX.json files are uploaded.",
+            options: ["Option A", "Option B", "Option C", "Option D"],
+            answerIndex: 0
         });
     }
     return fallback;
