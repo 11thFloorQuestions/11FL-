@@ -2,7 +2,6 @@
 // 1. HELPER FUNCTIONS & UTILITIES
 // ==========================================
 
-// Safe event listener helper
 function safeAddListener(id, event, handler) {
     const el = document.getElementById(id);
     if (el) {
@@ -10,7 +9,6 @@ function safeAddListener(id, event, handler) {
     }
 }
 
-// Optional chaining helper for setting text
 function safeSetText(id, text) {
     const el = document.getElementById(id);
     if (el) {
@@ -18,7 +16,6 @@ function safeSetText(id, text) {
     }
 }
 
-// Optional chaining helper for toggling classes
 function safeToggleClass(id, className, force) {
     const el = document.getElementById(id);
     if (el) {
@@ -52,7 +49,7 @@ const gameState = {
 // 3. NAVIGATION & SCREEN SWITCHING
 // ==========================================
 
-// Single-page Hub navigation (if using multi-screen in one HTML file)
+// Single-page Hub navigation
 safeAddListener('btn-select-questions', 'click', () => {
     showScreen('landing-screen');
 });
@@ -101,17 +98,12 @@ safeAddListener('btn-sound-toggle-game', 'click', toggleSound);
 // 5. MODAL & VAULT CONTROLS
 // ==========================================
 
-// Open Vault
-safeAddListener('btn-landing-stats', 'click', () => {
-    openVault();
-});
-
+safeAddListener('btn-landing-stats', 'click', () => openVault());
 safeAddListener('btn-back-vault', 'click', () => {
     closeModal('modal-game-over');
     openVault();
 });
 
-// Close Modals
 safeAddListener('btn-close-vault', 'click', () => closeModal('modal-vault'));
 safeAddListener('btn-close-stats', 'click', () => closeModal('modal-stats'));
 safeAddListener('btn-try-again', 'click', () => {
@@ -154,21 +146,25 @@ function updateFloorUI() {
     const floorStr = String(gameState.currentFloor).padStart(2, '0');
     safeSetText('card-floor-text', `FLOOR ${floorStr}`);
     
-    // Highlight floor block shaft
+    // Highlight matching floor block in building shaft
     document.querySelectorAll('.floor-block').forEach(block => {
         const floorNum = parseInt(block.getAttribute('data-floor'), 10);
-        block.classList.toggle('active', floorNum === gameState.currentFloor);
+        
+        // Exact match with your style.css (.active-floor & .completed)
+        block.classList.toggle('active-floor', floorNum === gameState.currentFloor);
+        block.classList.toggle('completed', floorNum < gameState.currentFloor);
     });
 }
 
 function loadNextQuestion() {
     startTimer();
-    safeSetText('question-text', `Sample Question for Floor ${gameState.currentFloor}?`);
+    safeSetText('question-text', `Floor ${gameState.currentFloor}: Which option allows you to advance?`);
     
     const optionButtons = document.querySelectorAll('.options-grid .btn-option');
     optionButtons.forEach((btn, idx) => {
-        btn.textContent = `Option ${idx + 1}`;
-        btn.onclick = () => handleAnswerSelect(idx === 0); // Temporary logic: 1st option correct
+        btn.className = 'btn-option'; // reset option button state
+        btn.textContent = `Floor ${gameState.currentFloor} - Option ${idx + 1}`;
+        btn.onclick = () => handleAnswerSelect(idx === 0, btn); 
     });
 }
 
@@ -194,19 +190,27 @@ function startTimer() {
     }, 1000);
 }
 
-function handleAnswerSelect(isCorrect) {
+function handleAnswerSelect(isCorrect, buttonEl) {
     clearInterval(gameState.timer);
     
     if (isCorrect) {
-        if (gameState.currentFloor >= gameState.maxFloors) {
-            handleVictory();
-        } else {
-            gameState.currentFloor++;
-            updateFloorUI();
-            loadNextQuestion();
-        }
+        if (buttonEl) buttonEl.classList.add('selected-correct');
+        
+        setTimeout(() => {
+            if (gameState.currentFloor >= gameState.maxFloors) {
+                handleVictory();
+            } else {
+                gameState.currentFloor++;
+                updateFloorUI();
+                loadNextQuestion();
+            }
+        }, 500);
     } else {
-        handleGameOver('INCORRECT ANSWER');
+        if (buttonEl) buttonEl.classList.add('selected-wrong');
+        
+        setTimeout(() => {
+            handleGameOver('INCORRECT ANSWER');
+        }, 500);
     }
 }
 
