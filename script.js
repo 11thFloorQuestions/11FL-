@@ -335,7 +335,7 @@ function populateVaultList() {
     }
 }
 
-// Hub Portal Navigation Events
+// Hub Menu Action Listeners
 document.getElementById('btn-select-questions').addEventListener('click', () => {
     mainHubScreen.style.display = 'none';
     landingScreen.style.display = 'flex';
