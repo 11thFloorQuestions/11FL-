@@ -97,7 +97,7 @@ safeAddListener('btn-back-vault', 'click', () => {
 safeAddListener('btn-close-vault', 'click', () => closeModal('modal-vault'));
 safeAddListener('btn-try-again', 'click', () => {
     closeModal('modal-game-over');
-    if (gameState.questions.length > 0) {
+    if (gameState.questions && gameState.questions.length > 0) {
         startGame();
     } else {
         startDailyClimb();
@@ -136,18 +136,23 @@ function populateVault() {
 // 6. GAME LOGIC & TIMERS
 // ==========================================
 
+function normalizeQuestions(data) {
+    if (Array.isArray(data)) return data;
+    if (data && Array.isArray(data.questions)) return data.questions;
+    return generateFallbackQuestions();
+}
+
 async function startDailyClimb() {
     try {
         const response = await fetch('questions.json');
         if (!response.ok) throw new Error('Failed to load daily questions');
         const data = await response.json();
-        gameState.questions = data;
-        startGame();
+        gameState.questions = normalizeQuestions(data);
     } catch (error) {
-        console.error("Error loading questions.json:", error);
+        console.warn("Could not fetch questions.json, loading fallback questions:", error);
         gameState.questions = generateFallbackQuestions();
-        startGame();
     }
+    startGame();
 }
 
 async function loadVaultSet(setId) {
@@ -155,17 +160,19 @@ async function loadVaultSet(setId) {
         const response = await fetch(`archives/set${setId}.json`);
         if (!response.ok) throw new Error(`Failed to load archive set ${setId}`);
         const data = await response.json();
-        gameState.questions = data;
+        gameState.questions = normalizeQuestions(data);
         closeModal('modal-vault');
         startGame();
     } catch (error) {
         console.error(`Error loading archives/set${setId}.json:`, error);
-        alert(`Archive Set ${setId} unavailable. Returning to Lobby.`);
+        alert(`Archive Set ${setId} unavailable.`);
     }
 }
 
 function startGame() {
-    if (!gameState.questions || gameState.questions.length === 0) return;
+    if (!gameState.questions || gameState.questions.length === 0) {
+        gameState.questions = generateFallbackQuestions();
+    }
     gameState.currentFloor = 1;
     gameState.currentQuestionIndex = 0;
     showScreen('game-screen');
@@ -194,7 +201,7 @@ function loadNextQuestion() {
     
     const currentQ = gameState.questions[gameState.currentQuestionIndex];
     if (!currentQ) {
-        handleVictory();
+        console.error("Missing question data at index:", gameState.currentQuestionIndex);
         return;
     }
 
@@ -204,10 +211,11 @@ function loadNextQuestion() {
     const optionButtons = document.querySelectorAll('.options-grid .btn-option');
     optionButtons.forEach((btn, idx) => {
         btn.className = 'btn-option';
-        btn.textContent = currentQ.options[idx] || '';
-        btn.style.display = currentQ.options[idx] ? 'block' : 'none';
+        const optionVal = currentQ.options ? currentQ.options[idx] : null;
+        btn.textContent = optionVal || '';
+        btn.style.display = optionVal ? 'block' : 'none';
         
-        const isCorrect = (currentQ.answerIndex === idx) || (currentQ.answer === currentQ.options[idx]);
+        const isCorrect = (currentQ.answerIndex === idx) || (currentQ.answer === optionVal);
         btn.onclick = () => handleAnswerSelect(isCorrect, btn); 
     });
 }
