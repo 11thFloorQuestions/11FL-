@@ -1,6 +1,8 @@
 // State Variables
 let currentQuestions = [];
 let currentFloorIndex = 0; // 0 to 9 (Floor 01 to Floor 10)
+let currentShuffledOptions = []; // Stores randomized options for the active question
+let currentCorrectIndex = -1;    // Stores active index of the correct answer after shuffle
 let timerInterval = null;
 let timeLeft = 15;
 let isAnswerLocked = false;
@@ -60,6 +62,16 @@ function playSound(type) {
 function formatFloorText(floorNum) {
     const padded = String(floorNum).padStart(2, '0');
     return `FLOOR ${padded}`;
+}
+
+// Helper: Shuffle Array (Fisher-Yates)
+function shuffleArray(array) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
 }
 
 // DOM Elements
@@ -142,11 +154,35 @@ function loadFloorQuestion() {
 
     questionText.textContent = currentQuestion.question || currentQuestion.text;
     
-    const options = currentQuestion.options || currentQuestion.answers || [];
+    const rawOptions = currentQuestion.options || currentQuestion.answers || [];
+
+    // Identify target correct answer string before shuffling
+    let targetAnswer = currentQuestion.answer;
+    if (targetAnswer === undefined) targetAnswer = currentQuestion.correctIndex;
+    if (targetAnswer === undefined) targetAnswer = currentQuestion.correct;
+
+    let correctText = "";
+    if (typeof targetAnswer === 'number' && rawOptions[targetAnswer] !== undefined) {
+        correctText = String(rawOptions[targetAnswer]).trim();
+    } else if (typeof targetAnswer === 'string') {
+        correctText = String(targetAnswer).trim();
+    } else if (rawOptions.length > 0) {
+        correctText = String(rawOptions[0]).trim();
+    }
+
+    // Shuffle options dynamically
+    currentShuffledOptions = shuffleArray(rawOptions);
+    
+    // Locate where the correct answer ended up after shuffling
+    currentCorrectIndex = currentShuffledOptions.findIndex(
+        opt => String(opt).trim().toLowerCase() === correctText.toLowerCase()
+    );
+
+    // Render option buttons
     optionButtons.forEach((btn, idx) => {
-        if (options[idx] !== undefined) {
+        if (currentShuffledOptions[idx] !== undefined) {
             btn.style.display = 'block';
-            btn.textContent = options[idx];
+            btn.textContent = currentShuffledOptions[idx];
             btn.className = 'btn-option';
             btn.disabled = false;
         } else {
@@ -183,31 +219,11 @@ function handleAnswerSelection(selectedIndex) {
     isAnswerLocked = true;
     clearInterval(timerInterval);
 
-    const currentQuestion = currentQuestions[currentFloorIndex];
-    const options = currentQuestion.options || currentQuestion.answers || [];
-    const selectedText = options[selectedIndex];
-
-    // Robust answer matching (handles index number, text match, or alternate keys)
-    let correctAnswerIndex = -1;
-
-    let targetAnswer = currentQuestion.answer;
-    if (targetAnswer === undefined) targetAnswer = currentQuestion.correctIndex;
-    if (targetAnswer === undefined) targetAnswer = currentQuestion.correct;
-
-    if (typeof targetAnswer === 'number') {
-        correctAnswerIndex = targetAnswer;
-    } else if (typeof targetAnswer === 'string') {
-        correctAnswerIndex = options.findIndex(
-            opt => String(opt).trim().toLowerCase() === String(targetAnswer).trim().toLowerCase()
-        );
-    }
-
-    const isCorrect = (selectedIndex === correctAnswerIndex) || 
-                      (selectedText && targetAnswer && String(selectedText).trim().toLowerCase() === String(targetAnswer).trim().toLowerCase());
+    const isCorrect = (selectedIndex === currentCorrectIndex);
 
     optionButtons.forEach((btn, idx) => {
         btn.disabled = true;
-        if (idx === correctAnswerIndex || (options[idx] && targetAnswer && String(options[idx]).trim().toLowerCase() === String(targetAnswer).trim().toLowerCase())) {
+        if (idx === currentCorrectIndex) {
             btn.classList.add('selected-correct');
         } else if (idx === selectedIndex && !isCorrect) {
             btn.classList.add('selected-wrong');
