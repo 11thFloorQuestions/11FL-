@@ -1,14 +1,14 @@
 // State Variables
 let currentQuestions = [];
 let currentFloorIndex = 0; // 0 to 9 (Floor 01 to Floor 10)
-let currentShuffledOptions = []; // Stores randomized options for the active question
-let currentCorrectIndex = -1;    // Stores active index of the correct answer after shuffle
+let currentShuffledOptions = []; // Stores randomized options for active question
+let currentCorrectIndex = -1;    // Stores index of correct answer post-shuffle
 let timerInterval = null;
 let timeLeft = 15;
 let isAnswerLocked = false;
 let soundEnabled = false;
 
-// Local Stats
+// Local Stats Storage
 let stats = JSON.parse(localStorage.getItem('11th_floor_stats')) || {
     played: 0,
     wins: 0,
@@ -111,7 +111,7 @@ async function loadQuestionsData(sourcePath = 'questions.json') {
     }
 }
 
-// Game Logic
+// Game Loop Functions
 async function startNewGame(sourcePath = 'questions.json') {
     if (soundEnabled) initAudio();
     currentFloorIndex = 0;
@@ -139,7 +139,7 @@ function loadFloorQuestion() {
 
     cardFloorText.textContent = formatFloorText(currentFloorIndex + 1);
 
-    // Update vertical shaft indicators
+    // Update vertical shaft floor indicators
     const floorBlocks = document.querySelectorAll('#building-shaft .floor-block');
     floorBlocks.forEach((block) => {
         const floorNum = parseInt(block.getAttribute('data-floor'), 10);
@@ -156,7 +156,7 @@ function loadFloorQuestion() {
     
     const rawOptions = currentQuestion.options || currentQuestion.answers || [];
 
-    // Identify target correct answer string before shuffling
+    // Identify target correct answer text
     let targetAnswer = currentQuestion.answer;
     if (targetAnswer === undefined) targetAnswer = currentQuestion.correctIndex;
     if (targetAnswer === undefined) targetAnswer = currentQuestion.correct;
@@ -173,7 +173,7 @@ function loadFloorQuestion() {
     // Shuffle options dynamically
     currentShuffledOptions = shuffleArray(rawOptions);
     
-    // Locate where the correct answer ended up after shuffling
+    // Locate where correct answer lands after shuffle
     currentCorrectIndex = currentShuffledOptions.findIndex(
         opt => String(opt).trim().toLowerCase() === correctText.toLowerCase()
     );
@@ -310,17 +310,19 @@ function closeModals() {
     modalStats.classList.add('hidden');
 }
 
+// Populate and Display The Vault Modal
 async function populateVaultList() {
     const vaultList = document.getElementById('vault-list');
     vaultList.innerHTML = '<div style="color:#888; text-align:center; padding:10px;">Loading Vault Archives...</div>';
 
     try {
-        const res = await fetch('archives/index.json').catch(() => null);
         let archiveFiles = [];
+        const res = await fetch('archives/index.json').catch(() => null);
         
         if (res && res.ok) {
             archiveFiles = await res.json();
         } else {
+            // Default generate 50 archive paths: archives/set_1.json through set_50.json
             archiveFiles = Array.from({ length: 50 }, (_, i) => ({
                 id: `set_${i + 1}`,
                 title: `Archive Set #${String(i + 1).padStart(2, '0')}`,
@@ -355,10 +357,11 @@ optionButtons.forEach((btn, index) => {
     btn.addEventListener('click', () => handleAnswerSelection(index));
 });
 
+// Landing Page Header Action -> Open Vault directly
 document.getElementById('btn-landing-stats').addEventListener('click', () => {
     populateVaultList();
-    updateStatsUI();
-    modalStats.classList.remove('hidden');
+    closeModals();
+    modalVault.classList.remove('hidden');
 });
 
 document.getElementById('btn-util-exit').addEventListener('click', () => {
