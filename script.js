@@ -143,37 +143,55 @@ function normalizeQuestions(data) {
     return generateFallbackQuestions();
 }
 
+// Helper to attempt fetching across root and subfolders
+async function fetchFileWithFallbacks(filename) {
+    const candidatePaths = [
+        `./${filename}`,
+        `./archives/${filename}`,
+        `./data/${filename}`,
+        filename
+    ];
+
+    for (const path of candidatePaths) {
+        try {
+            const res = await fetch(path);
+            if (res.ok) {
+                console.log(`Successfully loaded ${filename} from ${path}`);
+                return await res.json();
+            }
+        } catch (e) {
+            // Continue to next path candidate
+        }
+    }
+    return null;
+}
+
 async function startDailyClimb() {
-    try {
-        let response = await fetch('./questions.json').catch(() => null);
-        if (!response || !response.ok) {
-            response = await fetch('./sandbox.50.json').catch(() => null);
-        }
-        if (!response || !response.ok) {
-            response = await fetch('./sandbox.01.json').catch(() => null);
-        }
-        if (!response || !response.ok) throw new Error('Could not fetch daily quiz files.');
-        
-        const data = await response.json();
+    // Priority order for daily climb: questions.json -> sandbox.50.json -> sandbox.01.json
+    let data = await fetchFileWithFallbacks('questions.json');
+    if (!data) data = await fetchFileWithFallbacks('sandbox.50.json');
+    if (!data) data = await fetchFileWithFallbacks('sandbox.01.json');
+
+    if (data) {
         gameState.questions = normalizeQuestions(data);
-    } catch (error) {
-        console.warn("Could not fetch quiz files directly (if running from file://, open via web server/Live Server):", error);
+    } else {
+        console.warn("Could not locate quiz files in root, /archives, or /data. Loading placeholder fallback.");
         gameState.questions = generateFallbackQuestions();
     }
     startGame();
 }
 
 async function loadVaultSet(paddedId) {
-    try {
-        const response = await fetch(`./sandbox.${paddedId}.json`);
-        if (!response.ok) throw new Error(`HTTP status ${response.status}`);
-        const data = await response.json();
+    const filename = `sandbox.${paddedId}.json`;
+    const data = await fetchFileWithFallbacks(filename);
+
+    if (data) {
         gameState.questions = normalizeQuestions(data);
         closeModal('modal-vault');
         startGame();
-    } catch (error) {
-        console.error(`Error loading ./sandbox.${paddedId}.json:`, error);
-        alert(`Archive Set ${paddedId} (sandbox.${paddedId}.json) failed to load. Make sure the site is running on a web server or GitHub Pages rather than double-clicking the HTML file.`);
+    } else {
+        console.error(`Failed to load ${filename} from root, /archives, or /data`);
+        alert(`Could not find ${filename}. Check that the file exists in your repository root or /archives subfolder.`);
     }
 }
 
