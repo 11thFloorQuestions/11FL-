@@ -22,39 +22,41 @@ document.addEventListener("DOMContentLoaded", () => {
 async function loadDictionaryAndStart() {
     showMessage("LOADING DICTIONARY...", false);
 
-    // 1. Wait strictly for words.js to finish setting window.WORD_LIST_LOADED = true
-    for (let i = 0; i < 200; i++) { // Up to 20 seconds wait on slow connections
+    // Continuous load-retry loop for slow/unstable mobile connections
+    while (true) {
+        // 1. Check if words.js finished loading
         if (window.WORD_LIST_LOADED && window.WORD_LIST && window.WORD_LIST.size > 0) {
             cleanDictionary();
             startNewGame();
             return;
         }
-        await new Promise(r => setTimeout(r, 100));
-    }
 
-    // 2. Direct fetch fallback if words.js didn't complete
-    try {
-        const response = await fetch("./words.txt");
-        if (response.ok) {
-            const text = await response.text();
-            window.WORD_LIST = new Set();
-            text.split(/\r?\n/).forEach(rawWord => {
-                const cleaned = rawWord.toUpperCase().replace(/[^A-Z]/g, "");
-                if (cleaned.length >= 3) {
-                    window.WORD_LIST.add(cleaned);
+        // 2. Direct fetch backup attempt
+        try {
+            const response = await fetch("./words.txt");
+            if (response.ok) {
+                const text = await response.text();
+                window.WORD_LIST = new Set();
+                text.split(/\r?\n/).forEach(rawWord => {
+                    const cleaned = rawWord.toUpperCase().replace(/[^A-Z]/g, "");
+                    if (cleaned.length >= 3) {
+                        window.WORD_LIST.add(cleaned);
+                    }
+                });
+                if (window.WORD_LIST.size > 0) {
+                    window.WORD_LIST_LOADED = true;
+                    cleanDictionary();
+                    startNewGame();
+                    return;
                 }
-            });
-            window.WORD_LIST_LOADED = true;
-            if (window.WORD_LIST.size > 0) {
-                startNewGame();
-                return;
             }
+        } catch (err) {
+            console.warn("[Word Climb] Network slow, retrying dictionary load...");
         }
-    } catch (err) {
-        console.error("[Word Climb] Fallback fetch failed:", err);
-    }
 
-    showMessage("DICTIONARY ERROR. REFRESH PAGE.", true);
+        // Wait 1 second before retrying so it never prematurely throws an error screen
+        await new Promise(r => setTimeout(r, 1000));
+    }
 }
 
 function cleanDictionary() {
