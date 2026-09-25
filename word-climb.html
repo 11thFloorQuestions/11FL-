@@ -14,14 +14,14 @@
       -webkit-tap-highlight-color: transparent;
     }
     body {
-      background-color: #080808;
+      background-color: #000000;
       color: #ffffff;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       height: 100dvh;
-      padding: 6px 10px;
+      padding: 10px 16px;
       overflow: hidden;
     }
     .app-container {
@@ -31,25 +31,26 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 4px 0;
+      padding: 6px 0;
     }
 
     /* Centered Header Bar */
     .top-header {
       display: grid;
-      grid-template-columns: 80px 1fr 80px;
+      grid-template-columns: 90px 1fr 90px;
       align-items: center;
       width: 100%;
       flex-shrink: 0;
     }
     .pill-btn {
-      background: #121212;
-      border: 1px solid #2a2a2a;
-      border-radius: 14px;
-      color: #888888;
+      background: #000000;
+      border: 1px solid #222222;
+      border-radius: 16px;
+      color: #777777;
       font-size: 10px;
-      font-weight: 600;
-      padding: 5px 8px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 6px 10px;
       cursor: pointer;
       text-decoration: none;
       text-align: center;
@@ -64,86 +65,76 @@
     }
     .brand-title {
       color: #ff1f2d;
-      font-size: 20px;
+      font-size: 34px;
       font-weight: 900;
-      line-height: 1.1;
+      line-height: 1.0;
+      letter-spacing: -0.5px;
     }
     .brand-subtitle-main {
       color: #ffffff;
-      font-size: 8px;
-      font-weight: 800;
+      font-size: 12px;
+      font-weight: 300;
       letter-spacing: 2px;
-      margin-top: 1px;
+      margin-top: 4px;
     }
     .brand-subtitle-sub {
-      color: #666666;
-      font-size: 7px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      margin-top: 1px;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 4px;
+      margin-top: 2px;
     }
 
-    /* Landing / Rules Card */
-    .start-card {
+    /* Landing Screen (Matches 11th Floor Questions UI) */
+    .landing-card {
       flex: 1;
-      background-color: #111111;
-      border: 1px solid #1e1e1e;
-      border-radius: 16px;
-      padding: 16px 14px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      margin: 8px 0;
-      text-align: center;
+      justify-content: space-around;
+      padding: 20px 0;
     }
-    .rules-badge {
-      color: #ff1f2d;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      border-bottom: 1px solid #222222;
-      width: 100%;
-      padding-bottom: 6px;
-    }
-    .rules-box {
+    .landing-elevator-shaft {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      background: #161616;
-      border: 1px solid #222222;
-      border-radius: 12px;
-      padding: 12px;
-      width: 100%;
-      text-align: left;
+      justify-content: space-between;
+      width: 60px;
+      height: 190px;
+      background-color: #000000;
+      border: 1px solid #1a1a1a;
+      border-radius: 6px;
+      padding: 4px;
     }
-    .rule-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
+    .landing-shaft-slot {
+      height: 7.5%;
+      border: 1px solid #1e1e1e;
+      border-radius: 2px;
+      background-color: #0a0a0a;
+    }
+    .landing-tagline {
+      color: #888888;
       font-size: 11px;
-      color: #cccccc;
-      line-height: 1.4;
-    }
-    .rule-icon {
-      font-size: 13px;
-      flex-shrink: 0;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-align: center;
+      line-height: 1.6;
+      max-width: 280px;
     }
     .btn-start-climb {
       width: 100%;
-      padding: 12px;
-      border-radius: 14px;
-      border: 1px solid #ff1f2d;
-      background-color: #ff1f2d;
-      color: #ffffff;
-      font-size: 12px;
+      background-color: #ffffff;
+      color: #000000;
+      border: none;
+      border-radius: 30px;
+      padding: 14px 0;
+      font-size: 15px;
       font-weight: 800;
-      letter-spacing: 1.5px;
       cursor: pointer;
-      box-shadow: 0 0 10px rgba(255, 31, 45, 0.4);
+      text-align: center;
+      transition: background-color 0.2s ease;
     }
     .btn-start-climb:active {
-      background-color: #d91824;
+      background-color: #dddddd;
     }
 
     /* Active Game Workspace */
@@ -289,39 +280,37 @@
       <a href="index.html" class="pill-btn">← LOBBY</a>
       <div class="brand-logo">
         <div class="brand-title">11FL?</div>
-        <div class="brand-subtitle-main">ELEVENTH FLOOR</div>
+        <div class="brand-subtitle-main">Eleventh Floor</div>
         <div class="brand-subtitle-sub">WORD CLIMB</div>
       </div>
-        <button class="pill-btn">SOUND: OFF</button>
+      <button class="pill-btn">SOUND: OFF</button>
     </div>
 
-    <!-- Rules / Landing Page -->
-    <div id="start-screen" class="start-card">
-      <div class="rules-badge">HOW TO PLAY</div>
-      
-      <div class="rules-box">
-        <div class="rule-item">
-          <span class="rule-icon">🧗</span>
-          <span>Ascend through 10 floors by forming valid English words.</span>
-        </div>
-        <div class="rule-item">
-          <span class="rule-icon">🔤</span>
-          <span>Word length increases as you climb (5 to 9 letters).</span>
-        </div>
-        <div class="rule-item">
-          <span class="rule-icon">🔄</span>
-          <span>Letters on the wheel are reusable. Tap 🔀 to shuffle.</span>
-        </div>
-        <div class="rule-item">
-          <span class="rule-icon">⚠️</span>
-          <span style="color: #ff1f2d; font-weight: 700;">ONE wrong submission drops you back to Floor 01!</span>
-        </div>
+    <!-- Landing Screen (Matching Questions UI) -->
+    <div id="start-screen" class="landing-card">
+      <div class="landing-elevator-shaft">
+        <div class="landing-shaft-slot"></div>
+        <div class="landing-shaft-slot"></div>
+        <div class="landing-shaft-slot"></div>
+        <div class="landing-shaft-slot"></div>
+        <div class="landing-shaft-slot"></div>
+        <div class="landing-shaft-slot"></div>
+        <div class="landing-shaft-slot"></div>
+        <div class="landing-shaft-slot"></div>
+        <div class="landing-shaft-slot"></div>
+        <div class="landing-shaft-slot"></div>
+        <div class="landing-shaft-slot"></div>
       </div>
 
-      <button id="start-climb-btn" class="btn-start-climb">START CLIMB</button>
+      <div class="landing-tagline">
+        CAN YOU REACH THE 11TH FLOOR?<br>
+        FAIL AND YOU'RE BACK TO THE GROUND FLOOR.
+      </div>
+
+      <button id="start-climb-btn" class="btn-start-climb">Start Climb</button>
     </div>
 
-    <!-- Gameplay Workspace (Hidden until Start is clicked) -->
+    <!-- Gameplay Workspace (Hidden initially) -->
     <div id="game-workspace" class="workspace" style="display: none;">
       <div class="elevator-shaft">
         <div class="elevator-slot" data-floor="11"></div>
@@ -349,14 +338,13 @@
       </div>
     </div>
 
-    <!-- Controls (Hidden until Start is clicked) -->
+    <!-- Controls (Hidden initially) -->
     <div id="game-controls" class="controls" style="display: none;">
       <button id="action-delete-btn" class="btn-action"><span>⌫</span> DELETE</button>
       <button id="action-submit-btn" class="btn-action"><span>↵</span> SUBMIT</button>
     </div>
   </div>
 
-  <script src="words.js"></script>
   <script src="word-climb.js"></script>
 </body>
 </html>
