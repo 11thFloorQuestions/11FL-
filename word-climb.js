@@ -1,4 +1,4 @@
-// 11th Floor Word Climb - Final Game Engine
+// 11th Floor Word Climb - Game Engine
 
 let currentFloor = 1;
 let currentGuess = "";
@@ -6,7 +6,6 @@ let isTransitioning = false;
 let masterNineLetterWord = "";
 let wheelLetters = [];
 
-// Floor-by-floor required word length rules
 function getRequiredWordLength(floor) {
     if (floor >= 1 && floor <= 3) return 5;
     if (floor >= 4 && floor <= 6) return 6;
@@ -23,16 +22,14 @@ document.addEventListener("DOMContentLoaded", () => {
 function initGameWithLoadedDictionary() {
     showMessage("LOADING DICTIONARY...", false);
 
-    // Wait for words.js to finish populating window.WORD_LIST
     let checkCount = 0;
     const interval = setInterval(() => {
         checkCount++;
         if (window.WORD_LIST_LOADED && window.WORD_LIST && window.WORD_LIST.size > 0) {
             clearInterval(interval);
             startNewGame();
-        } else if (checkCount > 50) { // Fallback timeout (~5 seconds)
+        } else if (checkCount > 50) {
             clearInterval(interval);
-            console.warn("Dictionary loading delayed, starting fallback mode.");
             startNewGame();
         }
     }, 100);
@@ -43,9 +40,7 @@ function startNewGame() {
     currentGuess = "";
     isTransitioning = false;
 
-    // Select a random 9-letter word from window.WORD_LIST for guaranteed solvability
     selectMasterNineLetterWord();
-
     setupFloor(currentFloor);
     attachControlHandlers();
 }
@@ -63,11 +58,9 @@ function selectMasterNineLetterWord() {
     if (nineLetterWords.length > 0) {
         masterNineLetterWord = nineLetterWords[Math.floor(Math.random() * nineLetterWords.length)];
     } else {
-        // Safe fallback 9-letter word if dictionary has none loaded
         masterNineLetterWord = "CLEARINGS";
     }
 
-    // Shuffle the 9 letters to place around the wheel
     wheelLetters = masterNineLetterWord.split("").sort(() => Math.random() - 0.5);
 }
 
@@ -81,23 +74,15 @@ function setupFloor(floor) {
     isTransitioning = false;
     showMessage("");
 
-    // Update Floor Indicator Text
     const floorText = document.getElementById("card-floor-text");
     if (floorText) {
         const formatted = floor < 10 ? `0${floor}` : `${floor}`;
         floorText.textContent = `FLOOR ${formatted}`;
     }
 
-    // Update Elevator Shaft Graphic
     updateElevatorShaft(floor);
-
-    // Render Target Slots for Required Word Length
     renderTargetSlots(floor);
-
-    // Render Letter Wheel (9 nodes)
     renderWheel(wheelLetters);
-
-    // Update Guess Display Box
     updateGuessDisplay();
 }
 
@@ -127,17 +112,6 @@ function renderTargetSlots(floor) {
     for (let i = 0; i < targetLen; i++) {
         const slot = document.createElement("div");
         slot.className = "target-slot";
-        slot.style.width = "26px";
-        slot.style.height = "30px";
-        slot.style.border = "1px solid #333333";
-        slot.style.borderRadius = "4px";
-        slot.style.background = "#181818";
-        slot.style.display = "flex";
-        slot.style.alignItems = "center";
-        slot.style.justifyContent = "center";
-        slot.style.fontWeight = "bold";
-        slot.style.fontSize = "14px";
-        slot.style.color = "#ffffff";
         slotsContainer.appendChild(slot);
     }
 }
@@ -147,15 +121,15 @@ function renderWheel(letters) {
     if (!wheelContainer) return;
 
     wheelContainer.innerHTML = "";
-    const radius = 65;
-    const centerX = 90;
-    const centerY = 90;
-    const total = letters.length; // Exactly 9 letters
+    const radius = 78; // Proportionate radius inside 210px container
+    const centerX = 105;
+    const centerY = 105;
+    const total = letters.length;
 
     letters.forEach((char, index) => {
         const angle = (index / total) * (2 * Math.PI) - (Math.PI / 2);
-        const x = centerX + radius * Math.cos(angle) - 20;
-        const y = centerY + radius * Math.sin(angle) - 20;
+        const x = centerX + radius * Math.cos(angle) - 22;
+        const y = centerY + radius * Math.sin(angle) - 22;
 
         const btn = document.createElement("button");
         btn.className = "wheel-letter-btn";
@@ -163,8 +137,8 @@ function renderWheel(letters) {
         btn.style.position = "absolute";
         btn.style.left = `${x}px`;
         btn.style.top = `${y}px`;
-        btn.style.width = "40px";
-        btn.style.height = "40px";
+        btn.style.width = "44px";
+        btn.style.height = "44px";
         btn.style.borderRadius = "50%";
         btn.style.border = "1px solid #ff1f2d";
         btn.style.boxShadow = "0 0 5px rgba(255, 31, 45, 0.3)";
@@ -174,7 +148,6 @@ function renderWheel(letters) {
         btn.style.fontSize = "16px";
         btn.style.cursor = "pointer";
 
-        // Reusable letter logic: Letters remain active when clicked
         btn.addEventListener("click", () => {
             if (isTransitioning) return;
             const reqLen = getRequiredWordLength(currentFloor);
@@ -187,13 +160,12 @@ function renderWheel(letters) {
         wheelContainer.appendChild(btn);
     });
 
-    // Center decorative hub
     const centerHub = document.createElement("div");
     centerHub.style.position = "absolute";
-    centerHub.style.left = "70px";
-    centerHub.style.top = "70px";
-    centerHub.style.width = "40px";
-    centerHub.style.height = "40px";
+    centerHub.style.left = "83px";
+    centerHub.style.top = "83px";
+    centerHub.style.width = "44px";
+    centerHub.style.height = "44px";
     centerHub.style.borderRadius = "50%";
     centerHub.style.border = "1px solid #ff1f2d";
     centerHub.style.backgroundColor = "#0e0e0e";
@@ -242,7 +214,6 @@ function handleSubmission() {
 
     const word = currentGuess.toUpperCase();
 
-    // Check if word exists in window.WORD_LIST
     let isValid = false;
     if (window.WORD_LIST && window.WORD_LIST.size > 0) {
         isValid = window.WORD_LIST.has(word);
@@ -253,7 +224,6 @@ function handleSubmission() {
     if (isValid) {
         isTransitioning = true;
         showMessage("VALID WORD! ASCENDING...", false);
-
         fillTargetSlots(word);
 
         setTimeout(() => {
@@ -265,12 +235,13 @@ function handleSubmission() {
             }
         }, 1000);
     } else {
-        showMessage("NOT IN WORD LIST", true);
+        // Single-Mistake Rule: Drops back to Floor 1 on wrong submission
+        isTransitioning = true;
+        showMessage("WRONG WORD! DROPPING TO FLOOR 01...", true);
+
         setTimeout(() => {
-            currentGuess = "";
-            updateGuessDisplay();
-            showMessage("");
-        }, 1200);
+            startNewGame();
+        }, 1400);
     }
 }
 
@@ -294,14 +265,30 @@ function handleVictory() {
     if (floorText) floorText.textContent = "11TH FLOOR";
 
     updateElevatorShaft(11);
-    showMessage("PENTHOUSE REACHED! YOU WIN! 🏆", false);
+
+    const messageBox = document.getElementById("message-box");
+    if (messageBox) messageBox.textContent = "";
+
+    const guessDisplay = document.getElementById("guess-display");
+    if (guessDisplay) guessDisplay.innerHTML = "";
 
     const wheelContainer = document.getElementById("wheel-container");
     if (wheelContainer) wheelContainer.innerHTML = "";
 
+    // Balanced Victory Layout matching the Questions game
     const slotsContainer = document.getElementById("target-word-slots");
     if (slotsContainer) {
-        slotsContainer.innerHTML = `<div style="color: #2ecc71; font-weight: bold; font-size: 1rem; text-align: center;">DESTINATION REACHED</div>`;
+        slotsContainer.innerHTML = `
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 24px 12px; text-align: center; gap: 14px;">
+                <div style="font-size: 2.2rem;">🏆</div>
+                <div style="color: #2ecc71; font-weight: 800; font-size: 1.05rem; line-height: 1.4; letter-spacing: 0.5px;">
+                    Congratulations! You've reached the 11th Floor.
+                </div>
+                <div style="color: #aaaaaa; font-size: 0.85rem; line-height: 1.4; font-weight: 500;">
+                    Come back tomorrow to continue your streak.
+                </div>
+            </div>
+        `;
     }
 }
 
