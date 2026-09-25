@@ -16,62 +16,63 @@ function getRequiredWordLength(floor) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    loadDictionaryAndStart();
+    loadFullDictionaryAndStart();
 });
 
-async function loadDictionaryAndStart() {
+async function loadFullDictionaryAndStart() {
+    showMessage("LOADING DICTIONARY...", false);
+
+    // 1. Wait if words.js has already completed its full load flag
+    if (window.WORD_LIST_LOADED && window.WORD_LIST && window.WORD_LIST.size > 1000) {
+        cleanAndStart();
+        return;
+    }
+
+    // 2. Fetch words.txt directly as a single complete text payload (no partial loading)
+    try {
+        const response = await fetch("words.txt");
+        if (response.ok) {
+            const text = await response.text();
+            const tempSet = new Set();
+            
+            const lines = text.split(/\r?\n/);
+            for (let i = 0; i < lines.length; i++) {
+                const cleaned = lines[i].toUpperCase().replace(/[^A-Z]/g, "");
+                if (cleaned.length >= 3) {
+                    tempSet.add(cleaned);
+                }
+            }
+
+            if (tempSet.size > 1000) {
+                window.WORD_LIST = tempSet;
+                window.WORD_LIST_LOADED = true;
+                startNewGame();
+                return;
+            }
+        }
+    } catch (err) {
+        console.warn("[Word Climb] Atomic load failed, falling back to window polling:", err);
+    }
+
+    // 3. Fallback poll strictly requiring >10,000 words in memory before starting
     let seconds = 0;
-    
-    // 1. Poll memory for up to 45 seconds to accommodate high-latency handshakes
-    for (let i = 0; i < 225; i++) {
+    for (let i = 0; i < 100; i++) {
         if (i % 5 === 0) {
             seconds++;
             showMessage(`LOADING DICTIONARY... ${seconds}s`, false);
         }
 
-        if ((window.WORD_LIST_LOADED || (window.WORD_LIST && window.WORD_LIST.size > 0))) {
-            cleanDictionary();
-            startNewGame();
+        if (window.WORD_LIST && window.WORD_LIST.size > 10000) {
+            cleanAndStart();
             return;
         }
-
         await new Promise(r => setTimeout(r, 200));
-    }
-
-    // 2. Direct fallback attempt if words.js hasn't finished
-    showMessage("FETCHING BACKUP DICTIONARY...", false);
-    const pathsToTry = ["words.txt", "./words.txt", "/words.txt"];
-
-    for (const path of pathsToTry) {
-        try {
-            const response = await fetch(path);
-            if (response.ok) {
-                const text = await response.text();
-                window.WORD_LIST = new Set();
-                text.split(/\r?\n/).forEach(rawWord => {
-                    const cleaned = rawWord.toUpperCase().replace(/[^A-Z]/g, "");
-                    if (cleaned.length >= 3) {
-                        window.WORD_LIST.add(cleaned);
-                    }
-                });
-
-                if (window.WORD_LIST.size > 0) {
-                    window.WORD_LIST_LOADED = true;
-                    cleanDictionary();
-                    startNewGame();
-                    return;
-                }
-            }
-        } catch (err) {
-            console.warn(`[Word Climb] Fallback path ${path} failed:`, err);
-        }
     }
 
     showMessage("DICTIONARY ERROR. REFRESH PAGE.", true);
 }
 
-function cleanDictionary() {
-    if (!window.WORD_LIST) return;
+function cleanAndStart() {
     const cleanedSet = new Set();
     window.WORD_LIST.forEach(word => {
         const cleaned = word.toUpperCase().replace(/[^A-Z]/g, "");
@@ -80,6 +81,7 @@ function cleanDictionary() {
         }
     });
     window.WORD_LIST = cleanedSet;
+    startNewGame();
 }
 
 function startNewGame() {
