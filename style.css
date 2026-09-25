@@ -337,6 +337,12 @@ body {
     color: #ffffff !important;
 }
 
+/* Correct Answer Green Accent Text */
+.congrats-green {
+    color: #2e7d32;
+    font-weight: 800;
+}
+
 /* Modals & Sleeker Typography */
 .modal-overlay {
     position: fixed;
