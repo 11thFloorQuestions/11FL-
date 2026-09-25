@@ -16,41 +16,52 @@ function getRequiredWordLength(floor) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    initGameWithLoadedDictionary();
+    loadDictionaryAndStart();
 });
 
-function initGameWithLoadedDictionary() {
+async function loadDictionaryAndStart() {
     showMessage("LOADING DICTIONARY...", false);
 
-    let checkCount = 0;
-    const interval = setInterval(() => {
-        checkCount++;
-        if (window.WORD_LIST_LOADED && window.WORD_LIST && window.WORD_LIST.size > 0) {
-            clearInterval(interval);
-            startNewGame();
-        } else if (checkCount > 30) {
-            clearInterval(interval);
-            // Backup fetch in case words.js was delayed
-            fetchBackupDictionary();
-        }
-    }, 100);
-}
+    // Initialize global set if not already present
+    if (!window.WORD_LIST) {
+        window.WORD_LIST = new Set();
+    }
 
-async function fetchBackupDictionary() {
+    // Direct async fetch of words.txt
     try {
-        const response = await fetch('./words.txt');
+        const response = await fetch("words.txt");
         if (response.ok) {
             const text = await response.text();
-            window.WORD_LIST = new Set();
-            text.split(/\r?\n/).forEach(word => {
-                const trimmed = word.trim().toUpperCase();
-                if (trimmed.length > 0) window.WORD_LIST.add(trimmed);
+            const lines = text.split(/\r?\n/);
+            lines.forEach(word => {
+                const cleaned = word.trim().toUpperCase();
+                if (cleaned.length > 0) {
+                    window.WORD_LIST.add(cleaned);
+                }
             });
             window.WORD_LIST_LOADED = true;
         }
-    } catch (e) {
-        console.error("Dictionary load error:", e);
+    } catch (err) {
+        console.error("Failed to load words.txt directly:", err);
     }
+
+    // If fetch failed or word list is empty, wait for words.js
+    if (!window.WORD_LIST || window.WORD_LIST.size === 0) {
+        let attempts = 0;
+        await new Promise(resolve => {
+            const interval = setInterval(() => {
+                attempts++;
+                if (window.WORD_LIST && window.WORD_LIST.size > 0) {
+                    clearInterval(interval);
+                    resolve();
+                } else if (attempts > 40) {
+                    clearInterval(interval);
+                    resolve();
+                }
+            }, 100);
+        });
+    }
+
     startNewGame();
 }
 
@@ -249,14 +260,8 @@ function handleSubmission() {
 
     const word = currentGuess.toUpperCase();
 
-    // STRICT DICTIONARY VALIDATION (No length-only auto-pass)
-    let isValid = false;
-    if (window.WORD_LIST && window.WORD_LIST.size > 0) {
-        isValid = window.WORD_LIST.has(word);
-    } else {
-        showMessage("DICTIONARY NOT READY. TRY AGAIN", true);
-        return;
-    }
+    // Strict dictionary validation against loaded window.WORD_LIST
+    const isValid = window.WORD_LIST && window.WORD_LIST.has(word);
 
     if (isValid) {
         isTransitioning = true;
@@ -272,7 +277,7 @@ function handleSubmission() {
             }
         }, 1000);
     } else {
-        // SINGLE MISTAKE PENALTY: Resets game to Floor 01
+        // Single mistake penalty: Resets to Floor 01
         isTransitioning = true;
         showMessage("WRONG WORD! DROPPING TO FLOOR 01...", true);
 
