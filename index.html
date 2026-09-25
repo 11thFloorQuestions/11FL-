@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -60,7 +60,7 @@
         </header>
 
         <main class="game-layout">
-            <!-- Left Elevator Shaft (11 Floor Blocks: Floor 11 Destination down to Floor 01) -->
+            <!-- Left Elevator Shaft (11 Floor Blocks) -->
             <div id="building-shaft" class="building-shaft">
                 <div class="floor-block" data-floor="11"></div>
                 <div class="floor-block" data-floor="10"></div>
@@ -111,7 +111,7 @@
 
     <div id="modal-vault" class="modal-overlay hidden">
         <div class="modal-card modal-large">
-            <h2>CAREER TELEMETRY</h2>
+            <h2>STATS</h2>
             <div class="stats-summary-grid">
                 <div class="stat-box">
                     <span id="stat-played" class="stat-val">0</span>
@@ -135,7 +135,7 @@
                 </div>
             </div>
 
-            <h3 style="font-size: 0.8rem; color: #737373; margin-top: 10px; text-transform: uppercase;">ARCHIVE VAULT</h3>
+            <h3>ARCHIVE VAULT</h3>
             <div id="vault-list" class="vault-grid"></div>
             <button id="btn-close-vault" class="btn-modal">CLOSE</button>
         </div>
