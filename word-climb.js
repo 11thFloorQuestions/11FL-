@@ -1,229 +1,163 @@
-// 11th Floor Word Climb - Game Engine
-
-const DAILY_PUZZLE = {
-  letters: ['U', 'N', 'D', 'E', 'R', 'S', 'T', 'A']
+const DEFAULT_FLOOR_1 = {
+  floor: 1,
+  letters: "CLEARINGS",
+  targetWordLength: 5,
+  validWords: ["CLEAR", "CLEAN", "GRAIN", "LEARN", "SIGNAL", "RAILS", "ANGEL", "RINGS"]
 };
 
-let currentFloor = 4;
-const maxFloor = 10;
-let currentGuess = [];
-let isTransitioning = false;
+let currentFloorData = null;
+let currentGuess = "";
+let activeWheelButtons = [];
 
-window.MASTER_DICTIONARY = new Set();
-
-document.addEventListener('DOMContentLoaded', () => {
-  loadDictionaryAndInit();
-});
-
-async function loadDictionaryAndInit() {
-  showMessage('LOADING DICTIONARY...', 'info');
-  try {
-    const response = await fetch('words.js');
-    if (response.ok) {
-      const text = await response.text();
-      const lines = text.split(/\r?\n/);
-      for (let i = 0; i < lines.length; i++) {
-        const word = lines[i].trim().toUpperCase();
-        if (word.length >= 4) {
-          window.MASTER_DICTIONARY.add(word);
+async function loadAndPlayFloor(floorNum) {
+    if (floorNum > 10) {
+        const msgBox = document.getElementById("message-box");
+        if (msgBox) {
+            msgBox.style.color = "#2ecc71";
+            msgBox.innerText = "CLIMB COMPLETE! 11TH FLOOR REACHED!";
         }
-      }
-      console.log(`[11th Floor] Dictionary loaded: ${window.MASTER_DICTIONARY.size} words.`);
+        return;
     }
-  } catch (err) {
-    console.error('[11th Floor] Failed to load dictionary file:', err);
-  }
 
-  initGame();
+    const formattedNum = String(floorNum).padStart(2, '0');
+    const filePath = `assets/data/floors/floor_${formattedNum}.json`;
+
+    try {
+        const response = await fetch(filePath);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
+        currentFloorData = await response.json();
+        setupGameSession(currentFloorData);
+    } catch (error) {
+        currentFloorData = { ...DEFAULT_FLOOR_1, floor: floorNum };
+        setupGameSession(currentFloorData);
+    }
 }
 
-function initGame() {
-  currentFloor = 4;
-  currentGuess = [];
-  isTransitioning = false;
-  setupWheel();
-  attachControlHandlers();
-  updateFloorUI();
-}
-
-function setupWheel() {
-  const wheelContainer = document.getElementById('wheel-container');
-  if (!wheelContainer) return;
-  
-  wheelContainer.innerHTML = '';
-  const totalLetters = DAILY_PUZZLE.letters.length;
-  const radius = 68; 
-  const nodeSize = 44;
-
-  DAILY_PUZZLE.letters.forEach((letter, index) => {
-    const angle = (index / totalLetters) * (2 * Math.PI) - (Math.PI / 2);
-    const x = Math.round(radius * Math.cos(angle));
-    const y = Math.round(radius * Math.sin(angle));
-
-    const btn = document.createElement('button');
-    btn.className = 'letter-node';
-    btn.textContent = letter;
-    btn.style.position = 'absolute';
-    btn.style.left = `calc(50% + ${x}px - ${nodeSize / 2}px)`;
-    btn.style.top = `calc(50% + ${y}px - ${nodeSize / 2}px)`;
-    btn.style.width = `${nodeSize}px`;
-    btn.style.height = `${nodeSize}px`;
-    btn.style.borderRadius = '50%';
-    btn.style.border = '1px solid #ff1f2d';
-    btn.style.boxShadow = '0 0 5px rgba(255, 31, 45, 0.3)';
-    btn.style.backgroundColor = '#181818';
-    btn.style.color = '#ffffff';
-    btn.style.fontSize = '18px';
-    btn.style.fontWeight = 'bold';
-    btn.style.cursor = 'pointer';
+function setupGameSession(floorData) {
+    currentGuess = "";
+    activeWheelButtons = [];
+    updateGuessDisplay();
     
-    btn.onclick = () => selectLetter(letter);
-    wheelContainer.appendChild(btn);
-  });
+    const msgBox = document.getElementById("message-box");
+    if (msgBox) msgBox.innerText = "";
 
-  const centerHub = document.createElement('div');
-  centerHub.style.position = 'absolute';
-  centerHub.style.left = `calc(50% - 22px)`;
-  centerHub.style.top = `calc(50% - 22px)`;
-  centerHub.style.width = '44px';
-  centerHub.style.height = '44px';
-  centerHub.style.borderRadius = '50%';
-  centerHub.style.border = '1px solid #ff1f2d';
-  centerHub.style.backgroundColor = '#0e0e0e';
-  
-  wheelContainer.appendChild(centerHub);
-}
+    const floorText = document.getElementById("card-floor-text");
+    if (floorText) {
+        floorText.innerText = `FLOOR ${String(floorData.floor || 1).padStart(2, '0')}`;
+    }
 
-function attachControlHandlers() {
-  const deleteBtn = document.getElementById('action-delete-btn');
-  const submitBtn = document.getElementById('action-submit-btn');
+    const slotsContainer = document.getElementById("target-word-slots");
+    if (slotsContainer) {
+        slotsContainer.innerHTML = "";
+        const length = floorData.targetWordLength || 5;
+        for (let i = 0; i < length; i++) {
+            const slot = document.createElement("div");
+            slot.className = "target-slot";
+            slotsContainer.appendChild(slot);
+        }
+    }
 
-  if (deleteBtn) deleteBtn.onclick = handleDelete;
-  if (submitBtn) submitBtn.onclick = handleSubmit;
-}
+    const wheelContainer = document.getElementById("wheel-container");
+    if (wheelContainer) {
+        wheelContainer.innerHTML = "";
+        const letters = (floorData.letters || "CLEARINGS").split("");
+        const radius = 65;
+        const centerX = 90;
+        const centerY = 90;
+        const total = letters.length;
 
-function selectLetter(letter) {
-  if (isTransitioning) return;
-  if (currentGuess.length < currentFloor) {
-    currentGuess.push(letter);
-    updateGuessDisplay();
-  }
-}
+        letters.forEach((char, index) => {
+            const angle = (index / total) * (2 * Math.PI) - (Math.PI / 2);
+            const x = centerX + radius * Math.cos(angle) - 20;
+            const y = centerY + radius * Math.sin(angle) - 20;
 
-function handleDelete() {
-  if (isTransitioning) return;
-  if (currentGuess.length > 0) {
-    currentGuess.pop();
-    updateGuessDisplay();
-  }
+            const btn = document.createElement("button");
+            btn.className = "wheel-letter-btn";
+            btn.innerText = char;
+            btn.style.position = "absolute";
+            btn.style.left = `${x}px`;
+            btn.style.top = `${y}px`;
+            btn.style.width = "40px";
+            btn.style.height = "40px";
+            btn.style.borderRadius = "50%";
+            btn.style.border = "1px solid #333";
+            btn.style.background = "#1c1c1c";
+            btn.style.color = "#fff";
+            btn.style.fontWeight = "bold";
+            btn.style.fontSize = "1rem";
+            btn.style.cursor = "pointer";
+
+            btn.addEventListener("click", () => {
+                if (currentGuess.length < (floorData.targetWordLength || 5)) {
+                    currentGuess += char;
+                    btn.style.opacity = "0.3";
+                    btn.disabled = true;
+                    activeWheelButtons.push(btn);
+                    updateGuessDisplay();
+                }
+            });
+
+            wheelContainer.appendChild(btn);
+        });
+    }
+
+    const deleteBtn = document.getElementById("action-delete-btn");
+    if (deleteBtn) {
+        deleteBtn.onclick = () => {
+            if (currentGuess.length > 0) {
+                currentGuess = currentGuess.slice(0, -1);
+                const lastBtn = activeWheelButtons.pop();
+                if (lastBtn) {
+                    lastBtn.style.opacity = "1";
+                    lastBtn.disabled = false;
+                }
+                updateGuessDisplay();
+            }
+        };
+    }
+
+    const submitBtn = document.getElementById("action-submit-btn");
+    if (submitBtn) {
+        submitBtn.onclick = () => {
+            checkWordClimbGuess(floorData);
+        };
+    }
 }
 
 function updateGuessDisplay() {
-  const display = document.getElementById('guess-display');
-  if (!display) return;
-
-  display.innerHTML = '';
-
-  let boxWidth = 34;
-  let boxHeight = 38;
-  let fontSize = 16;
-
-  if (currentFloor >= 9) {
-    boxWidth = 24;
-    boxHeight = 30;
-    fontSize = 12;
-  } else if (currentFloor >= 7) {
-    boxWidth = 28;
-    boxHeight = 34;
-    fontSize = 14;
-  }
-
-  for (let i = 0; i < currentFloor; i++) {
-    const slot = document.createElement('div');
-    slot.textContent = currentGuess[i] || '';
+    const display = document.getElementById("guess-display");
+    if (!display) return;
     
-    slot.style.width = `${boxWidth}px`;
-    slot.style.height = `${boxHeight}px`;
-    slot.style.lineHeight = `${boxHeight}px`;
-    slot.style.border = '1px solid #2a2a2a';
-    slot.style.color = '#ffffff';
-    slot.style.fontSize = `${fontSize}px`;
-    slot.style.fontWeight = 'bold';
-    slot.style.textAlign = 'center';
-    slot.style.borderRadius = '8px';
-    slot.style.backgroundColor = currentGuess[i] ? '#222222' : '#161616';
-    slot.style.boxSizing = 'border-box';
-    
-    display.appendChild(slot);
-  }
+    display.innerHTML = currentGuess
+        .split("")
+        .map(c => `<span style="padding:4px 8px; background:#1c1c1c; border:1px solid #ff1f2d; border-radius:4px; font-weight:bold;">${c}</span>`)
+        .join("");
 }
 
-function updateFloorUI() {
-  const cardFloorText = document.getElementById('card-floor-text');
-  if (cardFloorText) {
-    const formattedFloor = currentFloor < 10 ? `0${currentFloor}` : currentFloor;
-    cardFloorText.textContent = `FLOOR ${formattedFloor}`;
-  }
-
-  const elevatorSlots = document.querySelectorAll('.elevator-slot');
-  elevatorSlots.forEach(slot => {
-    const floorNum = parseInt(slot.getAttribute('data-floor'), 10);
-    if (floorNum === currentFloor) {
-      slot.classList.add('active');
+function checkWordClimbGuess(floorData) {
+    const msgBox = document.getElementById("message-box");
+    const valids = (floorData.validWords || []).map(w => w.toUpperCase());
+    
+    if (valids.includes(currentGuess.toUpperCase())) {
+        if (msgBox) {
+            msgBox.style.color = "#2ecc71";
+            msgBox.innerText = "CORRECT!";
+        }
+        setTimeout(() => {
+            loadAndPlayFloor((floorData.floor || 1) + 1);
+        }, 800);
     } else {
-      slot.classList.remove('active');
+        if (msgBox) {
+            msgBox.style.color = "#ff1f2d";
+            msgBox.innerText = "INVALID WORD";
+        }
+        setTimeout(() => {
+            if (msgBox) msgBox.innerText = "";
+        }, 1000);
     }
-  });
-
-  currentGuess = [];
-  showMessage('', 'info');
-  updateGuessDisplay();
 }
 
-function canBeFormedFromWheel(word) {
-  return word.split('').every(char => DAILY_PUZZLE.letters.includes(char));
-}
-
-function handleSubmit() {
-  if (isTransitioning) return;
-
-  const word = currentGuess.join('').toUpperCase();
-  const targetLength = currentFloor;
-
-  if (word.length < targetLength) {
-    showMessage(`NEED A ${targetLength}-LETTER WORD`, 'error');
-    return;
-  }
-
-  const isValidLetterCombination = canBeFormedFromWheel(word);
-
-  let isRecognizedWord = false;
-  if (window.MASTER_DICTIONARY && window.MASTER_DICTIONARY.has) {
-    isRecognizedWord = window.MASTER_DICTIONARY.has(word);
-  }
-
-  if (isValidLetterCombination && isRecognizedWord) {
-    isTransitioning = true;
-    showMessage('VALID WORD! ASCENDING...', 'success');
-    
-    setTimeout(() => {
-      if (currentFloor < maxFloor) {
-        currentFloor++;
-        updateFloorUI();
-      } else {
-        showMessage('TOP FLOOR REACHED!', 'victory');
-      }
-      isTransitioning = false;
-    }, 1000);
-  } else {
-    showMessage('NOT IN WORD LIST', 'error');
-  }
-}
-
-function showMessage(msg, type) {
-  let msgBox = document.getElementById('message-box');
-  if (msgBox) {
-    msgBox.textContent = msg;
-    msgBox.style.color = (type === 'error') ? '#ff1f2d' : ((type === 'success' || type === 'victory') ? '#4dff79' : '#ff1f2d');
-  }
-}
+window.addEventListener("DOMContentLoaded", () => {
+    loadAndPlayFloor(1);
+});
