@@ -70,22 +70,24 @@
       line-height: 1.0;
       letter-spacing: -0.5px;
     }
+    /* Matched Subtitle Typography */
     .brand-subtitle-main {
       color: #ffffff;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 300;
       letter-spacing: 2px;
       margin-top: 4px;
     }
     .brand-subtitle-sub {
       color: #ffffff;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 4px;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 2px;
       margin-top: 2px;
+      text-transform: uppercase;
     }
 
-    /* Landing Screen (Matches 11th Floor Questions UI) */
+    /* Landing Screen (Matching Questions UI) */
     .landing-card {
       flex: 1;
       display: flex;
@@ -120,18 +122,20 @@
       line-height: 1.6;
       max-width: 280px;
     }
+    /* Narrower Pill Button */
     .btn-start-climb {
-      width: 100%;
+      width: 210px;
       background-color: #ffffff;
       color: #000000;
       border: none;
       border-radius: 30px;
-      padding: 14px 0;
-      font-size: 15px;
+      padding: 12px 0;
+      font-size: 14px;
       font-weight: 800;
       cursor: pointer;
       text-align: center;
       transition: background-color 0.2s ease;
+      margin: 0 auto;
     }
     .btn-start-climb:active {
       background-color: #dddddd;
@@ -281,12 +285,12 @@
       <div class="brand-logo">
         <div class="brand-title">11FL?</div>
         <div class="brand-subtitle-main">Eleventh Floor</div>
-        <div class="brand-subtitle-sub">WORD CLIMB</div>
+        <div class="brand-subtitle-sub">Word Climb</div>
       </div>
       <button class="pill-btn">SOUND: OFF</button>
     </div>
 
-    <!-- Landing Screen (Matching Questions UI) -->
+    <!-- Landing Screen -->
     <div id="start-screen" class="landing-card">
       <div class="landing-elevator-shaft">
         <div class="landing-shaft-slot"></div>
@@ -304,7 +308,8 @@
 
       <div class="landing-tagline">
         CAN YOU REACH THE 11TH FLOOR?<br>
-        FAIL AND YOU'RE BACK TO THE GROUND FLOOR.
+        FAIL AND YOU'RE BACK TO THE<br>
+        GROUND FLOOR.
       </div>
 
       <button id="start-climb-btn" class="btn-start-climb">Start Climb</button>
@@ -345,6 +350,7 @@
     </div>
   </div>
 
+  <script src="words.js"></script>
   <script src="word-climb.js"></script>
 </body>
 </html>
