@@ -1,186 +1,257 @@
-const DEFAULT_FLOOR_1 = {
-  floor: 1,
-  letters: "CLEARINGS",
-  targetWordLength: 5,
-  validWords: ["CLEAR", "CLEAN", "GRAIN", "LEARN", "SIGNAL", "RAILS", "ANGEL", "RINGS"]
-};
+/* ==========================================
+   ELEVENTH FLOOR WORD CLIMB - GAME LOGIC
+   ========================================== */
 
-let currentFloorData = null;
-let currentGuess = "";
-let activeWheelButtons = [];
-
-async function loadAndPlayFloor(floorNum) {
-    if (floorNum > 10) {
-        const msgBox = document.getElementById("message-box");
-        if (msgBox) {
-            msgBox.style.color = "#2ecc71";
-            msgBox.innerText = "CLIMB COMPLETE! 11TH FLOOR REACHED!";
-        }
-        return;
-    }
-
-    const formattedNum = String(floorNum).padStart(2, '0');
-    const filePath = `assets/data/floors/floor_${formattedNum}.json`;
-
-    try {
-        const response = await fetch(filePath);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        
-        currentFloorData = await response.json();
-        setupGameSession(currentFloorData);
-    } catch (error) {
-        console.warn("Floor JSON not found, loading fallback floor:", error);
-        currentFloorData = { ...DEFAULT_FLOOR_1, floor: floorNum };
-        setupGameSession(currentFloorData);
-    }
-}
-
-function setupGameSession(floorData) {
-    currentGuess = "";
-    activeWheelButtons = [];
-    updateGuessDisplay();
+document.addEventListener('DOMContentLoaded', () => {
+    // DOM Elements
+    const startScreen = document.getElementById('start-screen');
+    const startBtn = document.getElementById('start-btn');
+    const gameCard = document.getElementById('game-card');
     
-    const msgBox = document.getElementById("message-box");
-    if (msgBox) msgBox.innerText = "";
+    const floorTag = document.getElementById('floor-tag');
+    const targetWordEl = document.getElementById('target-word');
+    const startWordEl = document.getElementById('start-word');
+    const wordHistoryEl = document.getElementById('word-history');
+    
+    const wordInput = document.getElementById('word-input');
+    const submitBtn = document.getElementById('submit-word-btn');
+    const messageDisplay = document.getElementById('message-display');
+    
+    const floorBlocks = document.querySelectorAll('.floor-block');
+    
+    // Modals
+    const statsBtn = document.getElementById('stats-btn');
+    const statsModal = document.getElementById('stats-modal');
+    const closeStatsBtn = document.getElementById('close-stats-btn');
+    
+    const victoryModal = document.getElementById('victory-modal');
+    const closeVictoryBtn = document.getElementById('close-victory-btn');
 
-    const floorText = document.getElementById("card-floor-text");
-    if (floorText) {
-        floorText.innerText = `FLOOR ${String(floorData.floor || 1).padStart(2, '0')}`;
-    }
+    // Stats Elements
+    const statPlayed = document.getElementById('stat-played');
+    const statWins = document.getElementById('stat-wins');
+    const statWinPct = document.getElementById('stat-win-pct');
+    const statStreak = document.getElementById('stat-streak');
+    const statBest = document.getElementById('stat-best');
 
-    const slotsContainer = document.getElementById("target-word-slots");
-    if (slotsContainer) {
-        slotsContainer.innerHTML = "";
-        const length = floorData.targetWordLength || 5;
-        for (let i = 0; i < length; i++) {
-            const slot = document.createElement("div");
-            slot.className = "target-slot";
-            slotsContainer.appendChild(slot);
+    // Game State
+    let currentFloor = 1;
+    let wordLadder = [];
+    let currentWord = "";
+    let targetWord = "";
+    let history = [];
+
+    // LocalStorage Keys
+    const STATS_KEY = '11fl_wordclimb_stats';
+
+    // Default Word Sequences (11 Floors = 10 Transitions)
+    const fallbackLadders = [
+        ["COLD", "CORD", "CARD", "WARD", "WARM", "WORM", "WORD", "WOOD", "GOOD", "GOAD", "GOAL"],
+        ["LEAD", "LOAD", "GOAD", "GOAL", "FOAL", "FOAM", "FORM", "FIRM", "FIRE", "FINE", "FIND"],
+        ["HEAD", "HEAL", "TEAL", "TEAM", "TRAM", "TRAP", "TRIP", "DRIP", "DROP", "CROP", "CROW"]
+    ];
+
+    function getDictionary() {
+        if (typeof WORDS !== 'undefined' && Array.isArray(WORDS) && WORDS.length > 0) {
+            return WORDS.map(w => w.toUpperCase());
         }
+        return [];
     }
 
-    const wheelContainer = document.getElementById("wheel-container");
-    if (wheelContainer) {
-        wheelContainer.innerHTML = "";
-        const letters = (floorData.letters || "CLEARINGS").split("");
-        const radius = 65;
-        const centerX = 90;
-        const centerY = 90;
-        const total = letters.length;
+    function initGame() {
+        currentFloor = 1;
+        const selectedLadder = fallbackLadders[Math.floor(Math.random() * fallbackLadders.length)];
+        wordLadder = selectedLadder;
+        currentWord = wordLadder[0];
+        targetWord = wordLadder[10];
+        history = [currentWord];
 
-        letters.forEach((char, index) => {
-            const angle = (index / total) * (2 * Math.PI) - (Math.PI / 2);
-            const x = centerX + radius * Math.cos(angle) - 20;
-            const y = centerY + radius * Math.sin(angle) - 20;
-
-            const btn = document.createElement("button");
-            btn.className = "wheel-letter-btn";
-            btn.innerText = char;
-            btn.style.position = "absolute";
-            btn.style.left = `${x}px`;
-            btn.style.top = `${y}px`;
-            btn.style.width = "40px";
-            btn.style.height = "40px";
-            btn.style.borderRadius = "50%";
-            btn.style.border = "1px solid #333";
-            btn.style.background = "#1c1c1c";
-            btn.style.color = "#fff";
-            btn.style.fontWeight = "bold";
-            btn.style.fontSize = "1rem";
-            btn.style.cursor = "pointer";
-
-            btn.addEventListener("click", () => {
-                if (currentGuess.length < (floorData.targetWordLength || 5)) {
-                    currentGuess += char;
-                    btn.style.opacity = "0.3";
-                    btn.disabled = true;
-                    activeWheelButtons.push(btn);
-                    updateGuessDisplay();
-                }
-            });
-
-            wheelContainer.appendChild(btn);
-        });
+        updateUI();
+        if (messageDisplay) messageDisplay.textContent = "";
+        if (wordInput) wordInput.value = "";
     }
 
-    const deleteBtn = document.getElementById("action-delete-btn");
-    if (deleteBtn) {
-        deleteBtn.onclick = () => {
-            if (currentGuess.length > 0) {
-                currentGuess = currentGuess.slice(0, -1);
-                const lastBtn = activeWheelButtons.pop();
-                if (lastBtn) {
-                    lastBtn.style.opacity = "1";
-                    lastBtn.disabled = false;
-                }
-                updateGuessDisplay();
+    function updateUI() {
+        // Update Floor Tag
+        if (floorTag) {
+            floorTag.textContent = `FLOOR ${String(currentFloor).padStart(2, '0')}`;
+        }
+
+        // Update Target & Start Words
+        if (targetWordEl) targetWordEl.textContent = targetWord;
+        if (startWordEl) startWordEl.textContent = wordLadder[0];
+
+        // Render Word History
+        if (wordHistoryEl) {
+            wordHistoryEl.innerHTML = history.map((w, idx) => {
+                const floorNum = String(idx + 1).padStart(2, '0');
+                return `<div class="word-step">F${floorNum}: ${w}</div>`;
+            }).join('');
+            wordHistoryEl.scrollTop = wordHistoryEl.scrollHeight;
+        }
+
+        // Update Elevator Shaft
+        floorBlocks.forEach(block => {
+            const f = parseInt(block.getAttribute('data-floor'), 10);
+            block.classList.remove('active', 'completed');
+            if (f === currentFloor) {
+                block.classList.add('active');
+            } else if (f < currentFloor) {
+                block.classList.add('completed');
             }
-        };
+        });
     }
 
-    const submitBtn = document.getElementById("action-submit-btn");
+    function isOneLetterDifference(word1, word2) {
+        if (word1.length !== word2.length) return false;
+        let diffs = 0;
+        for (let i = 0; i < word1.length; i++) {
+            if (word1[i] !== word2[i]) diffs++;
+        }
+        return diffs === 1;
+    }
+
+    function isValidWord(word) {
+        const dict = getDictionary();
+        if (dict.length > 0) {
+            return dict.includes(word);
+        }
+        return word.length === currentWord.length;
+    }
+
+    function handleWordSubmit() {
+        if (!wordInput) return;
+        const inputVal = wordInput.value.trim().toUpperCase();
+        wordInput.value = "";
+
+        if (!inputVal) {
+            showMessage("Please enter a word.");
+            return;
+        }
+
+        if (inputVal.length !== currentWord.length) {
+            showMessage(`Word must be ${currentWord.length} letters long.`);
+            return;
+        }
+
+        if (inputVal === currentWord) {
+            showMessage("Word matches current word.");
+            return;
+        }
+
+        if (!isOneLetterDifference(currentWord, inputVal)) {
+            showMessage("Change exactly ONE letter.");
+            return;
+        }
+
+        if (!isValidWord(inputVal)) {
+            showMessage("Word not in dictionary.");
+            return;
+        }
+
+        // Advance Floor
+        currentWord = inputVal;
+        history.push(currentWord);
+        currentFloor++;
+
+        showMessage("");
+        updateUI();
+
+        // Check Victory
+        if (currentFloor === 11 || currentWord === targetWord) {
+            handleVictory();
+        }
+    }
+
+    function showMessage(msg) {
+        if (messageDisplay) {
+            messageDisplay.textContent = msg;
+        }
+    }
+
+    function handleVictory() {
+        currentFloor = 11;
+        updateUI();
+        saveStats(true);
+        if (victoryModal) {
+            victoryModal.classList.remove('hidden');
+        }
+    }
+
+    // Stats Management
+    function loadStats() {
+        const data = localStorage.getItem(STATS_KEY);
+        if (data) {
+            try { return JSON.parse(data); } catch (e) { }
+        }
+        return { played: 0, wins: 0, streak: 0, bestPeak: 1 };
+    }
+
+    function saveStats(won) {
+        const stats = loadStats();
+        stats.played++;
+        if (won) {
+            stats.wins++;
+            stats.streak++;
+            stats.bestPeak = 11;
+        } else {
+            stats.streak = 0;
+            if (currentFloor > stats.bestPeak) {
+                stats.bestPeak = currentFloor;
+            }
+        }
+        localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+    }
+
+    function renderStats() {
+        const stats = loadStats();
+        if (statPlayed) statPlayed.textContent = stats.played;
+        if (statWins) statWins.textContent = stats.wins;
+        if (statWinPct) {
+            const pct = stats.played > 0 ? Math.round((stats.wins / stats.played) * 100) : 0;
+            statWinPct.textContent = `${pct}%`;
+        }
+        if (statStreak) statStreak.textContent = stats.streak;
+        if (statBest) statBest.textContent = stats.bestPeak;
+    }
+
+    // Event Listeners
+    if (startBtn) {
+        startBtn.addEventListener('click', () => {
+            if (startScreen) startScreen.classList.add('hidden');
+            if (gameCard) gameCard.classList.remove('hidden');
+            initGame();
+        });
+    }
+
     if (submitBtn) {
-        submitBtn.onclick = () => {
-            checkWordClimbGuess(floorData);
-        };
+        submitBtn.addEventListener('click', handleWordSubmit);
     }
-}
 
-function updateGuessDisplay() {
-    const display = document.getElementById("guess-display");
-    if (!display) return;
-    
-    display.innerHTML = currentGuess
-        .split("")
-        .map(c => `<span style="padding:4px 8px; background:#1c1c1c; border:1px solid #ff1f2d; border-radius:4px; font-weight:bold;">${c}</span>`)
-        .join("");
-}
-
-function checkWordClimbGuess(floorData) {
-    const msgBox = document.getElementById("message-box");
-    const valids = (floorData.validWords || []).map(w => w.toUpperCase());
-    
-    if (valids.includes(currentGuess.toUpperCase())) {
-        if (msgBox) {
-            msgBox.style.color = "#2ecc71";
-            msgBox.innerText = "CORRECT!";
-        }
-        setTimeout(() => {
-            loadAndPlayFloor((floorData.floor || 1) + 1);
-        }, 800);
-    } else {
-        if (msgBox) {
-            msgBox.style.color = "#ff1f2d";
-            msgBox.innerText = "INVALID WORD";
-        }
-        setTimeout(() => {
-            if (msgBox) msgBox.innerText = "";
-        }, 1000);
-    }
-}
-
-function setupScreenNavigation() {
-    const wordClimbBtn = document.getElementById("goto-wordclimb-btn");
-    const exitBtn = document.getElementById("exit-btn");
-    const landingScreen = document.getElementById("landing-screen");
-    const gameScreen = document.getElementById("game-screen");
-
-    if (wordClimbBtn) {
-        wordClimbBtn.addEventListener("click", () => {
-            if (landingScreen) landingScreen.style.display = "none";
-            if (gameScreen) gameScreen.style.display = "flex";
-            loadAndPlayFloor(1);
+    if (wordInput) {
+        wordInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                handleWordSubmit();
+            }
         });
     }
 
-    if (exitBtn) {
-        exitBtn.addEventListener("click", () => {
-            if (gameScreen) gameScreen.style.display = "none";
-            if (landingScreen) landingScreen.style.display = "flex";
+    if (statsBtn) {
+        statsBtn.addEventListener('click', () => {
+            renderStats();
+            if (statsModal) statsModal.classList.remove('hidden');
         });
     }
-}
 
-window.addEventListener("DOMContentLoaded", () => {
-    setupScreenNavigation();
+    if (closeStatsBtn) {
+        closeStatsBtn.addEventListener('click', () => {
+            if (statsModal) statsModal.classList.add('hidden');
+        });
+    }
+
+    if (closeVictoryBtn) {
+        closeVictoryBtn.addEventListener('click', () => {
+            if (victoryModal) victoryModal.classList.add('hidden');
+        });
+    }
 });
