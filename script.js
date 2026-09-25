@@ -135,7 +135,7 @@ function populateVault() {
         const paddedId = String(i).padStart(2, '0');
         const btn = document.createElement('button');
         btn.className = 'vault-item-btn';
-        btn.innerHTML = `<strong>SET ${paddedId}</strong><span>sandbox.${paddedId}.json</span>`;
+        btn.innerHTML = `<strong>Archive ${paddedId}</strong>`;
         btn.onclick = () => loadVaultSet(paddedId);
         vaultList.appendChild(btn);
     }
@@ -244,7 +244,7 @@ async function loadVaultSet(paddedId) {
         startGame();
     } else {
         console.error(`Failed to load ${filename}`);
-        alert(`Could not find ${filename}. Check that the file is uploaded to your repository.`);
+        alert(`Could not find Archive ${paddedId}. Check that sandbox.${paddedId}.json exists in your repository.`);
     }
 }
 
