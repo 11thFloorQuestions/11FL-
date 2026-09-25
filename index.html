@@ -36,6 +36,7 @@
                 <div class="shaft-box"></div>
                 <div class="shaft-box"></div>
                 <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
             </div>
 
             <p class="lobby-tagline">
@@ -59,8 +60,9 @@
         </header>
 
         <main class="game-layout">
-            <!-- Left Elevator Shaft Progress Bar -->
+            <!-- Left Elevator Shaft (11 Floor Blocks: Floor 11 Destination at top down to Floor 01) -->
             <div id="building-shaft" class="building-shaft">
+                <div class="floor-block" data-floor="11"></div>
                 <div class="floor-block" data-floor="10"></div>
                 <div class="floor-block" data-floor="9"></div>
                 <div class="floor-block" data-floor="8"></div>
@@ -109,7 +111,31 @@
 
     <div id="modal-vault" class="modal-overlay hidden">
         <div class="modal-card modal-large">
-            <h2>ARCHIVE VAULT</h2>
+            <h2>CAREER TELEMETRY</h2>
+            <div class="stats-summary-grid">
+                <div class="stat-box">
+                    <span id="stat-played" class="stat-val">0</span>
+                    <span class="stat-lbl">Played</span>
+                </div>
+                <div class="stat-box">
+                    <span id="stat-wins" class="stat-val">0</span>
+                    <span class="stat-lbl">Wins</span>
+                </div>
+                <div class="stat-box">
+                    <span id="stat-winrate" class="stat-val">0%</span>
+                    <span class="stat-lbl">Win %</span>
+                </div>
+                <div class="stat-box">
+                    <span id="stat-streak" class="stat-val">0</span>
+                    <span class="stat-lbl">Streak</span>
+                </div>
+                <div class="stat-box" style="grid-column: span 2;">
+                    <span id="stat-bestfloor" class="stat-val">FLOOR 01</span>
+                    <span class="stat-lbl">Best Peak</span>
+                </div>
+            </div>
+
+            <h3 style="font-size: 0.8rem; color: #737373; margin-top: 10px; text-transform: uppercase;">ARCHIVE VAULT</h3>
             <div id="vault-list" class="vault-grid"></div>
             <button id="btn-close-vault" class="btn-modal">CLOSE</button>
         </div>
