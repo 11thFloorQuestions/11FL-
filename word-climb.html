@@ -21,7 +21,7 @@
       align-items: center;
       height: 100vh;
       height: 100dvh;
-      padding: 8px 12px;
+      padding: 10px 16px;
       overflow: hidden;
     }
     .app-container {
@@ -31,7 +31,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 4px 0;
+      padding: 6px 0;
     }
 
     /* Centered Header Bar */
@@ -70,14 +70,7 @@
       line-height: 1.0;
       letter-spacing: -0.5px;
     }
-    /* Matched Subtitle Styling */
-    .brand-subtitle-main {
-      color: #ffffff;
-      font-size: 13px;
-      font-weight: 300;
-      letter-spacing: 2px;
-      margin-top: 3px;
-    }
+    .brand-subtitle-main, 
     .brand-subtitle-sub {
       color: #ffffff;
       font-size: 13px;
@@ -86,25 +79,25 @@
       margin-top: 2px;
     }
 
-    /* Landing Screen Layout */
+    /* Minimalist Landing Screen */
     .landing-card {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      padding: 10px 0;
+      justify-content: space-around;
+      padding: 16px 0;
     }
     .landing-elevator-shaft {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      width: 48px;
-      height: 130px;
+      width: 54px;
+      height: 160px;
       background-color: #000000;
       border: 1px solid #1a1a1a;
       border-radius: 6px;
-      padding: 3px;
+      padding: 4px;
       flex-shrink: 0;
     }
     .landing-shaft-slot {
@@ -113,59 +106,37 @@
       border-radius: 2px;
       background-color: #0a0a0a;
     }
+
+    /* Tagline / Rules Text Block */
     .landing-tagline {
-      color: #888888;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1.2px;
-      text-align: center;
-      line-height: 1.5;
-      max-width: 300px;
-      flex-shrink: 0;
-    }
-
-    /* Squeezed Rules Box */
-    .rules-box {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      background: #111111;
-      border: 1px solid #222222;
-      border-radius: 12px;
-      padding: 10px 12px;
-      width: 100%;
-      max-width: 330px;
-      text-align: left;
-      flex-shrink: 0;
-    }
-    .rule-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      font-size: 10px;
       color: #cccccc;
-      line-height: 1.35;
-    }
-    .rule-icon {
       font-size: 11px;
-      flex-shrink: 0;
+      font-weight: 300;
+      letter-spacing: 1.5px;
+      text-align: center;
+      line-height: 1.7;
+      max-width: 320px;
+      text-transform: uppercase;
+      padding: 0 10px;
+    }
+    .landing-tagline-highlight {
+      color: #ffffff;
+      font-weight: 400;
     }
 
-    /* Narrow Pill Button */
+    /* Centered Pill Button */
     .btn-start-climb {
       width: 200px;
       background-color: #ffffff;
       color: #000000;
       border: none;
-      border-radius: 25px;
-      padding: 11px 0;
+      border-radius: 30px;
+      padding: 12px 0;
       font-size: 14px;
       font-weight: 800;
       cursor: pointer;
       text-align: center;
       transition: background-color 0.2s ease;
-      margin-top: 4px;
-      flex-shrink: 0;
     }
     .btn-start-climb:active {
       background-color: #dddddd;
@@ -320,7 +291,7 @@
       <button class="pill-btn">SOUND: OFF</button>
     </div>
 
-    <!-- Landing Screen -->
+    <!-- Minimalist Landing Screen -->
     <div id="start-screen" class="landing-card">
       <div class="landing-elevator-shaft">
         <div class="landing-shaft-slot"></div>
@@ -337,27 +308,9 @@
       </div>
 
       <div class="landing-tagline">
-        CAN YOU REACH THE 11TH FLOOR?<br>
-        FAIL AND YOU'RE BACK TO THE GROUND FLOOR.
-      </div>
-
-      <div class="rules-box">
-        <div class="rule-item">
-          <span class="rule-icon">🧗</span>
-          <span>Ascend 10 floors with valid English words.</span>
-        </div>
-        <div class="rule-item">
-          <span class="rule-icon">🔤</span>
-          <span>Target length increases as you climb (5 to 9 letters).</span>
-        </div>
-        <div class="rule-item">
-          <span class="rule-icon">🔄</span>
-          <span>Letters are reusable. Tap 🔀 to shuffle the wheel.</span>
-        </div>
-        <div class="rule-item">
-          <span class="rule-icon">⚠️</span>
-          <span style="color: #ff1f2d; font-weight: 700;">ONE wrong submission resets you to Floor 01!</span>
-        </div>
+        <span class="landing-tagline-highlight">CAN YOU REACH THE 11TH FLOOR?</span><br>
+        Find a valid English word on every floor, from 5 to 9 letters. Reusing letters is allowed.<br>
+        Submit one wrong and you're back to the ground floor.
       </div>
 
       <button id="start-climb-btn" class="btn-start-climb">Start Climb</button>
