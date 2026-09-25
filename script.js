@@ -165,7 +165,7 @@ function populateVault() {
     if (!vaultList) return;
     
     vaultList.innerHTML = '';
-    for (let i = 1; i <= 50; i++) {
+    for (let i = 1; i <= 51; i++) { // Bumped vault count to 51
         const paddedId = String(i).padStart(2, '0');
         const btn = document.createElement('button');
         btn.className = 'vault-item-btn';
@@ -251,7 +251,7 @@ async function fetchFloorSequence() {
 
 async function startDailyClimb() {
     let data = await fetchFileWithFallbacks('questions.json');
-    if (!data) data = await fetchFileWithFallbacks('sandbox.50.json');
+    if (!data) data = await fetchFileWithFallbacks('sandbox.51.json');
     if (!data) data = await fetchFileWithFallbacks('sandbox.01.json');
 
     if (data) {
@@ -373,7 +373,6 @@ function handleAnswerSelect(isCorrect, buttonEl) {
     if (isCorrect) {
         if (buttonEl) buttonEl.classList.add('selected-correct');
         
-        // Increased delay from 500ms to 1000ms (1 full second)
         setTimeout(() => {
             if (gameState.currentFloor >= gameState.maxFloors) {
                 // Reached Destination Floor 11
