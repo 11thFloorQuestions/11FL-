@@ -1,0 +1,114 @@
+{
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which science-fiction author coined the term 'cyberspace' in his 1982 short story 'Burning Chrome' and popularized it in 'Neuromancer'?",
+      "options": [
+        "William Gibson",
+        "Philip K. Dick",
+        "Neal Stephenson",
+        "Isaac Asimov"
+      ],
+      "answer": "William Gibson"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "In typography, what specific name is given to the small decorative projections or strokes at the end of a letter's main vertical and horizontal stems?",
+      "options": [
+        "Serif",
+        "Sans",
+        "Kerning",
+        "Ligature"
+      ],
+      "answer": "Serif"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "Which iconic post-punk band released the landmark 1979 double album 'London Calling'?",
+      "options": [
+        "The Clash",
+        "Joy Division",
+        "Sex Pistols",
+        "The Cure"
+      ],
+      "answer": "The Clash"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "What is the primary organic polymer that gives structural strength to the cell walls of green plants?",
+      "options": [
+        "Cellulose",
+        "Keratin",
+        "Chitin",
+        "Collagen"
+      ],
+      "answer": "Cellulose"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "Which historic thoroughfare in London served as the traditional center of the British newspaper publishing industry for centuries?",
+      "options": [
+        "Fleet Street",
+        "Abbey Road",
+        "Baker Street",
+        "Lombard Street"
+      ],
+      "answer": "Fleet Street"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "Which mathematical constant, approximately equal to 1.618, is commonly referred to as the golden ratio?",
+      "options": [
+        "Phi",
+        "Pi",
+        "Euler's number",
+        "Lambda"
+      ],
+      "answer": "Phi"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "In analog photography and optics, what precise chemical compound is traditionally used as the light-sensitive component in photographic film emulsion?",
+      "options": [
+        "Silver halide",
+        "Sodium chloride",
+        "Copper sulfate",
+        "Zinc oxide"
+      ],
+      "answer": "Silver halide"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "Which architectural movement, prominent from the 1950s to the 1970s, is characterized by heavy, blocky structures built from raw, unadorned concrete?",
+      "options": [
+        "Brutalism",
+        "Art Deco",
+        "Bauhaus",
+        "Neoclassicism"
+      ],
+      "answer": "Brutalism"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "Which legendary jazz trumpeter and composer pioneered the modal jazz movement with his 1959 masterpiece album 'Kind of Blue'?",
+      "options": [
+        "Miles Davis",
+        "John Coltrane",
+        "Thelonious Monk",
+        "Charles Mingus"
+      ],
+      "answer": "Miles Davis"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "In networking terminology, what specific three-letter acronym refers to the standardized system that translates human-readable domain names into IP addresses?",
+      "options": [
+        "DNS",
+        "TCP",
+        "SSL",
+        "VPN"
+      ],
+      "answer": "DNS"
+    }
+  ]
+}
