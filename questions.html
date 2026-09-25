@@ -3,127 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Eleventh Floor Questions</title>
+    <title>11th Floor Questions</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="app-viewport">
-        <!-- Header Branding -->
-        <header class="game-header">
-            <a href="index.html" class="hub-back-btn" title="Return to Games Lobby">← LOBBY</a>
-            <div class="brand-container">
-                <span class="brand-logo-red">11FL?</span>
-                <div class="brand-text-group">
-                    <span class="brand-title">Eleventh Floor</span>
-                    <span class="brand-sub">QUESTIONS</span>
-                </div>
-            </div>
-            <button id="stats-btn" class="header-icon-btn" aria-label="Statistics">📊</button>
+    <!-- Lobby / Landing Screen -->
+    <div id="landing-screen" class="screen-container">
+        <header class="header-nav">
+            <a href="index.html" class="btn-nav" style="text-decoration: none; display: inline-flex; align-items: center;">← LOBBY</a>
+            <button id="btn-landing-stats" class="btn-nav">STATS / ARCHIVE</button>
+            <button id="btn-sound-toggle" class="btn-nav">SOUND: OFF</button>
         </header>
 
-        <!-- Main Viewport Area -->
-        <main class="game-container">
-            <!-- Elevator Shaft (Left Column) -->
-            <aside class="elevator-shaft" id="elevator-shaft">
-                <div class="floor-block" data-floor="11">F11</div>
-                <div class="floor-block" data-floor="10">F10</div>
-                <div class="floor-block" data-floor="9">F9</div>
-                <div class="floor-block" data-floor="8">F8</div>
-                <div class="floor-block" data-floor="7">F7</div>
-                <div class="floor-block" data-floor="6">F6</div>
-                <div class="floor-block" data-floor="5">F5</div>
-                <div class="floor-block" data-floor="4">F4</div>
-                <div class="floor-block" data-floor="3">F3</div>
-                <div class="floor-block" data-floor="2">F2</div>
-                <div class="floor-block active" data-floor="1">F1</div>
-            </aside>
+        <main class="landing-content">
+            <div class="logo-container">
+                <h1 class="logo-red">11FL?</h1>
+                <p class="logo-subtitle">Eleventh Floor</p>
+                <p class="logo-tagline">QUESTIONS</p>
+            </div>
 
-            <!-- Play Area (Right Column) -->
-            <section class="play-area">
-                <!-- Start / Splash State -->
-                <div id="start-screen" class="game-card start-card">
-                    <h2>READY TO CLIMB?</h2>
-                    <p>Answer 10 questions correctly to reach the 11th floor.</p>
-                    <div class="start-actions">
-                        <button id="start-btn" class="btn-primary">START CLIMB</button>
-                        <button id="archive-btn" class="btn-secondary">ARCHIVES</button>
+            <div class="lobby-shaft-graphic">
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+            </div>
+
+            <p class="lobby-tagline">
+                CAN YOU REACH THE 11TH FLOOR? FAIL AND YOU'RE BACK TO THE GROUND FLOOR.
+            </p>
+
+            <button id="btn-start-climb" class="btn-start-climb">Start Climb</button>
+        </main>
+    </div>
+
+    <!-- Active Game Screen -->
+    <div id="game-screen" class="screen-container" style="display: none;">
+        <header class="header-nav header-game">
+            <a href="index.html" id="btn-util-exit" class="btn-nav btn-exit" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">← LOBBY</a>
+            <div class="header-brand-center">
+                <h1 class="logo-red-small">11FL?</h1>
+                <p class="logo-subtitle-small">Eleventh Floor</p>
+                <p class="logo-tagline-small">QUESTIONS</p>
+            </div>
+            <button id="btn-sound-toggle-game" class="btn-nav">SOUND: OFF</button>
+        </header>
+
+        <main class="game-layout">
+            <!-- Left Elevator Shaft (11 Floor Blocks) -->
+            <div id="building-shaft" class="building-shaft">
+                <div class="floor-block" data-floor="11"></div>
+                <div class="floor-block" data-floor="10"></div>
+                <div class="floor-block" data-floor="9"></div>
+                <div class="floor-block" data-floor="8"></div>
+                <div class="floor-block" data-floor="7"></div>
+                <div class="floor-block" data-floor="6"></div>
+                <div class="floor-block" data-floor="5"></div>
+                <div class="floor-block" data-floor="4"></div>
+                <div class="floor-block" data-floor="3"></div>
+                <div class="floor-block" data-floor="2"></div>
+                <div class="floor-block" data-floor="1"></div>
+            </div>
+
+            <!-- Question Card Container -->
+            <section class="question-card">
+                <div class="card-header">
+                    <div id="card-floor-text" class="floor-indicator">FLOOR 01</div>
+                    <div class="timer-wrapper">
+                        <div id="timer-bar" class="timer-bar"></div>
                     </div>
                 </div>
 
-                <!-- Active Question State -->
-                <div id="question-card" class="game-card question-card hidden">
-                    <!-- Floor Badge & Timer Header -->
-                    <div class="card-top-bar">
-                        <span id="floor-tag" class="floor-tag">FLOOR 01</span>
-                        <div class="timer-container">
-                            <div id="timer-bar" class="timer-bar"></div>
-                        </div>
-                    </div>
+                <div id="question-text" class="question-text">Loading Question...</div>
 
-                    <!-- Question Text -->
-                    <p id="question-text" class="question-text">Loading question...</p>
-
-                    <!-- Answer Options -->
-                    <div id="options-container" class="options-container">
-                        <!-- Options injected dynamically by script.js -->
-                    </div>
+                <div class="options-grid">
+                    <button class="btn-option"></button>
+                    <button class="btn-option"></button>
+                    <button class="btn-option"></button>
+                    <button class="btn-option"></button>
                 </div>
             </section>
         </main>
     </div>
 
-    <!-- Stats Modal -->
-    <div id="stats-modal" class="modal-overlay hidden">
-        <div class="modal-content">
-            <button id="close-stats-btn" class="modal-close">&times;</button>
-            <h3>STATS</h3>
-            <div class="stats-grid">
-                <div class="stat-box">
-                    <span id="stat-played" class="stat-value">0</span>
-                    <span class="stat-label">Played</span>
-                </div>
-                <div class="stat-box">
-                    <span id="stat-wins" class="stat-value">0</span>
-                    <span class="stat-label">Wins</span>
-                </div>
-                <div class="stat-box">
-                    <span id="stat-win-pct" class="stat-value">0%</span>
-                    <span class="stat-label">Win %</span>
-                </div>
-                <div class="stat-box">
-                    <span id="stat-streak" class="stat-value">0</span>
-                    <span class="stat-label">Streak</span>
-                </div>
-                <div class="stat-box">
-                    <span id="stat-best" class="stat-value">0</span>
-                    <span class="stat-label">Best Peak</span>
-                </div>
+    <!-- Modals -->
+    <div id="modal-game-over" class="modal-overlay hidden">
+        <div class="modal-card">
+            <h2 id="game-over-title">ELEVATOR STOPPED</h2>
+            <p id="game-over-message">Incorrect Answer!</p>
+            <p id="final-floor-reached">Stopped at FLOOR 01</p>
+            <div class="modal-actions">
+                <button id="btn-try-again" class="btn-modal">TRY AGAIN</button>
+                <button id="btn-back-vault" class="btn-modal">VAULT</button>
             </div>
         </div>
     </div>
 
-    <!-- Archive Vault Modal -->
-    <div id="archive-modal" class="modal-overlay hidden">
-        <div class="modal-content archive-content">
-            <button id="close-archive-btn" class="modal-close">&times;</button>
+    <div id="modal-vault" class="modal-overlay hidden">
+        <div class="modal-card modal-large">
+            <h2>STATS</h2>
+            <div class="stats-summary-grid">
+                <div class="stat-box">
+                    <span id="stat-played" class="stat-val">0</span>
+                    <span class="stat-lbl">Played</span>
+                </div>
+                <div class="stat-box">
+                    <span id="stat-wins" class="stat-val">0</span>
+                    <span class="stat-lbl">Wins</span>
+                </div>
+                <div class="stat-box">
+                    <span id="stat-winrate" class="stat-val">0%</span>
+                    <span class="stat-lbl">Win %</span>
+                </div>
+                <div class="stat-box">
+                    <span id="stat-streak" class="stat-val">0</span>
+                    <span class="stat-lbl">Streak</span>
+                </div>
+                <div class="stat-box" style="grid-column: span 2;">
+                    <span id="stat-bestfloor" class="stat-val">FLOOR 01</span>
+                    <span class="stat-lbl">Best Peak</span>
+                </div>
+            </div>
+
             <h3>ARCHIVE VAULT</h3>
-            <div id="archive-grid" class="archive-grid">
-                <!-- Archive buttons injected dynamically by script.js -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Victory / Floor 11 Modal -->
-    <div id="victory-modal" class="modal-overlay hidden">
-        <div class="modal-content victory-content">
-            <button id="close-victory-btn" class="modal-close">&times;</button>
-            <p id="victory-message" class="victory-message">
-                <span class="congrats-green">Congratulations!</span> You've reached the 11th Floor.<br><br>Come back tomorrow to continue your streak.
-            </p>
+            <div id="vault-list" class="vault-grid"></div>
+            <button id="btn-close-vault" class="btn-modal">CLOSE</button>
         </div>
     </div>
 
