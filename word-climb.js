@@ -1,12 +1,10 @@
-// 11th Floor Word Climb - Final Game Logic
+// 11th Floor Word Climb - Final Game Engine
 
 let currentFloor = 1;
 let currentGuess = "";
 let isTransitioning = false;
-const dictionary = new Set();
-
-// Versatile letter pool capable of forming multi-length words
-const MASTER_LETTERS = ["A", "C", "E", "G", "I", "L", "N", "R", "S", "T"];
+let masterNineLetterWord = "";
+let wheelLetters = [];
 
 // Floor-by-floor required word length rules
 function getRequiredWordLength(floor) {
@@ -19,37 +17,58 @@ function getRequiredWordLength(floor) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    loadDictionaryAndInit();
+    initGameWithLoadedDictionary();
 });
 
-async function loadDictionaryAndInit() {
+function initGameWithLoadedDictionary() {
     showMessage("LOADING DICTIONARY...", false);
-    
-    try {
-        const response = await fetch("words.js");
-        if (response.ok) {
-            const text = await response.text();
-            const lines = text.split(/\r?\n/);
-            lines.forEach(line => {
-                const cleaned = line.replace(/[^a-zA-Z]/g, "").trim().toUpperCase();
-                if (cleaned.length >= 4) {
-                    dictionary.add(cleaned);
-                }
-            });
-        }
-    } catch (err) {
-        console.warn("External dictionary fallback mode active.");
-    }
 
-    initGame();
+    // Wait for words.js to finish populating window.WORD_LIST
+    let checkCount = 0;
+    const interval = setInterval(() => {
+        checkCount++;
+        if (window.WORD_LIST_LOADED && window.WORD_LIST && window.WORD_LIST.size > 0) {
+            clearInterval(interval);
+            startNewGame();
+        } else if (checkCount > 50) { // Fallback timeout (~5 seconds)
+            clearInterval(interval);
+            console.warn("Dictionary loading delayed, starting fallback mode.");
+            startNewGame();
+        }
+    }, 100);
 }
 
-function initGame() {
+function startNewGame() {
     currentFloor = 1;
     currentGuess = "";
     isTransitioning = false;
+
+    // Select a random 9-letter word from window.WORD_LIST for guaranteed solvability
+    selectMasterNineLetterWord();
+
     setupFloor(currentFloor);
     attachControlHandlers();
+}
+
+function selectMasterNineLetterWord() {
+    let nineLetterWords = [];
+    if (window.WORD_LIST && window.WORD_LIST.size > 0) {
+        window.WORD_LIST.forEach(word => {
+            if (word.length === 9) {
+                nineLetterWords.push(word);
+            }
+        });
+    }
+
+    if (nineLetterWords.length > 0) {
+        masterNineLetterWord = nineLetterWords[Math.floor(Math.random() * nineLetterWords.length)];
+    } else {
+        // Safe fallback 9-letter word if dictionary has none loaded
+        masterNineLetterWord = "CLEARINGS";
+    }
+
+    // Shuffle the 9 letters to place around the wheel
+    wheelLetters = masterNineLetterWord.split("").sort(() => Math.random() - 0.5);
 }
 
 function setupFloor(floor) {
@@ -75,8 +94,8 @@ function setupFloor(floor) {
     // Render Target Slots for Required Word Length
     renderTargetSlots(floor);
 
-    // Render Letter Wheel
-    renderWheel(MASTER_LETTERS);
+    // Render Letter Wheel (9 nodes)
+    renderWheel(wheelLetters);
 
     // Update Guess Display Box
     updateGuessDisplay();
@@ -131,7 +150,7 @@ function renderWheel(letters) {
     const radius = 65;
     const centerX = 90;
     const centerY = 90;
-    const total = letters.length;
+    const total = letters.length; // Exactly 9 letters
 
     letters.forEach((char, index) => {
         const angle = (index / total) * (2 * Math.PI) - (Math.PI / 2);
@@ -155,7 +174,7 @@ function renderWheel(letters) {
         btn.style.fontSize = "16px";
         btn.style.cursor = "pointer";
 
-        // Reusable letter logic: No button disabling or fading on tap
+        // Reusable letter logic: Letters remain active when clicked
         btn.addEventListener("click", () => {
             if (isTransitioning) return;
             const reqLen = getRequiredWordLength(currentFloor);
@@ -223,16 +242,18 @@ function handleSubmission() {
 
     const word = currentGuess.toUpperCase();
 
-    // Word validation
-    let isValid = true;
-    if (dictionary.size > 0) {
-        isValid = dictionary.has(word);
+    // Check if word exists in window.WORD_LIST
+    let isValid = false;
+    if (window.WORD_LIST && window.WORD_LIST.size > 0) {
+        isValid = window.WORD_LIST.has(word);
+    } else {
+        isValid = word.length === targetLen;
     }
 
     if (isValid) {
         isTransitioning = true;
         showMessage("VALID WORD! ASCENDING...", false);
-        
+
         fillTargetSlots(word);
 
         setTimeout(() => {
