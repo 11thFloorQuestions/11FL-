@@ -17,35 +17,43 @@ function getRequiredWordLength(floor) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Start downloading dictionary immediately when page loads
-    dictionaryPromise = loadDictionaryAtomic();
+    dictionaryPromise = loadDictionaryRobust();
     setupLandingScreen();
 });
 
-// Atomic loader: Reads the whole file into a local Set BEFORE setting window.WORD_LIST
-async function loadDictionaryAtomic() {
-    try {
-        const response = await fetch("./words.txt");
-        if (response.ok) {
-            const text = await response.text();
-            const fullSet = new Set();
-            const lines = text.split(/\r?\n/);
-            
-            for (let i = 0; i < lines.length; i++) {
-                const cleaned = lines[i].toUpperCase().replace(/[^A-Z]/g, "");
-                if (cleaned.length >= 3) {
-                    fullSet.add(cleaned);
+// Downloads and verifies words.txt cleanly across any connection
+async function loadDictionaryRobust() {
+    // If words.js already loaded window.WORD_LIST
+    if (window.WORD_LIST && window.WORD_LIST.size > 0) {
+        cleanDictionary();
+        return true;
+    }
+
+    const paths = ["./words.txt", "words.txt", "/words.txt"];
+    for (const path of paths) {
+        try {
+            const response = await fetch(path);
+            if (response.ok) {
+                const text = await response.text();
+                const fullSet = new Set();
+                const lines = text.split(/\r?\n/);
+                
+                for (let i = 0; i < lines.length; i++) {
+                    const cleaned = lines[i].toUpperCase().replace(/[^A-Z]/g, "");
+                    if (cleaned.length >= 3) {
+                        fullSet.add(cleaned);
+                    }
+                }
+
+                if (fullSet.size > 0) {
+                    window.WORD_LIST = fullSet;
+                    window.WORD_LIST_LOADED = true;
+                    return true;
                 }
             }
-
-            if (fullSet.size > 1000) {
-                window.WORD_LIST = fullSet;
-                window.WORD_LIST_LOADED = true;
-                return true;
-            }
+        } catch (err) {
+            console.warn(`[Word Climb] Path ${path} skipped:`, err);
         }
-    } catch (err) {
-        console.error("[Word Climb] Dictionary fetch error:", err);
     }
     return false;
 }
@@ -59,16 +67,29 @@ function setupLandingScreen() {
         startBtn.style.opacity = "0.7";
         startBtn.disabled = true;
 
-        // Ensure background dictionary download is 100% complete
         let success = await dictionaryPromise;
+        
+        // Polling retry if network latency delayed fetch
         if (!success || !window.WORD_LIST || window.WORD_LIST.size === 0) {
-            success = await loadDictionaryAtomic();
+            let polls = 0;
+            while (polls < 30) {
+                if (window.WORD_LIST && window.WORD_LIST.size > 0) {
+                    success = true;
+                    break;
+                }
+                await new Promise(r => setTimeout(r, 150));
+                polls++;
+            }
+            if (!success) {
+                success = await loadDictionaryRobust();
+            }
         }
 
         if (success && window.WORD_LIST && window.WORD_LIST.size > 0) {
+            cleanDictionary();
             launchGameWorkspace();
         } else {
-            startBtn.textContent = "Error Loading Words - Retry";
+            startBtn.textContent = "Retry";
             startBtn.style.opacity = "1";
             startBtn.disabled = false;
         }
@@ -85,6 +106,18 @@ function launchGameWorkspace() {
     if (gameControls) gameControls.style.display = "flex";
 
     startNewGame();
+}
+
+function cleanDictionary() {
+    if (!window.WORD_LIST) return;
+    const cleanedSet = new Set();
+    window.WORD_LIST.forEach(word => {
+        const cleaned = word.toUpperCase().replace(/[^A-Z]/g, "");
+        if (cleaned.length >= 3) {
+            cleanedSet.add(cleaned);
+        }
+    });
+    window.WORD_LIST = cleanedSet;
 }
 
 function startNewGame() {
