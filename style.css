@@ -22,28 +22,27 @@ body {
     height: 100dvh;
     width: 100%;
     max-width: 440px;
-    padding: 12px 16px;
+    padding: 10px 16px;
     margin: 0 auto;
 }
 
 /* Landing Navigation Header */
 .header-nav {
     display: flex;
-    justify-content: space-between; /* Fixed alignment */
+    justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding-bottom: 8px;
+    padding-bottom: 4px;
     flex-shrink: 0;
 }
 
-/* In-Game Header Grid Layout */
+/* In-Game Header Layout */
 .header-game {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
-    gap: 8px;
-    padding-bottom: 8px;
+    padding-bottom: 6px;
 }
 
 .btn-nav {
@@ -64,26 +63,54 @@ body {
     color: #ffffff;
 }
 
-.btn-exit {
-    justify-self: start;
+/* Unsquashed In-Game Brand Header */
+.header-brand-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
 }
 
-#btn-sound-toggle-game {
-    justify-self: end;
+.logo-red-small {
+    font-size: 1.85rem;
+    font-weight: 900;
+    color: #e50914;
+    line-height: 0.95;
+    letter-spacing: -1px;
 }
 
-/* Landing Logo Branding */
+.logo-subtitle-small {
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    margin-top: 3px;
+    text-transform: none; /* Title Case */
+}
+
+.logo-tagline-small {
+    font-size: 0.48rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 2.5px;
+    margin-top: 2px;
+    text-transform: uppercase;
+}
+
+/* Landing Page Logo Branding */
 .logo-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 6px;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     text-align: center;
 }
 
 .logo-red {
-    font-size: 3.4rem;
+    font-size: 3.6rem;
     font-weight: 900;
     color: #e50914;
     line-height: 0.95;
@@ -91,7 +118,7 @@ body {
 }
 
 .logo-subtitle {
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     font-weight: 300;
     color: #ffffff;
     letter-spacing: 1px;
@@ -100,7 +127,7 @@ body {
 }
 
 .logo-tagline {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 600;
     color: #ffffff;
     letter-spacing: 4px;
@@ -108,64 +135,26 @@ body {
     text-transform: uppercase;
 }
 
-/* In-Game Header Center Brand (Unsquashed) */
-.header-brand-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    justify-self: center;
-}
-
-.logo-red-small {
-    font-size: 1.5rem;
-    font-weight: 900;
-    color: #e50914;
-    line-height: 0.95;
-    letter-spacing: -0.5px;
-}
-
-.logo-subtitle-small {
-    font-size: 0.6rem;
-    font-weight: 300;
-    color: #ffffff;
-    letter-spacing: 0.5px;
-    margin-top: 2px;
-    line-height: 1;
-    text-transform: none;
-}
-
-.logo-tagline-small {
-    font-size: 0.42rem;
-    font-weight: 600;
-    color: #ffffff;
-    letter-spacing: 2px;
-    margin-top: 1px;
-    line-height: 1;
-    text-transform: uppercase;
-}
-
-/* Landing Page Main Content */
+/* Landing Main Content */
 .landing-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     flex-grow: 1;
-    padding-bottom: 20px;
+    padding-bottom: 16px;
     text-align: center;
 }
 
 .lobby-shaft-graphic {
     display: flex;
     flex-direction: column;
-    width: 42px;
-    height: 120px; /* Reduced graphic height */
+    width: 38px;
+    height: 110px;
     border: 1px solid #262626;
     border-radius: 4px;
     overflow: hidden;
-    margin: 12px 0;
+    margin: 8px 0;
     padding: 2px;
     gap: 2px;
     background-color: #000000;
@@ -178,13 +167,13 @@ body {
 }
 
 .lobby-tagline {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     font-weight: 600;
     color: #737373;
-    line-height: 1.45;
+    line-height: 1.4;
     letter-spacing: 1px;
     max-width: 280px;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
     text-transform: uppercase;
 }
 
@@ -199,25 +188,20 @@ body {
     cursor: pointer;
     width: 80%;
     max-width: 240px;
-    transition: transform 0.1s ease;
 }
 
-.btn-start-climb:active {
-    transform: scale(0.98);
-}
-
-/* In-Game Layout */
+/* In-Game Layout Container */
 .game-layout {
     display: flex;
     flex-grow: 1;
-    gap: 12px;
-    margin-top: 6px;
+    gap: 10px;
+    margin-top: 4px;
     overflow: hidden;
     min-height: 0;
     align-items: stretch;
 }
 
-/* Vertical Elevator Shaft */
+/* Vertical 11-Floor Elevator Shaft Tower */
 .building-shaft {
     display: flex;
     flex-direction: column;
@@ -247,31 +231,31 @@ body {
     background-color: #262626;
 }
 
-/* Question Card Frame */
+/* Compact Main Question Card Container */
 .question-card {
     flex: 1;
     background-color: #0c0c0c;
     border: 1px solid #262626;
     border-radius: 8px;
-    padding: 14px 14px;
+    padding: 12px 14px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     overflow: hidden;
     min-height: 0;
 }
 
 .card-header {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     flex-shrink: 0;
 }
 
 .floor-indicator {
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     font-weight: 800;
     color: #e50914;
     letter-spacing: 2px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     text-transform: uppercase;
 }
 
@@ -281,7 +265,7 @@ body {
     background-color: #1f1f1f;
     border-radius: 2px;
     overflow: hidden;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     flex-shrink: 0;
 }
 
@@ -292,30 +276,30 @@ body {
     transition: width 1s linear;
 }
 
-/* Preserved Font Size for Questions */
+/* Question Text Font Size Preserved */
 .question-text {
     font-size: 1.05rem;
     font-weight: 700;
     line-height: 1.38;
     color: #f5f5f5;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     text-align: left;
     flex-shrink: 0;
 }
 
-/* Options Grid - Styled & Centered */
+/* Options Grid */
 .options-grid {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin: auto 0;
+    margin-top: auto;
     flex-shrink: 0;
     width: 100%;
 }
 
 .btn-option {
     background-color: #141414;
-    border: 1px solid #e50914;
+    border: 1px solid #e50914; /* Thin Red Border */
     color: #ffffff;
     padding: 10px 14px;
     font-size: 0.85rem;
@@ -345,14 +329,14 @@ body {
     color: #ffffff !important;
 }
 
-/* Modals */
+/* Modals & Stats Styling */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.92);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -374,7 +358,38 @@ body {
 }
 
 .modal-large {
-    max-width: 480px;
+    max-width: 440px;
+}
+
+.stats-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 14px 0;
+    background: #080808;
+    border: 1px solid #222222;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.stat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-val {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #ffffff;
+}
+
+.stat-lbl {
+    font-size: 0.58rem;
+    color: #737373;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 2px;
 }
 
 .modal-actions {
@@ -399,21 +414,21 @@ body {
     color: #000000;
 }
 
-/* Vault Items Display */
+/* Vault Items Grid */
 .vault-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
     gap: 8px;
-    max-height: 280px;
+    max-height: 220px;
     overflow-y: auto;
-    margin: 16px 0;
+    margin: 12px 0;
 }
 
 .vault-item-btn {
     background-color: #141414;
     border: 1px solid #262626;
     color: #ffffff;
-    padding: 10px 8px;
+    padding: 10px 6px;
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -424,7 +439,7 @@ body {
 }
 
 .vault-item-btn strong {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 700;
 }
 
