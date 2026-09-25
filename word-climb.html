@@ -1,259 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>11th Floor Word Climb</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      user-select: none;
-    }
-    body {
-      background-color: #080808;
-      color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 12px;
-    }
-    .app-container {
-      width: 100%;
-      max-width: 380px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .top-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 4px 0;
-      width: 100%;
-    }
-    .pill-btn {
-      background: #121212;
-      border: 1px solid #2a2a2a;
-      border-radius: 14px;
-      color: #888888;
-      font-size: 11px;
-      font-weight: 600;
-      padding: 6px 14px;
-      cursor: pointer;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
-    .brand-logo {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      flex: 1;
-      margin: 0 8px;
-    }
-    .brand-title {
-      color: #ff1f2d;
-      font-size: 22px;
-      font-weight: 900;
-      line-height: 1.1;
-    }
-    .brand-subtitle-main {
-      color: #ffffff;
-      font-size: 8.5px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      margin-top: 2px;
-    }
-    .brand-subtitle-sub {
-      color: #666666;
-      font-size: 7.5px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      margin-top: 1px;
-    }
-    .workspace {
-      display: flex;
-      gap: 10px;
-      align-items: stretch;
-    }
-    .elevator-shaft {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 26px;
-      background-color: #0f0f0f;
-      border: 1px solid #1a1a1a;
-      border-radius: 12px;
-      padding: 6px 3px;
-    }
-    .elevator-slot {
-      height: 28px;
-      border: 1px solid #222222;
-      border-radius: 4px;
-      background-color: transparent;
-      transition: all 0.2s ease;
-      cursor: pointer;
-    }
-    .elevator-slot.active {
-      background-color: #ff1f2d;
-      border-color: #ff1f2d;
-      box-shadow: 0 0 8px rgba(255, 31, 45, 0.6);
-    }
-    .play-card {
-      flex: 1;
-      background-color: #111111;
-      border: 1px solid #1e1e1e;
-      border-radius: 18px;
-      padding: 14px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-    }
-    .card-header {
-      width: 100%;
-      text-align: left;
-      border-bottom: 1px solid #222222;
-      padding-bottom: 6px;
-      margin-bottom: 10px;
-      position: relative;
-    }
-    .card-floor-label {
-      color: #ff1f2d;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-    .card-header-line {
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 80px;
-      height: 2px;
-      background-color: #ff1f2d;
-    }
-    #message-box {
-      font-size: 11px;
-      font-weight: 800;
-      min-height: 18px;
-      margin-bottom: 6px;
-      text-align: center;
-    }
-    #target-word-slots {
-      display: flex;
-      gap: 6px;
-      justify-content: center;
-      margin-bottom: 8px;
-      min-height: 32px;
-      align-items: center;
-    }
-    .target-slot {
-      width: 26px;
-      height: 30px;
-      border: 1px solid #333333;
-      border-radius: 4px;
-      background: #181818;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 14px;
-      color: #ffffff;
-    }
-    .target-slot.revealed {
-      border-color: #2ecc71;
-      color: #2ecc71;
-      background: #122218;
-    }
-    #guess-display {
-      display: flex;
-      justify-content: center;
-      gap: 5px;
-      min-height: 32px;
-      margin-bottom: 6px;
-    }
-    #wheel-container {
-      width: 160px;
-      height: 160px;
-      position: relative;
-      margin: 4px 0;
-    }
-    .controls {
-      display: flex;
-      gap: 10px;
-    }
-    .btn-action {
-      flex: 1;
-      padding: 12px 10px;
-      border-radius: 16px;
-      border: 1px solid #ff1f2d;
-      background-color: #121212;
-      color: #ffffff;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      box-shadow: 0 0 6px rgba(255, 31, 45, 0.25);
-    }
-    .btn-action:active {
-      background-color: #1c1c1c;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Eleventh Floor Questions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app-container">
-    <div class="top-header">
-      <a href="index.html" class="pill-btn">Exit</a>
-      <div class="brand-logo">
-        <div class="brand-title">11FL?</div>
-        <div class="brand-subtitle-main">ELEVENTH FLOOR</div>
-        <div class="brand-subtitle-sub">WORD CLIMB</div>
-      </div>
-      <button class="pill-btn">SOUND: OFF</button>
+
+    <div class="app-viewport">
+        <!-- Header Branding -->
+        <header class="game-header">
+            <a href="index.html" class="hub-back-btn" title="Return to Games Lobby">← LOBBY</a>
+            <div class="brand-container">
+                <span class="brand-logo-red">11FL?</span>
+                <div class="brand-text-group">
+                    <span class="brand-title">Eleventh Floor</span>
+                    <span class="brand-sub">QUESTIONS</span>
+                </div>
+            </div>
+            <button id="stats-btn" class="header-icon-btn" aria-label="Statistics">📊</button>
+        </header>
+
+        <!-- Main Viewport Area -->
+        <main class="game-container">
+            <!-- Elevator Shaft (Left Column) -->
+            <aside class="elevator-shaft" id="elevator-shaft">
+                <div class="floor-block" data-floor="11">F11</div>
+                <div class="floor-block" data-floor="10">F10</div>
+                <div class="floor-block" data-floor="9">F9</div>
+                <div class="floor-block" data-floor="8">F8</div>
+                <div class="floor-block" data-floor="7">F7</div>
+                <div class="floor-block" data-floor="6">F6</div>
+                <div class="floor-block" data-floor="5">F5</div>
+                <div class="floor-block" data-floor="4">F4</div>
+                <div class="floor-block" data-floor="3">F3</div>
+                <div class="floor-block" data-floor="2">F2</div>
+                <div class="floor-block active" data-floor="1">F1</div>
+            </aside>
+
+            <!-- Play Area (Right Column) -->
+            <section class="play-area">
+                <!-- Start / Splash State -->
+                <div id="start-screen" class="game-card start-card">
+                    <h2>READY TO CLIMB?</h2>
+                    <p>Answer 10 questions correctly to reach the 11th floor.</p>
+                    <div class="start-actions">
+                        <button id="start-btn" class="btn-primary">START CLIMB</button>
+                        <button id="archive-btn" class="btn-secondary">ARCHIVES</button>
+                    </div>
+                </div>
+
+                <!-- Active Question State -->
+                <div id="question-card" class="game-card question-card hidden">
+                    <!-- Floor Badge & Timer Header -->
+                    <div class="card-top-bar">
+                        <span id="floor-tag" class="floor-tag">FLOOR 01</span>
+                        <div class="timer-container">
+                            <div id="timer-bar" class="timer-bar"></div>
+                        </div>
+                    </div>
+
+                    <!-- Question Text -->
+                    <p id="question-text" class="question-text">Loading question...</p>
+
+                    <!-- Answer Options -->
+                    <div id="options-container" class="options-container">
+                        <!-- Options injected dynamically by script.js -->
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
 
-    <div class="workspace">
-      <div class="elevator-shaft">
-        <div class="elevator-slot" data-floor="11"></div>
-        <div class="elevator-slot" data-floor="10"></div>
-        <div class="elevator-slot" data-floor="9"></div>
-        <div class="elevator-slot" data-floor="8"></div>
-        <div class="elevator-slot" data-floor="7"></div>
-        <div class="elevator-slot" data-floor="6"></div>
-        <div class="elevator-slot" data-floor="5"></div>
-        <div class="elevator-slot" data-floor="4"></div>
-        <div class="elevator-slot" data-floor="3"></div>
-        <div class="elevator-slot" data-floor="2"></div>
-        <div class="elevator-slot" data-floor="1"></div>
-      </div>
-
-      <div class="play-card">
-        <div class="card-header">
-          <span id="card-floor-text" class="card-floor-label">FLOOR 01</span>
-          <div class="card-header-line"></div>
+    <!-- Stats Modal -->
+    <div id="stats-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button id="close-stats-btn" class="modal-close">&times;</button>
+            <h3>STATS</h3>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span id="stat-played" class="stat-value">0</span>
+                    <span class="stat-label">Played</span>
+                </div>
+                <div class="stat-box">
+                    <span id="stat-wins" class="stat-value">0</span>
+                    <span class="stat-label">Wins</span>
+                </div>
+                <div class="stat-box">
+                    <span id="stat-win-pct" class="stat-value">0%</span>
+                    <span class="stat-label">Win %</span>
+                </div>
+                <div class="stat-box">
+                    <span id="stat-streak" class="stat-value">0</span>
+                    <span class="stat-label">Streak</span>
+                </div>
+                <div class="stat-box">
+                    <span id="stat-best" class="stat-value">0</span>
+                    <span class="stat-label">Best Peak</span>
+                </div>
+            </div>
         </div>
-        <div id="message-box"></div>
-        <div id="target-word-slots"></div>
-        <div id="guess-display"></div>
-        <div id="wheel-container"></div>
-      </div>
     </div>
 
-    <div class="controls">
-      <button id="action-delete-btn" class="btn-action"><span>⌫</span> DELETE</button>
-      <button id="action-submit-btn" class="btn-action"><span>↵</span> SUBMIT</button>
+    <!-- Archive Vault Modal -->
+    <div id="archive-modal" class="modal-overlay hidden">
+        <div class="modal-content archive-content">
+            <button id="close-archive-btn" class="modal-close">&times;</button>
+            <h3>ARCHIVE VAULT</h3>
+            <div id="archive-grid" class="archive-grid">
+                <!-- Archive buttons injected dynamically by script.js -->
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script src="word-climb.js"></script>
+    <!-- Victory / Floor 11 Modal -->
+    <div id="victory-modal" class="modal-overlay hidden">
+        <div class="modal-content victory-content">
+            <button id="close-victory-btn" class="modal-close">&times;</button>
+            <p id="victory-message" class="victory-message">
+                <span class="congrats-green">Congratulations!</span> You've reached the 11th Floor.<br><br>Come back tomorrow to continue your streak.
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
