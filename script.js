@@ -373,6 +373,7 @@ function handleAnswerSelect(isCorrect, buttonEl) {
     if (isCorrect) {
         if (buttonEl) buttonEl.classList.add('selected-correct');
         
+        // Increased delay from 500ms to 1000ms (1 full second)
         setTimeout(() => {
             if (gameState.currentFloor >= gameState.maxFloors) {
                 // Reached Destination Floor 11
@@ -386,13 +387,13 @@ function handleAnswerSelect(isCorrect, buttonEl) {
                 updateFloorUI();
                 loadNextQuestion();
             }
-        }, 500);
+        }, 1000);
     } else {
         if (buttonEl) buttonEl.classList.add('selected-wrong');
         
         setTimeout(() => {
             handleGameOver('INCORRECT ANSWER');
-        }, 500);
+        }, 800);
     }
 }
 
