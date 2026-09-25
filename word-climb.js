@@ -22,54 +22,31 @@ document.addEventListener("DOMContentLoaded", () => {
 async function loadFullDictionaryAndStart() {
     showMessage("LOADING DICTIONARY...", false);
 
-    // 1. Wait if words.js has already completed its full load flag
-    if (window.WORD_LIST_LOADED && window.WORD_LIST && window.WORD_LIST.size > 1000) {
-        cleanAndStart();
-        return;
-    }
-
-    // 2. Fetch words.txt directly as a single complete text payload (no partial loading)
-    try {
-        const response = await fetch("words.txt");
-        if (response.ok) {
-            const text = await response.text();
-            const tempSet = new Set();
-            
-            const lines = text.split(/\r?\n/);
-            for (let i = 0; i < lines.length; i++) {
-                const cleaned = lines[i].toUpperCase().replace(/[^A-Z]/g, "");
-                if (cleaned.length >= 3) {
-                    tempSet.add(cleaned);
-                }
-            }
-
-            if (tempSet.size > 1000) {
-                window.WORD_LIST = tempSet;
-                window.WORD_LIST_LOADED = true;
-                startNewGame();
-                return;
-            }
-        }
-    } catch (err) {
-        console.warn("[Word Climb] Atomic load failed, falling back to window polling:", err);
-    }
-
-    // 3. Fallback poll strictly requiring >10,000 words in memory before starting
+    const startTime = Date.now();
     let seconds = 0;
-    for (let i = 0; i < 100; i++) {
-        if (i % 5 === 0) {
-            seconds++;
+
+    // Wait strictly for words.js to finish downloading words.txt and set window.WORD_LIST_LOADED
+    while (!window.WORD_LIST_LOADED) {
+        const elapsedSec = Math.floor((Date.now() - startTime) / 1000);
+        if (elapsedSec !== seconds) {
+            seconds = elapsedSec;
             showMessage(`LOADING DICTIONARY... ${seconds}s`, false);
         }
 
-        if (window.WORD_LIST && window.WORD_LIST.size > 10000) {
-            cleanAndStart();
+        // Timeout fallback after 45 seconds
+        if (elapsedSec > 45) {
+            showMessage("DICTIONARY ERROR. REFRESH PAGE.", true);
             return;
         }
-        await new Promise(r => setTimeout(r, 200));
+
+        await new Promise(r => setTimeout(r, 150));
     }
 
-    showMessage("DICTIONARY ERROR. REFRESH PAGE.", true);
+    if (window.WORD_LIST && window.WORD_LIST.size > 0) {
+        cleanAndStart();
+    } else {
+        showMessage("DICTIONARY ERROR. REFRESH PAGE.", true);
+    }
 }
 
 function cleanAndStart() {
