@@ -22,16 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
 async function loadDictionaryAndStart() {
     showMessage("LOADING DICTIONARY...", false);
 
-    // 1. Check if window.WORD_LIST is already populated by words.js
-    if (window.WORD_LIST && window.WORD_LIST.size > 0) {
-        cleanDictionary();
-        startNewGame();
-        return;
-    }
-
-    // 2. Poll up to 15 seconds to give words.txt enough time to download on mobile networks
-    for (let i = 0; i < 150; i++) {
-        if ((window.WORD_LIST_LOADED || (window.WORD_LIST && window.WORD_LIST.size > 0))) {
+    // 1. Wait strictly for words.js to finish setting window.WORD_LIST_LOADED = true
+    for (let i = 0; i < 200; i++) { // Up to 20 seconds wait on slow connections
+        if (window.WORD_LIST_LOADED && window.WORD_LIST && window.WORD_LIST.size > 0) {
             cleanDictionary();
             startNewGame();
             return;
@@ -39,18 +32,19 @@ async function loadDictionaryAndStart() {
         await new Promise(r => setTimeout(r, 100));
     }
 
-    // 3. Fallback direct fetch if words.js hasn't populated window.WORD_LIST
+    // 2. Direct fetch fallback if words.js didn't complete
     try {
-        const response = await fetch("words.txt");
+        const response = await fetch("./words.txt");
         if (response.ok) {
             const text = await response.text();
-            if (!window.WORD_LIST) window.WORD_LIST = new Set();
+            window.WORD_LIST = new Set();
             text.split(/\r?\n/).forEach(rawWord => {
                 const cleaned = rawWord.toUpperCase().replace(/[^A-Z]/g, "");
                 if (cleaned.length >= 3) {
                     window.WORD_LIST.add(cleaned);
                 }
             });
+            window.WORD_LIST_LOADED = true;
             if (window.WORD_LIST.size > 0) {
                 startNewGame();
                 return;
