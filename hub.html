@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eleventh Floor Games</title>
+    <title>Eleventh Floor Games Lobby</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700;900&display=swap" rel="stylesheet">
@@ -18,6 +18,7 @@
             color: #ffffff;
             font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -34,9 +35,10 @@
         .hub-logo-red {
             font-size: 6.5rem;
             font-weight: 900;
-            color: #ff0000;
+            color: #e50914;
             line-height: 0.9;
             letter-spacing: -2px;
+            text-shadow: 0 0 20px rgba(229, 9, 20, 0.3);
         }
         .hub-logo-title {
             font-size: 2.2rem;
@@ -49,42 +51,42 @@
             font-size: 1.1rem;
             font-weight: 600;
             color: #ffffff;
-            letter-spacing: 5px;
+            letter-spacing: 6px;
             margin-top: 6px;
             text-transform: uppercase;
+            opacity: 0.9;
         }
         .hub-menu-box {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 18px;
             width: 100%;
-            max-width: 320px;
+            max-width: 340px;
         }
         .btn-hub-option {
             display: block;
             background-color: transparent;
-            border: 2px solid #ffffff;
+            border: 2px solid #e50914;
             color: #ffffff;
-            padding: 16px 20px;
+            padding: 18px 20px;
             font-size: 1.1rem;
             font-weight: 700;
             text-decoration: none;
             cursor: pointer;
-            border-radius: 6px;
+            border-radius: 8px;
             transition: all 0.2s ease-in-out;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         }
         .btn-hub-option:hover {
-            background-color: #ffffff;
-            color: #000000;
-        }
-        .btn-disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        .btn-disabled:hover {
-            background-color: transparent;
+            background-color: #e50914;
             color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(229, 9, 20, 0.4);
+        }
+        .btn-hub-option:active {
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -93,12 +95,14 @@
     <div class="hub-logo-box">
         <h1 class="hub-logo-red">11FL?</h1>
         <p class="hub-logo-title">Eleventh Floor</p>
-        <p class="hub-logo-sub">GAMES</p>
+        <p class="hub-logo-sub">GAMES LOBBY</p>
     </div>
 
     <div class="hub-menu-box">
+        <!-- Game 1 -->
         <a href="index.html" class="btn-hub-option">11th Floor Questions</a>
-        <a href="#" class="btn-hub-option btn-disabled" onclick="alert('11th Floor Word Climb is coming soon!'); return false;">11th Floor Word Climb</a>
+        <!-- Game 2 -->
+        <a href="word-climb.html" class="btn-hub-option">11th Floor Word Climb</a>
     </div>
 
 </body>
