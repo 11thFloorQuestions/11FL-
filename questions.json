@@ -2,113 +2,113 @@
   "floors": [
     {
       "tier": "FLOOR 01",
-      "question": "Which science-fiction author coined the term 'cyberspace' in his 1982 short story 'Burning Chrome' and popularized it in 'Neuromancer'?",
+      "question": "Which planet in our solar system is known for having the most extensive and visually prominent planetary ring system?",
       "options": [
-        "William Gibson",
-        "Philip K. Dick",
-        "Neal Stephenson",
-        "Isaac Asimov"
+        "Saturn",
+        "Jupiter",
+        "Uranus",
+        "Neptune"
       ],
-      "answer": "William Gibson"
+      "answer": "Saturn"
     },
     {
       "tier": "FLOOR 02",
-      "question": "In typography, what specific name is given to the small decorative projections or strokes at the end of a letter's main vertical and horizontal stems?",
+      "question": "Which Renaissance polymath painted the world-famous 16th-century portrait known as the Mona Lisa?",
       "options": [
-        "Serif",
-        "Sans",
-        "Kerning",
-        "Ligature"
+        "Leonardo da Vinci",
+        "Michelangelo",
+        "Raphael",
+        "Sandro Botticelli"
       ],
-      "answer": "Serif"
+      "answer": "Leonardo da Vinci"
     },
     {
       "tier": "FLOOR 03",
-      "question": "Which iconic post-punk band released the landmark 1979 double album 'London Calling'?",
+      "question": "What fundamental SI unit is used globally to measure electrical current?",
       "options": [
-        "The Clash",
-        "Joy Division",
-        "Sex Pistols",
-        "The Cure"
+        "Ampere",
+        "Volt",
+        "Ohm",
+        "Watt"
       ],
-      "answer": "The Clash"
+      "answer": "Ampere"
     },
     {
       "tier": "FLOOR 04",
-      "question": "What is the primary organic polymer that gives structural strength to the cell walls of green plants?",
+      "question": "Which dystopian 1949 novel by George Orwell introduced terms like 'Big Brother', 'Doublethink', and 'Thoughtpolice'?",
       "options": [
-        "Cellulose",
-        "Keratin",
-        "Chitin",
-        "Collagen"
+        "1984",
+        "Brave New World",
+        "Fahrenheit 451",
+        "Animal Farm"
       ],
-      "answer": "Cellulose"
+      "answer": "1984"
     },
     {
       "tier": "FLOOR 05",
-      "question": "Which historic thoroughfare in London served as the traditional center of the British newspaper publishing industry for centuries?",
+      "question": "Which African nation is completely surrounded by the territory of South Africa?",
       "options": [
-        "Fleet Street",
-        "Abbey Road",
-        "Baker Street",
-        "Lombard Street"
+        "Lesotho",
+        "Eswatini",
+        "Botswana",
+        "Namibia"
       ],
-      "answer": "Fleet Street"
+      "answer": "Lesotho"
     },
     {
       "tier": "FLOOR 06",
-      "question": "Which mathematical constant, approximately equal to 1.618, is commonly referred to as the golden ratio?",
+      "question": "What element on the periodic table has the chemical symbol 'Au' and atomic number 79?",
       "options": [
-        "Phi",
-        "Pi",
-        "Euler's number",
-        "Lambda"
+        "Gold",
+        "Silver",
+        "Copper",
+        "Platinum"
       ],
-      "answer": "Phi"
+      "answer": "Gold"
     },
     {
       "tier": "FLOOR 07",
-      "question": "In analog photography and optics, what precise chemical compound is traditionally used as the light-sensitive component in photographic film emulsion?",
+      "question": "Which French philosopher famously authored the statement 'Cogito, ergo sum' ('I think, therefore I am') in his Discourse on the Method?",
       "options": [
-        "Silver halide",
-        "Sodium chloride",
-        "Copper sulfate",
-        "Zinc oxide"
+        "René Descartes",
+        "Voltaire",
+        "Jean-Paul Sartre",
+        "Blaise Pascal"
       ],
-      "answer": "Silver halide"
+      "answer": "René Descartes"
     },
     {
       "tier": "FLOOR 08",
-      "question": "Which architectural movement, prominent from the 1950s to the 1970s, is characterized by heavy, blocky structures built from raw, unadorned concrete?",
+      "question": "Which ocean trench contains the Challenger Deep, the deepest known point in Earth's seabed?",
       "options": [
-        "Brutalism",
-        "Art Deco",
-        "Bauhaus",
-        "Neoclassicism"
+        "Mariana Trench",
+        "Puerto Rico Trench",
+        "Java Trench",
+        "Tonga Trench"
       ],
-      "answer": "Brutalism"
+      "answer": "Mariana Trench"
     },
     {
       "tier": "FLOOR 09",
-      "question": "Which legendary jazz trumpeter and composer pioneered the modal jazz movement with his 1959 masterpiece album 'Kind of Blue'?",
+      "question": "Which Austrian theoretical physicist formulated the fundamental wave equation that describes quantum mechanical states?",
       "options": [
-        "Miles Davis",
-        "John Coltrane",
-        "Thelonious Monk",
-        "Charles Mingus"
+        "Erwin Schrödinger",
+        "Werner Heisenberg",
+        "Max Planck",
+        "Niels Bohr"
       ],
-      "answer": "Miles Davis"
+      "answer": "Erwin Schrödinger"
     },
     {
       "tier": "FLOOR 10",
-      "question": "In networking terminology, what specific three-letter acronym refers to the standardized system that translates human-readable domain names into IP addresses?",
+      "question": "In ancient history, which treaty signed in 1274 BC between Ramses II and Hattusili III is widely recognized as the earliest surviving international peace treaty?",
       "options": [
-        "DNS",
-        "TCP",
-        "SSL",
-        "VPN"
+        "Treaty of Kadesh",
+        "Treaty of Verdun",
+        "Edict of Milan",
+        "Peace of Callias"
       ],
-      "answer": "DNS"
+      "answer": "Treaty of Kadesh"
     }
   ]
 }
