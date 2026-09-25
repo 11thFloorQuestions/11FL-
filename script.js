@@ -34,12 +34,12 @@ function shuffleArray(array) {
 
 
 // ==========================================
-// 2. STATE MANAGEMENT
+// 2. STATE MANAGEMENT & STATS PERSISTENCE
 // ==========================================
 
 const gameState = {
     currentFloor: 1,
-    maxFloors: 10,
+    maxFloors: 10, // 10 questions to reach Destination Floor 11
     soundEnabled: false,
     timer: null,
     timeLeft: 15,
@@ -52,6 +52,27 @@ const gameState = {
         bestFloor: 1
     }
 };
+
+function loadSavedStats() {
+    try {
+        const saved = localStorage.getItem('11fl_stats');
+        if (saved) {
+            gameState.stats = { ...gameState.stats, ...JSON.parse(saved) };
+        }
+    } catch (e) {
+        console.warn('Could not load stats from localStorage.');
+    }
+}
+
+function saveStats() {
+    try {
+        localStorage.setItem('11fl_stats', JSON.stringify(gameState.stats));
+    } catch (e) {
+        console.warn('Could not save stats to localStorage.');
+    }
+}
+
+loadSavedStats();
 
 
 // ==========================================
@@ -94,7 +115,7 @@ safeAddListener('btn-sound-toggle-game', 'click', toggleSound);
 
 
 // ==========================================
-// 5. MODAL & VAULT CONTROLS
+// 5. MODAL, STATS & VAULT CONTROLS
 // ==========================================
 
 safeAddListener('btn-landing-stats', 'click', () => openVault());
@@ -122,8 +143,21 @@ function closeModal(modalId) {
 }
 
 function openVault() {
+    renderStatsUI();
     populateVault();
     openModal('modal-vault');
+}
+
+function renderStatsUI() {
+    const winRate = gameState.stats.played > 0 
+        ? Math.round((gameState.stats.wins / gameState.stats.played) * 100) 
+        : 0;
+
+    safeSetText('stat-played', gameState.stats.played);
+    safeSetText('stat-wins', gameState.stats.wins);
+    safeSetText('stat-winrate', `${winRate}%`);
+    safeSetText('stat-streak', gameState.stats.streak);
+    safeSetText('stat-bestfloor', `FLOOR ${String(gameState.stats.bestFloor).padStart(2, '0')}`);
 }
 
 function populateVault() {
@@ -194,7 +228,7 @@ async function fetchFileWithFallbacks(filename) {
                 return await res.json();
             }
         } catch (e) {
-            // Path attempt failed; try next candidate
+            // Path attempt failed; continue
         }
     }
     return null;
@@ -250,7 +284,7 @@ async function loadVaultSet(paddedId) {
 
 
 // ==========================================
-// 7. GAME LOOP & TIMERS
+// 7. GAME LOOP & ELEVATOR PROGRESSION
 // ==========================================
 
 function startGame() {
@@ -273,6 +307,7 @@ function updateFloorUI() {
     const floorStr = String(gameState.currentFloor).padStart(2, '0');
     safeSetText('card-floor-text', `FLOOR ${floorStr}`);
     
+    // Updates 11 elevator blocks (Floors 1 through 11)
     document.querySelectorAll('.floor-block').forEach(block => {
         const floorNum = parseInt(block.getAttribute('data-floor'), 10);
         block.classList.toggle('active-floor', floorNum === gameState.currentFloor);
@@ -340,10 +375,14 @@ function handleAnswerSelect(isCorrect, buttonEl) {
         
         setTimeout(() => {
             if (gameState.currentFloor >= gameState.maxFloors) {
+                // Reached Destination Floor 11
                 handleVictory();
             } else {
                 gameState.currentFloor++;
                 gameState.currentQuestionIndex++;
+                if (gameState.currentFloor > gameState.stats.bestFloor) {
+                    gameState.stats.bestFloor = gameState.currentFloor;
+                }
                 updateFloorUI();
                 loadNextQuestion();
             }
@@ -360,6 +399,7 @@ function handleAnswerSelect(isCorrect, buttonEl) {
 function handleGameOver(reason) {
     gameState.stats.played++;
     gameState.stats.streak = 0;
+    saveStats();
     
     safeSetText('game-over-title', 'ELEVATOR STOPPED');
     safeSetText('game-over-message', reason);
@@ -369,12 +409,17 @@ function handleGameOver(reason) {
 }
 
 function handleVictory() {
+    gameState.currentFloor = 11;
     gameState.stats.played++;
     gameState.stats.wins++;
     gameState.stats.streak++;
+    gameState.stats.bestFloor = 11;
+    saveStats();
     
-    safeSetText('game-over-title', 'WELCOME TO THE 11TH FLOOR!');
-    safeSetText('game-over-message', 'You completed all 10 floors!');
+    updateFloorUI();
+    
+    safeSetText('game-over-title', '11TH FLOOR REACHED');
+    safeSetText('game-over-message', "Congratulations! You've reached the 11th floor.");
     safeSetText('final-floor-reached', 'FLOOR 11 CLEARED');
     
     openModal('modal-game-over');
