@@ -22,8 +22,9 @@ body {
     height: 100dvh;
     width: 100%;
     max-width: 440px;
-    padding: 10px 16px;
+    padding: 12px 16px;
     margin: 0 auto;
+    justify-content: flex-start;
 }
 
 /* Landing Navigation Header */
@@ -32,17 +33,19 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding-bottom: 4px;
+    padding-bottom: 6px;
     flex-shrink: 0;
 }
 
-/* In-Game Header Layout */
+/* In-Game Navigation Header Grid */
 .header-game {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 70px 1fr 70px;
     align-items: center;
     width: 100%;
-    padding-bottom: 6px;
+    margin-top: 4px;
+    margin-bottom: 12px;
+    flex-shrink: 0;
 }
 
 .btn-nav {
@@ -63,40 +66,47 @@ body {
     color: #ffffff;
 }
 
-/* Unsquashed In-Game Brand Header */
+.btn-exit {
+    justify-self: start;
+}
+
+#btn-sound-toggle-game {
+    justify-self: end;
+}
+
+/* Prominent In-Game Header Brand Logo */
 .header-brand-center {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin: 0 auto;
 }
 
 .logo-red-small {
-    font-size: 1.85rem;
+    font-size: 2.3rem;
     font-weight: 900;
     color: #e50914;
-    line-height: 0.95;
+    line-height: 0.9;
     letter-spacing: -1px;
 }
 
 .logo-subtitle-small {
-    font-size: 0.72rem;
+    font-size: 0.85rem;
     font-weight: 300;
     color: #ffffff;
     letter-spacing: 0.5px;
-    margin-top: 3px;
-    text-transform: none; /* Title Case */
+    margin-top: 4px;
+    text-transform: none; /* Title Case: Eleventh Floor */
 }
 
 .logo-tagline-small {
-    font-size: 0.48rem;
+    font-size: 0.52rem;
     font-weight: 600;
     color: #ffffff;
-    letter-spacing: 2.5px;
+    letter-spacing: 3.5px;
     margin-top: 2px;
-    text-transform: uppercase;
+    text-transform: uppercase; /* QUESTIONS */
 }
 
 /* Landing Page Logo Branding */
@@ -104,8 +114,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 6px;
-    margin-bottom: 12px;
+    margin-top: 10px;
+    margin-bottom: 14px;
     text-align: center;
 }
 
@@ -142,7 +152,7 @@ body {
     align-items: center;
     justify-content: space-between;
     flex-grow: 1;
-    padding-bottom: 16px;
+    padding-bottom: 20px;
     text-align: center;
 }
 
@@ -167,13 +177,13 @@ body {
 }
 
 .lobby-tagline {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     font-weight: 600;
     color: #737373;
     line-height: 1.4;
     letter-spacing: 1px;
     max-width: 280px;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
     text-transform: uppercase;
 }
 
@@ -190,14 +200,13 @@ body {
     max-width: 240px;
 }
 
-/* In-Game Layout Container */
+/* In-Game Layout Container - Capped Height */
 .game-layout {
     display: flex;
-    flex-grow: 1;
-    gap: 10px;
-    margin-top: 4px;
-    overflow: hidden;
-    min-height: 0;
+    gap: 12px;
+    width: 100%;
+    max-height: 430px; /* Limits overall height so game sits lower on screen */
+    margin-top: 8px;
     align-items: stretch;
 }
 
@@ -231,31 +240,30 @@ body {
     background-color: #262626;
 }
 
-/* Compact Main Question Card Container */
+/* Compact Main Question Card */
 .question-card {
     flex: 1;
     background-color: #0c0c0c;
     border: 1px solid #262626;
     border-radius: 8px;
-    padding: 12px 14px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start; /* Standard top-down flow */
     overflow: hidden;
-    min-height: 0;
 }
 
 .card-header {
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     flex-shrink: 0;
 }
 
 .floor-indicator {
-    font-size: 0.65rem;
+    font-size: 0.68rem;
     font-weight: 800;
     color: #e50914;
     letter-spacing: 2px;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     text-transform: uppercase;
 }
 
@@ -265,7 +273,7 @@ body {
     background-color: #1f1f1f;
     border-radius: 2px;
     overflow: hidden;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     flex-shrink: 0;
 }
 
@@ -276,24 +284,23 @@ body {
     transition: width 1s linear;
 }
 
-/* Question Text Font Size Preserved */
+/* Preserved Font Size for Questions */
 .question-text {
     font-size: 1.05rem;
     font-weight: 700;
     line-height: 1.38;
     color: #f5f5f5;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
     text-align: left;
     flex-shrink: 0;
 }
 
-/* Options Grid */
+/* Options Grid - Positioned Higher Up Under Question */
 .options-grid {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    margin-top: auto;
-    flex-shrink: 0;
+    gap: 9px;
+    margin-top: 4px; /* Placed cleanly beneath question, not at screen bottom */
     width: 100%;
 }
 
@@ -302,7 +309,7 @@ body {
     border: 1px solid #e50914; /* Thin Red Border */
     color: #ffffff;
     padding: 10px 14px;
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     font-weight: 600;
     text-align: left;
     border-radius: 50px;
@@ -329,7 +336,7 @@ body {
     color: #ffffff !important;
 }
 
-/* Modals & Stats Styling */
+/* Modals & Telemetry Styling */
 .modal-overlay {
     position: fixed;
     top: 0;
