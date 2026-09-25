@@ -1,4 +1,4 @@
-// 11th Floor Word Climb - Game Engine
+// 11th Floor Word Climb - Clean Daily Game Engine
 
 let currentFloor = 1;
 let currentGuess = "";
@@ -10,16 +10,16 @@ let validWordSet = null;
 
 document.addEventListener("DOMContentLoaded", () => {
     setupLandingScreen();
-    resolveDictionary();
 });
 
+// Clean Dictionary Resolution: Relies 100% on actual words file
 async function resolveDictionary() {
-    if (validWordSet && validWordSet.size > 500) return true;
+    if (validWordSet && validWordSet.size > 0) return true;
 
-    // 1. Wait for script tag (words.js) to finish loading globals
-    for (let i = 0; i < 50; i++) {
+    // 1. Check window.WORD_LIST populated by words.js script tag
+    for (let i = 0; i < 150; i++) { // Patiently wait up to 15s for slow mobile connection parsing
         const setFromGlobals = checkGlobalVariables();
-        if (setFromGlobals && setFromGlobals.size > 500) {
+        if (setFromGlobals && setFromGlobals.size > 0) {
             validWordSet = setFromGlobals;
             window.WORD_LIST = validWordSet;
             return true;
@@ -27,7 +27,7 @@ async function resolveDictionary() {
         await new Promise(r => setTimeout(r, 100));
     }
 
-    // 2. Direct fetch fallback for words.txt
+    // 2. Direct fetch fallback for words.txt if words.js hasn't populated window.WORD_LIST
     const paths = ["words.txt", "./words.txt", "/words.txt"];
     for (const path of paths) {
         try {
@@ -42,7 +42,7 @@ async function resolveDictionary() {
                         cleanSet.add(clean);
                     }
                 }
-                if (cleanSet.size > 500) {
+                if (cleanSet.size > 0) {
                     validWordSet = cleanSet;
                     window.WORD_LIST = validWordSet;
                     return true;
@@ -74,7 +74,7 @@ function checkGlobalVariables() {
             candidate.forEach(w => addCleanWord(w, cleanSet));
         }
 
-        if (cleanSet.size > 500) return cleanSet;
+        if (cleanSet.size > 0) return cleanSet;
     }
     return null;
 }
@@ -118,7 +118,6 @@ function launchGameWorkspace() {
     if (gameWorkspace) gameWorkspace.style.display = "flex";
     if (gameControls) gameControls.style.display = "flex";
 
-    // Set daily master word once when entering workspace
     initDailyPuzzle();
     startNewGame();
 }
@@ -134,7 +133,6 @@ function initDailyPuzzle() {
         });
     }
 
-    // Sort alphabetically so index mapping is identical on all devices
     nineLetterWords.sort();
 
     if (nineLetterWords.length > 0) {
@@ -144,7 +142,6 @@ function initDailyPuzzle() {
         masterNineLetterWord = "CLEARINGS";
     }
 
-    // Create a fixed initial wheel layout for today's word
     initialDailyWheel = seededShuffle(masterNineLetterWord.split(""), getDayOfYear());
     wheelLetters = [...initialDailyWheel];
 }
@@ -157,7 +154,6 @@ function getDayOfYear() {
     return Math.floor(diff / oneDay);
 }
 
-// Simple deterministic pseudo-random shuffle for daily consistency
 function seededShuffle(array, seed) {
     let m = array.length, t, i;
     while (m) {
@@ -175,7 +171,6 @@ function startNewGame() {
     currentGuess = "";
     isTransitioning = false;
 
-    // Reset wheel to today's fixed layout on game start/reset
     wheelLetters = [...initialDailyWheel];
 
     setupFloor(currentFloor);
@@ -357,7 +352,6 @@ function handleSubmission() {
 
     const word = currentGuess.toUpperCase();
 
-    // Verify word exists in dictionary
     const isValid = validWordSet && validWordSet.has(word);
 
     if (isValid) {
