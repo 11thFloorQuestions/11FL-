@@ -34,7 +34,7 @@
       padding: 4px 0;
     }
 
-    /* Mathematically Centered Logo Header */
+    /* Centered Header Bar */
     .top-header {
       display: grid;
       grid-template-columns: 80px 1fr 80px;
@@ -83,7 +83,70 @@
       margin-top: 1px;
     }
 
-    /* Main Workspace */
+    /* Landing / Rules Card */
+    .start-card {
+      flex: 1;
+      background-color: #111111;
+      border: 1px solid #1e1e1e;
+      border-radius: 16px;
+      padding: 16px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      margin: 8px 0;
+      text-align: center;
+    }
+    .rules-badge {
+      color: #ff1f2d;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      border-bottom: 1px solid #222222;
+      width: 100%;
+      padding-bottom: 6px;
+    }
+    .rules-box {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: #161616;
+      border: 1px solid #222222;
+      border-radius: 12px;
+      padding: 12px;
+      width: 100%;
+      text-align: left;
+    }
+    .rule-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 11px;
+      color: #cccccc;
+      line-height: 1.4;
+    }
+    .rule-icon {
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .btn-start-climb {
+      width: 100%;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid #ff1f2d;
+      background-color: #ff1f2d;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 31, 45, 0.4);
+    }
+    .btn-start-climb:active {
+      background-color: #d91824;
+    }
+
+    /* Active Game Workspace */
     .workspace {
       display: flex;
       gap: 8px;
@@ -229,10 +292,37 @@
         <div class="brand-subtitle-main">ELEVENTH FLOOR</div>
         <div class="brand-subtitle-sub">WORD CLIMB</div>
       </div>
-      <button class="pill-btn">SOUND: OFF</button>
+        <button class="pill-btn">SOUND: OFF</button>
     </div>
 
-    <div class="workspace">
+    <!-- Rules / Landing Page -->
+    <div id="start-screen" class="start-card">
+      <div class="rules-badge">HOW TO PLAY</div>
+      
+      <div class="rules-box">
+        <div class="rule-item">
+          <span class="rule-icon">🧗</span>
+          <span>Ascend through 10 floors by forming valid English words.</span>
+        </div>
+        <div class="rule-item">
+          <span class="rule-icon">🔤</span>
+          <span>Word length increases as you climb (5 to 9 letters).</span>
+        </div>
+        <div class="rule-item">
+          <span class="rule-icon">🔄</span>
+          <span>Letters on the wheel are reusable. Tap 🔀 to shuffle.</span>
+        </div>
+        <div class="rule-item">
+          <span class="rule-icon">⚠️</span>
+          <span style="color: #ff1f2d; font-weight: 700;">ONE wrong submission drops you back to Floor 01!</span>
+        </div>
+      </div>
+
+      <button id="start-climb-btn" class="btn-start-climb">START CLIMB</button>
+    </div>
+
+    <!-- Gameplay Workspace (Hidden until Start is clicked) -->
+    <div id="game-workspace" class="workspace" style="display: none;">
       <div class="elevator-shaft">
         <div class="elevator-slot" data-floor="11"></div>
         <div class="elevator-slot" data-floor="10"></div>
@@ -259,7 +349,8 @@
       </div>
     </div>
 
-    <div class="controls">
+    <!-- Controls (Hidden until Start is clicked) -->
+    <div id="game-controls" class="controls" style="display: none;">
       <button id="action-delete-btn" class="btn-action"><span>⌫</span> DELETE</button>
       <button id="action-submit-btn" class="btn-action"><span>↵</span> SUBMIT</button>
     </div>
