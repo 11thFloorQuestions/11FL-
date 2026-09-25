@@ -7,20 +7,24 @@ let masterNineLetterWord = "";
 let initialDailyWheel = [];
 let wheelLetters = [];
 let validWordSet = null;
+let dictFetchPromise = null;
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Start dictionary download immediately when page opens
+    dictFetchPromise = loadDictionaryOnce();
     setupLandingScreen();
 });
 
-// Syncs directly with window.WORD_LIST and window.WORD_LIST_LOADED from words.js
-async function resolveDictionary() {
+// Single-pass atomic loader preventing network collisions
+async function loadDictionaryOnce() {
+    // 1. Check if words.js script tag already completed
     if (window.WORD_LIST_LOADED && window.WORD_LIST && window.WORD_LIST.size > 0) {
         validWordSet = window.WORD_LIST;
         return true;
     }
 
-    // Wait up to 20 seconds for words.js to finish fetching words.txt
-    for (let i = 0; i < 200; i++) {
+    // 2. Poll briefly in case words.js is currently in-flight
+    for (let i = 0; i < 30; i++) {
         if (window.WORD_LIST_LOADED && window.WORD_LIST && window.WORD_LIST.size > 0) {
             validWordSet = window.WORD_LIST;
             return true;
@@ -28,8 +32,8 @@ async function resolveDictionary() {
         await new Promise(r => setTimeout(r, 100));
     }
 
-    // Fallback direct fetch if words.js script tag missed the file
-    const paths = ["words.txt", "./words.txt", "/words.txt"];
+    // 3. Fallback direct fetch if words.js hasn't populated window.WORD_LIST
+    const paths = ["words.txt", "./words.txt"];
     for (const path of paths) {
         try {
             const response = await fetch(path);
@@ -44,9 +48,9 @@ async function resolveDictionary() {
                     }
                 }
                 if (cleanSet.size > 0) {
+                    validWordSet = cleanSet;
                     window.WORD_LIST = cleanSet;
                     window.WORD_LIST_LOADED = true;
-                    validWordSet = cleanSet;
                     return true;
                 }
             }
@@ -67,14 +71,19 @@ function setupLandingScreen() {
         startBtn.style.opacity = "0.7";
         startBtn.disabled = true;
 
-        const success = await resolveDictionary();
+        if (!dictFetchPromise) {
+            dictFetchPromise = loadDictionaryOnce();
+        }
+
+        const success = await dictFetchPromise;
 
         if (success && validWordSet && validWordSet.size > 0) {
             launchGameWorkspace();
         } else {
-            startBtn.textContent = "words.txt Missing on Server";
+            startBtn.textContent = "Tap to Retry";
             startBtn.style.opacity = "1";
             startBtn.disabled = false;
+            dictFetchPromise = null; // Reset promise to allow fresh attempt
         }
     };
 }
