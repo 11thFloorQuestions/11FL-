@@ -134,19 +134,21 @@ function populateVault() {
 
 
 // ==========================================
-// 6. GAME LOGIC & TIMERS
+// 6. DATA LOADING & NORMALIZATION
 // ==========================================
 
 function normalizeQuestions(data) {
+    if (!data) return generateFallbackQuestions();
     if (Array.isArray(data)) return data;
-    if (data && Array.isArray(data.questions)) return data.questions;
+    if (Array.isArray(data.floors)) return data.floors;
+    if (Array.isArray(data.questions)) return data.questions;
     return generateFallbackQuestions();
 }
 
-// Helper to attempt fetching across root and subfolders
 async function fetchFileWithFallbacks(filename) {
     const candidatePaths = [
         `./${filename}`,
+        `./assets/data/floors/${filename}`,
         `./archives/${filename}`,
         `./data/${filename}`,
         filename
@@ -160,14 +162,29 @@ async function fetchFileWithFallbacks(filename) {
                 return await res.json();
             }
         } catch (e) {
-            // Continue to next path candidate
+            // Path attempt failed; try next candidate
         }
     }
     return null;
 }
 
+async function fetchFloorSequence() {
+    const questions = [];
+    for (let i = 1; i <= 10; i++) {
+        const paddedId = String(i).padStart(2, '0');
+        const fileData = await fetchFileWithFallbacks(`floor_${paddedId}.json`);
+        if (fileData) {
+            if (Array.isArray(fileData)) {
+                questions.push(fileData[0]);
+            } else if (fileData.question) {
+                questions.push(fileData);
+            }
+        }
+    }
+    return questions.length === 10 ? questions : null;
+}
+
 async function startDailyClimb() {
-    // Priority order for daily climb: questions.json -> sandbox.50.json -> sandbox.01.json
     let data = await fetchFileWithFallbacks('questions.json');
     if (!data) data = await fetchFileWithFallbacks('sandbox.50.json');
     if (!data) data = await fetchFileWithFallbacks('sandbox.01.json');
@@ -175,8 +192,13 @@ async function startDailyClimb() {
     if (data) {
         gameState.questions = normalizeQuestions(data);
     } else {
-        console.warn("Could not locate quiz files in root, /archives, or /data. Loading placeholder fallback.");
-        gameState.questions = generateFallbackQuestions();
+        const floorSequence = await fetchFloorSequence();
+        if (floorSequence) {
+            gameState.questions = floorSequence;
+        } else {
+            console.warn("Could not locate floor files or daily sets. Using fallback.");
+            gameState.questions = generateFallbackQuestions();
+        }
     }
     startGame();
 }
@@ -190,10 +212,15 @@ async function loadVaultSet(paddedId) {
         closeModal('modal-vault');
         startGame();
     } else {
-        console.error(`Failed to load ${filename} from root, /archives, or /data`);
-        alert(`Could not find ${filename}. Check that the file exists in your repository root or /archives subfolder.`);
+        console.error(`Failed to load ${filename}`);
+        alert(`Could not find ${filename}. Check that the file is uploaded to your repository.`);
     }
 }
+
+
+// ==========================================
+// 7. GAME LOOP & TIMERS
+// ==========================================
 
 function startGame() {
     if (!gameState.questions || gameState.questions.length === 0) {
@@ -324,7 +351,7 @@ function generateFallbackQuestions() {
     const fallback = [];
     for(let i = 1; i <= 10; i++) {
         fallback.push({
-            question: "Sample Question - replace or ensure sandbox.XX.json files are uploaded.",
+            question: "Sample Question - replace or ensure data files are uploaded.",
             options: ["Option A", "Option B", "Option C", "Option D"],
             answerIndex: 0
         });
