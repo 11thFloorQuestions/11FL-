@@ -199,10 +199,10 @@ body {
     max-width: 250px;
 }
 
-/* Dynamic Full-Height Game Layout (Fills Screen Vertically) */
+/* Dynamic Full-Height Game Layout */
 .game-layout {
     display: flex;
-    flex: 1; /* Fills remaining screen space */
+    flex: 1;
     gap: 12px;
     width: 100%;
     min-height: 0;
@@ -286,7 +286,6 @@ body {
     transition: width 1s linear;
 }
 
-/* Preserved Font Size for Questions */
 .question-text {
     font-size: 1.05rem;
     font-weight: 700;
@@ -297,7 +296,7 @@ body {
     flex-shrink: 0;
 }
 
-/* Options Grid - Clean Placement Below Question */
+/* Options Grid */
 .options-grid {
     display: flex;
     flex-direction: column;
@@ -328,7 +327,7 @@ body {
 
 .btn-option.selected-correct {
     background-color: #2e7d32 !important;
-    border-color: #2e7d32 !important;
+    border-color: #2e7e32 !important;
     color: #ffffff !important;
 }
 
@@ -338,7 +337,7 @@ body {
     color: #ffffff !important;
 }
 
-/* Modals & Telemetry Styling */
+/* Modals & Sleeker Typography */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -357,13 +356,48 @@ body {
 }
 
 .modal-card {
-    background-color: #111111;
-    border: 1px solid #262626;
-    padding: 20px;
-    border-radius: 12px;
+    background-color: #0d0d0d;
+    border: 1px solid #222222;
+    padding: 28px 24px;
+    border-radius: 14px;
     width: 90%;
     max-width: 360px;
     text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.modal-card h2 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.modal-card h3 {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #888888;
+    letter-spacing: 2px;
+    margin-top: 16px;
+    text-transform: uppercase;
+}
+
+#game-over-message {
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #dddddd;
+    margin: 12px 0 16px 0;
+}
+
+#final-floor-reached {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #e50914;
+    text-transform: uppercase;
 }
 
 .modal-large {
@@ -373,12 +407,12 @@ body {
 .stats-summary-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin: 14px 0;
-    background: #080808;
-    border: 1px solid #222222;
-    border-radius: 8px;
-    padding: 12px;
+    gap: 10px;
+    margin: 18px 0 12px 0;
+    background: #050505;
+    border: 1px solid #1f1f1f;
+    border-radius: 10px;
+    padding: 14px;
 }
 
 .stat-box {
@@ -388,39 +422,45 @@ body {
 }
 
 .stat-val {
-    font-size: 1.1rem;
-    font-weight: 900;
+    font-size: 1.25rem;
+    font-weight: 800;
     color: #ffffff;
+    letter-spacing: -0.5px;
 }
 
 .stat-lbl {
-    font-size: 0.58rem;
+    font-size: 0.55rem;
+    font-weight: 700;
     color: #737373;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    margin-top: 2px;
+    margin-top: 3px;
 }
 
 .modal-actions {
     display: flex;
     gap: 10px;
-    margin-top: 16px;
+    margin-top: 18px;
 }
 
 .btn-modal {
     flex-grow: 1;
-    background-color: #222222;
-    border: 1px solid #444444;
+    background-color: #1a1a1a;
+    border: 1px solid #333333;
     color: #ffffff;
-    padding: 10px;
+    padding: 12px;
+    font-size: 0.8rem;
     font-weight: 700;
-    border-radius: 6px;
+    border-radius: 24px;
     cursor: pointer;
+    letter-spacing: 1px;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .btn-modal:hover {
     background-color: #ffffff;
     color: #000000;
+    border-color: #ffffff;
 }
 
 /* Vault Items Grid */
@@ -435,7 +475,7 @@ body {
 
 .vault-item-btn {
     background-color: #141414;
-    border: 1px solid #262626;
+    border: 1px solid #222222;
     color: #ffffff;
     padding: 10px 6px;
     border-radius: 8px;
