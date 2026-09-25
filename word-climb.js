@@ -22,16 +22,19 @@ document.addEventListener("DOMContentLoaded", () => {
 async function loadDictionaryAndStart() {
     showMessage("LOADING DICTIONARY...", false);
 
-    // Continuous load-retry loop for slow/unstable mobile connections
-    while (true) {
-        // 1. Check if words.js finished loading
+    // 1. Passively wait for words.js to finish loading (up to 15 seconds)
+    // Checks memory variables only; makes ZERO extra network requests.
+    for (let i = 0; i < 75; i++) {
         if (window.WORD_LIST_LOADED && window.WORD_LIST && window.WORD_LIST.size > 0) {
             cleanDictionary();
             startNewGame();
             return;
         }
+        await new Promise(r => setTimeout(r, 200));
+    }
 
-        // 2. Direct fetch backup attempt
+    // 2. If words.js hasn't loaded after 15 seconds, make ONE single fallback request
+    if (!window.WORD_LIST_LOADED || !window.WORD_LIST || window.WORD_LIST.size === 0) {
         try {
             const response = await fetch("./words.txt");
             if (response.ok) {
@@ -51,12 +54,11 @@ async function loadDictionaryAndStart() {
                 }
             }
         } catch (err) {
-            console.warn("[Word Climb] Network slow, retrying dictionary load...");
+            console.error("[Word Climb] Fallback fetch failed:", err);
         }
-
-        // Wait 1 second before retrying so it never prematurely throws an error screen
-        await new Promise(r => setTimeout(r, 1000));
     }
+
+    showMessage("DICTIONARY ERROR. REFRESH PAGE.", true);
 }
 
 function cleanDictionary() {
