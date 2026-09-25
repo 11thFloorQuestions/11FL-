@@ -418,9 +418,10 @@ function handleVictory() {
     
     updateFloorUI();
     
-    safeSetText('game-over-title', '11TH FLOOR REACHED');
-    safeSetText('game-over-message', "Congratulations! You've reached the 11th Floor! Come back tomorrow to continue your streak.");
-    safeSetText('final-floor-reached', 'FLOOR 11 CLEARED');
+    // Clean, single statement completion popup
+    safeSetText('game-over-title', '');
+    safeSetText('game-over-message', "Congratulations! You've reached the 11th Floor.");
+    safeSetText('final-floor-reached', '');
     
     openModal('modal-game-over');
 }
