@@ -5,6 +5,7 @@ let currentGuess = "";
 let isTransitioning = false;
 let masterNineLetterWord = "";
 let wheelLetters = [];
+let dictionaryPromise = null;
 
 function getRequiredWordLength(floor) {
     if (floor >= 1 && floor <= 3) return 5;
@@ -16,30 +17,37 @@ function getRequiredWordLength(floor) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    preloadDictionaryInBackground();
+    // Start downloading dictionary immediately when page loads
+    dictionaryPromise = loadDictionaryAtomic();
     setupLandingScreen();
 });
 
-// Starts loading words.txt immediately when page opens
-async function preloadDictionaryInBackground() {
-    if (window.WORD_LIST && window.WORD_LIST.size > 0) return;
-
+// Atomic loader: Reads the whole file into a local Set BEFORE setting window.WORD_LIST
+async function loadDictionaryAtomic() {
     try {
-        const response = await fetch("words.txt");
+        const response = await fetch("./words.txt");
         if (response.ok) {
             const text = await response.text();
-            window.WORD_LIST = new Set();
-            text.split(/\r?\n/).forEach(rawWord => {
-                const cleaned = rawWord.toUpperCase().replace(/[^A-Z]/g, "");
+            const fullSet = new Set();
+            const lines = text.split(/\r?\n/);
+            
+            for (let i = 0; i < lines.length; i++) {
+                const cleaned = lines[i].toUpperCase().replace(/[^A-Z]/g, "");
                 if (cleaned.length >= 3) {
-                    window.WORD_LIST.add(cleaned);
+                    fullSet.add(cleaned);
                 }
-            });
-            window.WORD_LIST_LOADED = true;
+            }
+
+            if (fullSet.size > 1000) {
+                window.WORD_LIST = fullSet;
+                window.WORD_LIST_LOADED = true;
+                return true;
+            }
         }
     } catch (err) {
-        console.warn("[Word Climb] Background preload network delay:", err);
+        console.error("[Word Climb] Dictionary fetch error:", err);
     }
+    return false;
 }
 
 function setupLandingScreen() {
@@ -47,23 +55,23 @@ function setupLandingScreen() {
     if (!startBtn) return;
 
     startBtn.onclick = async () => {
-        startBtn.textContent = "LOADING DICTIONARY...";
+        startBtn.textContent = "Loading...";
+        startBtn.style.opacity = "0.7";
         startBtn.disabled = true;
 
-        // Ensure dictionary is fully loaded before launching workspace
-        let waitAttempts = 0;
-        while (!window.WORD_LIST_LOADED && (!window.WORD_LIST || window.WORD_LIST.size === 0)) {
-            await new Promise(r => setTimeout(r, 150));
-            waitAttempts++;
-
-            if (waitAttempts > 200) { // Fallback if network was stuck
-                await preloadDictionaryInBackground();
-                break;
-            }
+        // Ensure background dictionary download is 100% complete
+        let success = await dictionaryPromise;
+        if (!success || !window.WORD_LIST || window.WORD_LIST.size === 0) {
+            success = await loadDictionaryAtomic();
         }
 
-        cleanDictionary();
-        launchGameWorkspace();
+        if (success && window.WORD_LIST && window.WORD_LIST.size > 0) {
+            launchGameWorkspace();
+        } else {
+            startBtn.textContent = "Error Loading Words - Retry";
+            startBtn.style.opacity = "1";
+            startBtn.disabled = false;
+        }
     };
 }
 
@@ -77,18 +85,6 @@ function launchGameWorkspace() {
     if (gameControls) gameControls.style.display = "flex";
 
     startNewGame();
-}
-
-function cleanDictionary() {
-    if (!window.WORD_LIST) return;
-    const cleanedSet = new Set();
-    window.WORD_LIST.forEach(word => {
-        const cleaned = word.toUpperCase().replace(/[^A-Z]/g, "");
-        if (cleaned.length >= 3) {
-            cleanedSet.add(cleaned);
-        }
-    });
-    window.WORD_LIST = cleanedSet;
 }
 
 function startNewGame() {
