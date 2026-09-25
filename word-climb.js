@@ -22,34 +22,56 @@ document.addEventListener("DOMContentLoaded", () => {
 async function loadDictionaryAndStart() {
     showMessage("LOADING DICTIONARY...", false);
 
-    window.WORD_LIST = new Set();
+    // 1. Wait for words.js to finish populating window.WORD_LIST if it's already in progress
+    let pollCount = 0;
+    while (pollCount < 30) {
+        if (window.WORD_LIST && window.WORD_LIST.size > 0) {
+            cleanDictionary();
+            startNewGame();
+            return;
+        }
+        await new Promise(r => setTimeout(r, 100));
+        pollCount++;
+    }
+
+    // 2. Direct fetch backup if words.js hasn't populated window.WORD_LIST yet
+    if (!window.WORD_LIST) {
+        window.WORD_LIST = new Set();
+    }
 
     try {
-        const response = await fetch("words.txt");
+        const response = await fetch("./words.txt");
         if (response.ok) {
             const text = await response.text();
-            const lines = text.split(/\r?\n/);
-            lines.forEach(rawWord => {
-                // Strips all non-letter formatting characters cleanly
+            text.split(/\r?\n/).forEach(rawWord => {
                 const cleaned = rawWord.toUpperCase().replace(/[^A-Z]/g, "");
                 if (cleaned.length >= 3) {
                     window.WORD_LIST.add(cleaned);
                 }
             });
-            console.log(`[Word Climb] Dictionary successfully loaded: ${window.WORD_LIST.size} words.`);
-        } else {
-            console.error("[Word Climb] Failed to fetch words.txt");
         }
     } catch (err) {
         console.error("[Word Climb] Error loading words.txt:", err);
     }
 
-    if (window.WORD_LIST.size === 0) {
+    if (window.WORD_LIST && window.WORD_LIST.size > 0) {
+        cleanDictionary();
+        startNewGame();
+    } else {
         showMessage("DICTIONARY ERROR. REFRESH PAGE.", true);
-        return;
     }
+}
 
-    startNewGame();
+function cleanDictionary() {
+    // Ensures all words in memory are stripped of hidden line breaks or formatting
+    const cleanedSet = new Set();
+    window.WORD_LIST.forEach(word => {
+        const cleaned = word.toUpperCase().replace(/[^A-Z]/g, "");
+        if (cleaned.length >= 3) {
+            cleanedSet.add(cleaned);
+        }
+    });
+    window.WORD_LIST = cleanedSet;
 }
 
 function startNewGame() {
