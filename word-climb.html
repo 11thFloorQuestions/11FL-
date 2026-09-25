@@ -146,16 +146,37 @@
       margin-bottom: 6px;
       text-align: center;
     }
+    #target-word-slots {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      margin-bottom: 8px;
+      min-height: 32px;
+      align-items: center;
+    }
+    .target-slot {
+      width: 26px;
+      height: 30px;
+      border: 1px solid #333333;
+      border-radius: 4px;
+      background: #181818;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+      color: #ffffff;
+    }
     #guess-display {
       display: flex;
       justify-content: center;
       gap: 5px;
-      min-height: 38px;
-      margin-bottom: 8px;
+      min-height: 32px;
+      margin-bottom: 6px;
     }
     #wheel-container {
-      width: 160px;
-      height: 160px;
+      width: 180px;
+      height: 180px;
       position: relative;
       margin: 4px 0;
     }
@@ -218,6 +239,7 @@
           <div class="card-header-line"></div>
         </div>
         <div id="message-box"></div>
+        <div id="target-word-slots"></div>
         <div id="guess-display"></div>
         <div id="wheel-container"></div>
       </div>
