@@ -22,48 +22,49 @@ document.addEventListener("DOMContentLoaded", () => {
 async function loadDictionaryAndStart() {
     showMessage("LOADING DICTIONARY...", false);
 
-    // 1. Wait for words.js to finish populating window.WORD_LIST if it's already in progress
-    let pollCount = 0;
-    while (pollCount < 30) {
-        if (window.WORD_LIST && window.WORD_LIST.size > 0) {
+    // 1. Check if window.WORD_LIST is already populated by words.js
+    if (window.WORD_LIST && window.WORD_LIST.size > 0) {
+        cleanDictionary();
+        startNewGame();
+        return;
+    }
+
+    // 2. Poll up to 15 seconds to give words.txt enough time to download on mobile networks
+    for (let i = 0; i < 150; i++) {
+        if ((window.WORD_LIST_LOADED || (window.WORD_LIST && window.WORD_LIST.size > 0))) {
             cleanDictionary();
             startNewGame();
             return;
         }
         await new Promise(r => setTimeout(r, 100));
-        pollCount++;
     }
 
-    // 2. Direct fetch backup if words.js hasn't populated window.WORD_LIST yet
-    if (!window.WORD_LIST) {
-        window.WORD_LIST = new Set();
-    }
-
+    // 3. Fallback direct fetch if words.js hasn't populated window.WORD_LIST
     try {
-        const response = await fetch("./words.txt");
+        const response = await fetch("words.txt");
         if (response.ok) {
             const text = await response.text();
+            if (!window.WORD_LIST) window.WORD_LIST = new Set();
             text.split(/\r?\n/).forEach(rawWord => {
                 const cleaned = rawWord.toUpperCase().replace(/[^A-Z]/g, "");
                 if (cleaned.length >= 3) {
                     window.WORD_LIST.add(cleaned);
                 }
             });
+            if (window.WORD_LIST.size > 0) {
+                startNewGame();
+                return;
+            }
         }
     } catch (err) {
-        console.error("[Word Climb] Error loading words.txt:", err);
+        console.error("[Word Climb] Fallback fetch failed:", err);
     }
 
-    if (window.WORD_LIST && window.WORD_LIST.size > 0) {
-        cleanDictionary();
-        startNewGame();
-    } else {
-        showMessage("DICTIONARY ERROR. REFRESH PAGE.", true);
-    }
+    showMessage("DICTIONARY ERROR. REFRESH PAGE.", true);
 }
 
 function cleanDictionary() {
-    // Ensures all words in memory are stripped of hidden line breaks or formatting
+    if (!window.WORD_LIST) return;
     const cleanedSet = new Set();
     window.WORD_LIST.forEach(word => {
         const cleaned = word.toUpperCase().replace(/[^A-Z]/g, "");
