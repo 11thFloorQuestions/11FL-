@@ -22,44 +22,31 @@ document.addEventListener("DOMContentLoaded", () => {
 async function loadDictionaryAndStart() {
     showMessage("LOADING DICTIONARY...", false);
 
-    // Initialize global set if not already present
-    if (!window.WORD_LIST) {
-        window.WORD_LIST = new Set();
-    }
+    window.WORD_LIST = new Set();
 
-    // Direct async fetch of words.txt
     try {
         const response = await fetch("words.txt");
         if (response.ok) {
             const text = await response.text();
             const lines = text.split(/\r?\n/);
-            lines.forEach(word => {
-                const cleaned = word.trim().toUpperCase();
-                if (cleaned.length > 0) {
+            lines.forEach(rawWord => {
+                // Strips all non-letter formatting characters cleanly
+                const cleaned = rawWord.toUpperCase().replace(/[^A-Z]/g, "");
+                if (cleaned.length >= 3) {
                     window.WORD_LIST.add(cleaned);
                 }
             });
-            window.WORD_LIST_LOADED = true;
+            console.log(`[Word Climb] Dictionary successfully loaded: ${window.WORD_LIST.size} words.`);
+        } else {
+            console.error("[Word Climb] Failed to fetch words.txt");
         }
     } catch (err) {
-        console.error("Failed to load words.txt directly:", err);
+        console.error("[Word Climb] Error loading words.txt:", err);
     }
 
-    // If fetch failed or word list is empty, wait for words.js
-    if (!window.WORD_LIST || window.WORD_LIST.size === 0) {
-        let attempts = 0;
-        await new Promise(resolve => {
-            const interval = setInterval(() => {
-                attempts++;
-                if (window.WORD_LIST && window.WORD_LIST.size > 0) {
-                    clearInterval(interval);
-                    resolve();
-                } else if (attempts > 40) {
-                    clearInterval(interval);
-                    resolve();
-                }
-            }, 100);
-        });
+    if (window.WORD_LIST.size === 0) {
+        showMessage("DICTIONARY ERROR. REFRESH PAGE.", true);
+        return;
     }
 
     startNewGame();
@@ -260,7 +247,6 @@ function handleSubmission() {
 
     const word = currentGuess.toUpperCase();
 
-    // Strict dictionary validation against loaded window.WORD_LIST
     const isValid = window.WORD_LIST && window.WORD_LIST.has(word);
 
     if (isValid) {
@@ -277,7 +263,6 @@ function handleSubmission() {
             }
         }, 1000);
     } else {
-        // Single mistake penalty: Resets to Floor 01
         isTransitioning = true;
         showMessage("WRONG WORD! DROPPING TO FLOOR 01...", true);
 
