@@ -121,15 +121,15 @@ function renderWheel(letters) {
     if (!wheelContainer) return;
 
     wheelContainer.innerHTML = "";
-    const radius = 78; // Proportionate radius inside 210px container
-    const centerX = 105;
-    const centerY = 105;
+    const radius = 66; // Perfectly fits 180px wheel box
+    const centerX = 90;
+    const centerY = 90;
     const total = letters.length;
 
     letters.forEach((char, index) => {
         const angle = (index / total) * (2 * Math.PI) - (Math.PI / 2);
-        const x = centerX + radius * Math.cos(angle) - 22;
-        const y = centerY + radius * Math.sin(angle) - 22;
+        const x = centerX + radius * Math.cos(angle) - 20;
+        const y = centerY + radius * Math.sin(angle) - 20;
 
         const btn = document.createElement("button");
         btn.className = "wheel-letter-btn";
@@ -137,15 +137,15 @@ function renderWheel(letters) {
         btn.style.position = "absolute";
         btn.style.left = `${x}px`;
         btn.style.top = `${y}px`;
-        btn.style.width = "44px";
-        btn.style.height = "44px";
+        btn.style.width = "40px";
+        btn.style.height = "40px";
         btn.style.borderRadius = "50%";
         btn.style.border = "1px solid #ff1f2d";
         btn.style.boxShadow = "0 0 5px rgba(255, 31, 45, 0.3)";
         btn.style.background = "#181818";
         btn.style.color = "#ffffff";
         btn.style.fontWeight = "bold";
-        btn.style.fontSize = "16px";
+        btn.style.fontSize = "15px";
         btn.style.cursor = "pointer";
 
         btn.addEventListener("click", () => {
@@ -160,16 +160,33 @@ function renderWheel(letters) {
         wheelContainer.appendChild(btn);
     });
 
-    const centerHub = document.createElement("div");
-    centerHub.style.position = "absolute";
-    centerHub.style.left = "83px";
-    centerHub.style.top = "83px";
-    centerHub.style.width = "44px";
-    centerHub.style.height = "44px";
-    centerHub.style.borderRadius = "50%";
-    centerHub.style.border = "1px solid #ff1f2d";
-    centerHub.style.backgroundColor = "#0e0e0e";
-    wheelContainer.appendChild(centerHub);
+    // Active Center Shuffle Button
+    const shuffleBtn = document.createElement("button");
+    shuffleBtn.id = "shuffle-hub-btn";
+    shuffleBtn.innerHTML = "🔀";
+    shuffleBtn.style.position = "absolute";
+    shuffleBtn.style.left = "66px";
+    shuffleBtn.style.top = "66px";
+    shuffleBtn.style.width = "48px";
+    shuffleBtn.style.height = "48px";
+    shuffleBtn.style.borderRadius = "50%";
+    shuffleBtn.style.border = "1px solid #ff1f2d";
+    shuffleBtn.style.boxShadow = "0 0 6px rgba(255, 31, 45, 0.4)";
+    shuffleBtn.style.backgroundColor = "#121212";
+    shuffleBtn.style.color = "#ffffff";
+    shuffleBtn.style.fontSize = "18px";
+    shuffleBtn.style.cursor = "pointer";
+    shuffleBtn.style.display = "flex";
+    shuffleBtn.style.alignItems = "center";
+    shuffleBtn.style.justifyContent = "center";
+
+    shuffleBtn.addEventListener("click", () => {
+        if (isTransitioning) return;
+        wheelLetters.sort(() => Math.random() - 0.5);
+        renderWheel(wheelLetters);
+    });
+
+    wheelContainer.appendChild(shuffleBtn);
 }
 
 function attachControlHandlers() {
@@ -200,7 +217,7 @@ function updateGuessDisplay() {
 
     display.innerHTML = currentGuess
         .split("")
-        .map(c => `<span style="padding: 4px 8px; background: #1c1c1c; border: 1px solid #ff1f2d; border-radius: 4px; font-weight: bold; color: #ffffff;">${c}</span>`)
+        .map(c => `<span style="padding: 3px 7px; background: #1c1c1c; border: 1px solid #ff1f2d; border-radius: 4px; font-weight: bold; color: #ffffff; font-size: 13px;">${c}</span>`)
         .join("");
 }
 
@@ -235,7 +252,6 @@ function handleSubmission() {
             }
         }, 1000);
     } else {
-        // Single-Mistake Rule: Drops back to Floor 1 on wrong submission
         isTransitioning = true;
         showMessage("WRONG WORD! DROPPING TO FLOOR 01...", true);
 
@@ -275,16 +291,15 @@ function handleVictory() {
     const wheelContainer = document.getElementById("wheel-container");
     if (wheelContainer) wheelContainer.innerHTML = "";
 
-    // Balanced Victory Layout matching the Questions game
     const slotsContainer = document.getElementById("target-word-slots");
     if (slotsContainer) {
         slotsContainer.innerHTML = `
-            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 24px 12px; text-align: center; gap: 14px;">
-                <div style="font-size: 2.2rem;">🏆</div>
-                <div style="color: #2ecc71; font-weight: 800; font-size: 1.05rem; line-height: 1.4; letter-spacing: 0.5px;">
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 20px 10px; text-align: center; gap: 12px;">
+                <div style="font-size: 2rem;">🏆</div>
+                <div style="color: #2ecc71; font-weight: 800; font-size: 1rem; line-height: 1.4; letter-spacing: 0.5px;">
                     Congratulations! You've reached the 11th Floor.
                 </div>
-                <div style="color: #aaaaaa; font-size: 0.85rem; line-height: 1.4; font-weight: 500;">
+                <div style="color: #aaaaaa; font-size: 0.8rem; line-height: 1.4; font-weight: 500;">
                     Come back tomorrow to continue your streak.
                 </div>
             </div>
