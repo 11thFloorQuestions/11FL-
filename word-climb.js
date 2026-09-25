@@ -28,11 +28,30 @@ function initGameWithLoadedDictionary() {
         if (window.WORD_LIST_LOADED && window.WORD_LIST && window.WORD_LIST.size > 0) {
             clearInterval(interval);
             startNewGame();
-        } else if (checkCount > 50) {
+        } else if (checkCount > 30) {
             clearInterval(interval);
-            startNewGame();
+            // Backup fetch in case words.js was delayed
+            fetchBackupDictionary();
         }
     }, 100);
+}
+
+async function fetchBackupDictionary() {
+    try {
+        const response = await fetch('./words.txt');
+        if (response.ok) {
+            const text = await response.text();
+            window.WORD_LIST = new Set();
+            text.split(/\r?\n/).forEach(word => {
+                const trimmed = word.trim().toUpperCase();
+                if (trimmed.length > 0) window.WORD_LIST.add(trimmed);
+            });
+            window.WORD_LIST_LOADED = true;
+        }
+    } catch (e) {
+        console.error("Dictionary load error:", e);
+    }
+    startNewGame();
 }
 
 function startNewGame() {
@@ -121,7 +140,7 @@ function renderWheel(letters) {
     if (!wheelContainer) return;
 
     wheelContainer.innerHTML = "";
-    const radius = 66; // Perfectly fits 180px wheel box
+    const radius = 66;
     const centerX = 90;
     const centerY = 90;
     const total = letters.length;
@@ -160,7 +179,6 @@ function renderWheel(letters) {
         wheelContainer.appendChild(btn);
     });
 
-    // Active Center Shuffle Button
     const shuffleBtn = document.createElement("button");
     shuffleBtn.id = "shuffle-hub-btn";
     shuffleBtn.innerHTML = "🔀";
@@ -231,11 +249,13 @@ function handleSubmission() {
 
     const word = currentGuess.toUpperCase();
 
+    // STRICT DICTIONARY VALIDATION (No length-only auto-pass)
     let isValid = false;
     if (window.WORD_LIST && window.WORD_LIST.size > 0) {
         isValid = window.WORD_LIST.has(word);
     } else {
-        isValid = word.length === targetLen;
+        showMessage("DICTIONARY NOT READY. TRY AGAIN", true);
+        return;
     }
 
     if (isValid) {
@@ -252,6 +272,7 @@ function handleSubmission() {
             }
         }, 1000);
     } else {
+        // SINGLE MISTAKE PENALTY: Resets game to Floor 01
         isTransitioning = true;
         showMessage("WRONG WORD! DROPPING TO FLOOR 01...", true);
 
