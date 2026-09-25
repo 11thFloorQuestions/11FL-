@@ -190,6 +190,7 @@ body {
     margin-top: 10px;
     overflow: hidden;
     min-height: 0;
+    align-items: stretch;
 }
 
 /* Vertical Elevator Shaft */
@@ -228,10 +229,9 @@ body {
     background-color: #0c0c0c;
     border: 1px solid #262626;
     border-radius: 8px;
-    padding: 16px;
+    padding: 18px 16px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     overflow: hidden;
     min-height: 0;
 }
@@ -268,7 +268,7 @@ body {
 }
 
 .question-text {
-    font-size: 1.15rem;
+    font-size: 1.12rem;
     font-weight: 700;
     line-height: 1.4;
     color: #f5f5f5;
@@ -277,19 +277,21 @@ body {
     flex-shrink: 0;
 }
 
-/* Options Grid */
+/* Options Grid - Anchored to bottom of card */
 .options-grid {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
+    margin-top: auto;
     flex-shrink: 0;
+    width: 100%;
 }
 
 .btn-option {
     background-color: #141414;
     border: 1px solid #262626;
     color: #ffffff;
-    padding: 12px 18px;
+    padding: 14px 18px;
     font-size: 0.95rem;
     font-weight: 700;
     text-align: left;
@@ -372,7 +374,7 @@ body {
 
 .vault-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
     gap: 10px;
     max-height: 300px;
     overflow-y: auto;
@@ -389,6 +391,12 @@ body {
     flex-direction: column;
     gap: 4px;
     cursor: pointer;
+    text-align: left;
+}
+
+.vault-item-btn span {
+    font-size: 0.65rem;
+    color: #737373;
 }
 
 .vault-item-btn:hover {
