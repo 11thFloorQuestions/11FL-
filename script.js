@@ -39,7 +39,7 @@ function shuffleArray(array) {
 
 const gameState = {
     currentFloor: 1,
-    maxFloors: 10, // 10 questions to reach Destination Floor 11
+    maxFloors: 10, // 10 questions to reach Floor 11
     soundEnabled: false,
     timer: null,
     timeLeft: 15,
