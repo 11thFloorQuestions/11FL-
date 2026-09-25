@@ -5,7 +5,7 @@ let currentGuess = "";
 let isTransitioning = false;
 let masterNineLetterWord = "";
 let wheelLetters = [];
-let dictionaryLoadingPromise = null;
+let dictionaryPromise = null;
 
 function getRequiredWordLength(floor) {
     if (floor >= 1 && floor <= 3) return 5;
@@ -17,59 +17,50 @@ function getRequiredWordLength(floor) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    initDictionaryLoad();
+    // Begin loading dictionary in background immediately upon page load
+    dictionaryPromise = loadDictionaryAtomic();
     setupLandingScreen();
 });
 
-function initDictionaryLoad() {
-    if (window.WORD_LIST && window.WORD_LIST.size > 0) {
-        cleanDictionary();
-        return Promise.resolve(true);
-    }
-    if (dictionaryLoadingPromise) {
-        return dictionaryLoadingPromise;
-    }
-
-    dictionaryLoadingPromise = (async () => {
-        // 1. Wait briefly to see if words.js already loaded window.WORD_LIST
-        for (let i = 0; i < 15; i++) {
-            if (window.WORD_LIST_LOADED && window.WORD_LIST && window.WORD_LIST.size > 0) {
-                cleanDictionary();
-                return true;
-            }
-            await new Promise(r => setTimeout(r, 100));
+async function loadDictionaryAtomic() {
+    // 1. Poll for window.WORD_LIST populated by words.js (up to 30 seconds for high ping)
+    for (let i = 0; i < 300; i++) {
+        if ((window.WORD_LIST_LOADED || window.WORD_LIST) && window.WORD_LIST && window.WORD_LIST.size > 0) {
+            cleanDictionary();
+            return true;
         }
+        await new Promise(r => setTimeout(r, 100));
+    }
 
-        // 2. Direct fetch fallback
-        const paths = ["./words.txt", "words.txt", "/words.txt"];
-        for (const path of paths) {
-            try {
-                const response = await fetch(path);
-                if (response.ok) {
-                    const text = await response.text();
-                    const fullSet = new Set();
-                    const lines = text.split(/\r?\n/);
-                    for (let i = 0; i < lines.length; i++) {
-                        const cleaned = lines[i].toUpperCase().replace(/[^A-Z]/g, "");
-                        if (cleaned.length >= 3) {
-                            fullSet.add(cleaned);
-                        }
-                    }
-                    if (fullSet.size > 0) {
-                        window.WORD_LIST = fullSet;
-                        window.WORD_LIST_LOADED = true;
-                        cleanDictionary();
-                        return true;
+    // 2. Direct fetch fallback if words.js hasn't set window.WORD_LIST
+    const paths = ["words.txt", "./words.txt", "/words.txt"];
+    for (const path of paths) {
+        try {
+            const response = await fetch(path);
+            if (response.ok) {
+                const text = await response.text();
+                const fullSet = new Set();
+                const lines = text.split(/\r?\n/);
+                
+                for (let i = 0; i < lines.length; i++) {
+                    const cleaned = lines[i].toUpperCase().replace(/[^A-Z]/g, "");
+                    if (cleaned.length >= 3) {
+                        fullSet.add(cleaned);
                     }
                 }
-            } catch (err) {
-                console.warn(`[Word Climb] Fetch path ${path} skipped:`, err);
-            }
-        }
-        return false;
-    })();
 
-    return dictionaryLoadingPromise;
+                if (fullSet.size > 0) {
+                    window.WORD_LIST = fullSet;
+                    window.WORD_LIST_LOADED = true;
+                    cleanDictionary();
+                    return true;
+                }
+            }
+        } catch (err) {
+            console.warn(`[Word Climb] Fetch path ${path} skipped:`, err);
+        }
+    }
+    return false;
 }
 
 function setupLandingScreen() {
@@ -81,12 +72,17 @@ function setupLandingScreen() {
         startBtn.style.opacity = "0.7";
         startBtn.disabled = true;
 
-        const success = await initDictionaryLoad();
+        // Await the master background loader
+        let success = await dictionaryPromise;
+
+        if (!success || !window.WORD_LIST || window.WORD_LIST.size === 0) {
+            dictionaryPromise = loadDictionaryAtomic();
+            success = await dictionaryPromise;
+        }
 
         if (success && window.WORD_LIST && window.WORD_LIST.size > 0) {
             launchGameWorkspace();
         } else {
-            dictionaryLoadingPromise = null; // Reset promise to retry
             startBtn.textContent = "Retry";
             startBtn.style.opacity = "1";
             startBtn.disabled = false;
