@@ -5,56 +5,118 @@ let currentGuess = "";
 let isTransitioning = false;
 let masterNineLetterWord = "";
 let wheelLetters = [];
-
-let dictionarySet = null;
-let dictionaryLoadingPromise = null;
-
-// Start downloading dictionary immediately when page loads
-function loadDictionary() {
-    if (dictionaryLoadingPromise) return dictionaryLoadingPromise;
-
-    dictionaryLoadingPromise = (async () => {
-        const paths = ["./words.txt", "words.txt", "/words.txt"];
-        
-        for (const path of paths) {
-            try {
-                const response = await fetch(path);
-                if (response.ok) {
-                    const text = await response.text();
-                    const set = new Set();
-                    const lines = text.split(/\r?\n/);
-                    
-                    for (let i = 0; i < lines.length; i++) {
-                        const cleaned = lines[i].trim().toUpperCase().replace(/[^A-Z]/g, "");
-                        if (cleaned.length >= 3) {
-                            set.add(cleaned);
-                        }
-                    }
-
-                    if (set.size > 0) {
-                        dictionarySet = set;
-                        window.WORD_LIST = set;
-                        console.log(`[Word Climb] Dictionary ready with ${set.size} words.`);
-                        return true;
-                    }
-                }
-            } catch (err) {
-                console.warn(`[Word Climb] Path ${path} failed:`, err);
-            }
-        }
-        dictionaryLoadingPromise = null; // Allow retry on failure
-        return false;
-    })();
-
-    return dictionaryLoadingPromise;
-}
-
-// Initiate background fetch immediately
-loadDictionary();
+let validWordSet = null;
 
 document.addEventListener("DOMContentLoaded", () => {
     setupLandingScreen();
+    // Start dictionary extraction immediately in background
+    resolveDictionary();
 });
+
+// Fail-safe loader: Checks script variables, words.js, and words.txt
+async function resolveDictionary() {
+    if (validWordSet && validWordSet.size > 0) return true;
+
+    // 1. Check existing global variables created by words.js
+    let setFromGlobals = checkGlobalVariables();
+    if (setFromGlobals && setFromGlobals.size > 0) {
+        validWordSet = setFromGlobals;
+        window.WORD_LIST = validWordSet;
+        return true;
+    }
+
+    // 2. Poll briefly in case words.js is still parsing asynchronously
+    for (let i = 0; i < 20; i++) {
+        await new Promise(r => setTimeout(r, 100));
+        setFromGlobals = checkGlobalVariables();
+        if (setFromGlobals && setFromGlobals.size > 0) {
+            validWordSet = setFromGlobals;
+            window.WORD_LIST = validWordSet;
+            return true;
+        }
+    }
+
+    // 3. Fallback: Fetch words.js directly and extract words via regex
+    try {
+        const jsResponse = await fetch("words.js");
+        if (jsResponse.ok) {
+            const jsText = await jsResponse.text();
+            const extractedSet = extractWordsFromText(jsText);
+            if (extractedSet.size > 0) {
+                validWordSet = extractedSet;
+                window.WORD_LIST = validWordSet;
+                return true;
+            }
+        }
+    } catch (e) {
+        console.warn("[Word Climb] words.js fetch fallback failed:", e);
+    }
+
+    // 4. Fallback: Fetch words.txt directly
+    try {
+        const txtResponse = await fetch("words.txt");
+        if (txtResponse.ok) {
+            const txtText = await txtResponse.text();
+            const extractedSet = extractWordsFromText(txtText);
+            if (extractedSet.size > 0) {
+                validWordSet = extractedSet;
+                window.WORD_LIST = validWordSet;
+                return true;
+            }
+        }
+    } catch (e) {
+        console.warn("[Word Climb] words.txt fetch fallback failed:", e);
+    }
+
+    return false;
+}
+
+function checkGlobalVariables() {
+    const candidates = [
+        window.WORD_LIST,
+        window.WORDS,
+        window.wordList,
+        window.WORD_SET,
+        window.dictionary
+    ];
+
+    for (const candidate of candidates) {
+        if (!candidate) continue;
+
+        const cleanSet = new Set();
+        if (candidate instanceof Set) {
+            candidate.forEach(w => addCleanWord(w, cleanSet));
+        } else if (Array.isArray(candidate)) {
+            candidate.forEach(w => addCleanWord(w, cleanSet));
+        }
+
+        if (cleanSet.size > 0) return cleanSet;
+    }
+    return null;
+}
+
+function extractWordsFromText(text) {
+    const set = new Set();
+    const matches = text.match(/[A-Za-z]{3,9}/g);
+    if (matches) {
+        for (let i = 0; i < matches.length; i++) {
+            const clean = matches[i].toUpperCase();
+            if (clean.length >= 3 && clean.length <= 9) {
+                set.add(clean);
+            }
+        }
+    }
+    return set;
+}
+
+function addCleanWord(word, set) {
+    if (typeof word === "string") {
+        const clean = word.trim().toUpperCase().replace(/[^A-Z]/g, "");
+        if (clean.length >= 3 && clean.length <= 9) {
+            set.add(clean);
+        }
+    }
+}
 
 function setupLandingScreen() {
     const startBtn = document.getElementById("start-climb-btn");
@@ -65,9 +127,9 @@ function setupLandingScreen() {
         startBtn.style.opacity = "0.7";
         startBtn.disabled = true;
 
-        const success = await loadDictionary();
+        const success = await resolveDictionary();
 
-        if (success && window.WORD_LIST && window.WORD_LIST.size > 0) {
+        if (success && validWordSet && validWordSet.size > 0) {
             launchGameWorkspace();
         } else {
             startBtn.textContent = "Retry Loading";
@@ -101,8 +163,8 @@ function startNewGame() {
 
 function selectMasterNineLetterWord() {
     let nineLetterWords = [];
-    if (window.WORD_LIST && window.WORD_LIST.size > 0) {
-        window.WORD_LIST.forEach(word => {
+    if (validWordSet && validWordSet.size > 0) {
+        validWordSet.forEach(word => {
             if (word.length === 9) {
                 nineLetterWords.push(word);
             }
@@ -293,7 +355,7 @@ function handleSubmission() {
 
     const word = currentGuess.toUpperCase();
 
-    const isValid = window.WORD_LIST && window.WORD_LIST.has(word);
+    const isValid = validWordSet && validWordSet.has(word);
 
     if (isValid) {
         isTransitioning = true;
