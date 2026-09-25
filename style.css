@@ -1,514 +1,518 @@
+/* ==========================================
+   ELEVENTH FLOOR GAMES BASELINE STYLESHEET
+   ========================================== */
+
+/* Root & Reset */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    user-select: none;
     -webkit-tap-highlight-color: transparent;
 }
 
-body {
-    background-color: #000000;
-    color: #ffffff;
-    font-family: 'Montserrat', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-    display: flex;
-    justify-content: center;
+:root {
+    --bg-black: #000000;
+    --card-dark: #0c0c0c;
+    --brand-red: #e50914;
+    --floor-inactive: #262626;
+    --correct-green: #2e7d32;
+    --text-white: #ffffff;
+    --text-muted: #8c8c8c;
+    --font-main: 'Montserrat', sans-serif;
 }
 
-.screen-container {
+body {
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    font-family: var(--font-main);
+    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Main Viewport Container */
+.app-viewport {
+    width: 100%;
+    max-width: 500px;
     height: 100vh;
     height: 100dvh;
-    width: 100%;
-    max-width: 440px;
-    padding: 14px 16px;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-/* Landing Navigation Header */
-.header-nav {
     display: flex;
+    flex-direction: column;
+    padding: 12px;
+    gap: 12px;
+}
+
+/* Header Branding */
+.game-header {
+    display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
+    padding: 4px 0;
     width: 100%;
-    padding-bottom: 6px;
-    flex-shrink: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* In-Game Header Grid */
-.header-game {
-    display: grid;
-    grid-template-columns: 70px 1fr 70px;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 14px;
-    flex-shrink: 0;
+.hub-back-btn {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: color 0.2s ease;
 }
 
-.btn-nav {
-    background: transparent;
-    border: 1px solid #262626;
-    color: #737373;
-    padding: 6px 12px;
+.hub-back-btn:hover {
+    color: var(--brand-red);
+}
+
+.brand-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-logo-red {
+    font-size: 1.9rem;
+    font-weight: 900;
+    color: var(--brand-red);
+    line-height: 1;
+    letter-spacing: -1px;
+    text-shadow: 0 0 10px rgba(229, 9, 20, 0.4);
+}
+
+.brand-text-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.brand-title {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--text-white);
+}
+
+.brand-sub {
     font-size: 0.65rem;
     font-weight: 700;
-    border-radius: 20px;
-    cursor: pointer;
-    letter-spacing: 1px;
-    white-space: nowrap;
-}
-
-.btn-nav:hover {
-    border-color: #ffffff;
-    color: #ffffff;
-}
-
-.btn-exit {
-    justify-self: start;
-}
-
-#btn-sound-toggle-game {
-    justify-self: end;
-}
-
-/* Prominent Brand Logo */
-.header-brand-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.logo-red-small {
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: #e50914;
-    line-height: 0.95;
-    letter-spacing: -1px;
-}
-
-.logo-subtitle-small {
-    font-size: 0.9rem;
-    font-weight: 300;
-    color: #ffffff;
-    letter-spacing: 0.8px;
-    margin-top: 4px;
-    text-transform: none; /* Title Case: Eleventh Floor */
-}
-
-.logo-tagline-small {
-    font-size: 0.55rem;
-    font-weight: 600;
-    color: #ffffff;
-    letter-spacing: 3.5px;
+    letter-spacing: 3px;
+    color: var(--text-white);
+    text-transform: uppercase;
     margin-top: 2px;
-    text-transform: uppercase; /* QUESTIONS */
 }
 
-/* Landing Page Logo Branding */
-.logo-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-    margin-bottom: 14px;
-    text-align: center;
-}
-
-.logo-red {
-    font-size: 3.8rem;
-    font-weight: 900;
-    color: #e50914;
-    line-height: 0.95;
-    letter-spacing: -1px;
-}
-
-.logo-subtitle {
-    font-size: 1.15rem;
-    font-weight: 300;
-    color: #ffffff;
-    letter-spacing: 1px;
-    margin-top: 6px;
-    text-transform: none;
-}
-
-.logo-tagline {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #ffffff;
-    letter-spacing: 4px;
-    margin-top: 4px;
-    text-transform: uppercase;
-}
-
-/* Landing Main Content */
-.landing-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    flex-grow: 1;
-    padding-bottom: 20px;
-    text-align: center;
-}
-
-.lobby-shaft-graphic {
-    display: flex;
-    flex-direction: column;
-    width: 38px;
-    height: 120px;
-    border: 1px solid #262626;
-    border-radius: 4px;
-    overflow: hidden;
-    margin: 12px 0;
-    padding: 2px;
-    gap: 2px;
-    background-color: #000000;
-}
-
-.shaft-box {
-    flex: 1;
-    background-color: #141414;
-    border-radius: 1px;
-}
-
-.lobby-tagline {
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: #737373;
-    line-height: 1.4;
-    letter-spacing: 1px;
-    max-width: 280px;
-    margin-bottom: 16px;
-    text-transform: uppercase;
-}
-
-.btn-start-climb {
-    background-color: #ffffff;
+.header-icon-btn {
+    background: transparent;
     border: none;
-    color: #000000;
-    padding: 14px 38px;
-    font-size: 0.95rem;
-    font-weight: 900;
-    border-radius: 30px;
+    font-size: 1.2rem;
     cursor: pointer;
-    width: 80%;
-    max-width: 250px;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
 }
 
-/* Dynamic Full-Height Game Layout */
-.game-layout {
+.header-icon-btn:hover {
+    opacity: 1;
+}
+
+/* Game Main Area */
+.game-container {
     display: flex;
     flex: 1;
     gap: 12px;
-    width: 100%;
     min-height: 0;
-    overflow: hidden;
-    margin-bottom: 6px;
-    align-items: stretch;
 }
 
-/* Vertical 11-Floor Elevator Shaft Tower */
-.building-shaft {
+/* Elevator Shaft (Left Column) */
+.elevator-shaft {
     display: flex;
     flex-direction: column;
-    width: 28px;
+    justify-content: space-between;
+    width: 42px;
     height: 100%;
-    background-color: #000000;
-    border: 1px solid #262626;
-    border-radius: 4px;
-    padding: 3px;
-    gap: 3px;
-    flex-shrink: 0;
+    gap: 4px;
 }
 
 .floor-block {
     flex: 1;
-    background-color: #141414;
-    border-radius: 1px;
-    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: var(--floor-inactive);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.3s ease;
 }
 
-.floor-block.active-floor {
-    background-color: #e50914;
-    box-shadow: 0 0 8px #e50914;
+.floor-block.active {
+    background-color: var(--brand-red);
+    color: var(--text-white);
+    box-shadow: 0 0 12px rgba(229, 9, 20, 0.8);
+    font-weight: 900;
 }
 
 .floor-block.completed {
-    background-color: #262626;
+    background-color: #1a1a1a;
+    color: var(--brand-red);
+    border: 1px solid var(--brand-red);
 }
 
-/* Extended Question Card Container */
-.question-card {
+/* Play Area (Right Column) */
+.play-area {
     flex: 1;
-    background-color: #0c0c0c;
-    border: 1px solid #262626;
-    border-radius: 8px;
-    padding: 20px 16px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    overflow: hidden;
-    min-height: 0;
+    height: 100%;
+    min-width: 0;
 }
 
-.card-header {
-    margin-bottom: 10px;
-    flex-shrink: 0;
+.game-card {
+    background-color: var(--card-dark);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 16px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.floor-indicator {
-    font-size: 0.7rem;
-    font-weight: 800;
-    color: #e50914;
-    letter-spacing: 2px;
-    margin-bottom: 6px;
-    text-transform: uppercase;
+/* Start / Splash Screen */
+.start-card {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
 }
 
-.timer-wrapper {
+.start-card h2 {
+    font-size: 1.4rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.start-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.start-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     width: 100%;
-    height: 2px;
-    background-color: #1f1f1f;
-    border-radius: 2px;
+    max-width: 220px;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--brand-red);
+    color: var(--text-white);
+    border: none;
+    padding: 14px 20px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #ff0f1f;
+
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-white);
+    border: 1px solid var(--brand-red);
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(229, 9, 20, 0.15);
+}
+
+/* Active Question View */
+.card-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+}
+
+.floor-tag {
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: var(--brand-red);
+    letter-spacing: 1px;
+}
+
+.timer-container {
+    flex: 1;
+    height: 6px;
+    background-color: #1a1a1a;
+    border-radius: 3px;
     overflow: hidden;
-    margin-bottom: 8px;
-    flex-shrink: 0;
 }
 
 .timer-bar {
     height: 100%;
     width: 100%;
-    background-color: #e50914;
-    transition: width 1s linear;
+    background-color: var(--brand-red);
+    transition: width 0.1s linear;
 }
 
 .question-text {
     font-size: 1.05rem;
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.4;
-    color: #f5f5f5;
-    margin-bottom: 16px;
-    text-align: left;
-    flex-shrink: 0;
+    margin: 16px 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
 }
 
-/* Options Grid */
-.options-grid {
+.options-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-top: 10px;
     width: 100%;
 }
 
-.btn-option {
-    background-color: #141414;
-    border: 1px solid #e50914; /* Thin Red Border */
-    color: #ffffff;
-    padding: 12px 16px;
-    font-size: 0.88rem;
+.option-btn {
+    background-color: transparent;
+    border: 1px solid var(--brand-red);
+    color: var(--text-white);
+    padding: 12px 14px;
+    font-size: 0.9rem;
     font-weight: 600;
-    text-align: left;
-    border-radius: 50px;
+    border-radius: 20px;
     cursor: pointer;
-    transition: border-color 0.15s ease, background-color 0.15s ease;
-    white-space: normal;
-    line-height: 1.25;
+    text-align: left;
+    transition: all 0.2s ease;
 }
 
-.btn-option:active {
-    border-color: #ffffff;
-    background-color: #1f1f1f;
+.option-btn:hover {
+    background-color: rgba(229, 9, 20, 0.1);
 }
 
-.btn-option.selected-correct {
-    background-color: #2e7d32 !important;
-    border-color: #2e7d32 !important;
-    color: #ffffff !important;
+.option-btn.correct {
+    background-color: var(--correct-green) !important;
+    border-color: var(--correct-green) !important;
+    color: var(--text-white) !important;
 }
 
-.btn-option.selected-wrong {
-    background-color: #c62828 !important;
-    border-color: #c62828 !important;
-    color: #ffffff !important;
+.option-btn.incorrect {
+    background-color: #5a0000 !important;
+    border-color: #8b0000 !important;
+    color: var(--text-white) !important;
 }
 
-/* Correct Answer Green Accent Text */
-.congrats-green {
-    color: #2e7d32;
-    font-weight: 800;
+/* Word Climb Specific View */
+.word-climb-card {
+    justify-content: flex-start;
+    gap: 14px;
 }
 
-/* Modals & Sleeker Typography */
+.target-word-display, .start-word-display {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+.target-word-display span, .start-word-display span {
+    color: var(--text-white);
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+.word-board {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: #000;
+    border-radius: 8px;
+    padding: 12px;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.word-history {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.word-step {
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--brand-red);
+}
+
+.input-container {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.word-input {
+    flex: 1;
+    background-color: #000;
+    border: 1px solid var(--brand-red);
+    color: var(--text-white);
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    outline: none;
+}
+
+.word-input:focus {
+    box-shadow: 0 0 8px rgba(229, 9, 20, 0.5);
+}
+
+.message-display {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--brand-red);
+    min-height: 18px;
+    text-align: center;
+}
+
+/* Modals */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.92);
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85);
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     z-index: 100;
+    padding: 20px;
 }
 
-.modal-overlay.hidden {
-    display: none !important;
-}
-
-.modal-card {
-    background-color: #0d0d0d;
-    border: 1px solid #222222;
-    padding: 28px 24px;
-    border-radius: 14px;
-    width: 90%;
+.modal-content {
+    background-color: var(--card-dark);
+    border: 1px solid var(--brand-red);
+    border-radius: 12px;
+    padding: 24px;
+    width: 100%;
     max-width: 360px;
+    position: relative;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
 }
 
-.modal-card h2 {
-    font-size: 1.25rem;
-    font-weight: 800;
-    letter-spacing: 2px;
-    color: #ffffff;
-    text-transform: uppercase;
-    margin-bottom: 8px;
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 
-/* Automatically collapse spacing when empty */
-.modal-card h2:empty,
-#game-over-message:empty,
-#final-floor-reached:empty {
-    display: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
+.modal-content h3 {
+    font-size: 1.2rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
 }
 
-.modal-card h3 {
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: #888888;
-    letter-spacing: 2px;
-    margin-top: 16px;
-    text-transform: uppercase;
-}
-
-#game-over-message {
-    font-size: 0.95rem;
-    font-weight: 500;
-    line-height: 1.5;
-    color: #ffffff;
-    margin: 12px 0 16px 0;
-}
-
-#final-floor-reached {
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 2px;
-    color: #e50914;
-    text-transform: uppercase;
-    margin-top: 8px;
-}
-
-.modal-large {
-    max-width: 440px;
-}
-
-.stats-summary-grid {
+/* Stats Grid */
+.stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin: 18px 0 12px 0;
-    background: #050505;
-    border: 1px solid #1f1f1f;
-    border-radius: 10px;
-    padding: 14px;
+    gap: 12px;
 }
 
 .stat-box {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #000;
+    padding: 10px;
+    border-radius: 6px;
 }
 
-.stat-val {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #ffffff;
-    letter-spacing: -0.5px;
+.stat-value {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--brand-red);
 }
 
-.stat-lbl {
-    font-size: 0.55rem;
-    font-weight: 700;
-    color: #737373;
-    letter-spacing: 1px;
+.stat-label {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    margin-top: 4px;
     text-transform: uppercase;
-    margin-top: 3px;
 }
 
-.modal-actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 18px;
-}
-
-.btn-modal {
-    flex-grow: 1;
-    background-color: #1a1a1a;
-    border: 1px solid #333333;
-    color: #ffffff;
-    padding: 12px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    border-radius: 24px;
-    cursor: pointer;
-    letter-spacing: 1px;
-    transition: background-color 0.15s ease, border-color 0.15s ease;
-}
-
-.btn-modal:hover {
-    background-color: #ffffff;
-    color: #000000;
-    border-color: #ffffff;
-}
-
-/* Vault Items Grid */
-.vault-grid {
+/* Archive Grid */
+.archive-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
-    gap: 8px;
-    max-height: 220px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    max-height: 250px;
     overflow-y: auto;
-    margin: 12px 0;
 }
 
-.vault-item-btn {
-    background-color: #141414;
-    border: 1px solid #222222;
-    color: #ffffff;
-    padding: 10px 6px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    text-align: center;
-    transition: border-color 0.15s ease;
-}
-
-.vault-item-btn strong {
-    font-size: 0.78rem;
+.archive-btn {
+    background-color: transparent;
+    border: 1px solid var(--brand-red);
+    color: var(--text-white);
+    padding: 10px;
+    font-size: 0.85rem;
     font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
-.vault-item-btn:hover {
-    border-color: #e50914;
-    background-color: #1a1a1a;
+.archive-btn:hover {
+    background-color: var(--brand-red);
+}
+
+/* Victory State */
+.congrats-green {
+    color: var(--correct-green);
+    font-weight: 900;
+}
+
+.victory-message {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Helper Utilities */
+.hidden {
+    display: none !important;
 }
