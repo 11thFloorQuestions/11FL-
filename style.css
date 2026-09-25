@@ -22,37 +22,41 @@ body {
     height: 100dvh;
     width: 100%;
     max-width: 440px;
-    padding: 16px;
+    padding: 12px 16px;
     margin: 0 auto;
 }
 
-/* Navigation Header */
+/* Landing Navigation Header */
 .header-nav {
     display: flex;
-    justify-space-between: space-between;
+    justify-content: space-between; /* Fixed alignment */
     align-items: center;
     width: 100%;
-    padding-bottom: 12px;
+    padding-bottom: 8px;
     flex-shrink: 0;
 }
 
+/* In-Game Header Grid Layout */
 .header-game {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
     width: 100%;
+    gap: 8px;
+    padding-bottom: 8px;
 }
 
 .btn-nav {
     background: transparent;
     border: 1px solid #262626;
     color: #737373;
-    padding: 6px 14px;
-    font-size: 0.68rem;
+    padding: 5px 12px;
+    font-size: 0.65rem;
     font-weight: 700;
     border-radius: 20px;
     cursor: pointer;
     letter-spacing: 1px;
+    white-space: nowrap;
 }
 
 .btn-nav:hover {
@@ -60,18 +64,26 @@ body {
     color: #ffffff;
 }
 
-/* Logos matching brand image */
+.btn-exit {
+    justify-self: start;
+}
+
+#btn-sound-toggle-game {
+    justify-self: end;
+}
+
+/* Landing Logo Branding */
 .logo-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin-top: 6px;
+    margin-bottom: 14px;
     text-align: center;
 }
 
 .logo-red {
-    font-size: 3.8rem;
+    font-size: 3.4rem;
     font-weight: 900;
     color: #e50914;
     line-height: 0.95;
@@ -79,55 +91,58 @@ body {
 }
 
 .logo-subtitle {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     font-weight: 300;
     color: #ffffff;
     letter-spacing: 1px;
-    margin-top: 8px;
-    text-transform: none; /* Title Case: Eleventh Floor */
+    margin-top: 6px;
+    text-transform: none;
 }
 
 .logo-tagline {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     color: #ffffff;
-    letter-spacing: 5px;
-    margin-top: 6px;
+    letter-spacing: 4px;
+    margin-top: 4px;
     text-transform: uppercase;
 }
 
-/* Header Game Center Brand - Clean & Unsquashed */
+/* In-Game Header Center Brand (Unsquashed) */
 .header-brand-center {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
+    justify-self: center;
 }
 
 .logo-red-small {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 900;
     color: #e50914;
-    line-height: 1;
+    line-height: 0.95;
     letter-spacing: -0.5px;
 }
 
 .logo-subtitle-small {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     font-weight: 300;
     color: #ffffff;
     letter-spacing: 0.5px;
     margin-top: 2px;
+    line-height: 1;
     text-transform: none;
 }
 
 .logo-tagline-small {
-    font-size: 0.45rem;
+    font-size: 0.42rem;
     font-weight: 600;
     color: #ffffff;
-    letter-spacing: 2.5px;
+    letter-spacing: 2px;
     margin-top: 1px;
+    line-height: 1;
     text-transform: uppercase;
 }
 
@@ -138,21 +153,21 @@ body {
     align-items: center;
     justify-content: space-between;
     flex-grow: 1;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
     text-align: center;
 }
 
 .lobby-shaft-graphic {
     display: flex;
     flex-direction: column;
-    width: 48px;
-    height: 150px;
+    width: 42px;
+    height: 120px; /* Reduced graphic height */
     border: 1px solid #262626;
     border-radius: 4px;
     overflow: hidden;
-    margin: 16px 0;
-    padding: 3px;
-    gap: 3px;
+    margin: 12px 0;
+    padding: 2px;
+    gap: 2px;
     background-color: #000000;
 }
 
@@ -163,13 +178,13 @@ body {
 }
 
 .lobby-tagline {
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     font-weight: 600;
     color: #737373;
-    line-height: 1.5;
+    line-height: 1.45;
     letter-spacing: 1px;
-    max-width: 300px;
-    margin-bottom: 24px;
+    max-width: 280px;
+    margin-bottom: 18px;
     text-transform: uppercase;
 }
 
@@ -177,13 +192,13 @@ body {
     background-color: #ffffff;
     border: none;
     color: #000000;
-    padding: 14px 40px;
-    font-size: 0.95rem;
+    padding: 12px 36px;
+    font-size: 0.9rem;
     font-weight: 900;
     border-radius: 30px;
     cursor: pointer;
     width: 80%;
-    max-width: 260px;
+    max-width: 240px;
     transition: transform 0.1s ease;
 }
 
@@ -195,8 +210,8 @@ body {
 .game-layout {
     display: flex;
     flex-grow: 1;
-    gap: 14px;
-    margin-top: 10px;
+    gap: 12px;
+    margin-top: 6px;
     overflow: hidden;
     min-height: 0;
     align-items: stretch;
@@ -206,13 +221,13 @@ body {
 .building-shaft {
     display: flex;
     flex-direction: column;
-    width: 28px;
+    width: 26px;
     height: 100%;
     background-color: #000000;
     border: 1px solid #262626;
     border-radius: 4px;
-    padding: 3px;
-    gap: 3px;
+    padding: 2px;
+    gap: 2px;
     flex-shrink: 0;
 }
 
@@ -238,7 +253,7 @@ body {
     background-color: #0c0c0c;
     border: 1px solid #262626;
     border-radius: 8px;
-    padding: 18px 16px;
+    padding: 14px 14px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -247,16 +262,16 @@ body {
 }
 
 .card-header {
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     flex-shrink: 0;
 }
 
 .floor-indicator {
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 800;
     color: #e50914;
     letter-spacing: 2px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     text-transform: uppercase;
 }
 
@@ -277,21 +292,22 @@ body {
     transition: width 1s linear;
 }
 
+/* Preserved Font Size for Questions */
 .question-text {
     font-size: 1.05rem;
     font-weight: 700;
-    line-height: 1.4;
+    line-height: 1.38;
     color: #f5f5f5;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     text-align: left;
     flex-shrink: 0;
 }
 
-/* Options Grid - Centralized & Styled */
+/* Options Grid - Styled & Centered */
 .options-grid {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     margin: auto 0;
     flex-shrink: 0;
     width: 100%;
@@ -299,10 +315,10 @@ body {
 
 .btn-option {
     background-color: #141414;
-    border: 1px solid #e50914; /* Thin red border */
+    border: 1px solid #e50914;
     color: #ffffff;
-    padding: 11px 16px;
-    font-size: 0.88rem;
+    padding: 10px 14px;
+    font-size: 0.85rem;
     font-weight: 600;
     text-align: left;
     border-radius: 50px;
@@ -350,7 +366,7 @@ body {
 .modal-card {
     background-color: #111111;
     border: 1px solid #262626;
-    padding: 24px;
+    padding: 20px;
     border-radius: 12px;
     width: 90%;
     max-width: 360px;
@@ -364,7 +380,7 @@ body {
 .modal-actions {
     display: flex;
     gap: 10px;
-    margin-top: 20px;
+    margin-top: 16px;
 }
 
 .btn-modal {
@@ -372,7 +388,7 @@ body {
     background-color: #222222;
     border: 1px solid #444444;
     color: #ffffff;
-    padding: 12px;
+    padding: 10px;
     font-weight: 700;
     border-radius: 6px;
     cursor: pointer;
@@ -386,18 +402,18 @@ body {
 /* Vault Items Display */
 .vault-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-    gap: 10px;
-    max-height: 300px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 8px;
+    max-height: 280px;
     overflow-y: auto;
-    margin: 20px 0;
+    margin: 16px 0;
 }
 
 .vault-item-btn {
     background-color: #141414;
     border: 1px solid #262626;
     color: #ffffff;
-    padding: 12px 10px;
+    padding: 10px 8px;
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -408,7 +424,7 @@ body {
 }
 
 .vault-item-btn strong {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
 }
 
