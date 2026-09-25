@@ -1,260 +1,441 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>11th Floor Word Climb</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      user-select: none;
-    }
-    body {
-      background-color: #080808;
-      color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 12px;
-    }
-    .app-container {
-      width: 100%;
-      max-width: 380px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .top-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 4px 0;
-      width: 100%;
-    }
-    .pill-btn {
-      background: #121212;
-      border: 1px solid #2a2a2a;
-      border-radius: 14px;
-      color: #888888;
-      font-size: 11px;
-      font-weight: 600;
-      padding: 6px 14px;
-      cursor: pointer;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
-    .brand-logo {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      flex: 1;
-      margin: 0 8px;
-    }
-    .brand-title {
-      color: #ff1f2d;
-      font-size: 22px;
-      font-weight: 900;
-      line-height: 1.1;
-    }
-    .brand-subtitle-main {
-      color: #ffffff;
-      font-size: 8.5px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      margin-top: 2px;
-    }
-    .brand-subtitle-sub {
-      color: #666666;
-      font-size: 7.5px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      margin-top: 1px;
-    }
-    .workspace {
-      display: flex;
-      gap: 10px;
-      align-items: stretch;
-    }
-    .elevator-shaft {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 26px;
-      background-color: #0f0f0f;
-      border: 1px solid #1a1a1a;
-      border-radius: 12px;
-      padding: 6px 3px;
-    }
-    .elevator-slot {
-      height: 28px;
-      border: 1px solid #222222;
-      border-radius: 4px;
-      background-color: transparent;
-      transition: all 0.2s ease;
-      cursor: pointer;
-    }
-    .elevator-slot.active {
-      background-color: #ff1f2d;
-      border-color: #ff1f2d;
-      box-shadow: 0 0 8px rgba(255, 31, 45, 0.6);
-    }
-    .play-card {
-      flex: 1;
-      background-color: #111111;
-      border: 1px solid #1e1e1e;
-      border-radius: 18px;
-      padding: 14px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-    }
-    .card-header {
-      width: 100%;
-      text-align: left;
-      border-bottom: 1px solid #222222;
-      padding-bottom: 6px;
-      margin-bottom: 10px;
-      position: relative;
-    }
-    .card-floor-label {
-      color: #ff1f2d;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-    .card-header-line {
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 80px;
-      height: 2px;
-      background-color: #ff1f2d;
-    }
-    #message-box {
-      font-size: 11px;
-      font-weight: 800;
-      min-height: 18px;
-      margin-bottom: 6px;
-      text-align: center;
-    }
-    #target-word-slots {
-      display: flex;
-      gap: 6px;
-      justify-content: center;
-      margin-bottom: 8px;
-      min-height: 32px;
-      align-items: center;
-    }
-    .target-slot {
-      width: 26px;
-      height: 30px;
-      border: 1px solid #333333;
-      border-radius: 4px;
-      background: #181818;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 14px;
-      color: #ffffff;
-    }
-    .target-slot.revealed {
-      border-color: #2ecc71;
-      color: #2ecc71;
-      background: #122218;
-    }
-    #guess-display {
-      display: flex;
-      justify-content: center;
-      gap: 5px;
-      min-height: 32px;
-      margin-bottom: 6px;
-    }
-    #wheel-container {
-      width: 160px;
-      height: 160px;
-      position: relative;
-      margin: 4px 0;
-    }
-    .controls {
-      display: flex;
-      gap: 10px;
-    }
-    .btn-action {
-      flex: 1;
-      padding: 12px 10px;
-      border-radius: 16px;
-      border: 1px solid #ff1f2d;
-      background-color: #121212;
-      color: #ffffff;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      box-shadow: 0 0 6px rgba(255, 31, 45, 0.25);
-    }
-    .btn-action:active {
-      background-color: #1c1c1c;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>11th Floor Word Climb</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding: 12px;
+            overflow: hidden;
+        }
+
+        .screen-container {
+            width: 100%;
+            max-width: 440px;
+            height: 100vh;
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 14px 16px;
+        }
+
+        /* Navigation Header */
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding-bottom: 6px;
+            flex-shrink: 0;
+        }
+
+        .btn-nav {
+            background: transparent;
+            border: 1px solid #262626;
+            color: #737373;
+            padding: 6px 12px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            border-radius: 20px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-nav:hover {
+            border-color: #ffffff;
+            color: #ffffff;
+        }
+
+        .header-brand-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo-red-small {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #e50914;
+            line-height: 0.95;
+            letter-spacing: -1px;
+        }
+
+        .logo-subtitle-small {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: #ffffff;
+            letter-spacing: 0.8px;
+            margin-top: 2px;
+        }
+
+        .logo-tagline-small {
+            font-size: 0.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 3px;
+            margin-top: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Workspace Layout */
+        .game-layout {
+            display: flex;
+            flex: 1;
+            gap: 12px;
+            width: 100%;
+            min-height: 0;
+            margin: 12px 0 6px 0;
+            align-items: stretch;
+        }
+
+        /* Vertical Elevator Shaft */
+        .building-shaft {
+            display: flex;
+            flex-direction: column;
+            width: 28px;
+            height: 100%;
+            background-color: #000000;
+            border: 1px solid #262626;
+            border-radius: 4px;
+            padding: 3px;
+            gap: 3px;
+            flex-shrink: 0;
+        }
+
+        .floor-block {
+            flex: 1;
+            background-color: #141414;
+            border-radius: 1px;
+            transition: background-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .floor-block.active {
+            background-color: #e50914;
+            box-shadow: 0 0 8px #e50914;
+        }
+
+        .floor-block.completed {
+            background-color: #262626;
+        }
+
+        /* Main Game Card */
+        .play-card {
+            flex: 1;
+            background-color: #0c0c0c;
+            border: 1px solid #262626;
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            min-height: 0;
+        }
+
+        .card-header {
+            margin-bottom: 8px;
+            flex-shrink: 0;
+        }
+
+        .floor-indicator {
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: #e50914;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .target-box {
+            display: flex;
+            justify-content: space-between;
+            background: #141414;
+            border: 1px solid #222;
+            padding: 10px 12px;
+            border-radius: 6px;
+            margin: 8px 0;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .target-label {
+            color: #737373;
+        }
+
+        .target-val {
+            color: #ffffff;
+            letter-spacing: 2px;
+        }
+
+        #word-history {
+            flex: 1;
+            background-color: #050505;
+            border: 1px solid #1a1a1a;
+            border-radius: 6px;
+            padding: 10px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+            min-height: 0;
+        }
+
+        .word-step {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #2e7d32;
+            letter-spacing: 1.5px;
+        }
+
+        .word-step:last-child {
+            color: #ffffff;
+        }
+
+        #message-display {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #e50914;
+            min-height: 16px;
+            text-align: center;
+            margin-bottom: 6px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .word-input-field {
+            flex: 1;
+            background: #141414;
+            border: 1px solid #262626;
+            color: #ffffff;
+            padding: 12px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            outline: none;
+        }
+
+        .word-input-field:focus {
+            border-color: #e50914;
+        }
+
+        .btn-submit-word {
+            background-color: #e50914;
+            color: #ffffff;
+            border: none;
+            padding: 0 18px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            border-radius: 20px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Modals */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+
+        .modal-overlay.hidden {
+            display: none !important;
+        }
+
+        .modal-card {
+            background-color: #0d0d0d;
+            border: 1px solid #222222;
+            padding: 24px;
+            border-radius: 14px;
+            width: 90%;
+            max-width: 360px;
+            text-align: center;
+        }
+
+        .modal-card h2 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        .stats-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 14px 0;
+            background: #050505;
+            border: 1px solid #1f1f1f;
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .stat-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-val {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #e50914;
+        }
+
+        .stat-lbl {
+            font-size: 0.55rem;
+            font-weight: 700;
+            color: #737373;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 3px;
+        }
+
+        .btn-modal {
+            width: 100%;
+            background-color: #1a1a1a;
+            border: 1px solid #333333;
+            color: #ffffff;
+            padding: 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-  <div class="app-container">
-    <div class="top-header">
-      <a href="index.html" class="pill-btn">← LOBBY</a>
-      <div class="brand-logo">
-        <div class="brand-title">11FL?</div>
-        <div class="brand-subtitle-main">ELEVENTH FLOOR</div>
-        <div class="brand-subtitle-sub">WORD CLIMB</div>
-      </div>
-      <button class="pill-btn">SOUND: OFF</button>
+
+    <div class="screen-container">
+        <!-- Header Nav -->
+        <header class="header-nav">
+            <a href="index.html" class="btn-nav">← LOBBY</a>
+            <div class="header-brand-center">
+                <h1 class="logo-red-small">11FL?</h1>
+                <p class="logo-subtitle-small">Eleventh Floor</p>
+                <p class="logo-tagline-small">WORD CLIMB</p>
+            </div>
+            <button id="stats-btn" class="btn-nav">STATS</button>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="game-layout">
+            <!-- Left Elevator Shaft Tower -->
+            <div id="building-shaft" class="building-shaft">
+                <div class="floor-block" data-floor="11"></div>
+                <div class="floor-block" data-floor="10"></div>
+                <div class="floor-block" data-floor="9"></div>
+                <div class="floor-block" data-floor="8"></div>
+                <div class="floor-block" data-floor="7"></div>
+                <div class="floor-block" data-floor="6"></div>
+                <div class="floor-block" data-floor="5"></div>
+                <div class="floor-block" data-floor="4"></div>
+                <div class="floor-block" data-floor="3"></div>
+                <div class="floor-block" data-floor="2"></div>
+                <div class="floor-block" data-floor="1"></div>
+            </div>
+
+            <!-- Active Play Card -->
+            <section id="game-card" class="play-card">
+                <div class="card-header">
+                    <div id="floor-tag" class="floor-indicator">FLOOR 01</div>
+                </div>
+
+                <div class="target-box">
+                    <span class="target-label">START: <strong id="start-word" class="target-val">----</strong></span>
+                    <span class="target-label">GOAL: <strong id="target-word" class="target-val">----</strong></span>
+                </div>
+
+                <div id="word-history"></div>
+
+                <div id="message-display"></div>
+
+                <div class="input-group">
+                    <input type="text" id="word-input" class="word-input-field" placeholder="NEXT WORD" maxlength="10" autocomplete="off" spellcheck="false">
+                    <button id="submit-word-btn" class="btn-submit-word">ENTER</button>
+                </div>
+            </section>
+        </main>
     </div>
 
-    <div class="workspace">
-      <div class="elevator-shaft">
-        <div class="elevator-slot" data-floor="11"></div>
-        <div class="elevator-slot" data-floor="10"></div>
-        <div class="elevator-slot" data-floor="8"></div>
-        <div class="elevator-slot" data-floor="8"></div>
-        <div class="elevator-slot" data-floor="7"></div>
-        <div class="elevator-slot" data-floor="6"></div>
-        <div class="elevator-slot" data-floor="5"></div>
-        <div class="elevator-slot" data-floor="4"></div>
-        <div class="elevator-slot" data-floor="3"></div>
-        <div class="elevator-slot" data-floor="2"></div>
-        <div class="elevator-slot" data-floor="1"></div>
-      </div>
-
-      <div class="play-card">
-        <div class="card-header">
-          <span id="card-floor-text" class="card-floor-label">FLOOR 01</span>
-          <div class="card-header-line"></div>
+    <!-- Stats Modal -->
+    <div id="stats-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <h2>WORD CLIMB STATS</h2>
+            <div class="stats-summary-grid">
+                <div class="stat-box">
+                    <span id="stat-played" class="stat-val">0</span>
+                    <span class="stat-lbl">Played</span>
+                </div>
+                <div class="stat-box">
+                    <span id="stat-wins" class="stat-val">0</span>
+                    <span class="stat-lbl">Wins</span>
+                </div>
+                <div class="stat-box">
+                    <span id="stat-win-pct" class="stat-val">0%</span>
+                    <span class="stat-lbl">Win %</span>
+                </div>
+                <div class="stat-box">
+                    <span id="stat-streak" class="stat-val">0</span>
+                    <span class="stat-lbl">Streak</span>
+                </div>
+            </div>
+            <button id="close-stats-btn" class="btn-modal">CLOSE</button>
         </div>
-        <div id="message-box"></div>
-        <div id="target-word-slots"></div>
-        <div id="guess-display"></div>
-        <div id="wheel-container"></div>
-      </div>
     </div>
 
-    <div class="controls">
-      <button id="action-delete-btn" class="btn-action"><span>⌫</span> DELETE</button>
-      <button id="action-submit-btn" class="btn-action"><span>↵</span> SUBMIT</button>
+    <!-- Victory Modal -->
+    <div id="victory-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <h2>11TH FLOOR REACHED!</h2>
+            <p style="font-size: 0.85rem; margin: 12px 0; color: #737373;">You successfully climbed the word ladder.</p>
+            <button id="close-victory-btn" class="btn-modal">PLAY AGAIN</button>
+        </div>
     </div>
-  </div>
 
-  <script src="words.js"></script>
-  <script src="word-climb.js"></script>
+    <script src="words.js"></script>
+    <script src="word-climb.js"></script>
 </body>
 </html>
