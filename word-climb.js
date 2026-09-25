@@ -5,63 +5,56 @@ let currentGuess = "";
 let isTransitioning = false;
 let masterNineLetterWord = "";
 let wheelLetters = [];
-let dictionaryPromise = null;
 
-function getRequiredWordLength(floor) {
-    if (floor >= 1 && floor <= 3) return 5;
-    if (floor >= 4 && floor <= 6) return 6;
-    if (floor >= 7 && floor <= 8) return 7;
-    if (floor === 9) return 8;
-    if (floor === 10) return 9;
-    return 5;
-}
+let dictionarySet = null;
+let dictionaryLoadingPromise = null;
 
-document.addEventListener("DOMContentLoaded", () => {
-    // Begin loading dictionary in background immediately upon page load
-    dictionaryPromise = loadDictionaryAtomic();
-    setupLandingScreen();
-});
+// Start downloading dictionary immediately when page loads
+function loadDictionary() {
+    if (dictionaryLoadingPromise) return dictionaryLoadingPromise;
 
-async function loadDictionaryAtomic() {
-    // 1. Poll for window.WORD_LIST populated by words.js (up to 30 seconds for high ping)
-    for (let i = 0; i < 300; i++) {
-        if ((window.WORD_LIST_LOADED || window.WORD_LIST) && window.WORD_LIST && window.WORD_LIST.size > 0) {
-            cleanDictionary();
-            return true;
-        }
-        await new Promise(r => setTimeout(r, 100));
-    }
+    dictionaryLoadingPromise = (async () => {
+        const paths = ["./words.txt", "words.txt", "/words.txt"];
+        
+        for (const path of paths) {
+            try {
+                const response = await fetch(path);
+                if (response.ok) {
+                    const text = await response.text();
+                    const set = new Set();
+                    const lines = text.split(/\r?\n/);
+                    
+                    for (let i = 0; i < lines.length; i++) {
+                        const cleaned = lines[i].trim().toUpperCase().replace(/[^A-Z]/g, "");
+                        if (cleaned.length >= 3) {
+                            set.add(cleaned);
+                        }
+                    }
 
-    // 2. Direct fetch fallback if words.js hasn't set window.WORD_LIST
-    const paths = ["words.txt", "./words.txt", "/words.txt"];
-    for (const path of paths) {
-        try {
-            const response = await fetch(path);
-            if (response.ok) {
-                const text = await response.text();
-                const fullSet = new Set();
-                const lines = text.split(/\r?\n/);
-                
-                for (let i = 0; i < lines.length; i++) {
-                    const cleaned = lines[i].toUpperCase().replace(/[^A-Z]/g, "");
-                    if (cleaned.length >= 3) {
-                        fullSet.add(cleaned);
+                    if (set.size > 0) {
+                        dictionarySet = set;
+                        window.WORD_LIST = set;
+                        console.log(`[Word Climb] Dictionary ready with ${set.size} words.`);
+                        return true;
                     }
                 }
-
-                if (fullSet.size > 0) {
-                    window.WORD_LIST = fullSet;
-                    window.WORD_LIST_LOADED = true;
-                    cleanDictionary();
-                    return true;
-                }
+            } catch (err) {
+                console.warn(`[Word Climb] Path ${path} failed:`, err);
             }
-        } catch (err) {
-            console.warn(`[Word Climb] Fetch path ${path} skipped:`, err);
         }
-    }
-    return false;
+        dictionaryLoadingPromise = null; // Allow retry on failure
+        return false;
+    })();
+
+    return dictionaryLoadingPromise;
 }
+
+// Initiate background fetch immediately
+loadDictionary();
+
+document.addEventListener("DOMContentLoaded", () => {
+    setupLandingScreen();
+});
 
 function setupLandingScreen() {
     const startBtn = document.getElementById("start-climb-btn");
@@ -72,18 +65,12 @@ function setupLandingScreen() {
         startBtn.style.opacity = "0.7";
         startBtn.disabled = true;
 
-        // Await the master background loader
-        let success = await dictionaryPromise;
-
-        if (!success || !window.WORD_LIST || window.WORD_LIST.size === 0) {
-            dictionaryPromise = loadDictionaryAtomic();
-            success = await dictionaryPromise;
-        }
+        const success = await loadDictionary();
 
         if (success && window.WORD_LIST && window.WORD_LIST.size > 0) {
             launchGameWorkspace();
         } else {
-            startBtn.textContent = "Retry";
+            startBtn.textContent = "Retry Loading";
             startBtn.style.opacity = "1";
             startBtn.disabled = false;
         }
@@ -100,18 +87,6 @@ function launchGameWorkspace() {
     if (gameControls) gameControls.style.display = "flex";
 
     startNewGame();
-}
-
-function cleanDictionary() {
-    if (!window.WORD_LIST) return;
-    const cleanedSet = new Set();
-    window.WORD_LIST.forEach(word => {
-        const cleaned = word.toUpperCase().replace(/[^A-Z]/g, "");
-        if (cleaned.length >= 3) {
-            cleanedSet.add(cleaned);
-        }
-    });
-    window.WORD_LIST = cleanedSet;
 }
 
 function startNewGame() {
@@ -163,6 +138,15 @@ function setupFloor(floor) {
     renderTargetSlots(floor);
     renderWheel(wheelLetters);
     updateGuessDisplay();
+}
+
+function getRequiredWordLength(floor) {
+    if (floor >= 1 && floor <= 3) return 5;
+    if (floor >= 4 && floor <= 6) return 6;
+    if (floor >= 7 && floor <= 8) return 7;
+    if (floor === 9) return 8;
+    if (floor === 10) return 9;
+    return 5;
 }
 
 function updateElevatorShaft(floor) {
