@@ -20,23 +20,31 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function loadDictionaryAndStart() {
-    showMessage("LOADING DICTIONARY...", false);
+    let seconds = 0;
+    
+    // 1. Poll memory for up to 45 seconds to accommodate high-latency handshakes
+    for (let i = 0; i < 225; i++) {
+        if (i % 5 === 0) {
+            seconds++;
+            showMessage(`LOADING DICTIONARY... ${seconds}s`, false);
+        }
 
-    // 1. Passively wait for words.js to finish loading (up to 15 seconds)
-    // Checks memory variables only; makes ZERO extra network requests.
-    for (let i = 0; i < 75; i++) {
-        if (window.WORD_LIST_LOADED && window.WORD_LIST && window.WORD_LIST.size > 0) {
+        if ((window.WORD_LIST_LOADED || (window.WORD_LIST && window.WORD_LIST.size > 0))) {
             cleanDictionary();
             startNewGame();
             return;
         }
+
         await new Promise(r => setTimeout(r, 200));
     }
 
-    // 2. If words.js hasn't loaded after 15 seconds, make ONE single fallback request
-    if (!window.WORD_LIST_LOADED || !window.WORD_LIST || window.WORD_LIST.size === 0) {
+    // 2. Direct fallback attempt if words.js hasn't finished
+    showMessage("FETCHING BACKUP DICTIONARY...", false);
+    const pathsToTry = ["words.txt", "./words.txt", "/words.txt"];
+
+    for (const path of pathsToTry) {
         try {
-            const response = await fetch("./words.txt");
+            const response = await fetch(path);
             if (response.ok) {
                 const text = await response.text();
                 window.WORD_LIST = new Set();
@@ -46,6 +54,7 @@ async function loadDictionaryAndStart() {
                         window.WORD_LIST.add(cleaned);
                     }
                 });
+
                 if (window.WORD_LIST.size > 0) {
                     window.WORD_LIST_LOADED = true;
                     cleanDictionary();
@@ -54,7 +63,7 @@ async function loadDictionaryAndStart() {
                 }
             }
         } catch (err) {
-            console.error("[Word Climb] Fallback fetch failed:", err);
+            console.warn(`[Word Climb] Fallback path ${path} failed:`, err);
         }
     }
 
