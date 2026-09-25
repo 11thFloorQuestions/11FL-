@@ -1,4 +1,4 @@
-// 11th Floor Word Climb - Clean Daily Game Engine
+// 11th Floor Word Climb - Daily Game Engine
 
 let currentFloor = 1;
 let currentGuess = "";
@@ -12,22 +12,23 @@ document.addEventListener("DOMContentLoaded", () => {
     setupLandingScreen();
 });
 
-// Clean Dictionary Resolution: Relies 100% on actual words file
+// Syncs directly with window.WORD_LIST and window.WORD_LIST_LOADED from words.js
 async function resolveDictionary() {
-    if (validWordSet && validWordSet.size > 0) return true;
+    if (window.WORD_LIST_LOADED && window.WORD_LIST && window.WORD_LIST.size > 0) {
+        validWordSet = window.WORD_LIST;
+        return true;
+    }
 
-    // 1. Check window.WORD_LIST populated by words.js script tag
-    for (let i = 0; i < 150; i++) { // Patiently wait up to 15s for slow mobile connection parsing
-        const setFromGlobals = checkGlobalVariables();
-        if (setFromGlobals && setFromGlobals.size > 0) {
-            validWordSet = setFromGlobals;
-            window.WORD_LIST = validWordSet;
+    // Wait up to 20 seconds for words.js to finish fetching words.txt
+    for (let i = 0; i < 200; i++) {
+        if (window.WORD_LIST_LOADED && window.WORD_LIST && window.WORD_LIST.size > 0) {
+            validWordSet = window.WORD_LIST;
             return true;
         }
         await new Promise(r => setTimeout(r, 100));
     }
 
-    // 2. Direct fetch fallback for words.txt if words.js hasn't populated window.WORD_LIST
+    // Fallback direct fetch if words.js script tag missed the file
     const paths = ["words.txt", "./words.txt", "/words.txt"];
     for (const path of paths) {
         try {
@@ -43,49 +44,18 @@ async function resolveDictionary() {
                     }
                 }
                 if (cleanSet.size > 0) {
+                    window.WORD_LIST = cleanSet;
+                    window.WORD_LIST_LOADED = true;
                     validWordSet = cleanSet;
-                    window.WORD_LIST = validWordSet;
                     return true;
                 }
             }
         } catch (e) {
-            console.warn(`[Word Climb] Fetch path ${path} skipped:`, e);
+            console.warn(`[Word Climb] Direct fetch skipped ${path}:`, e);
         }
     }
+
     return false;
-}
-
-function checkGlobalVariables() {
-    const candidates = [
-        window.WORD_LIST,
-        window.WORDS,
-        window.wordList,
-        window.WORD_SET,
-        window.dictionary
-    ];
-
-    for (const candidate of candidates) {
-        if (!candidate) continue;
-
-        const cleanSet = new Set();
-        if (candidate instanceof Set) {
-            candidate.forEach(w => addCleanWord(w, cleanSet));
-        } else if (Array.isArray(candidate)) {
-            candidate.forEach(w => addCleanWord(w, cleanSet));
-        }
-
-        if (cleanSet.size > 0) return cleanSet;
-    }
-    return null;
-}
-
-function addCleanWord(word, set) {
-    if (typeof word === "string") {
-        const clean = word.trim().toUpperCase().replace(/[^A-Z]/g, "");
-        if (clean.length >= 3 && clean.length <= 9) {
-            set.add(clean);
-        }
-    }
 }
 
 function setupLandingScreen() {
@@ -102,7 +72,7 @@ function setupLandingScreen() {
         if (success && validWordSet && validWordSet.size > 0) {
             launchGameWorkspace();
         } else {
-            startBtn.textContent = "Retry Loading";
+            startBtn.textContent = "words.txt Missing on Server";
             startBtn.style.opacity = "1";
             startBtn.disabled = false;
         }
