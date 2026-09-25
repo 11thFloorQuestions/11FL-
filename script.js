@@ -39,7 +39,7 @@ function shuffleArray(array) {
 
 const gameState = {
     currentFloor: 1,
-    maxFloors: 10, // 10 questions to reach Floor 11
+    maxFloors: 10, // 10 questions to reach Destination Floor 11
     soundEnabled: false,
     timer: null,
     timeLeft: 15,
@@ -419,7 +419,7 @@ function handleVictory() {
     updateFloorUI();
     
     safeSetText('game-over-title', '11TH FLOOR REACHED');
-    safeSetText('game-over-message', "Congratulations! You've reached the 11th floor.");
+    safeSetText('game-over-message', "Congratulations! You've reached the 11th Floor! Come back tomorrow to continue your streak.");
     safeSetText('final-floor-reached', 'FLOOR 11 CLEARED');
     
     openModal('modal-game-over');
