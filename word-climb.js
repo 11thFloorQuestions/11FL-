@@ -16,40 +16,71 @@ function getRequiredWordLength(floor) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    loadFullDictionaryAndStart();
+    preloadDictionaryInBackground();
+    setupLandingScreen();
 });
 
-async function loadFullDictionaryAndStart() {
-    showMessage("LOADING DICTIONARY...", false);
+// Starts loading words.txt immediately when page opens
+async function preloadDictionaryInBackground() {
+    if (window.WORD_LIST && window.WORD_LIST.size > 0) return;
 
-    const startTime = Date.now();
-    let seconds = 0;
-
-    // Wait strictly for words.js to finish downloading words.txt and set window.WORD_LIST_LOADED
-    while (!window.WORD_LIST_LOADED) {
-        const elapsedSec = Math.floor((Date.now() - startTime) / 1000);
-        if (elapsedSec !== seconds) {
-            seconds = elapsedSec;
-            showMessage(`LOADING DICTIONARY... ${seconds}s`, false);
+    try {
+        const response = await fetch("words.txt");
+        if (response.ok) {
+            const text = await response.text();
+            window.WORD_LIST = new Set();
+            text.split(/\r?\n/).forEach(rawWord => {
+                const cleaned = rawWord.toUpperCase().replace(/[^A-Z]/g, "");
+                if (cleaned.length >= 3) {
+                    window.WORD_LIST.add(cleaned);
+                }
+            });
+            window.WORD_LIST_LOADED = true;
         }
-
-        // Timeout fallback after 45 seconds
-        if (elapsedSec > 45) {
-            showMessage("DICTIONARY ERROR. REFRESH PAGE.", true);
-            return;
-        }
-
-        await new Promise(r => setTimeout(r, 150));
-    }
-
-    if (window.WORD_LIST && window.WORD_LIST.size > 0) {
-        cleanAndStart();
-    } else {
-        showMessage("DICTIONARY ERROR. REFRESH PAGE.", true);
+    } catch (err) {
+        console.warn("[Word Climb] Background preload network delay:", err);
     }
 }
 
-function cleanAndStart() {
+function setupLandingScreen() {
+    const startBtn = document.getElementById("start-climb-btn");
+    if (!startBtn) return;
+
+    startBtn.onclick = async () => {
+        startBtn.textContent = "LOADING DICTIONARY...";
+        startBtn.disabled = true;
+
+        // Ensure dictionary is fully loaded before launching workspace
+        let waitAttempts = 0;
+        while (!window.WORD_LIST_LOADED && (!window.WORD_LIST || window.WORD_LIST.size === 0)) {
+            await new Promise(r => setTimeout(r, 150));
+            waitAttempts++;
+
+            if (waitAttempts > 200) { // Fallback if network was stuck
+                await preloadDictionaryInBackground();
+                break;
+            }
+        }
+
+        cleanDictionary();
+        launchGameWorkspace();
+    };
+}
+
+function launchGameWorkspace() {
+    const startScreen = document.getElementById("start-screen");
+    const gameWorkspace = document.getElementById("game-workspace");
+    const gameControls = document.getElementById("game-controls");
+
+    if (startScreen) startScreen.style.display = "none";
+    if (gameWorkspace) gameWorkspace.style.display = "flex";
+    if (gameControls) gameControls.style.display = "flex";
+
+    startNewGame();
+}
+
+function cleanDictionary() {
+    if (!window.WORD_LIST) return;
     const cleanedSet = new Set();
     window.WORD_LIST.forEach(word => {
         const cleaned = word.toUpperCase().replace(/[^A-Z]/g, "");
@@ -58,7 +89,6 @@ function cleanAndStart() {
         }
     });
     window.WORD_LIST = cleanedSet;
-    startNewGame();
 }
 
 function startNewGame() {
