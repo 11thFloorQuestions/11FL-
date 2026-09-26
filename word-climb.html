@@ -307,66 +307,13 @@
       color: #ffffff;
     }
 
-    /* Expanded & Scaled Letter Wheel */
+    /* Wheel Container Canvas */
     #wheel-container {
-      width: 240px;
-      height: 240px;
+      width: 260px;
+      height: 260px;
       position: relative;
       margin: auto 0;
       flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Modern Styled Center Shuffle Button */
-    .shuffle-center-btn {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      background: #161616;
-      border: 1px solid #2a2a2a;
-      color: #ff1f2d;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      transition: all 0.2s ease;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
-      z-index: 10;
-    }
-    .shuffle-center-btn:active {
-      transform: translate(-50%, -50%) scale(0.92);
-      border-color: #ff1f2d;
-      background-color: #201214;
-    }
-    .shuffle-center-btn svg {
-      width: 20px;
-      height: 20px;
-      fill: #ff1f2d;
-    }
-
-    /* Dynamic Wheel Letter Nodes (CSS styling override for JS-rendered elements) */
-    .wheel-letter-node {
-      width: 44px !important;
-      height: 44px !important;
-      border-radius: 50% !important;
-      background-color: #121212 !important;
-      border: 1px solid #ff1f2d !important;
-      color: #ffffff !important;
-      font-size: 16px !important;
-      font-weight: 800 !important;
-      box-shadow: 0 0 8px rgba(255, 31, 45, 0.2) !important;
-      transition: all 0.15s ease !important;
-    }
-    .wheel-letter-node:active {
-      background-color: #ff1f2d !important;
-      color: #ffffff !important;
-      transform: scale(1.08) !important;
     }
 
     /* Bottom Action Controls */
