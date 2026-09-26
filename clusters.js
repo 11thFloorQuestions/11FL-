@@ -3,7 +3,7 @@
  * 11TH FLOOR CLUSTERS - CORE GAME LOGIC (clusters.js)
  * ============================================================================
  * Ecosystem Mechanics: 11-Floor Climb, Strict Single-Mistake Reset, 
- * Dynamic Grid Layouts, Date-Indexed Daily Puzzles.
+ * Dynamic Grid Layouts, Date-Indexed Daily Puzzles, Green Success Feedback.
  * ============================================================================
  */
 
@@ -31,6 +31,8 @@
     const penaltyOverlay = document.getElementById('penalty-overlay');
     const floorHudContainer = document.getElementById('floor-hud-container');
     const actionPanelContainer = document.getElementById('action-panel-container');
+    const towerStack = document.getElementById('tower-stack');
+    const btnSound = document.getElementById('btn-sound');
 
     // --- Initialization ---
     function init() {
@@ -39,7 +41,7 @@
             return;
         }
 
-        // Resolve today's puzzle date or fallback to the latest available puzzle
+        // Resolve today's puzzle date or fallback to latest available puzzle
         const availableDates = Object.keys(window.CLUSTERS_DATA).sort();
         const todayStr = new Date().toISOString().split('T')[0];
         const activeDateKey = window.CLUSTERS_DATA[todayStr] ? todayStr : availableDates[availableDates.length - 1];
@@ -49,8 +51,27 @@
         // Bind Control Listeners
         btnShuffle.addEventListener('click', shuffleActiveTiles);
         btnSubmit.addEventListener('click', handleSubmission);
+        
+        // Sound toggle mock
+        btnSound.addEventListener('click', () => {
+            btnSound.textContent = btnSound.textContent.includes('OFF') ? 'SOUND: ON' : 'SOUND: OFF';
+        });
 
+        renderTowerStack(0);
         renderIntroScreen();
+    }
+
+    // --- Render 11-Floor Tower Indicator ---
+    function renderTowerStack(activeFloor) {
+        towerStack.innerHTML = '';
+        for (let i = 1; i <= 11; i++) {
+            const floorBar = document.createElement('div');
+            floorBar.className = 'tower-floor';
+            if (i <= activeFloor) {
+                floorBar.classList.add('active');
+            }
+            towerStack.appendChild(floorBar);
+        }
     }
 
     // --- Intro Screen Render ---
@@ -60,18 +81,15 @@
         actionPanelContainer.style.display = 'none';
         solvedGroupsContainer.innerHTML = '';
         puzzlePrompt.textContent = "";
+        renderTowerStack(0);
 
         tileGrid.className = 'tile-grid grid-warmup';
         tileGrid.innerHTML = `
-            <div style="grid-column: span 2; background-color: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 30px 20px; text-align: center; display: flex; flex-direction: column; gap: 16px;">
-                <div style="font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--text-primary); letter-spacing: 0.5px;">
-                    Can you reach the 11th Floor?
+            <div style="grid-column: span 2;" class="landing-container">
+                <div class="landing-challenge-text">
+                    Can you reach the 11th Floor? Fail and you're back to the ground floor.
                 </div>
-                <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
-                    Climb 11 floors of interconnected linguistic and global clusters.<br>
-                    <strong style="color: var(--accent-red);">Warning:</strong> One single mistake drops you all the way back to Floor 01.
-                </div>
-                <button class="btn btn-primary" id="btn-start-climb" style="margin-top: 10px; width: 100%;">START CLIMB</button>
+                <button class="btn-start" id="btn-start-climb">Start Climb</button>
             </div>
         `;
 
@@ -91,6 +109,7 @@
     function loadFloor(floorNum) {
         currentFloor = floorNum;
         floorNumVal.textContent = String(currentFloor).padStart(2, '0');
+        renderTowerStack(currentFloor);
         selectedTiles = [];
         solvedGroupsContainer.innerHTML = '';
         statusMessage.textContent = '';
@@ -177,7 +196,7 @@
         renderGrid();
     }
 
-    // --- Submission & Validation Logic ---
+    // --- Submission & Validation Logic with Green Success Feedback ---
     function handleSubmission() {
         if (gameState !== 'playing') return;
 
@@ -196,33 +215,42 @@
         }
 
         if (matchedGroupIndex > -1) {
-            // Correct Group Found!
-            const solvedGroup = remainingGroups.splice(matchedGroupIndex, 1)[0];
-            
-            // Remove solved tiles from active tiles array
-            activeTiles = activeTiles.filter(t => !solvedGroup.words.includes(t));
-
-            // Render Solved Card
-            appendSolvedCard(solvedGroup);
-
-            // Reset selection for next group / floor
-            selectedTiles = [];
+            // Correct Group Found! Flash selected tiles Green
+            gameState = 'animating';
             btnSubmit.disabled = true;
-            renderGrid();
 
-            // Check if floor is complete
-            if (remainingGroups.length === 0) {
-                setTimeout(() => {
-                    if (currentFloor < 11) {
-                        statusMessage.textContent = `FLOOR ${String(currentFloor).padStart(2, '0')} CLEARED. ADVANCING...`;
-                        setTimeout(() => loadFloor(currentFloor + 1), 900);
-                    } else {
-                        renderVictory();
-                    }
-                }, 400);
-            } else {
-                statusMessage.textContent = "CORRECT CLUSTER.";
-            }
+            const tileElements = tileGrid.querySelectorAll('.cluster-tile');
+            tileElements.forEach(el => {
+                if (selectedTiles.includes(el.textContent)) {
+                    el.classList.remove('selected');
+                    el.classList.add('success');
+                }
+            });
+
+            statusMessage.textContent = "CORRECT CLUSTER.";
+
+            setTimeout(() => {
+                const solvedGroup = remainingGroups.splice(matchedGroupIndex, 1)[0];
+                activeTiles = activeTiles.filter(t => !solvedGroup.words.includes(t));
+
+                appendSolvedCard(solvedGroup);
+                selectedTiles = [];
+                gameState = 'playing';
+                renderGrid();
+
+                // Check if floor is complete
+                if (remainingGroups.length === 0) {
+                    setTimeout(() => {
+                        if (currentFloor < 11) {
+                            statusMessage.textContent = `FLOOR ${String(currentFloor).padStart(2, '0')} CLEARED. ADVANCING...`;
+                            setTimeout(() => loadFloor(currentFloor + 1), 900);
+                        } else {
+                            renderVictory();
+                        }
+                    }, 400);
+                }
+            }, 600);
+
         } else {
             // Incorrect Submission -> Brutal Penalty!
             triggerBrutalReset();
@@ -262,17 +290,18 @@
         actionPanelContainer.style.display = 'none';
         solvedGroupsContainer.innerHTML = '';
         puzzlePrompt.textContent = "";
+        renderTowerStack(11);
 
         tileGrid.className = 'tile-grid grid-warmup';
         tileGrid.innerHTML = `
-            <div style="grid-column: span 2; background-color: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 40px 20px; text-align: center; display: flex; flex-direction: column; gap: 16px;">
-                <div style="font-family: 'Montserrat', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--accent-red); letter-spacing: 1.5px;">
+            <div style="grid-column: span 2;" class="landing-container">
+                <div style="font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--accent-green); letter-spacing: 1.5px;">
                     SUMMIT REACHED
                 </div>
-                <div style="font-size: 0.85rem; color: var(--text-primary); line-height: 1.6;">
+                <div class="landing-challenge-text">
                     You successfully conquered all 11 floors of today's clusters puzzle without breaking your stride.
                 </div>
-                <a href="index.html" class="btn btn-primary" style="text-decoration: none; margin-top: 10px; display: inline-block;">RETURN TO LOBBY</a>
+                <a href="index.html" class="btn-start" style="text-decoration: none; display: inline-block; text-align: center;">RETURN TO LOBBY</a>
             </div>
         `;
     }
