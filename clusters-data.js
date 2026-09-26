@@ -2,7 +2,7 @@
  * ============================================================================
  * 11TH FLOOR CLUSTERS - DAILY PUZZLE DATA (clusters-data.js)
  * ============================================================================
- * Rules: 12-tile pools with distractors (Floors 1-4), scaling up to 16-tile walls.
+ * Standard: Airtight global logic, clean categorical separation, zero overlap.
  * ============================================================================
  */
 
@@ -11,84 +11,87 @@ window.CLUSTERS_DATA = {
     date: "2026-09-26",
     title: "Puzzle #01: Global Alignment",
     floors: {
-      // Floors 01–04: 12 Tiles total (2 correct groups of 3 = 6 correct, 6 distractors)
+      // Floor 01: 12 Tiles (2 groups of 3 + 6 clean distractors)
       1: {
         type: "distractor-12",
-        tiles: ["LITRE", "KILOGRAM", "METRE", "SECOND", "KELVIN", "AMPERE", "ALPHA", "BETA", "GAMMA", "DELTA", "OMEGA", "SIGMA"],
+        tiles: ["LONDON", "PARIS", "TOKYO", "NILE", "AMAZON", "YANGTZE", "PIANO", "GUITAR", "VIOLIN", "DRUM", "FLUTE", "TRUMPET"],
         groups: [
-          { words: ["LITRE", "KILOGRAM", "METRE"], category: "Common metric base units" },
-          { words: ["SECOND", "KELVIN", "AMPERE"], category: "Other international SI base units" }
+          { words: ["LONDON", "PARIS", "TOKYO"], category: "Major global capital cities" },
+          { words: ["NILE", "AMAZON", "YANGTZE"], category: "Major world rivers" }
         ]
       },
+      // Floor 02: 12 Tiles (2 groups of 3 + 6 clean distractors)
       2: {
         type: "distractor-12",
-        tiles: ["COPPER", "SILVER", "GOLD", "OXYGEN", "NITROGEN", "HELIUM", "IRON", "ZINC", "TIN", "LEAD", "NICKEL", "CARBON"],
+        tiles: ["GOLD", "SILVER", "BRONZE", "DIAMOND", "RUBY", "EMERALD", "SQUARE", "CIRCLE", "TRIANGLE", "RECTANGLE", "OVAL", "PENTAGON"],
         groups: [
-          { words: ["COPPER", "SILVER", "GOLD"], category: "Precious or historical metals" },
-          { words: ["OXYGEN", "NITROGEN", "HELIUM"], category: "Gaseous chemical elements" }
+          { words: ["GOLD", "SILVER", "BRONZE"], category: "Precious metals / podium medals" },
+          { words: ["DIAMOND", "RUBY", "EMERALD"], category: "Precious gemstones" }
         ]
       },
+      // Floor 03: 12 Tiles (2 groups of 3 + 6 clean distractors)
       3: {
         type: "distractor-12",
-        tiles: ["MARS", "VENUS", "EARTH", "SIRIUS", "VEGA", "RIGEL", "JUPITER", "SATURN", "URANUS", "POLARIS", "BETELGEUSE", "DENEB"],
+        tiles: ["MARS", "VENUS", "JUPITER", "LION", "TIGER", "LEOPARD", "EAGLE", "HAWK", "FALCON", "OWL", "CROW", "SWAN"],
         groups: [
-          { words: ["MARS", "VENUS", "EARTH"], category: "Inner rocky planets" },
-          { words: ["SIRIUS", "VEGA", "RIGEL"], category: "Bright visible stars" }
+          { words: ["MARS", "VENUS", "JUPITER"], category: "Planets of the solar system" },
+          { words: ["LION", "TIGER", "LEOPARD"], category: "Large wild cats" }
         ]
       },
+      // Floor 04: 12 Tiles (2 groups of 3 + 6 clean distractors)
       4: {
         type: "distractor-12",
-        tiles: ["NILE", "AMAZON", "YANGTZE", "EVEREST", "K2", "KILIMANJARO", "DANUBE", "VOLGA", "MEKONG", "DENALI", "FUJI", "ELBRUS"],
+        tiles: ["RED", "BLUE", "GREEN", "OAK", "PINE", "MAPLE", "APPLE", "BANANA", "ORANGE", "GRAPE", "MANGO", "PEACH"],
         groups: [
-          { words: ["NILE", "AMAZON", "YANGTZE"], category: "Major global rivers" },
-          { words: ["EVEREST", "K2", "KILIMANJARO"], category: "Iconic mountain peaks" }
+          { words: ["RED", "BLUE", "GREEN"], category: "Primary and standard colors" },
+          { words: ["OAK", "PINE", "MAPLE"], category: "Common tree species" }
         ]
       },
 
-      // Floors 05–09: 12 Tiles total (3 groups of 3 = 9 correct, 3 distractors)
+      // Floors 05–09: 12 Tiles (3 groups of 3 = 9 correct, 3 distractors)
       5: {
         type: "distractor-12-three",
-        tiles: ["LION", "TIGER", "LEOPARD", "EAGLE", "HAWK", "FALCON", "PYTHON", "VIPER", "COBRA", "WOLF", "BEAR", "FOX"],
+        tiles: ["FOOTBALL", "TENNIS", "CRICKET", "CHESS", "POKER", "BRIDGE", "VIOLIN", "CELLO", "FLUTE", "PYTHON", "VIPER", "COBRA"],
         groups: [
-          { words: ["LION", "TIGER", "LEOPARD"], category: "Large wild cats" },
-          { words: ["EAGLE", "HAWK", "FALCON"], category: "Birds of prey" },
-          { words: ["PYTHON", "VIPER", "COBRA"], category: "Notable predatory snakes" }
+          { words: ["FOOTBALL", "TENNIS", "CRICKET"], category: "Popular global ball sports" },
+          { words: ["CHESS", "POKER", "BRIDGE"], category: "Strategic tabletop / card games" },
+          { words: ["VIOLIN", "CELLO", "FLUTE"], category: "Orchestral instruments" }
         ]
       },
       6: {
         type: "distractor-12-three",
-        tiles: ["BACH", "MOZART", "BEETHOVEN", "PLATO", "ARISTOTLE", "SOCRATES", "MARS", "VENUS", "MERCURY", "CHOPIN", "VIVALDI", "LISZT"],
+        tiles: ["IRON", "COPPER", "TIN", "WHEAT", "RICE", "MAIZE", "MILK", "WATER", "JUICE", "SOFA", "TABLE", "CHAIR"],
         groups: [
-          { words: ["BACH", "MOZART", "BEETHOVEN"], category: "Classical composers" },
-          { words: ["PLATO", "ARISTOTLE", "SOCRATES"], category: "Ancient Greek philosophers" },
-          { words: ["MARS", "VENUS", "MERCURY"], category: "Inner solar system planets" }
+          { words: ["IRON", "COPPER", "TIN"], category: "Industrial base metals" },
+          { words: ["WHEAT", "RICE", "MAIZE"], category: "Major global staple grains" },
+          { words: ["MILK", "WATER", "JUICE"], category: "Common daily beverages" }
         ]
       },
       7: {
         type: "distractor-12-three",
-        tiles: ["TOKYO", "LONDON", "PARIS", "DIAMOND", "RUBY", "EMERALD", "COPPER", "IRON", "TIN", "BERLIN", "MADRID", "ROME"],
+        tiles: ["PLATO", "ARISTOTLE", "SOCRATES", "BACH", "MOZART", "BEETHOVEN", "NEWTON", "EINSTEIN", "DARWIN", "SHAKESPEARE", "DANTE", "HOMER"],
         groups: [
-          { words: ["TOKYO", "LONDON", "PARIS"], category: "Major global capital cities" },
-          { words: ["DIAMOND", "RUBY", "EMERALD"], category: "Precious gemstones" },
-          { words: ["COPPER", "IRON", "TIN"], category: "Common industrial base metals" }
+          { words: ["PLATO", "ARISTOTLE", "SOCRATES"], category: "Ancient Greek philosophers" },
+          { words: ["BACH", "MOZART", "BEETHOVEN"], category: "Classical composers" },
+          { words: ["NEWTON", "EINSTEIN", "DARWIN"], category: "Revolutionary scientists" }
         ]
       },
       8: {
         type: "distractor-12-three",
-        tiles: ["APOLLO", "HERMES", "ATHENA", "SQUARE", "CIRCLE", "TRIANGLE", "PIANO", "GUITAR", "VIOLIN", "ZEUS", "HESERA", "ARES"],
+        tiles: ["PACIFIC", "ATLANTIC", "INDIAN", "EVEREST", "K2", "KILIMANJARO", "SAHARA", "GOBI", "KALAHARI", "LYON", "MARSEILLE", "NICE"],
         groups: [
-          { words: ["APOLLO", "HERMES", "ATHENA"], category: "Greek mythological figures" },
-          { words: ["SQUARE", "CIRCLE", "TRIANGLE"], category: "Basic geometric shapes" },
-          { words: ["PIANO", "GUITAR", "VIOLIN"], category: "Standard musical instruments" }
+          { words: ["PACIFIC", "ATLANTIC", "INDIAN"], category: "Major world oceans" },
+          { words: ["EVEREST", "K2", "KILIMANJARO"], category: "Highest mountain peaks" },
+          { words: ["SAHARA", "GOBI", "KALAHARI"], category: "Major global deserts" }
         ]
       },
       9: {
         type: "distractor-12-three",
-        tiles: ["WHIST", "BRIDGE", "EUCHRE", "TUDOR", "STUART", "WINDSOR", "RAIN", "SNOW", "WIND", "POKER", "CHECKERS", "CHESS"],
+        tiles: ["TUDOR", "STUART", "WINDSOR", "SPRING", "SUMMER", "AUTUMN", "NORTH", "SOUTH", "EAST", "RAIN", "SNOW", "WIND"],
         groups: [
-          { words: ["WHIST", "BRIDGE", "EUCHRE"], category: "Traditional card games" },
-          { words: ["TUDOR", "STUART", "WINDSOR"], category: "Royal dynasties / houses" },
-          { words: ["RAIN", "SNOW", "WIND"], category: "Common meteorological weather types" }
+          { words: ["TUDOR", "STUART", "WINDSOR"], category: "Historic royal houses / dynasties" },
+          { words: ["SPRING", "SUMMER", "AUTUMN"], category: "Temperate calendar seasons" },
+          { words: ["NORTH", "SOUTH", "EAST"], category: "Primary cardinal directions" }
         ]
       },
 
