@@ -1,439 +1,487 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>11th Floor Word Climb</title>
-  <!-- Modern Geometric Typography -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,800&display=swap" rel="stylesheet">
-  
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-    body {
-      background-color: #000000;
-      color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      height: 100dvh;
-      padding: 6px 16px;
-      overflow: hidden;
-    }
-    .app-container {
-      width: 100%;
-      max-width: 380px;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 2px 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>11th Floor Word Climb — Daily Puzzle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #000000;
+            --surface: #0a0a0a;
+            --surface-border: #222222;
+            --accent-red: #ff1f2d;
+            --accent-red-glow: rgba(255, 31, 45, 0.25);
+            --accent-green: #22c55e;
+            --accent-green-glow: rgba(34, 197, 94, 0.3);
+            --text-primary: #ffffff;
+            --text-muted: #888888;
+        }
 
-    /* Centered Header Bar - Matching Clusters Logo Proportions */
-    .top-header {
-      display: grid;
-      grid-template-columns: 85px 1fr 85px;
-      align-items: center;
-      width: 100%;
-      flex-shrink: 0;
-      padding: 8px 0 10px 0;
-    }
-    .pill-btn {
-      background: #000000;
-      border: 1px solid #222222;
-      border-radius: 20px;
-      color: #888888;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.8px;
-      padding: 6px 10px;
-      cursor: pointer;
-      text-decoration: none;
-      text-align: center;
-      display: inline-block;
-      transition: all 0.2s ease;
-    }
-    .pill-btn:active {
-      border-color: #444444;
-      color: #ffffff;
-    }
-    .brand-logo {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-    .brand-title {
-      color: #ff1f2d;
-      font-size: 42px;
-      font-weight: 900;
-      line-height: 0.95;
-      letter-spacing: -1px;
-      text-shadow: 0 0 12px rgba(255, 31, 45, 0.4);
-    }
-    .brand-subtitle-main {
-      color: #ffffff;
-      font-size: 13px;
-      font-weight: 300;
-      letter-spacing: 3px;
-      margin-top: 4px;
-      text-transform: uppercase;
-    }
-    .brand-subtitle-sub {
-      color: #777777;
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 3.5px;
-      text-transform: uppercase;
-      margin-top: 3px;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-    /* Minimalist Landing Screen */
-    .landing-card {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-around;
-      padding: 16px 0;
-    }
-    .landing-elevator-shaft {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 48px;
-      height: 170px;
-      background-color: #111111;
-      border: 1px solid #1e1e1e;
-      border-radius: 10px;
-      padding: 5px;
-      flex-shrink: 0;
-    }
-    .landing-shaft-slot {
-      height: 6%;
-      border-radius: 2px;
-      background-color: #1a1a1a;
-    }
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            overflow-x: hidden;
+        }
 
-    /* Tagline / Rules Text Block */
-    .landing-tagline {
-      color: #888888;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 1.2px;
-      text-align: center;
-      line-height: 1.7;
-      max-width: 320px;
-      text-transform: uppercase;
-      padding: 0 10px;
-    }
-    .landing-tagline-highlight {
-      color: #ffffff;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-    }
+        .app-wrapper {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            flex-grow: 1;
+        }
 
-    /* Centered Start Button */
-    .btn-start-climb {
-      width: 220px;
-      background-color: #ffffff;
-      color: #000000;
-      border: none;
-      border-radius: 30px;
-      padding: 13px 0;
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      cursor: pointer;
-      text-align: center;
-      transition: all 0.2s ease;
-    }
-    .btn-start-climb:active {
-      background-color: #cccccc;
-      transform: scale(0.98);
-    }
+        /* Top Navigation Bar */
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
 
-    /* Active Game Workspace */
-    .workspace {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      flex: 1;
-      margin: 2px 0;
-      min-height: 0;
-    }
+        .pill-btn {
+            background: transparent;
+            border: 1px solid var(--surface-border);
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+        }
 
-    /* Compact Top Status Section */
-    .status-row {
-      display: flex;
-      gap: 8px;
-      width: 100%;
-      height: 58px;
-      flex-shrink: 0;
-    }
-    .elevator-shaft {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 44px;
-      background-color: #111111;
-      border: 1px solid #1e1e1e;
-      border-radius: 10px;
-      padding: 4px;
-      flex-shrink: 0;
-    }
-    .elevator-slot {
-      height: 6%;
-      border-radius: 2px;
-      background-color: #1a1a1a;
-      transition: all 0.2s ease;
-    }
-    .elevator-slot.active {
-      background-color: #ff1f2d;
-      box-shadow: 0 0 8px rgba(255, 31, 45, 0.8);
-    }
+        .pill-btn:hover {
+            border-color: var(--text-muted);
+            background: var(--surface);
+        }
 
-    /* Floor Status Card */
-    .floor-status-card {
-      flex: 1;
-      background-color: #111111;
-      border: 1px solid #1e1e1e;
-      border-radius: 10px;
-      padding: 0 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .card-floor-label {
-      color: #ffffff;
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-    .card-floor-label .floor-num {
-      color: #ff1f2d;
-    }
-    .badge-ascent-container {
-      background: #161616;
-      border: 1px solid #262626;
-      border-radius: 6px;
-      padding: 6px 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .badge-ascent-text {
-      color: #666666;
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 2px;
-    }
+        /* Exact Clusters Branding Logo Box */
+        .game-logo-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+            text-align: center;
+        }
 
-    /* Squeezed Main Gameplay Area */
-    .play-card {
-      flex: 1;
-      background-color: #111111;
-      border: 1px solid #1e1e1e;
-      border-radius: 14px;
-      padding: 8px 8px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-    }
-    #message-box {
-      font-size: 11px;
-      font-weight: 800;
-      color: #ff1f2d;
-      letter-spacing: 1px;
-      min-height: 14px;
-      text-align: center;
-      flex-shrink: 0;
-      text-transform: uppercase;
-    }
-    #target-word-slots {
-      display: flex;
-      gap: 5px;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      min-height: 32px;
-      flex-wrap: wrap;
-    }
-    .target-slot {
-      width: 26px;
-      height: 32px;
-      border: 1px solid #2a2a2a;
-      border-radius: 6px;
-      background: #161616;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 13px;
-      color: #ffffff;
-      box-shadow: inset 0 0 4px rgba(0,0,0,0.5);
-    }
-    #guess-display {
-      display: flex;
-      justify-content: center;
-      gap: 4px;
-      min-height: 24px;
-      align-items: center;
-      font-weight: 800;
-      font-size: 15px;
-      letter-spacing: 2.5px;
-      color: #ffffff;
-    }
+        .game-logo-red {
+            font-family: 'Anton', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 400;
+            color: var(--accent-red);
+            line-height: 0.85;
+            letter-spacing: -1px;
+            text-shadow: 0 0 20px rgba(255, 31, 45, 0.35);
+            margin-bottom: 4px;
+        }
 
-    /* Compact Wheel Container Canvas */
-    #wheel-container {
-      width: 240px;
-      height: 240px;
-      position: relative;
-      margin: auto 0;
-      flex-shrink: 0;
-    }
+        .game-logo-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 300;
+            color: #ffffff;
+            letter-spacing: 1.5px;
+            margin-bottom: 2px;
+        }
 
-    /* Bottom Action Controls */
-    .controls {
-      display: flex;
-      gap: 8px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .btn-action {
-      flex: 1;
-      padding: 11px 8px;
-      border-radius: 10px;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: all 0.15s ease;
-    }
-    .btn-action-delete {
-      background-color: #141414;
-      border: 1px solid #282828;
-      color: #ffffff;
-    }
-    .btn-action-delete:active {
-      background-color: #222222;
-      transform: scale(0.98);
-    }
-    .btn-action-submit {
-      background-color: #8b121a;
-      border: 1px solid #b31b27;
-      color: #ffffff;
-      box-shadow: 0 2px 8px rgba(139, 18, 26, 0.4);
-    }
-    .btn-action-submit:active {
-      background-color: #a81621;
-      transform: scale(0.98);
-    }
-  </style>
+        .game-logo-sub {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* Landing Screen Container */
+        .landing-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 16px;
+            padding: 20px 16px;
+            width: 100%;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .landing-shaft-graphic {
+            display: flex;
+            flex-direction: column;
+            width: 45px;
+            height: 140px;
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            padding: 6px;
+            gap: 3px;
+            background-color: var(--surface);
+        }
+
+        .landing-shaft-box {
+            flex: 1;
+            background-color: #111111;
+            border: 1px solid var(--surface-border);
+            border-radius: 2px;
+        }
+
+        .landing-challenge-text {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            line-height: 1.6;
+            letter-spacing: 1px;
+            max-width: 320px;
+            text-transform: uppercase;
+        }
+
+        .landing-challenge-text strong {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .btn-start {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 12px 36px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-start:hover {
+            background-color: var(--accent-red);
+            color: #ffffff;
+            box-shadow: 0 4px 25px var(--accent-red-glow);
+        }
+
+        /* Side-by-Side HUD Container */
+        .hud-sidebar-container {
+            width: 100%;
+            display: flex;
+            align-items: stretch;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .tower-stack {
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 2px;
+            width: 45px;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            padding: 8px;
+            justify-content: space-between;
+        }
+
+        .tower-floor {
+            height: 7px;
+            border: 1px solid var(--surface-border);
+            background: #111111;
+            transition: all 0.2s ease;
+            border-radius: 2px;
+        }
+
+        .tower-floor.active {
+            border-color: var(--accent-red);
+            background: rgba(255, 31, 45, 0.3);
+            box-shadow: 0 0 6px var(--accent-red-glow);
+        }
+
+        .floor-info-box {
+            flex-grow: 1;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            padding: 12px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .current-floor-display {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .current-floor-display span {
+            color: var(--accent-red);
+            font-size: 1.25rem;
+        }
+
+        .floor-right-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .floor-phase-tag {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 6px 12px;
+            border: 1px solid var(--surface-border);
+            color: var(--text-muted);
+            border-radius: 4px;
+            background: #111111;
+        }
+
+        /* Play Card & Gameplay Canvas */
+        .play-card {
+            width: 100%;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            flex-grow: 1;
+            margin-bottom: 10px;
+        }
+
+        #message-box {
+            min-height: 18px;
+            color: var(--accent-red);
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        #target-word-slots {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            min-height: 36px;
+            flex-wrap: wrap;
+        }
+
+        .target-slot {
+            width: 30px;
+            height: 36px;
+            border: 1px solid var(--surface-border);
+            border-radius: 6px;
+            background: #111111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        #guess-display {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            min-height: 28px;
+            align-items: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+        }
+
+        /* Perfectly Sized Wheel Canvas */
+        #wheel-container {
+            width: 250px;
+            height: 250px;
+            position: relative;
+            margin: auto 0;
+            flex-shrink: 0;
+        }
+
+        /* Action Panel Buttons matching Clusters */
+        .action-panel {
+            width: 100%;
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .btn {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 12px 20px;
+            cursor: pointer;
+            border: 2px solid var(--accent-red);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-muted);
+            border-color: var(--surface-border);
+        }
+
+        .btn-secondary:hover {
+            color: var(--text-primary);
+            border-color: var(--text-muted);
+        }
+
+        .btn-primary {
+            background: var(--accent-red);
+            color: #000000;
+            border-color: var(--accent-red);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--accent-red);
+            box-shadow: 0 0 20px var(--accent-red-glow);
+        }
+
+        footer {
+            width: 100%;
+            text-align: center;
+            margin-top: 8px;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+    </style>
 </head>
 <body>
-  <div class="app-container">
-    <div class="top-header">
-      <a href="index.html" class="pill-btn">← LOBBY</a>
-      <div class="brand-logo">
-        <div class="brand-title">11FL?</div>
-        <div class="brand-subtitle-main">Eleventh Floor</div>
-        <div class="brand-subtitle-sub">WORD CLIMB</div>
-      </div>
-      <button class="pill-btn">SOUND: OFF</button>
-    </div>
 
-    <!-- Minimalist Landing Screen -->
-    <div id="start-screen" class="landing-card">
-      <div class="landing-elevator-shaft">
-        <div class="landing-shaft-slot"></div>
-        <div class="landing-shaft-slot"></div>
-        <div class="landing-shaft-slot"></div>
-        <div class="landing-shaft-slot"></div>
-        <div class="landing-shaft-slot"></div>
-        <div class="landing-shaft-slot"></div>
-        <div class="landing-shaft-slot"></div>
-        <div class="landing-shaft-slot"></div>
-        <div class="landing-shaft-slot"></div>
-        <div class="landing-shaft-slot"></div>
-        <div class="landing-shaft-slot"></div>
-      </div>
-
-      <div class="landing-tagline">
-        <span class="landing-tagline-highlight">CAN YOU REACH THE 11TH FLOOR?</span><br><br>
-        Find a valid English word on every floor, from 5 to 9 letters. Reusing letters is allowed.<br><br>
-        Submit one wrong and you're back to the ground floor.
-      </div>
-
-      <button id="start-climb-btn" class="btn-start-climb">Start Climb</button>
-    </div>
-
-    <!-- Gameplay Workspace (Hidden initially) -->
-    <div id="game-workspace" class="workspace" style="display: none;">
-      
-      <!-- Top Status Row: Compact Elevator Shaft + Floor Status Card -->
-      <div class="status-row">
-        <div class="elevator-shaft">
-          <div class="elevator-slot" data-floor="11"></div>
-          <div class="elevator-slot" data-floor="10"></div>
-          <div class="elevator-slot" data-floor="9"></div>
-          <div class="elevator-slot" data-floor="8"></div>
-          <div class="elevator-slot" data-floor="7"></div>
-          <div class="elevator-slot" data-floor="6"></div>
-          <div class="elevator-slot" data-floor="5"></div>
-          <div class="elevator-slot" data-floor="4"></div>
-          <div class="elevator-slot" data-floor="3"></div>
-          <div class="elevator-slot" data-floor="2"></div>
-          <div class="elevator-slot" data-floor="1"></div>
+    <div class="app-wrapper">
+        <div class="top-bar">
+            <a href="index.html" class="pill-btn">← LOBBY</a>
+            <button class="pill-btn" id="btn-sound">SOUND: OFF</button>
         </div>
 
-        <div class="floor-status-card">
-          <span id="card-floor-text" class="card-floor-label">FLOOR <span class="floor-num">01</span></span>
-          <div class="badge-ascent-container">
-            <span class="badge-ascent-text">ASCENT</span>
-          </div>
+        <div class="game-logo-box">
+            <h1 class="game-logo-red">11FL?</h1>
+            <p class="game-logo-title">Eleventh Floor</p>
+            <p class="game-logo-sub">WORD CLIMB</p>
         </div>
-      </div>
 
-      <!-- Main Game Play Area -->
-      <div class="play-card">
-        <div id="message-box"></div>
-        <div id="target-word-slots"></div>
-        <div id="guess-display"></div>
-        <div id="wheel-container"></div>
-      </div>
+        <!-- Landing Screen -->
+        <div id="start-screen" class="landing-container">
+            <div class="landing-shaft-graphic">
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+            </div>
+
+            <div class="landing-challenge-text">
+                <strong>CAN YOU REACH THE 11TH FLOOR?</strong><br><br>
+                Find a valid English word on every floor, from 5 to 9 letters.<br><br>
+                ONE MISTAKE RESETS THE CLIMB TO FLOOR 01.
+            </div>
+
+            <button id="start-climb-btn" class="btn-start">Start Climb</button>
+        </div>
+
+        <!-- Gameplay HUD (Tower Stack + Floor Info Box) -->
+        <div class="hud-sidebar-container" id="floor-hud-container" style="display: none;">
+            <div class="tower-stack" id="tower-stack">
+                <div class="tower-floor" data-floor="11"></div>
+                <div class="tower-floor" data-floor="10"></div>
+                <div class="tower-floor" data-floor="9"></div>
+                <div class="tower-floor" data-floor="8"></div>
+                <div class="tower-floor" data-floor="7"></div>
+                <div class="tower-floor" data-floor="6"></div>
+                <div class="tower-floor" data-floor="5"></div>
+                <div class="tower-floor" data-floor="4"></div>
+                <div class="tower-floor" data-floor="3"></div>
+                <div class="tower-floor" data-floor="2"></div>
+                <div class="tower-floor" data-floor="1"></div>
+            </div>
+
+            <div class="floor-info-box">
+                <div class="current-floor-display">FLOOR <span id="floor-number-val">01</span></div>
+                <div class="floor-right-group">
+                    <div class="floor-phase-tag">ASCENT</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Play Card Workspace -->
+        <div id="game-workspace" class="play-card" style="display: none;">
+            <div id="message-box"></div>
+            <div id="target-word-slots"></div>
+            <div id="guess-display"></div>
+            <div id="wheel-container"></div>
+        </div>
+
+        <!-- Action Panel Controls -->
+        <div class="action-panel" id="game-controls" style="display: none;">
+            <button class="btn btn-secondary" id="action-delete-btn">⌫ DELETE</button>
+            <button class="btn btn-primary" id="action-submit-btn">↵ SUBMIT</button>
+        </div>
+
+        <footer>
+            <div>ONE MISTAKE RESETS THE CLIMB TO FLOOR 01.</div>
+        </footer>
     </div>
 
-    <!-- Controls (Hidden initially) -->
-    <div id="game-controls" class="controls" style="display: none;">
-      <button id="action-delete-btn" class="btn-action btn-action-delete"><span>⌫</span> DELETE</button>
-      <button id="action-submit-btn" class="btn-action btn-action-submit"><span>↵</span> SUBMIT</button>
-    </div>
-  </div>
-
-  <script src="words.js"></script>
-  <script src="word-climb.js"></script>
+    <script src="words.js"></script>
+    <script src="word-climb.js"></script>
 </body>
 </html>
