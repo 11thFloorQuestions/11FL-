@@ -2,8 +2,7 @@
  * ============================================================================
  * 11TH FLOOR CLUSTERS - DAILY PUZZLE DATA (clusters-data.js)
  * ============================================================================
- * Aesthetic: Pure black / sharp red minimalist design system.
- * Cultural Vibe: British-leaning and global lateral connection puzzles.
+ * Standard: Global scope, airtight logic, zero AI slop, zero regional bias.
  * Progression: Floors 01-04 (Warmup: 6 tiles), Floors 05-08 (Squeeze: 9 tiles), 
  * Floors 09-11 (The Wall: 16 tiles).
  * ============================================================================
@@ -12,7 +11,7 @@
 window.CLUSTERS_DATA = {
   "2026-09-26": {
     date: "2026-09-26",
-    title: "Puzzle #01: The Meridian Sequence",
+    title: "Puzzle #01: Global Alignment",
     floors: {
       // ==========================================
       // WARMUP PHASE (Floors 01–04)
@@ -20,35 +19,35 @@ window.CLUSTERS_DATA = {
       // ==========================================
       1: {
         type: "warmup",
-        tiles: ["THAMES", "SEVERN", "HUMBER", "BAKER", "FLEET", "TYBURN"],
-        targetGroup: ["THAMES", "SEVERN", "HUMBER"],
-        targetCategory: "Major British rivers",
-        decoyGroup: ["BAKER", "FLEET", "TYBURN"],
-        decoyCategory: "Historic / Underground rivers of London"
+        tiles: ["LITRE", "KILOGRAM", "METRE", "SECOND", "KELVIN", "AMPERE"],
+        targetGroup: ["LITRE", "KILOGRAM", "METRE"],
+        targetCategory: "Common metric base units of measurement",
+        decoyGroup: ["SECOND", "KELVIN", "AMPERE"],
+        decoyCategory: "Other international SI base units"
       },
       2: {
         type: "warmup",
-        tiles: ["OXBRIDGE", "DURHAM", "YORK", "RED", "BLUE", "GREEN"],
-        targetGroup: ["OXBRIDGE", "DURHAM", "YORK"],
-        targetCategory: "Historic UK university cities/institutions",
-        decoyGroup: ["RED", "BLUE", "GREEN"],
-        decoyCategory: "Primary chromatic colors"
+        tiles: ["COPPER", "SILVER", "GOLD", "OXYGEN", "NITROGEN", "HELIUM"],
+        targetGroup: ["COPPER", "SILVER", "GOLD"],
+        targetCategory: "Precious or historical metallic elements",
+        decoyGroup: ["OXYGEN", "NITROGEN", "HELIUM"],
+        decoyCategory: "Gaseous chemical elements"
       },
       3: {
         type: "warmup",
-        tiles: ["MARPLE", "MORSE", "WIMSEY", "CHANCELLOR", "TREASURER", "SECRETARY"],
-        targetGroup: ["MARPLE", "MORSE", "WIMSEY"],
-        targetCategory: "Fictional British literary detectives",
-        decoyGroup: ["CHANCELLOR", "TREASURER", "SECRETARY"],
-        decoyCategory: "Great Officers of State roles"
+        tiles: ["MARS", "VENUS", "EARTH", "ALPHA", "PROXIMA", "SIRIUS"],
+        targetGroup: ["MARS", "VENUS", "EARTH"],
+        targetCategory: "Inner rocky planets of our solar system",
+        decoyGroup: ["ALPHA", "PROXIMA", "SIRIUS"],
+        decoyCategory: "Famous stellar systems / bright stars"
       },
       4: {
         type: "warmup",
-        tiles: ["ORWELL", "HUXLEY", "WAUGH", "SHERATON", "HILTON", "SAVOY"],
-        targetGroup: ["ORWELL", "HUXLEY", "WAUGH"],
-        targetCategory: "Satirical 20th-century British novelists",
-        decoyGroup: ["SHERATON", "HILTON", "SAVOY"],
-        decoyCategory: "International luxury hotel chains"
+        tiles: ["DIAMOND", "RUBY", "EMERALD", "SQUARE", "CIRCLE", "TRIANGLE"],
+        targetGroup: ["DIAMOND", "RUBY", "EMERALD"],
+        targetCategory: "Precious gemstones",
+        decoyGroup: ["SQUARE", "CIRCLE", "TRIANGLE"],
+        decoyCategory: "Basic geometric shapes"
       },
 
       // ==========================================
@@ -57,38 +56,38 @@ window.CLUSTERS_DATA = {
       // ==========================================
       5: {
         type: "squeeze",
-        tiles: ["BADGER", "TOAD", "RAT", "BADEN", "POWELL", "SMYTH", "COPPER", "ZINC", "BRASS"],
+        tiles: ["NILE", "AMAZON", "YANGTZE", "EVEREST", "K2", "KILIMANJARO", "PACIFIC", "ATLANTIC", "INDIAN"],
         groups: [
-          { words: ["BADGER", "TOAD", "RAT"], category: "Characters in The Wind in the Willows" },
-          { words: ["BADEN", "POWELL", "SMYTH"], category: "Founders/early leaders of Scouting" },
-          { words: ["COPPER", "ZINC", "BRASS"], category: "Metallic elements / alloys" }
+          { words: ["NILE", "AMAZON", "YANGTZE"], category: "Major global rivers" },
+          { words: ["EVEREST", "K2", "KILIMANJARO"], category: "Iconic global mountain peaks" },
+          { words: ["PACIFIC", "ATLANTIC", "INDIAN"], category: "Major world oceans" }
         ]
       },
       6: {
         type: "squeeze",
-        tiles: ["DOWNING", "WHITEHALL", "PALL MALL", "PICCADILLY", "STRAND", "REGENT", "TOWER", "ST PAULS", "BIG BEN"],
+        tiles: ["LION", "TIGER", "LEOPARD", "EAGLE", "HAWK", "FALCON", "PYTHON", "VIPER", "COBRA"],
         groups: [
-          { words: ["DOWNING", "WHITEHALL", "PALL MALL"], category: "Famous London government & political streets" },
-          { words: ["PICCADILLY", "STRAND", "REGENT"], category: "Major West End thoroughfares" },
-          { words: ["TOWER", "ST PAULS", "BIG BEN"], category: "Iconic London architectural landmarks" }
+          { words: ["LION", "TIGER", "LEOPARD"], category: "Large wild cats" },
+          { words: ["EAGLE", "HAWK", "FALCON"], category: "Birds of prey" },
+          { words: ["PYTHON", "VIPER", "COBRA"], category: "Notable predatory snakes" }
         ]
       },
       7: {
         type: "squeeze",
-        tiles: ["TUDOR", "STUART", "WINDSOR", "TORNADO", "TYPHOON", "SPITFIRE", "MERLOT", "SHIRAZ", "MALBEC"],
+        tiles: ["COPPER", "SILVER", "GOLD", "IRON", "ZINC", "TIN", "RUBY", "EMERALD", "SAPPHIRE"],
         groups: [
-          { words: ["TUDOR", "STUART", "WINDSOR"], category: "British Royal Houses" },
-          { words: ["TORNADO", "TYPHOON", "SPITFIRE"], category: "Classic British military aircraft" },
-          { words: ["MERLOT", "SHIRAZ", "MALBEC"], category: "Red wine grape varieties" }
+          { words: ["COPPER", "SILVER", "GOLD"], category: "Precious metals" },
+          { words: ["IRON", "ZINC", "TIN"], category: "Common industrial base metals" },
+          { words: ["RUBY", "EMERALD", "SAPPHIRE"], category: "Precious gemstones" }
         ]
       },
       8: {
         type: "squeeze",
-        tiles: ["CARROLL", "TWAIN", "DOYLE", "STONEHENGE", "AVEBURY", "SILBURY", "CRICKET", "DARTS", "SNOOKER"],
+        tiles: ["BACH", "MOZART", "BEETHOVEN", "PLATO", "ARISTOTLE", "SOCRATES", "MARS", "VENUS", "MERCURY"],
         groups: [
-          { words: ["CARROLL", "TWAIN", "DOYLE"], category: "Authors who wrote under famous pen names" },
-          { words: ["STONEHENGE", "AVEBURY", "SILBURY"], category: "Wiltshire prehistoric monuments" },
-          { words: ["CRICKET", "DARTS", "SNOOKER"], category: "Sports with strong British pub/traditional roots" }
+          { words: ["BACH", "MOZART", "BEETHOVEN"], category: "Legendary classical composers" },
+          { words: ["PLATO", "ARISTOTLE", "SOCRATES"], category: "Ancient Greek philosophers" },
+          { words: ["MARS", "VENUS", "MERCURY"], category: "Inner planets of the solar system" }
         ]
       },
 
@@ -99,46 +98,46 @@ window.CLUSTERS_DATA = {
       9: {
         type: "wall",
         tiles: [
-          "THAMES", "SEVERN", "TRENT", "CLYDE",
+          "NILE", "AMAZON", "YANGTZE", "DANUBE",
           "GOLD", "SILVER", "BRONZE", "PLATINUM",
-          "MARBLE", "GRANITE", "SLATE", "CHALK",
-          "OXFORD", "BOND", "FLEET", "LOMBARD"
+          "MARS", "VENUS", "EARTH", "SATURN",
+          "KING", "QUEEN", "ROOK", "BISHOP"
         ],
         groups: [
-          { words: ["THAMES", "SEVERN", "TRENT", "CLYDE"], category: "Major British rivers" },
-          { words: ["GOLD", "SILVER", "BRONZE", "PLATINUM"], category: "Precious metals" },
-          { words: ["MARBLE", "GRANITE", "SLATE", "CHALK"], category: "Types of stone / geological materials" },
-          { words: ["OXFORD", "BOND", "FLEET", "LOMBARD"], category: "Famous London streets" }
+          { words: ["NILE", "AMAZON", "YANGTZE", "DANUBE"], category: "Major global rivers" },
+          { words: ["GOLD", "SILVER", "BRONZE", "PLATINUM"], category: "Precious metals / Olympic medals" },
+          { words: ["MARS", "VENUS", "EARTH", "SATURN"], category: "Planets of the solar system" },
+          { words: ["KING", "QUEEN", "ROOK", "BISHOP"], category: "Chess pieces" }
         ]
       },
       10: {
         type: "wall",
         tiles: [
-          "WHIST", "BRIDGE", "EUCHRE", "CRIBBAGE",
-          "BADGER", "TOAD", "RAT", "MOLE",
-          "TUDOR", "STUART", "WINDSOR", "HANOVER",
-          "PIE", "CHIPS", "MASH", "BEANS"
+          "TOKYO", "LONDON", "PARIS", "CAIRO",
+          "DIAMOND", "RUBY", "EMERALD", "SAPPHIRE",
+          "COPPER", "IRON", "TIN", "LEAD",
+          "RED", "BLUE", "GREEN", "YELLOW"
         ],
         groups: [
-          { words: ["WHIST", "BRIDGE", "EUCHRE", "CRIBBAGE"], category: "Traditional card games" },
-          { words: ["BADGER", "TOAD", "RAT", "MOLE"], category: "Main animal characters in The Wind in the Willows" },
-          { words: ["TUDOR", "STUART", "WINDSOR", "HANOVER"], category: "British royal dynasties" },
-          { words: ["PIE", "CHIPS", "MASH", "BEANS"], category: "Classic British pub/café comfort foods" }
+          { words: ["TOKYO", "LONDON", "PARIS", "CAIRO"], category: "Major global capital cities" },
+          { words: ["DIAMOND", "RUBY", "EMERALD", "SAPPHIRE"], category: "Precious gemstones" },
+          { words: ["COPPER", "IRON", "TIN", "LEAD"], category: "Common industrial base metals" },
+          { words: ["RED", "BLUE", "GREEN", "YELLOW"], category: "Standard distinct colors" }
         ]
       },
       11: {
         type: "wall",
         tiles: [
           "APOLLO", "HERMES", "ATHENA", "ARES",
-          "RED", "BLUE", "GREEN", "YELLOW",
-          "COPPER", "IRON", "TIN", "LEAD",
-          "KING", "QUEEN", "KNIGHT", "ROOK"
+          "LION", "TIGER", "BEAR", "WOLF",
+          "SQUARE", "CIRCLE", "TRIANGLE", "RECTANGLE",
+          "PIANO", "GUITAR", "VIOLIN", "FLUTE"
         ],
         groups: [
-          { words: ["APOLLO", "HERMES", "ATHENA", "ARES"], category: "Greek Olympian gods" },
-          { words: ["RED", "BLUE", "GREEN", "YELLOW"], category: "Coloured balls in a game of snooker" },
-          { words: ["COPPER", "IRON", "TIN", "LEAD"], category: "Common elemental base metals" },
-          { words: ["KING", "QUEEN", "KNIGHT", "ROOK"], category: "Chess pieces" }
+          { words: ["APOLLO", "HERMES", "ATHENA", "ARES"], category: "Greek mythological deities" },
+          { words: ["LION", "TIGER", "BEAR", "WOLF"], category: "Large wild mammalian predators" },
+          { words: ["SQUARE", "CIRCLE", "TRIANGLE", "RECTANGLE"], category: "Basic geometric shapes" },
+          { words: ["PIANO", "GUITAR", "VIOLIN", "FLUTE"], category: "Standard musical instruments" }
         ]
       }
     }
