@@ -138,7 +138,7 @@ function setupFloor(floor) {
     const floorText = document.getElementById("card-floor-text");
     if (floorText) {
         const formatted = floor < 10 ? `0${floor}` : `${floor}`;
-        floorText.textContent = `FLOOR ${formatted}`;
+        floorText.innerHTML = `FLOOR <span class="floor-num">${formatted}</span>`;
     }
 
     updateElevatorShaft(floor);
@@ -198,7 +198,6 @@ function renderWheel(letters) {
     const centerX = containerWidth / 2;
     const centerY = containerHeight / 2;
 
-    // 52px diameter circles at 78px radius brings all 9 letter circles flush alongside each other
     const btnSize = 52;
     const radius = 78;
     const total = letters.length;
@@ -240,7 +239,7 @@ function renderWheel(letters) {
         wheelContainer.appendChild(btn);
     });
 
-    // Center Shuffle Button - Perfectly centered inside the wheel
+    // Center Shuffle Button - Absolutely centered
     const shuffleSize = 46;
     const shuffleBtn = document.createElement("button");
     shuffleBtn.id = "shuffle-hub-btn";
@@ -356,7 +355,7 @@ function fillTargetSlots(word) {
 
 function handleVictory() {
     const floorText = document.getElementById("card-floor-text");
-    if (floorText) floorText.textContent = "11TH FLOOR";
+    if (floorText) floorText.innerHTML = `<span class="floor-num">11TH</span> FLOOR`;
 
     updateElevatorShaft(11);
 
