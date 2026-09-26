@@ -70,12 +70,19 @@
       line-height: 1.0;
       letter-spacing: -0.5px;
     }
-    .brand-subtitle-main, 
-    .brand-subtitle-sub {
+    .brand-subtitle-main {
       color: #ffffff;
       font-size: 13px;
       font-weight: 300;
       letter-spacing: 2px;
+      margin-top: 2px;
+    }
+    .brand-subtitle-sub {
+      color: #777777;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
       margin-top: 2px;
     }
 
@@ -96,7 +103,7 @@
       height: 160px;
       background-color: #000000;
       border: 1px solid #1a1a1a;
-      border-radius: 6px;
+      border-radius: 8px;
       padding: 4px;
       flex-shrink: 0;
     }
@@ -124,7 +131,7 @@
       font-weight: 400;
     }
 
-    /* Centered Pill Button */
+    /* Centered Start Button */
     .btn-start-climb {
       width: 200px;
       background-color: #ffffff;
@@ -145,41 +152,94 @@
     /* Active Game Workspace */
     .workspace {
       display: flex;
-      gap: 8px;
+      flex-direction: column;
+      gap: 10px;
       flex: 1;
-      margin: 6px 0;
+      margin: 8px 0;
       min-height: 0;
-      align-items: stretch;
+    }
+
+    /* Top Status Section: Elevator Shaft + Floor Header Card */
+    .status-row {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+      height: 68px;
+      flex-shrink: 0;
     }
     .elevator-shaft {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      width: 24px;
-      background-color: #0f0f0f;
-      border: 1px solid #1a1a1a;
-      border-radius: 12px;
-      padding: 4px 2px;
+      width: 48px;
+      background-color: #111111;
+      border: 1px solid #1e1e1e;
+      border-radius: 10px;
+      padding: 4px 5px;
       flex-shrink: 0;
     }
     .elevator-slot {
-      height: 7.5%;
-      border: 1px solid #222222;
-      border-radius: 3px;
-      background-color: transparent;
+      height: 6%;
+      border-radius: 2px;
+      background-color: #1a1a1a;
       transition: all 0.2s ease;
     }
     .elevator-slot.active {
       background-color: #ff1f2d;
-      border-color: #ff1f2d;
-      box-shadow: 0 0 8px rgba(255, 31, 45, 0.6);
+      box-shadow: 0 0 6px rgba(255, 31, 45, 0.7);
     }
+
+    /* Floor Status Card */
+    .floor-status-card {
+      flex: 1;
+      background-color: #111111;
+      border: 1px solid #1e1e1e;
+      border-radius: 10px;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-floor-label {
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    .badge-ascent-container {
+      background: #181818;
+      border: 1px solid #262626;
+      border-radius: 6px;
+      padding: 5px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+    .badge-ascent-text {
+      color: #666666;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+    }
+    .badge-dots {
+      display: flex;
+      gap: 4px;
+    }
+    .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: #ff1f2d;
+    }
+
+    /* Main Gameplay Container */
     .play-card {
       flex: 1;
       background-color: #111111;
       border: 1px solid #1e1e1e;
-      border-radius: 16px;
-      padding: 10px 8px;
+      border-radius: 14px;
+      padding: 12px 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -187,62 +247,41 @@
       position: relative;
       overflow: hidden;
     }
-    .card-header {
-      width: 100%;
-      text-align: left;
-      border-bottom: 1px solid #222222;
-      padding-bottom: 4px;
-      position: relative;
-      flex-shrink: 0;
-    }
-    .card-floor-label {
-      color: #ff1f2d;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-    .card-header-line {
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 70px;
-      height: 2px;
-      background-color: #ff1f2d;
-    }
     #message-box {
-      font-size: 10px;
-      font-weight: 800;
-      min-height: 14px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #ff1f2d;
+      min-height: 16px;
       text-align: center;
       flex-shrink: 0;
     }
     #target-word-slots {
       display: flex;
-      gap: 4px;
+      gap: 5px;
       justify-content: center;
       align-items: center;
       width: 100%;
-      min-height: 28px;
+      min-height: 30px;
       flex-wrap: wrap;
     }
     .target-slot {
-      width: 24px;
-      height: 28px;
-      border: 1px solid #333333;
+      width: 26px;
+      height: 30px;
+      border: 1px solid #2a2a2a;
       border-radius: 4px;
       background: #181818;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: bold;
-      font-size: 12px;
+      font-size: 13px;
       color: #ffffff;
     }
     #guess-display {
       display: flex;
       justify-content: center;
       gap: 4px;
-      min-height: 26px;
+      min-height: 28px;
       align-items: center;
     }
     #wheel-container {
@@ -252,30 +291,42 @@
       margin: auto 0;
       flex-shrink: 0;
     }
+
+    /* Bottom Action Controls */
     .controls {
       display: flex;
-      gap: 8px;
+      gap: 10px;
       flex-shrink: 0;
     }
     .btn-action {
       flex: 1;
-      padding: 10px 8px;
-      border-radius: 14px;
-      border: 1px solid #ff1f2d;
-      background-color: #121212;
-      color: #ffffff;
-      font-size: 10px;
+      padding: 12px 8px;
+      border-radius: 10px;
+      font-size: 11px;
       font-weight: 800;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
-      box-shadow: 0 0 6px rgba(255, 31, 45, 0.25);
+      transition: background-color 0.15s ease;
     }
-    .btn-action:active {
-      background-color: #1c1c1c;
+    .btn-action-delete {
+      background-color: #161616;
+      border: 1px solid #282828;
+      color: #ffffff;
+    }
+    .btn-action-delete:active {
+      background-color: #222222;
+    }
+    .btn-action-submit {
+      background-color: #7f131a;
+      border: 1px solid #a31a26;
+      color: #ffffff;
+    }
+    .btn-action-submit:active {
+      background-color: #9c1822;
     }
   </style>
 </head>
@@ -286,7 +337,7 @@
       <div class="brand-logo">
         <div class="brand-title">11FL?</div>
         <div class="brand-subtitle-main">Eleventh Floor</div>
-        <div class="brand-subtitle-sub">Word Climb</div>
+        <div class="brand-subtitle-sub">WORD CLIMB</div>
       </div>
       <button class="pill-btn">SOUND: OFF</button>
     </div>
@@ -318,25 +369,38 @@
 
     <!-- Gameplay Workspace (Hidden initially) -->
     <div id="game-workspace" class="workspace" style="display: none;">
-      <div class="elevator-shaft">
-        <div class="elevator-slot" data-floor="11"></div>
-        <div class="elevator-slot" data-floor="10"></div>
-        <div class="elevator-slot" data-floor="9"></div>
-        <div class="elevator-slot" data-floor="8"></div>
-        <div class="elevator-slot" data-floor="7"></div>
-        <div class="elevator-slot" data-floor="6"></div>
-        <div class="elevator-slot" data-floor="5"></div>
-        <div class="elevator-slot" data-floor="4"></div>
-        <div class="elevator-slot" data-floor="3"></div>
-        <div class="elevator-slot" data-floor="2"></div>
-        <div class="elevator-slot" data-floor="1"></div>
+      
+      <!-- Top Status Row: Compact Elevator Shaft + Floor Status Card -->
+      <div class="status-row">
+        <div class="elevator-shaft">
+          <div class="elevator-slot" data-floor="11"></div>
+          <div class="elevator-slot" data-floor="10"></div>
+          <div class="elevator-slot" data-floor="9"></div>
+          <div class="elevator-slot" data-floor="8"></div>
+          <div class="elevator-slot" data-floor="7"></div>
+          <div class="elevator-slot" data-floor="6"></div>
+          <div class="elevator-slot" data-floor="5"></div>
+          <div class="elevator-slot" data-floor="4"></div>
+          <div class="elevator-slot" data-floor="3"></div>
+          <div class="elevator-slot" data-floor="2"></div>
+          <div class="elevator-slot" data-floor="1"></div>
+        </div>
+
+        <div class="floor-status-card">
+          <span id="card-floor-text" class="card-floor-label">FLOOR 01</span>
+          <div class="badge-ascent-container">
+            <span class="badge-ascent-text">ASCENT</span>
+            <div class="badge-dots">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+        </div>
       </div>
 
+      <!-- Main Game Play Area -->
       <div class="play-card">
-        <div class="card-header">
-          <span id="card-floor-text" class="card-floor-label">FLOOR 01</span>
-          <div class="card-header-line"></div>
-        </div>
         <div id="message-box"></div>
         <div id="target-word-slots"></div>
         <div id="guess-display"></div>
@@ -346,8 +410,8 @@
 
     <!-- Controls (Hidden initially) -->
     <div id="game-controls" class="controls" style="display: none;">
-      <button id="action-delete-btn" class="btn-action"><span>⌫</span> DELETE</button>
-      <button id="action-submit-btn" class="btn-action"><span>↵</span> SUBMIT</button>
+      <button id="action-delete-btn" class="btn-action btn-action-delete"><span>⌫</span> DELETE</button>
+      <button id="action-submit-btn" class="btn-action btn-action-submit"><span>↵</span> SUBMIT</button>
     </div>
   </div>
 
