@@ -77,7 +77,8 @@ function initDailyPuzzle() {
     let nineLetterWords = [];
     if (validWordSet && validWordSet.size > 0) {
         validWordSet.forEach(word => {
-            if (word.length === 9) {
+            // Ensure the word is exactly 9 letters AND contains 9 unique letters
+            if (word.length === 9 && new Set(word.split("")).size === 9) {
                 nineLetterWords.push(word);
             }
         });
@@ -89,7 +90,7 @@ function initDailyPuzzle() {
         const dayOfYear = getDayOfYear();
         masterNineLetterWord = nineLetterWords[dayOfYear % nineLetterWords.length];
     } else {
-        masterNineLetterWord = "CLEARINGS";
+        masterNineLetterWord = "CLEARINGS"; // Fallback to a guaranteed 9 unique letter word
     }
 
     initialDailyWheel = seededShuffle(masterNineLetterWord.split(""), getDayOfYear());
