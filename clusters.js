@@ -2,7 +2,7 @@
  * ============================================================================
  * 11TH FLOOR CLUSTERS - CORE GAME LOGIC (clusters.js)
  * ============================================================================
- * Ecosystem Mechanics: 11-Floor Climb, Strict Single-Mistake Reset, 
+ * Ecosystem Mechanics: Side-by-Side Tower HUD, 11-Floor Climb, Strict Reset, 
  * Dynamic Grid Layouts, Date-Indexed Daily Puzzles, Green Success Feedback.
  * ============================================================================
  */
@@ -29,10 +29,10 @@
     const btnSubmit = document.getElementById('btn-submit');
     const statusMessage = document.getElementById('status-message');
     const penaltyOverlay = document.getElementById('penalty-overlay');
-    const floorHudContainer = document.getElementById('floor-hud-container');
     const actionPanelContainer = document.getElementById('action-panel-container');
     const towerStack = document.getElementById('tower-stack');
     const btnSound = document.getElementById('btn-sound');
+    const floorHudContainer = document.getElementById('floor-hud-container');
 
     // --- Initialization ---
     function init() {
@@ -77,8 +77,8 @@
     // --- Intro Screen Render ---
     function renderIntroScreen() {
         gameState = 'intro';
-        floorHudContainer.style.display = 'none';
         actionPanelContainer.style.display = 'none';
+        floorHudContainer.style.display = 'none'; // hide HUD on intro, show landing container instead
         solvedGroupsContainer.innerHTML = '';
         puzzlePrompt.textContent = "";
         renderTowerStack(0);
@@ -87,7 +87,7 @@
         tileGrid.innerHTML = `
             <div style="grid-column: span 2;" class="landing-container">
                 <div class="landing-challenge-text">
-                    Can you reach the 11th Floor? Fail and you're back to the ground floor.
+                    Can you reach the 11th floor? Fail and you're back to the ground floor.
                 </div>
                 <button class="btn-start" id="btn-start-climb">Start Climb</button>
             </div>
@@ -123,12 +123,12 @@
 
         // Configure Phase and Tiles based on Floor number
         if (currentFloor <= 4) {
-            floorPhaseTag.textContent = "WARMUP PHASE";
+            floorPhaseTag.textContent = "WARMUP";
             puzzlePrompt.textContent = "Isolate the target group of 3 from the decoy group.";
             activeTiles = [...currentFloorConfig.tiles];
             remainingGroups = [{ words: currentFloorConfig.targetGroup, category: currentFloorConfig.targetCategory }];
         } else if (currentFloor >= 5 && currentFloor <= 8) {
-            floorPhaseTag.textContent = "SQUEEZE PHASE";
+            floorPhaseTag.textContent = "SQUEEZE";
             puzzlePrompt.textContent = "Sort all 9 tiles into 3 distinct groups of 3.";
             activeTiles = [...currentFloorConfig.tiles];
             remainingGroups = currentFloorConfig.groups.map(g => ({ ...g }));
@@ -295,7 +295,7 @@
         tileGrid.className = 'tile-grid grid-warmup';
         tileGrid.innerHTML = `
             <div style="grid-column: span 2;" class="landing-container">
-                <div style="font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--accent-green); letter-spacing: 1.5px;">
+                <div style="font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--accent-green); letter-spacing: 1.5px;">
                     SUMMIT REACHED
                 </div>
                 <div class="landing-challenge-text">
