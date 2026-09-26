@@ -26,6 +26,15 @@ async function resolveDictionary() {
         }
     }
 
+    // If previous attempts failed (e.g., mobile timeout), initiate a fresh fetch on "Tap to Retry"
+    if (typeof window.fetchDictionary === 'function') {
+        const retrySuccess = await window.fetchDictionary();
+        if (retrySuccess && window.WORD_LIST && window.WORD_LIST.size > 0) {
+            validWordSet = window.WORD_LIST;
+            return true;
+        }
+    }
+
     return false;
 }
 
