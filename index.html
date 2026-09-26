@@ -6,7 +6,7 @@
     <title>Eleventh Floor Games Lobby</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -30,46 +30,49 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
         }
         .hub-logo-red {
-            font-size: 6.5rem;
-            font-weight: 900;
-            color: #e50914;
-            line-height: 0.9;
-            letter-spacing: -2px;
-            text-shadow: 0 0 20px rgba(229, 9, 20, 0.3);
+            font-family: 'Anton', sans-serif;
+            font-size: 7rem;
+            font-weight: 400;
+            color: #ff1f2d; /* Matched to ecosystem red accent */
+            line-height: 0.85;
+            letter-spacing: -1px;
+            text-shadow: 0 0 25px rgba(255, 31, 45, 0.35);
+            margin-bottom: 12px;
         }
         .hub-logo-title {
-            font-size: 2.2rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
             font-weight: 300;
             color: #ffffff;
-            margin-top: 10px;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
         }
         .hub-logo-sub {
-            font-size: 1.1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
             font-weight: 600;
             color: #ffffff;
-            letter-spacing: 6px;
-            margin-top: 6px;
+            letter-spacing: 5px;
             text-transform: uppercase;
-            opacity: 0.9;
+            opacity: 0.85;
         }
         .hub-menu-box {
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 16px;
             width: 100%;
             max-width: 340px;
         }
         .btn-hub-option {
             display: block;
             background-color: transparent;
-            border: 2px solid #e50914;
+            border: 2px solid #ff1f2d;
             color: #ffffff;
-            padding: 18px 20px;
-            font-size: 1.1rem;
+            padding: 16px 20px;
+            font-size: 1.05rem;
             font-weight: 700;
             text-decoration: none;
             cursor: pointer;
@@ -80,10 +83,10 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         }
         .btn-hub-option:hover {
-            background-color: #e50914;
-            color: #ffffff;
+            background-color: #ff1f2d;
+            color: #000000;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(229, 9, 20, 0.4);
+            box-shadow: 0 6px 20px rgba(255, 31, 45, 0.4);
         }
         .btn-hub-option:active {
             transform: translateY(0);
@@ -101,6 +104,7 @@
     <div class="hub-menu-box">
         <a href="questions.html" class="btn-hub-option">11th Floor Questions</a>
         <a href="word-climb.html" class="btn-hub-option">11th Floor Word Climb</a>
+        <a href="clusters.html" class="btn-hub-option">11th Floor Clusters</a>
     </div>
 
 </body>
