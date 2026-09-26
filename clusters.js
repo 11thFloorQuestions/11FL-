@@ -29,7 +29,8 @@
     const btnSubmit = document.getElementById('btn-submit');
     const statusMessage = document.getElementById('status-message');
     const penaltyOverlay = document.getElementById('penalty-overlay');
-    const floorHud = document.querySelector('.floor-hud');
+    const floorHudContainer = document.getElementById('floor-hud-container');
+    const actionPanelContainer = document.getElementById('action-panel-container');
 
     // --- Initialization ---
     function init() {
@@ -55,23 +56,22 @@
     // --- Intro Screen Render ---
     function renderIntroScreen() {
         gameState = 'intro';
-        floorHud.style.display = 'none';
-        btnShuffle.style.display = 'none';
-        btnSubmit.style.display = 'none';
+        floorHudContainer.style.display = 'none';
+        actionPanelContainer.style.display = 'none';
         solvedGroupsContainer.innerHTML = '';
         puzzlePrompt.textContent = "";
 
         tileGrid.className = 'tile-grid grid-warmup';
         tileGrid.innerHTML = `
-            <div style="grid-column: span 2; text-align: center; padding: 30px 15px; display: flex; flex-direction: column; gap: 15px;">
-                <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; font-weight: 800; color: var(--text-primary); letter-spacing: 1px;">
-                    ${puzzleData.title}
+            <div style="grid-column: span 2; background-color: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 30px 20px; text-align: center; display: flex; flex-direction: column; gap: 16px;">
+                <div style="font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--text-primary); letter-spacing: 0.5px;">
+                    Can you reach the 11th Floor?
                 </div>
                 <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
                     Climb 11 floors of interconnected linguistic and global clusters.<br>
-                    <strong style="color: var(--accent-red);">Warning:</strong> One single incorrect submission drops you instantly back to Floor 01.
+                    <strong style="color: var(--accent-red);">Warning:</strong> One single mistake drops you all the way back to Floor 01.
                 </div>
-                <button class="btn btn-primary" id="btn-start-climb" style="margin-top: 10px;">START CLIMB</button>
+                <button class="btn btn-primary" id="btn-start-climb" style="margin-top: 10px; width: 100%;">START CLIMB</button>
             </div>
         `;
 
@@ -81,9 +81,8 @@
     // --- Start Climb ---
     function startClimb() {
         gameState = 'playing';
-        floorHud.style.display = 'flex';
-        btnShuffle.style.display = 'block';
-        btnSubmit.style.display = 'block';
+        floorHudContainer.style.display = 'flex';
+        actionPanelContainer.style.display = 'flex';
         currentFloor = 1;
         loadFloor(currentFloor);
     }
@@ -259,22 +258,21 @@
     // --- Victory State ---
     function renderVictory() {
         gameState = 'victory';
-        floorHud.style.display = 'none';
-        btnShuffle.style.display = 'none';
-        btnSubmit.style.display = 'none';
+        floorHudContainer.style.display = 'none';
+        actionPanelContainer.style.display = 'none';
         solvedGroupsContainer.innerHTML = '';
         puzzlePrompt.textContent = "";
 
         tileGrid.className = 'tile-grid grid-warmup';
         tileGrid.innerHTML = `
-            <div style="grid-column: span 2; text-align: center; padding: 40px 15px; display: flex; flex-direction: column; gap: 15px;">
-                <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 800; color: var(--accent-red); letter-spacing: 2px;">
+            <div style="grid-column: span 2; background-color: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 40px 20px; text-align: center; display: flex; flex-direction: column; gap: 16px;">
+                <div style="font-family: 'Montserrat', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--accent-red); letter-spacing: 1.5px;">
                     SUMMIT REACHED
                 </div>
-                <div style="font-size: 0.9rem; color: var(--text-primary); line-height: 1.6;">
+                <div style="font-size: 0.85rem; color: var(--text-primary); line-height: 1.6;">
                     You successfully conquered all 11 floors of today's clusters puzzle without breaking your stride.
                 </div>
-                <a href="index.html" class="btn btn-primary" style="text-decoration: none; margin-top: 15px; display: inline-block;">RETURN TO ECOSYSTEM HUB</a>
+                <a href="index.html" class="btn btn-primary" style="text-decoration: none; margin-top: 10px; display: inline-block;">RETURN TO LOBBY</a>
             </div>
         `;
     }
