@@ -44,7 +44,6 @@
             overflow-x: hidden;
         }
 
-        /* Top Bar with Stats and Sound Pills */
         .top-bar {
             width: 100%;
             max-width: 600px;
@@ -62,7 +61,7 @@
             font-size: 0.7rem;
             font-weight: 600;
             letter-spacing: 1.5px;
-            padding: 6px 12px;
+            padding: 6px 14px;
             border-radius: 20px;
             cursor: pointer;
             text-decoration: none;
@@ -75,7 +74,6 @@
             background: var(--surface);
         }
 
-        /* Scaled Locked-In Logo Header */
         .game-logo-box {
             display: flex;
             flex-direction: column;
@@ -112,7 +110,7 @@
             text-transform: uppercase;
         }
 
-        /* Side-by-Side HUD Container: Tower on Left, Equal Box on Right */
+        /* Side-by-Side HUD Container */
         .hud-sidebar-container {
             width: 100%;
             max-width: 600px;
@@ -122,7 +120,6 @@
             margin-bottom: 15px;
         }
 
-        /* Tower Indicator Stack (Left) */
         .tower-stack {
             display: flex;
             flex-direction: column-reverse;
@@ -149,7 +146,6 @@
             box-shadow: 0 0 6px var(--accent-red-glow);
         }
 
-        /* Floor Info Box (Right - Equal Height to Tower Stack) */
         .floor-info-box {
             flex-grow: 1;
             background: var(--surface);
@@ -173,19 +169,45 @@
             font-size: 1.25rem;
         }
 
+        .floor-right-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
         .floor-phase-tag {
             font-family: 'Montserrat', sans-serif;
             font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            padding: 5px 10px;
+            padding: 4px 8px;
             border: 1px solid var(--surface-border);
             color: var(--text-muted);
             border-radius: 4px;
             background: #111111;
         }
 
-        /* Main Game Arena */
+        /* Minimalist 3 Life Pips Indicator */
+        .lives-container {
+            display: flex;
+            gap: 5px;
+        }
+
+        .life-pip {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-red);
+            border-radius: 50%;
+            box-shadow: 0 0 6px var(--accent-red-glow);
+            transition: all 0.2s ease;
+        }
+
+        .life-pip.lost {
+            background-color: #222222;
+            box-shadow: none;
+        }
+
         main {
             width: 100%;
             max-width: 600px;
@@ -204,7 +226,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Landing Screen Challenge Text & Start Button */
         .landing-container {
             display: flex;
             flex-direction: column;
@@ -250,7 +271,6 @@
             transform: translateY(-2px);
         }
 
-        /* Solved Groups Display Area */
         #solved-groups-container {
             width: 100%;
             display: flex;
@@ -285,7 +305,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Tile Grid */
         .tile-grid {
             display: grid;
             gap: 10px;
@@ -293,13 +312,16 @@
             margin-bottom: 20px;
         }
 
-        .grid-warmup {
+        .grid-ascent {
             grid-template-columns: repeat(2, 1fr);
         }
         .grid-squeeze {
             grid-template-columns: repeat(3, 1fr);
         }
-        .grid-wall {
+        .grid-wall-12 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .grid-wall-16 {
             grid-template-columns: repeat(4, 1fr);
         }
 
@@ -342,7 +364,6 @@
             box-shadow: 0 0 20px var(--accent-green-glow) !important;
         }
 
-        /* Action Control Panel */
         .action-panel {
             width: 100%;
             display: flex;
@@ -392,7 +413,6 @@
             box-shadow: none !important;
         }
 
-        /* Brutal Penalty Flash Overlay */
         #penalty-overlay {
             position: fixed;
             top: 0;
@@ -410,7 +430,6 @@
             opacity: 1;
         }
 
-        /* Footer / Message Box */
         footer {
             width: 100%;
             max-width: 600px;
@@ -449,25 +468,30 @@
         <p class="game-logo-sub">CLUSTERS</p>
     </div>
 
-    <!-- Side-by-Side HUD Container (Tower Stack on Left, Floor Info Box on Right) -->
-    <div class="hud-sidebar-container" id="floor-hud-container">
+    <!-- Side-by-Side HUD Container -->
+    <div class="hud-sidebar-container" id="floor-hud-container" style="display: none;">
         <div class="tower-stack" id="tower-stack">
             <!-- Generated dynamically via JS -->
         </div>
         <div class="floor-info-box">
             <div class="current-floor-display">FLOOR <span id="floor-number-val">01</span></div>
-            <div class="floor-phase-tag" id="floor-phase-tag">WARMUP PHASE</div>
+            <div class="floor-right-group">
+                <div class="floor-phase-tag" id="floor-phase-tag">ASCENT</div>
+                <div class="lives-container" id="lives-container">
+                    <div class="life-pip" id="pip-1"></div>
+                    <div class="life-pip" id="pip-2"></div>
+                    <div class="life-pip" id="pip-3"></div>
+                </div>
+            </div>
         </div>
     </div>
 
     <main>
         <div class="puzzle-prompt" id="puzzle-prompt"></div>
 
-        <!-- Solved groups container -->
         <div id="solved-groups-container"></div>
 
-        <!-- Active interaction grid / Landing View -->
-        <div class="tile-grid grid-warmup" id="tile-grid"></div>
+        <div class="tile-grid grid-ascent" id="tile-grid"></div>
 
         <div class="action-panel" id="action-panel-container" style="display: none;">
             <button class="btn btn-secondary" id="btn-shuffle">SHUFFLE</button>
@@ -480,7 +504,6 @@
         <div>ONE MISTAKE RESETS THE CLIMB TO FLOOR 01.</div>
     </footer>
 
-    <!-- Load Data and Core Game Logic -->
     <script src="clusters-data.js"></script>
     <script src="clusters.js"></script>
 </body>
