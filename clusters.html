@@ -312,16 +312,10 @@
             margin-bottom: 20px;
         }
 
-        .grid-ascent {
-            grid-template-columns: repeat(2, 1fr);
-        }
-        .grid-squeeze {
+        .grid-col-3 {
             grid-template-columns: repeat(3, 1fr);
         }
-        .grid-wall-12 {
-            grid-template-columns: repeat(3, 1fr);
-        }
-        .grid-wall-16 {
+        .grid-col-4 {
             grid-template-columns: repeat(4, 1fr);
         }
 
@@ -468,11 +462,8 @@
         <p class="game-logo-sub">CLUSTERS</p>
     </div>
 
-    <!-- Side-by-Side HUD Container -->
     <div class="hud-sidebar-container" id="floor-hud-container" style="display: none;">
-        <div class="tower-stack" id="tower-stack">
-            <!-- Generated dynamically via JS -->
-        </div>
+        <div class="tower-stack" id="tower-stack"></div>
         <div class="floor-info-box">
             <div class="current-floor-display">FLOOR <span id="floor-number-val">01</span></div>
             <div class="floor-right-group">
@@ -491,7 +482,7 @@
 
         <div id="solved-groups-container"></div>
 
-        <div class="tile-grid grid-ascent" id="tile-grid"></div>
+        <div class="tile-grid grid-col-3" id="tile-grid"></div>
 
         <div class="action-panel" id="action-panel-container" style="display: none;">
             <button class="btn btn-secondary" id="btn-shuffle">SHUFFLE</button>
