@@ -7,55 +7,22 @@ let masterNineLetterWord = "";
 let initialDailyWheel = [];
 let wheelLetters = [];
 let validWordSet = null;
-let dictFetchPromise = null;
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Start dictionary download immediately when page opens
-    dictFetchPromise = loadDictionaryOnce();
     setupLandingScreen();
 });
 
-// Single-pass atomic loader preventing network collisions
-async function loadDictionaryOnce() {
-    // 1. Check if words.js script tag already completed
+async function resolveDictionary() {
     if (window.WORD_LIST_LOADED && window.WORD_LIST && window.WORD_LIST.size > 0) {
         validWordSet = window.WORD_LIST;
         return true;
     }
 
-    // 2. Poll briefly in case words.js is currently in-flight
-    for (let i = 0; i < 30; i++) {
-        if (window.WORD_LIST_LOADED && window.WORD_LIST && window.WORD_LIST.size > 0) {
+    if (window.WORD_LIST_PROMISE) {
+        const success = await window.WORD_LIST_PROMISE;
+        if (success && window.WORD_LIST && window.WORD_LIST.size > 0) {
             validWordSet = window.WORD_LIST;
             return true;
-        }
-        await new Promise(r => setTimeout(r, 100));
-    }
-
-    // 3. Fallback direct fetch if words.js hasn't populated window.WORD_LIST
-    const paths = ["words.txt", "./words.txt"];
-    for (const path of paths) {
-        try {
-            const response = await fetch(path);
-            if (response.ok) {
-                const text = await response.text();
-                const cleanSet = new Set();
-                const lines = text.split(/\r?\n/);
-                for (let i = 0; i < lines.length; i++) {
-                    const clean = lines[i].trim().toUpperCase().replace(/[^A-Z]/g, "");
-                    if (clean.length >= 3 && clean.length <= 9) {
-                        cleanSet.add(clean);
-                    }
-                }
-                if (cleanSet.size > 0) {
-                    validWordSet = cleanSet;
-                    window.WORD_LIST = cleanSet;
-                    window.WORD_LIST_LOADED = true;
-                    return true;
-                }
-            }
-        } catch (e) {
-            console.warn(`[Word Climb] Direct fetch skipped ${path}:`, e);
         }
     }
 
@@ -71,11 +38,7 @@ function setupLandingScreen() {
         startBtn.style.opacity = "0.7";
         startBtn.disabled = true;
 
-        if (!dictFetchPromise) {
-            dictFetchPromise = loadDictionaryOnce();
-        }
-
-        const success = await dictFetchPromise;
+        const success = await resolveDictionary();
 
         if (success && validWordSet && validWordSet.size > 0) {
             launchGameWorkspace();
@@ -83,7 +46,6 @@ function setupLandingScreen() {
             startBtn.textContent = "Tap to Retry";
             startBtn.style.opacity = "1";
             startBtn.disabled = false;
-            dictFetchPromise = null; // Reset promise to allow fresh attempt
         }
     };
 }
