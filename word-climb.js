@@ -61,9 +61,11 @@ function setupLandingScreen() {
 function launchGameWorkspace() {
     const startScreen = document.getElementById("start-screen");
     const gameWorkspace = document.getElementById("game-workspace");
+    const hudContainer = document.getElementById("floor-hud-container");
     const gameControls = document.getElementById("game-controls");
 
     if (startScreen) startScreen.style.display = "none";
+    if (hudContainer) hudContainer.style.display = "flex";
     if (gameWorkspace) gameWorkspace.style.display = "flex";
     if (gameControls) gameControls.style.display = "flex";
 
@@ -135,10 +137,10 @@ function setupFloor(floor) {
     isTransitioning = false;
     showMessage("");
 
-    const floorText = document.getElementById("card-floor-text");
-    if (floorText) {
+    const floorVal = document.getElementById("floor-number-val");
+    if (floorVal) {
         const formatted = floor < 10 ? `0${floor}` : `${floor}`;
-        floorText.innerHTML = `FLOOR <span class="floor-num">${formatted}</span>`;
+        floorVal.textContent = formatted;
     }
 
     updateElevatorShaft(floor);
@@ -157,7 +159,7 @@ function getRequiredWordLength(floor) {
 }
 
 function updateElevatorShaft(floor) {
-    const slots = document.querySelectorAll(".elevator-slot, .floor-block");
+    const slots = document.querySelectorAll(".tower-floor, .elevator-slot, .floor-block");
     slots.forEach(slot => {
         const f = parseInt(slot.getAttribute("data-floor"), 10);
         if (f === floor) {
@@ -192,15 +194,15 @@ function renderWheel(letters) {
 
     wheelContainer.innerHTML = "";
 
-    const containerWidth = wheelContainer.clientWidth || 240;
-    const containerHeight = wheelContainer.clientHeight || 240;
+    const containerWidth = wheelContainer.clientWidth || 250;
+    const containerHeight = wheelContainer.clientHeight || 250;
 
     const centerX = containerWidth / 2;
     const centerY = containerHeight / 2;
 
-    // 48px diameter circles at 72px radius keep the 9 nodes touching while keeping the wheel compact
-    const btnSize = 48;
-    const radius = 72;
+    // 50px diameter circles at 75px radius bring all 9 nodes flush alongside each other
+    const btnSize = 50;
+    const radius = 75;
     const total = letters.length;
 
     letters.forEach((char, index) => {
@@ -219,8 +221,9 @@ function renderWheel(letters) {
         btn.style.borderRadius = "50%";
         btn.style.border = "1px solid #ff1f2d";
         btn.style.boxShadow = "0 0 8px rgba(255, 31, 45, 0.25)";
-        btn.style.background = "#141414";
+        btn.style.background = "#111111";
         btn.style.color = "#ffffff";
+        btn.style.fontFamily = "'Montserrat', sans-serif";
         btn.style.fontWeight = "800";
         btn.style.fontSize = "17px";
         btn.style.cursor = "pointer";
@@ -240,8 +243,8 @@ function renderWheel(letters) {
         wheelContainer.appendChild(btn);
     });
 
-    // Center Shuffle Button
-    const shuffleSize = 42;
+    // Center Shuffle Button - Perfectly centered inside wheel
+    const shuffleSize = 44;
     const shuffleBtn = document.createElement("button");
     shuffleBtn.id = "shuffle-hub-btn";
     shuffleBtn.innerHTML = `
@@ -255,8 +258,8 @@ function renderWheel(letters) {
     shuffleBtn.style.width = `${shuffleSize}px`;
     shuffleBtn.style.height = `${shuffleSize}px`;
     shuffleBtn.style.borderRadius = "50%";
-    shuffleBtn.style.background = "#161616";
-    shuffleBtn.style.border = "1px solid #2a2a2a";
+    shuffleBtn.style.background = "#141414";
+    shuffleBtn.style.border = "1px solid #222222";
     shuffleBtn.style.boxShadow = "0 0 10px rgba(0,0,0,0.8)";
     shuffleBtn.style.cursor = "pointer";
     shuffleBtn.style.display = "flex";
@@ -301,7 +304,7 @@ function updateGuessDisplay() {
 
     display.innerHTML = currentGuess
         .split("")
-        .map(c => `<span style="padding: 4px 8px; background: #1c1c1c; border: 1px solid #ff1f2d; border-radius: 4px; font-weight: 800; color: #ffffff; font-size: 14px;">${c}</span>`)
+        .map(c => `<span style="padding: 4px 8px; background: #111111; border: 1px solid #ff1f2d; border-radius: 4px; font-weight: 800; color: #ffffff; font-size: 14px;">${c}</span>`)
         .join("");
 }
 
@@ -347,16 +350,16 @@ function fillTargetSlots(word) {
     for (let i = 0; i < word.length; i++) {
         if (slots[i]) {
             slots[i].textContent = word[i];
-            slots[i].style.borderColor = "#2ecc71";
-            slots[i].style.color = "#2ecc71";
-            slots[i].style.background = "#122218";
+            slots[i].style.borderColor = "#22c55e";
+            slots[i].style.color = "#22c55e";
+            slots[i].style.background = "rgba(34, 197, 94, 0.1)";
         }
     }
 }
 
 function handleVictory() {
-    const floorText = document.getElementById("card-floor-text");
-    if (floorText) floorText.innerHTML = `<span class="floor-num">11TH</span> FLOOR`;
+    const floorVal = document.getElementById("floor-number-val");
+    if (floorVal) floorVal.textContent = "11TH";
 
     updateElevatorShaft(11);
 
@@ -374,10 +377,10 @@ function handleVictory() {
         slotsContainer.innerHTML = `
             <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 20px 10px; text-align: center; gap: 12px;">
                 <div style="font-size: 2rem;">🏆</div>
-                <div style="color: #2ecc71; font-weight: 800; font-size: 1rem; line-height: 1.4; letter-spacing: 0.5px;">
+                <div style="color: #22c55e; font-weight: 800; font-size: 1rem; line-height: 1.4; letter-spacing: 0.5px;">
                     Congratulations! You've reached the 11th Floor.
                 </div>
-                <div style="color: #aaaaaa; font-size: 0.8rem; line-height: 1.4; font-weight: 500;">
+                <div style="color: #888888; font-size: 0.8rem; line-height: 1.4; font-weight: 500;">
                     Come back tomorrow to continue your streak.
                 </div>
             </div>
@@ -389,6 +392,6 @@ function showMessage(text, isError = false) {
     const msg = document.getElementById("message-box");
     if (msg) {
         msg.textContent = text;
-        msg.style.color = isError ? "#ff1f2d" : "#2ecc71";
+        msg.style.color = isError ? "#ff1f2d" : "#22c55e";
     }
 }
