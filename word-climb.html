@@ -26,7 +26,7 @@
       align-items: center;
       height: 100vh;
       height: 100dvh;
-      padding: 8px 16px;
+      padding: 6px 16px;
       overflow: hidden;
     }
     .app-container {
@@ -36,17 +36,17 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 4px 0;
+      padding: 2px 0;
     }
 
-    /* Centered Header Bar */
+    /* Centered Header Bar - Matching Clusters Logo Proportions */
     .top-header {
       display: grid;
-      grid-template-columns: 90px 1fr 90px;
+      grid-template-columns: 85px 1fr 85px;
       align-items: center;
       width: 100%;
       flex-shrink: 0;
-      padding: 4px 0 8px 0;
+      padding: 8px 0 10px 0;
     }
     .pill-btn {
       background: #000000;
@@ -76,26 +76,27 @@
     }
     .brand-title {
       color: #ff1f2d;
-      font-size: 36px;
+      font-size: 42px;
       font-weight: 900;
-      line-height: 1.0;
+      line-height: 0.95;
       letter-spacing: -1px;
+      text-shadow: 0 0 12px rgba(255, 31, 45, 0.4);
     }
     .brand-subtitle-main {
       color: #ffffff;
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 2.5px;
-      margin-top: 2px;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      margin-top: 4px;
       text-transform: uppercase;
     }
     .brand-subtitle-sub {
-      color: #666666;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 3px;
+      color: #777777;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3.5px;
       text-transform: uppercase;
-      margin-top: 2px;
+      margin-top: 3px;
     }
 
     /* Minimalist Landing Screen */
@@ -168,29 +169,29 @@
     .workspace {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
       flex: 1;
-      margin: 4px 0;
+      margin: 2px 0;
       min-height: 0;
     }
 
-    /* Top Status Section: Elevator Shaft + Floor Status Card */
+    /* Compact Top Status Section */
     .status-row {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       width: 100%;
-      height: 64px;
+      height: 58px;
       flex-shrink: 0;
     }
     .elevator-shaft {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      width: 48px;
+      width: 44px;
       background-color: #111111;
       border: 1px solid #1e1e1e;
       border-radius: 10px;
-      padding: 5px;
+      padding: 4px;
       flex-shrink: 0;
     }
     .elevator-slot {
@@ -210,14 +211,14 @@
       background-color: #111111;
       border: 1px solid #1e1e1e;
       border-radius: 10px;
-      padding: 0 18px;
+      padding: 0 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
     .card-floor-label {
       color: #ffffff;
-      font-size: 19px;
+      font-size: 18px;
       font-weight: 800;
       letter-spacing: 1.5px;
       text-transform: uppercase;
@@ -229,7 +230,7 @@
       background: #161616;
       border: 1px solid #262626;
       border-radius: 6px;
-      padding: 8px 14px;
+      padding: 6px 12px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -241,13 +242,13 @@
       letter-spacing: 2px;
     }
 
-    /* Main Gameplay Container */
+    /* Squeezed Main Gameplay Area */
     .play-card {
       flex: 1;
       background-color: #111111;
       border: 1px solid #1e1e1e;
       border-radius: 14px;
-      padding: 10px 10px;
+      padding: 8px 8px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -267,16 +268,16 @@
     }
     #target-word-slots {
       display: flex;
-      gap: 6px;
+      gap: 5px;
       justify-content: center;
       align-items: center;
       width: 100%;
-      min-height: 34px;
+      min-height: 32px;
       flex-wrap: wrap;
     }
     .target-slot {
-      width: 28px;
-      height: 34px;
+      width: 26px;
+      height: 32px;
       border: 1px solid #2a2a2a;
       border-radius: 6px;
       background: #161616;
@@ -284,7 +285,7 @@
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      font-size: 14px;
+      font-size: 13px;
       color: #ffffff;
       box-shadow: inset 0 0 4px rgba(0,0,0,0.5);
     }
@@ -292,18 +293,18 @@
       display: flex;
       justify-content: center;
       gap: 4px;
-      min-height: 26px;
+      min-height: 24px;
       align-items: center;
       font-weight: 800;
-      font-size: 16px;
-      letter-spacing: 3px;
+      font-size: 15px;
+      letter-spacing: 2.5px;
       color: #ffffff;
     }
 
-    /* Wheel Container Canvas */
+    /* Compact Wheel Container Canvas */
     #wheel-container {
-      width: 260px;
-      height: 260px;
+      width: 240px;
+      height: 240px;
       position: relative;
       margin: auto 0;
       flex-shrink: 0;
@@ -312,13 +313,13 @@
     /* Bottom Action Controls */
     .controls {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-shrink: 0;
-      margin-top: 4px;
+      margin-top: 2px;
     }
     .btn-action {
       flex: 1;
-      padding: 13px 8px;
+      padding: 11px 8px;
       border-radius: 10px;
       font-size: 11px;
       font-weight: 800;
