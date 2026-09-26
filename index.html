@@ -2,20 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Eleventh Floor Games Lobby</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-deep: #000000;
+            --surface: #0a0a0a;
+            --surface-border: #222222;
+            --accent-red: #ff1f2d;
+            --accent-red-glow: rgba(255, 31, 45, 0.25);
+            --accent-green: #22c55e;
+            --accent-green-glow: rgba(34, 197, 94, 0.3);
+            --text-primary: #ffffff;
+            --text-muted: #888888;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
+
         body {
-            background-color: #000000;
-            color: #ffffff;
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
             font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
             min-height: 100dvh;
@@ -24,70 +39,184 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 20px;
+            padding: 20px 16px;
+            overflow-x: hidden;
         }
+
+        /* Scaled-down Logo Box */
         .hub-logo-box {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 35px;
+            margin-bottom: 16px;
         }
+
         .hub-logo-red {
             font-family: 'Anton', sans-serif;
-            font-size: 7rem;
+            font-size: 4.2rem;
             font-weight: 400;
-            color: #ff1f2d; /* Matched to ecosystem red accent */
+            color: var(--accent-red);
             line-height: 0.85;
             letter-spacing: -1px;
-            text-shadow: 0 0 25px rgba(255, 31, 45, 0.35);
-            margin-bottom: 12px;
+            text-shadow: 0 0 20px rgba(255, 31, 45, 0.35);
+            margin-bottom: 4px;
         }
+
         .hub-logo-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
+            font-size: 1.2rem;
             font-weight: 300;
             color: #ffffff;
             letter-spacing: 1.5px;
-            margin-bottom: 8px;
+            margin-bottom: 2px;
         }
+
         .hub-logo-sub {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.65rem;
             font-weight: 600;
-            color: #ffffff;
-            letter-spacing: 5px;
+            color: var(--text-muted);
+            letter-spacing: 4px;
             text-transform: uppercase;
-            opacity: 0.85;
         }
+
+        /* Standardized 52px Animated Building Graphic */
+        .hub-shaft-graphic {
+            display: flex;
+            flex-direction: column;
+            width: 52px;
+            height: 150px;
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            padding: 6px;
+            gap: 3px;
+            background-color: var(--surface);
+            margin-bottom: 24px;
+        }
+
+        .shaft-box {
+            flex: 1;
+            background-color: #111111;
+            border: 1px solid var(--surface-border);
+            border-radius: 2px;
+            animation: sweepMiddle 1.2s ease-in-out forwards;
+        }
+
+        /* Sequential Upward Light Sweep + Top Green Hold + Drop to Floor 01 */
+        .hub-shaft-graphic .shaft-box:nth-child(11) { animation: sweepBottomSettle 2.6s ease-in-out forwards; animation-delay: 0.05s; }
+        .hub-shaft-graphic .shaft-box:nth-child(10) { animation-delay: 0.15s; }
+        .hub-shaft-graphic .shaft-box:nth-child(9)  { animation-delay: 0.25s; }
+        .hub-shaft-graphic .shaft-box:nth-child(8)  { animation-delay: 0.35s; }
+        .hub-shaft-graphic .shaft-box:nth-child(7)  { animation-delay: 0.45s; }
+        .hub-shaft-graphic .shaft-box:nth-child(6)  { animation-delay: 0.55s; }
+        .hub-shaft-graphic .shaft-box:nth-child(5)  { animation-delay: 0.65s; }
+        .hub-shaft-graphic .shaft-box:nth-child(4)  { animation-delay: 0.75s; }
+        .hub-shaft-graphic .shaft-box:nth-child(3)  { animation-delay: 0.85s; }
+        .hub-shaft-graphic .shaft-box:nth-child(2)  { animation-delay: 0.95s; }
+        .hub-shaft-graphic .shaft-box:nth-child(1)  { animation: sweepTopGreen 1.6s ease-in-out forwards; animation-delay: 1.05s; }
+
+        @keyframes sweepMiddle {
+            0% {
+                background-color: #111111;
+                border-color: var(--surface-border);
+                box-shadow: none;
+            }
+            30% {
+                background-color: var(--accent-red);
+                border-color: var(--accent-red);
+                box-shadow: 0 0 10px var(--accent-red-glow);
+            }
+            60%, 100% {
+                background-color: #111111;
+                border-color: var(--surface-border);
+                box-shadow: none;
+            }
+        }
+
+        @keyframes sweepTopGreen {
+            0% {
+                background-color: #111111;
+                border-color: var(--surface-border);
+                box-shadow: none;
+            }
+            20% {
+                background-color: var(--accent-green);
+                border-color: var(--accent-green);
+                box-shadow: 0 0 16px var(--accent-green-glow);
+            }
+            70% {
+                background-color: var(--accent-green);
+                border-color: var(--accent-green);
+                box-shadow: 0 0 16px var(--accent-green-glow);
+            }
+            100% {
+                background-color: #111111;
+                border-color: var(--surface-border);
+                box-shadow: none;
+            }
+        }
+
+        @keyframes sweepBottomSettle {
+            0% {
+                background-color: #111111;
+                border-color: var(--surface-border);
+                box-shadow: none;
+            }
+            15% {
+                background-color: var(--accent-red);
+                border-color: var(--accent-red);
+                box-shadow: 0 0 10px var(--accent-red-glow);
+            }
+            30% {
+                background-color: #111111;
+                border-color: var(--surface-border);
+                box-shadow: none;
+            }
+            80% {
+                background-color: #111111;
+                border-color: var(--surface-border);
+                box-shadow: none;
+            }
+            95%, 100% {
+                background-color: var(--accent-red);
+                border-color: var(--accent-red);
+                box-shadow: 0 0 8px var(--accent-red-glow);
+            }
+        }
+
+        /* Menu Actions Box */
         .hub-menu-box {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
             width: 100%;
             max-width: 340px;
         }
+
         .btn-hub-option {
             display: block;
             background-color: transparent;
-            border: 2px solid #ff1f2d;
-            color: #ffffff;
-            padding: 16px 20px;
-            font-size: 1.05rem;
+            border: 2px solid var(--accent-red);
+            color: var(--text-primary);
+            padding: 14px 20px;
+            font-size: 0.95rem;
             font-weight: 700;
             text-decoration: none;
             cursor: pointer;
             border-radius: 8px;
             transition: all 0.2s ease-in-out;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         }
+
         .btn-hub-option:hover {
-            background-color: #ff1f2d;
+            background-color: var(--accent-red);
             color: #000000;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 31, 45, 0.4);
+            box-shadow: 0 6px 20px var(--accent-red-glow);
         }
+
         .btn-hub-option:active {
             transform: translateY(0);
         }
@@ -99,6 +228,21 @@
         <h1 class="hub-logo-red">11FL?</h1>
         <p class="hub-logo-title">Eleventh Floor</p>
         <p class="hub-logo-sub">GAMES LOBBY</p>
+    </div>
+
+    <!-- Animated Building Shaft Graphic -->
+    <div class="hub-shaft-graphic">
+        <div class="shaft-box"></div>
+        <div class="shaft-box"></div>
+        <div class="shaft-box"></div>
+        <div class="shaft-box"></div>
+        <div class="shaft-box"></div>
+        <div class="shaft-box"></div>
+        <div class="shaft-box"></div>
+        <div class="shaft-box"></div>
+        <div class="shaft-box"></div>
+        <div class="shaft-box"></div>
+        <div class="shaft-box"></div>
     </div>
 
     <div class="hub-menu-box">
