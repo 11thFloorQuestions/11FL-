@@ -192,14 +192,15 @@ function renderWheel(letters) {
 
     wheelContainer.innerHTML = "";
 
-    const containerWidth = wheelContainer.clientWidth || 260;
-    const containerHeight = wheelContainer.clientHeight || 260;
+    const containerWidth = wheelContainer.clientWidth || 240;
+    const containerHeight = wheelContainer.clientHeight || 240;
 
     const centerX = containerWidth / 2;
     const centerY = containerHeight / 2;
 
-    const btnSize = 52;
-    const radius = 78;
+    // 48px diameter circles at 72px radius keep the 9 nodes touching while keeping the wheel compact
+    const btnSize = 48;
+    const radius = 72;
     const total = letters.length;
 
     letters.forEach((char, index) => {
@@ -221,7 +222,7 @@ function renderWheel(letters) {
         btn.style.background = "#141414";
         btn.style.color = "#ffffff";
         btn.style.fontWeight = "800";
-        btn.style.fontSize = "18px";
+        btn.style.fontSize = "17px";
         btn.style.cursor = "pointer";
         btn.style.display = "flex";
         btn.style.alignItems = "center";
@@ -239,12 +240,12 @@ function renderWheel(letters) {
         wheelContainer.appendChild(btn);
     });
 
-    // Center Shuffle Button - Absolutely centered
-    const shuffleSize = 46;
+    // Center Shuffle Button
+    const shuffleSize = 42;
     const shuffleBtn = document.createElement("button");
     shuffleBtn.id = "shuffle-hub-btn";
     shuffleBtn.innerHTML = `
-        <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: #ff1f2d;">
+        <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: #ff1f2d;">
             <path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.45 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/>
         </svg>
     `;
