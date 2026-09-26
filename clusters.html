@@ -6,7 +6,7 @@
     <title>11th Floor Clusters — Daily Puzzle</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-deep: #000000;
@@ -14,10 +14,10 @@
             --surface-border: #222222;
             --accent-red: #ff1f2d;
             --accent-red-glow: rgba(255, 31, 45, 0.25);
-            --text-primary: #f0f0f0;
-            --text-muted: #777777;
-            --tile-bg: #141414;
-            --tile-hover: #1f1f1f;
+            --text-primary: #ffffff;
+            --text-muted: #888888;
+            --tile-bg: #0f0f0f;
+            --tile-hover: #1a1a1a;
             --tile-selected-bg: #ff1f2d;
             --tile-selected-text: #000000;
         }
@@ -31,8 +31,9 @@
         body {
             background-color: var(--bg-deep);
             color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
+            min-height: 100dvh;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -41,21 +42,21 @@
             overflow-x: hidden;
         }
 
-        /* Ecosystem Top Header */
+        /* Ecosystem Top Header / Lobby Link */
         header {
             width: 100%;
-            max-width: 700px;
+            max-width: 600px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--surface-border);
             padding-bottom: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .ecosystem-brand {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--text-muted);
@@ -67,48 +68,75 @@
             color: var(--accent-red);
         }
 
-        .game-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.1rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: var(--text-primary);
+        /* Locked-In Logo Header Proportions */
+        .game-logo-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
         }
 
-        .game-title span {
+        .game-logo-red {
+            font-family: 'Anton', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 400;
             color: var(--accent-red);
+            line-height: 0.85;
+            letter-spacing: -1px;
+            text-shadow: 0 0 20px rgba(255, 31, 45, 0.35);
+            margin-bottom: 8px;
+        }
+
+        .game-logo-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: #ffffff;
+            letter-spacing: 1.5px;
+            margin-bottom: 4px;
+        }
+
+        .game-logo-sub {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0.85;
         }
 
         /* Floor Progress HUD */
         .floor-hud {
             width: 100%;
-            max-width: 700px;
+            max-width: 600px;
             background: var(--surface);
             border: 1px solid var(--surface-border);
-            padding: 15px 20px;
+            padding: 12px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            font-family: 'JetBrains Mono', monospace;
         }
 
         .current-floor-display {
-            font-size: 1.25rem;
-            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
             letter-spacing: 1px;
         }
 
         .current-floor-display span {
             color: var(--accent-red);
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
 
         .floor-phase-tag {
-            font-size: 0.75rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            padding: 4px 10px;
+            padding: 4px 8px;
             border: 1px solid var(--surface-border);
             color: var(--text-muted);
         }
@@ -116,7 +144,7 @@
         /* Main Game Arena */
         main {
             width: 100%;
-            max-width: 700px;
+            max-width: 600px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -125,11 +153,10 @@
         }
 
         .puzzle-prompt {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-align: center;
-            font-family: 'JetBrains Mono', monospace;
             letter-spacing: 0.5px;
         }
 
@@ -149,33 +176,32 @@
             display: flex;
             flex-direction: column;
             gap: 4px;
+            border-radius: 6px;
             animation: fadeIn 0.4s ease-in-out;
         }
 
         .solved-group-category {
-            font-family: 'JetBrains Mono', monospace;
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--accent-red);
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .solved-group-words {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
             letter-spacing: 0.5px;
         }
 
-        /* Tile Grid */
+        /* Tile Grid - Dark theme with thin red outline */
         .tile-grid {
             display: grid;
             gap: 12px;
             width: 100%;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
-        /* Dynamic Grid Layouts based on phase */
         .grid-warmup {
             grid-template-columns: repeat(2, 1fr);
         }
@@ -190,10 +216,10 @@
             background-color: var(--tile-bg);
             border: 1px solid var(--surface-border);
             color: var(--text-primary);
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.85rem;
-            font-weight: 600;
-            padding: 20px 10px;
+            font-weight: 700;
+            padding: 18px 10px;
             text-align: center;
             cursor: pointer;
             user-select: none;
@@ -201,13 +227,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 65px;
-            letter-spacing: 1px;
+            min-height: 60px;
+            letter-spacing: 0.5px;
+            border-radius: 6px;
         }
 
         .cluster-tile:hover {
             background-color: var(--tile-hover);
-            border-color: var(--text-muted);
+            border-color: var(--accent-red);
         }
 
         .cluster-tile.selected {
@@ -226,14 +253,15 @@
         }
 
         .btn {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.85rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
-            padding: 14px 28px;
+            padding: 14px 24px;
             cursor: pointer;
-            border: 1px solid;
+            border: 2px solid var(--accent-red);
+            border-radius: 8px;
             transition: all 0.2s ease;
         }
 
@@ -273,7 +301,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(255, 31, 45, 0.15);
+            background: rgba(255, 31, 45, 0.2);
             pointer-events: none;
             opacity: 0;
             transition: opacity 0.2s ease;
@@ -287,34 +315,24 @@
         /* Footer / Message Box */
         footer {
             width: 100%;
-            max-width: 700px;
+            max-width: 600px;
             text-align: center;
-            margin-top: 25px;
-            font-size: 0.8rem;
+            margin-top: 20px;
+            font-size: 0.75rem;
             color: var(--text-muted);
-            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.5px;
         }
 
         #status-message {
-            min-height: 24px;
+            min-height: 22px;
             color: var(--accent-red);
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            font-weight: 700;
             margin-bottom: 5px;
         }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-5px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Responsive Adjustments */
-        @media(max-width: 600px) {
-            .cluster-tile {
-                font-size: 0.75rem;
-                padding: 15px 5px;
-                min-height: 55px;
-            }
         }
     </style>
 </head>
@@ -323,25 +341,31 @@
     <div id="penalty-overlay"></div>
 
     <header>
-        <a href="index.html" class="ecosystem-brand">← 11TH FLOOR ECOSYSTEM</a>
-        <div class="game-title">CLUSTERS<span>.</span></div>
+        <a href="index.html" class="ecosystem-brand">← LOBBY</a>
+        <div style="font-size: 0.75rem; color: var(--text-muted); letter-spacing: 1px;">DAILY PUZZLE</div>
     </header>
 
-    <div class="floor-hud">
+    <div class="game-logo-box">
+        <h1 class="game-logo-red">11FL?</h1>
+        <p class="game-logo-title">Eleventh Floor</p>
+        <p class="game-logo-sub">CLUSTERS</p>
+    </div>
+
+    <div class="floor-hud" id="floor-hud-container" style="display: none;">
         <div class="current-floor-display">FLOOR <span id="floor-number-val">01</span></div>
         <div class="floor-phase-tag" id="floor-phase-tag">WARMUP PHASE</div>
     </div>
 
     <main>
-        <div class="puzzle-prompt" id="puzzle-prompt">Select the matching cluster group for this floor.</div>
+        <div class="puzzle-prompt" id="puzzle-prompt"></div>
 
-        <!-- Solved groups will appear here during Squeeze and Wall phases -->
+        <!-- Solved groups container -->
         <div id="solved-groups-container"></div>
 
-        <!-- Active interaction grid -->
+        <!-- Active interaction grid / Landing View -->
         <div class="tile-grid grid-warmup" id="tile-grid"></div>
 
-        <div class="action-panel">
+        <div class="action-panel" id="action-panel-container" style="display: none;">
             <button class="btn btn-secondary" id="btn-shuffle">SHUFFLE</button>
             <button class="btn btn-primary" id="btn-submit" disabled>SUBMIT</button>
         </div>
