@@ -200,7 +200,6 @@ function renderWheel(letters) {
     const centerX = containerWidth / 2;
     const centerY = containerHeight / 2;
 
-    // 50px diameter circles at 75px radius bring all 9 nodes flush alongside each other
     const btnSize = 50;
     const radius = 75;
     const total = letters.length;
@@ -243,7 +242,7 @@ function renderWheel(letters) {
         wheelContainer.appendChild(btn);
     });
 
-    // Center Shuffle Button - Perfectly centered inside wheel
+    // Center Shuffle Button - Absolutely centered
     const shuffleSize = 44;
     const shuffleBtn = document.createElement("button");
     shuffleBtn.id = "shuffle-hub-btn";
