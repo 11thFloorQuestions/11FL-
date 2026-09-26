@@ -4,12 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>11th Floor Word Climb</title>
+  <!-- Modern Geometric Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,800&display=swap" rel="stylesheet">
+  
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
     }
@@ -45,16 +50,21 @@
     .pill-btn {
       background: #000000;
       border: 1px solid #222222;
-      border-radius: 16px;
-      color: #777777;
+      border-radius: 20px;
+      color: #888888;
       font-size: 10px;
       font-weight: 700;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
       padding: 6px 10px;
       cursor: pointer;
       text-decoration: none;
       text-align: center;
       display: inline-block;
+      transition: all 0.2s ease;
+    }
+    .pill-btn:active {
+      border-color: #444444;
+      color: #ffffff;
     }
     .brand-logo {
       display: flex;
@@ -68,20 +78,21 @@
       font-size: 34px;
       font-weight: 900;
       line-height: 1.0;
-      letter-spacing: -0.5px;
+      letter-spacing: -1px;
     }
     .brand-subtitle-main {
       color: #ffffff;
       font-size: 13px;
-      font-weight: 300;
-      letter-spacing: 2px;
+      font-weight: 400;
+      letter-spacing: 2.5px;
       margin-top: 2px;
+      text-transform: uppercase;
     }
     .brand-subtitle-sub {
-      color: #777777;
+      color: #666666;
       font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2.5px;
+      font-weight: 800;
+      letter-spacing: 3px;
       text-transform: uppercase;
       margin-top: 2px;
     }
@@ -99,27 +110,26 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      width: 54px;
-      height: 160px;
-      background-color: #000000;
-      border: 1px solid #1a1a1a;
-      border-radius: 8px;
-      padding: 4px;
+      width: 48px;
+      height: 170px;
+      background-color: #111111;
+      border: 1px solid #1e1e1e;
+      border-radius: 10px;
+      padding: 5px;
       flex-shrink: 0;
     }
     .landing-shaft-slot {
-      height: 7.5%;
-      border: 1px solid #1e1e1e;
+      height: 6%;
       border-radius: 2px;
-      background-color: #0a0a0a;
+      background-color: #1a1a1a;
     }
 
     /* Tagline / Rules Text Block */
     .landing-tagline {
-      color: #cccccc;
+      color: #888888;
       font-size: 11px;
-      font-weight: 300;
-      letter-spacing: 1.5px;
+      font-weight: 400;
+      letter-spacing: 1.2px;
       text-align: center;
       line-height: 1.7;
       max-width: 320px;
@@ -128,25 +138,29 @@
     }
     .landing-tagline-highlight {
       color: #ffffff;
-      font-weight: 400;
+      font-weight: 700;
+      letter-spacing: 1.5px;
     }
 
     /* Centered Start Button */
     .btn-start-climb {
-      width: 200px;
+      width: 220px;
       background-color: #ffffff;
       color: #000000;
       border: none;
       border-radius: 30px;
-      padding: 12px 0;
-      font-size: 14px;
+      padding: 13px 0;
+      font-size: 13px;
       font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
       cursor: pointer;
       text-align: center;
-      transition: background-color 0.2s ease;
+      transition: all 0.2s ease;
     }
     .btn-start-climb:active {
-      background-color: #dddddd;
+      background-color: #cccccc;
+      transform: scale(0.98);
     }
 
     /* Active Game Workspace */
@@ -159,7 +173,7 @@
       min-height: 0;
     }
 
-    /* Top Status Section: Elevator Shaft + Floor Header Card */
+    /* Top Status Section: Elevator Shaft + Floor Status Card */
     .status-row {
       display: flex;
       gap: 10px;
@@ -175,7 +189,7 @@
       background-color: #111111;
       border: 1px solid #1e1e1e;
       border-radius: 10px;
-      padding: 4px 5px;
+      padding: 5px;
       flex-shrink: 0;
     }
     .elevator-slot {
@@ -186,7 +200,7 @@
     }
     .elevator-slot.active {
       background-color: #ff1f2d;
-      box-shadow: 0 0 6px rgba(255, 31, 45, 0.7);
+      box-shadow: 0 0 8px rgba(255, 31, 45, 0.8);
     }
 
     /* Floor Status Card */
@@ -195,32 +209,33 @@
       background-color: #111111;
       border: 1px solid #1e1e1e;
       border-radius: 10px;
-      padding: 0 16px;
+      padding: 0 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
     .card-floor-label {
       color: #ffffff;
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 800;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
     }
     .badge-ascent-container {
-      background: #181818;
+      background: #161616;
       border: 1px solid #262626;
       border-radius: 6px;
-      padding: 5px 10px;
+      padding: 6px 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 3px;
+      gap: 4px;
     }
     .badge-ascent-text {
       color: #666666;
       font-size: 8px;
       font-weight: 800;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
     }
     .badge-dots {
       display: flex;
@@ -239,7 +254,7 @@
       background-color: #111111;
       border: 1px solid #1e1e1e;
       border-radius: 14px;
-      padding: 12px 10px;
+      padding: 14px 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -249,33 +264,36 @@
     }
     #message-box {
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
       color: #ff1f2d;
+      letter-spacing: 1px;
       min-height: 16px;
       text-align: center;
       flex-shrink: 0;
+      text-transform: uppercase;
     }
     #target-word-slots {
       display: flex;
-      gap: 5px;
+      gap: 6px;
       justify-content: center;
       align-items: center;
       width: 100%;
-      min-height: 30px;
+      min-height: 36px;
       flex-wrap: wrap;
     }
     .target-slot {
-      width: 26px;
-      height: 30px;
+      width: 28px;
+      height: 34px;
       border: 1px solid #2a2a2a;
-      border-radius: 4px;
-      background: #181818;
+      border-radius: 6px;
+      background: #161616;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: bold;
-      font-size: 13px;
+      font-weight: 800;
+      font-size: 14px;
       color: #ffffff;
+      box-shadow: inset 0 0 4px rgba(0,0,0,0.5);
     }
     #guess-display {
       display: flex;
@@ -283,13 +301,72 @@
       gap: 4px;
       min-height: 28px;
       align-items: center;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: 3px;
+      color: #ffffff;
     }
+
+    /* Expanded & Scaled Letter Wheel */
     #wheel-container {
-      width: 180px;
-      height: 180px;
+      width: 240px;
+      height: 240px;
       position: relative;
       margin: auto 0;
       flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Modern Styled Center Shuffle Button */
+    .shuffle-center-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #161616;
+      border: 1px solid #2a2a2a;
+      color: #ff1f2d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.2s ease;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+      z-index: 10;
+    }
+    .shuffle-center-btn:active {
+      transform: translate(-50%, -50%) scale(0.92);
+      border-color: #ff1f2d;
+      background-color: #201214;
+    }
+    .shuffle-center-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: #ff1f2d;
+    }
+
+    /* Dynamic Wheel Letter Nodes (CSS styling override for JS-rendered elements) */
+    .wheel-letter-node {
+      width: 44px !important;
+      height: 44px !important;
+      border-radius: 50% !important;
+      background-color: #121212 !important;
+      border: 1px solid #ff1f2d !important;
+      color: #ffffff !important;
+      font-size: 16px !important;
+      font-weight: 800 !important;
+      box-shadow: 0 0 8px rgba(255, 31, 45, 0.2) !important;
+      transition: all 0.15s ease !important;
+    }
+    .wheel-letter-node:active {
+      background-color: #ff1f2d !important;
+      color: #ffffff !important;
+      transform: scale(1.08) !important;
     }
 
     /* Bottom Action Controls */
@@ -300,33 +377,37 @@
     }
     .btn-action {
       flex: 1;
-      padding: 12px 8px;
+      padding: 13px 8px;
       border-radius: 10px;
       font-size: 11px;
       font-weight: 800;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      transition: background-color 0.15s ease;
+      gap: 8px;
+      transition: all 0.15s ease;
     }
     .btn-action-delete {
-      background-color: #161616;
+      background-color: #141414;
       border: 1px solid #282828;
       color: #ffffff;
     }
     .btn-action-delete:active {
       background-color: #222222;
+      transform: scale(0.98);
     }
     .btn-action-submit {
-      background-color: #7f131a;
-      border: 1px solid #a31a26;
+      background-color: #8b121a;
+      border: 1px solid #b31b27;
       color: #ffffff;
+      box-shadow: 0 2px 8px rgba(139, 18, 26, 0.4);
     }
     .btn-action-submit:active {
-      background-color: #9c1822;
+      background-color: #a81621;
+      transform: scale(0.98);
     }
   </style>
 </head>
@@ -359,8 +440,8 @@
       </div>
 
       <div class="landing-tagline">
-        <span class="landing-tagline-highlight">CAN YOU REACH THE 11TH FLOOR?</span><br>
-        Find a valid English word on every floor, from 5 to 9 letters. Reusing letters is allowed.<br>
+        <span class="landing-tagline-highlight">CAN YOU REACH THE 11TH FLOOR?</span><br><br>
+        Find a valid English word on every floor, from 5 to 9 letters. Reusing letters is allowed.<br><br>
         Submit one wrong and you're back to the ground floor.
       </div>
 
