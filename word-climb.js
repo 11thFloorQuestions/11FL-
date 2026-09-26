@@ -26,7 +26,6 @@ async function resolveDictionary() {
         }
     }
 
-    // If previous attempts failed (e.g., mobile timeout), initiate a fresh fetch on "Tap to Retry"
     if (typeof window.fetchDictionary === 'function') {
         const retrySuccess = await window.fetchDictionary();
         if (retrySuccess && window.WORD_LIST && window.WORD_LIST.size > 0) {
@@ -72,12 +71,10 @@ function launchGameWorkspace() {
     startNewGame();
 }
 
-// Deterministic daily puzzle selection based on date
 function initDailyPuzzle() {
     let nineLetterWords = [];
     if (validWordSet && validWordSet.size > 0) {
         validWordSet.forEach(word => {
-            // Ensure the word is exactly 9 letters AND contains 9 unique letters
             if (word.length === 9 && new Set(word.split("")).size === 9) {
                 nineLetterWords.push(word);
             }
@@ -90,7 +87,7 @@ function initDailyPuzzle() {
         const dayOfYear = getDayOfYear();
         masterNineLetterWord = nineLetterWords[dayOfYear % nineLetterWords.length];
     } else {
-        masterNineLetterWord = "CLEARINGS"; // Fallback to a guaranteed 9 unique letter word
+        masterNineLetterWord = "CLEARINGS";
     }
 
     initialDailyWheel = seededShuffle(masterNineLetterWord.split(""), getDayOfYear());
@@ -194,31 +191,38 @@ function renderWheel(letters) {
     if (!wheelContainer) return;
 
     wheelContainer.innerHTML = "";
-    const radius = 66;
-    const centerX = 90;
-    const centerY = 90;
+
+    // Calculate true center based on container's rendered size
+    const containerWidth = wheelContainer.clientWidth || 240;
+    const containerHeight = wheelContainer.clientHeight || 240;
+    const centerX = containerWidth / 2;
+    const centerY = containerHeight / 2;
+
+    // Expanded radius to fill space while leaving margin for buttons
+    const btnSize = 46;
+    const radius = (Math.min(containerWidth, containerHeight) / 2) - (btnSize / 2) - 4;
     const total = letters.length;
 
     letters.forEach((char, index) => {
         const angle = (index / total) * (2 * Math.PI) - (Math.PI / 2);
-        const x = centerX + radius * Math.cos(angle) - 20;
-        const y = centerY + radius * Math.sin(angle) - 20;
+        const x = centerX + radius * Math.cos(angle) - (btnSize / 2);
+        const y = centerY + radius * Math.sin(angle) - (btnSize / 2);
 
         const btn = document.createElement("button");
-        btn.className = "wheel-letter-btn";
+        btn.className = "wheel-letter-btn wheel-letter-node";
         btn.textContent = char;
         btn.style.position = "absolute";
         btn.style.left = `${x}px`;
         btn.style.top = `${y}px`;
-        btn.style.width = "40px";
-        btn.style.height = "40px";
+        btn.style.width = `${btnSize}px`;
+        btn.style.height = `${btnSize}px`;
         btn.style.borderRadius = "50%";
         btn.style.border = "1px solid #ff1f2d";
-        btn.style.boxShadow = "0 0 5px rgba(255, 31, 45, 0.3)";
-        btn.style.background = "#181818";
+        btn.style.boxShadow = "0 0 8px rgba(255, 31, 45, 0.25)";
+        btn.style.background = "#141414";
         btn.style.color = "#ffffff";
-        btn.style.fontWeight = "bold";
-        btn.style.fontSize = "15px";
+        btn.style.fontWeight = "800";
+        btn.style.fontSize = "16px";
         btn.style.cursor = "pointer";
 
         btn.addEventListener("click", () => {
@@ -233,24 +237,21 @@ function renderWheel(letters) {
         wheelContainer.appendChild(btn);
     });
 
+    // Center Shuffle Button
+    const shuffleSize = 48;
     const shuffleBtn = document.createElement("button");
     shuffleBtn.id = "shuffle-hub-btn";
-    shuffleBtn.innerHTML = "🔀";
+    shuffleBtn.className = "shuffle-center-btn";
+    shuffleBtn.innerHTML = `
+        <svg viewBox="0 0 24 24">
+            <path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.45 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/>
+        </svg>
+    `;
     shuffleBtn.style.position = "absolute";
-    shuffleBtn.style.left = "66px";
-    shuffleBtn.style.top = "66px";
-    shuffleBtn.style.width = "48px";
-    shuffleBtn.style.height = "48px";
-    shuffleBtn.style.borderRadius = "50%";
-    shuffleBtn.style.border = "1px solid #ff1f2d";
-    shuffleBtn.style.boxShadow = "0 0 6px rgba(255, 31, 45, 0.4)";
-    shuffleBtn.style.backgroundColor = "#121212";
-    shuffleBtn.style.color = "#ffffff";
-    shuffleBtn.style.fontSize = "18px";
-    shuffleBtn.style.cursor = "pointer";
-    shuffleBtn.style.display = "flex";
-    shuffleBtn.style.alignItems = "center";
-    shuffleBtn.style.justifyContent = "center";
+    shuffleBtn.style.left = `${centerX - (shuffleSize / 2)}px`;
+    shuffleBtn.style.top = `${centerY - (shuffleSize / 2)}px`;
+    shuffleBtn.style.width = `${shuffleSize}px`;
+    shuffleBtn.style.height = `${shuffleSize}px`;
 
     shuffleBtn.addEventListener("click", () => {
         if (isTransitioning) return;
@@ -289,7 +290,7 @@ function updateGuessDisplay() {
 
     display.innerHTML = currentGuess
         .split("")
-        .map(c => `<span style="padding: 3px 7px; background: #1c1c1c; border: 1px solid #ff1f2d; border-radius: 4px; font-weight: bold; color: #ffffff; font-size: 13px;">${c}</span>`)
+        .map(c => `<span style="padding: 4px 8px; background: #1c1c1c; border: 1px solid #ff1f2d; border-radius: 4px; font-weight: 800; color: #ffffff; font-size: 14px;">${c}</span>`)
         .join("");
 }
 
@@ -302,7 +303,6 @@ function handleSubmission() {
     }
 
     const word = currentGuess.toUpperCase();
-
     const isValid = validWordSet && validWordSet.has(word);
 
     if (isValid) {
