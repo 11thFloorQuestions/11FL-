@@ -2,8 +2,8 @@
  * ============================================================================
  * 11TH FLOOR CLUSTERS - CORE GAME LOGIC (clusters.js)
  * ============================================================================
- * Mechanics: 10 Playable Floors leading to 11th Floor Destination, 
- * Complete Sorts (All tiles sorted), 3 Strikes Lives System.
+ * Logic: Distractor pools, lock correct groups above grid, reduce pool size,
+ * 3-strike lives system, 10 playable floors leading to 11th floor destination.
  * ============================================================================
  */
 
@@ -16,7 +16,6 @@
     let selectedTiles = [];
     let activeTiles = [];
     let remainingGroups = [];
-    let currentFloorConfig = null;
     let currentLives = 3;
 
     const floorNumVal = document.getElementById('floor-number-val');
@@ -87,11 +86,11 @@
         puzzlePrompt.textContent = "";
         renderTowerStack(0);
 
-        tileGrid.className = 'tile-grid grid-ascent';
+        tileGrid.className = 'tile-grid grid-col-3';
         tileGrid.innerHTML = `
-            <div style="grid-column: span 2;" class="landing-container">
+            <div style="grid-column: span 3;" class="landing-container">
                 <div class="landing-challenge-text">
-                    Can you reach the 11th floor? Fail and you're back to the ground floor.
+                    Can you reach the 11th Floor? Fail and you're back to the ground floor.
                 </div>
                 <button class="btn-start" id="btn-start-climb">Start Climb</button>
             </div>
@@ -119,24 +118,21 @@
         statusMessage.textContent = '';
         btnSubmit.disabled = true;
 
-        currentFloorConfig = puzzleData.floors[currentFloor];
-        if (!currentFloorConfig) {
+        const floorConfig = puzzleData.floors[currentFloor];
+        if (!floorConfig) {
             renderVictory();
             return;
         }
 
-        activeTiles = [...currentFloorConfig.tiles];
-        remainingGroups = currentFloorConfig.groups.map(g => ({ ...g }));
+        activeTiles = [...floorConfig.tiles];
+        remainingGroups = floorConfig.groups.map(g => ({ ...g }));
 
-        if (currentFloor <= 3) {
+        if (currentFloor <= 4) {
             floorPhaseTag.textContent = "ASCENT";
-            puzzlePrompt.textContent = "Sort all tiles into 2 groups of 3.";
-        } else if (currentFloor >= 4 && currentFloor <= 6) {
+            puzzlePrompt.textContent = "Find 2 groups of 3 from the 12 tiles.";
+        } else if (currentFloor >= 5 && currentFloor <= 9) {
             floorPhaseTag.textContent = "SQUEEZE";
-            puzzlePrompt.textContent = "Sort all tiles into 3 groups of 3.";
-        } else if (currentFloor >= 7 && currentFloor <= 9) {
-            floorPhaseTag.textContent = "DEEP WALL";
-            puzzlePrompt.textContent = "Sort all tiles into 4 groups of 3.";
+            puzzlePrompt.textContent = "Find 3 groups of 3 from the 12 tiles.";
         } else if (currentFloor === 10) {
             floorPhaseTag.textContent = "FINAL WALL";
             puzzlePrompt.textContent = "Sort all 16 tiles into 4 groups of 4.";
@@ -149,14 +145,10 @@
     function renderGrid() {
         tileGrid.innerHTML = '';
 
-        if (currentFloor <= 3) {
-            tileGrid.className = 'tile-grid grid-ascent';
-        } else if (currentFloor >= 4 && currentFloor <= 6) {
-            tileGrid.className = 'tile-grid grid-squeeze';
-        } else if (currentFloor >= 7 && currentFloor <= 9) {
-            tileGrid.className = 'tile-grid grid-wall-12';
+        if (currentFloor === 10) {
+            tileGrid.className = 'tile-grid grid-col-4';
         } else {
-            tileGrid.className = 'tile-grid grid-wall-16';
+            tileGrid.className = 'tile-grid grid-col-3';
         }
 
         activeTiles.forEach(tileText => {
@@ -228,7 +220,11 @@
 
             setTimeout(() => {
                 const solvedGroup = remainingGroups.splice(matchedGroupIndex, 1)[0];
-                activeTiles = activeTiles.filter(t => !solvedGroup.words.includes(t));
+                // Remove ONLY the solved group words from active tiles (leaving distractors and remaining groups in play)
+                solvedGroup.words.forEach(word => {
+                    const idx = activeTiles.indexOf(word);
+                    if (idx > -1) activeTiles.splice(idx, 1);
+                });
 
                 appendSolvedCard(solvedGroup);
                 selectedTiles = [];
@@ -248,7 +244,6 @@
             }, 600);
 
         } else {
-            // Wrong guess -> lose a life pip
             currentLives--;
             updateLivesDisplay();
 
@@ -296,9 +291,9 @@
         puzzlePrompt.textContent = "";
         renderTowerStack(10);
 
-        tileGrid.className = 'tile-grid grid-ascent';
+        tileGrid.className = 'tile-grid grid-col-3';
         tileGrid.innerHTML = `
-            <div style="grid-column: span 2;" class="landing-container">
+            <div style="grid-column: span 3;" class="landing-container">
                 <div style="font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--accent-green); letter-spacing: 1.5px;">
                     11TH FLOOR REACHED
                 </div>
