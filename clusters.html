@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11th Floor Clusters — Daily Puzzle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #000000;
+            --surface: #0a0a0a;
+            --surface-border: #222222;
+            --accent-red: #ff1f2d;
+            --accent-red-glow: rgba(255, 31, 45, 0.25);
+            --text-primary: #f0f0f0;
+            --text-muted: #777777;
+            --tile-bg: #141414;
+            --tile-hover: #1f1f1f;
+            --tile-selected-bg: #ff1f2d;
+            --tile-selected-text: #000000;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Ecosystem Top Header */
+        header {
+            width: 100%;
+            max-width: 700px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--surface-border);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .ecosystem-brand {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .ecosystem-brand:hover {
+            color: var(--accent-red);
+        }
+
+        .game-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--text-primary);
+        }
+
+        .game-title span {
+            color: var(--accent-red);
+        }
+
+        /* Floor Progress HUD */
+        .floor-hud {
+            width: 100%;
+            max-width: 700px;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .current-floor-display {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .current-floor-display span {
+            color: var(--accent-red);
+            font-size: 1.5rem;
+        }
+
+        .floor-phase-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 4px 10px;
+            border: 1px solid var(--surface-border);
+            color: var(--text-muted);
+        }
+
+        /* Main Game Arena */
+        main {
+            width: 100%;
+            max-width: 700px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        .puzzle-prompt {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.5px;
+        }
+
+        /* Solved Groups Display Area */
+        #solved-groups-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .solved-group-card {
+            background: rgba(255, 31, 45, 0.08);
+            border: 1px solid var(--accent-red);
+            padding: 12px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .solved-group-category {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-red);
+            font-weight: 600;
+        }
+
+        .solved-group-words {
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Tile Grid */
+        .tile-grid {
+            display: grid;
+            gap: 12px;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        /* Dynamic Grid Layouts based on phase */
+        .grid-warmup {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .grid-squeeze {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .grid-wall {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .cluster-tile {
+            background-color: var(--tile-bg);
+            border: 1px solid var(--surface-border);
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 20px 10px;
+            text-align: center;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 65px;
+            letter-spacing: 1px;
+        }
+
+        .cluster-tile:hover {
+            background-color: var(--tile-hover);
+            border-color: var(--text-muted);
+        }
+
+        .cluster-tile.selected {
+            background-color: var(--tile-selected-bg);
+            color: var(--tile-selected-text);
+            border-color: var(--tile-selected-bg);
+            box-shadow: 0 0 15px var(--accent-red-glow);
+        }
+
+        /* Action Control Panel */
+        .action-panel {
+            width: 100%;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 14px 28px;
+            cursor: pointer;
+            border: 1px solid;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-muted);
+            border-color: var(--surface-border);
+        }
+
+        .btn-secondary:hover {
+            color: var(--text-primary);
+            border-color: var(--text-muted);
+        }
+
+        .btn-primary {
+            background: var(--accent-red);
+            color: #000000;
+            border-color: var(--accent-red);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--accent-red);
+            box-shadow: 0 0 20px var(--accent-red-glow);
+        }
+
+        .btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            box-shadow: none !important;
+        }
+
+        /* Brutal Penalty Flash Overlay */
+        #penalty-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(255, 31, 45, 0.15);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            z-index: 999;
+        }
+
+        #penalty-overlay.flash {
+            opacity: 1;
+        }
+
+        /* Footer / Message Box */
+        footer {
+            width: 100%;
+            max-width: 700px;
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        #status-message {
+            min-height: 24px;
+            color: var(--accent-red);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Adjustments */
+        @media(max-width: 600px) {
+            .cluster-tile {
+                font-size: 0.75rem;
+                padding: 15px 5px;
+                min-height: 55px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="penalty-overlay"></div>
+
+    <header>
+        <a href="index.html" class="ecosystem-brand">← 11TH FLOOR ECOSYSTEM</a>
+        <div class="game-title">CLUSTERS<span>.</span></div>
+    </header>
+
+    <div class="floor-hud">
+        <div class="current-floor-display">FLOOR <span id="floor-number-val">01</span></div>
+        <div class="floor-phase-tag" id="floor-phase-tag">WARMUP PHASE</div>
+    </div>
+
+    <main>
+        <div class="puzzle-prompt" id="puzzle-prompt">Select the matching cluster group for this floor.</div>
+
+        <!-- Solved groups will appear here during Squeeze and Wall phases -->
+        <div id="solved-groups-container"></div>
+
+        <!-- Active interaction grid -->
+        <div class="tile-grid grid-warmup" id="tile-grid"></div>
+
+        <div class="action-panel">
+            <button class="btn btn-secondary" id="btn-shuffle">SHUFFLE</button>
+            <button class="btn btn-primary" id="btn-submit" disabled>SUBMIT</button>
+        </div>
+    </main>
+
+    <footer>
+        <div id="status-message"></div>
+        <div>ONE MISTAKE RESETS THE CLIMB TO FLOOR 01.</div>
+    </footer>
+
+    <!-- Load Data and Core Game Logic -->
+    <script src="clusters-data.js"></script>
+    <script src="clusters.js"></script>
+</body>
+</html>
