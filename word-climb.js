@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function getOrdinalFloorHTML(floorNum) {
     const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
     const ord = ordinals[floorNum - 1] || `${floorNum}th`;
-    return `<span style="color: var(--accent-red); font-size: 1.25rem; font-weight: 700;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
+    return `<span style="color: var(--accent-red); font-size: 1.15rem; font-weight: 700;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
 }
 
 async function fetchFileWithFallbacks(filename) {
@@ -275,13 +275,12 @@ function renderWheel(letters) {
 
     wheelContainer.innerHTML = "";
 
-    const containerWidth = wheelContainer.clientWidth || 295;
-    const containerHeight = wheelContainer.clientHeight || 295;
+    const containerWidth = 295;
+    const containerHeight = 295;
 
     const centerX = containerWidth / 2;
     const centerY = containerHeight / 2;
 
-    // Increased node button diameter (56px) & radius (98px) to match drawn guidelines
     const btnSize = 56;
     const radius = 98;
     const total = letters.length;
@@ -306,7 +305,7 @@ function renderWheel(letters) {
         btn.style.color = "#ffffff";
         btn.style.fontFamily = "'Montserrat', sans-serif";
         btn.style.fontWeight = "800";
-        btn.style.fontSize = "21px"; // Larger, highly visible letters
+        btn.style.fontSize = "21px";
         btn.style.cursor = "pointer";
         btn.style.display = "flex";
         btn.style.alignItems = "center";
@@ -384,7 +383,7 @@ function updateGuessDisplay() {
 
     display.innerHTML = currentGuess
         .split("")
-        .map(c => `<span style="padding: 4px 8px; background: #111111; border: 1px solid #ff1f2d; border-radius: 4px; font-weight: 800; color: #ffffff; font-size: 14px;">${c}</span>`)
+        .map(c => `<span style="padding: 3px 7px; background: #111111; border: 1px solid #ff1f2d; border-radius: 4px; font-weight: 800; color: #ffffff; font-size: 13px;">${c}</span>`)
         .join("");
 }
 
