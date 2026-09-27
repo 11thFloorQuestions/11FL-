@@ -283,6 +283,7 @@
 
     <script>
         let lobbyAudioCtx = null;
+        let audioUnlocked = false;
 
         function getLobbyAudioContext() {
             if (!lobbyAudioCtx) {
@@ -333,19 +334,16 @@
             }
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            const unlockAudio = () => {
+        function unlockAndPlay() {
+            if (!audioUnlocked) {
+                audioUnlocked = true;
                 getLobbyAudioContext();
-                document.removeEventListener('click', unlockAudio);
-                document.removeEventListener('touchstart', unlockAudio);
-            };
-            document.addEventListener('click', unlockAudio);
-            document.addEventListener('touchstart', unlockAudio);
-
-            setTimeout(() => {
                 playLobbyDing();
-            }, 1370);
-        });
+            }
+        }
+
+        document.addEventListener('click', unlockAndPlay, { once: true });
+        document.addEventListener('touchstart', unlockAndPlay, { once: true });
     </script>
 </body>
 </html>
