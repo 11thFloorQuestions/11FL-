@@ -100,92 +100,19 @@ loadSavedStats();
 
 
 // ==========================================
-// REALISTIC METALLIC CHIME AUDIO ENGINE
+// AUDIO ENGINE (EXACT SOUND FILE PLAYBACK)
 // ==========================================
 
-let audioCtx = null;
-
-function getAudioContext() {
-    if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    }
-    if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-    }
-    return audioCtx;
-}
-
-function unlockAudioOnInteraction() {
-    const unlock = () => {
-        if (gameState.soundEnabled) {
-            getAudioContext();
-        }
-        document.removeEventListener('click', unlock);
-        document.removeEventListener('touchstart', unlock);
-        document.removeEventListener('keydown', unlock);
-    };
-    document.addEventListener('click', unlock);
-    document.addEventListener('touchstart', unlock);
-    document.addEventListener('keydown', unlock);
-}
-
-unlockAudioOnInteraction();
+const elevatorDingAudio = new Audio();
+elevatorDingAudio.src = 'ding.mp3';
 
 function playElevatorDing() {
     if (!gameState.soundEnabled) return;
     try {
-        const ctx = getAudioContext();
-        const now = ctx.currentTime;
-
-        // 1. Metallic transient strike noise
-        const bufferSize = ctx.sampleRate * 0.012;
-        const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-        const output = noiseBuffer.getChannelData(0);
-        for (let i = 0; i < bufferSize; i++) {
-            output[i] = Math.random() * 2 - 1;
-        }
-        const noise = ctx.createBufferSource();
-        noise.buffer = noiseBuffer;
-
-        const noiseFilter = ctx.createBiquadFilter();
-        noiseFilter.type = 'bandpass';
-        noiseFilter.frequency.setValueAtTime(2400, now);
-        noiseFilter.Q.setValueAtTime(4, now);
-
-        const noiseGain = ctx.createGain();
-        noiseGain.gain.setValueAtTime(0.2, now);
-        noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.012);
-
-        noise.connect(noiseFilter);
-        noiseFilter.connect(noiseGain);
-        noiseGain.connect(ctx.destination);
-        noise.start(now);
-
-        // 2. Inharmonic metallic modes (Struck metal bar resonance)
-        const baseFreq = 830;
-        const modes = [
-            { freq: baseFreq * 1.0, gain: 0.35, decay: 1.6 },
-            { freq: baseFreq * 1.58, gain: 0.18, decay: 1.1 },
-            { freq: baseFreq * 2.24, gain: 0.10, decay: 0.7 },
-            { freq: baseFreq * 2.91, gain: 0.05, decay: 0.4 }
-        ];
-
-        modes.forEach(mode => {
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(mode.freq, now);
-
-            gain.gain.setValueAtTime(0, now);
-            gain.gain.linearRampToValueAtTime(mode.gain, now + 0.003);
-            gain.gain.exponentialRampToValueAtTime(0.0001, now + mode.decay);
-
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-
-            osc.start(now);
-            osc.stop(now + mode.decay);
+        elevatorDingAudio.currentTime = 0;
+        elevatorDingAudio.play().catch(e => {
+            elevatorDingAudio.src = 'assets/audio/ding.mp3';
+            elevatorDingAudio.play().catch(() => {});
         });
     } catch (e) {
         console.warn('Audio playback error:', e);
@@ -239,7 +166,6 @@ function updateSoundUI() {
 function toggleSound() {
     gameState.soundEnabled = !gameState.soundEnabled;
     if (gameState.soundEnabled) {
-        getAudioContext();
         playElevatorDing();
     }
     updateSoundUI();
@@ -299,13 +225,21 @@ function renderStatsUI() {
     }
 }
 
-function populateVault() {
+async function populateVault() {
     const vaultList = document.getElementById('vault-list');
     if (!vaultList) return;
     
     vaultList.innerHTML = '';
-    for (let i = 1; i <= 51; i++) {
-        const paddedId = String(i).padStart(2, '0');
+    let archiveId = 1;
+
+    // Dynamic scanning: probe archive files sequentially until missing
+    while (true) {
+        const paddedId = String(archiveId).padStart(2, '0');
+        const filename = `sandbox.${paddedId}.json`;
+        const data = await fetchFileWithFallbacks(filename);
+        
+        if (!data) break; // Reached end of existing archives
+
         const btn = document.createElement('button');
         btn.className = 'vault-item-btn';
         btn.innerHTML = `<strong>Archive ${paddedId}</strong>`;
@@ -314,6 +248,7 @@ function populateVault() {
             loadVaultSet(paddedId);
         };
         vaultList.appendChild(btn);
+        archiveId++;
     }
 }
 
@@ -366,7 +301,6 @@ async function fetchFileWithFallbacks(filename) {
         try {
             const res = await fetch(path);
             if (res.ok) {
-                console.log(`Successfully loaded ${filename} from ${path}`);
                 return await res.json();
             }
         } catch (e) {
@@ -393,7 +327,6 @@ async function fetchFloorSequence() {
 
 async function startDailyClimb() {
     let data = await fetchFileWithFallbacks('questions.json');
-    if (!data) data = await fetchFileWithFallbacks('sandbox.51.json');
     if (!data) data = await fetchFileWithFallbacks('sandbox.01.json');
 
     if (data) {
@@ -515,7 +448,7 @@ function handleAnswerSelect(isCorrect, buttonEl) {
     if (isCorrect) {
         if (buttonEl) buttonEl.classList.add('selected-correct');
         playElevatorDing();
-        triggerHaptic([35, 40, 35]); // Success double-tap vibration pulse
+        triggerHaptic([35, 40, 35]);
         
         setTimeout(() => {
             if (gameState.currentFloor >= gameState.maxFloors) {
@@ -532,7 +465,7 @@ function handleAnswerSelect(isCorrect, buttonEl) {
         }, 1000);
     } else {
         if (buttonEl) buttonEl.classList.add('selected-wrong');
-        triggerHaptic([80, 50, 120]); // Heavy error rumble vibration
+        triggerHaptic([80, 50, 120]);
         
         setTimeout(() => {
             handleGameOver('INCORRECT ANSWER');
@@ -567,7 +500,7 @@ function handleVictory() {
     saveStats();
     
     updateFloorUI();
-    triggerHaptic([50, 50, 50, 50, 100]); // Victory rhythmic haptic
+    triggerHaptic([50, 50, 50, 50, 100]);
     
     safeSetText('game-over-title', '');
     const msgEl = document.getElementById('game-over-message');
