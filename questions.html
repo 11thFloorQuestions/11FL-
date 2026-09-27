@@ -8,151 +8,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --accent-red: #ff1f2d;
-            --accent-red-glow: rgba(255, 31, 45, 0.25);
-            --accent-green: #22c55e;
-            --accent-green-glow: rgba(34, 197, 94, 0.3);
-            --surface-border: #222222;
-        }
-
-        .logo-red, .logo-red-small {
-            font-family: 'Anton', sans-serif !important;
-            font-weight: 400 !important;
-            color: var(--accent-red) !important;
-            text-shadow: 0 0 20px rgba(255, 31, 45, 0.35);
-        }
-
-        /* Wider Landing Building Graphic (52px) */
-        .lobby-shaft-graphic {
-            display: flex;
-            flex-direction: column;
-            width: 52px !important;
-            height: 150px !important;
-            border: 1px solid var(--surface-border) !important;
-            border-radius: 8px !important;
-            padding: 6px !important;
-            gap: 3px !important;
-            background-color: #0a0a0a !important;
-            margin: 14px 0 !important;
-        }
-
-        .shaft-box {
-            flex: 1;
-            background-color: #111111;
-            border: 1px solid var(--surface-border);
-            border-radius: 2px;
-            animation: sweepMiddle 1.2s ease-in-out forwards;
-        }
-
-        /* Sequential Upward Light Sweep + Top Green Hold + Drop to Floor 01 */
-        .lobby-shaft-graphic .shaft-box:nth-child(11) { animation: sweepBottomSettle 2.6s ease-in-out forwards; animation-delay: 0.05s; }
-        .lobby-shaft-graphic .shaft-box:nth-child(10) { animation-delay: 0.15s; }
-        .lobby-shaft-graphic .shaft-box:nth-child(9)  { animation-delay: 0.25s; }
-        .lobby-shaft-graphic .shaft-box:nth-child(8)  { animation-delay: 0.35s; }
-        .lobby-shaft-graphic .shaft-box:nth-child(7)  { animation-delay: 0.45s; }
-        .lobby-shaft-graphic .shaft-box:nth-child(6)  { animation-delay: 0.55s; }
-        .lobby-shaft-graphic .shaft-box:nth-child(5)  { animation-delay: 0.65s; }
-        .lobby-shaft-graphic .shaft-box:nth-child(4)  { animation-delay: 0.75s; }
-        .lobby-shaft-graphic .shaft-box:nth-child(3)  { animation-delay: 0.85s; }
-        .lobby-shaft-graphic .shaft-box:nth-child(2)  { animation-delay: 0.95s; }
-        .lobby-shaft-graphic .shaft-box:nth-child(1)  { animation: sweepTopGreen 1.6s ease-in-out forwards; animation-delay: 1.05s; }
-
-        @keyframes sweepMiddle {
-            0% {
-                background-color: #111111;
-                border-color: var(--surface-border);
-                box-shadow: none;
-            }
-            30% {
-                background-color: var(--accent-red);
-                border-color: var(--accent-red);
-                box-shadow: 0 0 10px var(--accent-red-glow);
-            }
-            60%, 100% {
-                background-color: #111111;
-                border-color: var(--surface-border);
-                box-shadow: none;
-            }
-        }
-
-        @keyframes sweepTopGreen {
-            0% {
-                background-color: #111111;
-                border-color: var(--surface-border);
-                box-shadow: none;
-            }
-            20% {
-                background-color: var(--accent-green);
-                border-color: var(--accent-green);
-                box-shadow: 0 0 16px var(--accent-green-glow);
-            }
-            70% {
-                background-color: var(--accent-green);
-                border-color: var(--accent-green);
-                box-shadow: 0 0 16px var(--accent-green-glow);
-            }
-            100% {
-                background-color: #111111;
-                border-color: var(--surface-border);
-                box-shadow: none;
-            }
-        }
-
-        @keyframes sweepBottomSettle {
-            0% {
-                background-color: #111111;
-                border-color: var(--surface-border);
-                box-shadow: none;
-            }
-            15% {
-                background-color: var(--accent-red);
-                border-color: var(--accent-red);
-                box-shadow: 0 0 10px var(--accent-red-glow);
-            }
-            30% {
-                background-color: #111111;
-                border-color: var(--surface-border);
-                box-shadow: none;
-            }
-            80% {
-                background-color: #111111;
-                border-color: var(--surface-border);
-                box-shadow: none;
-            }
-            95%, 100% {
-                background-color: var(--accent-red);
-                border-color: var(--accent-red);
-                box-shadow: 0 0 8px var(--accent-red-glow);
-            }
-        }
-
-        .lobby-tagline {
-            font-family: 'Montserrat', sans-serif !important;
-            font-size: 0.78rem !important;
-            font-weight: 600 !important;
-            color: #888888 !important;
-            line-height: 1.6 !important;
-            letter-spacing: 1px !important;
-            max-width: 320px !important;
-            text-transform: uppercase !important;
-            margin-bottom: 20px !important;
-        }
-
-        .lobby-tagline strong {
-            color: #ffffff !important;
-            font-weight: 700 !important;
-            letter-spacing: 1.5px !important;
-        }
-    </style>
 </head>
 <body>
 
     <!-- Lobby / Landing Screen -->
     <div id="landing-screen" class="screen-container">
         <header class="header-nav">
-            <a href="index.html" class="btn-nav" style="text-decoration: none; display: inline-flex; align-items: center;">← LOBBY</a>
+            <a href="index.html" class="btn-nav">← LOBBY</a>
             <button id="btn-landing-stats" class="btn-nav">STATS / ARCHIVE</button>
             <button id="btn-sound-toggle" class="btn-nav">SOUND: OFF</button>
         </header>
@@ -164,7 +26,6 @@
                 <p class="logo-tagline">QUESTIONS</p>
             </div>
 
-            <!-- Standardized 52px Animated Building Graphic -->
             <div class="lobby-shaft-graphic">
                 <div class="shaft-box"></div>
                 <div class="shaft-box"></div>
@@ -192,7 +53,7 @@
     <!-- Active Game Screen -->
     <div id="game-screen" class="screen-container" style="display: none;">
         <header class="header-nav header-game">
-            <a href="index.html" id="btn-util-exit" class="btn-nav btn-exit" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">← LOBBY</a>
+            <a href="index.html" id="btn-util-exit" class="btn-nav btn-exit">← LOBBY</a>
             <div class="header-brand-center">
                 <h1 class="logo-red-small">11FL?</h1>
                 <p class="logo-subtitle-small">Eleventh Floor</p>
@@ -201,26 +62,34 @@
             <button id="btn-sound-toggle-game" class="btn-nav">SOUND: OFF</button>
         </header>
 
-        <main class="game-layout">
-            <!-- Left Elevator Shaft (11 Floor Blocks) -->
-            <div id="building-shaft" class="building-shaft">
-                <div class="floor-block" data-floor="11"></div>
-                <div class="floor-block" data-floor="10"></div>
-                <div class="floor-block" data-floor="9"></div>
-                <div class="floor-block" data-floor="8"></div>
-                <div class="floor-block" data-floor="7"></div>
-                <div class="floor-block" data-floor="6"></div>
-                <div class="floor-block" data-floor="5"></div>
-                <div class="floor-block" data-floor="4"></div>
-                <div class="floor-block" data-floor="3"></div>
-                <div class="floor-block" data-floor="2"></div>
-                <div class="floor-block" data-floor="1"></div>
+        <!-- Top HUD Container matching Word Climb and Clusters -->
+        <div class="hud-sidebar-container" id="floor-hud-container">
+            <div class="tower-stack" id="building-shaft">
+                <div class="tower-floor floor-block" data-floor="11"></div>
+                <div class="tower-floor floor-block" data-floor="10"></div>
+                <div class="tower-floor floor-block" data-floor="9"></div>
+                <div class="tower-floor floor-block" data-floor="8"></div>
+                <div class="tower-floor floor-block" data-floor="7"></div>
+                <div class="tower-floor floor-block" data-floor="6"></div>
+                <div class="tower-floor floor-block" data-floor="5"></div>
+                <div class="tower-floor floor-block" data-floor="4"></div>
+                <div class="tower-floor floor-block" data-floor="3"></div>
+                <div class="tower-floor floor-block" data-floor="2"></div>
+                <div class="tower-floor floor-block" data-floor="1"></div>
             </div>
 
-            <!-- Question Card Container -->
+            <div class="floor-info-box">
+                <div class="current-floor-display">FLOOR <span id="card-floor-text">01</span></div>
+                <div class="floor-right-group">
+                    <div class="floor-phase-tag">ASCENT</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Centralized Question Workspace -->
+        <main class="game-layout">
             <section class="question-card">
                 <div class="card-header">
-                    <div id="card-floor-text" class="floor-indicator">FLOOR 01</div>
                     <div class="timer-wrapper">
                         <div id="timer-bar" class="timer-bar"></div>
                     </div>
