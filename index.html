@@ -12,6 +12,7 @@
             --bg-deep: #000000;
             --surface: #0a0a0a;
             --surface-border: #222222;
+            --surface-border-light: #333333;
             --accent-red: #ff1f2d;
             --accent-red-glow: rgba(255, 31, 45, 0.25);
             --accent-green: #22c55e;
@@ -194,31 +195,48 @@
         }
 
         .btn-hub-option {
-            display: block;
-            background-color: transparent;
-            border: 2px solid var(--accent-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background-color: var(--surface);
+            border: 1px solid var(--surface-border-light);
             color: var(--text-primary);
             padding: 14px 20px;
             font-size: 0.95rem;
-            font-weight: 700;
             text-decoration: none;
             cursor: pointer;
             border-radius: 8px;
             transition: all 0.2s ease-in-out;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         }
 
         .btn-hub-option:hover {
-            background-color: var(--accent-red);
-            color: #000000;
+            border-color: var(--accent-red);
+            background-color: #111111;
             transform: translateY(-2px);
             box-shadow: 0 6px 20px var(--accent-red-glow);
         }
 
         .btn-hub-option:active {
             transform: translateY(0);
+        }
+
+        .hub-btn-num {
+            color: var(--accent-red);
+            font-weight: 700;
+        }
+
+        .hub-btn-floor {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .hub-btn-game {
+            font-weight: 300;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #ffffff;
         }
     </style>
 </head>
@@ -246,9 +264,21 @@
     </div>
 
     <div class="hub-menu-box">
-        <a href="questions.html" class="btn-hub-option">11th Floor Questions</a>
-        <a href="word-climb.html" class="btn-hub-option">11th Floor Word Climb</a>
-        <a href="clusters.html" class="btn-hub-option">11th Floor Clusters</a>
+        <a href="questions.html" class="btn-hub-option">
+            <span class="hub-btn-num">11th</span>
+            <span class="hub-btn-floor">Floor</span>
+            <span class="hub-btn-game">QUESTIONS</span>
+        </a>
+        <a href="word-climb.html" class="btn-hub-option">
+            <span class="hub-btn-num">11th</span>
+            <span class="hub-btn-floor">Floor</span>
+            <span class="hub-btn-game">WORD CLIMB</span>
+        </a>
+        <a href="clusters.html" class="btn-hub-option">
+            <span class="hub-btn-num">11th</span>
+            <span class="hub-btn-floor">Floor</span>
+            <span class="hub-btn-game">CLUSTERS</span>
+        </a>
     </div>
 
 </body>
