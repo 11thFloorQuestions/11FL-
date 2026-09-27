@@ -1,0 +1,114 @@
+{
+  "floors": [
+    {
+      "tier": "FLOOR 01",
+      "question": "Which planet in our solar system is known for having the most extensive and visually prominent planetary ring system?",
+      "options": [
+        "Saturn",
+        "Jupiter",
+        "Uranus",
+        "Neptune"
+      ],
+      "answer": "Saturn"
+    },
+    {
+      "tier": "FLOOR 02",
+      "question": "Which Renaissance polymath painted the world-famous 16th-century portrait known as the Mona Lisa?",
+      "options": [
+        "Leonardo da Vinci",
+        "Michelangelo",
+        "Raphael",
+        "Sandro Botticelli"
+      ],
+      "answer": "Leonardo da Vinci"
+    },
+    {
+      "tier": "FLOOR 03",
+      "question": "What fundamental SI unit is used globally to measure electrical current?",
+      "options": [
+        "Ampere",
+        "Volt",
+        "Ohm",
+        "Watt"
+      ],
+      "answer": "Ampere"
+    },
+    {
+      "tier": "FLOOR 04",
+      "question": "Which dystopian 1949 novel by George Orwell introduced terms like 'Big Brother', 'Doublethink', and 'Thoughtpolice'?",
+      "options": [
+        "1984",
+        "Brave New World",
+        "Fahrenheit 451",
+        "Animal Farm"
+      ],
+      "answer": "1984"
+    },
+    {
+      "tier": "FLOOR 05",
+      "question": "Which African nation is completely surrounded by the territory of South Africa?",
+      "options": [
+        "Lesotho",
+        "Eswatini",
+        "Botswana",
+        "Namibia"
+      ],
+      "answer": "Lesotho"
+    },
+    {
+      "tier": "FLOOR 06",
+      "question": "What element on the periodic table has the chemical symbol 'Au' and atomic number 79?",
+      "options": [
+        "Gold",
+        "Silver",
+        "Copper",
+        "Platinum"
+      ],
+      "answer": "Gold"
+    },
+    {
+      "tier": "FLOOR 07",
+      "question": "Which French philosopher famously authored the statement 'Cogito, ergo sum' ('I think, therefore I am') in his Discourse on the Method?",
+      "options": [
+        "René Descartes",
+        "Voltaire",
+        "Jean-Paul Sartre",
+        "Blaise Pascal"
+      ],
+      "answer": "René Descartes"
+    },
+    {
+      "tier": "FLOOR 08",
+      "question": "Which ocean trench contains the Challenger Deep, the deepest known point in Earth's seabed?",
+      "options": [
+        "Mariana Trench",
+        "Puerto Rico Trench",
+        "Java Trench",
+        "Tonga Trench"
+      ],
+      "answer": "Mariana Trench"
+    },
+    {
+      "tier": "FLOOR 09",
+      "question": "Which Austrian theoretical physicist formulated the fundamental wave equation that describes quantum mechanical states?",
+      "options": [
+        "Erwin Schrödinger",
+        "Werner Heisenberg",
+        "Max Planck",
+        "Niels Bohr"
+      ],
+      "answer": "Erwin Schrödinger"
+    },
+    {
+      "tier": "FLOOR 10",
+      "question": "In ancient history, which treaty signed in 1274 BC between Ramses II and Hattusili III is widely recognized as the earliest surviving international peace treaty?",
+      "options": [
+        "Treaty of Kadesh",
+        "Treaty of Verdun",
+        "Edict of Milan",
+        "Peace of Callias"
+      ],
+      "answer": "Treaty of Kadesh"
+    }
+  ]
+}
