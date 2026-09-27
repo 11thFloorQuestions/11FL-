@@ -43,7 +43,7 @@
             <p class="lobby-tagline">
                 <strong>CAN YOU REACH THE 11TH FLOOR?</strong><br><br>
                 ANSWER 11 TRIVIA QUESTIONS TO REACH THE TOP.<br><br>
-                ONE MISTAKE RESETS THE CLIMB TO FLOOR 01.
+                ONE MISTAKE RESETS THE CLIMB TO 1ST FLOOR.
             </p>
 
             <button id="btn-start-climb" class="btn-start-climb">Start Climb</button>
@@ -62,7 +62,7 @@
             <button id="btn-sound-toggle-game" class="btn-nav">SOUND: OFF</button>
         </header>
 
-        <!-- Top HUD Container matching Word Climb and Clusters -->
+        <!-- Top HUD Container -->
         <div class="hud-sidebar-container" id="floor-hud-container">
             <div class="tower-stack" id="building-shaft">
                 <div class="tower-floor floor-block" data-floor="11"></div>
@@ -79,7 +79,7 @@
             </div>
 
             <div class="floor-info-box">
-                <div class="current-floor-display">FLOOR <span id="card-floor-text">01</span></div>
+                <div class="current-floor-display" id="card-floor-text"></div>
                 <div class="floor-right-group">
                     <div class="floor-phase-tag">ASCENT</div>
                 </div>
@@ -112,7 +112,7 @@
         <div class="modal-card">
             <h2 id="game-over-title">ELEVATOR STOPPED</h2>
             <p id="game-over-message">Incorrect Answer!</p>
-            <p id="final-floor-reached">Stopped at FLOOR 01</p>
+            <p id="final-floor-reached"></p>
             <div class="modal-actions">
                 <button id="btn-try-again" class="btn-modal">TRY AGAIN</button>
                 <button id="btn-back-vault" class="btn-modal">VAULT</button>
@@ -141,7 +141,7 @@
                     <span class="stat-lbl">Streak</span>
                 </div>
                 <div class="stat-box" style="grid-column: span 2;">
-                    <span id="stat-bestfloor" class="stat-val">FLOOR 01</span>
+                    <span id="stat-bestfloor" class="stat-val"></span>
                     <span class="stat-lbl">Best Peak</span>
                 </div>
             </div>
