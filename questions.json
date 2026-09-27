@@ -2,113 +2,113 @@
   "floors": [
     {
       "tier": "FLOOR 01",
-      "question": "Which planet in our solar system is known for having the most extensive and visually prominent planetary ring system?",
+      "question": "Which body of water is the deepest lake in the world and contains roughly 20% of Earth's unfrozen surface fresh water?",
       "options": [
-        "Saturn",
-        "Jupiter",
-        "Uranus",
-        "Neptune"
+        "Lake Baikal",
+        "Lake Superior",
+        "Lake Tanganyika",
+        "Lake Victoria"
       ],
-      "answer": "Saturn"
+      "answer": "Lake Baikal"
     },
     {
       "tier": "FLOOR 02",
-      "question": "Which Renaissance polymath painted the world-famous 16th-century portrait known as the Mona Lisa?",
+      "question": "Which epic ancient Greek poem attributed to Homer opens with an invocation asking the Muse to sing of the anger of Achilles?",
       "options": [
-        "Leonardo da Vinci",
-        "Michelangelo",
-        "Raphael",
-        "Sandro Botticelli"
+        "The Iliad",
+        "The Odyssey",
+        "The Aeneid",
+        "The Theogony"
       ],
-      "answer": "Leonardo da Vinci"
+      "answer": "The Iliad"
     },
     {
       "tier": "FLOOR 03",
-      "question": "What fundamental SI unit is used globally to measure electrical current?",
+      "question": "Which landmark 1927 film starring Al Jolson is widely recognized as the feature-length movie that ended the silent film era?",
       "options": [
-        "Ampere",
-        "Volt",
-        "Ohm",
-        "Watt"
+        "The Jazz Singer",
+        "Metropolis",
+        "Sunrise: A Song of Two Humans",
+        "The Great Dictator"
       ],
-      "answer": "Ampere"
+      "answer": "The Jazz Singer"
     },
     {
       "tier": "FLOOR 04",
-      "question": "Which dystopian 1949 novel by George Orwell introduced terms like 'Big Brother', 'Doublethink', and 'Thoughtpolice'?",
+      "question": "By volume, what is the most abundant gas in Earth's atmosphere, making up roughly 78% of dry air?",
       "options": [
-        "1984",
-        "Brave New World",
-        "Fahrenheit 451",
-        "Animal Farm"
+        "Nitrogen",
+        "Oxygen",
+        "Argon",
+        "Carbon Dioxide"
       ],
-      "answer": "1984"
+      "answer": "Nitrogen"
     },
     {
       "tier": "FLOOR 05",
-      "question": "Which African nation is completely surrounded by the territory of South Africa?",
+      "question": "Which English naval commander served as second-in-command of the fleet that defeated the Spanish Armada in 1588?",
       "options": [
-        "Lesotho",
-        "Eswatini",
-        "Botswana",
-        "Namibia"
+        "Sir Francis Drake",
+        "Sir Walter Raleigh",
+        "Lord Nelson",
+        "Captain James Cook"
       ],
-      "answer": "Lesotho"
+      "answer": "Sir Francis Drake"
     },
     {
       "tier": "FLOOR 06",
-      "question": "What element on the periodic table has the chemical symbol 'Au' and atomic number 79?",
+      "question": "The Pont du Gard, a famous ancient Roman aqueduct bridge, stands in which modern country?",
       "options": [
-        "Gold",
-        "Silver",
-        "Copper",
-        "Platinum"
+        "France",
+        "Italy",
+        "Spain",
+        "Greece"
       ],
-      "answer": "Gold"
+      "answer": "France"
     },
     {
       "tier": "FLOOR 07",
-      "question": "Which French philosopher famously authored the statement 'Cogito, ergo sum' ('I think, therefore I am') in his Discourse on the Method?",
+      "question": "In physics, what physical constant is defined as exactly 299,792,458 meters per second in a vacuum?",
       "options": [
-        "René Descartes",
-        "Voltaire",
-        "Jean-Paul Sartre",
-        "Blaise Pascal"
+        "Speed of light",
+        "Gravitational constant",
+        "Planck's constant",
+        "Hubble constant"
       ],
-      "answer": "René Descartes"
+      "answer": "Speed of light"
     },
     {
       "tier": "FLOOR 08",
-      "question": "Which ocean trench contains the Challenger Deep, the deepest known point in Earth's seabed?",
+      "question": "Which Byzantine emperor commissioned the 6th-century codification of Roman law known as the Corpus Juris Civilis?",
       "options": [
-        "Mariana Trench",
-        "Puerto Rico Trench",
-        "Java Trench",
-        "Tonga Trench"
+        "Justinian I",
+        "Constantine the Great",
+        "Theodosius I",
+        "Heraclius"
       ],
-      "answer": "Mariana Trench"
+      "answer": "Justinian I"
     },
     {
       "tier": "FLOOR 09",
-      "question": "Which Austrian theoretical physicist formulated the fundamental wave equation that describes quantum mechanical states?",
+      "question": "Which British explorer led the ill-fated Terra Nova Expedition that reached the South Pole in January 1912?",
       "options": [
-        "Erwin Schrödinger",
-        "Werner Heisenberg",
-        "Max Planck",
-        "Niels Bohr"
+        "Robert Falcon Scott",
+        "Ernest Shackleton",
+        "Roald Amundsen",
+        "Douglas Mawson"
       ],
-      "answer": "Erwin Schrödinger"
+      "answer": "Robert Falcon Scott"
     },
     {
       "tier": "FLOOR 10",
-      "question": "In ancient history, which treaty signed in 1274 BC between Ramses II and Hattusili III is widely recognized as the earliest surviving international peace treaty?",
+      "question": "In 331 BC, Alexander the Great's army defeated Darius III of Persia at which decisive military engagement?",
       "options": [
-        "Treaty of Kadesh",
-        "Treaty of Verdun",
-        "Edict of Milan",
-        "Peace of Callias"
+        "Battle of Gaugamela",
+        "Battle of Issus",
+        "Battle of Granicus",
+        "Battle of Hydaspes"
       ],
-      "answer": "Treaty of Kadesh"
+      "answer": "Battle of Gaugamela"
     }
   ]
 }
