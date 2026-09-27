@@ -275,14 +275,15 @@ function renderWheel(letters) {
 
     wheelContainer.innerHTML = "";
 
-    const containerWidth = wheelContainer.clientWidth || 250;
-    const containerHeight = wheelContainer.clientHeight || 250;
+    const containerWidth = wheelContainer.clientWidth || 295;
+    const containerHeight = wheelContainer.clientHeight || 295;
 
     const centerX = containerWidth / 2;
     const centerY = containerHeight / 2;
 
-    const btnSize = 50;
-    const radius = 75;
+    // Increased node button diameter (56px) & radius (98px) to match drawn guidelines
+    const btnSize = 56;
+    const radius = 98;
     const total = letters.length;
 
     letters.forEach((char, index) => {
@@ -300,12 +301,12 @@ function renderWheel(letters) {
         btn.style.height = `${btnSize}px`;
         btn.style.borderRadius = "50%";
         btn.style.border = "1px solid #ff1f2d";
-        btn.style.boxShadow = "0 0 8px rgba(255, 31, 45, 0.25)";
+        btn.style.boxShadow = "0 0 10px rgba(255, 31, 45, 0.25)";
         btn.style.background = "#111111";
         btn.style.color = "#ffffff";
         btn.style.fontFamily = "'Montserrat', sans-serif";
         btn.style.fontWeight = "800";
-        btn.style.fontSize = "17px";
+        btn.style.fontSize = "21px"; // Larger, highly visible letters
         btn.style.cursor = "pointer";
         btn.style.display = "flex";
         btn.style.alignItems = "center";
@@ -323,11 +324,11 @@ function renderWheel(letters) {
         wheelContainer.appendChild(btn);
     });
 
-    const shuffleSize = 44;
+    const shuffleSize = 48;
     const shuffleBtn = document.createElement("button");
     shuffleBtn.id = "shuffle-hub-btn";
     shuffleBtn.innerHTML = `
-        <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: #ff1f2d;">
+        <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: #ff1f2d;">
             <path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.45 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/>
         </svg>
     `;
