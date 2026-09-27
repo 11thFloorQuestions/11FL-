@@ -5,7 +5,10 @@
 function safeAddListener(id, event, handler) {
     const el = document.getElementById(id);
     if (el) {
-        el.addEventListener(event, handler);
+        el.addEventListener(event, (e) => {
+            triggerHaptic(15);
+            handler(e);
+        });
     }
 }
 
@@ -36,6 +39,21 @@ function getOrdinalFloorHTML(floorNum) {
     const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
     const ord = ordinals[floorNum - 1] || `${floorNum}th`;
     return `<span style="color: var(--accent-red); font-size: 1.25rem; font-weight: 700;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
+}
+
+
+// ==========================================
+// HAPTIC FEEDBACK ENGINE
+// ==========================================
+
+function triggerHaptic(pattern) {
+    if ('vibrate' in navigator) {
+        try {
+            navigator.vibrate(pattern);
+        } catch (e) {
+            // Ignore devices without haptic engine access
+        }
+    }
 }
 
 
@@ -82,7 +100,7 @@ loadSavedStats();
 
 
 // ==========================================
-// WEB AUDIO SYNTHESIZER & CHIME ENGINE
+// REALISTIC METALLIC CHIME AUDIO ENGINE
 // ==========================================
 
 let audioCtx = null;
@@ -119,37 +137,56 @@ function playElevatorDing() {
         const ctx = getAudioContext();
         const now = ctx.currentTime;
 
-        // Primary tone (G5 - 783.99 Hz)
-        const oscMain = ctx.createOscillator();
-        const gainMain = ctx.createGain();
-        oscMain.type = 'sine';
-        oscMain.frequency.setValueAtTime(783.99, now);
+        // 1. Metallic transient strike noise
+        const bufferSize = ctx.sampleRate * 0.012;
+        const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const output = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+            output[i] = Math.random() * 2 - 1;
+        }
+        const noise = ctx.createBufferSource();
+        noise.buffer = noiseBuffer;
 
-        gainMain.gain.setValueAtTime(0, now);
-        gainMain.gain.linearRampToValueAtTime(0.35, now + 0.008);
-        gainMain.gain.exponentialRampToValueAtTime(0.0001, now + 1.4);
+        const noiseFilter = ctx.createBiquadFilter();
+        noiseFilter.type = 'bandpass';
+        noiseFilter.frequency.setValueAtTime(2400, now);
+        noiseFilter.Q.setValueAtTime(4, now);
 
-        oscMain.connect(gainMain);
-        gainMain.connect(ctx.destination);
+        const noiseGain = ctx.createGain();
+        noiseGain.gain.setValueAtTime(0.2, now);
+        noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.012);
 
-        oscMain.start(now);
-        oscMain.stop(now + 1.4);
+        noise.connect(noiseFilter);
+        noiseFilter.connect(noiseGain);
+        noiseGain.connect(ctx.destination);
+        noise.start(now);
 
-        // Metallic overtone (G6 - 1567.98 Hz)
-        const oscTone = ctx.createOscillator();
-        const gainTone = ctx.createGain();
-        oscTone.type = 'sine';
-        oscTone.frequency.setValueAtTime(1567.98, now);
+        // 2. Inharmonic metallic modes (Struck metal bar resonance)
+        const baseFreq = 830;
+        const modes = [
+            { freq: baseFreq * 1.0, gain: 0.35, decay: 1.6 },
+            { freq: baseFreq * 1.58, gain: 0.18, decay: 1.1 },
+            { freq: baseFreq * 2.24, gain: 0.10, decay: 0.7 },
+            { freq: baseFreq * 2.91, gain: 0.05, decay: 0.4 }
+        ];
 
-        gainTone.gain.setValueAtTime(0, now);
-        gainTone.gain.linearRampToValueAtTime(0.08, now + 0.008);
-        gainTone.gain.exponentialRampToValueAtTime(0.0001, now + 0.5);
+        modes.forEach(mode => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
 
-        oscTone.connect(gainTone);
-        gainTone.connect(ctx.destination);
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(mode.freq, now);
 
-        oscTone.start(now);
-        oscTone.stop(now + 0.5);
+            gain.gain.setValueAtTime(0, now);
+            gain.gain.linearRampToValueAtTime(mode.gain, now + 0.003);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + mode.decay);
+
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+
+            osc.start(now);
+            osc.stop(now + mode.decay);
+        });
     } catch (e) {
         console.warn('Audio playback error:', e);
     }
@@ -272,7 +309,10 @@ function populateVault() {
         const btn = document.createElement('button');
         btn.className = 'vault-item-btn';
         btn.innerHTML = `<strong>Archive ${paddedId}</strong>`;
-        btn.onclick = () => loadVaultSet(paddedId);
+        btn.onclick = () => {
+            triggerHaptic(15);
+            loadVaultSet(paddedId);
+        };
         vaultList.appendChild(btn);
     }
 }
@@ -475,6 +515,7 @@ function handleAnswerSelect(isCorrect, buttonEl) {
     if (isCorrect) {
         if (buttonEl) buttonEl.classList.add('selected-correct');
         playElevatorDing();
+        triggerHaptic([35, 40, 35]); // Success double-tap vibration pulse
         
         setTimeout(() => {
             if (gameState.currentFloor >= gameState.maxFloors) {
@@ -491,6 +532,7 @@ function handleAnswerSelect(isCorrect, buttonEl) {
         }, 1000);
     } else {
         if (buttonEl) buttonEl.classList.add('selected-wrong');
+        triggerHaptic([80, 50, 120]); // Heavy error rumble vibration
         
         setTimeout(() => {
             handleGameOver('INCORRECT ANSWER');
@@ -525,6 +567,7 @@ function handleVictory() {
     saveStats();
     
     updateFloorUI();
+    triggerHaptic([50, 50, 50, 50, 100]); // Victory rhythmic haptic
     
     safeSetText('game-over-title', '');
     const msgEl = document.getElementById('game-over-message');
