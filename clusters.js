@@ -33,6 +33,12 @@
     const floorHudContainer = document.getElementById('floor-hud-container');
     const pips = [document.getElementById('pip-1'), document.getElementById('pip-2'), document.getElementById('pip-3')];
 
+    function getOrdinalFloorHTML(floorNum) {
+        const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
+        const ord = ordinals[floorNum - 1] || `${floorNum}th`;
+        return `<span style="color: var(--accent-red); font-size: 1.25rem; font-weight: 700;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
+    }
+
     function init() {
         if (!window.CLUSTERS_DATA) {
             statusMessage.textContent = "ERROR: CLUSTERS DATA NOT LOADED.";
@@ -111,7 +117,9 @@
 
     function loadFloor(floorNum) {
         currentFloor = floorNum;
-        floorNumVal.textContent = String(currentFloor).padStart(2, '0');
+        if (floorNumVal) {
+            floorNumVal.innerHTML = getOrdinalFloorHTML(currentFloor);
+        }
         renderTowerStack(currentFloor);
         selectedTiles = [];
         solvedGroupsContainer.innerHTML = '';
@@ -220,7 +228,6 @@
 
             setTimeout(() => {
                 const solvedGroup = remainingGroups.splice(matchedGroupIndex, 1)[0];
-                // Remove ONLY the solved group words from active tiles (leaving distractors and remaining groups in play)
                 solvedGroup.words.forEach(word => {
                     const idx = activeTiles.indexOf(word);
                     if (idx > -1) activeTiles.splice(idx, 1);
@@ -234,7 +241,8 @@
                 if (remainingGroups.length === 0) {
                     setTimeout(() => {
                         if (currentFloor < 10) {
-                            statusMessage.textContent = `FLOOR ${String(currentFloor).padStart(2, '0')} CLEARED. ADVANCING...`;
+                            const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
+                            statusMessage.textContent = `${ordinals[currentFloor - 1].toUpperCase()} FLOOR CLEARED. ADVANCING...`;
                             setTimeout(() => loadFloor(currentFloor + 1), 900);
                         } else {
                             renderVictory();
@@ -273,7 +281,7 @@
         btnSubmit.disabled = true;
         
         penaltyOverlay.classList.add('flash');
-        statusMessage.textContent = "OUT OF LIVES. DROPPED TO FLOOR 01.";
+        statusMessage.textContent = "OUT OF LIVES. DROPPED TO 1ST FLOOR.";
 
         setTimeout(() => {
             penaltyOverlay.classList.remove('flash');
