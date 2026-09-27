@@ -12,6 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
     setupLandingScreen();
 });
 
+function getOrdinalFloorHTML(floorNum) {
+    const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
+    const ord = ordinals[floorNum - 1] || `${floorNum}th`;
+    return `<span style="color: var(--accent-red); font-size: 1.25rem; font-weight: 700;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
+}
+
 async function resolveDictionary() {
     if (window.WORD_LIST_LOADED && window.WORD_LIST && window.WORD_LIST.size > 0) {
         validWordSet = window.WORD_LIST;
@@ -139,8 +145,7 @@ function setupFloor(floor) {
 
     const floorVal = document.getElementById("floor-number-val");
     if (floorVal) {
-        const formatted = floor < 10 ? `0${floor}` : `${floor}`;
-        floorVal.textContent = formatted;
+        floorVal.innerHTML = getOrdinalFloorHTML(floor);
     }
 
     updateElevatorShaft(floor);
@@ -242,7 +247,6 @@ function renderWheel(letters) {
         wheelContainer.appendChild(btn);
     });
 
-    // Center Shuffle Button - Absolutely centered
     const shuffleSize = 44;
     const shuffleBtn = document.createElement("button");
     shuffleBtn.id = "shuffle-hub-btn";
@@ -333,7 +337,7 @@ function handleSubmission() {
         }, 1000);
     } else {
         isTransitioning = true;
-        showMessage("WRONG WORD! DROPPING TO FLOOR 01...", true);
+        showMessage("WRONG WORD! DROPPING TO 1ST FLOOR...", true);
 
         setTimeout(() => {
             startNewGame();
@@ -358,7 +362,7 @@ function fillTargetSlots(word) {
 
 function handleVictory() {
     const floorVal = document.getElementById("floor-number-val");
-    if (floorVal) floorVal.textContent = "11TH";
+    if (floorVal) floorVal.innerHTML = getOrdinalFloorHTML(11);
 
     updateElevatorShaft(11);
 
