@@ -82,6 +82,78 @@ loadSavedStats();
 
 
 // ==========================================
+// WEB AUDIO SYNTHESIZER & CHIME ENGINE
+// ==========================================
+
+let audioCtx = null;
+
+function getAudioContext() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
+    return audioCtx;
+}
+
+document.addEventListener('click', () => {
+    if (gameState.soundEnabled) {
+        getAudioContext();
+    }
+}, { once: true });
+
+function playElevatorDing() {
+    if (!gameState.soundEnabled) return;
+    try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+
+        // Primary tone (G5 - 783.99 Hz)
+        const oscMain = ctx.createOscillator();
+        const gainMain = ctx.createGain();
+        oscMain.type = 'sine';
+        oscMain.frequency.setValueAtTime(783.99, now);
+
+        gainMain.gain.setValueAtTime(0, now);
+        gainMain.gain.linearRampToValueAtTime(0.35, now + 0.008);
+        gainMain.gain.exponentialRampToValueAtTime(0.0001, now + 1.4);
+
+        oscMain.connect(gainMain);
+        gainMain.connect(ctx.destination);
+
+        oscMain.start(now);
+        oscMain.stop(now + 1.4);
+
+        // Metallic overtone (G6 - 1567.98 Hz)
+        const oscTone = ctx.createOscillator();
+        const gainTone = ctx.createGain();
+        oscTone.type = 'sine';
+        oscTone.frequency.setValueAtTime(1567.98, now);
+
+        gainTone.gain.setValueAtTime(0, now);
+        gainTone.gain.linearRampToValueAtTime(0.08, now + 0.008);
+        gainTone.gain.exponentialRampToValueAtTime(0.0001, now + 0.5);
+
+        oscTone.connect(gainTone);
+        gainTone.connect(ctx.destination);
+
+        oscTone.start(now);
+        oscTone.stop(now + 0.5);
+    } catch (e) {
+        console.warn('Audio playback error:', e);
+    }
+}
+
+function triggerLandingPageDing() {
+    // Synchronized to the 11th floor green flash timing in the building sweep animation
+    setTimeout(() => {
+        playElevatorDing();
+    }, 1370);
+}
+
+
+// ==========================================
 // 3. NAVIGATION & SCREEN SWITCHING
 // ==========================================
 
@@ -102,6 +174,9 @@ function showScreen(screenId) {
             el.style.display = (id === screenId) ? 'flex' : 'none';
         }
     });
+    if (screenId === 'landing-screen') {
+        triggerLandingPageDing();
+    }
 }
 
 
@@ -111,6 +186,10 @@ function showScreen(screenId) {
 
 function toggleSound() {
     gameState.soundEnabled = !gameState.soundEnabled;
+    if (gameState.soundEnabled) {
+        getAudioContext();
+        playElevatorDing();
+    }
     const label = `SOUND: ${gameState.soundEnabled ? 'ON' : 'OFF'}`;
     safeSetText('btn-sound-toggle', label);
     safeSetText('btn-sound-toggle-game', label);
@@ -382,6 +461,7 @@ function handleAnswerSelect(isCorrect, buttonEl) {
     
     if (isCorrect) {
         if (buttonEl) buttonEl.classList.add('selected-correct');
+        playElevatorDing();
         
         setTimeout(() => {
             if (gameState.currentFloor >= gameState.maxFloors) {
@@ -454,3 +534,7 @@ function generateFallbackQuestions() {
     }
     return fallback;
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+    triggerLandingPageDing();
+});
