@@ -11,6 +11,11 @@ let validWordSet = null;
 document.addEventListener("DOMContentLoaded", () => {
     setupLandingScreen();
     setupVaultModal();
+    window.addEventListener("resize", () => {
+        if (wheelLetters.length > 0) {
+            renderWheel(wheelLetters);
+        }
+    });
 });
 
 function getOrdinalFloorHTML(floorNum) {
@@ -275,14 +280,17 @@ function renderWheel(letters) {
 
     wheelContainer.innerHTML = "";
 
-    const containerWidth = 295;
-    const containerHeight = 295;
+    // Measure actual rendered size to support fluid responsive scaling on mobile
+    const containerWidth = wheelContainer.clientWidth || 295;
+    const containerHeight = wheelContainer.clientHeight || 295;
 
     const centerX = containerWidth / 2;
     const centerY = containerHeight / 2;
 
-    const btnSize = 56;
-    const radius = 98;
+    // Proportionally scale nodes, orbital radius, and fonts
+    const btnSize = Math.round(containerWidth * 0.19);
+    const radius = Math.round(containerWidth * 0.332);
+    const fontSize = Math.round(btnSize * 0.38);
     const total = letters.length;
 
     letters.forEach((char, index) => {
@@ -305,7 +313,7 @@ function renderWheel(letters) {
         btn.style.color = "#ffffff";
         btn.style.fontFamily = "'Montserrat', sans-serif";
         btn.style.fontWeight = "800";
-        btn.style.fontSize = "21px";
+        btn.style.fontSize = `${fontSize}px`;
         btn.style.cursor = "pointer";
         btn.style.display = "flex";
         btn.style.alignItems = "center";
@@ -323,11 +331,11 @@ function renderWheel(letters) {
         wheelContainer.appendChild(btn);
     });
 
-    const shuffleSize = 48;
+    const shuffleSize = Math.round(btnSize * 0.85);
     const shuffleBtn = document.createElement("button");
     shuffleBtn.id = "shuffle-hub-btn";
     shuffleBtn.innerHTML = `
-        <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: #ff1f2d;">
+        <svg viewBox="0 0 24 24" style="width: 50%; height: 50%; fill: #ff1f2d;">
             <path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.45 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/>
         </svg>
     `;
