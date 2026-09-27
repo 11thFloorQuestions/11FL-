@@ -90,7 +90,7 @@
             background: var(--surface);
         }
 
-        /* Branding Logo Box */
+        /* Branding Logo Box (Default Desktop Layout) */
         .game-logo-box {
             display: flex;
             flex-direction: column;
@@ -313,17 +313,17 @@
             background: #111111;
         }
 
-        /* Play Card Container — Shifted Upward Internal Layout */
+        /* Play Card Workspace Container */
         .play-card {
             width: 100%;
             background: var(--surface);
             border: 1px solid var(--surface-border);
             border-radius: 8px;
-            padding: 10px 10px 4px 10px;
+            padding: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: space-around;
             gap: 4px;
             flex-grow: 1;
             margin-bottom: 6px;
@@ -377,14 +377,13 @@
             color: var(--text-primary);
         }
 
-        /* 295px Wheel Positioned Higher Up into Card Workspace */
+        /* Dynamic Viewport Responsive Wheel */
         #wheel-container {
-            width: 295px;
-            height: 295px;
+            width: min(295px, 36vh);
+            height: min(295px, 36vh);
             max-width: 100%;
             position: relative;
-            margin-top: 0px;
-            margin-bottom: 0px;
+            margin: 0 auto;
             flex-shrink: 0;
             display: flex;
             align-items: center;
@@ -429,7 +428,7 @@
             background: #181818;
         }
 
-        /* Dark Submit Button with Thin Red Border */
+        /* Dark Primary Submit Button with Thin Red Border */
         .btn-primary {
             background: #111111;
             color: var(--text-primary);
@@ -591,6 +590,34 @@
             color: var(--text-muted);
             letter-spacing: 0.5px;
             flex-shrink: 0;
+        }
+
+        /* MOBILE SPECIFIC MEDIA QUERY: Tightens top headers on mobile screens ONLY */
+        @media screen and (max-width: 600px), screen and (max-height: 750px) {
+            body {
+                padding: 6px 12px;
+            }
+
+            .game-logo-red {
+                font-size: 2.2rem;
+            }
+
+            .game-logo-title {
+                font-size: 0.85rem;
+            }
+
+            .game-logo-box {
+                margin-bottom: 4px;
+            }
+
+            .hud-sidebar-container {
+                margin-bottom: 4px;
+            }
+
+            .btn {
+                padding: 10px 14px;
+                font-size: 0.75rem;
+            }
         }
     </style>
 </head>
