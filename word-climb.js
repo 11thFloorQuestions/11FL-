@@ -80,24 +80,7 @@ function launchGameWorkspace() {
 }
 
 function initDailyPuzzle() {
-    let nineLetterWords = [];
-    if (validWordSet && validWordSet.size > 0) {
-        validWordSet.forEach(word => {
-            if (word.length === 9 && new Set(word.split("")).size === 9) {
-                nineLetterWords.push(word);
-            }
-        });
-    }
-
-    nineLetterWords.sort();
-
-    if (nineLetterWords.length > 0) {
-        const dayOfYear = getDayOfYear();
-        masterNineLetterWord = nineLetterWords[dayOfYear % nineLetterWords.length];
-    } else {
-        masterNineLetterWord = "CLEARINGS";
-    }
-
+    masterNineLetterWord = "COMPLAINT";
     initialDailyWheel = seededShuffle(masterNineLetterWord.split(""), getDayOfYear());
     wheelLetters = [...initialDailyWheel];
 }
