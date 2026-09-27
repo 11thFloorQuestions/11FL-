@@ -32,6 +32,12 @@ function shuffleArray(array) {
     return arr;
 }
 
+function getOrdinalFloorHTML(floorNum) {
+    const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
+    const ord = ordinals[floorNum - 1] || `${floorNum}th`;
+    return `<span style="color: var(--accent-red); font-size: 1.25rem; font-weight: 700;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
+}
+
 
 // ==========================================
 // 2. STATE MANAGEMENT & STATS PERSISTENCE
@@ -157,7 +163,11 @@ function renderStatsUI() {
     safeSetText('stat-wins', gameState.stats.wins);
     safeSetText('stat-winrate', `${winRate}%`);
     safeSetText('stat-streak', gameState.stats.streak);
-    safeSetText('stat-bestfloor', `FLOOR ${String(gameState.stats.bestFloor).padStart(2, '0')}`);
+
+    const bestEl = document.getElementById('stat-bestfloor');
+    if (bestEl) {
+        bestEl.innerHTML = getOrdinalFloorHTML(gameState.stats.bestFloor);
+    }
 }
 
 function populateVault() {
@@ -165,7 +175,7 @@ function populateVault() {
     if (!vaultList) return;
     
     vaultList.innerHTML = '';
-    for (let i = 1; i <= 51; i++) { // Bumped vault count to 51
+    for (let i = 1; i <= 51; i++) {
         const paddedId = String(i).padStart(2, '0');
         const btn = document.createElement('button');
         btn.className = 'vault-item-btn';
@@ -304,8 +314,10 @@ function resetGame() {
 }
 
 function updateFloorUI() {
-    const floorStr = String(gameState.currentFloor).padStart(2, '0');
-    safeSetText('card-floor-text', `FLOOR ${floorStr}`);
+    const cardFloorEl = document.getElementById('card-floor-text');
+    if (cardFloorEl) {
+        cardFloorEl.innerHTML = getOrdinalFloorHTML(gameState.currentFloor);
+    }
     
     // Updates 11 elevator blocks (Floors 1 through 11)
     document.querySelectorAll('.floor-block').forEach(block => {
@@ -324,8 +336,9 @@ function loadNextQuestion() {
         return;
     }
 
-    const currentFloorStr = String(gameState.currentFloor);
-    safeSetText('question-text', `${currentFloorStr}. ${currentQ.question}`);
+    const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
+    const ord = ordinals[gameState.currentFloor - 1] || `${gameState.currentFloor}th`;
+    safeSetText('question-text', `${ord} Floor. ${currentQ.question}`);
     
     const shuffledOptions = shuffleArray(currentQ.options);
     
@@ -375,7 +388,6 @@ function handleAnswerSelect(isCorrect, buttonEl) {
         
         setTimeout(() => {
             if (gameState.currentFloor >= gameState.maxFloors) {
-                // Reached Destination Floor 11
                 handleVictory();
             } else {
                 gameState.currentFloor++;
@@ -403,7 +415,13 @@ function handleGameOver(reason) {
     
     safeSetText('game-over-title', 'ELEVATOR STOPPED');
     safeSetText('game-over-message', reason);
-    safeSetText('final-floor-reached', `Stopped at FLOOR ${String(gameState.currentFloor).padStart(2, '0')}`);
+    
+    const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
+    const ord = ordinals[gameState.currentFloor - 1] || `${gameState.currentFloor}th`;
+    const finalEl = document.getElementById('final-floor-reached');
+    if (finalEl) {
+        finalEl.innerHTML = `Stopped at <span style="color: var(--accent-red); font-weight: 700;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
+    }
     
     openModal('modal-game-over');
 }
