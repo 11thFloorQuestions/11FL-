@@ -104,12 +104,26 @@ async function loadVaultArchive(id) {
         const res = await fetch(`sandbox-wc.${id}.json`);
         if (res.ok) {
             const data = await res.json();
+            
+            await resolveDictionary();
+
             masterNineLetterWord = data.masterWord.toUpperCase();
             initialDailyWheel = [...data.wheelLetters];
             wheelLetters = [...initialDailyWheel];
 
-            document.getElementById("modal-vault").classList.add("hidden");
-            launchGameWorkspace();
+            const startScreen = document.getElementById("start-screen");
+            const gameWorkspace = document.getElementById("game-workspace");
+            const hudContainer = document.getElementById("floor-hud-container");
+            const gameControls = document.getElementById("game-controls");
+            const vaultModal = document.getElementById("modal-vault");
+
+            if (startScreen) startScreen.style.display = "none";
+            if (hudContainer) hudContainer.style.display = "flex";
+            if (gameWorkspace) gameWorkspace.style.display = "flex";
+            if (gameControls) gameControls.style.display = "flex";
+            if (vaultModal) vaultModal.classList.add("hidden");
+
+            startNewGame();
         } else {
             alert(`Could not load sandbox-wc.${id}.json`);
         }
