@@ -46,7 +46,7 @@ function getOrdinalFloorHTML(floorNum) {
 const gameState = {
     currentFloor: 1,
     maxFloors: 10, // 10 questions to reach Destination Floor 11
-    soundEnabled: false,
+    soundEnabled: true,
     timer: null,
     timeLeft: 15,
     questions: [],
@@ -97,11 +97,21 @@ function getAudioContext() {
     return audioCtx;
 }
 
-document.addEventListener('click', () => {
-    if (gameState.soundEnabled) {
-        getAudioContext();
-    }
-}, { once: true });
+function unlockAudioOnInteraction() {
+    const unlock = () => {
+        if (gameState.soundEnabled) {
+            getAudioContext();
+        }
+        document.removeEventListener('click', unlock);
+        document.removeEventListener('touchstart', unlock);
+        document.removeEventListener('keydown', unlock);
+    };
+    document.addEventListener('click', unlock);
+    document.addEventListener('touchstart', unlock);
+    document.addEventListener('keydown', unlock);
+}
+
+unlockAudioOnInteraction();
 
 function playElevatorDing() {
     if (!gameState.soundEnabled) return;
@@ -146,7 +156,6 @@ function playElevatorDing() {
 }
 
 function triggerLandingPageDing() {
-    // Synchronized to the 11th floor green flash timing in the building sweep animation
     setTimeout(() => {
         playElevatorDing();
     }, 1370);
@@ -184,15 +193,19 @@ function showScreen(screenId) {
 // 4. SOUND TOGGLE CONTROLS
 // ==========================================
 
+function updateSoundUI() {
+    const label = `SOUND: ${gameState.soundEnabled ? 'ON' : 'OFF'}`;
+    safeSetText('btn-sound-toggle', label);
+    safeSetText('btn-sound-toggle-game', label);
+}
+
 function toggleSound() {
     gameState.soundEnabled = !gameState.soundEnabled;
     if (gameState.soundEnabled) {
         getAudioContext();
         playElevatorDing();
     }
-    const label = `SOUND: ${gameState.soundEnabled ? 'ON' : 'OFF'}`;
-    safeSetText('btn-sound-toggle', label);
-    safeSetText('btn-sound-toggle-game', label);
+    updateSoundUI();
 }
 
 safeAddListener('btn-sound-toggle', 'click', toggleSound);
@@ -288,7 +301,7 @@ function normalizeQuestions(data) {
         else if (typeof q.correct_answer === 'string') answerText = q.correct_answer;
         else if (typeof q.answerIndex === 'number' && options[q.answerIndex]) answerText = options[q.answerIndex];
         else if (typeof q.correctIndex === 'number' && options[q.correctIndex]) answerText = options[q.correctIndex];
-        else if (typeof q.correct === 'number' && options[q.correct]) answerText = options[q.correct];
+        else if (typeof q.correct === 'number' && options[q.correct]) answerText = options[0];
         else if (typeof q.answer === 'number' && options[q.answer]) answerText = options[0];
         else answerText = options[0];
 
@@ -536,5 +549,5 @@ function generateFallbackQuestions() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    triggerLandingPageDing();
+    updateSoundUI();
 });
