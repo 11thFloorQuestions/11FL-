@@ -281,5 +281,71 @@
         </a>
     </div>
 
+    <script>
+        let lobbyAudioCtx = null;
+
+        function getLobbyAudioContext() {
+            if (!lobbyAudioCtx) {
+                lobbyAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (lobbyAudioCtx.state === 'suspended') {
+                lobbyAudioCtx.resume();
+            }
+            return lobbyAudioCtx;
+        }
+
+        function playLobbyDing() {
+            try {
+                const ctx = getLobbyAudioContext();
+                const now = ctx.currentTime;
+
+                const oscMain = ctx.createOscillator();
+                const gainMain = ctx.createGain();
+                oscMain.type = 'sine';
+                oscMain.frequency.setValueAtTime(783.99, now);
+
+                gainMain.gain.setValueAtTime(0, now);
+                gainMain.gain.linearRampToValueAtTime(0.35, now + 0.008);
+                gainMain.gain.exponentialRampToValueAtTime(0.0001, now + 1.4);
+
+                oscMain.connect(gainMain);
+                gainMain.connect(ctx.destination);
+
+                oscMain.start(now);
+                oscMain.stop(now + 1.4);
+
+                const oscTone = ctx.createOscillator();
+                const gainTone = ctx.createGain();
+                oscTone.type = 'sine';
+                oscTone.frequency.setValueAtTime(1567.98, now);
+
+                gainTone.gain.setValueAtTime(0, now);
+                gainTone.gain.linearRampToValueAtTime(0.08, now + 0.008);
+                gainTone.gain.exponentialRampToValueAtTime(0.0001, now + 0.5);
+
+                oscTone.connect(gainTone);
+                gainTone.connect(ctx.destination);
+
+                oscTone.start(now);
+                oscTone.stop(now + 0.5);
+            } catch (e) {
+                console.warn('Lobby audio error:', e);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const unlockAudio = () => {
+                getLobbyAudioContext();
+                document.removeEventListener('click', unlockAudio);
+                document.removeEventListener('touchstart', unlockAudio);
+            };
+            document.addEventListener('click', unlockAudio);
+            document.addEventListener('touchstart', unlockAudio);
+
+            setTimeout(() => {
+                playLobbyDing();
+            }, 1370);
+        });
+    </script>
 </body>
 </html>
