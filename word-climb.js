@@ -10,6 +10,7 @@ let validWordSet = null;
 
 document.addEventListener("DOMContentLoaded", () => {
     setupLandingScreen();
+    setupVaultModal();
 });
 
 function getOrdinalFloorHTML(floorNum) {
@@ -62,6 +63,59 @@ function setupLandingScreen() {
             startBtn.disabled = false;
         }
     };
+}
+
+function setupVaultModal() {
+    const statsBtn = document.getElementById("btn-landing-stats");
+    const closeBtn = document.getElementById("btn-close-vault");
+    const vaultModal = document.getElementById("modal-vault");
+
+    if (statsBtn && vaultModal) {
+        statsBtn.addEventListener("click", () => {
+            vaultModal.classList.remove("hidden");
+            populateVaultList();
+        });
+    }
+
+    if (closeBtn && vaultModal) {
+        closeBtn.addEventListener("click", () => {
+            vaultModal.classList.add("hidden");
+        });
+    }
+}
+
+function populateVaultList() {
+    const vaultList = document.getElementById("vault-list");
+    if (!vaultList) return;
+
+    vaultList.innerHTML = "";
+
+    const btn = document.createElement("button");
+    btn.className = "vault-item-btn";
+    btn.innerHTML = `<strong>Archive 01</strong>`;
+    btn.onclick = () => {
+        loadVaultArchive("01");
+    };
+    vaultList.appendChild(btn);
+}
+
+async function loadVaultArchive(id) {
+    try {
+        const res = await fetch(`sandbox-wc.${id}.json`);
+        if (res.ok) {
+            const data = await res.json();
+            masterNineLetterWord = data.masterWord.toUpperCase();
+            initialDailyWheel = [...data.wheelLetters];
+            wheelLetters = [...initialDailyWheel];
+
+            document.getElementById("modal-vault").classList.add("hidden");
+            launchGameWorkspace();
+        } else {
+            alert(`Could not load sandbox-wc.${id}.json`);
+        }
+    } catch (e) {
+        alert(`Error loading archive file.`);
+    }
 }
 
 function launchGameWorkspace() {
