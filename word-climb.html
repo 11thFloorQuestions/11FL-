@@ -29,7 +29,7 @@
         }
 
         html, body {
-            height: 100%;
+            height: 100vh;
             height: 100dvh;
             overflow: hidden;
         }
@@ -42,17 +42,16 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            padding: 8px 12px;
+            padding: 10px 16px;
         }
 
         .app-wrapper {
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
             display: flex;
             flex-direction: column;
             align-items: center;
             height: 100%;
-            max-height: 100dvh;
             justify-content: space-between;
         }
 
@@ -62,7 +61,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             flex-shrink: 0;
         }
 
@@ -74,7 +73,7 @@
             font-size: 0.65rem;
             font-weight: 700;
             letter-spacing: 1px;
-            padding: 5px 10px;
+            padding: 6px 12px;
             border-radius: 20px;
             cursor: pointer;
             text-decoration: none;
@@ -96,37 +95,37 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 4px;
+            margin-bottom: 8px;
             text-align: center;
             flex-shrink: 0;
         }
 
         .game-logo-red {
             font-family: 'Anton', sans-serif;
-            font-size: 2.2rem;
+            font-size: 3.2rem;
             font-weight: 400;
             color: var(--accent-red);
             line-height: 0.85;
             letter-spacing: -1px;
-            text-shadow: 0 0 15px rgba(255, 31, 45, 0.35);
-            margin-bottom: 2px;
+            text-shadow: 0 0 20px rgba(255, 31, 45, 0.35);
+            margin-bottom: 4px;
         }
 
         .game-logo-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
+            font-size: 1rem;
             font-weight: 300;
             color: #ffffff;
             letter-spacing: 1.5px;
-            margin-bottom: 1px;
+            margin-bottom: 2px;
         }
 
         .game-logo-sub {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.55rem;
+            font-size: 0.6rem;
             font-weight: 600;
             color: var(--text-muted);
-            letter-spacing: 3.5px;
+            letter-spacing: 4px;
             text-transform: uppercase;
         }
 
@@ -136,24 +135,24 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 12px;
-            padding: 16px;
+            gap: 16px;
+            padding: 20px 16px;
             width: 100%;
             background: var(--surface);
             border: 1px solid var(--surface-border);
             border-radius: 8px;
-            margin-top: 4px;
+            margin-top: 6px;
         }
 
         .landing-shaft-graphic {
             display: flex;
             flex-direction: column;
-            width: 48px;
-            height: 130px;
+            width: 52px;
+            height: 150px;
             border: 1px solid var(--surface-border);
             border-radius: 8px;
-            padding: 5px;
-            gap: 2px;
+            padding: 6px;
+            gap: 3px;
             background-color: var(--surface);
         }
 
@@ -198,12 +197,12 @@
 
         .landing-challenge-text {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             font-weight: 600;
             color: var(--text-muted);
-            line-height: 1.5;
+            line-height: 1.6;
             letter-spacing: 1px;
-            max-width: 300px;
+            max-width: 320px;
             text-transform: uppercase;
         }
 
@@ -217,11 +216,11 @@
             background-color: #ffffff;
             color: #000000;
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
-            padding: 10px 32px;
+            padding: 12px 36px;
             border-radius: 30px;
             border: none;
             cursor: pointer;
@@ -240,8 +239,8 @@
             width: 100%;
             display: flex;
             align-items: stretch;
-            gap: 10px;
-            margin-bottom: 4px;
+            gap: 12px;
+            margin-bottom: 6px;
             flex-shrink: 0;
         }
 
@@ -249,17 +248,17 @@
             display: flex;
             flex-direction: column;
             gap: 2px;
-            width: 48px;
+            width: 52px;
             background: var(--surface);
             border: 1px solid var(--surface-border);
             border-radius: 8px;
-            padding: 5px;
+            padding: 6px;
             justify-content: space-between;
             flex-shrink: 0;
         }
 
         .tower-floor {
-            height: 6px;
+            height: 7px;
             border: 1px solid var(--surface-border);
             background: #111111;
             transition: all 0.2s ease;
@@ -281,7 +280,7 @@
             background: var(--surface);
             border: 1px solid var(--surface-border);
             border-radius: 8px;
-            padding: 8px 14px;
+            padding: 10px 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -289,7 +288,7 @@
 
         .current-floor-display {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 700;
             letter-spacing: 1px;
         }
@@ -303,40 +302,40 @@
 
         .floor-phase-tag {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.6rem;
+            font-size: 0.65rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            padding: 4px 10px;
+            padding: 5px 12px;
             border: 1px solid var(--surface-border);
             color: var(--text-muted);
             border-radius: 4px;
             background: #111111;
         }
 
-        /* Compact Play Card Workspace */
+        /* Play Card Container — Shifted Upward Internal Layout */
         .play-card {
             width: 100%;
             background: var(--surface);
             border: 1px solid var(--surface-border);
             border-radius: 8px;
-            padding: 6px 8px;
+            padding: 10px 10px 4px 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-evenly;
+            justify-content: flex-start;
             gap: 4px;
             flex-grow: 1;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             overflow: hidden;
             min-height: 0;
         }
 
         #message-box {
-            min-height: 14px;
+            min-height: 16px;
             color: var(--accent-red);
             font-weight: 700;
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             letter-spacing: 1px;
             text-transform: uppercase;
             text-align: center;
@@ -344,25 +343,25 @@
 
         #target-word-slots {
             display: flex;
-            gap: 5px;
+            gap: 6px;
             justify-content: center;
             align-items: center;
             width: 100%;
-            min-height: 32px;
+            min-height: 34px;
             flex-wrap: wrap;
         }
 
         .target-slot {
-            width: 28px;
-            height: 32px;
+            width: 30px;
+            height: 34px;
             border: 1px solid var(--surface-border);
-            border-radius: 5px;
+            border-radius: 6px;
             background: #111111;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-primary);
         }
 
@@ -370,21 +369,22 @@
             display: flex;
             justify-content: center;
             gap: 4px;
-            min-height: 24px;
+            min-height: 26px;
             align-items: center;
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             letter-spacing: 2px;
             color: var(--text-primary);
         }
 
-        /* Perfectly Fitted 295px Wheel */
+        /* 295px Wheel Positioned Higher Up into Card Workspace */
         #wheel-container {
             width: 295px;
             height: 295px;
             max-width: 100%;
             position: relative;
-            margin: 0 auto;
+            margin-top: 0px;
+            margin-bottom: 0px;
             flex-shrink: 0;
             display: flex;
             align-items: center;
@@ -394,19 +394,19 @@
         .action-panel {
             width: 100%;
             display: flex;
-            gap: 10px;
+            gap: 12px;
             justify-content: center;
             flex-shrink: 0;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
 
         .btn {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
-            padding: 10px 16px;
+            padding: 12px 20px;
             cursor: pointer;
             border-radius: 8px;
             transition: all 0.2s ease;
@@ -429,6 +429,7 @@
             background: #181818;
         }
 
+        /* Dark Submit Button with Thin Red Border */
         .btn-primary {
             background: #111111;
             color: var(--text-primary);
@@ -464,7 +465,7 @@
         .modal-card {
             background-color: var(--surface);
             border: 1px solid var(--surface-border);
-            padding: 24px 20px;
+            padding: 28px 24px;
             border-radius: 14px;
             width: 90%;
             max-width: 360px;
@@ -586,7 +587,7 @@
         footer {
             width: 100%;
             text-align: center;
-            font-size: 0.6rem;
+            font-size: 0.65rem;
             color: var(--text-muted);
             letter-spacing: 0.5px;
             flex-shrink: 0;
