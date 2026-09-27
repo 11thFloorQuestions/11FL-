@@ -19,6 +19,25 @@ function getOrdinalFloorHTML(floorNum) {
     return `<span style="color: var(--accent-red); font-size: 1.25rem; font-weight: 700;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
 }
 
+async function fetchFileWithFallbacks(filename) {
+    const candidatePaths = [
+        `./${filename}`,
+        `./archives/${filename}`,
+        `./data/${filename}`,
+        filename
+    ];
+
+    for (const path of candidatePaths) {
+        try {
+            const res = await fetch(path);
+            if (res.ok) {
+                return await res.json();
+            }
+        } catch (e) {}
+    }
+    return null;
+}
+
 async function resolveDictionary() {
     if (window.WORD_LIST_LOADED && window.WORD_LIST && window.WORD_LIST.size > 0) {
         validWordSet = window.WORD_LIST;
@@ -73,7 +92,7 @@ function setupVaultModal() {
     if (statsBtn && vaultModal) {
         statsBtn.addEventListener("click", () => {
             vaultModal.classList.remove("hidden");
-            populateVaultList();
+            populateVault();
         });
     }
 
@@ -84,51 +103,57 @@ function setupVaultModal() {
     }
 }
 
-function populateVaultList() {
+async function populateVault() {
     const vaultList = document.getElementById("vault-list");
     if (!vaultList) return;
 
     vaultList.innerHTML = "";
+    let archiveId = 1;
 
-    const btn = document.createElement("button");
-    btn.className = "vault-item-btn";
-    btn.innerHTML = `<strong>Archive 01</strong>`;
-    btn.onclick = () => {
-        loadVaultArchive("01");
-    };
-    vaultList.appendChild(btn);
+    while (true) {
+        const paddedId = String(archiveId).padStart(2, '0');
+        const filename = `sandbox-wc.${paddedId}.json`;
+        const data = await fetchFileWithFallbacks(filename);
+
+        if (!data) break;
+
+        const btn = document.createElement("button");
+        btn.className = "vault-item-btn";
+        btn.innerHTML = `<strong>Archive ${paddedId}</strong>`;
+        btn.onclick = () => {
+            loadVaultArchive(paddedId);
+        };
+        vaultList.appendChild(btn);
+        archiveId++;
+    }
 }
 
-async function loadVaultArchive(id) {
-    try {
-        const res = await fetch(`sandbox-wc.${id}.json`);
-        if (res.ok) {
-            const data = await res.json();
-            
-            await resolveDictionary();
+async function loadVaultArchive(paddedId) {
+    const filename = `sandbox-wc.${paddedId}.json`;
+    const data = await fetchFileWithFallbacks(filename);
 
-            masterNineLetterWord = data.masterWord.toUpperCase();
-            initialDailyWheel = [...data.wheelLetters];
-            wheelLetters = [...initialDailyWheel];
+    if (data && data.masterWord && data.wheelLetters) {
+        await resolveDictionary();
 
-            const startScreen = document.getElementById("start-screen");
-            const gameWorkspace = document.getElementById("game-workspace");
-            const hudContainer = document.getElementById("floor-hud-container");
-            const gameControls = document.getElementById("game-controls");
-            const vaultModal = document.getElementById("modal-vault");
+        masterNineLetterWord = data.masterWord.toUpperCase();
+        initialDailyWheel = [...data.wheelLetters];
+        wheelLetters = [...initialDailyWheel];
 
-            if (startScreen) startScreen.style.display = "none";
-            if (hudContainer) hudContainer.style.display = "flex";
-            if (gameWorkspace) gameWorkspace.style.display = "flex";
-            if (gameControls) gameControls.style.display = "flex";
-            if (vaultModal) vaultModal.classList.add("hidden");
+        const startScreen = document.getElementById("start-screen");
+        const gameWorkspace = document.getElementById("game-workspace");
+        const hudContainer = document.getElementById("floor-hud-container");
+        const gameControls = document.getElementById("game-controls");
+        const vaultModal = document.getElementById("modal-vault");
 
-            startNewGame();
-        } else {
-            alert(`Could not load sandbox-wc.${id}.json`);
-        }
-    } catch (e) {
-        alert(`Error loading archive file.`);
+        if (startScreen) startScreen.style.display = "none";
+        if (hudContainer) hudContainer.style.display = "flex";
+        if (gameWorkspace) gameWorkspace.style.display = "flex";
+        if (gameControls) gameControls.style.display = "flex";
+        if (vaultModal) vaultModal.classList.add("hidden");
+
+        startNewGame();
+    } else {
+        alert(`Could not locate Archive ${paddedId} (sandbox-wc.${paddedId}.json).`);
     }
 }
 
