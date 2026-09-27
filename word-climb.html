@@ -156,7 +156,6 @@
             animation: sweepMiddle 1.2s ease-in-out forwards;
         }
 
-        /* Sequential Upward Light Sweep + Top Green Hold + Drop to Floor 01 */
         .landing-shaft-graphic .landing-shaft-box:nth-child(11) { animation: sweepBottomSettle 2.6s ease-in-out forwards; animation-delay: 0.05s; }
         .landing-shaft-graphic .landing-shaft-box:nth-child(10) { animation-delay: 0.15s; }
         .landing-shaft-graphic .landing-shaft-box:nth-child(9)  { animation-delay: 0.25s; }
@@ -170,75 +169,24 @@
         .landing-shaft-graphic .landing-shaft-box:nth-child(1)  { animation: sweepTopGreen 1.6s ease-in-out forwards; animation-delay: 1.05s; }
 
         @keyframes sweepMiddle {
-            0% {
-                background-color: #111111;
-                border-color: var(--surface-border);
-                box-shadow: none;
-            }
-            30% {
-                background-color: var(--accent-red);
-                border-color: var(--accent-red);
-                box-shadow: 0 0 10px var(--accent-red-glow);
-            }
-            60%, 100% {
-                background-color: #111111;
-                border-color: var(--surface-border);
-                box-shadow: none;
-            }
+            0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+            30% { background-color: var(--accent-red); border-color: var(--accent-red); box-shadow: 0 0 10px var(--accent-red-glow); }
+            60%, 100% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
         }
 
         @keyframes sweepTopGreen {
-            0% {
-                background-color: #111111;
-                border-color: var(--surface-border);
-                box-shadow: none;
-            }
-            20% {
-                background-color: var(--accent-green);
-                border-color: var(--accent-green);
-                box-shadow: 0 0 16px var(--accent-green-glow);
-            }
-            70% {
-                background-color: var(--accent-green);
-                border-color: var(--accent-green);
-                box-shadow: 0 0 16px var(--accent-green-glow);
-            }
-            100% {
-                background-color: #111111;
-                border-color: var(--surface-border);
-                box-shadow: none;
-            }
+            0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+            20%, 70% { background-color: var(--accent-green); border-color: var(--accent-green); box-shadow: 0 0 16px var(--accent-green-glow); }
+            100% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
         }
 
         @keyframes sweepBottomSettle {
-            0% {
-                background-color: #111111;
-                border-color: var(--surface-border);
-                box-shadow: none;
-            }
-            15% {
-                background-color: var(--accent-red);
-                border-color: var(--accent-red);
-                box-shadow: 0 0 10px var(--accent-red-glow);
-            }
-            30% {
-                background-color: #111111;
-                border-color: var(--surface-border);
-                box-shadow: none;
-            }
-            80% {
-                background-color: #111111;
-                border-color: var(--surface-border);
-                box-shadow: none;
-            }
-            95%, 100% {
-                background-color: var(--accent-red);
-                border-color: var(--accent-red);
-                box-shadow: 0 0 8px var(--accent-red-glow);
-            }
+            0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+            15% { background-color: var(--accent-red); border-color: var(--accent-red); box-shadow: 0 0 10px var(--accent-red-glow); }
+            30%, 80% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+            95%, 100% { background-color: var(--accent-red); border-color: var(--accent-red); box-shadow: 0 0 8px var(--accent-red-glow); }
         }
 
-        /* Tagline & Rules Typography Style */
         .landing-challenge-text {
             font-family: 'Montserrat', sans-serif;
             font-size: 0.78rem;
@@ -278,7 +226,6 @@
             box-shadow: 0 4px 25px var(--accent-red-glow);
         }
 
-        /* Side-by-Side HUD Container */
         .hud-sidebar-container {
             width: 100%;
             display: flex;
@@ -336,11 +283,6 @@
             letter-spacing: 1px;
         }
 
-        .current-floor-display span {
-            color: var(--accent-red);
-            font-size: 1.25rem;
-        }
-
         .floor-right-group {
             display: flex;
             flex-direction: column;
@@ -361,7 +303,6 @@
             background: #111111;
         }
 
-        /* Play Card & Gameplay Canvas */
         .play-card {
             width: 100%;
             background: var(--surface);
@@ -423,7 +364,6 @@
             color: var(--text-primary);
         }
 
-        /* Wheel Container Canvas */
         #wheel-container {
             width: 250px;
             height: 250px;
@@ -432,7 +372,6 @@
             flex-shrink: 0;
         }
 
-        /* Action Panel Buttons */
         .action-panel {
             width: 100%;
             display: flex;
@@ -524,7 +463,7 @@
             <div class="landing-challenge-text">
                 <strong>CAN YOU REACH THE 11TH FLOOR?</strong><br><br>
                 Find a valid English word on every floor, from 5 to 9 letters.<br><br>
-                ONE MISTAKE RESETS THE CLIMB TO FLOOR 01.
+                ONE MISTAKE RESETS THE CLIMB TO 1ST FLOOR.
             </div>
 
             <button id="start-climb-btn" class="btn-start">Start Climb</button>
@@ -547,7 +486,7 @@
             </div>
 
             <div class="floor-info-box">
-                <div class="current-floor-display">FLOOR <span id="floor-number-val">01</span></div>
+                <div class="current-floor-display" id="floor-number-val"></div>
                 <div class="floor-right-group">
                     <div class="floor-phase-tag">ASCENT</div>
                 </div>
@@ -569,7 +508,7 @@
         </div>
 
         <footer>
-            <div>ONE MISTAKE RESETS THE CLIMB TO FLOOR 01.</div>
+            <div>ONE MISTAKE RESETS THE CLIMB TO 1ST FLOOR.</div>
         </footer>
     </div>
 
