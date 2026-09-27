@@ -210,7 +210,7 @@ function normalizeQuestions(data) {
         else if (typeof q.answerIndex === 'number' && options[q.answerIndex]) answerText = options[q.answerIndex];
         else if (typeof q.correctIndex === 'number' && options[q.correctIndex]) answerText = options[q.correctIndex];
         else if (typeof q.correct === 'number' && options[q.correct]) answerText = options[q.correct];
-        else if (typeof q.answer === 'number' && options[q.answer]) answerText = options[q.answer];
+        else if (typeof q.answer === 'number' && options[q.answer]) answerText = options[0];
         else answerText = options[0];
 
         return {
@@ -319,7 +319,6 @@ function updateFloorUI() {
         cardFloorEl.innerHTML = getOrdinalFloorHTML(gameState.currentFloor);
     }
     
-    // Updates 11 elevator blocks (Floors 1 through 11)
     document.querySelectorAll('.floor-block').forEach(block => {
         const floorNum = parseInt(block.getAttribute('data-floor'), 10);
         block.classList.toggle('active-floor', floorNum === gameState.currentFloor);
@@ -336,9 +335,7 @@ function loadNextQuestion() {
         return;
     }
 
-    const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
-    const ord = ordinals[gameState.currentFloor - 1] || `${gameState.currentFloor}th`;
-    safeSetText('question-text', `${ord} Floor. ${currentQ.question}`);
+    safeSetText('question-text', currentQ.question);
     
     const shuffledOptions = shuffleArray(currentQ.options);
     
