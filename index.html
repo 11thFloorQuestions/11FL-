@@ -283,7 +283,14 @@
 
     <script>
         let lobbyAudioCtx = null;
-        let audioUnlocked = false;
+
+        function triggerLobbyHaptic(pattern) {
+            if ('vibrate' in navigator) {
+                try {
+                    navigator.vibrate(pattern);
+                } catch (e) {}
+            }
+        }
 
         function getLobbyAudioContext() {
             if (!lobbyAudioCtx) {
@@ -300,50 +307,78 @@
                 const ctx = getLobbyAudioContext();
                 const now = ctx.currentTime;
 
-                const oscMain = ctx.createOscillator();
-                const gainMain = ctx.createGain();
-                oscMain.type = 'sine';
-                oscMain.frequency.setValueAtTime(783.99, now);
+                const bufferSize = ctx.sampleRate * 0.012;
+                const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+                const output = noiseBuffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) {
+                    output[i] = Math.random() * 2 - 1;
+                }
+                const noise = ctx.createBufferSource();
+                noise.buffer = noiseBuffer;
 
-                gainMain.gain.setValueAtTime(0, now);
-                gainMain.gain.linearRampToValueAtTime(0.35, now + 0.008);
-                gainMain.gain.exponentialRampToValueAtTime(0.0001, now + 1.4);
+                const noiseFilter = ctx.createBiquadFilter();
+                noiseFilter.type = 'bandpass';
+                noiseFilter.frequency.setValueAtTime(2400, now);
+                noiseFilter.Q.setValueAtTime(4, now);
 
-                oscMain.connect(gainMain);
-                gainMain.connect(ctx.destination);
+                const noiseGain = ctx.createGain();
+                noiseGain.gain.setValueAtTime(0.2, now);
+                noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.012);
 
-                oscMain.start(now);
-                oscMain.stop(now + 1.4);
+                noise.connect(noiseFilter);
+                noiseFilter.connect(noiseGain);
+                noiseGain.connect(ctx.destination);
+                noise.start(now);
 
-                const oscTone = ctx.createOscillator();
-                const gainTone = ctx.createGain();
-                oscTone.type = 'sine';
-                oscTone.frequency.setValueAtTime(1567.98, now);
+                const baseFreq = 830;
+                const modes = [
+                    { freq: baseFreq * 1.0, gain: 0.35, decay: 1.6 },
+                    { freq: baseFreq * 1.58, gain: 0.18, decay: 1.1 },
+                    { freq: baseFreq * 2.24, gain: 0.10, decay: 0.7 },
+                    { freq: baseFreq * 2.91, gain: 0.05, decay: 0.4 }
+                ];
 
-                gainTone.gain.setValueAtTime(0, now);
-                gainTone.gain.linearRampToValueAtTime(0.08, now + 0.008);
-                gainTone.gain.exponentialRampToValueAtTime(0.0001, now + 0.5);
+                modes.forEach(mode => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
 
-                oscTone.connect(gainTone);
-                gainTone.connect(ctx.destination);
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(mode.freq, now);
 
-                oscTone.start(now);
-                oscTone.stop(now + 0.5);
+                    gain.gain.setValueAtTime(0, now);
+                    gain.gain.linearRampToValueAtTime(mode.gain, now + 0.003);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + mode.decay);
+
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+
+                    osc.start(now);
+                    osc.stop(now + mode.decay);
+                });
             } catch (e) {
                 console.warn('Lobby audio error:', e);
             }
         }
 
-        function unlockAndPlay() {
-            if (!audioUnlocked) {
-                audioUnlocked = true;
-                getLobbyAudioContext();
-                playLobbyDing();
-            }
-        }
+        document.querySelectorAll('.btn-hub-option').forEach(btn => {
+            btn.addEventListener('click', () => {
+                triggerLobbyHaptic(15);
+            });
+        });
 
-        document.addEventListener('click', unlockAndPlay, { once: true });
-        document.addEventListener('touchstart', unlockAndPlay, { once: true });
+        window.addEventListener('DOMContentLoaded', () => {
+            const unlock = () => {
+                getLobbyAudioContext();
+                document.removeEventListener('click', unlock);
+                document.removeEventListener('touchstart', unlock);
+            };
+            document.addEventListener('click', unlock);
+            document.addEventListener('touchstart', unlock);
+
+            setTimeout(() => {
+                playLobbyDing();
+            }, 1370);
+        });
     </script>
 </body>
 </html>
