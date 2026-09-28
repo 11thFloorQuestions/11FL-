@@ -5,7 +5,7 @@ window.CLUEGRAM_DAILY_SET = {
     floors: [
         {
             floor: 1,
-            scrambled: "APONIA",
+            scrambled: "OPINA",
             target: "PIANO",
             clue: "A large musical instrument with black and white keys."
         },
@@ -17,13 +17,13 @@ window.CLUEGRAM_DAILY_SET = {
         },
         {
             floor: 3,
-            scrambled: "EASCH",
+            scrambled: "CHEAB",
             target: "BEACH",
             clue: "A pebbly or sandy shore along the edge of the sea."
         },
         {
             floor: 4,
-            scrambled: "TEACAP",
+            scrambled: "PCEACT",
             target: "ACCEPT",
             clue: "To consent to receive or agree to an offer."
         },
@@ -41,7 +41,7 @@ window.CLUEGRAM_DAILY_SET = {
         },
         {
             floor: 7,
-            scrambled: "TRAVEIN",
+            scrambled: "VTINBAR",
             target: "VIBRANT",
             clue: "Full of energy, enthusiasm, and vivid life."
         },
