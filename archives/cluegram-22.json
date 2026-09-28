@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-22",
+  "title": "Archive Puzzle 22",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "CENES",
+      "target": "SCENE",
+      "clue": "A sequence of continuous action in a play, film, opera, or book."
+    },
+    {
+      "floor": 2,
+      "scrambled": "ROTCA",
+      "target": "ACTOR",
+      "clue": "A person who portrays a character in a performance."
+    },
+    {
+      "floor": 3,
+      "scrambled": "TCIRPS",
+      "target": "SCRIPT",
+      "clue": "The written text of a play, film, or broadcast."
+    },
+    {
+      "floor": 4,
+      "scrambled": "ANIMEC",
+      "target": "CINEMA",
+      "clue": "A venue where films are shown to a public audience."
+    },
+    {
+      "floor": 5,
+      "scrambled": "EMUTSOC",
+      "target": "COSTUME",
+      "clue": "The distinctive style of dress worn by an actor for a specific role."
+    },
+    {
+      "floor": 6,
+      "scrambled": "YDEGART",
+      "target": "TRAGEDY",
+      "clue": "A genre of drama based on human suffering and terrible events."
+    },
+    {
+      "floor": 7,
+      "scrambled": "ECNEIDUA",
+      "target": "AUDIENCE",
+      "clue": "The assembled group of listeners or spectators at a public event."
+    },
+    {
+      "floor": 8,
+      "scrambled": "OIRANECS",
+      "target": "SCENARIO",
+      "clue": "A written outline of a film, novel, or stage production."
+    },
+    {
+      "floor": 9,
+      "scrambled": "LASRAEHER",
+      "target": "REHEARSAL",
+      "clue": "A practice session of a play, piece of music, or performance."
+    },
+    {
+      "floor": 10,
+      "scrambled": "CITAMENIC",
+      "target": "CINEMATIC",
+      "clue": "Relating to motion pictures or having characteristics suitable for film."
+    }
+  ]
+}
