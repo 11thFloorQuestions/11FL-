@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-34",
+  "title": "Archive Puzzle 34",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "RALNU",
+      "target": "LUNAR",
+      "clue": "Resembling, determined by, or relating to the Earth's natural satellite."
+    },
+    {
+      "floor": 2,
+      "scrambled": "DRARA",
+      "target": "RADAR",
+      "clue": "A detection system using radio waves to determine range, angle, or velocity."
+    },
+    {
+      "floor": 3,
+      "scrambled": "TZNEHI",
+      "target": "ZENITH",
+      "clue": "The time at which something is most powerful or successful; the highest point."
+    },
+    {
+      "floor": 4,
+      "scrambled": "PAEOEG",
+      "target": "APOGEE",
+      "clue": "The highest or most distant point in the orbit of a satellite or body."
+    },
+    {
+      "floor": 5,
+      "scrambled": "RPEGIEE",
+      "target": "PERIGEE",
+      "clue": "The point in the orbit of a satellite or moon at which it is nearest to the Earth."
+    },
+    {
+      "floor": 6,
+      "scrambled": "MZITUAH",
+      "target": "AZIMUTH",
+      "clue": "The horizontal angular direction of a celestial object measured along the horizon."
+    },
+    {
+      "floor": 7,
+      "scrambled": "LXAPALRA",
+      "target": "PARALLAX",
+      "clue": "The apparent displacement or difference in position of an object viewed along two lines of sight."
+    },
+    {
+      "floor": 8,
+      "scrambled": "IRIMEDAN",
+      "target": "MERIDIAN",
+      "clue": "A circle of constant longitude passing through a given place and terrestrial poles."
+    },
+    {
+      "floor": 9,
+      "scrambled": "LTMRTYEEE",
+      "target": "TELEMETRY",
+      "clue": "Automated communications process by which measurements and data are collected at remote sites."
+    },
+    {
+      "floor": 10,
+      "scrambled": "LTECESAIL",
+      "target": "CELESTIAL",
+      "clue": "Positioned in or relating to the sky, space, or the outer cosmos."
+    }
+  ]
+}
