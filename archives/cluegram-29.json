@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-29",
+  "title": "Archive Puzzle 29",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "EORVG",
+      "target": "GROVE",
+      "clue": "A small group of trees, or an orchard."
+    },
+    {
+      "floor": 2,
+      "scrambled": "OALRF",
+      "target": "FLORA",
+      "clue": "The plants of a particular region, habitat, or geological period."
+    },
+    {
+      "floor": 3,
+      "scrambled": "PCONAY",
+      "target": "CANOPY",
+      "clue": "An ornamental cloth covering suspended over a throne, or high treetop foliage."
+    },
+    {
+      "floor": 4,
+      "scrambled": "STOFER",
+      "target": "FOREST",
+      "clue": "A large area dominated by trees and wild undergrowth."
+    },
+    {
+      "floor": 5,
+      "scrambled": "TCEKTIH",
+      "target": "THICKET",
+      "clue": "A dense group of bushes or trees growing closely together."
+    },
+    {
+      "floor": 6,
+      "scrambled": "WOSADME",
+      "target": "MEADOWS",
+      "clue": "Fields of grass used for hay or grazing livestock."
+    },
+    {
+      "floor": 7,
+      "scrambled": "DNALDOOW",
+      "target": "WOODLAND",
+      "clue": "Land covered with trees, smaller in extent than a dense forest."
+    },
+    {
+      "floor": 8,
+      "scrambled": "SRACHDRO",
+      "target": "ORCHARDS",
+      "clue": "Enclosed pieces of land planted with fruit trees."
+    },
+    {
+      "floor": 9,
+      "scrambled": "PHEBSIROE",
+      "target": "BIOSPHERE",
+      "clue": "The global ecological system integrating all living beings and their relationships."
+    },
+    {
+      "floor": 10,
+      "scrambled": "URSEHOETE",
+      "target": "TREEHOUSE",
+      "clue": "A wooden structure built among the branches of a mature tree."
+    }
+  ]
+}
