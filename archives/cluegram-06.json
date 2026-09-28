@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-06",
+  "title": "Archive Puzzle 06",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "RMEEB",
+      "target": "EMBER",
+      "clue": "A small piece of glowing coal or wood in a dying fire."
+    },
+    {
+      "floor": 2,
+      "scrambled": "DELAG",
+      "target": "GLADE",
+      "clue": "An open space surrounded by trees within a forest."
+    },
+    {
+      "floor": 3,
+      "scrambled": "CAPELA",
+      "target": "PALACE",
+      "clue": "A grand official residence of a sovereign, archbishop, or ruler."
+    },
+    {
+      "floor": 4,
+      "scrambled": "LYLAVE",
+      "target": "VALLEY",
+      "clue": "A low area of land between hills or mountains, often with a river running through it."
+    },
+    {
+      "floor": 5,
+      "scrambled": "RAHBURO",
+      "target": "HARBOUR",
+      "clue": "A sheltered port area of water where ships may anchor safely."
+    },
+    {
+      "floor": 6,
+      "scrambled": "CILAREG",
+      "target": "GLACIER",
+      "clue": "A slowly moving river or mass of ice formed by snow accumulation on mountains."
+    },
+    {
+      "floor": 7,
+      "scrambled": "SCKARRAB",
+      "target": "BARRACKS",
+      "clue": "A large group of buildings used to house military personnel."
+    },
+    {
+      "floor": 8,
+      "scrambled": "RENEDRAG",
+      "target": "GARDENER",
+      "clue": "A person who cultivates and maintains grounds, flowers, and estates."
+    },
+    {
+      "floor": 9,
+      "scrambled": "CETHIRCAT",
+      "target": "ARCHITECT",
+      "clue": "A master designer qualified to plan and supervise building construction."
+    },
+    {
+      "floor": 10,
+      "scrambled": "YRETSANOM",
+      "target": "MONASTERY",
+      "clue": "A secluded complex of buildings occupied by a community of religious vows."
+    }
+  ]
+}
