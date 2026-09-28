@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-49",
+  "title": "Archive Puzzle 49",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "TRALA",
+      "target": "ALTAR",
+      "clue": "A raised structure where sacred offerings are made."
+    },
+    {
+      "floor": 2,
+      "scrambled": "BAYEB",
+      "target": "ABBEY",
+      "clue": "A complex of domestic buildings and church used by monks."
+    },
+    {
+      "floor": 3,
+      "scrambled": "YROIRP",
+      "target": "PRIORY",
+      "clue": "A monastery or convent governed by a prior or prioress."
+    },
+    {
+      "floor": 4,
+      "scrambled": "REINHS",
+      "target": "SHRINE",
+      "clue": "A holy place associated with a sacred person or relic."
+    },
+    {
+      "floor": 5,
+      "scrambled": "TRESNIM",
+      "target": "MINSTER",
+      "clue": "A large or important church, often originally attached to a monastery."
+    },
+    {
+      "floor": 6,
+      "scrambled": "LNECACH",
+      "target": "CHANCEL",
+      "clue": "The part of a church near the altar reserved for clergy."
+    },
+    {
+      "floor": 7,
+      "scrambled": "ACILISAB",
+      "target": "BASILICA",
+      "clue": "A large church built with a central nave and side aisles."
+    },
+    {
+      "floor": 8,
+      "scrambled": "YTITCNAS",
+      "target": "SANCTITY",
+      "clue": "The condition of being holy, sacred, or inviolable."
+    },
+    {
+      "floor": 9,
+      "scrambled": "YRAUTCNAS",
+      "target": "SANCTUARY",
+      "clue": "A holy place offering refuge, safety, or divine protection."
+    },
+    {
+      "floor": 10,
+      "scrambled": "YRETSANOM",
+      "target": "MONASTERY",
+      "clue": "A complex of buildings housing a community under religious vows."
+    }
+  ]
+}
