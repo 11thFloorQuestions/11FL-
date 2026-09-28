@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-10",
+  "title": "Archive Puzzle 10",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "NAECO",
+      "target": "OCEAN",
+      "clue": "A vast expanse of salt water covering most of the earth surface."
+    },
+    {
+      "floor": 2,
+      "scrambled": "MOTRS",
+      "target": "STORM",
+      "clue": "A violent disturbance of the atmosphere with strong winds and rain."
+    },
+    {
+      "floor": 3,
+      "scrambled": "DNASLI",
+      "target": "ISLAND",
+      "clue": "A piece of land completely surrounded by water."
+    },
+    {
+      "floor": 4,
+      "scrambled": "MAERTS",
+      "target": "STREAM",
+      "clue": "A continuous narrow body of running water flowing along a bed."
+    },
+    {
+      "floor": 5,
+      "scrambled": "REICALG",
+      "target": "GLACIER",
+      "clue": "A massive persistent body of dense ice moving slowly downhill."
+    },
+    {
+      "floor": 6,
+      "scrambled": "IMANUST",
+      "target": "TSUNAMI",
+      "clue": "A long high sea wave caused by an earthquake or underwater disturbance."
+    },
+    {
+      "floor": 7,
+      "scrambled": "DRAZZILB",
+      "target": "BLIZZARD",
+      "clue": "A severe snowstorm with high winds and low visibility."
+    },
+    {
+      "floor": 8,
+      "scrambled": "SENOLCYC",
+      "target": "CYCLONES",
+      "clue": "Violent rotating tropical storm systems with low atmospheric pressure centers."
+    },
+    {
+      "floor": 9,
+      "scrambled": "EHCANALVA",
+      "target": "AVALANCHE",
+      "clue": "A rapid mass cascade of snow, ice, and rock falling down a mountainside."
+    },
+    {
+      "floor": 10,
+      "scrambled": "LOOPLRIHW",
+      "target": "WHIRLPOOL",
+      "clue": "A rapidly rotating mass of water producing a central vortex."
+    }
+  ]
+}
