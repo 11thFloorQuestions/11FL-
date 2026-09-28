@@ -6,8 +6,11 @@ let rackLetters = [];
 let rackUsedIndices = [];
 let isTransitioning = false;
 let currentFloorData = null;
+let activeSetData = null;
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Default to the daily set defined in cluegram-data.js
+    activeSetData = window.CLUEGRAM_DAILY_SET;
     setupLandingScreen();
     setupVaultModal();
 });
@@ -34,6 +37,7 @@ function setupVaultModal() {
 
     if (statsBtn && vaultModal) {
         statsBtn.addEventListener("click", () => {
+            renderVaultList();
             vaultModal.classList.remove("hidden");
         });
     }
@@ -42,6 +46,53 @@ function setupVaultModal() {
         closeBtn.addEventListener("click", () => {
             vaultModal.classList.add("hidden");
         });
+    }
+}
+
+/**
+ * Renders available archive sets inside the modal grid.
+ */
+function renderVaultList() {
+    const vaultList = document.getElementById("vault-list");
+    if (!vaultList) return;
+
+    vaultList.innerHTML = "";
+
+    // Archive slots 1 through 50
+    for (let i = 1; i <= 50; i++) {
+        const numStr = i < 10 ? `0${i}` : `${i}`;
+        const btn = document.createElement("button");
+        btn.className = "vault-item-btn";
+        btn.innerHTML = `<strong>Set ${numStr}</strong>`;
+
+        btn.addEventListener("click", () => {
+            loadArchivedGame(`archives/cluegram-${numStr}.json`);
+        });
+
+        vaultList.appendChild(btn);
+    }
+}
+
+/**
+ * Fetches an archived game JSON file and launches it.
+ */
+async function loadArchivedGame(filePath) {
+    const vaultModal = document.getElementById("modal-vault");
+
+    try {
+        const response = await fetch(filePath);
+        if (!response.ok) {
+            alert(`Archive set not found (${filePath}). Create this file in your archives/ directory to activate it.`);
+            return;
+        }
+
+        const data = await response.json();
+        activeSetData = data;
+
+        if (vaultModal) vaultModal.classList.add("hidden");
+        launchGameWorkspace();
+    } catch (err) {
+        alert("Error loading archive set: " + err.message);
     }
 }
 
@@ -114,7 +165,8 @@ function setupFloor(floor) {
     isTransitioning = false;
     showMessage("");
 
-    currentFloorData = window.CLUEGRAM_DAILY_SET.floors.find(f => f.floor === floor);
+    const setObj = activeSetData || window.CLUEGRAM_DAILY_SET;
+    currentFloorData = setObj.floors.find(f => f.floor === floor);
     if (!currentFloorData) return;
 
     const rawLetters = currentFloorData.scrambled.toUpperCase().split("");
