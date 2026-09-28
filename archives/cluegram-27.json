@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-27",
+  "title": "Archive Puzzle 27",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "YROLG",
+      "target": "GLORY",
+      "clue": "High renown or honour won by notable achievements."
+    },
+    {
+      "floor": 2,
+      "scrambled": "HTIAF",
+      "target": "FAITH",
+      "clue": "Complete trust or confidence in someone or something."
+    },
+    {
+      "floor": 3,
+      "scrambled": "RUAOLV",
+      "target": "VALOUR",
+      "clue": "Great courage in the face of danger, especially in battle."
+    },
+    {
+      "floor": 4,
+      "scrambled": "URONOH",
+      "target": "HONOUR",
+      "clue": "High respect, esteem, or adherence to what is right."
+    },
+    {
+      "floor": 5,
+      "scrambled": "RMIUPTH",
+      "target": "TRIUMPH",
+      "clue": "A great victory, achievement, or state of celebration."
+    },
+    {
+      "floor": 6,
+      "scrambled": "ECAUROG",
+      "target": "COURAGE",
+      "clue": "The ability to do something that frightens one; bravery."
+    },
+    {
+      "floor": 7,
+      "scrambled": "AGEEITRH",
+      "target": "HERITAGE",
+      "clue": "Valued objects and qualities such as historic buildings that have been passed down."
+    },
+    {
+      "floor": 8,
+      "scrambled": "TSEQUNOC",
+      "target": "CONQUEST",
+      "clue": "The act of taking control of a country or group of people by military force."
+    },
+    {
+      "floor": 9,
+      "scrambled": "CVERENERE",
+      "target": "REVERENCE",
+      "clue": "Deep respect for someone or something, often held with awe."
+    },
+    {
+      "floor": 10,
+      "scrambled": "RCHRAIPAT",
+      "target": "PATRIARCH",
+      "clue": "The male head of a family, tribe, or venerable institution."
+    }
+  ]
+}
