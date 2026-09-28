@@ -229,6 +229,13 @@ function setupFloor(floor) {
         floorVal.innerHTML = getOrdinalFloorHTML(floor);
     }
 
+    // Dynamic Floor Rule Reminder
+    const reqLen = getRequiredWordLength(floor);
+    const ruleText = document.getElementById("floor-rule-text");
+    if (ruleText) {
+        ruleText.textContent = `${reqLen}-letter English word • No mistakes!`;
+    }
+
     updateElevatorShaft(floor);
     renderTargetSlots(floor);
     renderWheel(wheelLetters);
@@ -280,14 +287,12 @@ function renderWheel(letters) {
 
     wheelContainer.innerHTML = "";
 
-    // Measure actual rendered size to support fluid responsive scaling on mobile
     const containerWidth = wheelContainer.clientWidth || 295;
     const containerHeight = wheelContainer.clientHeight || 295;
 
     const centerX = containerWidth / 2;
     const centerY = containerHeight / 2;
 
-    // Proportionally scale nodes, orbital radius, and fonts
     const btnSize = Math.round(containerWidth * 0.19);
     const radius = Math.round(containerWidth * 0.332);
     const fontSize = Math.round(btnSize * 0.38);
@@ -447,6 +452,9 @@ function fillTargetSlots(word) {
 function handleVictory() {
     const floorVal = document.getElementById("floor-number-val");
     if (floorVal) floorVal.innerHTML = getOrdinalFloorHTML(11);
+
+    const ruleText = document.getElementById("floor-rule-text");
+    if (ruleText) ruleText.textContent = "VICTORY ACHIEVED!";
 
     updateElevatorShaft(11);
 
