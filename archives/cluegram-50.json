@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-50",
+  "title": "Archive Puzzle 50",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "STERC",
+      "target": "CREST",
+      "clue": "The highest line or top peak of a mountain."
+    },
+    {
+      "floor": 2,
+      "scrambled": "PERSI",
+      "target": "SPIRE",
+      "clue": "A tall, tapering structure rising above a tower or roof."
+    },
+    {
+      "floor": 3,
+      "scrambled": "TZNEHI",
+      "target": "ZENITH",
+      "clue": "The highest point reached in the celestial sphere or in career."
+    },
+    {
+      "floor": 4,
+      "scrambled": "TUMIMS",
+      "target": "SUMMIT",
+      "clue": "The highest point or apex of a hill, mountain, or achievement."
+    },
+    {
+      "floor": 5,
+      "scrambled": "STHEIGH",
+      "target": "HEIGHTS",
+      "clue": "Elevated places, high positions, or mountain tops."
+    },
+    {
+      "floor": 6,
+      "scrambled": "RMIUPTH",
+      "target": "TRIUMPH",
+      "clue": "A great success, victory, or crowning achievement."
+    },
+    {
+      "floor": 7,
+      "scrambled": "LCEPINAN",
+      "target": "PINNACLE",
+      "clue": "The highest culminating point of success or structure."
+    },
+    {
+      "floor": 8,
+      "scrambled": "TIFUDETRO",
+      "target": "FORTITUDE",
+      "clue": "Strength of mind that enables one to endure adversity."
+    },
+    {
+      "floor": 9,
+      "scrambled": "NNOACSIES",
+      "target": "ASCENSION",
+      "clue": "The act of climbing or ascending to a higher realm."
+    },
+    {
+      "floor": 10,
+      "scrambled": "EGNIERVOS",
+      "target": "SOVEREIGN",
+      "clue": "A supreme ruler possessing ultimate authority."
+    }
+  ]
+}
