@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-47",
+  "title": "Archive Puzzle 47",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "POLSO",
+      "target": "SLOOP",
+      "clue": "A small single-masted sailing vessel."
+    },
+    {
+      "floor": 2,
+      "scrambled": "LOHSA",
+      "target": "SHOAL",
+      "clue": "A large number of fish, or a shallow sandbank in water."
+    },
+    {
+      "floor": 3,
+      "scrambled": "ARINAM",
+      "target": "MARINA",
+      "clue": "A specially designed harbour with moorings for small boats."
+    },
+    {
+      "floor": 4,
+      "scrambled": "RACNOH",
+      "target": "ANCHOR",
+      "clue": "A heavy metal device dropped to seabed to hold a boat fast."
+    },
+    {
+      "floor": 5,
+      "scrambled": "TAGERIF",
+      "target": "FRIGATE",
+      "clue": "A naval vessel equipped for fast maneuverability and escort."
+    },
+    {
+      "floor": 6,
+      "scrambled": "ANATPIC",
+      "target": "CAPTAIN",
+      "clue": "The master or chief officer commanding a ship."
+    },
+    {
+      "floor": 7,
+      "scrambled": "RENOOHCS",
+      "target": "SCHOONER",
+      "clue": "A fast sailing ship equipped with two or more masts."
+    },
+    {
+      "floor": 8,
+      "scrambled": "SLARIMDA",
+      "target": "ADMIRALS",
+      "clue": "High-ranking naval officers commanding fleets."
+    },
+    {
+      "floor": 9,
+      "scrambled": "ETAEVIRPR",
+      "target": "PRIVATEER",
+      "clue": "An armed private vessel commissioned by war warrant."
+    },
+    {
+      "floor": 10,
+      "scrambled": "YTLARIMDA",
+      "target": "ADMIRALTY",
+      "clue": "The high authority presiding over naval and maritime forces."
+    }
+  ]
+}
