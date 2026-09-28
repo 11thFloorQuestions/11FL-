@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-45",
+  "title": "Archive Puzzle 45",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "EDIGR",
+      "target": "RIDGE",
+      "clue": "A long, narrow elevated crest of land."
+    },
+    {
+      "floor": 2,
+      "scrambled": "KROOB",
+      "target": "BROOK",
+      "clue": "A small, natural stream of fresh water."
+    },
+    {
+      "floor": 3,
+      "scrambled": "WLOHOL",
+      "target": "HOLLOW",
+      "clue": "A small valley or depression between hills."
+    },
+    {
+      "floor": 4,
+      "scrambled": "MAERTS",
+      "target": "STREAM",
+      "clue": "A narrow river flowing along a natural bed."
+    },
+    {
+      "floor": 5,
+      "scrambled": "YREUTAS",
+      "target": "ESTUARY",
+      "clue": "The tidal mouth of a large river where tide meets stream."
+    },
+    {
+      "floor": 6,
+      "scrambled": "UAETALP",
+      "target": "PLATEAU",
+      "clue": "An extensive area of elevated level land."
+    },
+    {
+      "floor": 7,
+      "scrambled": "SCREILAG",
+      "target": "GLACIERS",
+      "clue": "Sluggish masses of ice moving slowly down mountain slopes."
+    },
+    {
+      "floor": 8,
+      "scrambled": "TARCCATA",
+      "target": "CATARACT",
+      "clue": "A large, powerful waterfall plunging over a precipice."
+    },
+    {
+      "floor": 9,
+      "scrambled": "EPACSDNAL",
+      "target": "LANDSCAPE",
+      "clue": "All visible features of an area of countryside."
+    },
+    {
+      "floor": 10,
+      "scrambled": "RIOVRESER",
+      "target": "RESERVOIR",
+      "clue": "An artificial lake created to store water for human use."
+    }
+  ]
+}
