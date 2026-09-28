@@ -1,67 +1,67 @@
-// 11th Floor Cluegram — Daily Puzzle Datasets (Game 02)
+// 11th Floor Cluegram — Daily Puzzle Datasets (Game 03)
 
 window.CLUEGRAM_DAILY_SET = {
-    date: "Daily Set 02",
+    date: "Daily Set 03",
     floors: [
         {
             floor: 1,
-            scrambled: "SIRMP",
-            target: "PRISM",
-            clue: "A transparent glass body that refracts light into a rainbow spectrum."
+            scrambled: "NORAM",
+            target: "MANOR",
+            clue: "A large country house with lands formerly belonging to a lord."
         },
         {
             floor: 2,
-            scrambled: "RALFE",
-            target: "FLARE",
-            clue: "A sudden, brief burst of bright light or flame used as a signal."
+            scrambled: "NWROC",
+            target: "CROWN",
+            clue: "A ceremonial ornamental circlet worn on the head by a monarch."
         },
         {
             floor: 3,
-            scrambled: "CANEBO",
-            target: "BEACON",
-            clue: "A fire or light set up in a high position as a warning or signal."
+            scrambled: "UMORAR",
+            target: "ARMOUR",
+            clue: "Metal protective covering worn to prevent injury in battle."
         },
         {
             floor: 4,
-            scrambled: "LATECS",
-            target: "CASTLE",
-            clue: "A large medieval fortified building surrounded by walls and a moat."
+            scrambled: "DLEIHS",
+            target: "SHIELD",
+            clue: "A broad piece of personal defensive armour carried on the arm."
         },
         {
             floor: 5,
-            scrambled: "MEDLARE",
-            target: "EMERALD",
-            clue: "A bright green precious gemstone consisting of a variety of beryl."
+            scrambled: "MODGINK",
+            target: "KINGDOM",
+            clue: "A state or realm ruled over by a king or queen."
         },
         {
             floor: 6,
-            scrambled: "YTEMSRY",
-            target: "MYSTERY",
-            clue: "Something that is difficult or impossible to understand or explain."
+            scrambled: "LANRUOJ",
+            target: "JOURNAL",
+            clue: "A daily written record of news, events, and personal reflections."
         },
         {
             floor: 7,
-            scrambled: "SSTROREF",
-            target: "FORTRESS",
-            clue: "A heavily fortified military building or stronghold."
+            scrambled: "CYHRAMNO",
+            target: "MONARCHY",
+            clue: "A form of government with a monarch at the head."
         },
         {
             floor: 8,
-            scrambled: "LCEPINAN",
-            target: "PINNACLE",
-            clue: "The most successful point, culmination, or high peak of something."
+            scrambled: "LADETIC",
+            target: "CITADEL",
+            clue: "A fortress, typically on high ground, protecting a city."
         },
         {
             floor: 9,
-            scrambled: "STEMCLIAH",
-            target: "ALCHEMIST",
-            clue: "A medieval practitioner who tried to turn base metals into gold."
+            scrambled: "LICONERHC",
+            target: "CHRONICLE",
+            clue: "A detailed factual written account of important historical events."
         },
         {
             floor: 10,
-            scrambled: "LARDETACH",
-            target: "CATHEDRAL",
-            clue: "The principal, grand church of a diocese led by a bishop."
+            scrambled: "LLEYREWEJ",
+            target: "JEWELLERY",
+            clue: "Personal ornaments such as necklaces, rings, or bracelets."
         }
     ]
 };
