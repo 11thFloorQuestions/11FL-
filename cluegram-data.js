@@ -1,67 +1,67 @@
-// 11th Floor Cluegram — Daily Puzzle Datasets (Game 03)
+// 11th Floor Cluegram — Daily Puzzle Datasets (Game 04)
 
 window.CLUEGRAM_DAILY_SET = {
-    date: "Daily Set 03",
+    date: "Daily Set 04",
     floors: [
         {
             floor: 1,
-            scrambled: "NORAM",
-            target: "MANOR",
-            clue: "A large country house with lands formerly belonging to a lord."
+            scrambled: "GELAN",
+            target: "ANGEL",
+            clue: "A spiritual celestial creature typically depicted in white robes with wings."
         },
         {
             floor: 2,
-            scrambled: "NWROC",
-            target: "CROWN",
-            clue: "A ceremonial ornamental circlet worn on the head by a monarch."
+            scrambled: "SLAPE",
+            target: "MAPLE",
+            clue: "A hardwood tree famous for its distinctive lobed leaves and sweet syrup."
         },
         {
             floor: 3,
-            scrambled: "UMORAR",
-            target: "ARMOUR",
-            clue: "Metal protective covering worn to prevent injury in battle."
+            scrambled: "TLANEM",
+            target: "MANTLE",
+            clue: "An ornamental structure surrounding a fireplace, or a cloak of authority."
         },
         {
             floor: 4,
-            scrambled: "DLEIHS",
-            target: "SHIELD",
-            clue: "A broad piece of personal defensive armour carried on the arm."
+            scrambled: "CANLOF",
+            target: "FALCON",
+            clue: "A predatory bird known for incredible diving speed while hunting prey."
         },
         {
             floor: 5,
-            scrambled: "MODGINK",
-            target: "KINGDOM",
-            clue: "A state or realm ruled over by a king or queen."
+            scrambled: "XINOEHP",
+            target: "PHOENIX",
+            clue: "A mythical bird that periodically combusts and regenerates from its own ashes."
         },
         {
             floor: 6,
-            scrambled: "LANRUOJ",
-            target: "JOURNAL",
-            clue: "A daily written record of news, events, and personal reflections."
+            scrambled: "TREAHTE",
+            target: "THEATRE",
+            clue: "A venue designed for live dramatic performances, plays, or music."
         },
         {
             floor: 7,
-            scrambled: "CYHRAMNO",
-            target: "MONARCHY",
-            clue: "A form of government with a monarch at the head."
+            scrambled: "CRACATAS",
+            target: "CATARACT",
+            clue: "A large, powerful waterfall, or a clouding of the lens in the eye."
         },
         {
             floor: 8,
-            scrambled: "LADETIC",
-            target: "CITADEL",
-            clue: "A fortress, typically on high ground, protecting a city."
+            scrambled: "ONALISPA",
+            target: "PALISADE",
+            clue: "A defensive fence made from tall wooden stakes driven firmly into the ground."
         },
         {
             floor: 9,
-            scrambled: "LICONERHC",
-            target: "CHRONICLE",
-            clue: "A detailed factual written account of important historical events."
+            scrambled: "SRAINEACN",
+            target: "ASCENSION",
+            clue: "The act of rising to a higher position, rank, or spiritual realm."
         },
         {
             floor: 10,
-            scrambled: "LLEYREWEJ",
-            target: "JEWELLERY",
-            clue: "Personal ornaments such as necklaces, rings, or bracelets."
+            scrambled: "LAUCOGETA",
+            target: "CATALOGUE",
+            clue: "A systematically arranged publication detailing an entire collection or inventory."
         }
     ]
 };
