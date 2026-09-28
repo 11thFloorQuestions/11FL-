@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-36",
+  "title": "Archive Puzzle 36",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "RTACH",
+      "target": "CHART",
+      "clue": "A map used by navigators for plotting a sea voyage."
+    },
+    {
+      "floor": 2,
+      "scrambled": "NICAB",
+      "target": "CABIN",
+      "clue": "A private room or compartment on a ship."
+    },
+    {
+      "floor": 3,
+      "scrambled": "NEASAM",
+      "target": "SEAMAN",
+      "clue": "A sailor, especially one below the rank of officer."
+    },
+    {
+      "floor": 4,
+      "scrambled": "LSEVES",
+      "target": "VESSEL",
+      "clue": "A ship or large boat navigating deep water."
+    },
+    {
+      "floor": 5,
+      "scrambled": "SMSAPOC",
+      "target": "COMPASS",
+      "clue": "A navigational device showing magnetic direction."
+    },
+    {
+      "floor": 6,
+      "scrambled": "NOLAEGL",
+      "target": "GALLEON",
+      "clue": "A large, multi-decked sailing ship used for war or commerce."
+    },
+    {
+      "floor": 7,
+      "scrambled": "SNERIMAR",
+      "target": "MARINERS",
+      "clue": "Seafarers who assist in navigating a watercraft."
+    },
+    {
+      "floor": 8,
+      "scrambled": "RAERFAES",
+      "target": "SEAFARER",
+      "clue": "A person who travels or works regularly on the ocean."
+    },
+    {
+      "floor": 9,
+      "scrambled": "HTRYOSEAW",
+      "target": "SEAWORTHY",
+      "clue": "Fit for a voyage across rough open waters."
+    },
+    {
+      "floor": 10,
+      "scrambled": "AGIFERANS",
+      "target": "SEAFARING",
+      "clue": "Travel or employment conducted upon the sea."
+    }
+  ]
+}
