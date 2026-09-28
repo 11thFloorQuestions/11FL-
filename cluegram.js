@@ -1,400 +1,307 @@
-// 11th Floor Cluegram — Daily Game Engine
+// ==========================================================================
+// 11th Floor Cluegram — Core Interactive Game Engine
+// ==========================================================================
 
-let currentFloor = 1;
-let currentGuess = [];
-let rackLetters = [];
-let rackUsedIndices = [];
-let isTransitioning = false;
-let currentFloorData = null;
-let activeSetData = null;
+document.addEventListener('DOMContentLoaded', () => {
+    // Current Game State Variables
+    let currentFloorIndex = 0; // 0 = Floor 1, 9 = Floor 10
+    let userGuess = [];
+    let rackTiles = [];
+    let isProcessing = false;
+    let soundEnabled = true;
 
-document.addEventListener("DOMContentLoaded", () => {
-    // Default to the daily set defined in cluegram-data.js
-    activeSetData = window.CLUEGRAM_DAILY_SET;
-    setupLandingScreen();
-    setupVaultModal();
-});
+    // Local Storage Player Stats Key
+    const STATS_KEY = '11th_floor_cluegram_stats';
 
-function getOrdinalFloorHTML(floorNum) {
-    const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
-    const ord = ordinals[floorNum - 1] || `${floorNum}th`;
-    return `<span style="color: var(--accent-red); font-size: 1.25rem; font-weight: 700;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
-}
+    // DOM Element References
+    const startScreen = document.getElementById('start-screen');
+    const startClimbBtn = document.getElementById('start-climb-btn');
+    const hudContainer = document.getElementById('floor-hud-container');
+    const gameWorkspace = document.getElementById('game-workspace');
+    const gameControls = document.getElementById('game-controls');
+    
+    const floorNumberVal = document.getElementById('floor-number-val');
+    const floorRuleText = document.getElementById('floor-rule-text');
+    const clueText = document.getElementById('clue-text');
+    const targetSlotsContainer = document.getElementById('target-word-slots');
+    const letterRackContainer = document.getElementById('letter-rack');
+    const messageBox = document.getElementById('message-box');
 
-function setupLandingScreen() {
-    const startBtn = document.getElementById("start-climb-btn");
-    if (!startBtn) return;
+    const backspaceBtn = document.getElementById('action-backspace-btn');
+    const shuffleBtn = document.getElementById('action-shuffle-btn');
+    const submitBtn = document.getElementById('action-submit-btn');
 
-    startBtn.onclick = () => {
-        launchGameWorkspace();
-    };
-}
+    const statsModal = document.getElementById('modal-vault');
+    const statsBtn = document.getElementById('btn-landing-stats');
+    const closeVaultBtn = document.getElementById('btn-close-vault');
+    const soundBtn = document.getElementById('btn-sound');
 
-function setupVaultModal() {
-    const statsBtn = document.getElementById("btn-landing-stats");
-    const closeBtn = document.getElementById("btn-close-vault");
-    const vaultModal = document.getElementById("modal-vault");
+    // Load active dataset
+    const gameData = window.CLUEGRAM_DAILY_SET ? window.CLUEGRAM_DAILY_SET.floors : [];
 
-    if (statsBtn && vaultModal) {
-        statsBtn.addEventListener("click", () => {
-            renderVaultList();
-            vaultModal.classList.remove("hidden");
+    // Initialize Game
+    init();
+
+    function init() {
+        bindEvents();
+        updateStatsDisplay();
+    }
+
+    function bindEvents() {
+        startClimbBtn.addEventListener('click', startGame);
+        backspaceBtn.addEventListener('click', handleBackspace);
+        shuffleBtn.addEventListener('click', handleShuffle);
+        submitBtn.addEventListener('click', handleSubmit);
+
+        statsBtn.addEventListener('click', () => statsModal.classList.remove('hidden'));
+        closeVaultBtn.addEventListener('click', () => statsModal.classList.add('hidden'));
+
+        soundBtn.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            soundBtn.textContent = `SOUND: ${soundEnabled ? 'ON' : 'OFF'}`;
+        });
+
+        // Global Keyboard Inputs
+        document.addEventListener('keydown', (e) => {
+            if (gameWorkspace.style.display === 'none' || isProcessing) return;
+
+            const key = e.key.toUpperCase();
+            if (/^[A-Z]$/.test(key)) {
+                selectFirstAvailableLetter(key);
+            } else if (e.key === 'Backspace') {
+                handleBackspace();
+            } else if (e.key === 'Enter') {
+                handleSubmit();
+            }
         });
     }
 
-    if (closeBtn && vaultModal) {
-        closeBtn.addEventListener("click", () => {
-            vaultModal.classList.add("hidden");
+    function startGame() {
+        startScreen.style.display = 'none';
+        hudContainer.style.display = 'flex';
+        gameWorkspace.style.display = 'flex';
+        gameControls.style.display = 'flex';
+
+        currentFloorIndex = 0;
+        loadFloor(currentFloorIndex);
+    }
+
+    function loadFloor(index) {
+        if (!gameData || index >= gameData.length) return;
+
+        const floorData = gameData[index];
+        userGuess = [];
+        messageBox.textContent = '';
+        isProcessing = false;
+
+        // Update Floor Displays
+        const formattedFloorNumber = index + 1 < 10 ? `0${index + 1}` : `${index + 1}`;
+        floorNumberVal.textContent = `FLOOR ${formattedFloorNumber}`;
+        floorRuleText.textContent = `${floorData.target.length}-letter Anagram • No mistakes!`;
+        clueText.textContent = floorData.clue;
+
+        updateTowerStack(index + 1);
+
+        // Build Target Answer Slots
+        targetSlotsContainer.innerHTML = '';
+        for (let i = 0; i < floorData.target.length; i++) {
+            const slot = document.createElement('div');
+            slot.className = 'target-slot';
+            slot.dataset.slotIndex = i;
+            slot.addEventListener('click', () => handleSlotClick(i));
+            targetSlotsContainer.appendChild(slot);
+        }
+
+        // Build Scrambled Rack
+        rackTiles = floorData.scrambled.split('').map((char, i) => ({
+            id: i,
+            letter: char,
+            used: false
+        }));
+
+        renderRack();
+    }
+
+    function renderRack() {
+        letterRackContainer.innerHTML = '';
+        rackTiles.forEach((tile) => {
+            const tileElem = document.createElement('div');
+            tileElem.className = `rack-tile ${tile.used ? 'used' : ''}`;
+            tileElem.textContent = tile.letter;
+            tileElem.addEventListener('click', () => handleTileClick(tile));
+            letterRackContainer.appendChild(tileElem);
+        });
+
+        renderTargetSlots();
+    }
+
+    function renderTargetSlots() {
+        const slots = targetSlotsContainer.querySelectorAll('.target-slot');
+        slots.forEach((slot, i) => {
+            if (i < userGuess.length) {
+                slot.textContent = userGuess[i].letter;
+                slot.classList.add('filled');
+            } else {
+                slot.textContent = '';
+                slot.classList.remove('filled');
+            }
+            slot.classList.remove('state-error', 'state-success');
         });
     }
-}
 
-/**
- * Renders available archive sets inside the modal grid.
- */
-function renderVaultList() {
-    const vaultList = document.getElementById("vault-list");
-    if (!vaultList) return;
+    function handleTileClick(tile) {
+        if (tile.used || isProcessing) return;
 
-    vaultList.innerHTML = "";
-
-    // Archive slots 1 through 50
-    for (let i = 1; i <= 50; i++) {
-        const numStr = i < 10 ? `0${i}` : `${i}`;
-        const btn = document.createElement("button");
-        btn.className = "vault-item-btn";
-        btn.innerHTML = `<strong>Set ${numStr}</strong>`;
-
-        btn.addEventListener("click", () => {
-            loadArchivedGame(`archives/cluegram-${numStr}.json`);
-        });
-
-        vaultList.appendChild(btn);
+        const currentFloor = gameData[currentFloorIndex];
+        if (userGuess.length < currentFloor.target.length) {
+            tile.used = true;
+            userGuess.push(tile);
+            renderRack();
+        }
     }
-}
 
-/**
- * Fetches an archived game JSON file and launches it.
- */
-async function loadArchivedGame(filePath) {
-    const vaultModal = document.getElementById("modal-vault");
+    function handleSlotClick(index) {
+        if (isProcessing || index >= userGuess.length) return;
 
-    try {
-        const response = await fetch(filePath);
-        if (!response.ok) {
-            alert(`Archive set not found (${filePath}). Create this file in your archives/ directory to activate it.`);
+        // Remove tile from guess and un-use it in rack
+        const removedTile = userGuess.splice(index, 1)[0];
+        const originalTile = rackTiles.find(t => t.id === removedTile.id);
+        if (originalTile) originalTile.used = false;
+
+        renderRack();
+    }
+
+    function selectFirstAvailableLetter(letter) {
+        const availableTile = rackTiles.find(t => !t.used && t.letter === letter);
+        if (availableTile) {
+            handleTileClick(availableTile);
+        }
+    }
+
+    function handleBackspace() {
+        if (userGuess.length === 0 || isProcessing) return;
+
+        const removedTile = userGuess.pop();
+        const originalTile = rackTiles.find(t => t.id === removedTile.id);
+        if (originalTile) originalTile.used = false;
+
+        renderRack();
+    }
+
+    function handleShuffle() {
+        if (isProcessing) return;
+
+        // Fisher-Yates shuffle on rack tiles
+        for (let i = rackTiles.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [rackTiles[i], rackTiles[j]] = [rackTiles[j], rackTiles[i]];
+        }
+        renderRack();
+    }
+
+    function handleSubmit() {
+        if (isProcessing) return;
+
+        const currentFloor = gameData[currentFloorIndex];
+        if (userGuess.length < currentFloor.target.length) {
+            showMessage('FILL ALL SLOTS BEFORE SUBMITTING');
             return;
         }
 
-        const data = await response.json();
-        activeSetData = data;
+        isProcessing = true;
+        const submittedWord = userGuess.map(t => t.letter).join('');
+        const slots = targetSlotsContainer.querySelectorAll('.target-slot');
 
-        if (vaultModal) vaultModal.classList.add("hidden");
-        launchGameWorkspace();
-    } catch (err) {
-        alert("Error loading archive set: " + err.message);
-    }
-}
+        if (submittedWord === currentFloor.target) {
+            // Success Feedback (Green)
+            slots.forEach(slot => slot.classList.add('state-success'));
+            showMessage('');
 
-function launchGameWorkspace() {
-    const startScreen = document.getElementById("start-screen");
-    const gameWorkspace = document.getElementById("game-workspace");
-    const hudContainer = document.getElementById("floor-hud-container");
-    const gameControls = document.getElementById("game-controls");
-
-    if (startScreen) startScreen.style.display = "none";
-    if (hudContainer) hudContainer.style.display = "flex";
-    if (gameWorkspace) gameWorkspace.style.display = "flex";
-    if (gameControls) gameControls.style.display = "flex";
-
-    startNewGame();
-}
-
-function startNewGame() {
-    currentFloor = 1;
-    isTransitioning = false;
-    setupFloor(currentFloor);
-    attachControlHandlers();
-}
-
-/**
- * Shuffles letters and ensures they never spell out the target word,
- * share the same starting prefix, or match over 50% of positions.
- */
-function shuffleAndVerifyAnagram(letters, targetWord) {
-    let arr = [...letters];
-    const target = (targetWord || "").toUpperCase();
-
-    const shuffle = (array) => {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-    };
-
-    let attempts = 0;
-    do {
-        shuffle(arr);
-        attempts++;
-        const candidate = arr.join("");
-
-        const isExactMatch = (candidate === target);
-
-        let matchCount = 0;
-        for (let i = 0; i < arr.length; i++) {
-            if (arr[i] === target[i]) matchCount++;
-        }
-        const isTooSimilar = matchCount > Math.floor(target.length / 2);
-
-        const sharesPrefix = target.length >= 4 && candidate.slice(0, 2) === target.slice(0, 2);
-
-        if ((!isExactMatch && !isTooSimilar && !sharesPrefix) || attempts > 50) {
-            break;
-        }
-    } while (true);
-
-    return arr;
-}
-
-function setupFloor(floor) {
-    if (floor > 10) {
-        handleVictory();
-        return;
-    }
-
-    isTransitioning = false;
-    showMessage("");
-
-    const setObj = activeSetData || window.CLUEGRAM_DAILY_SET;
-    currentFloorData = setObj.floors.find(f => f.floor === floor);
-    if (!currentFloorData) return;
-
-    const rawLetters = currentFloorData.scrambled.toUpperCase().split("");
-    rackLetters = shuffleAndVerifyAnagram(rawLetters, currentFloorData.target);
-    currentGuess = new Array(currentFloorData.target.length).fill("");
-    rackUsedIndices = [];
-
-    const floorVal = document.getElementById("floor-number-val");
-    if (floorVal) {
-        floorVal.innerHTML = getOrdinalFloorHTML(floor);
-    }
-
-    const ruleText = document.getElementById("floor-rule-text");
-    if (ruleText) {
-        ruleText.textContent = `${currentFloorData.target.length}-letter Anagram • No mistakes!`;
-    }
-
-    const clueElement = document.getElementById("clue-text");
-    if (clueElement) {
-        clueElement.textContent = currentFloorData.clue;
-    }
-
-    updateElevatorShaft(floor);
-    renderBoard();
-}
-
-function updateElevatorShaft(floor) {
-    const slots = document.querySelectorAll(".tower-floor");
-    slots.forEach(slot => {
-        const f = parseInt(slot.getAttribute("data-floor"), 10);
-        if (f === floor) {
-            slot.classList.add("active");
-            slot.classList.remove("completed");
-        } else if (f < floor) {
-            slot.classList.remove("active");
-            slot.classList.add("completed");
+            setTimeout(() => {
+                if (currentFloorIndex + 1 >= gameData.length) {
+                    // Reached Floor 11 Victory
+                    recordGameResult(true, 11);
+                    alert("CONGRATULATIONS! YOU REACHED THE 11TH FLOOR!");
+                    location.reload();
+                } else {
+                    currentFloorIndex++;
+                    loadFloor(currentFloorIndex);
+                }
+            }, 800);
         } else {
-            slot.classList.remove("active", "completed");
-        }
-    });
-}
+            // Error Feedback (Red)
+            slots.forEach(slot => slot.classList.add('state-error'));
+            showMessage('INCORRECT ANAGRAM — ASCENT FAILED');
 
-function renderBoard() {
-    renderTargetSlots();
-    renderLetterRack();
-}
+            const towerFloors = document.querySelectorAll('.tower-floor');
+            const activeTowerFloor = Array.from(towerFloors).find(
+                f => parseInt(f.dataset.floor) === currentFloorIndex + 1
+            );
+            if (activeTowerFloor) activeTowerFloor.classList.add('failed');
 
-function renderTargetSlots() {
-    const slotsContainer = document.getElementById("target-word-slots");
-    if (!slotsContainer) return;
+            recordGameResult(false, currentFloorIndex + 1);
 
-    slotsContainer.innerHTML = "";
-    const targetLen = currentFloorData.target.length;
-
-    for (let i = 0; i < targetLen; i++) {
-        const slot = document.createElement("div");
-        const char = currentGuess[i] || "";
-        slot.className = `target-slot ${char ? 'filled' : ''}`;
-        slot.textContent = char;
-
-        slot.addEventListener("click", () => {
-            if (isTransitioning || !currentGuess[i]) return;
-            removeLetterFromSlot(i);
-        });
-
-        slotsContainer.appendChild(slot);
-    }
-}
-
-function renderLetterRack() {
-    const rackContainer = document.getElementById("letter-rack");
-    if (!rackContainer) return;
-
-    rackContainer.innerHTML = "";
-
-    rackLetters.forEach((char, index) => {
-        const tile = document.createElement("button");
-        const isUsed = rackUsedIndices.includes(index);
-        tile.className = `rack-tile ${isUsed ? 'used' : ''}`;
-        tile.textContent = char;
-
-        tile.addEventListener("click", () => {
-            if (isTransitioning || isUsed) return;
-            addLetterToFirstEmptySlot(char, index);
-        });
-
-        rackContainer.appendChild(tile);
-    });
-}
-
-function addLetterToFirstEmptySlot(char, rackIndex) {
-    const emptyIdx = currentGuess.findIndex(c => c === "");
-    if (emptyIdx !== -1) {
-        currentGuess[emptyIdx] = char;
-        rackUsedIndices.push(rackIndex);
-        renderBoard();
-    }
-}
-
-function removeLetterFromSlot(slotIndex) {
-    const charToRemove = currentGuess[slotIndex];
-    if (!charToRemove) return;
-
-    const usedIndexPos = rackUsedIndices.findLastIndex(rIdx => rackLetters[rIdx] === charToRemove);
-
-    if (usedIndexPos !== -1) {
-        rackUsedIndices.splice(usedIndexPos, 1);
-    }
-
-    currentGuess[slotIndex] = "";
-    renderBoard();
-}
-
-function removeLastLetter() {
-    for (let i = currentGuess.length - 1; i >= 0; i--) {
-        if (currentGuess[i] !== "") {
-            removeLetterFromSlot(i);
-            break;
+            setTimeout(() => {
+                alert(`Game Over! You were stopped on Floor ${currentFloorIndex + 1}.`);
+                location.reload();
+            }, 1200);
         }
     }
-}
 
-function attachControlHandlers() {
-    const backspaceBtn = document.getElementById("action-backspace-btn") || document.getElementById("action-clear-btn");
-    const shuffleBtn = document.getElementById("action-shuffle-btn");
-    const submitBtn = document.getElementById("action-submit-btn");
+    function updateTowerStack(activeFloorNum) {
+        const towerFloors = document.querySelectorAll('.tower-floor');
+        towerFloors.forEach(floorElem => {
+            const floorVal = parseInt(floorElem.dataset.floor);
+            floorElem.classList.remove('active', 'completed', 'failed');
 
-    if (backspaceBtn) {
-        backspaceBtn.onclick = () => {
-            if (isTransitioning) return;
-            removeLastLetter();
-        };
-    }
-
-    if (shuffleBtn) {
-        shuffleBtn.onclick = () => {
-            if (isTransitioning) return;
-            shuffleRack();
-        };
-    }
-
-    if (submitBtn) {
-        submitBtn.onclick = () => {
-            if (isTransitioning) return;
-            handleSubmission();
-        };
-    }
-}
-
-function shuffleRack() {
-    rackLetters = shuffleAndVerifyAnagram(rackLetters, currentFloorData.target);
-    currentGuess = new Array(currentFloorData.target.length).fill("");
-    rackUsedIndices = [];
-    renderBoard();
-}
-
-function handleSubmission() {
-    const word = currentGuess.join("").toUpperCase();
-
-    if (word.length < currentFloorData.target.length) {
-        showMessage(`FILL ALL ${currentFloorData.target.length} SLOTS`, true);
-        return;
-    }
-
-    if (word === currentFloorData.target.toUpperCase()) {
-        isTransitioning = true;
-        showMessage("CORRECT ANAGRAM! ASCENDING...", false);
-        highlightSlotsSuccess();
-
-        setTimeout(() => {
-            currentFloor++;
-            if (currentFloor > 10) {
-                handleVictory();
-            } else {
-                setupFloor(currentFloor);
+            if (floorVal === activeFloorNum) {
+                floorElem.classList.add('active');
+            } else if (floorVal < activeFloorNum) {
+                floorElem.classList.add('completed');
             }
-        }, 1000);
-    } else {
-        isTransitioning = true;
-        showMessage("INCORRECT! DROPPING TO 1ST FLOOR...", true);
-
-        setTimeout(() => {
-            startNewGame();
-        }, 1400);
+        });
     }
-}
 
-function highlightSlotsSuccess() {
-    const slots = document.querySelectorAll(".target-slot");
-    slots.forEach(slot => {
-        slot.style.borderColor = "#22c55e";
-        slot.style.color = "#22c55e";
-        slot.style.background = "rgba(34, 197, 94, 0.1)";
-    });
-}
-
-function handleVictory() {
-    const floorVal = document.getElementById("floor-number-val");
-    if (floorVal) floorVal.innerHTML = getOrdinalFloorHTML(11);
-
-    const ruleText = document.getElementById("floor-rule-text");
-    if (ruleText) ruleText.textContent = "VICTORY ACHIEVED!";
-
-    updateElevatorShaft(11);
-
-    const messageBox = document.getElementById("message-box");
-    if (messageBox) messageBox.textContent = "";
-
-    const playCard = document.getElementById("game-workspace");
-    if (playCard) {
-        playCard.innerHTML = `
-            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 30px 10px; text-align: center; gap: 14px;">
-                <div style="font-size: 2.5rem;">🏆</div>
-                <div style="color: #22c55e; font-weight: 800; font-size: 1.1rem; line-height: 1.4; letter-spacing: 0.5px;">
-                    Congratulations! You've reached the 11th Floor.
-                </div>
-                <div style="color: #888888; font-size: 0.85rem; line-height: 1.4; font-weight: 500;">
-                    Come back tomorrow to tackle a new Cluegram set and extend your streak.
-                </div>
-            </div>
-        `;
+    function showMessage(msg) {
+        messageBox.textContent = msg;
     }
-}
 
-function showMessage(text, isError = false) {
-    const msg = document.getElementById("message-box");
-    if (msg) {
-        msg.textContent = text;
-        msg.style.color = isError ? "#ff1f2d" : "#22c55e";
+    function recordGameResult(isWin, peakFloor) {
+        const stats = getStats();
+        stats.played++;
+        if (isWin) {
+            stats.wins++;
+            stats.streak++;
+        } else {
+            stats.streak = 0;
+        }
+
+        if (peakFloor > stats.bestFloor) {
+            stats.bestFloor = peakFloor;
+        }
+
+        localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+        updateStatsDisplay();
     }
-}
+
+    function getStats() {
+        const raw = localStorage.getItem(STATS_KEY);
+        if (!raw) {
+            return { played: 0, wins: 0, streak: 0, bestFloor: 1 };
+        }
+        return JSON.parse(raw);
+    }
+
+    function updateStatsDisplay() {
+        const stats = getStats();
+        document.getElementById('stat-played').textContent = stats.played;
+        document.getElementById('stat-wins').textContent = stats.wins;
+        
+        const winRate = stats.played > 0 ? Math.round((stats.wins / stats.played) * 100) : 0;
+        document.getElementById('stat-winrate').textContent = `${winRate}%`;
+        document.getElementById('stat-streak').textContent = stats.streak;
+        
+        const bestFormatted = stats.bestFloor < 10 ? `FL 0${stats.bestFloor}` : `FL ${stats.bestFloor}`;
+        document.getElementById('stat-bestfloor').textContent = bestFormatted;
+    }
+});
