@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-23",
+  "title": "Archive Puzzle 23",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "LAERP",
+      "target": "PEARL",
+      "clue": "A hard lustrous spherical mass formed within the shell of an oyster."
+    },
+    {
+      "floor": 2,
+      "scrambled": "ETAGA",
+      "target": "AGATE",
+      "clue": "An ornamental stone consisting of a hard variety of chalcedony with striped bands."
+    },
+    {
+      "floor": 3,
+      "scrambled": "TENRAG",
+      "target": "GARNET",
+      "clue": "A deep red transparent silicate mineral used as a gemstone."
+    },
+    {
+      "floor": 4,
+      "scrambled": "REVLIS",
+      "target": "SILVER",
+      "clue": "A precious ductile white metallic element prized for coinage and ornaments."
+    },
+    {
+      "floor": 5,
+      "scrambled": "DNOMAID",
+      "target": "DIAMOND",
+      "clue": "A transparent precious stone formed of pure carbon, the hardest natural substance."
+    },
+    {
+      "floor": 6,
+      "scrambled": "LATSIRC",
+      "target": "CRYSTAL",
+      "clue": "A clear transparent mineral structure with symmetrical faces."
+    },
+    {
+      "floor": 7,
+      "scrambled": "EIRHPPAS",
+      "target": "SAPPHIRE",
+      "clue": "A precious transparent blue gem variety of corundum."
+    },
+    {
+      "floor": 8,
+      "scrambled": "TSYHTEMA",
+      "target": "AMETHYST",
+      "clue": "A violet or purple variety of quartz often used in jewellery."
+    },
+    {
+      "floor": 9,
+      "scrambled": "SENOTSMEG",
+      "target": "GEMSTONES",
+      "clue": "Precious or semi-precious cut and polished mineral stones."
+    },
+    {
+      "floor": 10,
+      "scrambled": "HTIMSADLOG",
+      "target": "GOLDSMITH",
+      "clue": "A skilled craftsman who fashions ornaments, vessels, and items out of precious metals."
+    }
+  ]
+}
