@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-41",
+  "title": "Archive Puzzle 41",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "SIRMP",
+      "target": "PRISM",
+      "clue": "A transparent glass body that refracts light."
+    },
+    {
+      "floor": 2,
+      "scrambled": "ELACS",
+      "target": "SCALE",
+      "clue": "A graduated range of values used in measurement."
+    },
+    {
+      "floor": 3,
+      "scrambled": "GTANEM",
+      "target": "MAGNET",
+      "clue": "A piece of iron or ore that attracts magnetic materials."
+    },
+    {
+      "floor": 4,
+      "scrambled": "SCOPTI",
+      "target": "OPTICS",
+      "clue": "The scientific study of sight and the behaviour of light."
+    },
+    {
+      "floor": 5,
+      "scrambled": "TELMENE",
+      "target": "ELEMENT",
+      "clue": "A substance that cannot be broken down chemically."
+    },
+    {
+      "floor": 6,
+      "scrambled": "CSMAOTI",
+      "target": "ATOMICS",
+      "clue": "The branch of physics concerned with atomic structure."
+    },
+    {
+      "floor": 7,
+      "scrambled": "RTECLONE",
+      "target": "ELECTRON",
+      "clue": "A stable subatomic particle with a negative electric charge."
+    },
+    {
+      "floor": 8,
+      "scrambled": "LUELMOCE",
+      "target": "MOLECULE",
+      "clue": "A group of atoms bonded together representing a chemical unit."
+    },
+    {
+      "floor": 9,
+      "scrambled": "MURTCEPSS",
+      "target": "SPECTRUMS",
+      "clue": "Bands of light separated according to wavelength."
+    },
+    {
+      "floor": 10,
+      "scrambled": "YRTSIHMEC",
+      "target": "CHEMISTRY",
+      "clue": "The branch of science dealing with substances and their reactions."
+    }
+  ]
+}
