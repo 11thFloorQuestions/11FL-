@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-25",
+  "title": "Archive Puzzle 25",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "TNLGI",
+      "target": "GLINT",
+      "clue": "A small flash of light, or a brief flash of emotion in someone's eyes."
+    },
+    {
+      "floor": 2,
+      "scrambled": "EDERC",
+      "target": "CREED",
+      "clue": "A system of religious belief or a set of guiding principles."
+    },
+    {
+      "floor": 3,
+      "scrambled": "RLLCOS",
+      "target": "SCROLL",
+      "clue": "A roll of parchment or paper for writing or painting upon."
+    },
+    {
+      "floor": 4,
+      "scrambled": "FFREOC",
+      "target": "COFFER",
+      "clue": "A strongbox or small chest for holding valuables or funds."
+    },
+    {
+      "floor": 5,
+      "scrambled": "LCEICAH",
+      "target": "CHALICE",
+      "clue": "A large goblet or cup used for drinking wine at Holy Communion."
+    },
+    {
+      "floor": 6,
+      "scrambled": "NTNERAL",
+      "target": "LANTERN",
+      "clue": "A lamp in a transparent case with a handle for carrying."
+    },
+    {
+      "floor": 7,
+      "scrambled": "STRECLOI",
+      "target": "CLOISTER",
+      "clue": "A covered walk in a monastery, convent, or cathedral with a quadrangle."
+    },
+    {
+      "floor": 8,
+      "scrambled": "NRDAIAGU",
+      "target": "GUARDIAN",
+      "clue": "A defender, protector, or keeper tasked with preserving safety."
+    },
+    {
+      "floor": 9,
+      "scrambled": "TRCNEHMAP",
+      "target": "PARCHMENT",
+      "clue": "A stiff, flat, thin material made from the prepared skin of an animal, used for writing."
+    },
+    {
+      "floor": 10,
+      "scrambled": "LDHLAGIUL",
+      "target": "GUILDHALL",
+      "clue": "The meeting place of a medieval association of craftsmen or merchants."
+    }
+  ]
+}
