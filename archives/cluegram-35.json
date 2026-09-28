@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-35",
+  "title": "Archive Puzzle 35",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "ATROP",
+      "target": "PORTA",
+      "clue": "A ceremonial arch or grand doorway."
+    },
+    {
+      "floor": 2,
+      "scrambled": "STERC",
+      "target": "CREST",
+      "clue": "An heraldic motif positioned atop a shield or helmet."
+    },
+    {
+      "floor": 3,
+      "scrambled": "CDARAE",
+      "target": "ARCADE",
+      "clue": "A covered passage flanked by a series of arches."
+    },
+    {
+      "floor": 4,
+      "scrambled": "ELCOVA",
+      "target": "ALCOVE",
+      "clue": "A recessed niche set back from a room or wall."
+    },
+    {
+      "floor": 5,
+      "scrambled": "LONYCAB",
+      "target": "BALCONY",
+      "clue": "An elevated platform projecting from the wall of a building."
+    },
+    {
+      "floor": 6,
+      "scrambled": "YRELLAG",
+      "target": "GALLERY",
+      "clue": "A long narrow room or balcony used for display or assembly."
+    },
+    {
+      "floor": 7,
+      "scrambled": "NOLIIVAP",
+      "target": "PAVILION",
+      "clue": "A decorative freestanding structure set in grounds or gardens."
+    },
+    {
+      "floor": 8,
+      "scrambled": "SADNUTOR",
+      "target": "ROTUNDAS",
+      "clue": "Circular buildings or halls crowned by a vaulted ceiling."
+    },
+    {
+      "floor": 9,
+      "scrambled": "EDANNOLOC",
+      "target": "COLONNADE",
+      "clue": "A long sequence of pillars supporting a continuous entablature."
+    },
+    {
+      "floor": 10,
+      "scrambled": "SNEAPALDE",
+      "target": "ESPLANADE",
+      "clue": "A long, open, level stretch of land where people may promenade."
+    }
+  ]
+}
