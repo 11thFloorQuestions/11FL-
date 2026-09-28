@@ -5,13 +5,13 @@ window.CLUEGRAM_DAILY_SET = {
     floors: [
         {
             floor: 1,
-            scrambled: "GELAN",
+            scrambled: "LANGE",
             target: "ANGEL",
             clue: "A spiritual celestial creature typically depicted in white robes with wings."
         },
         {
             floor: 2,
-            scrambled: "SLAPE",
+            scrambled: "PELAM",
             target: "MAPLE",
             clue: "A hardwood tree famous for its distinctive lobed leaves and sweet syrup."
         },
@@ -41,19 +41,19 @@ window.CLUEGRAM_DAILY_SET = {
         },
         {
             floor: 7,
-            scrambled: "CRACATAS",
+            scrambled: "TARCCATA",
             target: "CATARACT",
             clue: "A large, powerful waterfall, or a clouding of the lens in the eye."
         },
         {
             floor: 8,
-            scrambled: "ONALISPA",
+            scrambled: "DLASAPIE",
             target: "PALISADE",
             clue: "A defensive fence made from tall wooden stakes driven firmly into the ground."
         },
         {
             floor: 9,
-            scrambled: "SRAINEACN",
+            scrambled: "NNOACSIES",
             target: "ASCENSION",
             clue: "The act of rising to a higher position, rank, or spiritual realm."
         },
