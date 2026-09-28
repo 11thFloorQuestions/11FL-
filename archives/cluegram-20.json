@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-20",
+  "title": "Archive Puzzle 20",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "OTULP",
+      "target": "PLUTO",
+      "clue": "A distant icy dwarf planet located in the Kuiper belt."
+    },
+    {
+      "floor": 2,
+      "scrambled": "SUENV",
+      "target": "VENUS",
+      "clue": "The second planet from the Sun, shrouded in thick cloud."
+    },
+    {
+      "floor": 3,
+      "scrambled": "NRUTAS",
+      "target": "SATURN",
+      "clue": "A gas giant famous for its extensive ring system."
+    },
+    {
+      "floor": 4,
+      "scrambled": "RASLUP",
+      "target": "PULSAR",
+      "clue": "A highly magnetized rotating neutron star emitting beams of electromagnetic radiation."
+    },
+    {
+      "floor": 5,
+      "scrambled": "YRURECM",
+      "target": "MERCURY",
+      "clue": "The smallest planet in the Solar System and closest to the Sun."
+    },
+    {
+      "floor": 6,
+      "scrambled": "RETIPUJ",
+      "target": "JUPITER",
+      "clue": "The largest planet in the Solar System, a massive gas giant with a Great Red Spot."
+    },
+    {
+      "floor": 7,
+      "scrambled": "TSUDTARS",
+      "target": "STARDUST",
+      "clue": "Fine intergalactic or interplanetary dust scattered across outer space."
+    },
+    {
+      "floor": 8,
+      "scrambled": "SEPSILCE",
+      "target": "ECLIPSES",
+      "clue": "Occurrences where light from one celestial body is temporarily blocked."
+    },
+    {
+      "floor": 9,
+      "scrambled": "TUANOMSOC",
+      "target": "COSMONAUT",
+      "clue": "A spacefarer trained by a space agency, specifically in the Soviet or Russian tradition."
+    },
+    {
+      "floor": 10,
+      "scrambled": "TENALPOXE",
+      "target": "EXOPLANET",
+      "clue": "A planet located outside the solar system that orbits another star."
+    }
+  ]
+}
