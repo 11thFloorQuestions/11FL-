@@ -90,7 +90,7 @@
             background: var(--surface);
         }
 
-        /* Branding Logo Box (Default Desktop Layout) */
+        /* Branding Logo Box */
         .game-logo-box {
             display: flex;
             flex-direction: column;
@@ -234,7 +234,7 @@
             box-shadow: 0 4px 25px var(--accent-red-glow);
         }
 
-        /* Gameplay HUD */
+        /* Gameplay HUD Header */
         .hud-sidebar-container {
             width: 100%;
             display: flex;
@@ -286,11 +286,26 @@
             align-items: center;
         }
 
+        .floor-left-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
         .current-floor-display {
             font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
             font-weight: 700;
             letter-spacing: 1px;
+        }
+
+        .floor-rule-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .floor-right-group {
@@ -313,7 +328,7 @@
             background: #111111;
         }
 
-        /* Play Card Workspace Container */
+        /* Play Card Workspace Container — Tightened Vertical Gaps */
         .play-card {
             width: 100%;
             background: var(--surface);
@@ -323,8 +338,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-around;
-            gap: 4px;
+            justify-content: flex-start;
+            gap: 2px;
             flex-grow: 1;
             margin-bottom: 6px;
             overflow: hidden;
@@ -375,9 +390,10 @@
             font-size: 0.9rem;
             letter-spacing: 2px;
             color: var(--text-primary);
+            margin-bottom: 2px;
         }
 
-        /* Dynamic Viewport Responsive Wheel */
+        /* Dynamic Wheel Container Positioned Direct Below Guess Display */
         #wheel-container {
             width: min(295px, 36vh);
             height: min(295px, 36vh);
@@ -583,16 +599,7 @@
             border-color: var(--text-primary);
         }
 
-        footer {
-            width: 100%;
-            text-align: center;
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            letter-spacing: 0.5px;
-            flex-shrink: 0;
-        }
-
-        /* MOBILE SPECIFIC MEDIA QUERY: Tightens top headers on mobile screens ONLY */
+        /* Mobile Adjustments */
         @media screen and (max-width: 600px), screen and (max-height: 750px) {
             body {
                 padding: 6px 12px;
@@ -661,7 +668,7 @@
             <button id="start-climb-btn" class="btn-start">Start Climb</button>
         </div>
 
-        <!-- Gameplay HUD -->
+        <!-- Gameplay HUD Header -->
         <div class="hud-sidebar-container" id="floor-hud-container" style="display: none;">
             <div class="tower-stack" id="tower-stack">
                 <div class="tower-floor" data-floor="11"></div>
@@ -678,7 +685,10 @@
             </div>
 
             <div class="floor-info-box">
-                <div class="current-floor-display" id="floor-number-val"></div>
+                <div class="floor-left-group">
+                    <div class="current-floor-display" id="floor-number-val"></div>
+                    <div class="floor-rule-text" id="floor-rule-text">5-letter English word • No mistakes!</div>
+                </div>
                 <div class="floor-right-group">
                     <div class="floor-phase-tag">ASCENT</div>
                 </div>
@@ -698,10 +708,6 @@
             <button class="btn btn-secondary" id="action-delete-btn">⌫ DELETE</button>
             <button class="btn btn-primary" id="action-submit-btn">↵ SUBMIT</button>
         </div>
-
-        <footer>
-            <div>ONE MISTAKE RESETS THE CLIMB TO 1ST FLOOR.</div>
-        </footer>
     </div>
 
     <!-- Stats & Archive Vault Modal -->
