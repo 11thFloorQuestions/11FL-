@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-24",
+  "title": "Archive Puzzle 24",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "MLAER",
+      "target": "REALM",
+      "clue": "A kingdom, or a domain of interest or study."
+    },
+    {
+      "floor": 2,
+      "scrambled": "NORAB",
+      "target": "BARON",
+      "clue": "A member of the lowest order of the British nobility."
+    },
+    {
+      "floor": 3,
+      "scrambled": "YTUONC",
+      "target": "COUNTY",
+      "clue": "A territorial division of a country for local administrative purposes."
+    },
+    {
+      "floor": 4,
+      "scrambled": "ERIPME",
+      "target": "EMPIRE",
+      "clue": "An extensive group of states or countries under a single supreme authority."
+    },
+    {
+      "floor": 5,
+      "scrambled": "SSEHCUD",
+      "target": "DUCHESS",
+      "clue": "The wife or widow of a duke, or a female holding high noble rank."
+    },
+    {
+      "floor": 6,
+      "scrambled": "YTSANYD",
+      "target": "DYNASTY",
+      "clue": "A line of hereditary rulers of a country or empire."
+    },
+    {
+      "floor": 7,
+      "scrambled": "TNUOCSIV",
+      "target": "VISCOUNT",
+      "clue": "A British nobleman ranking below an earl and above a baron."
+    },
+    {
+      "floor": 8,
+      "scrambled": "SSECNIRP",
+      "target": "PRINCESS",
+      "clue": "A daughter or granddaughter of a sovereign, or wife of a prince."
+    },
+    {
+      "floor": 9,
+      "scrambled": "YCARCOTUA",
+      "target": "AUTOCRACY",
+      "clue": "A system of government by one person with absolute power."
+    },
+    {
+      "floor": 10,
+      "scrambled": "YHCRAEGILO",
+      "target": "OLIGARCHY",
+      "clue": "A small group of people having control of a country, organization, or institution."
+    }
+  ]
+}
