@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-48",
+  "title": "Archive Puzzle 48",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "NWROC",
+      "target": "CROWN",
+      "clue": "A ceremonial circlet worn on the head by a monarch."
+    },
+    {
+      "floor": 2,
+      "scrambled": "LDEMA",
+      "target": "MEDAL",
+      "clue": "A commemorative metal disc awarded for distinction."
+    },
+    {
+      "floor": 3,
+      "scrambled": "CRESTEP",
+      "target": "SCEPTRE",
+      "clue": "An ornamental staff carried as an emblem of authority."
+    },
+    {
+      "floor": 4,
+      "scrambled": "SCELIR",
+      "target": "RELICS",
+      "clue": "Objects surviving from an earlier age, preserved as sacred."
+    },
+    {
+      "floor": 5,
+      "scrambled": "LCEICAH",
+      "target": "CHALICE",
+      "clue": "A ceremonial cup or goblet used in holy rites."
+    },
+    {
+      "floor": 6,
+      "scrambled": "AGILERA",
+      "target": "REGALIA",
+      "clue": "The emblems and symbols indicative of royalty or supreme rank."
+    },
+    {
+      "floor": 7,
+      "scrambled": "YRPASTET",
+      "target": "TAPESTRY",
+      "clue": "A heavy woven textile fabric depicting intricate scenes."
+    },
+    {
+      "floor": 8,
+      "scrambled": "MREILOOH",
+      "target": "HEIRLOOM",
+      "clue": "A valuable object passed down through generations of a family."
+    },
+    {
+      "floor": 9,
+      "scrambled": "SERSUAERT",
+      "target": "TREASURES",
+      "clue": "Precious metals, jewels, or valuable collectables."
+    },
+    {
+      "floor": 10,
+      "scrambled": "LLEYREWEJ",
+      "target": "JEWELLERY",
+      "clue": "Personal ornaments studded with cut gemstones and precious metal."
+    }
+  ]
+}
