@@ -8,15 +8,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@700;800&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/glacial-indifference" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <style>
         :root {
             --bg-deep: #000000;
             --surface: #0a0a0a;
             --surface-border: #222222;
-            --accent-red: #ff1f2d;
-            --accent-red-glow: rgba(255, 31, 45, 0.25);
-            --accent-green: #22c55e;
-            --accent-green-glow: rgba(34, 197, 94, 0.3);
+            
+            /* Genre Branding Accent: Blue for Anagrams & Word Play */
+            --genre-blue: #3B82F6;
+            --genre-blue-glow: rgba(59, 130, 246, 0.3);
+
+            /* Standardized Gameplay States */
+            --state-active: #FACC15;       /* Yellow: Active borders, selected tiles */
+            --state-active-glow: rgba(250, 204, 21, 0.25);
+            --state-error: #EF4444;        /* Red: Wrong answer, invalid attempt */
+            --state-error-glow: rgba(239, 68, 68, 0.3);
+            --state-success: #22C55E;      /* Green: Floor cleared, victory */
+            --state-success-glow: rgba(34, 197, 94, 0.3);
+
             --text-primary: #ffffff;
             --text-muted: #888888;
         }
@@ -91,7 +101,7 @@
             background: var(--surface);
         }
 
-        /* Branding Logo Box */
+        /* Branding Logo Box (Signature Genre Blue) */
         .game-logo-box {
             display: flex;
             flex-direction: column;
@@ -101,14 +111,14 @@
             flex-shrink: 0;
         }
 
-        .game-logo-red {
+        .game-logo-blue {
             font-family: 'Anton', sans-serif;
             font-size: 3.2rem;
             font-weight: 400;
-            color: var(--accent-red);
+            color: var(--genre-blue);
             line-height: 0.85;
             letter-spacing: -1px;
-            text-shadow: 0 0 20px rgba(255, 31, 45, 0.35);
+            text-shadow: 0 0 20px var(--genre-blue-glow);
             margin-bottom: 4px;
         }
 
@@ -125,7 +135,7 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 0.6rem;
             font-weight: 600;
-            color: var(--text-muted);
+            color: var(--genre-blue);
             letter-spacing: 4px;
             text-transform: uppercase;
         }
@@ -179,21 +189,21 @@
 
         @keyframes sweepMiddle {
             0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
-            30% { background-color: var(--accent-red); border-color: var(--accent-red); box-shadow: 0 0 10px var(--accent-red-glow); }
+            30% { background-color: var(--genre-blue); border-color: var(--genre-blue); box-shadow: 0 0 10px var(--genre-blue-glow); }
             60%, 100% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
         }
 
         @keyframes sweepTopGreen {
             0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
-            20%, 70% { background-color: var(--accent-green); border-color: var(--accent-green); box-shadow: 0 0 16px var(--accent-green-glow); }
+            20%, 70% { background-color: var(--state-success); border-color: var(--state-success); box-shadow: 0 0 16px var(--state-success-glow); }
             100% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
         }
 
         @keyframes sweepBottomSettle {
             0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
-            15% { background-color: var(--accent-red); border-color: var(--accent-red); box-shadow: 0 0 10px var(--accent-red-glow); }
+            15% { background-color: var(--genre-blue); border-color: var(--genre-blue); box-shadow: 0 0 10px var(--genre-blue-glow); }
             30%, 80% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
-            95%, 100% { background-color: var(--accent-red); border-color: var(--accent-red); box-shadow: 0 0 8px var(--accent-red-glow); }
+            95%, 100% { background-color: var(--genre-blue); border-color: var(--genre-blue); box-shadow: 0 0 8px var(--genre-blue-glow); }
         }
 
         .landing-challenge-text {
@@ -231,9 +241,9 @@
         }
 
         .btn-start:hover {
-            background-color: var(--accent-red);
+            background-color: var(--genre-blue);
             color: #ffffff;
-            box-shadow: 0 4px 25px var(--accent-red-glow);
+            box-shadow: 0 4px 25px var(--genre-blue-glow);
         }
 
         /* Gameplay HUD Header */
@@ -268,13 +278,21 @@
         }
 
         .tower-floor.active {
-            border-color: var(--accent-red);
-            background: #ff1f2d;
-            box-shadow: 0 0 8px var(--accent-red-glow);
+            border-color: var(--state-active);
+            background: var(--state-active);
+            box-shadow: 0 0 8px var(--state-active-glow);
         }
 
         .tower-floor.completed {
-            background: #222222;
+            border-color: var(--state-success);
+            background: var(--state-success);
+            box-shadow: 0 0 6px var(--state-success-glow);
+        }
+
+        .tower-floor.failed {
+            border-color: var(--state-error);
+            background: var(--state-error);
+            box-shadow: 0 0 6px var(--state-error-glow);
         }
 
         .floor-info-box {
@@ -296,9 +314,10 @@
 
         .current-floor-display {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
+            font-size: 1.1rem;
+            font-weight: 800;
             letter-spacing: 1px;
+            color: var(--genre-blue);
         }
 
         .floor-rule-text {
@@ -324,10 +343,10 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             padding: 5px 12px;
-            border: 1px solid var(--surface-border);
-            color: var(--text-muted);
+            border: 1px solid var(--genre-blue);
+            color: var(--genre-blue);
             border-radius: 4px;
-            background: #111111;
+            background: rgba(59, 130, 246, 0.1);
         }
 
         /* Play Card Workspace Container */
@@ -350,7 +369,7 @@
 
         #message-box {
             min-height: 16px;
-            color: var(--accent-red);
+            color: var(--state-error);
             font-weight: 700;
             font-size: 0.72rem;
             letter-spacing: 1px;
@@ -371,7 +390,7 @@
         .clue-label {
             font-size: 0.6rem;
             font-weight: 700;
-            color: var(--accent-red);
+            color: var(--genre-blue);
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 4px;
@@ -386,7 +405,7 @@
             line-height: 1.3;
         }
 
-        /* Target Slot Board */
+        /* Target Slot Board (Yellow Active Borders, Red/Green States) */
         #target-word-slots {
             display: flex;
             gap: 6px;
@@ -400,14 +419,14 @@
         .target-slot {
             width: 34px;
             height: 42px;
-            border: 1px solid var(--surface-border);
+            border: 2px solid var(--state-active);
             border-radius: 6px;
             background: #111111;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Inter', sans-serif;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 1.1rem;
             color: var(--text-primary);
             cursor: pointer;
@@ -415,8 +434,21 @@
         }
 
         .target-slot.filled {
-            border-color: var(--accent-red);
-            box-shadow: 0 0 8px var(--accent-red-glow);
+            box-shadow: 0 0 8px var(--state-active-glow);
+        }
+
+        .target-slot.state-error {
+            border-color: var(--state-error) !important;
+            background-color: rgba(239, 68, 68, 0.2) !important;
+            color: #FCA5A5 !important;
+            box-shadow: 0 0 12px var(--state-error-glow) !important;
+        }
+
+        .target-slot.state-success {
+            border-color: var(--state-success) !important;
+            background-color: rgba(34, 197, 94, 0.2) !important;
+            color: #86EFAC !important;
+            box-shadow: 0 0 12px var(--state-success-glow) !important;
         }
 
         /* Scrambled Letter Rack */
@@ -465,12 +497,12 @@
         }
 
         .rack-tile:hover {
-            border-color: var(--accent-red);
+            border-color: var(--state-active);
             background: #1c1c1c;
         }
 
         .rack-tile.used {
-            opacity: 0.2;
+            opacity: 0.15;
             pointer-events: none;
             border-color: transparent;
             box-shadow: none;
@@ -516,16 +548,15 @@
 
         .btn-primary {
             background: #111111;
-            color: var(--text-primary);
-            border: 1px solid var(--accent-red);
-            box-shadow: 0 0 10px var(--accent-red-glow);
+            color: var(--state-active);
+            border: 1px solid var(--state-active);
+            box-shadow: 0 0 10px var(--state-active-glow);
         }
 
         .btn-primary:hover, .btn-primary:active {
             background: #1a1a1a;
-            border-color: var(--accent-red);
-            box-shadow: 0 0 16px var(--accent-red-glow);
-            color: var(--accent-red);
+            border-color: var(--state-active);
+            box-shadow: 0 0 16px var(--state-active-glow);
         }
 
         /* Modal Overlays & Vault Styling */
@@ -641,7 +672,7 @@
         }
 
         .vault-item-btn:hover {
-            border-color: var(--accent-red);
+            border-color: var(--genre-blue);
             background-color: #1a1a1a;
         }
 
@@ -668,13 +699,12 @@
             border-color: var(--text-primary);
         }
 
-        /* Mobile Adjustments */
         @media screen and (max-width: 600px), screen and (max-height: 750px) {
             body {
                 padding: 6px 12px;
             }
 
-            .game-logo-red {
+            .game-logo-blue {
                 font-size: 2.2rem;
             }
 
@@ -709,7 +739,7 @@
         }
     </style>
 </head>
-<body>
+<body class="game-cluegram">
 
     <div class="app-wrapper">
         <div class="top-bar">
@@ -719,7 +749,7 @@
         </div>
 
         <div class="game-logo-box">
-            <h1 class="game-logo-red">11FL?</h1>
+            <h1 class="game-logo-blue">11FL?</h1>
             <p class="game-logo-title">Eleventh Floor</p>
             <p class="game-logo-sub">CLUEGRAM</p>
         </div>
@@ -766,7 +796,7 @@
 
             <div class="floor-info-box">
                 <div class="floor-left-group">
-                    <div class="current-floor-display" id="floor-number-val"></div>
+                    <div class="current-floor-display" id="floor-number-val">FLOOR 01</div>
                     <div class="floor-rule-text" id="floor-rule-text">5-letter Anagram • No mistakes!</div>
                 </div>
                 <div class="floor-right-group">
@@ -825,7 +855,7 @@
                     <span class="stat-lbl">Streak</span>
                 </div>
                 <div class="stat-box" style="grid-column: span 2;">
-                    <span id="stat-bestfloor" class="stat-val"></span>
+                    <span id="stat-bestfloor" class="stat-val">FL 01</span>
                     <span class="stat-lbl">Best Peak</span>
                 </div>
             </div>
