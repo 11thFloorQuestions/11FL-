@@ -3,22 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>11th Floor Questions</title>
+    <title>11th Floor Questions — Daily Trivia</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/glacial-indifference" rel="stylesheet">
     <style>
+        :root {
+            --bg-deep: #000000;
+            --surface: #0a0a0a;
+            --surface-border: #222222;
+
+            /* Genre Branding Accent: Gold for Knowledge & Trivia */
+            --genre-gold: #EAB308;
+            --genre-gold-glow: rgba(234, 179, 8, 0.35);
+
+            /* Standardized Gameplay States */
+            --state-active: #FACC15;       /* Yellow: Timer, active options */
+            --state-active-glow: rgba(250, 204, 21, 0.25);
+            --state-error: #EF4444;        /* Red: Wrong answer, timeout */
+            --state-error-glow: rgba(239, 68, 68, 0.3);
+            --state-success: #22C55E;      /* Green: Correct answer, victory */
+            --state-success-glow: rgba(34, 197, 94, 0.3);
+
+            --text-primary: #ffffff;
+            --text-muted: #888888;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+        }
+
+        .screen-container {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            justify-content: space-between;
+        }
+
+        /* Top Navigation Header */
+        .header-nav {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            flex-shrink: 0;
+        }
+
+        .header-game {
+            display: grid;
+            grid-template-columns: 80px 1fr 80px;
+            align-items: center;
+        }
+
+        .header-brand-center {
+            text-align: center;
+        }
+
+        .btn-nav {
+            background: transparent;
+            border: 1px solid var(--surface-border);
+            color: var(--text-muted);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-nav:hover {
+            border-color: var(--text-primary);
+            color: var(--text-primary);
+            background: var(--surface);
+        }
+
+        /* Gold Branding Logos */
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 8px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .logo-gold {
+            font-family: 'Anton', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 400;
+            color: var(--genre-gold);
+            line-height: 0.85;
+            letter-spacing: -1px;
+            text-shadow: 0 0 20px var(--genre-gold-glow);
+            margin-bottom: 4px;
+        }
+
+        .logo-gold-small {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--genre-gold);
+            line-height: 0.85;
+            text-shadow: 0 0 10px var(--genre-gold-glow);
+        }
+
         .logo-subtitle {
             font-family: 'Glacial Indifference', 'Montserrat', sans-serif !important;
+            font-size: 1rem;
+            font-weight: 300;
+            color: #ffffff;
+            letter-spacing: 1.5px;
+            margin-bottom: 2px;
+        }
+
+        .logo-subtitle-small {
+            font-family: 'Glacial Indifference', 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 300;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        .logo-tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--genre-gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .logo-tagline-small {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.5rem;
+            font-weight: 600;
+            color: var(--genre-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Landing Screen Layout */
+        .landing-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 16px;
+            padding: 20px 16px;
+            width: 100%;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            margin-top: 6px;
+        }
+
+        .lobby-shaft-graphic {
+            display: flex;
+            flex-direction: column;
+            width: 52px;
+            height: 150px;
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            padding: 6px;
+            gap: 3px;
+            background-color: var(--surface);
+        }
+
+        .shaft-box {
+            flex: 1;
+            background-color: #111111;
+            border: 1px solid var(--surface-border);
+            border-radius: 2px;
+            animation: sweepGold 1.2s ease-in-out forwards;
+        }
+
+        .lobby-shaft-graphic .shaft-box:nth-child(11) { animation: sweepBottomGold 2.6s ease-in-out forwards; animation-delay: 0.05s; }
+        .lobby-shaft-graphic .shaft-box:nth-child(10) { animation-delay: 0.15s; }
+        .lobby-shaft-graphic .shaft-box:nth-child(9)  { animation-delay: 0.25s; }
+        .lobby-shaft-graphic .shaft-box:nth-child(8)  { animation-delay: 0.35s; }
+        .lobby-shaft-graphic .shaft-box:nth-child(7)  { animation-delay: 0.45s; }
+        .lobby-shaft-graphic .shaft-box:nth-child(6)  { animation-delay: 0.55s; }
+        .lobby-shaft-graphic .shaft-box:nth-child(5)  { animation-delay: 0.65s; }
+        .lobby-shaft-graphic .shaft-box:nth-child(4)  { animation-delay: 0.75s; }
+        .lobby-shaft-graphic .shaft-box:nth-child(3)  { animation-delay: 0.85s; }
+        .lobby-shaft-graphic .shaft-box:nth-child(2)  { animation-delay: 0.95s; }
+        .lobby-shaft-graphic .shaft-box:nth-child(1)  { animation: sweepTopGreen 1.6s ease-in-out forwards; animation-delay: 1.05s; }
+
+        @keyframes sweepGold {
+            0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+            30% { background-color: var(--genre-gold); border-color: var(--genre-gold); box-shadow: 0 0 10px var(--genre-gold-glow); }
+            60%, 100% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+        }
+
+        @keyframes sweepTopGreen {
+            0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+            20%, 70% { background-color: var(--state-success); border-color: var(--state-success); box-shadow: 0 0 16px var(--state-success-glow); }
+            100% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+        }
+
+        @keyframes sweepBottomGold {
+            0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+            15% { background-color: var(--genre-gold); border-color: var(--genre-gold); box-shadow: 0 0 10px var(--genre-gold-glow); }
+            30%, 80% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+            95%, 100% { background-color: var(--genre-gold); border-color: var(--genre-gold); box-shadow: 0 0 8px var(--genre-gold-glow); }
         }
 
         .lobby-tagline {
             font-family: 'Glacial Indifference', 'Montserrat', sans-serif !important;
             font-size: 0.85rem;
             font-weight: 400;
-            color: var(--text-muted, #888888);
+            color: var(--text-muted);
             line-height: 1.6;
             letter-spacing: 0.5px;
             max-width: 320px;
@@ -31,9 +259,381 @@
             font-weight: 700;
             letter-spacing: 1.5px;
         }
+
+        .btn-start-climb {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 12px 36px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-start-climb:hover {
+            background-color: var(--genre-gold);
+            color: #ffffff;
+            box-shadow: 0 4px 25px var(--genre-gold-glow);
+        }
+
+        /* Gameplay HUD Header */
+        .hud-sidebar-container {
+            width: 100%;
+            display: flex;
+            align-items: stretch;
+            gap: 12px;
+            margin-bottom: 6px;
+            flex-shrink: 0;
+        }
+
+        .tower-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            width: 52px;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            padding: 6px;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .tower-floor {
+            height: 7px;
+            border: 1px solid var(--surface-border);
+            background: #111111;
+            transition: all 0.2s ease;
+            border-radius: 2px;
+        }
+
+        .tower-floor.active-floor {
+            border-color: var(--state-active);
+            background: var(--state-active);
+            box-shadow: 0 0 8px var(--state-active-glow);
+        }
+
+        .tower-floor.completed {
+            border-color: var(--state-success);
+            background: var(--state-success);
+            box-shadow: 0 0 6px var(--state-success-glow);
+        }
+
+        .floor-info-box {
+            flex-grow: 1;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            padding: 10px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .current-floor-display {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .floor-right-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .floor-phase-tag {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 5px 12px;
+            border: 1px solid var(--genre-gold);
+            color: var(--genre-gold);
+            border-radius: 4px;
+            background: rgba(234, 179, 8, 0.1);
+        }
+
+        /* Central Question Workspace */
+        .game-layout {
+            width: 100%;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 6px;
+            min-height: 0;
+        }
+
+        .question-card {
+            width: 100%;
+            height: 100%;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-header {
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        .timer-wrapper {
+            width: 100%;
+            height: 6px;
+            background: #111111;
+            border: 1px solid var(--surface-border);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .timer-bar {
+            height: 100%;
+            width: 100%;
+            background-color: var(--state-active);
+            box-shadow: 0 0 10px var(--state-active-glow);
+            transition: width 1s linear;
+        }
+
+        .question-text {
+            font-family: 'Glacial Indifference', 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-align: center;
+            line-height: 1.4;
+            letter-spacing: 0.5px;
+            margin: 12px 0;
+        }
+
+        /* Options Grid (Yellow Active Borders, Red/Green Answer Feedback) */
+        .options-grid {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-option {
+            width: 100%;
+            background: #111111;
+            border: 2px solid var(--state-active);
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 14px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.15s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-option:hover {
+            background: #1c1c1c;
+            box-shadow: 0 0 12px var(--state-active-glow);
+            transform: translateY(-1px);
+        }
+
+        .btn-option.selected-correct {
+            border-color: var(--state-success) !important;
+            background-color: rgba(34, 197, 94, 0.2) !important;
+            color: #86EFAC !important;
+            box-shadow: 0 0 16px var(--state-success-glow) !important;
+        }
+
+        .btn-option.selected-wrong {
+            border-color: var(--state-error) !important;
+            background-color: rgba(239, 68, 68, 0.2) !important;
+            color: #FCA5A5 !important;
+            box-shadow: 0 0 16px var(--state-error-glow) !important;
+        }
+
+        /* Modal Overlays & Vault */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+
+        .modal-overlay.hidden {
+            display: none !important;
+        }
+
+        .modal-card {
+            background-color: var(--surface);
+            border: 1px solid var(--surface-border);
+            padding: 28px 24px;
+            border-radius: 14px;
+            width: 90%;
+            max-width: 360px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-large {
+            max-width: 440px;
+        }
+
+        .modal-card h2 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .modal-card h3 {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            margin-top: 16px;
+            text-transform: uppercase;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .stats-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 18px 0 12px 0;
+            background: var(--bg-deep);
+            border: 1px solid var(--surface-border);
+            border-radius: 10px;
+            padding: 14px;
+        }
+
+        .stat-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-val {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .stat-lbl {
+            font-size: 0.55rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 3px;
+        }
+
+        .vault-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
+            gap: 8px;
+            max-height: 220px;
+            overflow-y: auto;
+            margin: 12px 0;
+        }
+
+        .vault-item-btn {
+            background-color: #111111;
+            border: 1px solid var(--surface-border);
+            color: var(--text-primary);
+            padding: 10px 6px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-align: center;
+            transition: border-color 0.15s ease;
+        }
+
+        .vault-item-btn strong {
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .vault-item-btn:hover {
+            border-color: var(--genre-gold);
+            background-color: #1a1a1a;
+        }
+
+        .btn-modal {
+            flex-grow: 1;
+            width: 100%;
+            background-color: #111111;
+            border: 1px solid var(--surface-border);
+            color: var(--text-primary);
+            padding: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 24px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.15s ease;
+        }
+
+        .btn-modal:hover {
+            background-color: var(--text-primary);
+            color: var(--bg-deep);
+            border-color: var(--text-primary);
+        }
+
+        .congrats-green {
+            color: var(--state-success);
+            font-weight: 800;
+        }
+
+        @media screen and (max-width: 600px), screen and (max-height: 750px) {
+            body {
+                padding: 6px 12px;
+            }
+
+            .logo-gold {
+                font-size: 2.2rem;
+            }
+
+            .btn-option {
+                padding: 12px;
+                font-size: 0.8rem;
+            }
+
+            .question-text {
+                font-size: 0.95rem;
+            }
+        }
     </style>
 </head>
-<body>
+<body class="game-questions">
 
     <!-- Lobby / Landing Screen -->
     <div id="landing-screen" class="screen-container">
@@ -45,7 +645,7 @@
 
         <main class="landing-content">
             <div class="logo-container">
-                <h1 class="logo-red">11FL?</h1>
+                <h1 class="logo-gold">11FL?</h1>
                 <p class="logo-subtitle">Eleventh Floor</p>
                 <p class="logo-tagline">QUESTIONS</p>
             </div>
@@ -79,7 +679,7 @@
         <header class="header-nav header-game">
             <a href="index.html" id="btn-util-exit" class="btn-nav btn-exit">← LOBBY</a>
             <div class="header-brand-center">
-                <h1 class="logo-red-small">11FL?</h1>
+                <h1 class="logo-gold-small">11FL?</h1>
                 <p class="logo-subtitle-small">Eleventh Floor</p>
                 <p class="logo-tagline-small">QUESTIONS</p>
             </div>
