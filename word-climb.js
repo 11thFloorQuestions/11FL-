@@ -133,6 +133,37 @@ async function populateVault() {
     }
 }
 
+/**
+ * Shuffles an array of letters and guarantees it does not spell the target master word
+ * clockwise starting from any position on the wheel.
+ */
+function shuffleAndVerifyWheel(letters, masterWord) {
+    let arr = [...letters];
+    const target = (masterWord || "").toUpperCase();
+
+    const shuffle = (array) => {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    };
+
+    let attempts = 0;
+    do {
+        shuffle(arr);
+        attempts++;
+        const currentStr = arr.join("");
+        const doubleStr = currentStr + currentStr;
+        const matchesClockwise = target.length > 0 && doubleStr.includes(target);
+
+        if (!matchesClockwise || attempts > 50) {
+            break;
+        }
+    } while (true);
+
+    return arr;
+}
+
 async function loadVaultArchive(paddedId) {
     const filename = `sandbox-wc.${paddedId}.json`;
     const data = await fetchFileWithFallbacks(filename);
@@ -141,7 +172,7 @@ async function loadVaultArchive(paddedId) {
         await resolveDictionary();
 
         masterNineLetterWord = data.masterWord.toUpperCase();
-        initialDailyWheel = [...data.wheelLetters];
+        initialDailyWheel = shuffleAndVerifyWheel(data.wheelLetters, masterNineLetterWord);
         wheelLetters = [...initialDailyWheel];
 
         const startScreen = document.getElementById("start-screen");
@@ -179,7 +210,8 @@ function launchGameWorkspace() {
 
 function initDailyPuzzle() {
     masterNineLetterWord = "COMPLAINT";
-    initialDailyWheel = seededShuffle(masterNineLetterWord.split(""), getDayOfYear());
+    const initialArr = seededShuffle(masterNineLetterWord.split(""), getDayOfYear());
+    initialDailyWheel = shuffleAndVerifyWheel(initialArr, masterNineLetterWord);
     wheelLetters = [...initialDailyWheel];
 }
 
@@ -361,7 +393,7 @@ function renderWheel(letters) {
 
     shuffleBtn.addEventListener("click", () => {
         if (isTransitioning) return;
-        wheelLetters.sort(() => Math.random() - 0.5);
+        wheelLetters = shuffleAndVerifyWheel(wheelLetters, masterNineLetterWord);
         renderWheel(wheelLetters);
     });
 
