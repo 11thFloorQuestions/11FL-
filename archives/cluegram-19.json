@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-19",
+  "title": "Archive Puzzle 19",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "REDLA",
+      "target": "ALDER",
+      "clue": "A tree of the birch family with tooth-edged leaves and cone-like fruit."
+    },
+    {
+      "floor": 2,
+      "scrambled": "RACED",
+      "target": "CEDAR",
+      "clue": "A fragrant coniferous tree yielding durable timber."
+    },
+    {
+      "floor": 3,
+      "scrambled": "TUNLAW",
+      "target": "WALNUT",
+      "clue": "A valuable hardwood tree bearing edible nuts in dark shells."
+    },
+    {
+      "floor": 4,
+      "scrambled": "LOWLIW",
+      "target": "WILLOW",
+      "clue": "A tree with narrow leaves and flexible branches often growing near water."
+    },
+    {
+      "floor": 5,
+      "scrambled": "SRALPOP",
+      "target": "POPLARS",
+      "clue": "Fast-growing trees with tremulous leaves and soft white wood."
+    },
+    {
+      "floor": 6,
+      "scrambled": "SERPCYS",
+      "target": "CYPRESS",
+      "clue": "An evergreen coniferous tree with dark foliage and small woody cones."
+    },
+    {
+      "floor": 7,
+      "scrambled": "EROMACYS",
+      "target": "SYCAMORE",
+      "clue": "A broad-leaved tree of the maple family with winged seeds."
+    },
+    {
+      "floor": 8,
+      "scrambled": "TUNTSEHC",
+      "target": "CHESTNUT",
+      "clue": "A glossy dark brown edible nut in a prickly husk, or the tree yielding it."
+    },
+    {
+      "floor": 9,
+      "scrambled": "YNAGOHAM",
+      "target": "MAHOGANY",
+      "clue": "A reddish-brown tropical hardwood prized for high-quality furniture."
+    },
+    {
+      "floor": 10,
+      "scrambled": "NEERGREVE",
+      "target": "EVERGREEN",
+      "clue": "A plant or tree that retains foliage throughout the entire year."
+    }
+  ]
+}
