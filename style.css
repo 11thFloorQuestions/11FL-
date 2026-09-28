@@ -1,629 +1,96 @@
+/* ==========================================================================
+   11th Floor Games — Global Brand & System Architecture
+   ========================================================================== */
+
 :root {
-    --bg-deep: #000000;
-    --surface: #0a0a0a;
-    --surface-border: #222222;
-    --accent-red: #ff1f2d;
-    --accent-red-glow: rgba(255, 31, 45, 0.25);
-    --accent-green: #22c55e;
-    --accent-green-glow: rgba(34, 197, 94, 0.3);
-    --text-primary: #ffffff;
-    --text-muted: #888888;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-}
-
-body {
-    background-color: var(--bg-deep);
-    color: var(--text-primary);
-    font-family: 'Montserrat', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-    display: flex;
-    justify-content: center;
-}
-
-.screen-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    height: 100dvh;
-    width: 100%;
-    max-width: 440px;
-    padding: 14px 16px;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-/* Header Navigation */
-.header-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding-bottom: 6px;
-    flex-shrink: 0;
-}
-
-.header-game {
-    display: grid;
-    grid-template-columns: 70px 1fr 70px;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 12px;
-    flex-shrink: 0;
-}
-
-.btn-nav {
-    background: transparent;
-    border: 1px solid var(--surface-border);
-    color: var(--text-muted);
-    padding: 6px 12px;
-    font-size: 0.65rem;
-    font-weight: 700;
-    border-radius: 20px;
-    cursor: pointer;
-    letter-spacing: 1px;
-    white-space: nowrap;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-}
-
-.btn-nav:hover {
-    border-color: var(--text-primary);
-    color: var(--text-primary);
-    background: var(--surface);
-}
-
-.btn-exit {
-    justify-self: start;
-}
-
-#btn-sound-toggle-game, #btn-sound-toggle {
-    justify-self: end;
-}
-
-/* Brand Headers */
-.header-brand-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.logo-red-small {
-    font-family: 'Anton', sans-serif !important;
-    font-size: 2.5rem;
-    font-weight: 400 !important;
-    color: var(--accent-red) !important;
-    line-height: 0.85;
-    letter-spacing: -1px;
-    text-shadow: 0 0 20px rgba(255, 31, 45, 0.35);
-}
-
-.logo-subtitle-small {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 300;
-    color: var(--text-primary);
-    letter-spacing: 0.8px;
-    margin-top: 2px;
-}
-
-.logo-tagline-small {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.55rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    letter-spacing: 3.5px;
-    margin-top: 2px;
-    text-transform: uppercase;
-}
-
-.logo-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-.logo-red {
-    font-family: 'Anton', sans-serif !important;
-    font-size: 3.8rem;
-    font-weight: 400 !important;
-    color: var(--accent-red) !important;
-    line-height: 0.85;
-    letter-spacing: -1px;
-    text-shadow: 0 0 20px rgba(255, 31, 45, 0.35);
-}
-
-.logo-subtitle {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 300;
-    color: var(--text-primary);
-    letter-spacing: 1px;
-    margin-top: 4px;
-}
-
-.logo-tagline {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    letter-spacing: 4px;
-    margin-top: 2px;
-    text-transform: uppercase;
-}
-
-/* Landing Shaft Graphic (52px Wide) */
-.lobby-shaft-graphic {
-    display: flex;
-    flex-direction: column;
-    width: 52px;
-    height: 150px;
-    border: 1px solid var(--surface-border);
-    border-radius: 8px;
-    padding: 6px;
-    gap: 3px;
-    background-color: var(--surface);
-    margin: 14px 0;
-}
-
-.shaft-box {
-    flex: 1;
-    background-color: #111111;
-    border: 1px solid var(--surface-border);
-    border-radius: 2px;
-    animation: sweepMiddle 1.2s ease-in-out forwards;
-}
-
-.lobby-shaft-graphic .shaft-box:nth-child(11) { animation: sweepBottomSettle 2.6s ease-in-out forwards; animation-delay: 0.05s; }
-.lobby-shaft-graphic .shaft-box:nth-child(10) { animation-delay: 0.15s; }
-.lobby-shaft-graphic .shaft-box:nth-child(9)  { animation-delay: 0.25s; }
-.lobby-shaft-graphic .shaft-box:nth-child(8)  { animation-delay: 0.35s; }
-.lobby-shaft-graphic .shaft-box:nth-child(7)  { animation-delay: 0.45s; }
-.lobby-shaft-graphic .shaft-box:nth-child(6)  { animation-delay: 0.55s; }
-.lobby-shaft-graphic .shaft-box:nth-child(5)  { animation-delay: 0.65s; }
-.lobby-shaft-graphic .shaft-box:nth-child(4)  { animation-delay: 0.75s; }
-.lobby-shaft-graphic .shaft-box:nth-child(3)  { animation-delay: 0.85s; }
-.lobby-shaft-graphic .shaft-box:nth-child(2)  { animation-delay: 0.95s; }
-.lobby-shaft-graphic .shaft-box:nth-child(1)  { animation: sweepTopGreen 1.6s ease-in-out forwards; animation-delay: 1.05s; }
-
-@keyframes sweepMiddle {
-    0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
-    30% { background-color: var(--accent-red); border-color: var(--accent-red); box-shadow: 0 0 10px var(--accent-red-glow); }
-    60%, 100% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
-}
-
-@keyframes sweepTopGreen {
-    0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
-    20%, 70% { background-color: var(--accent-green); border-color: var(--accent-green); box-shadow: 0 0 16px var(--accent-green-glow); }
-    100% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
-}
-
-@keyframes sweepBottomSettle {
-    0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
-    15% { background-color: var(--accent-red); border-color: var(--accent-red); box-shadow: 0 0 10px var(--accent-red-glow); }
-    30%, 80% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
-    95%, 100% { background-color: var(--accent-red); border-color: var(--accent-red); box-shadow: 0 0 8px var(--accent-red-glow); }
-}
-
-.landing-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    flex-grow: 1;
-    padding-bottom: 20px;
-    text-align: center;
-}
-
-.lobby-tagline {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    line-height: 1.6;
-    letter-spacing: 1px;
-    max-width: 320px;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-}
-
-.lobby-tagline strong {
-    color: var(--text-primary);
-    font-weight: 700;
-    letter-spacing: 1.5px;
-}
-
-.btn-start-climb {
-    background-color: var(--text-primary);
-    border: none;
-    color: var(--bg-deep);
-    padding: 12px 36px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
-}
-
-.btn-start-climb:hover {
-    background-color: var(--accent-red);
-    color: var(--text-primary);
-    box-shadow: 0 4px 25px var(--accent-red-glow);
-}
-
-/* In-Game Top HUD Container */
-.hud-sidebar-container {
-    width: 100%;
-    display: flex;
-    align-items: stretch;
-    gap: 12px;
-    margin-bottom: 10px;
-    flex-shrink: 0;
-}
+  /* Master Corporate & Brand Identity */
+  --brand-master-red: #DC2626;
 
-.tower-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    width: 52px;
-    background: var(--surface);
-    border: 1px solid var(--surface-border);
-    border-radius: 8px;
-    padding: 6px;
-    justify-content: space-between;
-    flex-shrink: 0;
-}
-
-.tower-floor {
-    height: 7px;
-    border: 1px solid var(--surface-border);
-    background: #111111;
-    transition: all 0.2s ease;
-    border-radius: 2px;
-}
-
-.tower-floor.active, .tower-floor.active-floor {
-    border-color: var(--accent-red);
-    background: var(--accent-red);
-    box-shadow: 0 0 8px var(--accent-red-glow);
-}
-
-.tower-floor.completed {
-    background: #222222;
-    border-color: #222222;
-}
-
-.floor-info-box {
-    flex-grow: 1;
-    background: var(--surface);
-    border: 1px solid var(--surface-border);
-    border-radius: 8px;
-    padding: 12px 18px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.current-floor-display {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
-
-.current-floor-display span {
-    color: var(--accent-red);
-    font-size: 1.25rem;
-}
-
-.floor-right-group {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
-}
-
-.floor-phase-tag {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    padding: 6px 12px;
-    border: 1px solid var(--surface-border);
-    color: var(--text-muted);
-    border-radius: 4px;
-    background: #111111;
-}
-
-/* Central Game Layout & Question Card */
-.game-layout {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    width: 100%;
-    min-height: 0;
-    overflow: hidden;
-    margin-bottom: 6px;
-}
-
-.question-card {
-    width: 100%;
-    background-color: var(--surface);
-    border: 1px solid var(--surface-border);
-    border-radius: 8px;
-    padding: 20px 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    overflow: hidden;
-    flex-grow: 1;
-}
-
-.card-header {
-    margin-bottom: 10px;
-    flex-shrink: 0;
-}
-
-.timer-wrapper {
-    width: 100%;
-    height: 3px;
-    background-color: #111111;
-    border: 1px solid var(--surface-border);
-    border-radius: 2px;
-    overflow: hidden;
-    margin-bottom: 8px;
-    flex-shrink: 0;
-}
-
-.timer-bar {
-    height: 100%;
-    width: 100%;
-    background-color: var(--accent-red);
-    transition: width 1s linear;
-}
-
-.question-text {
-    font-size: 1.05rem;
-    font-weight: 700;
-    line-height: 1.4;
-    color: var(--text-primary);
-    margin-bottom: 16px;
-    text-align: left;
-    flex-shrink: 0;
-}
+  /* Genre Signature Colors (Floor Numbers, Headers, & Cards) */
+  --genre-gold: #EAB308;    /* Questions / Knowledge & Trivia */
+  --genre-blue: #3B82F6;    /* Cluegram & Word Climb / Anagrams & Word Play */
+  --genre-yellow: #FACC15;  /* Clusters / Puzzles & Pattern Logic */
+  --genre-silver: #94A3B8;  /* Future Maths & Spatial Logic */
 
-.options-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
-    width: 100%;
-}
-
-.btn-option {
-    background-color: #111111;
-    border: 1px solid var(--accent-red);
-    color: var(--text-primary);
-    padding: 12px 16px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.88rem;
-    font-weight: 600;
-    text-align: left;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.15s ease;
-    white-space: normal;
-    line-height: 1.25;
-}
-
-.btn-option:active {
-    border-color: var(--text-primary);
-    background-color: #1f1f1f;
-}
-
-.btn-option.selected-correct {
-    background-color: var(--accent-green) !important;
-    border-color: var(--accent-green) !important;
-    color: #000000 !important;
-    font-weight: 700 !important;
-}
-
-.btn-option.selected-wrong {
-    background-color: var(--accent-red) !important;
-    border-color: var(--accent-red) !important;
-    color: #ffffff !important;
-    font-weight: 700 !important;
-}
-
-.congrats-green {
-    color: var(--accent-green);
-    font-weight: 800;
-}
-
-/* Modals */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.92);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-}
-
-.modal-overlay.hidden {
-    display: none !important;
-}
-
-.modal-card {
-    background-color: var(--surface);
-    border: 1px solid var(--surface-border);
-    padding: 28px 24px;
-    border-radius: 14px;
-    width: 90%;
-    max-width: 360px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-}
-
-.modal-card h2 {
-    font-size: 1.25rem;
-    font-weight: 800;
-    letter-spacing: 2px;
-    color: var(--text-primary);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-}
-
-.modal-card h2:empty,
-#game-over-message:empty,
-#final-floor-reached:empty {
-    display: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
+  /* Standardized Functional Gameplay States (Universal Across All 11 Games) */
+  --state-active: #FACC15;   /* Yellow: Active floor, slot borders, selected tiles */
+  --state-error: #EF4444;    /* Red: Incorrect answer, invalid word, streak loss */
+  --state-success: #22C55E;  /* Green: Correct answer, floor cleared, victory */
 
-.modal-card h3 {
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    letter-spacing: 2px;
-    margin-top: 16px;
-    text-transform: uppercase;
+  /* Neutral Surface Palette */
+  --bg-dark: #09090B;        /* Pure dark canvas background */
+  --surface-card: #18181B;   /* Card / slot container background */
+  --surface-border: #27272A; /* Locked / inactive floor borders */
+  --text-main: #FFFFFF;      /* High-contrast primary text */
+  --text-muted: #A1A1AA;     /* Secondary clue text & metadata */
 }
 
-#game-over-message {
-    font-size: 0.95rem;
-    font-weight: 500;
-    line-height: 1.5;
-    color: var(--text-primary);
-    margin: 12px 0 16px 0;
-}
-
-#final-floor-reached {
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 2px;
-    color: var(--accent-red);
-    text-transform: uppercase;
-    margin-top: 8px;
-}
-
-.modal-large {
-    max-width: 440px;
-}
-
-.stats-summary-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin: 18px 0 12px 0;
-    background: var(--bg-deep);
-    border: 1px solid var(--surface-border);
-    border-radius: 10px;
-    padding: 14px;
-}
+/* ==========================================================================
+   Genre Binding Rules
+   ========================================================================== */
 
-.stat-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* 11th Floor Questions (Gold Theme) */
+body.game-questions {
+  --genre-active: var(--genre-gold);
 }
 
-.stat-val {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: var(--text-primary);
-    letter-spacing: -0.5px;
+/* 11th Floor Cluegram & Word Climb (Blue Theme) */
+body.game-cluegram,
+body.game-wordclimb {
+  --genre-active: var(--genre-blue);
 }
 
-.stat-lbl {
-    font-size: 0.55rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-top: 3px;
+/* 11th Floor Clusters (Yellow Theme) */
+body.game-clusters {
+  --genre-active: var(--genre-yellow);
 }
 
-.modal-actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 18px;
+/* 11th Floor Maths (Silver Theme) */
+body.game-maths {
+  --genre-active: var(--genre-silver);
 }
 
-.btn-modal {
-    flex-grow: 1;
-    background-color: #111111;
-    border: 1px solid var(--surface-border);
-    color: var(--text-primary);
-    padding: 12px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 700;
-    border-radius: 24px;
-    cursor: pointer;
-    letter-spacing: 1px;
-    transition: all 0.15s ease;
-}
+/* ==========================================================================
+   UI Component Styling
+   ========================================================================== */
 
-.btn-modal:hover {
-    background-color: var(--text-primary);
-    color: var(--bg-deep);
-    border-color: var(--text-primary);
+/* Active Floor Number (Pulls Active Genre Color) */
+.floor-number {
+  color: var(--genre-active);
+  font-weight: 800;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
 }
 
-.vault-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
-    gap: 8px;
-    max-height: 220px;
-    overflow-y: auto;
-    margin: 12px 0;
+/* Slot Boxes & Interactive Tile Borders (Yellow Active State) */
+.slot-box,
+.interactive-tile {
+  border: 2px solid var(--state-active);
+  background-color: var(--surface-card);
+  color: var(--text-main);
+  transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.1s ease;
 }
 
-.vault-item-btn {
-    background-color: #111111;
-    border: 1px solid var(--surface-border);
-    color: var(--text-primary);
-    padding: 10px 6px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    text-align: center;
-    transition: border-color 0.15s ease;
+/* Error State (Wrong Answer / Failed Submission) */
+.slot-box.state-error,
+.interactive-tile.state-error,
+.floor-indicator.state-error {
+  border-color: var(--state-error) !important;
+  background-color: rgba(239, 68, 68, 0.15) !important;
+  color: #FCA5A5 !important;
 }
 
-.vault-item-btn strong {
-    font-size: 0.78rem;
-    font-weight: 700;
+/* Victory State (Correct Answer / Floor Cleared) */
+.slot-box.state-success,
+.interactive-tile.state-success,
+.floor-indicator.state-success {
+  border-color: var(--state-success) !important;
+  background-color: rgba(34, 197, 94, 0.15) !important;
+  color: #86EFAC !important;
 }
 
-.vault-item-btn:hover {
-    border-color: var(--accent-red);
-    background-color: #1a1a1a;
+/* Reached 11th Floor Milestone Card */
+.victory-card-11th {
+  border: 2px solid var(--state-success);
+  background: radial-gradient(circle at center, rgba(34, 197, 94, 0.2) 0%, var(--bg-dark) 100%);
+  color: var(--text-main);
 }
