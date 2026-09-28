@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-08",
+  "title": "Archive Puzzle 08",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "SOTGH",
+      "target": "GHOST",
+      "clue": "An apparition or phantom of a deceased person."
+    },
+    {
+      "floor": 2,
+      "scrambled": "REINS",
+      "target": "SIREN",
+      "clue": "A loud noise-making warning device, or a seductive mythological figure."
+    },
+    {
+      "floor": 3,
+      "scrambled": "DOHWAS",
+      "target": "SHADOW",
+      "clue": "A dark area produced by a body coming between rays of light and a surface."
+    },
+    {
+      "floor": 4,
+      "scrambled": "ETATSU",
+      "target": "STATUE",
+      "clue": "A carved or cast three-dimensional figure of a person or animal."
+    },
+    {
+      "floor": 5,
+      "scrambled": "EFECNED",
+      "target": "DEFENCE",
+      "clue": "Resistance against attack, or protection of a military position."
+    },
+    {
+      "floor": 6,
+      "scrambled": "RCETPES",
+      "target": "SPECTRE",
+      "clue": "A haunting spirit, ghost, or lingering threat of disaster."
+    },
+    {
+      "floor": 7,
+      "scrambled": "TNEMUNOM",
+      "target": "MONUMENT",
+      "clue": "A statue or building erected to commemorate a notable person or event."
+    },
+    {
+      "floor": 8,
+      "scrambled": "TNASHAEP",
+      "target": "PHEASANT",
+      "clue": "A long-tailed game bird native to Asia and widely introduced elsewhere."
+    },
+    {
+      "floor": 9,
+      "scrambled": "REGEVNACS",
+      "target": "SCAVENGER",
+      "clue": "An animal or organism that feeds on discarded matter or decaying biomass."
+    },
+    {
+      "floor": 10,
+      "scrambled": "SBMOCATAC",
+      "target": "CATACOMBS",
+      "clue": "An underground subterranean cemetery consisting of tunnels with recesses for tombs."
+    }
+  ]
+}
