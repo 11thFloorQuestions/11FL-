@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-42",
+  "title": "Archive Puzzle 42",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "ZONBLA",
+      "target": "BLAZON",
+      "clue": "A formal description of a coat of arms."
+    },
+    {
+      "floor": 2,
+      "scrambled": "RALMU",
+      "target": "MURAL",
+      "clue": "A design executed upon an enduring wall surface."
+    },
+    {
+      "floor": 3,
+      "scrambled": "DLEIHS",
+      "target": "SHIELD",
+      "clue": "A piece of defensive armour bearing heraldic charges."
+    },
+    {
+      "floor": 4,
+      "scrambled": "TLANEM",
+      "target": "MANTLE",
+      "clue": "Drapery behind a coat of arms depicted in heraldry."
+    },
+    {
+      "floor": 5,
+      "scrambled": "NTNAPEN",
+      "target": "PENNANT",
+      "clue": "A long, narrow flag flown on naval vessels or lances."
+    },
+    {
+      "floor": 6,
+      "scrambled": "RDLAREHY",
+      "target": "HERALDRY",
+      "clue": "The system of devising and blazoning coats of arms."
+    },
+    {
+      "floor": 7,
+      "scrambled": "RVAHYLIC",
+      "target": "CHIVALRY",
+      "clue": "The medieval knightly system with its religious and moral code."
+    },
+    {
+      "floor": 8,
+      "scrambled": "TLYGHINK",
+      "target": "KNIGHTLY",
+      "clue": "Pertaining to or suitable for an armoured warrior of noble rank."
+    },
+    {
+      "floor": 9,
+      "scrambled": "YRTNAEGAP",
+      "target": "PAGEANTRY",
+      "clue": "Elaborate display, colourful ceremony, or splendour."
+    },
+    {
+      "floor": 10,
+      "scrambled": "DCURAOTCE",
+      "target": "ACCOUTRED",
+      "clue": "Provided with arms, equipment, or knightly dress."
+    }
+  ]
+}
