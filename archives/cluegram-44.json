@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-44",
+  "title": "Archive Puzzle 44",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "ROWTE",
+      "target": "TOWER",
+      "clue": "A tall, fortified defensive building."
+    },
+    {
+      "floor": 2,
+      "scrambled": "GSIEE",
+      "target": "SIEGE",
+      "clue": "A military blockade of a fortress to compel surrender."
+    },
+    {
+      "floor": 3,
+      "scrambled": "CCNSEO",
+      "target": "SCONCE",
+      "clue": "A small detached fort or earthwork protecting a pass."
+    },
+    {
+      "floor": 4,
+      "scrambled": "ELABIY",
+      "target": "BAILEY",
+      "clue": "An enclosed courtyard surrounded by castle walls."
+    },
+    {
+      "floor": 5,
+      "scrambled": "TMRAPAR",
+      "target": "RAMPART",
+      "clue": "A defensive wall or embankment featuring a walkway."
+    },
+    {
+      "floor": 6,
+      "scrambled": "BTERUOD",
+      "target": "REDOUBT",
+      "clue": "A temporary or supplementary fortification built outside a main fort."
+    },
+    {
+      "floor": 7,
+      "scrambled": "SNASITBO",
+      "target": "BASTIONS",
+      "clue": "Projecting structures on a fortification allowing multi-directional defense."
+    },
+    {
+      "floor": 8,
+      "scrambled": "DLASAPIE",
+      "target": "PALISADE",
+      "clue": "A defensive fence formed of tall wooden stakes set in the ground."
+    },
+    {
+      "floor": 9,
+      "scrambled": "EDACIRRAB",
+      "target": "BARRICADE",
+      "clue": "A wall or barrier thrown up across a passage to stop advance."
+    },
+    {
+      "floor": 10,
+      "scrambled": "TEHCUBERT",
+      "target": "TREBUCHET",
+      "clue": "A heavy siege engine powered by a counterweight to launch stones."
+    }
+  ]
+}
