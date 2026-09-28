@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-26",
+  "title": "Archive Puzzle 26",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "SMAHC",
+      "target": "CHASM",
+      "clue": "A deep fissure or rift in the earth, rock, or another surface."
+    },
+    {
+      "floor": 2,
+      "scrambled": "LFCFI",
+      "target": "CLIFF",
+      "clue": "A steep high rock face, especially one at the edge of the sea."
+    },
+    {
+      "floor": 3,
+      "scrambled": "VRAENC",
+      "target": "CAVERN",
+      "clue": "A large cave, especially one that is dark and underground."
+    },
+    {
+      "floor": 4,
+      "scrambled": "VNAIER",
+      "target": "RAVINE",
+      "clue": "A deep, narrow gorge with steep sides carved by water."
+    },
+    {
+      "floor": 5,
+      "scrambled": "LCOVANO",
+      "target": "VOLCANO",
+      "clue": "A mountain or hill having a crater through which lava and gas erupt."
+    },
+    {
+      "floor": 6,
+      "scrambled": "LADARCE",
+      "target": "CALDERA",
+      "clue": "A large volcanic crater, typically one formed by a major eruption."
+    },
+    {
+      "floor": 7,
+      "scrambled": "ECSVREAS",
+      "target": "CREVASSE",
+      "clue": "A deep open crack, especially one in a glacier or ice sheet."
+    },
+    {
+      "floor": 8,
+      "scrambled": "HYLPOGEG",
+      "target": "GEOGLYPH",
+      "clue": "A large design or motif produced on the ground by enduring rocks or soil."
+    },
+    {
+      "floor": 9,
+      "scrambled": "MTANOIROF",
+      "target": "FORMATION",
+      "clue": "A structure or arrangement of rocks or landforms resulting from natural processes."
+    },
+    {
+      "floor": 10,
+      "scrambled": "SGLAEMHIT",
+      "target": "MEGALITHS",
+      "clue": "Large prehistoric stones used to construct monuments or structures."
+    }
+  ]
+}
