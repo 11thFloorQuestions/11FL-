@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-07",
+  "title": "Archive Puzzle 07",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "TORFS",
+      "target": "FROST",
+      "clue": "A deposit of small ice crystals formed on freezing ground or surfaces."
+    },
+    {
+      "floor": 2,
+      "scrambled": "STERC",
+      "target": "CREST",
+      "clue": "The top line or peak of a mountain, wave, or heraldic helmet ornament."
+    },
+    {
+      "floor": 3,
+      "scrambled": "EGDRIB",
+      "target": "BRIDGE",
+      "clue": "A structure built to span a physical obstacle like a river or valley."
+    },
+    {
+      "floor": 4,
+      "scrambled": "NOCNAY",
+      "target": "CANYON",
+      "clue": "A deep gorge typically with a river flowing through it and sheer rock walls."
+    },
+    {
+      "floor": 5,
+      "scrambled": "SOLUROC",
+      "target": "COLOURS",
+      "clue": "Visual perception of light spectrum, or regimental battle flags."
+    },
+    {
+      "floor": 6,
+      "scrambled": "GELLAVI",
+      "target": "VILLAGE",
+      "clue": "A settlement smaller than a town, situated in a rural area."
+    },
+    {
+      "floor": 7,
+      "scrambled": "TCUDEQUA",
+      "target": "AQUEDUCT",
+      "clue": "An artificial channel constructed to convey water across long distances."
+    },
+    {
+      "floor": 8,
+      "scrambled": "TNEMEVAP",
+      "target": "PAVEMENT",
+      "clue": "A paved path for pedestrians beside a street or road."
+    },
+    {
+      "floor": 9,
+      "scrambled": "YMORTSONA",
+      "target": "ASTRONOMY",
+      "clue": "The scientific study of celestial bodies, space, and the physical universe."
+    },
+    {
+      "floor": 10,
+      "scrambled": "RIOVRESER",
+      "target": "RESERVOIR",
+      "clue": "A large natural or artificial lake used as a source of municipal water supply."
+    }
+  ]
+}
