@@ -5,63 +5,63 @@ window.CLUEGRAM_DAILY_SET = {
     floors: [
         {
             floor: 1,
-            scrambled: "OPINA",
-            target: "PIANO",
-            clue: "A large musical instrument with black and white keys."
+            scrambled: "RPTCY",
+            target: "CRYPT",
+            clue: "An underground vault or chamber beneath a church."
         },
         {
             floor: 2,
-            scrambled: "HARTE",
-            target: "EARTH",
-            clue: "The third planet from the Sun and our home world."
+            scrambled: "ZRQUAT",
+            target: "QUARTZ",
+            clue: "A hard, crystalline mineral composed of silica."
         },
         {
             floor: 3,
-            scrambled: "CHEAB",
-            target: "BEACH",
-            clue: "A pebbly or sandy shore along the edge of the sea."
+            scrambled: "GNIAME",
+            target: "ENIGMA",
+            clue: "A person or thing that is mysterious or difficult to understand."
         },
         {
             floor: 4,
-            scrambled: "PCEACT",
-            target: "ACCEPT",
-            clue: "To consent to receive or agree to an offer."
+            scrambled: "TMOHPAN",
+            target: "PHANTOM",
+            clue: "A figment of the imagination, ghost, or illusion."
         },
         {
             floor: 5,
-            scrambled: "SILNET",
-            target: "SILENT",
-            clue: "Completely quiet and free from any sound."
+            scrambled: "XADRAPO",
+            target: "PARADOX",
+            clue: "A seemingly absurd or self-contradictory statement."
         },
         {
             floor: 6,
-            scrambled: "DRAEGN",
-            target: "DANGER",
-            clue: "The possibility of suffering harm or injury."
+            scrambled: "SNAMATIL",
+            target: "TALISMAN",
+            clue: "An object thought to bring good luck or protection."
         },
         {
             floor: 7,
-            scrambled: "VTINBAR",
-            target: "VIBRANT",
-            clue: "Full of energy, enthusiasm, and vivid life."
+            scrambled: "SIRRAGNO",
+            target: "GARRISON",
+            clue: "A body of troops stationed in a fortified building."
         },
         {
             floor: 8,
-            scrambled: "JURNYEO",
-            target: "JOURNEY",
-            clue: "An act of traveling from one place to another."
+            scrambled: "THNIRBYAL",
+            target: "LABYRINTH",
+            clue: "A complicated irregular network of passages or paths."
         },
         {
             floor: 9,
-            scrambled: "TINAGREL",
-            target: "INTEGRAL",
-            clue: "Necessary to make a whole complete or essential."
+            scrambled: "RYECNAMRE",
+            target: "MERCENARY",
+            clue: "A professional soldier hired to serve in a foreign army."
         },
         {
             floor: 10,
-            scrambled: "TNALIOPMC",
-            target: "COMPLAINT",
-            clue: "A formal statement of grievance or dissatisfaction."
+            scrambled: "EQURDAMSAE",
+            target: "MASQUERADE",
+            clue: "A formal party or dance where guests wear masks."
         }
     ]
 };
