@@ -1,1 +1,66 @@
-
+{
+  "gameId": "cluegram-15",
+  "title": "Archive Puzzle 15",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "KRAPS",
+      "target": "SPARK",
+      "clue": "A small fiery particle thrown off from a fire, engine, or flint."
+    },
+    {
+      "floor": 2,
+      "scrambled": "EBDAL",
+      "target": "BLADE",
+      "clue": "The flat cutting edge of a knife, tool, or weapon."
+    },
+    {
+      "floor": 3,
+      "scrambled": "DOHWAS",
+      "target": "SHADOW",
+      "clue": "A dark shape cast on a surface when an opaque body blocks illumination."
+    },
+    {
+      "floor": 4,
+      "scrambled": "TRIPIS",
+      "target": "SPIRIT",
+      "clue": "The non-physical part of a human regarded as their true self, or an apparition."
+    },
+    {
+      "floor": 5,
+      "scrambled": "CALERIM",
+      "target": "MIRACLE",
+      "clue": "An extraordinary event not explicable by natural laws, ascribed to divine intervention."
+    },
+    {
+      "floor": 6,
+      "scrambled": "ZONRIHO",
+      "target": "HORIZON",
+      "clue": "The line at which the earth surface and sky appear to meet."
+    },
+    {
+      "floor": 7,
+      "scrambled": "NOISULLI",
+      "target": "ILLUSION",
+      "clue": "An instance of a wrong or misinterpretation of a visual perception."
+    },
+    {
+      "floor": 8,
+      "scrambled": "TIFUDETRO",
+      "target": "FORTITUDE",
+      "clue": "Courage in pain or adversity; mental resilience under hardship."
+    },
+    {
+      "floor": 9,
+      "scrambled": "UDROSLNEP",
+      "target": "SPLENDOUR",
+      "clue": "Magnificent and impressive appearance or grandeur."
+    },
+    {
+      "floor": 10,
+      "scrambled": "EGNIERVOS",
+      "target": "SOVEREIGN",
+      "clue": "A supreme ruler, especially a monarch possessing ultimate authority."
+    }
+  ]
+}
