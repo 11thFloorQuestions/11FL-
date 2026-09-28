@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-18",
+  "title": "Archive Puzzle 18",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "TELEF",
+      "target": "FLEET",
+      "clue": "A group of ships sailing together or engaged in naval operations."
+    },
+    {
+      "floor": 2,
+      "scrambled": "FFKSI",
+      "target": "SKIFF",
+      "clue": "A shallow, flat-bottomed open boat for a single person."
+    },
+    {
+      "floor": 3,
+      "scrambled": "RACNOH",
+      "target": "ANCHOR",
+      "clue": "A heavy metal object dropped to seabed to moor a vessel in place."
+    },
+    {
+      "floor": 4,
+      "scrambled": "YELLAG",
+      "target": "GALLEY",
+      "clue": "A low, flat built sea-going vessel propelled mainly by oars."
+    },
+    {
+      "floor": 5,
+      "scrambled": "TAGERIF",
+      "target": "FRIGATE",
+      "clue": "A warship with a mixed armament, next in size below a destroyer."
+    },
+    {
+      "floor": 6,
+      "scrambled": "ANATPIC",
+      "target": "CAPTAIN",
+      "clue": "The commander of a ship, aircraft, or naval vessel."
+    },
+    {
+      "floor": 7,
+      "scrambled": "RENOOHCS",
+      "target": "SCHOONER",
+      "clue": "A sailing ship with two or more masts, typically fore-and-aft rigged."
+    },
+    {
+      "floor": 8,
+      "scrambled": "SPISHRAW",
+      "target": "WARSHIPS",
+      "clue": "Armoured military vessels built primarily for surface combat."
+    },
+    {
+      "floor": 9,
+      "scrambled": "ETAEVIRPR",
+      "target": "PRIVATEER",
+      "clue": "An armed ship commissioned by a government for use in war against enemy shipping."
+    },
+    {
+      "floor": 10,
+      "scrambled": "YTLARIMDA",
+      "target": "ADMIRALTY",
+      "clue": "The department or authority in charge of naval affairs and maritime governance."
+    }
+  ]
+}
