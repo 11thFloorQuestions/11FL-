@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-40",
+  "title": "Archive Puzzle 40",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "BOLEG",
+      "target": "GLOBE",
+      "clue": "A spherical model of the Earth or celestial sphere."
+    },
+    {
+      "floor": 2,
+      "scrambled": "KRATC",
+      "target": "TRACK",
+      "clue": "A rough path formed by the passage of people or animals."
+    },
+    {
+      "floor": 3,
+      "scrambled": "YRUSVE",
+      "target": "SURVEY",
+      "clue": "The examination and mapping of an area of land."
+    },
+    {
+      "floor": 4,
+      "scrambled": "SLARIT",
+      "target": "TRAILS",
+      "clue": "Marked paths across wild or unpaved terrain."
+    },
+    {
+      "floor": 5,
+      "scrambled": "SYAVGEO",
+      "target": "VOYAGES",
+      "clue": "Long journeys involving travel by sea or in space."
+    },
+    {
+      "floor": 6,
+      "scrambled": "UROTCON",
+      "target": "CONTOUR",
+      "clue": "A line on a map joining points of equal height."
+    },
+    {
+      "floor": 7,
+      "scrambled": "RAERFAES",
+      "target": "SEAFARER",
+      "clue": "A person who travels regularly over open waters."
+    },
+    {
+      "floor": 8,
+      "scrambled": "RERAFAYW",
+      "target": "WAYFARER",
+      "clue": "A traveler who moves habitually on foot."
+    },
+    {
+      "floor": 9,
+      "scrambled": "RSEROLPXE",
+      "target": "EXPLORERS",
+      "clue": "Pioneers who travel in search of geographical discovery."
+    },
+    {
+      "floor": 10,
+      "scrambled": "YROTIRRET",
+      "target": "TERRITORY",
+      "clue": "An area of land under the jurisdiction of a ruler or state."
+    }
+  ]
+}
