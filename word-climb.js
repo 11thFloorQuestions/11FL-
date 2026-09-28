@@ -348,8 +348,8 @@ function renderWheel(letters) {
         btn.style.boxShadow = "0 0 10px rgba(255, 31, 45, 0.25)";
         btn.style.background = "#111111";
         btn.style.color = "#ffffff";
-        btn.style.fontFamily = "'Montserrat', sans-serif";
-        btn.style.fontWeight = "800";
+        btn.style.fontFamily = "'Inter', sans-serif";
+        btn.style.fontWeight = "700";
         btn.style.fontSize = `${fontSize}px`;
         btn.style.cursor = "pointer";
         btn.style.display = "flex";
