@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-11",
+  "title": "Archive Puzzle 11",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "ATITN",
+      "target": "TITAN",
+      "clue": "A person or entity of exceptional strength, size, or influence."
+    },
+    {
+      "floor": 2,
+      "scrambled": "TORIB",
+      "target": "ORBIT",
+      "clue": "The curved trajectory path of a celestial object around a star or planet."
+    },
+    {
+      "floor": 3,
+      "scrambled": "ROETEM",
+      "target": "METEOR",
+      "clue": "A streak of light produced by a space rock burning up in atmosphere."
+    },
+    {
+      "floor": 4,
+      "scrambled": "ALUBEN",
+      "target": "NEBULA",
+      "clue": "An interstellar cloud of dust, hydrogen, helium, and ionized gases."
+    },
+    {
+      "floor": 5,
+      "scrambled": "SRASAUQ",
+      "target": "QUASARS",
+      "clue": "Extremely luminous galactic cores powered by supermassive black holes."
+    },
+    {
+      "floor": 6,
+      "scrambled": "ESPILCE",
+      "target": "ECLIPSE",
+      "clue": "An obscuring of light from one celestial body by the passage of another."
+    },
+    {
+      "floor": 7,
+      "scrambled": "DIORTSAS",
+      "target": "ASTEROID",
+      "clue": "A small rocky body orbiting the Sun, primarily found between Mars and Jupiter."
+    },
+    {
+      "floor": 8,
+      "scrambled": "ESREVINO",
+      "target": "UNIVERSE",
+      "clue": "All existing matter and space considered as a whole; the cosmos."
+    },
+    {
+      "floor": 9,
+      "scrambled": "ETILLETAS",
+      "target": "SATELLITE",
+      "clue": "An artificial or natural body placed into orbit around a planet."
+    },
+    {
+      "floor": 10,
+      "scrambled": "AVONREPUS",
+      "target": "SUPERNOVA",
+      "clue": "A colossal cosmic explosion resulting from the catastrophic death of a massive star."
+    }
+  ]
+}
