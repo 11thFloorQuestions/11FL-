@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-32",
+  "title": "Archive Puzzle 32",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "ALYOR",
+      "target": "ROYAL",
+      "clue": "Having the status of a king, queen, or member of a sovereign family."
+    },
+    {
+      "floor": 2,
+      "scrambled": "AGLER",
+      "target": "REGAL",
+      "clue": "Resembling or suitable for a monarch; magnificent and dignified."
+    },
+    {
+      "floor": 3,
+      "scrambled": "EHRNOT",
+      "target": "THRONE",
+      "clue": "A ceremonial chair occupied by a sovereign on state occasions."
+    },
+    {
+      "floor": 4,
+      "scrambled": "RUESQI",
+      "target": "SQUIRE",
+      "clue": "A young nobleman acting as an attendant to a knight before achieving knighthood."
+    },
+    {
+      "floor": 5,
+      "scrambled": "SSPMREE",
+      "target": "EMPRESS",
+      "clue": "A female ruler of an empire, or the wife of an emperor."
+    },
+    {
+      "floor": 6,
+      "scrambled": "NBEORAT",
+      "target": "BARONET",
+      "clue": "A member of the lowest hereditary chivalric order in Britain."
+    },
+    {
+      "floor": 7,
+      "scrambled": "SQESUMAR",
+      "target": "MARQUESS",
+      "clue": "A British nobleman ranking above an earl and below a duke."
+    },
+    {
+      "floor": 8,
+      "scrambled": "ZNEIASUR",
+      "target": "SUZERAIN",
+      "clue": "A sovereign state or feudal lord having control over another dependent state."
+    },
+    {
+      "floor": 9,
+      "scrambled": "IPRACIPNL",
+      "target": "PRINCIPAL",
+      "clue": "First in order of importance; a chief ruler or head authority."
+    },
+    {
+      "floor": 10,
+      "scrambled": "UOTRCREIS",
+      "target": "COURTIERS",
+      "clue": "Companions or advisers who attend the royal court of a monarch."
+    }
+  ]
+}
