@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-17",
+  "title": "Archive Puzzle 17",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "RETOW",
+      "target": "TOWER",
+      "clue": "A tall narrow building or structure, standing alone or forming part of a castle."
+    },
+    {
+      "floor": 2,
+      "scrambled": "PERSI",
+      "target": "SPIRE",
+      "clue": "A tapering conical or pyramidal structure on top of a building."
+    },
+    {
+      "floor": 3,
+      "scrambled": "RUTTER",
+      "target": "TURRET",
+      "clue": "A small tower on top of a larger structure or at the corner of a wall."
+    },
+    {
+      "floor": 4,
+      "scrambled": "LIRPAL",
+      "target": "PILLAR",
+      "clue": "A tall vertical structure of stone or wood used as a support or monument."
+    },
+    {
+      "floor": 5,
+      "scrambled": "LONYCAB",
+      "target": "BALCONY",
+      "clue": "A platform enclosed by a wall or balustrade on the outside of a building."
+    },
+    {
+      "floor": 6,
+      "scrambled": "MNUSLOC",
+      "target": "COLUMNS",
+      "clue": "Upright pillars supporting an architrave, entablature, or arcade."
+    },
+    {
+      "floor": 7,
+      "scrambled": "EDANNOLOC",
+      "target": "COLONNADE",
+      "clue": "A row of evenly spaced columns supporting a roof or entablature."
+    },
+    {
+      "floor": 8,
+      "scrambled": "YGEOLRAG",
+      "target": "GARGOYLE",
+      "clue": "A grotesquely carved human or animal face projecting from a roof gutter."
+    },
+    {
+      "floor": 9,
+      "scrambled": "ERUTPLUCS",
+      "target": "SCULPTURE",
+      "clue": "The art of carving or modeling three-dimensional figures from stone, wood, or clay."
+    },
+    {
+      "floor": 10,
+      "scrambled": "MUESOLOCL",
+      "target": "COLOSSEUM",
+      "clue": "A massive amphitheatre or grand venue used for public spectacles and contests."
+    }
+  ]
+}
