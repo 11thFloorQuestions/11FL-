@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-21",
+  "title": "Archive Puzzle 21",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "LESAE",
+      "target": "EASEL",
+      "clue": "A self-supporting wooden frame used by an artist to hold a canvas."
+    },
+    {
+      "floor": 2,
+      "scrambled": "RAMLU",
+      "target": "MURAL",
+      "clue": "A painting or artwork executed directly on a wall or ceiling."
+    },
+    {
+      "floor": 3,
+      "scrambled": "SVANAC",
+      "target": "CANVAS",
+      "clue": "A heavy, closely woven fabric used as a surface for oil painting."
+    },
+    {
+      "floor": 4,
+      "scrambled": "RSEFCO",
+      "target": "FRESCO",
+      "clue": "A technique of mural painting executed upon freshly laid lime plaster."
+    },
+    {
+      "floor": 5,
+      "scrambled": "ETELTAP",
+      "target": "PALETTE",
+      "clue": "A thin board or slab on which an artist lays and mixes colours."
+    },
+    {
+      "floor": 6,
+      "scrambled": "TNEGMIP",
+      "target": "PIGMENT",
+      "clue": "A dry colouring matter used to impart colour in paint, ink, or dye."
+    },
+    {
+      "floor": 7,
+      "scrambled": "TIARTROP",
+      "target": "PORTRAIT",
+      "clue": "A painting, drawing, or photograph depicting a specific person."
+    },
+    {
+      "floor": 8,
+      "scrambled": "YRAUTATS",
+      "target": "STATUARY",
+      "clue": "Statues considered collectively, or the art of making statues."
+    },
+    {
+      "floor": 9,
+      "scrambled": "ERUTAINIM",
+      "target": "MINIATURE",
+      "clue": "A detailed artwork created on a very small scale."
+    },
+    {
+      "floor": 10,
+      "scrambled": "LAYARTROP",
+      "target": "PORTRAYAL",
+      "clue": "A depiction or representation of someone or something in an artistic work."
+    }
+  ]
+}
