@@ -15,13 +15,15 @@
             --surface: #0a0a0a;
             --surface-border: #222222;
 
-            /* Genre Branding Accent: Gold for Knowledge & Trivia */
-            --genre-gold: #EAB308;
-            --genre-gold-glow: rgba(234, 179, 8, 0.35);
+            /* Metallic Gold Palette for Knowledge & Trivia */
+            --genre-gold: #D4AF37;
+            --genre-gold-light: #FFE066;
+            --genre-gold-dark: #997A15;
+            --genre-gold-glow: rgba(212, 175, 55, 0.35);
 
-            /* Standardized Gameplay States */
-            --state-active: #FACC15;       /* Yellow: Timer, active options */
-            --state-active-glow: rgba(250, 204, 21, 0.25);
+            /* Gameplay Functional Feedback States */
+            --timer-red: #EF4444;          /* Red: Timer bar */
+            --timer-red-glow: rgba(239, 68, 68, 0.4);
             --state-error: #EF4444;        /* Red: Wrong answer, timeout */
             --state-error-glow: rgba(239, 68, 68, 0.3);
             --state-success: #22C55E;      /* Green: Correct answer, victory */
@@ -111,7 +113,7 @@
             background: var(--surface);
         }
 
-        /* Gold Branding Logos */
+        /* Metallic Gold Branding Logos */
         .logo-container {
             display: flex;
             flex-direction: column;
@@ -125,10 +127,12 @@
             font-family: 'Anton', sans-serif;
             font-size: 3.2rem;
             font-weight: 400;
-            color: var(--genre-gold);
+            background: linear-gradient(135deg, var(--genre-gold-light) 0%, var(--genre-gold) 50%, var(--genre-gold-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             line-height: 0.85;
             letter-spacing: -1px;
-            text-shadow: 0 0 20px var(--genre-gold-glow);
+            filter: drop-shadow(0 0 12px var(--genre-gold-glow));
             margin-bottom: 4px;
         }
 
@@ -136,9 +140,11 @@
             font-family: 'Anton', sans-serif;
             font-size: 1.8rem;
             font-weight: 400;
-            color: var(--genre-gold);
+            background: linear-gradient(135deg, var(--genre-gold-light) 0%, var(--genre-gold) 50%, var(--genre-gold-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             line-height: 0.85;
-            text-shadow: 0 0 10px var(--genre-gold-glow);
+            filter: drop-shadow(0 0 8px var(--genre-gold-glow));
         }
 
         .logo-subtitle {
@@ -277,8 +283,8 @@
         }
 
         .btn-start-climb:hover {
-            background-color: var(--genre-gold);
-            color: #ffffff;
+            background: linear-gradient(135deg, var(--genre-gold-light) 0%, var(--genre-gold) 100%);
+            color: #000000;
             box-shadow: 0 4px 25px var(--genre-gold-glow);
         }
 
@@ -314,9 +320,9 @@
         }
 
         .tower-floor.active-floor {
-            border-color: var(--state-active);
-            background: var(--state-active);
-            box-shadow: 0 0 8px var(--state-active-glow);
+            border-color: var(--genre-gold);
+            background: var(--genre-gold);
+            box-shadow: 0 0 8px var(--genre-gold-glow);
         }
 
         .tower-floor.completed {
@@ -360,7 +366,7 @@
             border: 1px solid var(--genre-gold);
             color: var(--genre-gold);
             border-radius: 4px;
-            background: rgba(234, 179, 8, 0.1);
+            background: rgba(212, 175, 55, 0.1);
         }
 
         /* Central Question Workspace */
@@ -391,6 +397,7 @@
             margin-bottom: 12px;
         }
 
+        /* Red Timer Bar */
         .timer-wrapper {
             width: 100%;
             height: 6px;
@@ -403,8 +410,8 @@
         .timer-bar {
             height: 100%;
             width: 100%;
-            background-color: var(--state-active);
-            box-shadow: 0 0 10px var(--state-active-glow);
+            background-color: var(--timer-red);
+            box-shadow: 0 0 10px var(--timer-red-glow);
             transition: width 1s linear;
         }
 
@@ -419,7 +426,7 @@
             margin: 12px 0;
         }
 
-        /* Options Grid (Yellow Active Borders, Red/Green Answer Feedback) */
+        /* Options Grid (Subtle Lighter Borders) */
         .options-grid {
             width: 100%;
             display: flex;
@@ -430,11 +437,11 @@
         .btn-option {
             width: 100%;
             background: #111111;
-            border: 2px solid var(--state-active);
+            border: 1px solid rgba(212, 175, 55, 0.35); /* Subtle, lighter metallic gold outline */
             color: var(--text-primary);
             font-family: 'Montserrat', sans-serif;
             font-size: 0.85rem;
-            font-weight: 700;
+            font-weight: 600;
             padding: 14px 16px;
             border-radius: 8px;
             cursor: pointer;
@@ -444,20 +451,21 @@
         }
 
         .btn-option:hover {
-            background: #1c1c1c;
-            box-shadow: 0 0 12px var(--state-active-glow);
+            background: #181818;
+            border-color: var(--genre-gold);
+            box-shadow: 0 0 10px var(--genre-gold-glow);
             transform: translateY(-1px);
         }
 
         .btn-option.selected-correct {
-            border-color: var(--state-success) !important;
+            border: 2px solid var(--state-success) !important;
             background-color: rgba(34, 197, 94, 0.2) !important;
             color: #86EFAC !important;
             box-shadow: 0 0 16px var(--state-success-glow) !important;
         }
 
         .btn-option.selected-wrong {
-            border-color: var(--state-error) !important;
+            border: 2px solid var(--state-error) !important;
             background-color: rgba(239, 68, 68, 0.2) !important;
             color: #FCA5A5 !important;
             box-shadow: 0 0 16px var(--state-error-glow) !important;
