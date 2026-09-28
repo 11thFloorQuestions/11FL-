@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-30",
+  "title": "Archive Puzzle 30",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "LUTAV",
+      "target": "VAULT",
+      "clue": "A roof in the form of an arch, or a secure room for storing valuables."
+    },
+    {
+      "floor": 2,
+      "scrambled": "LSLEC",
+      "target": "CELLS",
+      "clue": "Small rooms in a prison, monastery, or subterranean complex."
+    },
+    {
+      "floor": 3,
+      "scrambled": "LTNUNE",
+      "target": "TUNNEL",
+      "clue": "An underground passage dug through a hill or under a road."
+    },
+    {
+      "floor": 4,
+      "scrambled": "LRECAL",
+      "target": "CELLAR",
+      "clue": "A room below ground level in a building, typically used for storage."
+    },
+    {
+      "floor": 5,
+      "scrambled": "NDOEGUN",
+      "target": "DUNGEON",
+      "clue": "A strong underground prison cell, especially in a medieval castle."
+    },
+    {
+      "floor": 6,
+      "scrambled": "ASPASGE",
+      "target": "PASSAGE",
+      "clue": "A narrow way allowing access between buildings or underground chambers."
+    },
+    {
+      "floor": 7,
+      "scrambled": "TSEMENAB",
+      "target": "BASEMENT",
+      "clue": "The lowest floor of a building, situated partly or entirely below ground."
+    },
+    {
+      "floor": 8,
+      "scrambled": "SBEHSUMA",
+      "target": "AMBUSHES",
+      "clue": "Surprise attacks launched from concealed positions."
+    },
+    {
+      "floor": 9,
+      "scrambled": "RSECONUCO",
+      "target": "CONCOURSE",
+      "clue": "A large open space for the gathering of crowds at a station or complex."
+    },
+    {
+      "floor": 10,
+      "scrambled": "RNUSSAPED",
+      "target": "UNDERPASS",
+      "clue": "A road or pedestrian walkway passing underneath another road or railway line."
+    }
+  ]
+}
