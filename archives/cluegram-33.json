@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-33",
+  "title": "Archive Puzzle 33",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "CRIBH",
+      "target": "BIRCH",
+      "clue": "A slender tree with pale smooth bark and small leaves."
+    },
+    {
+      "floor": 2,
+      "scrambled": "HEBCE",
+      "target": "BEECH",
+      "clue": "A large forest tree with smooth grey bark and glossy leaves."
+    },
+    {
+      "floor": 3,
+      "scrambled": "CCAAIA",
+      "target": "ACACIA",
+      "clue": "A tree or shrub of warm climates with yellow or white flowers and pods."
+    },
+    {
+      "floor": 4,
+      "scrambled": "ELARUL",
+      "target": "LAUREL",
+      "clue": "An evergreen shrub with dark green leaves, used anciently to weave victory wreaths."
+    },
+    {
+      "floor": 5,
+      "scrambled": "QEUASOI",
+      "target": "SEQUOIA",
+      "clue": "A giant redwood tree native to California, among the tallest living organisms."
+    },
+    {
+      "floor": 6,
+      "scrambled": "RFEINOC",
+      "target": "CONIFER",
+      "clue": "A tree that bears cones and needle-like or scale-like leaves."
+    },
+    {
+      "floor": 7,
+      "scrambled": "LGMNAOAI",
+      "target": "MAGNOLIA",
+      "clue": "A tree with large, fragrant white or pink flowers and glossy foliage."
+    },
+    {
+      "floor": 8,
+      "scrambled": "TRAWHNOH",
+      "target": "HAWTHORN",
+      "clue": "A thorny shrub or small tree of the rose family with white flowers and red berries."
+    },
+    {
+      "floor": 9,
+      "scrambled": "DSOWOREOS",
+      "target": "ROSEWOODS",
+      "clue": "Dark, fragrant woods obtained from tropical trees, prized for fine furniture."
+    },
+    {
+      "floor": 10,
+      "scrambled": "RBERHUYSB",
+      "target": "SHRUBBERY",
+      "clue": "An area in a garden planted with shrubs and low ornamental woody plants."
+    }
+  ]
+}
