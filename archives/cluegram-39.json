@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-39",
+  "title": "Archive Puzzle 39",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "TRDAF",
+      "target": "DRAFT",
+      "clue": "A current of cool air in an enclosed space."
+    },
+    {
+      "floor": 2,
+      "scrambled": "ETELS",
+      "target": "SLEET",
+      "clue": "Rain containing a mixture of snow and ice."
+    },
+    {
+      "floor": 3,
+      "scrambled": "RRYFLU",
+      "target": "FLURRY",
+      "clue": "A brief, light snowfall accompanied by gusts of wind."
+    },
+    {
+      "floor": 4,
+      "scrambled": "EZERFE",
+      "target": "FREEZE",
+      "clue": "A period of frost or extremely low temperature."
+    },
+    {
+      "floor": 5,
+      "scrambled": "LZDIREZ",
+      "target": "DRIZZLE",
+      "clue": "Light rain falling in very fine drops."
+    },
+    {
+      "floor": 6,
+      "scrambled": "RNEUDTH",
+      "target": "THUNDER",
+      "clue": "A loud rumbling or crashing noise following a flash of light."
+    },
+    {
+      "floor": 7,
+      "scrambled": "PSETSMET",
+      "target": "TEMPESTS",
+      "clue": "Violent windstorms accompanied by rain or hail."
+    },
+    {
+      "floor": 8,
+      "scrambled": "NESNIHUS",
+      "target": "SUNSHINE",
+      "clue": "Direct light and warmth received from the Sun."
+    },
+    {
+      "floor": 9,
+      "scrambled": "SUPNORWOD",
+      "target": "DOWNPOURS",
+      "clue": "Heavy, sudden falls of rain flooding low ground."
+    },
+    {
+      "floor": 10,
+      "scrambled": "AMSRTLOIH",
+      "target": "HAILSTORM",
+      "clue": "A storm characterised by frozen pellets falling from clouds."
+    }
+  ]
+}
