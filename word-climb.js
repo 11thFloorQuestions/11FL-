@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function getOrdinalFloorHTML(floorNum) {
     const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
     const ord = ordinals[floorNum - 1] || `${floorNum}th`;
-    return `<span style="color: var(--accent-red); font-size: 1.25rem; font-weight: 700;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
+    return `<span style="color: #3B82F6; font-size: 1.25rem; font-weight: 800;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
 }
 
 async function fetchFileWithFallbacks(filename) {
@@ -344,12 +344,12 @@ function renderWheel(letters) {
         btn.style.width = `${btnSize}px`;
         btn.style.height = `${btnSize}px`;
         btn.style.borderRadius = "50%";
-        btn.style.border = "1px solid #ff1f2d";
-        btn.style.boxShadow = "0 0 10px rgba(255, 31, 45, 0.25)";
+        btn.style.border = "2px solid #FACC15"; /* Yellow active border for interactive letters */
+        btn.style.boxShadow = "0 0 10px rgba(250, 204, 21, 0.25)";
         btn.style.background = "#111111";
         btn.style.color = "#ffffff";
         btn.style.fontFamily = "'Inter', sans-serif";
-        btn.style.fontWeight = "700";
+        btn.style.fontWeight = "800";
         btn.style.fontSize = `${fontSize}px`;
         btn.style.cursor = "pointer";
         btn.style.display = "flex";
@@ -372,7 +372,7 @@ function renderWheel(letters) {
     const shuffleBtn = document.createElement("button");
     shuffleBtn.id = "shuffle-hub-btn";
     shuffleBtn.innerHTML = `
-        <svg viewBox="0 0 24 24" style="width: 50%; height: 50%; fill: #ff1f2d;">
+        <svg viewBox="0 0 24 24" style="width: 50%; height: 50%; fill: #3B82F6;">
             <path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.45 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/>
         </svg>
     `;
@@ -383,8 +383,8 @@ function renderWheel(letters) {
     shuffleBtn.style.height = `${shuffleSize}px`;
     shuffleBtn.style.borderRadius = "50%";
     shuffleBtn.style.background = "#141414";
-    shuffleBtn.style.border = "1px solid #222222";
-    shuffleBtn.style.boxShadow = "0 0 10px rgba(0,0,0,0.8)";
+    shuffleBtn.style.border = "1px solid #3B82F6";
+    shuffleBtn.style.boxShadow = "0 0 10px rgba(59, 130, 246, 0.3)";
     shuffleBtn.style.cursor = "pointer";
     shuffleBtn.style.display = "flex";
     shuffleBtn.style.alignItems = "center";
@@ -428,7 +428,7 @@ function updateGuessDisplay() {
 
     display.innerHTML = currentGuess
         .split("")
-        .map(c => `<span style="padding: 4px 8px; background: #111111; border: 1px solid #ff1f2d; border-radius: 4px; font-weight: 800; color: #ffffff; font-size: 14px;">${c}</span>`)
+        .map(c => `<span style="padding: 4px 8px; background: #111111; border: 2px solid #FACC15; border-radius: 4px; font-weight: 800; color: #ffffff; font-size: 14px; box-shadow: 0 0 8px rgba(250, 204, 21, 0.25);">${c}</span>`)
         .join("");
 }
 
@@ -460,6 +460,17 @@ function handleSubmission() {
         isTransitioning = true;
         showMessage("WRONG WORD! DROPPING TO 1ST FLOOR...", true);
 
+        // Flash target slots red on error
+        const slotsContainer = document.getElementById("target-word-slots");
+        if (slotsContainer) {
+            const slots = slotsContainer.querySelectorAll(".target-slot");
+            slots.forEach(s => {
+                s.style.borderColor = "#EF4444";
+                s.style.color = "#FCA5A5";
+                s.style.background = "rgba(239, 68, 68, 0.2)";
+            });
+        }
+
         setTimeout(() => {
             startNewGame();
         }, 1400);
@@ -475,8 +486,8 @@ function fillTargetSlots(word) {
         if (slots[i]) {
             slots[i].textContent = word[i];
             slots[i].style.borderColor = "#22c55e";
-            slots[i].style.color = "#22c55e";
-            slots[i].style.background = "rgba(34, 197, 94, 0.1)";
+            slots[i].style.color = "#86EFAC";
+            slots[i].style.background = "rgba(34, 197, 94, 0.2)";
         }
     }
 }
@@ -519,6 +530,6 @@ function showMessage(text, isError = false) {
     const msg = document.getElementById("message-box");
     if (msg) {
         msg.textContent = text;
-        msg.style.color = isError ? "#ff1f2d" : "#22c55e";
+        msg.style.color = isError ? "#EF4444" : "#22c55e";
     }
 }
