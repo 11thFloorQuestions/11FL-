@@ -228,17 +228,24 @@ function removeLetterFromSlot(slotIndex) {
     renderBoard();
 }
 
+function removeLastLetter() {
+    for (let i = currentGuess.length - 1; i >= 0; i--) {
+        if (currentGuess[i] !== "") {
+            removeLetterFromSlot(i);
+            break;
+        }
+    }
+}
+
 function attachControlHandlers() {
-    const clearBtn = document.getElementById("action-clear-btn");
+    const backspaceBtn = document.getElementById("action-backspace-btn") || document.getElementById("action-clear-btn");
     const shuffleBtn = document.getElementById("action-shuffle-btn");
     const submitBtn = document.getElementById("action-submit-btn");
 
-    if (clearBtn) {
-        clearBtn.onclick = () => {
+    if (backspaceBtn) {
+        backspaceBtn.onclick = () => {
             if (isTransitioning) return;
-            currentGuess = new Array(currentFloorData.target.length).fill("");
-            rackUsedIndices = [];
-            renderBoard();
+            removeLastLetter();
         };
     }
 
