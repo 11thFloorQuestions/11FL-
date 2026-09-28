@@ -38,7 +38,7 @@ function shuffleArray(array) {
 function getOrdinalFloorHTML(floorNum) {
     const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
     const ord = ordinals[floorNum - 1] || `${floorNum}th`;
-    return `<span style="color: var(--accent-red); font-size: 1.25rem; font-weight: 700;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
+    return `<span style="color: #EAB308; font-size: 1.25rem; font-weight: 800;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
 }
 
 
@@ -232,13 +232,12 @@ async function populateVault() {
     vaultList.innerHTML = '';
     let archiveId = 1;
 
-    // Dynamic scanning: probe archive files sequentially until missing
     while (true) {
         const paddedId = String(archiveId).padStart(2, '0');
         const filename = `sandbox.${paddedId}.json`;
         const data = await fetchFileWithFallbacks(filename);
         
-        if (!data) break; // Reached end of existing archives
+        if (!data) break;
 
         const btn = document.createElement('button');
         btn.className = 'vault-item-btn';
@@ -485,7 +484,7 @@ function handleGameOver(reason) {
     const ord = ordinals[gameState.currentFloor - 1] || `${gameState.currentFloor}th`;
     const finalEl = document.getElementById('final-floor-reached');
     if (finalEl) {
-        finalEl.innerHTML = `Stopped at <span style="color: var(--accent-red); font-weight: 700;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
+        finalEl.innerHTML = `Stopped at <span style="color: var(--state-error, #EF4444); font-weight: 800;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
     }
     
     openModal('modal-game-over');
