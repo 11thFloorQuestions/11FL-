@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-14",
+  "title": "Archive Puzzle 14",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "TRALA",
+      "target": "ALTAR",
+      "clue": "A raised structure on which religious rites or offerings are performed."
+    },
+    {
+      "floor": 2,
+      "scrambled": "CERIL",
+      "target": "RELIC",
+      "clue": "An object surviving from an earlier time, especially one of historic interest."
+    },
+    {
+      "floor": 3,
+      "scrambled": "REINHS",
+      "target": "SHRINE",
+      "clue": "A place regarded as holy because of its association with a sacred person."
+    },
+    {
+      "floor": 4,
+      "scrambled": "SIRHAP",
+      "target": "PARISH",
+      "clue": "A small administrative district having its own church and priest."
+    },
+    {
+      "floor": 5,
+      "scrambled": "LETREHS",
+      "target": "SHELTER",
+      "clue": "A structure giving protection from bad weather or danger."
+    },
+    {
+      "floor": 6,
+      "scrambled": "GLIMRIP",
+      "target": "PILGRIM",
+      "clue": "A person who journeys to a sacred place for religious reasons."
+    },
+    {
+      "floor": 7,
+      "scrambled": "ACILISAB",
+      "target": "BASILICA",
+      "clue": "A large medieval church built with a long central nave and side aisles."
+    },
+    {
+      "floor": 8,
+      "scrambled": "YTITCNAS",
+      "target": "SANCTITY",
+      "clue": "The state or quality of being holy or sacred."
+    },
+    {
+      "floor": 9,
+      "scrambled": "MSYLACATC",
+      "target": "CATACLYSM",
+      "clue": "A violent large-scale event in the natural world or social order."
+    },
+    {
+      "floor": 10,
+      "scrambled": "NONAEHTRP",
+      "target": "PARTHENON",
+      "clue": "A former temple on the Athenian Acropolis dedicated to the goddess Athena."
+    }
+  ]
+}
