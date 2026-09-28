@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-05",
+  "title": "Archive Puzzle 05",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "TFNIL",
+      "target": "FLINT",
+      "clue": "A hard grey rock used anciently to produce fire sparks when struck."
+    },
+    {
+      "floor": 2,
+      "scrambled": "MEULP",
+      "target": "PLUME",
+      "clue": "A long, soft feather or cloud of rising smoke."
+    },
+    {
+      "floor": 3,
+      "scrambled": "ONAGOL",
+      "target": "LAGOON",
+      "clue": "A stretch of salt water separated from the sea by a low sandbank."
+    },
+    {
+      "floor": 4,
+      "scrambled": "PELMET",
+      "target": "TEMPLE",
+      "clue": "A building devoted to worship or the honour of a deity."
+    },
+    {
+      "floor": 5,
+      "scrambled": "TINASBO",
+      "target": "BASTION",
+      "clue": "A projecting part of a fortification built to allow defensive fire."
+    },
+    {
+      "floor": 6,
+      "scrambled": "CRESTEP",
+      "target": "SCEPTRE",
+      "clue": "An ornamental staff carried by a monarch as a symbol of sovereignty."
+    },
+    {
+      "floor": 7,
+      "scrambled": "REILACAV",
+      "target": "CAVALIER",
+      "clue": "A courtly mounted soldier, or a supporter of King Charles I."
+    },
+    {
+      "floor": 8,
+      "scrambled": "TAINOMUN",
+      "target": "MOUNTAIN",
+      "clue": "A large natural elevation of the earth surface rising abruptly from surrounding land."
+    },
+    {
+      "floor": 9,
+      "scrambled": "YRAUTCNAS",
+      "target": "SANCTUARY",
+      "clue": "A sacred place of safety, refuge, or legal protection."
+    },
+    {
+      "floor": 10,
+      "scrambled": "UEMAULSOM",
+      "target": "MAUSOLEUM",
+      "clue": "A stately, magnificent freestanding tomb constructed for an important family."
+    }
+  ]
+}
