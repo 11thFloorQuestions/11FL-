@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-46",
+  "title": "Archive Puzzle 46",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "RALOS",
+      "target": "SOLAR",
+      "clue": "Pertaining to or derived from the Sun."
+    },
+    {
+      "floor": 2,
+      "scrambled": "TORIB",
+      "target": "ORBIT",
+      "clue": "The curved path of a celestial object around a star or planet."
+    },
+    {
+      "floor": 3,
+      "scrambled": "STOMEC",
+      "target": "COMETS",
+      "clue": "Icy bodies that release gas or dust as they move near the Sun."
+    },
+    {
+      "floor": 4,
+      "scrambled": "ALUBEN",
+      "target": "NEBULA",
+      "clue": "A giant cloud of dust and gas in interstellar space."
+    },
+    {
+      "floor": 5,
+      "scrambled": "SRASAUQ",
+      "target": "QUASARS",
+      "clue": "Extremely luminous active galactic nuclei powered by black holes."
+    },
+    {
+      "floor": 6,
+      "scrambled": "SRASLUP",
+      "target": "PULSARS",
+      "clue": "Highly magnetized rotating neutron stars emitting beams of radiation."
+    },
+    {
+      "floor": 7,
+      "scrambled": "DIORTSAS",
+      "target": "ASTEROID",
+      "clue": "A small rocky body orbiting the Sun between Mars and Jupiter."
+    },
+    {
+      "floor": 8,
+      "scrambled": "ESREVINO",
+      "target": "UNIVERSE",
+      "clue": "All existing matter, space, and energy considered as a whole."
+    },
+    {
+      "floor": 9,
+      "scrambled": "ETILLETAS",
+      "target": "SATELLITE",
+      "clue": "An object placed into orbit around a larger celestial body."
+    },
+    {
+      "floor": 10,
+      "scrambled": "AVONREPUS",
+      "target": "SUPERNOVA",
+      "clue": "A colossal cosmic explosion marking the death of a star."
+    }
+  ]
+}
