@@ -66,6 +66,45 @@ function startNewGame() {
     attachControlHandlers();
 }
 
+/**
+ * Shuffles letters and ensures they never spell out the target word,
+ * share the same starting prefix, or match over 50% of positions.
+ */
+function shuffleAndVerifyAnagram(letters, targetWord) {
+    let arr = [...letters];
+    const target = (targetWord || "").toUpperCase();
+
+    const shuffle = (array) => {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    };
+
+    let attempts = 0;
+    do {
+        shuffle(arr);
+        attempts++;
+        const candidate = arr.join("");
+
+        const isExactMatch = (candidate === target);
+
+        let matchCount = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] === target[i]) matchCount++;
+        }
+        const isTooSimilar = matchCount > Math.floor(target.length / 2);
+
+        const sharesPrefix = target.length >= 4 && candidate.slice(0, 2) === target.slice(0, 2);
+
+        if ((!isExactMatch && !isTooSimilar && !sharesPrefix) || attempts > 50) {
+            break;
+        }
+    } while (true);
+
+    return arr;
+}
+
 function setupFloor(floor) {
     if (floor > 10) {
         handleVictory();
@@ -78,7 +117,8 @@ function setupFloor(floor) {
     currentFloorData = window.CLUEGRAM_DAILY_SET.floors.find(f => f.floor === floor);
     if (!currentFloorData) return;
 
-    rackLetters = currentFloorData.scrambled.toUpperCase().split("");
+    const rawLetters = currentFloorData.scrambled.toUpperCase().split("");
+    rackLetters = shuffleAndVerifyAnagram(rawLetters, currentFloorData.target);
     currentGuess = new Array(currentFloorData.target.length).fill("");
     rackUsedIndices = [];
 
@@ -218,11 +258,7 @@ function attachControlHandlers() {
 }
 
 function shuffleRack() {
-    for (let i = rackLetters.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [rackLetters[i], rackLetters[j]] = [rackLetters[j], rackLetters[i]];
-    }
-
+    rackLetters = shuffleAndVerifyAnagram(rackLetters, currentFloorData.target);
     currentGuess = new Array(currentFloorData.target.length).fill("");
     rackUsedIndices = [];
     renderBoard();
