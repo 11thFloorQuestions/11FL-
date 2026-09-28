@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-28",
+  "title": "Archive Puzzle 28",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "DLOUC",
+      "target": "CLOUD",
+      "clue": "A visible mass of condensed watery vapour floating in the atmosphere."
+    },
+    {
+      "floor": 2,
+      "scrambled": "KLABE",
+      "target": "BLEAK",
+      "clue": "Cold and miserable weather, or exposed and barren land."
+    },
+    {
+      "floor": 3,
+      "scrambled": "LSAUQL",
+      "target": "SQUALL",
+      "clue": "A sudden violent gust of wind or localized storm."
+    },
+    {
+      "floor": 4,
+      "scrambled": "ZRBEEE",
+      "target": "BREEZE",
+      "clue": "A gentle wind that blows softly."
+    },
+    {
+      "floor": 5,
+      "scrambled": "SMOONON",
+      "target": "MONSOON",
+      "clue": "A seasonal prevailing wind producing heavy rainfall in southern Asia."
+    },
+    {
+      "floor": 6,
+      "scrambled": "PNOYHTO",
+      "target": "TYPHOON",
+      "clue": "A tropical storm with powerful rotating winds in the region of the Indian or western Pacific oceans."
+    },
+    {
+      "floor": 7,
+      "scrambled": "PSETSMET",
+      "target": "TEMPESTS",
+      "clue": "Violent windy storms accompanied by rain, hail, or snow."
+    },
+    {
+      "floor": 8,
+      "scrambled": "SSTURNUB",
+      "target": "SUNBURST",
+      "clue": "A sudden emergence of sunlight through clouds."
+    },
+    {
+      "floor": 9,
+      "scrambled": "AMSRTLOIH",
+      "target": "HAILSTORM",
+      "clue": "A sudden shower of frozen rain pellets falling rapidly from cumulonimbus clouds."
+    },
+    {
+      "floor": 10,
+      "scrambled": "GTLNINIGH",
+      "target": "LIGHTNING",
+      "clue": "A high-voltage natural electrical discharge between a cloud and the ground."
+    }
+  ]
+}
