@@ -1,5 +1,5 @@
 // ==========================================================================
-// 11th Floor Cluegram — Core Interactive Game Engine
+// 11th Floor Cluegram — Core Interactive Game Engine & Archive Integration
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let rackTiles = [];
     let isProcessing = false;
     let soundEnabled = true;
+    let activeGameData = [];
 
     // Local Storage Player Stats Key
     const STATS_KEY = '11th_floor_cluegram_stats';
@@ -35,14 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const statsBtn = document.getElementById('btn-landing-stats');
     const closeVaultBtn = document.getElementById('btn-close-vault');
     const soundBtn = document.getElementById('btn-sound');
+    const vaultList = document.getElementById('vault-list');
 
-    // Load active dataset
-    const gameData = window.CLUEGRAM_DAILY_SET ? window.CLUEGRAM_DAILY_SET.floors : [];
-
-    // Initialize Game
+    // Initialize Game Engine
     init();
 
     function init() {
+        // Default to daily puzzle dataset
+        activeGameData = window.CLUEGRAM_DAILY_SET ? window.CLUEGRAM_DAILY_SET.floors : [];
         bindEvents();
         updateStatsDisplay();
     }
@@ -53,8 +54,14 @@ document.addEventListener('DOMContentLoaded', () => {
         shuffleBtn.addEventListener('click', handleShuffle);
         submitBtn.addEventListener('click', handleSubmit);
 
-        statsBtn.addEventListener('click', () => statsModal.classList.remove('hidden'));
-        closeVaultBtn.addEventListener('click', () => statsModal.classList.add('hidden'));
+        statsBtn.addEventListener('click', () => {
+            statsModal.classList.remove('hidden');
+            populateVault();
+        });
+
+        closeVaultBtn.addEventListener('click', () => {
+            statsModal.classList.add('hidden');
+        });
 
         soundBtn.addEventListener('click', () => {
             soundEnabled = !soundEnabled;
@@ -76,7 +83,85 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Dynamic file loader with fallback path resolution
+    async function fetchFileWithFallbacks(filename) {
+        const candidatePaths = [
+            `./archives/${filename}`,
+            `./${filename}`,
+            `./data/${filename}`,
+            filename
+        ];
+
+        for (const path of candidatePaths) {
+            try {
+                const res = await fetch(path);
+                if (res.ok) {
+                    return await res.json();
+                }
+            } catch (e) {}
+        }
+        return null;
+    }
+
+    async function populateVault() {
+        if (!vaultList) return;
+
+        vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">Loading Archives...</div>';
+        
+        let archiveId = 1;
+        const buttons = [];
+
+        while (true) {
+            const paddedId = String(archiveId).padStart(2, '0');
+            const filename = `cluegram-${paddedId}.json`;
+            const data = await fetchFileWithFallbacks(filename);
+
+            if (!data) break;
+
+            const btn = document.createElement('button');
+            btn.className = 'vault-item-btn';
+            btn.innerHTML = `<strong>Archive ${paddedId}</strong>`;
+            btn.onclick = () => {
+                loadVaultArchive(paddedId);
+            };
+            buttons.push(btn);
+            archiveId++;
+        }
+
+        vaultList.innerHTML = '';
+        if (buttons.length === 0) {
+            vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">No archives found.</div>';
+        } else {
+            buttons.forEach(btn => vaultList.appendChild(btn));
+        }
+    }
+
+    async function loadVaultArchive(paddedId) {
+        const filename = `cluegram-${paddedId}.json`;
+        const data = await fetchFileWithFallbacks(filename);
+
+        if (data && data.floors && data.floors.length > 0) {
+            activeGameData = data.floors;
+
+            if (startScreen) startScreen.style.display = 'none';
+            if (hudContainer) hudContainer.style.display = 'flex';
+            if (gameWorkspace) gameWorkspace.style.display = 'flex';
+            if (gameControls) gameControls.style.display = 'flex';
+            if (statsModal) statsModal.classList.add('hidden');
+
+            currentFloorIndex = 0;
+            loadFloor(currentFloorIndex);
+        } else {
+            alert(`Could not load Archive ${paddedId} (${filename}).`);
+        }
+    }
+
     function startGame() {
+        // Fall back to daily puzzle set if non-archive climb is started
+        if (!activeGameData || activeGameData.length === 0) {
+            activeGameData = window.CLUEGRAM_DAILY_SET ? window.CLUEGRAM_DAILY_SET.floors : [];
+        }
+
         startScreen.style.display = 'none';
         hudContainer.style.display = 'flex';
         gameWorkspace.style.display = 'flex';
@@ -87,9 +172,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function loadFloor(index) {
-        if (!gameData || index >= gameData.length) return;
+        if (!activeGameData || index >= activeGameData.length) return;
 
-        const floorData = gameData[index];
+        const floorData = activeGameData[index];
         userGuess = [];
         messageBox.textContent = '';
         isProcessing = false;
@@ -152,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleTileClick(tile) {
         if (tile.used || isProcessing) return;
 
-        const currentFloor = gameData[currentFloorIndex];
+        const currentFloor = activeGameData[currentFloorIndex];
         if (userGuess.length < currentFloor.target.length) {
             tile.used = true;
             userGuess.push(tile);
@@ -202,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleSubmit() {
         if (isProcessing) return;
 
-        const currentFloor = gameData[currentFloorIndex];
+        const currentFloor = activeGameData[currentFloorIndex];
         if (userGuess.length < currentFloor.target.length) {
             showMessage('FILL ALL SLOTS BEFORE SUBMITTING');
             return;
@@ -218,7 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showMessage('');
 
             setTimeout(() => {
-                if (currentFloorIndex + 1 >= gameData.length) {
+                if (currentFloorIndex + 1 >= activeGameData.length) {
                     // Reached Floor 11 Victory
                     recordGameResult(true, 11);
                     alert("CONGRATULATIONS! YOU REACHED THE 11TH FLOOR!");
