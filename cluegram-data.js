@@ -35,7 +35,7 @@ window.CLUEGRAM_DAILY_SET = {
         },
         {
             floor: 6,
-            scrambled: "YTEMSRE",
+            scrambled: "YTEMSRY",
             target: "MYSTERY",
             clue: "Something that is difficult or impossible to understand or explain."
         },
