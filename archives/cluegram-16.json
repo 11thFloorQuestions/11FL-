@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-16",
+  "title": "Archive Puzzle 16",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "DORHC",
+      "target": "CHORD",
+      "clue": "A group of notes sounded together in harmonic progression."
+    },
+    {
+      "floor": 2,
+      "scrambled": "ANRGO",
+      "target": "ORGAN",
+      "clue": "A large musical keyboard instrument with pipes sounded by compressed air."
+    },
+    {
+      "floor": 3,
+      "scrambled": "TENROC",
+      "target": "CORNET",
+      "clue": "A brass instrument resembling a trumpet, but shorter and wider."
+    },
+    {
+      "floor": 4,
+      "scrambled": "TANOAS",
+      "target": "SONATA",
+      "clue": "A composition for one or two instruments, usually in three or four movements."
+    },
+    {
+      "floor": 5,
+      "scrambled": "INAPMIT",
+      "target": "TIMPANI",
+      "clue": "Kettledrums played in orchestral music to produce definite pitches."
+    },
+    {
+      "floor": 6,
+      "scrambled": "TETNIUQ",
+      "target": "QUINTET",
+      "clue": "An ensemble of five musicians performing together."
+    },
+    {
+      "floor": 7,
+      "scrambled": "YPMHOSYN",
+      "target": "SYMPHONY",
+      "clue": "An elaborate musical composition for full orchestra, typically in four movements."
+    },
+    {
+      "floor": 8,
+      "scrambled": "ERUTREVO",
+      "target": "OVERTURE",
+      "clue": "An orchestral piece serving as an introduction to an opera or concert."
+    },
+    {
+      "floor": 9,
+      "scrambled": "ODNECSERC",
+      "target": "CRESCENDO",
+      "clue": "A gradual increase in loudness or intensity in a passage of music."
+    },
+    {
+      "floor": 10,
+      "scrambled": "ACSERTHRO",
+      "target": "ORCHESTRA",
+      "clue": "A large instrumental ensemble combining brass, woodwind, string, and percussion."
+    }
+  ]
+}
