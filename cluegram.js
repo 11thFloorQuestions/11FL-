@@ -108,25 +108,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
         vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">Loading Archives...</div>';
         
-        let archiveId = 1;
+        const MAX_ARCHIVES = 50;
+        const fetchPromises = [];
+
+        for (let i = 1; i <= MAX_ARCHIVES; i++) {
+            const paddedId = String(i).padStart(2, '0');
+            const filename = `cluegram-${paddedId}.json`;
+            fetchPromises.push(
+                fetchFileWithFallbacks(filename).then(data => ({ id: paddedId, data }))
+            );
+        }
+
+        const results = await Promise.all(fetchPromises);
         const buttons = [];
 
-        while (true) {
-            const paddedId = String(archiveId).padStart(2, '0');
-            const filename = `cluegram-${paddedId}.json`;
-            const data = await fetchFileWithFallbacks(filename);
-
-            if (!data) break;
-
-            const btn = document.createElement('button');
-            btn.className = 'vault-item-btn';
-            btn.innerHTML = `<strong>Archive ${paddedId}</strong>`;
-            btn.onclick = () => {
-                loadVaultArchive(paddedId);
-            };
-            buttons.push(btn);
-            archiveId++;
-        }
+        results.forEach(({ id, data }) => {
+            if (data) {
+                const btn = document.createElement('button');
+                btn.className = 'vault-item-btn';
+                btn.innerHTML = `<strong>Archive ${id}</strong>`;
+                btn.onclick = () => {
+                    loadVaultArchive(id);
+                };
+                buttons.push(btn);
+            }
+        });
 
         vaultList.innerHTML = '';
         if (buttons.length === 0) {
