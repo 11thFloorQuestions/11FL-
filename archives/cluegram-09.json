@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-09",
+  "title": "Archive Puzzle 09",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "RDOWS",
+      "target": "SWORD",
+      "clue": "A weapon with a long metal blade and a hilt with a handguard."
+    },
+    {
+      "floor": 2,
+      "scrambled": "ENCAL",
+      "target": "LANCE",
+      "clue": "A long wooden shaft with a pointed steel head used by mounted knights."
+    },
+    {
+      "floor": 3,
+      "scrambled": "DLEIHS",
+      "target": "SHIELD",
+      "clue": "A broad piece of armour carried on the arm to intercept strikes."
+    },
+    {
+      "floor": 4,
+      "scrambled": "THGINK",
+      "target": "KNIGHT",
+      "clue": "A mounted armoured warrior granted an honorary title by a monarch."
+    },
+    {
+      "floor": 5,
+      "scrambled": "YRELLAG",
+      "target": "GALLERY",
+      "clue": "A room or building devoted to the exhibition of artwork."
+    },
+    {
+      "floor": 6,
+      "scrambled": "TAPARPE",
+      "target": "PARAPET",
+      "clue": "A low protective wall along the edge of a roof, bridge, or balcony."
+    },
+    {
+      "floor": 7,
+      "scrambled": "SIRRAGNO",
+      "target": "GARRISON",
+      "clue": "A military force stationed to defend a town or fort."
+    },
+    {
+      "floor": 8,
+      "scrambled": "STRAPMAR",
+      "target": "RAMPARTS",
+      "clue": "A defensive wall or embankment surrounding a castle, featuring a walkway on top."
+    },
+    {
+      "floor": 9,
+      "scrambled": "EDACIRRAB",
+      "target": "BARRICADE",
+      "clue": "An improvised barrier erected across a street to block opposing advance."
+    },
+    {
+      "floor": 10,
+      "scrambled": "TEHCUBERT",
+      "target": "TREBUCHET",
+      "clue": "A medieval siege engine using a heavy counterweight to launch large stones."
+    }
+  ]
+}
