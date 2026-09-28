@@ -1,0 +1,66 @@
+{
+  "gameId": "cluegram-12",
+  "title": "Archive Puzzle 12",
+  "floors": [
+    {
+      "floor": 1,
+      "scrambled": "MCOTE",
+      "target": "COMET",
+      "clue": "A celestial object consisting of a nucleus of ice and dust with a glowing tail."
+    },
+    {
+      "floor": 2,
+      "scrambled": "RALOS",
+      "target": "SOLAR",
+      "clue": "Relating to or determined by energy or rays derived from the Sun."
+    },
+    {
+      "floor": 3,
+      "scrambled": "ARUARO",
+      "target": "AURORA",
+      "clue": "A luminous atmospheric phenomenon of colorful glowing lights in polar skies."
+    },
+    {
+      "floor": 4,
+      "scrambled": "YXALAG",
+      "target": "GALAXY",
+      "clue": "A system of millions or billions of stars bound together by gravitational attraction."
+    },
+    {
+      "floor": 5,
+      "scrambled": "YTIVARG",
+      "target": "GRAVITY",
+      "clue": "The fundamental force that attracts a body toward the center of the earth."
+    },
+    {
+      "floor": 6,
+      "scrambled": "ROTUAQE",
+      "target": "EQUATOR",
+      "clue": "An imaginary line drawn around the Earth equally distant from both poles."
+    },
+    {
+      "floor": 7,
+      "scrambled": "MURTCEPS",
+      "target": "SPECTRUM",
+      "clue": "A band of colors produced by separating light according to wavelength."
+    },
+    {
+      "floor": 8,
+      "scrambled": "ECITSLOS",
+      "target": "SOLSTICE",
+      "clue": "Either of two times in the year when the Sun reaches its highest or lowest point."
+    },
+    {
+      "floor": 9,
+      "scrambled": "EPOCSELET",
+      "target": "TELESCOPE",
+      "clue": "An optical instrument designed to make distant objects appear closer."
+    },
+    {
+      "floor": 10,
+      "scrambled": "TUANORTSA",
+      "target": "ASTRONAUT",
+      "clue": "A trained spacefarer who travels and conducts missions beyond Earth atmosphere."
+    }
+  ]
+}
