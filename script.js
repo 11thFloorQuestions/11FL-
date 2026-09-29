@@ -38,7 +38,7 @@ function shuffleArray(array) {
 function getOrdinalFloorHTML(floorNum) {
     const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
     const ord = ordinals[floorNum - 1] || `${floorNum}th`;
-    return `<span style="color: #D4AF37; font-size: 1.25rem; font-weight: 800;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
+    return `<span style="color: var(--genre-gold, #facc15); font-weight: 800;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
 }
 
 
@@ -50,9 +50,7 @@ function triggerHaptic(pattern) {
     if ('vibrate' in navigator) {
         try {
             navigator.vibrate(pattern);
-        } catch (e) {
-            // Ignore devices without haptic engine access
-        }
+        } catch (e) {}
     }
 }
 
@@ -63,7 +61,7 @@ function triggerHaptic(pattern) {
 
 const gameState = {
     currentFloor: 1,
-    maxFloors: 10, // 10 questions to reach Destination Floor 11
+    maxFloors: 10,
     soundEnabled: true,
     timer: null,
     timeLeft: 15,
@@ -130,13 +128,36 @@ function triggerLandingPageDing() {
 // 3. NAVIGATION & SCREEN SWITCHING
 // ==========================================
 
-safeAddListener('btn-start-climb', 'click', () => {
-    startDailyClimb();
-});
+document.addEventListener('DOMContentLoaded', () => {
+    safeAddListener('btn-start-climb', 'click', () => {
+        startDailyClimb();
+    });
 
-safeAddListener('btn-util-exit', 'click', () => {
-    resetGame();
-    showScreen('landing-screen');
+    safeAddListener('btn-util-exit', 'click', () => {
+        resetGame();
+        showScreen('landing-screen');
+    });
+
+    safeAddListener('btn-landing-stats', 'click', () => openVault());
+    safeAddListener('btn-back-vault', 'click', () => {
+        closeModal('modal-game-over');
+        openVault();
+    });
+
+    safeAddListener('btn-close-vault', 'click', () => closeModal('modal-vault'));
+    safeAddListener('btn-try-again', 'click', () => {
+        closeModal('modal-game-over');
+        if (gameState.questions && gameState.questions.length > 0) {
+            startGame();
+        } else {
+            startDailyClimb();
+        }
+    });
+
+    safeAddListener('btn-sound-toggle', 'click', toggleSound);
+    safeAddListener('btn-sound-toggle-game', 'click', toggleSound);
+
+    updateSoundUI();
 });
 
 function showScreen(screenId) {
@@ -171,29 +192,10 @@ function toggleSound() {
     updateSoundUI();
 }
 
-safeAddListener('btn-sound-toggle', 'click', toggleSound);
-safeAddListener('btn-sound-toggle-game', 'click', toggleSound);
-
 
 // ==========================================
 // 5. MODAL, STATS & VAULT CONTROLS
 // ==========================================
-
-safeAddListener('btn-landing-stats', 'click', () => openVault());
-safeAddListener('btn-back-vault', 'click', () => {
-    closeModal('modal-game-over');
-    openVault();
-});
-
-safeAddListener('btn-close-vault', 'click', () => closeModal('modal-vault'));
-safeAddListener('btn-try-again', 'click', () => {
-    closeModal('modal-game-over');
-    if (gameState.questions && gameState.questions.length > 0) {
-        startGame();
-    } else {
-        startDailyClimb();
-    }
-});
 
 function openModal(modalId) {
     safeToggleClass(modalId, 'hidden', false);
@@ -232,22 +234,26 @@ async function populateVault() {
     vaultList.innerHTML = '';
     let archiveId = 1;
 
-    while (true) {
+    while (archiveId <= 50) {
         const paddedId = String(archiveId).padStart(2, '0');
         const filename = `sandbox.${paddedId}.json`;
         const data = await fetchFileWithFallbacks(filename);
         
-        if (!data) break;
-
-        const btn = document.createElement('button');
-        btn.className = 'vault-item-btn';
-        btn.innerHTML = `<strong>Archive ${paddedId}</strong>`;
-        btn.onclick = () => {
-            triggerHaptic(15);
-            loadVaultSet(paddedId);
-        };
-        vaultList.appendChild(btn);
+        if (data) {
+            const btn = document.createElement('button');
+            btn.className = 'vault-item-btn';
+            btn.innerHTML = `<strong>Archive ${paddedId}</strong>`;
+            btn.onclick = () => {
+                triggerHaptic(15);
+                loadVaultSet(paddedId, data);
+            };
+            vaultList.appendChild(btn);
+        }
         archiveId++;
+    }
+
+    if (vaultList.children.length === 0) {
+        vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">No archives found.</div>';
     }
 }
 
@@ -302,26 +308,9 @@ async function fetchFileWithFallbacks(filename) {
             if (res.ok) {
                 return await res.json();
             }
-        } catch (e) {
-            // Path attempt failed; continue
-        }
+        } catch (e) {}
     }
     return null;
-}
-
-async function fetchFloorSequence() {
-    const questions = [];
-    for (let i = 1; i <= 10; i++) {
-        const paddedId = String(i).padStart(2, '0');
-        const fileData = await fetchFileWithFallbacks(`floor_${paddedId}.json`);
-        if (fileData) {
-            const normalized = normalizeQuestions(fileData);
-            if (normalized && normalized.length > 0) {
-                questions.push(normalized[0]);
-            }
-        }
-    }
-    return questions.length === 10 ? questions : null;
 }
 
 async function startDailyClimb() {
@@ -331,28 +320,16 @@ async function startDailyClimb() {
     if (data) {
         gameState.questions = normalizeQuestions(data);
     } else {
-        const floorSequence = await fetchFloorSequence();
-        if (floorSequence) {
-            gameState.questions = floorSequence;
-        } else {
-            console.warn("Could not locate floor files or daily sets. Using fallback.");
-            gameState.questions = generateFallbackQuestions();
-        }
+        gameState.questions = generateFallbackQuestions();
     }
     startGame();
 }
 
-async function loadVaultSet(paddedId) {
-    const filename = `sandbox.${paddedId}.json`;
-    const data = await fetchFileWithFallbacks(filename);
-
+function loadVaultSet(paddedId, data) {
     if (data) {
         gameState.questions = normalizeQuestions(data);
         closeModal('modal-vault');
         startGame();
-    } else {
-        console.error(`Failed to load ${filename}`);
-        alert(`Could not find Archive ${paddedId}. Check that sandbox.${paddedId}.json exists in your repository.`);
     }
 }
 
@@ -383,10 +360,12 @@ function updateFloorUI() {
         cardFloorEl.innerHTML = getOrdinalFloorHTML(gameState.currentFloor);
     }
     
-    document.querySelectorAll('.floor-block').forEach(block => {
+    document.querySelectorAll('.tower-floor, .floor-block').forEach(block => {
         const floorNum = parseInt(block.getAttribute('data-floor'), 10);
+        block.classList.toggle('active', floorNum === gameState.currentFloor);
         block.classList.toggle('active-floor', floorNum === gameState.currentFloor);
         block.classList.toggle('completed', floorNum < gameState.currentFloor);
+        block.classList.remove('failed');
     });
 }
 
@@ -394,10 +373,7 @@ function loadNextQuestion() {
     startTimer();
     
     const currentQ = gameState.questions[gameState.currentQuestionIndex];
-    if (!currentQ) {
-        console.error("Missing question data at index:", gameState.currentQuestionIndex);
-        return;
-    }
+    if (!currentQ) return;
 
     safeSetText('question-text', currentQ.question);
     
@@ -461,11 +437,14 @@ function handleAnswerSelect(isCorrect, buttonEl) {
                 updateFloorUI();
                 loadNextQuestion();
             }
-        }, 1000);
+        }, 800);
     } else {
         if (buttonEl) buttonEl.classList.add('selected-wrong');
         triggerHaptic([80, 50, 120]);
         
+        const activeBlock = document.querySelector(`.tower-floor[data-floor="${gameState.currentFloor}"]`);
+        if (activeBlock) activeBlock.classList.add('failed');
+
         setTimeout(() => {
             handleGameOver('INCORRECT ANSWER');
         }, 800);
@@ -512,17 +491,16 @@ function handleVictory() {
 }
 
 function generateFallbackQuestions() {
-    const fallback = [];
-    for(let i = 1; i <= 10; i++) {
-        fallback.push({
-            question: "Sample Question - replace or ensure data files are uploaded.",
-            options: ["Option A", "Option B", "Option C", "Option D"],
-            answer: "Option A"
-        });
-    }
-    return fallback;
+    return [
+        { question: "Which planet in our solar system is known as the Red Planet?", options: ["Mars", "Venus", "Jupiter", "Saturn"], answer: "Mars" },
+        { question: "What is the capital city of France?", options: ["Paris", "Berlin", "Madrid", "Rome"], answer: "Paris" },
+        { question: "How many sides does a hexagon have?", options: ["6", "5", "7", "8"], answer: "6" },
+        { question: "Which element has the chemical symbol 'O'?", options: ["Oxygen", "Gold", "Osmium", "Silver"], answer: "Oxygen" },
+        { question: "Who painted the Mona Lisa?", options: ["Leonardo da Vinci", "Vincent van Gogh", "Pablo Picasso", "Claude Monet"], answer: "Leonardo da Vinci" },
+        { question: "What is the largest ocean on Earth?", options: ["Pacific Ocean", "Atlantic Ocean", "Indian Ocean", "Arctic Ocean"], answer: "Pacific Ocean" },
+        { question: "In which year did the Apollo 11 moon landing take place?", options: ["1969", "1965", "1972", "1975"], answer: "1969" },
+        { question: "What is the hardest natural substance on Earth?", options: ["Diamond", "Quartz", "Granite", "Titanium"], answer: "Diamond" },
+        { question: "Which musical instrument has 88 keys?", options: ["Piano", "Organ", "Harpsichord", "Accordion"], answer: "Piano" },
+        { question: "What gas do plants absorb during photosynthesis?", options: ["Carbon Dioxide", "Oxygen", "Nitrogen", "Hydrogen"], answer: "Carbon Dioxide" }
+    ];
 }
-
-window.addEventListener('DOMContentLoaded', () => {
-    updateSoundUI();
-});
