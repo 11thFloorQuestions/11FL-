@@ -7,15 +7,15 @@
   --brand-master-red: #DC2626;
 
   /* Genre Signature Colors (Floor Numbers, Headers, & Cards) */
-  --genre-gold: #D4AF37;    /* Questions / Knowledge & Trivia */
+  --genre-gold: #D4AF37;       /* Questions / Knowledge & Trivia */
   --genre-gold-glow: rgba(212, 175, 55, 0.35);
-  --genre-blue: #3B82F6;    /* Word Climb / Anagrams & Word Play */
+  --genre-blue: #3B82F6;       /* Word Climb / Anagrams & Word Play */
   --genre-blue-glow: rgba(59, 130, 246, 0.3);
-  --genre-magenta: #cc007e; /* Cluegram / Anagrams & Clues */
+  --genre-magenta: #cc007e;    /* Cluegram / Anagrams & Clues */
   --genre-magenta-glow: rgba(204, 0, 126, 0.35);
-  --genre-red: #ff1f2d;     /* Clusters / Puzzles & Pattern Logic */
-  --genre-red-glow: rgba(255, 31, 45, 0.35);
-  --genre-silver: #94A3B8;  /* Future Maths & Spatial Logic */
+  --genre-orange: #ff751f;     /* Clusters / Puzzles & Pattern Logic */
+  --genre-orange-glow: rgba(255, 117, 31, 0.35);
+  --genre-silver: #94A3B8;     /* Future Maths & Spatial Logic */
 
   /* Standardized Functional Gameplay States */
   --state-active: #FACC15;   /* Yellow: Active floor, slot borders, selected tiles */
@@ -159,14 +159,14 @@ body {
   margin-bottom: 4px;
 }
 
-.game-logo-red {
+.game-logo-orange {
   font-family: 'Anton', sans-serif;
   font-size: 3.2rem;
   font-weight: 400;
-  color: var(--genre-red);
+  color: var(--genre-orange);
   line-height: 0.85;
   letter-spacing: -1px;
-  text-shadow: 0 0 20px var(--genre-red-glow);
+  text-shadow: 0 0 20px var(--genre-orange-glow);
   margin-bottom: 4px;
 }
 
