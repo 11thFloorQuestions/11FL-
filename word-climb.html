@@ -42,6 +42,24 @@
             95%, 100% { background-color: var(--genre-blue); border-color: var(--genre-blue); box-shadow: 0 0 8px var(--genre-blue-glow); }
         }
 
+        .game-logo-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 8px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .gameplay-header-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 6px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
         .btn-start:hover {
             background-color: var(--genre-blue);
             color: #ffffff;
@@ -96,34 +114,42 @@
             <button class="pill-btn" id="btn-sound">SOUND: ON</button>
         </div>
 
-        <div class="game-logo-box">
-            <h1 class="game-logo-blue">11FL?</h1>
-            <p class="game-logo-title">Eleventh Floor</p>
-            <p class="game-logo-sub" style="color: var(--genre-blue);">WORD CLIMB</p>
+        <!-- LANDING SCREEN (Full Blue Logo with 11FL?) -->
+        <div id="start-screen" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+            <div class="game-logo-box">
+                <h1 class="game-logo-blue">11FL?</h1>
+                <p class="game-logo-title">Eleventh Floor</p>
+                <p class="game-logo-sub" style="color: var(--genre-blue);">WORD CLIMB</p>
+            </div>
+
+            <div class="landing-container">
+                <div class="landing-shaft-graphic">
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                </div>
+
+                <div class="landing-challenge-text">
+                    <strong>CAN YOU REACH THE 11TH FLOOR?</strong><br><br>
+                    Find valid English words on every floor, from 5 to 9 letters. One mistake and you lose your streak and are sent back to Ground Floor.
+                </div>
+
+                <button id="start-climb-btn" class="btn-start">Start Climb</button>
+            </div>
         </div>
 
-        <!-- Landing Screen Container -->
-        <div id="start-screen" class="landing-container">
-            <div class="landing-shaft-graphic">
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-            </div>
-
-            <div class="landing-challenge-text">
-                <strong>CAN YOU REACH THE 11TH FLOOR?</strong><br><br>
-                Find valid English words on every floor, from 5 to 9 letters. One mistake and you lose your streak and are sent back to the ground floor.
-            </div>
-
-            <button id="start-climb-btn" class="btn-start">Start Climb</button>
+        <!-- GAMEPLAY HEADER (Eleventh Floor WORD CLIMB, NO 11FL?) -->
+        <div id="gameplay-header" class="gameplay-header-box" style="display: none;">
+            <p class="game-logo-title">Eleventh Floor</p>
+            <p class="game-logo-sub" style="color: var(--genre-blue);">WORD CLIMB</p>
         </div>
 
         <!-- Gameplay HUD Header -->
@@ -165,7 +191,7 @@
         </div>
 
         <footer>
-            <div>ONE MISTAKE RESETS THE CLIMB TO 1ST FLOOR.</div>
+            <div>ONE MISTAKE RESETS THE CLIMB TO GROUND FLOOR.</div>
         </footer>
     </div>
 
