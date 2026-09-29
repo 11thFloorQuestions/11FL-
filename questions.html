@@ -3,15 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>11th Floor Questions — Daily Trivia</title>
+    <title>11th Floor Questions — Daily Trivia Challenge</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/glacial-indifference" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@700;800&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .landing-shaft-graphic .landing-shaft-box { animation: sweepGold 1.2s ease-in-out forwards; }
-        .landing-shaft-graphic .landing-shaft-box:nth-child(11) { animation: sweepBottomGold 2.6s ease-in-out forwards; animation-delay: 0.05s; }
+        :root {
+            --bg-deep: #000000;
+            --surface: #0a0a0a;
+            --surface-border: #222222;
+            --surface-border-light: #333333;
+            --text-primary: #ffffff;
+            --text-muted: #888888;
+            --genre-gold: #facc15;
+            --genre-gold-glow: rgba(250, 204, 21, 0.35);
+            --state-active: #facc15;
+            --state-active-glow: rgba(250, 204, 21, 0.3);
+            --state-success: #22c55e;
+            --state-success-glow: rgba(34, 197, 94, 0.3);
+            --state-error: #ef4444;
+            --state-error-glow: rgba(239, 68, 68, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 10px;
+            overflow-x: hidden;
+        }
+
+        .top-bar {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .pill-btn {
+            background: var(--surface);
+            border: 1px solid var(--surface-border-light);
+            color: var(--text-primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .pill-btn:hover {
+            border-color: var(--genre-gold);
+            color: var(--genre-gold);
+        }
+
+        /* Landing Logo Box (with 11FL?) */
+        .game-logo-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 8px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .game-logo-gold {
+            font-family: 'Anton', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 400;
+            color: var(--genre-gold);
+            line-height: 0.85;
+            letter-spacing: -1px;
+            text-shadow: 0 0 20px var(--genre-gold-glow);
+            margin-bottom: 4px;
+        }
+
+        .game-logo-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: #ffffff;
+            letter-spacing: 1.5px;
+            margin-bottom: 2px;
+        }
+
+        .game-logo-sub {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--genre-gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* Gameplay Compact Header Box (Without 11FL?) */
+        .gameplay-header-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 6px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .landing-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 16px;
+            padding: 20px 16px;
+            width: 100%;
+            max-width: 600px;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            margin-top: 6px;
+        }
+
+        .landing-shaft-graphic {
+            display: flex;
+            flex-direction: column;
+            width: 52px;
+            height: 150px;
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            padding: 6px;
+            gap: 3px;
+            background-color: var(--surface);
+        }
+
+        .landing-shaft-box {
+            flex: 1;
+            background-color: #111111;
+            border: 1px solid var(--surface-border);
+            border-radius: 2px;
+        }
+
+        .landing-shaft-graphic .landing-shaft-box { animation: sweepMiddle 1.2s ease-in-out forwards; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(11) { animation: sweepBottomSettle 2.6s ease-in-out forwards; animation-delay: 0.05s; }
         .landing-shaft-graphic .landing-shaft-box:nth-child(10) { animation-delay: 0.15s; }
         .landing-shaft-graphic .landing-shaft-box:nth-child(9)  { animation-delay: 0.25s; }
         .landing-shaft-graphic .landing-shaft-box:nth-child(8)  { animation-delay: 0.35s; }
@@ -23,7 +171,7 @@
         .landing-shaft-graphic .landing-shaft-box:nth-child(2)  { animation-delay: 0.95s; }
         .landing-shaft-graphic .landing-shaft-box:nth-child(1)  { animation: sweepTopGreen 1.6s ease-in-out forwards; animation-delay: 1.05s; }
 
-        @keyframes sweepGold {
+        @keyframes sweepMiddle {
             0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
             30% { background-color: var(--genre-gold); border-color: var(--genre-gold); box-shadow: 0 0 10px var(--genre-gold-glow); }
             60%, 100% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
@@ -35,38 +183,113 @@
             100% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
         }
 
-        @keyframes sweepBottomGold {
+        @keyframes sweepBottomSettle {
             0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
             15% { background-color: var(--genre-gold); border-color: var(--genre-gold); box-shadow: 0 0 10px var(--genre-gold-glow); }
             30%, 80% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
             95%, 100% { background-color: var(--genre-gold); border-color: var(--genre-gold); box-shadow: 0 0 8px var(--genre-gold-glow); }
         }
 
+        .landing-challenge-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Glowing Gold Start Button */
+        .btn-start {
+            background-color: var(--surface);
+            border: 1px solid var(--genre-gold);
+            color: var(--genre-gold);
+            padding: 12px 28px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 24px;
+            cursor: pointer;
+            box-shadow: 0 0 15px var(--genre-gold-glow);
+            transition: all 0.2s ease;
+        }
+
         .btn-start:hover {
-            background: linear-gradient(135deg, #FFE066 0%, var(--genre-gold) 100%);
+            background-color: var(--genre-gold);
             color: #000000;
             box-shadow: 0 4px 25px var(--genre-gold-glow);
         }
 
-        /* Gameplay Workspace */
+        /* Gameplay Area */
         .hud-sidebar-container { width: 100%; max-width: 600px; display: flex; align-items: stretch; gap: 12px; margin-bottom: 6px; flex-shrink: 0; }
         .tower-stack { display: flex; flex-direction: column; gap: 2px; width: 52px; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 6px; justify-content: space-between; flex-shrink: 0; }
         .tower-floor { height: 7px; border: 1px solid var(--surface-border); background: #111111; transition: all 0.2s ease; border-radius: 2px; }
-        .tower-floor.active-floor { border-color: var(--genre-gold); background: var(--genre-gold); box-shadow: 0 0 8px var(--genre-gold-glow); }
+        .tower-floor.active { border-color: var(--genre-gold); background: var(--genre-gold); box-shadow: 0 0 8px var(--genre-gold-glow); }
         .tower-floor.completed { border-color: var(--state-success); background: var(--state-success); box-shadow: 0 0 6px var(--state-success-glow); }
+        .tower-floor.failed { border-color: var(--state-error); background: var(--state-error); box-shadow: 0 0 6px var(--state-error-glow); }
         .floor-info-box { flex-grow: 1; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; }
-        .current-floor-display { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: 1px; color: var(--genre-gold); }
+        .floor-left-group { display: flex; flex-direction: column; gap: 4px; }
+        .current-floor-display { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: 1px; }
+        .floor-rule-text { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.5px; text-transform: uppercase; }
 
-        .game-layout { width: 100%; max-width: 600px; flex-grow: 1; display: flex; flex-direction: column; margin-bottom: 6px; min-height: 0; }
-        .question-card { width: 100%; height: 100%; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; }
-        .timer-wrapper { width: 100%; height: 6px; background: #111111; border: 1px solid var(--surface-border); border-radius: 3px; overflow: hidden; }
-        .timer-bar { height: 100%; width: 100%; background-color: var(--state-error); box-shadow: 0 0 10px var(--state-error-glow); transition: width 1s linear; }
-        .question-text { font-family: 'Glacial Indifference', 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 700; color: #ffffff; text-align: center; line-height: 1.4; letter-spacing: 0.5px; margin: 12px 0; }
-        .options-grid { width: 100%; display: flex; flex-direction: column; gap: 10px; }
-        .btn-option { width: 100%; background: #111111; border: 1px solid rgba(212, 175, 55, 0.35); color: var(--text-primary); font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 600; padding: 14px 16px; border-radius: 8px; cursor: pointer; text-align: left; transition: all 0.15s ease; }
-        .btn-option:hover { background: #181818; border-color: var(--genre-gold); box-shadow: 0 0 10px var(--genre-gold-glow); transform: translateY(-1px); }
-        .btn-option.selected-correct { border: 2px solid var(--state-success) !important; background-color: rgba(34, 197, 94, 0.2) !important; color: #86EFAC !important; }
-        .btn-option.selected-wrong { border: 2px solid var(--state-error) !important; background-color: rgba(239, 68, 68, 0.2) !important; color: #FCA5A5 !important; }
+        .play-card { width: 100%; max-width: 600px; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 12px; flex-grow: 1; margin-bottom: 6px; overflow: hidden; min-height: 0; }
+        #message-box { min-height: 16px; color: var(--state-error); font-weight: 700; font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; text-align: center; }
+        .question-box { width: 100%; background: #111111; border: 1px solid var(--surface-border); border-radius: 6px; padding: 12px 14px; text-align: center; box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); }
+
+        /* Sleek Montserrat Question Font */
+        .question-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 0.3px;
+            line-height: 1.35;
+        }
+
+        /* Multiple Choice Options */
+        .options-container { width: 100%; display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+        .option-btn {
+            width: 100%;
+            background: #111111;
+            border: 1px solid var(--surface-border-light);
+            border-radius: 8px;
+            padding: 12px 14px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .option-btn:hover {
+            border-color: var(--genre-gold);
+            background: #181818;
+        }
+        .option-btn.selected-correct {
+            border-color: var(--state-success);
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--state-success);
+            box-shadow: 0 0 8px var(--state-success-glow);
+        }
+        .option-btn.selected-incorrect {
+            border-color: var(--state-error);
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--state-error);
+            box-shadow: 0 0 8px var(--state-error-glow);
+        }
+
+        footer {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 4px;
+            text-align: center;
+        }
 
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.92); display: flex; align-items: center; justify-content: center; z-index: 100; }
         .modal-overlay.hidden { display: none !important; }
@@ -79,47 +302,89 @@
         .vault-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(95px, 1fr)); gap: 8px; max-height: 220px; overflow-y: auto; margin: 12px 0; }
         .vault-item-btn { background-color: #111111; border: 1px solid var(--surface-border); color: var(--text-primary); padding: 10px 6px; border-radius: 8px; cursor: pointer; text-align: center; }
         .vault-item-btn:hover { border-color: var(--genre-gold); background-color: #1a1a1a; }
-        .btn-modal { flex-grow: 1; width: 100%; background-color: #111111; border: 1px solid var(--surface-border); color: var(--text-primary); padding: 12px; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; border-radius: 24px; cursor: pointer; }
+        .btn-modal { flex-grow: 1; width: 100%; background-color: #111111; border: 1px solid var(--surface-border); color: var(--text-primary); padding: 12px; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; border-radius: 24px; cursor: pointer; margin-top: 10px; }
     </style>
 </head>
 <body class="game-questions">
 
-    <!-- Landing View -->
-    <div id="landing-screen" style="width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 100%;">
+    <div style="width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 100%;">
         <div class="top-bar">
             <a href="index.html" class="pill-btn">← LOBBY</a>
-            <button id="btn-landing-stats" class="pill-btn">STATS / ARCHIVE</button>
-            <button id="btn-sound-toggle" class="pill-btn">SOUND: ON</button>
+            <button class="pill-btn" id="btn-landing-stats">STATS / ARCHIVE</button>
+            <button class="pill-btn" id="btn-sound">SOUND: ON</button>
         </div>
 
-        <div class="game-logo-box">
-            <h1 class="game-logo-gold">11FL?</h1>
+        <!-- LANDING SCREEN (Full Gold Logo with 11FL?) -->
+        <div id="start-screen" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+            <div class="game-logo-box">
+                <h1 class="game-logo-gold">11FL?</h1>
+                <p class="game-logo-title">Eleventh Floor</p>
+                <p class="game-logo-sub">QUESTIONS</p>
+            </div>
+
+            <div class="landing-container">
+                <div class="landing-shaft-graphic">
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                </div>
+
+                <div class="landing-challenge-text">
+                    <strong>CAN YOU REACH THE 11TH FLOOR?</strong><br><br>
+                    Answer trivia questions accurately to ascend through 10 challenging floors. One mistake and you return to the ground floor.
+                </div>
+
+                <button id="start-climb-btn" class="btn-start">Start Climb</button>
+            </div>
+        </div>
+
+        <!-- GAMEPLAY HEADER (Shows only during play — Eleventh Floor QUESTIONS, NO 11FL?) -->
+        <div id="gameplay-header" class="gameplay-header-box" style="display: none;">
             <p class="game-logo-title">Eleventh Floor</p>
-            <p class="game-logo-sub" style="color: var(--genre-gold);">QUESTIONS</p>
+            <p class="game-logo-sub">QUESTIONS</p>
         </div>
 
-        <div class="landing-container">
-            <div class="landing-shaft-graphic">
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
+        <!-- Gameplay HUD Header -->
+        <div class="hud-sidebar-container" id="floor-hud-container" style="display: none;">
+            <div class="tower-stack" id="tower-stack">
+                <div class="tower-floor" data-floor="11"></div>
+                <div class="tower-floor" data-floor="10"></div>
+                <div class="tower-floor" data-floor="9"></div>
+                <div class="tower-floor" data-floor="8"></div>
+                <div class="tower-floor" data-floor="7"></div>
+                <div class="tower-floor" data-floor="6"></div>
+                <div class="tower-floor" data-floor="5"></div>
+                <div class="tower-floor" data-floor="4"></div>
+                <div class="tower-floor" data-floor="3"></div>
+                <div class="tower-floor" data-floor="2"></div>
+                <div class="tower-floor" data-floor="1"></div>
             </div>
 
-            <div class="landing-challenge-text">
-                <strong>CAN YOU REACH THE 11TH FLOOR?</strong><br><br>
-                Answer 10 tough trivia questions in a row to reach the 11th floor and create a streak.<br><br>
-                Make one mistake and you return to the ground floor.
+            <div class="floor-info-box">
+                <div class="floor-left-group">
+                    <div class="current-floor-display" id="floor-number-val"><span style="color: var(--genre-gold);">1st</span> <span style="color: #ffffff;">Floor</span></div>
+                    <div class="floor-rule-text" id="floor-rule-text">Trivia Challenge • No mistakes!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Play Card Workspace -->
+        <div id="game-workspace" class="play-card" style="display: none;">
+            <div id="message-box"></div>
+
+            <div class="question-box">
+                <div id="question-text" class="question-text">Loading question...</div>
             </div>
 
-            <button id="btn-start-climb" class="btn-start">Start Climb</button>
+            <div id="options-container" class="options-container"></div>
         </div>
 
         <footer>
@@ -127,69 +392,7 @@
         </footer>
     </div>
 
-    <!-- Active Gameplay View -->
-    <div id="game-screen" style="width: 100%; max-width: 600px; display: none; flex-direction: column; align-items: center; justify-content: space-between; height: 100%;">
-        <div class="top-bar">
-            <a href="index.html" id="btn-util-exit" class="pill-btn">← LOBBY</a>
-            <div style="text-align: center;">
-                <span style="font-family: 'Anton', sans-serif; font-size: 1.4rem; color: var(--genre-gold);">11FL?</span>
-            </div>
-            <button id="btn-sound-toggle-game" class="pill-btn">SOUND: ON</button>
-        </div>
-
-        <div class="hud-sidebar-container" id="floor-hud-container">
-            <div class="tower-stack" id="building-shaft">
-                <div class="tower-floor floor-block" data-floor="11"></div>
-                <div class="tower-floor floor-block" data-floor="10"></div>
-                <div class="tower-floor floor-block" data-floor="9"></div>
-                <div class="tower-floor floor-block" data-floor="8"></div>
-                <div class="tower-floor floor-block" data-floor="7"></div>
-                <div class="tower-floor floor-block" data-floor="6"></div>
-                <div class="tower-floor floor-block" data-floor="5"></div>
-                <div class="tower-floor floor-block" data-floor="4"></div>
-                <div class="tower-floor floor-block" data-floor="3"></div>
-                <div class="tower-floor floor-block" data-floor="2"></div>
-                <div class="tower-floor floor-block" data-floor="1"></div>
-            </div>
-
-            <div class="floor-info-box">
-                <div class="current-floor-display" id="card-floor-text">FLOOR 01</div>
-            </div>
-        </div>
-
-        <main class="game-layout">
-            <section class="question-card">
-                <div class="card-header" style="width: 100%;">
-                    <div class="timer-wrapper">
-                        <div id="timer-bar" class="timer-bar"></div>
-                    </div>
-                </div>
-
-                <div id="question-text" class="question-text">Loading Question...</div>
-
-                <div class="options-grid">
-                    <button class="btn-option"></button>
-                    <button class="btn-option"></button>
-                    <button class="btn-option"></button>
-                    <button class="btn-option"></button>
-                </div>
-            </section>
-        </main>
-    </div>
-
-    <!-- Modals -->
-    <div id="modal-game-over" class="modal-overlay hidden">
-        <div class="modal-card">
-            <h2 id="game-over-title" style="font-size: 1.2rem; font-weight: 800;">ELEVATOR STOPPED</h2>
-            <p id="game-over-message" style="margin: 8px 0; font-size: 0.85rem; color: var(--text-muted);">Incorrect Answer!</p>
-            <p id="final-floor-reached"></p>
-            <div style="display: flex; gap: 10px; margin-top: 16px;">
-                <button id="btn-try-again" class="btn-modal">TRY AGAIN</button>
-                <button id="btn-back-vault" class="btn-modal">VAULT</button>
-            </div>
-        </div>
-    </div>
-
+    <!-- Stats & Archive Vault Modal -->
     <div id="modal-vault" class="modal-overlay hidden">
         <div class="modal-card modal-large">
             <h2 style="font-size: 1.2rem; font-weight: 800;">STATS</h2>
@@ -198,15 +401,27 @@
                 <div class="stat-box"><span id="stat-wins" class="stat-val">0</span><span class="stat-lbl">Wins</span></div>
                 <div class="stat-box"><span id="stat-winrate" class="stat-val">0%</span><span class="stat-lbl">Win %</span></div>
                 <div class="stat-box"><span id="stat-streak" class="stat-val">0</span><span class="stat-lbl">Streak</span></div>
-                <div class="stat-box" style="grid-column: span 2;"><span id="stat-bestfloor" class="stat-val"></span><span class="stat-lbl">Best Peak</span></div>
+                <div class="stat-box" style="grid-column: span 2;"><span id="stat-bestfloor" class="stat-val">FL 01</span><span class="stat-lbl">Best Peak</span></div>
             </div>
 
             <h3 style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); margin-top: 12px; text-transform: uppercase;">ARCHIVE VAULT</h3>
             <div id="vault-list" class="vault-grid"></div>
-            <button id="btn-close-vault" class="btn-modal" style="margin-top: 10px;">CLOSE</button>
+            <button id="btn-close-vault" class="btn-modal">CLOSE</button>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="questions-data.js"></script>
+    <script src="questions.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const startBtn = document.getElementById('start-climb-btn');
+            const gameplayHeader = document.getElementById('gameplay-header');
+            if (startBtn && gameplayHeader) {
+                startBtn.addEventListener('click', () => {
+                    gameplayHeader.style.display = 'flex';
+                });
+            }
+        });
+    </script>
 </body>
 </html>
