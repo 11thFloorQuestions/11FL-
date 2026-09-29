@@ -1,52 +1,182 @@
 [
   {
-    "question": "Which Norwegian striker opened the scoring with a left-footed finish in Manchester City's weekend match?",
-    "options": ["Erling Haaland", "Alexander Sørloth", "Oscar Bobb", "Jørgen Strand Larsen"],
-    "answer": "Erling Haaland"
+    "floor": 1,
+    "id": "tt-f1-001",
+    "question": "Which Norwegian striker wearing Manchester City's #9 shirt broke the all-time single-season Premier League scoring record in his debut 2022–23 season after joining from Borussia Dortmund?",
+    "options": [
+      "Erling Haaland",
+      "Alexander Sørloth",
+      "Joshua King",
+      "Martin Ødegaard"
+    ],
+    "correctIndex": 0,
+    "anchorClues": {
+      "nationality": "Norwegian",
+      "squadNumber": 9,
+      "formerClub": "Borussia Dortmund",
+      "position": "Striker"
+    }
   },
   {
-    "question": "Which English winger wearing the captain's armband assisted Arsenal's opening goal from a corner on Saturday?",
-    "options": ["Bukayo Saka", "Eberechi Eze", "Jarrod Bowen", "Anthony Gordon"],
-    "answer": "Bukayo Saka"
+    "floor": 2,
+    "id": "tt-f2-001",
+    "question": "Which South Korean winger wearing shirt #7 for Tottenham Hotspur became the first Asian player to win the Premier League Golden Boot in 2021–22, scoring 23 goals without a single penalty?",
+    "options": [
+      "Park Ji-sung",
+      "Son Heung-min",
+      "Hwang Hee-chan",
+      "Ki Sung-yueng"
+    ],
+    "correctIndex": 1,
+    "anchorClues": {
+      "nationality": "South Korean",
+      "squadNumber": 7,
+      "club": "Tottenham Hotspur",
+      "position": "Winger"
+    }
   },
   {
-    "question": "Which former Bournemouth striker bagged a second-half brace for Tottenham Hotspur at the weekend?",
-    "options": ["Dominic Solanke", "Callum Wilson", "Josh King", "Antoine Semenyo"],
-    "answer": "Dominic Solanke"
+    "floor": 3,
+    "id": "tt-f3-001",
+    "question": "Which English striker wearing Leicester City's #9 jersey set a Premier League record by scoring in 11 consecutive matches during their miraculous 2015–16 title-winning season after signing from non-league Fleetwood Town?",
+    "options": [
+      "Jamie Vardy",
+      "Charlie Austin",
+      "Callum Wilson",
+      "Rickie Lambert"
+    ],
+    "correctIndex": 0,
+    "anchorClues": {
+      "nationality": "English",
+      "squadNumber": 9,
+      "formerClub": "Fleetwood Town",
+      "position": "Striker"
+    }
   },
   {
-    "question": "Which Dutch defender received a straight red card for a late challenge in Liverpool's away fixture?",
-    "options": ["Virgil van Dijk", "Nathan Aké", "Micky van de Ven", "Santamaria"],
-    "answer": "Virgil van Dijk"
+    "floor": 4,
+    "id": "tt-f4-001",
+    "question": "Which French forward wearing shirt #14 scored 30 league goals to power Arsenal through their unbeaten 38-game 'Invincibles' Premier League campaign in 2003–04?",
+    "options": [
+      "Nicolas Anelka",
+      "Sylvain Wiltord",
+      "Thierry Henry",
+      "Robert Pires"
+    ],
+    "correctIndex": 2,
+    "anchorClues": {
+      "nationality": "French",
+      "squadNumber": 14,
+      "club": "Arsenal",
+      "position": "Forward"
+    }
   },
   {
-    "question": "Which No. 10 playmaker scored Aston Villa's equalizer with a curling effort from outside the box?",
-    "options": ["Morgan Rogers", "Emi Buendía", "Jacob Ramsey", "John McGinn"],
-    "answer": "Morgan Rogers"
+    "floor": 5,
+    "id": "tt-f5-001",
+    "question": "Which Czech goalkeeper wearing shirt #1 set the single-season Premier League record by keeping 24 clean sheets for Chelsea during their 2004–05 title-winning campaign?",
+    "options": [
+      "Petr Čech",
+      "Carlo Cudicini",
+      "Mark Schwarzer",
+      "Edwin van der Sar"
+    ],
+    "correctIndex": 0,
+    "anchorClues": {
+      "nationality": "Czech",
+      "squadNumber": 1,
+      "club": "Chelsea",
+      "position": "Goalkeeper"
+    }
   },
   {
-    "question": "Which Brazilian midfielder completed 12 ground duels and made 5 tackles in Newcastle's weekend victory?",
-    "options": ["Bruno Guimarães", "Joelinton", "Casemiro", "Lucas Paquetá"],
-    "answer": "Bruno Guimarães"
+    "floor": 6,
+    "id": "tt-f6-001",
+    "question": "Which English defensive midfielder, who wore shirt #18 at Aston Villa and #23 at Manchester City before stints at Everton and West Bromwich Albion, holds the all-time Premier League record with 653 appearances?",
+    "options": [
+      "James Milner",
+      "Gareth Barry",
+      "Frank Lampard",
+      "Gary Speed"
+    ],
+    "correctIndex": 1,
+    "anchorClues": {
+      "nationality": "English",
+      "squadNumbers": [18, 23],
+      "clubs": ["Aston Villa", "Manchester City", "Everton", "West Bromwich Albion"],
+      "position": "Defensive Midfielder"
+    }
   },
   {
-    "question": "Which German international goalkeeper recorded his 4th clean sheet of the season for Brighton at home?",
-    "options": ["Bart Verbruggen", "Bernd Leno", "Stefan Ortega", "Jason Steele"],
-    "answer": "Bart Verbruggen"
+    "floor": 7,
+    "id": "tt-f7-001",
+    "question": "Which Norwegian striker wearing Manchester United's #20 shirt famously came off the bench in the 72nd minute to score four goals in an 8–1 away win over Nottingham Forest in February 1999?",
+    "options": [
+      "Henrik Larsson",
+      "Tore André Flo",
+      "Ole Gunnar Solskjær",
+      "Steffen Iversen"
+    ],
+    "correctIndex": 2,
+    "anchorClues": {
+      "nationality": "Norwegian",
+      "squadNumber": 20,
+      "club": "Manchester United",
+      "position": "Striker"
+    }
   },
   {
-    "question": "Which former Lille midfielder was substituted at half-time after picking up a booking for Everton?",
-    "options": ["Tim Iroegbunam", "Amadou Onana", "Idrissa Gueye", "Abdoulaye Doucouré"],
-    "answer": "Tim Iroegbunam"
+    "floor": 8,
+    "id": "tt-f8-001",
+    "question": "Which English striker wearing Tottenham Hotspur's #10 shirt—who previously scored prolifically for QPR (#9) and Newcastle United (#9)—scored the landmark 10,000th Premier League goal against Fulham in December 2001?",
+    "options": [
+      "Les Ferdinand",
+      "Teddy Sheringham",
+      "Robbie Fowler",
+      "Dion Dublin"
+    ],
+    "correctIndex": 0,
+    "anchorClues": {
+      "nationality": "English",
+      "squadNumbers": [10, 9],
+      "clubs": ["Tottenham Hotspur", "QPR", "Newcastle United"],
+      "position": "Striker"
+    }
   },
   {
-    "question": "Which Spanish full-back reached his 150th Premier League appearance during Chelsea's derby win?",
-    "options": ["Marc Cucurella", "Pedro Porro", "Emerson Palmieri", "Alex Moreno"],
-    "answer": "Marc Cucurella"
+    "floor": 9,
+    "id": "tt-f9-001",
+    "question": "Which Senegalese winger wearing Southampton's #10 shirt set the record for the fastest hat-trick in Premier League history (2 minutes 56 seconds) during a 6–1 victory over Aston Villa in May 2015?",
+    "options": [
+      "El Hadji Diouf",
+      "Sadio Mané",
+      "Demba Ba",
+      "Ismaïla Sarr"
+    ],
+    "correctIndex": 1,
+    "anchorClues": {
+      "nationality": "Senegalese",
+      "squadNumber": 10,
+      "club": "Southampton",
+      "position": "Winger"
+    }
   },
   {
-    "question": "Which Danish center-back won 9 aerial duels and completed 87 passes without committing a foul for Fulham?",
-    "options": ["Joachim Andersen", "Jannik Vestergaard", "Victor Kristiansen", "Rasmus Kristensen"],
-    "answer": "Joachim Andersen"
+    "floor": 10,
+    "id": "tt-f10-001",
+    "question": "Which English striker wearing Sheffield United's #9 shirt scored the inaugural goal in Premier League history, netting in the 5th minute against Manchester United at Bramall Lane on August 15, 1992?",
+    "options": [
+      "Brian Deane",
+      "Alan Cork",
+      "Tony Agana",
+      "Mick Harford"
+    ],
+    "correctIndex": 0,
+    "anchorClues": {
+      "nationality": "English",
+      "squadNumber": 9,
+      "club": "Sheffield United",
+      "position": "Striker"
+    }
   }
 ]
