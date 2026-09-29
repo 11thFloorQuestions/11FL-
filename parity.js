@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const startScreen = document.getElementById('start-screen');
     const startClimbBtn = document.getElementById('start-climb-btn');
+    const gameplayHeader = document.getElementById('gameplay-header');
     const hudContainer = document.getElementById('floor-hud-container');
     const gameWorkspace = document.getElementById('game-workspace');
 
@@ -66,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         startScreen.style.display = 'none';
+        gameplayHeader.style.display = 'flex';
         hudContainer.style.display = 'flex';
         gameWorkspace.style.display = 'flex';
 
@@ -107,11 +109,21 @@ document.addEventListener('DOMContentLoaded', () => {
             [deck[i], deck[j]] = [deck[j], deck[i]];
         }
 
-        // Configure CSS grid columns based on tile count
+        // Configure optimal column counts for screen fitting
         const count = deck.length;
-        if (count <= 4) parityGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-        else if (count <= 12) parityGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
-        else parityGrid.style.gridTemplateColumns = 'repeat(4, 1fr)';
+        if (count <= 4) {
+            parityGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+            parityGrid.style.gap = '8px';
+        } else if (count <= 12) {
+            parityGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
+            parityGrid.style.gap = '6px';
+        } else if (count <= 16) {
+            parityGrid.style.gridTemplateColumns = 'repeat(4, 1fr)';
+            parityGrid.style.gap = '5px';
+        } else {
+            parityGrid.style.gridTemplateColumns = 'repeat(5, 1fr)';
+            parityGrid.style.gap = '4px';
+        }
 
         deck.forEach((iconKey, index) => {
             const tile = document.createElement('div');
