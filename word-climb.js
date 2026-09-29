@@ -176,12 +176,14 @@ async function loadVaultArchive(paddedId) {
         wheelLetters = [...initialDailyWheel];
 
         const startScreen = document.getElementById("start-screen");
+        const gameplayHeader = document.getElementById("gameplay-header");
         const gameWorkspace = document.getElementById("game-workspace");
         const hudContainer = document.getElementById("floor-hud-container");
         const gameControls = document.getElementById("game-controls");
         const vaultModal = document.getElementById("modal-vault");
 
         if (startScreen) startScreen.style.display = "none";
+        if (gameplayHeader) gameplayHeader.style.display = "flex";
         if (hudContainer) hudContainer.style.display = "flex";
         if (gameWorkspace) gameWorkspace.style.display = "flex";
         if (gameControls) gameControls.style.display = "flex";
@@ -195,11 +197,13 @@ async function loadVaultArchive(paddedId) {
 
 function launchGameWorkspace() {
     const startScreen = document.getElementById("start-screen");
+    const gameplayHeader = document.getElementById("gameplay-header");
     const gameWorkspace = document.getElementById("game-workspace");
     const hudContainer = document.getElementById("floor-hud-container");
     const gameControls = document.getElementById("game-controls");
 
     if (startScreen) startScreen.style.display = "none";
+    if (gameplayHeader) gameplayHeader.style.display = "flex";
     if (hudContainer) hudContainer.style.display = "flex";
     if (gameWorkspace) gameWorkspace.style.display = "flex";
     if (gameControls) gameControls.style.display = "flex";
