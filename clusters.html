@@ -25,7 +25,7 @@
 
         @keyframes sweepMiddle {
             0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
-            30% { background-color: var(--genre-red); border-color: var(--genre-red); box-shadow: 0 0 10px var(--genre-red-glow); }
+            30% { background-color: var(--genre-orange); border-color: var(--genre-orange); box-shadow: 0 0 10px var(--genre-orange-glow); }
             60%, 100% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
         }
 
@@ -37,27 +37,27 @@
 
         @keyframes sweepBottomSettle {
             0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
-            15% { background-color: var(--genre-red); border-color: var(--genre-red); box-shadow: 0 0 10px var(--genre-red-glow); }
+            15% { background-color: var(--genre-orange); border-color: var(--genre-orange); box-shadow: 0 0 10px var(--genre-orange-glow); }
             30%, 80% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
-            95%, 100% { background-color: var(--genre-red); border-color: var(--genre-red); box-shadow: 0 0 8px var(--genre-red-glow); }
+            95%, 100% { background-color: var(--genre-orange); border-color: var(--genre-orange); box-shadow: 0 0 8px var(--genre-orange-glow); }
         }
 
         .btn-start:hover {
-            background-color: var(--genre-red);
+            background-color: var(--genre-orange);
             color: #ffffff;
-            box-shadow: 0 4px 25px var(--genre-red-glow);
+            box-shadow: 0 4px 25px var(--genre-orange-glow);
         }
 
         /* Gameplay Area */
         .hud-sidebar-container { width: 100%; max-width: 600px; display: flex; align-items: stretch; gap: 12px; margin-bottom: 12px; }
         .tower-stack { display: flex; flex-direction: column-reverse; gap: 2px; width: 52px; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 6px; justify-content: space-between; }
         .tower-floor { height: 7px; border: 1px solid var(--surface-border); background: #111111; transition: all 0.2s ease; border-radius: 2px; }
-        .tower-floor.active { border-color: var(--genre-red); background: rgba(255, 31, 45, 0.3); box-shadow: 0 0 6px var(--genre-red-glow); }
+        .tower-floor.active { border-color: var(--genre-orange); background: rgba(255, 117, 31, 0.3); box-shadow: 0 0 6px var(--genre-orange-glow); }
         .floor-info-box { flex-grow: 1; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; }
-        .current-floor-display { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: 1px; color: var(--genre-red); }
+        .current-floor-display { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: 1px; color: var(--genre-orange); }
 
         .lives-container { display: flex; gap: 5px; }
-        .life-pip { width: 8px; height: 8px; background-color: var(--genre-red); border-radius: 50%; box-shadow: 0 0 6px var(--genre-red-glow); transition: all 0.2s ease; }
+        .life-pip { width: 8px; height: 8px; background-color: var(--genre-orange); border-radius: 50%; box-shadow: 0 0 6px var(--genre-orange-glow); transition: all 0.2s ease; }
         .life-pip.lost { background-color: #222222; box-shadow: none; }
 
         main { width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center; flex-grow: 1; justify-content: center; }
@@ -71,21 +71,21 @@
         .grid-col-3 { grid-template-columns: repeat(3, 1fr); }
         .grid-col-4 { grid-template-columns: repeat(4, 1fr); }
         .cluster-tile { background-color: #0f0f0f; border: 1px solid var(--surface-border); color: var(--text-primary); font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; padding: 16px 8px; text-align: center; cursor: pointer; transition: all 0.15s ease; display: flex; align-items: center; justify-content: center; min-height: 55px; border-radius: 8px; }
-        .cluster-tile:hover { background-color: #1a1a1a; border-color: var(--genre-red); }
-        .cluster-tile.selected { background-color: var(--genre-red); color: #000000; border-color: var(--genre-red); box-shadow: 0 0 15px var(--genre-red-glow); }
+        .cluster-tile:hover { background-color: #1a1a1a; border-color: var(--genre-orange); }
+        .cluster-tile.selected { background-color: var(--genre-orange); color: #000000; border-color: var(--genre-orange); box-shadow: 0 0 15px var(--genre-orange-glow); }
         .cluster-tile.success { background-color: var(--state-success) !important; color: #000000 !important; border-color: var(--state-success) !important; box-shadow: 0 0 20px var(--state-success-glow) !important; }
 
         .action-panel { width: 100%; max-width: 600px; display: flex; gap: 12px; justify-content: center; }
-        .btn { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; padding: 12px 20px; cursor: pointer; border: 2px solid var(--genre-red); border-radius: 8px; transition: all 0.2s ease; }
+        .btn { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; padding: 12px 20px; cursor: pointer; border: 2px solid var(--genre-orange); border-radius: 8px; transition: all 0.2s ease; }
         .btn-secondary { background: transparent; color: var(--text-muted); border-color: var(--surface-border); }
         .btn-secondary:hover { color: var(--text-primary); border-color: var(--text-muted); }
-        .btn-primary { background: var(--genre-red); color: #000000; border-color: var(--genre-red); }
-        .btn-primary:hover { background: transparent; color: var(--genre-red); box-shadow: 0 0 20px var(--genre-red-glow); }
+        .btn-primary { background: var(--genre-orange); color: #000000; border-color: var(--genre-orange); }
+        .btn-primary:hover { background: transparent; color: var(--genre-orange); box-shadow: 0 0 20px var(--genre-orange-glow); }
         .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none !important; }
 
-        #penalty-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(255, 31, 45, 0.2); pointer-events: none; opacity: 0; transition: opacity 0.2s ease; z-index: 999; }
+        #penalty-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(255, 117, 31, 0.2); pointer-events: none; opacity: 0; transition: opacity 0.2s ease; z-index: 999; }
         #penalty-overlay.flash { opacity: 1; }
-        #status-message { min-height: 20px; color: var(--genre-red); font-weight: 700; margin-bottom: 4px; }
+        #status-message { min-height: 20px; color: var(--genre-orange); font-weight: 700; margin-bottom: 4px; }
     </style>
 </head>
 <body>
@@ -99,9 +99,9 @@
         </div>
 
         <div class="game-logo-box">
-            <h1 class="game-logo-red">11FL?</h1>
+            <h1 class="game-logo-orange">11FL?</h1>
             <p class="game-logo-title">Eleventh Floor</p>
-            <p class="game-logo-sub" style="color: var(--text-muted);">CLUSTERS</p>
+            <p class="game-logo-sub" style="color: var(--genre-orange);">CLUSTERS</p>
         </div>
 
         <!-- Standardized Landing Screen -->
