@@ -2,181 +2,167 @@
   {
     "floor": 1,
     "id": "tt-f1-001",
-    "question": "Which Norwegian striker wearing Manchester City's #9 shirt broke the all-time single-season Premier League scoring record in his debut 2022–23 season after joining from Borussia Dortmund?",
+    "question": "In 2022–23, Erling Haaland set the record for most goals in a 38-game Premier League season. Whose 32-goal record did he break?",
     "options": [
-      "Erling Haaland",
-      "Alexander Sørloth",
-      "Joshua King",
-      "Martin Ødegaard"
+      "Mohamed Salah",
+      "Luis Suárez",
+      "Cristiano Ronaldo",
+      "Sergio Agüero"
     ],
     "correctIndex": 0,
     "anchorClues": {
-      "nationality": "Norwegian",
-      "squadNumber": 9,
-      "formerClub": "Borussia Dortmund",
-      "position": "Striker"
+      "season": "2022-23",
+      "record": "Most goals in a 38-game PL season",
+      "previousRecordHolder": "Mohamed Salah (32)"
     }
   },
   {
     "floor": 2,
     "id": "tt-f2-001",
-    "question": "Which South Korean winger wearing shirt #7 for Tottenham Hotspur became the first Asian player to win the Premier League Golden Boot in 2021–22, scoring 23 goals without a single penalty?",
+    "question": "During Leicester City's 2015–16 title campaign, Jamie Vardy set a record by scoring in how many consecutive Premier League matches?",
     "options": [
-      "Park Ji-sung",
-      "Son Heung-min",
-      "Hwang Hee-chan",
-      "Ki Sung-yueng"
+      "11",
+      "10",
+      "12",
+      "13"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "anchorClues": {
-      "nationality": "South Korean",
-      "squadNumber": 7,
-      "club": "Tottenham Hotspur",
-      "position": "Winger"
+      "club": "Leicester City",
+      "season": "2015-16",
+      "stat": "Consecutive scoring streak record"
     }
   },
   {
     "floor": 3,
     "id": "tt-f3-001",
-    "question": "Which English striker wearing Leicester City's #9 jersey set a Premier League record by scoring in 11 consecutive matches during their miraculous 2015–16 title-winning season after signing from non-league Fleetwood Town?",
+    "question": "Who shared the 2021–22 Premier League Golden Boot alongside Son Heung-min after both finished on 23 goals?",
     "options": [
-      "Jamie Vardy",
-      "Charlie Austin",
-      "Callum Wilson",
-      "Rickie Lambert"
+      "Mohamed Salah",
+      "Harry Kane",
+      "Sadio Mané",
+      "Cristiano Ronaldo"
     ],
     "correctIndex": 0,
     "anchorClues": {
-      "nationality": "English",
-      "squadNumber": 9,
-      "formerClub": "Fleetwood Town",
-      "position": "Striker"
+      "season": "2021-22",
+      "award": "Joint Golden Boot winner with Son Heung-min"
     }
   },
   {
     "floor": 4,
     "id": "tt-f4-001",
-    "question": "Which French forward wearing shirt #14 scored 30 league goals to power Arsenal through their unbeaten 38-game 'Invincibles' Premier League campaign in 2003–04?",
+    "question": "Chelsea conceded an all-time record low of just 15 goals in 2004–05. How many clean sheets did Petr Čech keep that season?",
     "options": [
-      "Nicolas Anelka",
-      "Sylvain Wiltord",
-      "Thierry Henry",
-      "Robert Pires"
+      "24",
+      "21",
+      "26",
+      "20"
     ],
-    "correctIndex": 2,
+    "correctIndex": 0,
     "anchorClues": {
-      "nationality": "French",
-      "squadNumber": 14,
-      "club": "Arsenal",
-      "position": "Forward"
+      "club": "Chelsea",
+      "season": "2004-05",
+      "record": "Single-season clean sheet record"
     }
   },
   {
     "floor": 5,
     "id": "tt-f5-001",
-    "question": "Which Czech goalkeeper wearing shirt #1 set the single-season Premier League record by keeping 24 clean sheets for Chelsea during their 2004–05 title-winning campaign?",
+    "question": "In May 2018, Gabriel Jesus scored a 94th-minute winner on the final day to secure Manchester City's record 100 points. Against which team?",
     "options": [
-      "Petr Čech",
-      "Carlo Cudicini",
-      "Mark Schwarzer",
-      "Edwin van der Sar"
+      "Southampton",
+      "Brighton",
+      "West Ham",
+      "Swansea City"
     ],
     "correctIndex": 0,
     "anchorClues": {
-      "nationality": "Czech",
-      "squadNumber": 1,
-      "club": "Chelsea",
-      "position": "Goalkeeper"
+      "event": "Centurions 100th point goal",
+      "season": "2017-18 final day",
+      "scorer": "Gabriel Jesus"
     }
   },
   {
     "floor": 6,
     "id": "tt-f6-001",
-    "question": "Which English defensive midfielder, who wore shirt #18 at Aston Villa and #23 at Manchester City before stints at Everton and West Bromwich Albion, holds the all-time Premier League record with 653 appearances?",
+    "question": "Sadio Mané scored the fastest hat-trick in Premier League history (2m 56s) for Southampton in 2015. Which club did he score it against?",
     "options": [
-      "James Milner",
-      "Gareth Barry",
-      "Frank Lampard",
-      "Gary Speed"
+      "Aston Villa",
+      "Sunderland",
+      "Newcastle United",
+      "Everton"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "anchorClues": {
-      "nationality": "English",
-      "squadNumbers": [18, 23],
-      "clubs": ["Aston Villa", "Manchester City", "Everton", "West Bromwich Albion"],
-      "position": "Defensive Midfielder"
+      "record": "Fastest PL hat-trick",
+      "formerClub": "Southampton",
+      "year": 2015
     }
   },
   {
     "floor": 7,
     "id": "tt-f7-001",
-    "question": "Which Norwegian striker wearing Manchester United's #20 shirt famously came off the bench in the 72nd minute to score four goals in an 8–1 away win over Nottingham Forest in February 1999?",
+    "question": "Ole Gunnar Solskjær famously scored 4 goals in 18 minutes off the bench for Man United against Nottingham Forest in 1999. What was the final score?",
     "options": [
-      "Henrik Larsson",
-      "Tore André Flo",
-      "Ole Gunnar Solskjær",
-      "Steffen Iversen"
+      "8–1",
+      "7–0",
+      "6–1",
+      "8–2"
     ],
-    "correctIndex": 2,
+    "correctIndex": 0,
     "anchorClues": {
-      "nationality": "Norwegian",
-      "squadNumber": 20,
-      "club": "Manchester United",
-      "position": "Striker"
+      "match": "Nottingham Forest vs Man Utd 1999",
+      "feat": "Solskjaer 4 goals as sub"
     }
   },
   {
     "floor": 8,
     "id": "tt-f8-001",
-    "question": "Which English striker wearing Tottenham Hotspur's #10 shirt—who previously scored prolifically for QPR (#9) and Newcastle United (#9)—scored the landmark 10,000th Premier League goal against Fulham in December 2001?",
+    "question": "Who scored the very first goal in Premier League history on August 15, 1992, playing for Sheffield United against Manchester United?",
     "options": [
-      "Les Ferdinand",
+      "Brian Deane",
+      "Alan Shearer",
       "Teddy Sheringham",
-      "Robbie Fowler",
-      "Dion Dublin"
+      "Les Ferdinand"
     ],
     "correctIndex": 0,
     "anchorClues": {
-      "nationality": "English",
-      "squadNumbers": [10, 9],
-      "clubs": ["Tottenham Hotspur", "QPR", "Newcastle United"],
-      "position": "Striker"
+      "milestone": "Inaugural Premier League goal",
+      "date": "August 15, 1992",
+      "match": "Sheffield United vs Man Utd"
     }
   },
   {
     "floor": 9,
     "id": "tt-f9-001",
-    "question": "Which Senegalese winger wearing Southampton's #10 shirt set the record for the fastest hat-trick in Premier League history (2 minutes 56 seconds) during a 6–1 victory over Aston Villa in May 2015?",
+    "question": "Who is the only player in Premier League history to score goals for six different London clubs?",
     "options": [
-      "El Hadji Diouf",
-      "Sadio Mané",
-      "Demba Ba",
-      "Ismaïla Sarr"
+      "Les Ferdinand",
+      "Nicolas Anelka",
+      "Darren Bent",
+      "Jermain Defoe"
     ],
-    "correctIndex": 1,
+    "correctIndex": 0,
     "anchorClues": {
-      "nationality": "Senegalese",
-      "squadNumber": 10,
-      "club": "Southampton",
-      "position": "Winger"
+      "record": "Scored for 6 London PL clubs",
+      "clubs": ["West Ham", "Tottenham", "Portsmouth", "Charlton", "Fulham", "QPR"]
     }
   },
   {
     "floor": 10,
     "id": "tt-f10-001",
-    "question": "Which English striker wearing Sheffield United's #9 shirt scored the inaugural goal in Premier League history, netting in the 5th minute against Manchester United at Bramall Lane on August 15, 1992?",
+    "question": "In a November 2012 match against Liverpool, who became the only player to score a goal, provide an assist, and score an own goal in the same Premier League game?",
     "options": [
-      "Brian Deane",
-      "Alan Cork",
-      "Tony Agana",
-      "Mick Harford"
+      "Gareth Bale",
+      "Wayne Rooney",
+      "James Milner",
+      "Kevin Davies"
     ],
     "correctIndex": 0,
     "anchorClues": {
-      "nationality": "English",
-      "squadNumber": 9,
-      "club": "Sheffield United",
-      "position": "Striker"
+      "match": "Tottenham vs Liverpool, Nov 2012",
+      "feat": "Goal, assist, and own-goal in same match"
     }
   }
 ]
