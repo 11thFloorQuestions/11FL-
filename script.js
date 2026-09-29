@@ -107,7 +107,7 @@ const floorMessageBatches = [
     [
         "The climb begins — take your time.",
         "Wrong answer sends you back down!",
-        "3rd Floor cleared — smooth sailing.",
+        "3rd Floor reached — smooth sailing.",
         "Stay cool under pressure.",
         "Halfway to victory!",
         "Step by step — pure focus.",
