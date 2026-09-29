@@ -4,230 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>11th Floor Questions — Daily Trivia</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/glacial-indifference" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <style>
-        :root {
-            --bg-deep: #000000;
-            --surface: #0a0a0a;
-            --surface-border: #222222;
-
-            /* Metallic Gold Palette for Knowledge & Trivia */
-            --genre-gold: #D4AF37;
-            --genre-gold-light: #FFE066;
-            --genre-gold-dark: #997A15;
-            --genre-gold-glow: rgba(212, 175, 55, 0.35);
-
-            /* Gameplay Functional Feedback States */
-            --timer-red: #EF4444;          /* Red: Timer bar */
-            --timer-red-glow: rgba(239, 68, 68, 0.4);
-            --state-error: #EF4444;        /* Red: Wrong answer, timeout */
-            --state-error-glow: rgba(239, 68, 68, 0.3);
-            --state-success: #22C55E;      /* Green: Correct answer, victory */
-            --state-success-glow: rgba(34, 197, 94, 0.3);
-
-            --text-primary: #ffffff;
-            --text-muted: #888888;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        html, body {
-            height: 100vh;
-            height: 100dvh;
-            overflow: hidden;
-        }
-
-        body {
-            background-color: var(--bg-deep);
-            color: var(--text-primary);
-            font-family: 'Montserrat', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 16px;
-        }
-
-        .screen-container {
-            width: 100%;
-            max-width: 600px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100%;
-            justify-content: space-between;
-        }
-
-        /* Top Navigation Header */
-        .header-nav {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 6px;
-            flex-shrink: 0;
-        }
-
-        .header-game {
-            display: grid;
-            grid-template-columns: 80px 1fr 80px;
-            align-items: center;
-        }
-
-        .header-brand-center {
-            text-align: center;
-        }
-
-        .btn-nav {
-            background: transparent;
-            border: 1px solid var(--surface-border);
-            color: var(--text-muted);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            padding: 6px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-nav:hover {
-            border-color: var(--text-primary);
-            color: var(--text-primary);
-            background: var(--surface);
-        }
-
-        /* Metallic Gold Branding Logos */
-        .logo-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 8px;
-            text-align: center;
-            flex-shrink: 0;
-        }
-
-        .logo-gold {
-            font-family: 'Anton', sans-serif;
-            font-size: 3.2rem;
-            font-weight: 400;
-            background: linear-gradient(135deg, var(--genre-gold-light) 0%, var(--genre-gold) 50%, var(--genre-gold-dark) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 0.85;
-            letter-spacing: -1px;
-            filter: drop-shadow(0 0 12px var(--genre-gold-glow));
-            margin-bottom: 4px;
-        }
-
-        .logo-gold-small {
-            font-family: 'Anton', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 400;
-            background: linear-gradient(135deg, var(--genre-gold-light) 0%, var(--genre-gold) 50%, var(--genre-gold-dark) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 0.85;
-            filter: drop-shadow(0 0 8px var(--genre-gold-glow));
-        }
-
-        .logo-subtitle {
-            font-family: 'Glacial Indifference', 'Montserrat', sans-serif !important;
-            font-size: 1rem;
-            font-weight: 300;
-            color: #ffffff;
-            letter-spacing: 1.5px;
-            margin-bottom: 2px;
-        }
-
-        .logo-subtitle-small {
-            font-family: 'Glacial Indifference', 'Montserrat', sans-serif;
-            font-size: 0.65rem;
-            font-weight: 300;
-            color: #ffffff;
-            letter-spacing: 1px;
-        }
-
-        .logo-tagline {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.6rem;
-            font-weight: 600;
-            color: var(--genre-gold);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
-
-        .logo-tagline-small {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.5rem;
-            font-weight: 600;
-            color: var(--genre-gold);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        /* Landing Screen Layout */
-        .landing-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 16px;
-            padding: 20px 16px;
-            width: 100%;
-            background: var(--surface);
-            border: 1px solid var(--surface-border);
-            border-radius: 8px;
-            margin-top: 6px;
-        }
-
-        .lobby-shaft-graphic {
-            display: flex;
-            flex-direction: column;
-            width: 52px;
-            height: 150px;
-            border: 1px solid var(--surface-border);
-            border-radius: 8px;
-            padding: 6px;
-            gap: 3px;
-            background-color: var(--surface);
-        }
-
-        .shaft-box {
-            flex: 1;
-            background-color: #111111;
-            border: 1px solid var(--surface-border);
-            border-radius: 2px;
-            animation: sweepGold 1.2s ease-in-out forwards;
-        }
-
-        .lobby-shaft-graphic .shaft-box:nth-child(11) { animation: sweepBottomGold 2.6s ease-in-out forwards; animation-delay: 0.05s; }
-        .lobby-shaft-graphic .shaft-box:nth-child(10) { animation-delay: 0.15s; }
-        .lobby-shaft-graphic .shaft-box:nth-child(9)  { animation-delay: 0.25s; }
-        .lobby-shaft-graphic .shaft-box:nth-child(8)  { animation-delay: 0.35s; }
-        .lobby-shaft-graphic .shaft-box:nth-child(7)  { animation-delay: 0.45s; }
-        .lobby-shaft-graphic .shaft-box:nth-child(6)  { animation-delay: 0.55s; }
-        .lobby-shaft-graphic .shaft-box:nth-child(5)  { animation-delay: 0.65s; }
-        .lobby-shaft-graphic .shaft-box:nth-child(4)  { animation-delay: 0.75s; }
-        .lobby-shaft-graphic .shaft-box:nth-child(3)  { animation-delay: 0.85s; }
-        .lobby-shaft-graphic .shaft-box:nth-child(2)  { animation-delay: 0.95s; }
-        .lobby-shaft-graphic .shaft-box:nth-child(1)  { animation: sweepTopGreen 1.6s ease-in-out forwards; animation-delay: 1.05s; }
+        .landing-shaft-graphic .landing-shaft-box { animation: sweepGold 1.2s ease-in-out forwards; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(11) { animation: sweepBottomGold 2.6s ease-in-out forwards; animation-delay: 0.05s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(10) { animation-delay: 0.15s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(9)  { animation-delay: 0.25s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(8)  { animation-delay: 0.35s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(7)  { animation-delay: 0.45s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(6)  { animation-delay: 0.55s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(5)  { animation-delay: 0.65s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(4)  { animation-delay: 0.75s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(3)  { animation-delay: 0.85s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(2)  { animation-delay: 0.95s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(1)  { animation: sweepTopGreen 1.6s ease-in-out forwards; animation-delay: 1.05s; }
 
         @keyframes sweepGold {
             0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
@@ -248,433 +42,101 @@
             95%, 100% { background-color: var(--genre-gold); border-color: var(--genre-gold); box-shadow: 0 0 8px var(--genre-gold-glow); }
         }
 
-        .lobby-tagline {
-            font-family: 'Glacial Indifference', 'Montserrat', sans-serif !important;
-            font-size: 0.85rem;
-            font-weight: 400;
-            color: var(--text-muted);
-            line-height: 1.6;
-            letter-spacing: 0.5px;
-            max-width: 320px;
-            text-transform: uppercase;
-        }
-
-        .lobby-tagline strong {
-            font-family: 'Glacial Indifference', 'Montserrat', sans-serif !important;
-            color: #ffffff;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-        }
-
-        .btn-start-climb {
-            background-color: #ffffff;
-            color: #000000;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            padding: 12px 36px;
-            border-radius: 30px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-start-climb:hover {
-            background: linear-gradient(135deg, var(--genre-gold-light) 0%, var(--genre-gold) 100%);
+        .btn-start:hover {
+            background: linear-gradient(135deg, #FFE066 0%, var(--genre-gold) 100%);
             color: #000000;
             box-shadow: 0 4px 25px var(--genre-gold-glow);
         }
 
-        /* Gameplay HUD Header */
-        .hud-sidebar-container {
-            width: 100%;
-            display: flex;
-            align-items: stretch;
-            gap: 12px;
-            margin-bottom: 6px;
-            flex-shrink: 0;
-        }
+        /* Gameplay Workspace */
+        .hud-sidebar-container { width: 100%; max-width: 600px; display: flex; align-items: stretch; gap: 12px; margin-bottom: 6px; flex-shrink: 0; }
+        .tower-stack { display: flex; flex-direction: column; gap: 2px; width: 52px; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 6px; justify-content: space-between; flex-shrink: 0; }
+        .tower-floor { height: 7px; border: 1px solid var(--surface-border); background: #111111; transition: all 0.2s ease; border-radius: 2px; }
+        .tower-floor.active-floor { border-color: var(--genre-gold); background: var(--genre-gold); box-shadow: 0 0 8px var(--genre-gold-glow); }
+        .tower-floor.completed { border-color: var(--state-success); background: var(--state-success); box-shadow: 0 0 6px var(--state-success-glow); }
+        .floor-info-box { flex-grow: 1; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; }
+        .current-floor-display { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: 1px; color: var(--genre-gold); }
 
-        .tower-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            width: 52px;
-            background: var(--surface);
-            border: 1px solid var(--surface-border);
-            border-radius: 8px;
-            padding: 6px;
-            justify-content: space-between;
-            flex-shrink: 0;
-        }
+        .game-layout { width: 100%; max-width: 600px; flex-grow: 1; display: flex; flex-direction: column; margin-bottom: 6px; min-height: 0; }
+        .question-card { width: 100%; height: 100%; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; }
+        .timer-wrapper { width: 100%; height: 6px; background: #111111; border: 1px solid var(--surface-border); border-radius: 3px; overflow: hidden; }
+        .timer-bar { height: 100%; width: 100%; background-color: var(--state-error); box-shadow: 0 0 10px var(--state-error-glow); transition: width 1s linear; }
+        .question-text { font-family: 'Glacial Indifference', 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 700; color: #ffffff; text-align: center; line-height: 1.4; letter-spacing: 0.5px; margin: 12px 0; }
+        .options-grid { width: 100%; display: flex; flex-direction: column; gap: 10px; }
+        .btn-option { width: 100%; background: #111111; border: 1px solid rgba(212, 175, 55, 0.35); color: var(--text-primary); font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 600; padding: 14px 16px; border-radius: 8px; cursor: pointer; text-align: left; transition: all 0.15s ease; }
+        .btn-option:hover { background: #181818; border-color: var(--genre-gold); box-shadow: 0 0 10px var(--genre-gold-glow); transform: translateY(-1px); }
+        .btn-option.selected-correct { border: 2px solid var(--state-success) !important; background-color: rgba(34, 197, 94, 0.2) !important; color: #86EFAC !important; }
+        .btn-option.selected-wrong { border: 2px solid var(--state-error) !important; background-color: rgba(239, 68, 68, 0.2) !important; color: #FCA5A5 !important; }
 
-        .tower-floor {
-            height: 7px;
-            border: 1px solid var(--surface-border);
-            background: #111111;
-            transition: all 0.2s ease;
-            border-radius: 2px;
-        }
-
-        .tower-floor.active-floor {
-            border-color: var(--genre-gold);
-            background: var(--genre-gold);
-            box-shadow: 0 0 8px var(--genre-gold-glow);
-        }
-
-        .tower-floor.completed {
-            border-color: var(--state-success);
-            background: var(--state-success);
-            box-shadow: 0 0 6px var(--state-success-glow);
-        }
-
-        .floor-info-box {
-            flex-grow: 1;
-            background: var(--surface);
-            border: 1px solid var(--surface-border);
-            border-radius: 8px;
-            padding: 10px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .current-floor-display {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-
-        /* Central Question Workspace */
-        .game-layout {
-            width: 100%;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 6px;
-            min-height: 0;
-        }
-
-        .question-card {
-            width: 100%;
-            height: 100%;
-            background: var(--surface);
-            border: 1px solid var(--surface-border);
-            border-radius: 8px;
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .card-header {
-            width: 100%;
-            margin-bottom: 12px;
-        }
-
-        /* Red Timer Bar */
-        .timer-wrapper {
-            width: 100%;
-            height: 6px;
-            background: #111111;
-            border: 1px solid var(--surface-border);
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .timer-bar {
-            height: 100%;
-            width: 100%;
-            background-color: var(--timer-red);
-            box-shadow: 0 0 10px var(--timer-red-glow);
-            transition: width 1s linear;
-        }
-
-        .question-text {
-            font-family: 'Glacial Indifference', 'Montserrat', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #ffffff;
-            text-align: center;
-            line-height: 1.4;
-            letter-spacing: 0.5px;
-            margin: 12px 0;
-        }
-
-        /* Options Grid (Subtle Lighter Borders) */
-        .options-grid {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .btn-option {
-            width: 100%;
-            background: #111111;
-            border: 1px solid rgba(212, 175, 55, 0.35); /* Subtle, lighter metallic gold outline */
-            color: var(--text-primary);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            padding: 14px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            text-align: left;
-            transition: all 0.15s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-        }
-
-        .btn-option:hover {
-            background: #181818;
-            border-color: var(--genre-gold);
-            box-shadow: 0 0 10px var(--genre-gold-glow);
-            transform: translateY(-1px);
-        }
-
-        .btn-option.selected-correct {
-            border: 2px solid var(--state-success) !important;
-            background-color: rgba(34, 197, 94, 0.2) !important;
-            color: #86EFAC !important;
-            box-shadow: 0 0 16px var(--state-success-glow) !important;
-        }
-
-        .btn-option.selected-wrong {
-            border: 2px solid var(--state-error) !important;
-            background-color: rgba(239, 68, 68, 0.2) !important;
-            color: #FCA5A5 !important;
-            box-shadow: 0 0 16px var(--state-error-glow) !important;
-        }
-
-        /* Modal Overlays & Vault */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.92);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-        }
-
-        .modal-overlay.hidden {
-            display: none !important;
-        }
-
-        .modal-card {
-            background-color: var(--surface);
-            border: 1px solid var(--surface-border);
-            padding: 28px 24px;
-            border-radius: 14px;
-            width: 90%;
-            max-width: 360px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-        }
-
-        .modal-large {
-            max-width: 440px;
-        }
-
-        .modal-card h2 {
-            font-size: 1.25rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: var(--text-primary);
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        .modal-card h3 {
-            font-size: 0.72rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-            margin-top: 16px;
-            text-transform: uppercase;
-        }
-
-        .modal-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 16px;
-        }
-
-        .stats-summary-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin: 18px 0 12px 0;
-            background: var(--bg-deep);
-            border: 1px solid var(--surface-border);
-            border-radius: 10px;
-            padding: 14px;
-        }
-
-        .stat-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .stat-val {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: var(--text-primary);
-            letter-spacing: -0.5px;
-        }
-
-        .stat-lbl {
-            font-size: 0.55rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-top: 3px;
-        }
-
-        .vault-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
-            gap: 8px;
-            max-height: 220px;
-            overflow-y: auto;
-            margin: 12px 0;
-        }
-
-        .vault-item-btn {
-            background-color: #111111;
-            border: 1px solid var(--surface-border);
-            color: var(--text-primary);
-            padding: 10px 6px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            text-align: center;
-            transition: border-color 0.15s ease;
-        }
-
-        .vault-item-btn strong {
-            font-size: 0.78rem;
-            font-weight: 700;
-        }
-
-        .vault-item-btn:hover {
-            border-color: var(--genre-gold);
-            background-color: #1a1a1a;
-        }
-
-        .btn-modal {
-            flex-grow: 1;
-            width: 100%;
-            background-color: #111111;
-            border: 1px solid var(--surface-border);
-            color: var(--text-primary);
-            padding: 12px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 700;
-            border-radius: 24px;
-            cursor: pointer;
-            letter-spacing: 1px;
-            transition: all 0.15s ease;
-        }
-
-        .btn-modal:hover {
-            background-color: var(--text-primary);
-            color: var(--bg-deep);
-            border-color: var(--text-primary);
-        }
-
-        .congrats-green {
-            color: var(--state-success);
-            font-weight: 800;
-        }
-
-        @media screen and (max-width: 600px), screen and (max-height: 750px) {
-            body {
-                padding: 6px 12px;
-            }
-
-            .logo-gold {
-                font-size: 2.2rem;
-            }
-
-            .btn-option {
-                padding: 12px;
-                font-size: 0.8rem;
-            }
-
-            .question-text {
-                font-size: 0.95rem;
-            }
-        }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.92); display: flex; align-items: center; justify-content: center; z-index: 100; }
+        .modal-overlay.hidden { display: none !important; }
+        .modal-card { background-color: var(--surface); border: 1px solid var(--surface-border); padding: 28px 24px; border-radius: 14px; width: 90%; max-width: 360px; text-align: center; }
+        .modal-large { max-width: 440px; }
+        .stats-summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 18px 0 12px 0; background: var(--bg-deep); border: 1px solid var(--surface-border); border-radius: 10px; padding: 14px; }
+        .stat-box { display: flex; flex-direction: column; align-items: center; }
+        .stat-val { font-size: 1.25rem; font-weight: 800; color: var(--text-primary); }
+        .stat-lbl { font-size: 0.55rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-top: 3px; }
+        .vault-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(95px, 1fr)); gap: 8px; max-height: 220px; overflow-y: auto; margin: 12px 0; }
+        .vault-item-btn { background-color: #111111; border: 1px solid var(--surface-border); color: var(--text-primary); padding: 10px 6px; border-radius: 8px; cursor: pointer; text-align: center; }
+        .vault-item-btn:hover { border-color: var(--genre-gold); background-color: #1a1a1a; }
+        .btn-modal { flex-grow: 1; width: 100%; background-color: #111111; border: 1px solid var(--surface-border); color: var(--text-primary); padding: 12px; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; border-radius: 24px; cursor: pointer; }
     </style>
 </head>
 <body class="game-questions">
 
-    <!-- Lobby / Landing Screen -->
-    <div id="landing-screen" class="screen-container">
-        <header class="header-nav">
-            <a href="index.html" class="btn-nav">← LOBBY</a>
-            <button id="btn-landing-stats" class="btn-nav">STATS / ARCHIVE</button>
-            <button id="btn-sound-toggle" class="btn-nav">SOUND: ON</button>
-        </header>
+    <!-- Landing View -->
+    <div id="landing-screen" style="width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 100%;">
+        <div class="top-bar">
+            <a href="index.html" class="pill-btn">← LOBBY</a>
+            <button id="btn-landing-stats" class="pill-btn">STATS / ARCHIVE</button>
+            <button id="btn-sound-toggle" class="pill-btn">SOUND: ON</button>
+        </div>
 
-        <main class="landing-content">
-            <div class="logo-container">
-                <h1 class="logo-gold">11FL?</h1>
-                <p class="logo-subtitle">Eleventh Floor</p>
-                <p class="logo-tagline">QUESTIONS</p>
+        <div class="game-logo-box">
+            <h1 class="game-logo-gold">11FL?</h1>
+            <p class="game-logo-title">Eleventh Floor</p>
+            <p class="game-logo-sub" style="color: var(--genre-gold);">QUESTIONS</p>
+        </div>
+
+        <div class="landing-container">
+            <div class="landing-shaft-graphic">
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
             </div>
 
-            <div class="lobby-shaft-graphic">
-                <div class="shaft-box"></div>
-                <div class="shaft-box"></div>
-                <div class="shaft-box"></div>
-                <div class="shaft-box"></div>
-                <div class="shaft-box"></div>
-                <div class="shaft-box"></div>
-                <div class="shaft-box"></div>
-                <div class="shaft-box"></div>
-                <div class="shaft-box"></div>
-                <div class="shaft-box"></div>
-                <div class="shaft-box"></div>
-            </div>
-
-            <p class="lobby-tagline">
+            <div class="landing-challenge-text">
                 <strong>CAN YOU REACH THE 11TH FLOOR?</strong><br><br>
                 Answer 10 tough trivia questions in a row to reach the 11th floor and create a streak.<br><br>
                 Make one mistake and you return to the ground floor.
-            </p>
+            </div>
 
-            <button id="btn-start-climb" class="btn-start-climb">Start Climb</button>
-        </main>
+            <button id="btn-start-climb" class="btn-start">Start Climb</button>
+        </div>
+
+        <footer>
+            <div>ONE MISTAKE RESETS THE CLIMB TO 1ST FLOOR.</div>
+        </footer>
     </div>
 
-    <!-- Active Game Screen -->
-    <div id="game-screen" class="screen-container" style="display: none;">
-        <header class="header-nav header-game">
-            <a href="index.html" id="btn-util-exit" class="btn-nav btn-exit">← LOBBY</a>
-            <div class="header-brand-center">
-                <h1 class="logo-gold-small">11FL?</h1>
-                <p class="logo-subtitle-small">Eleventh Floor</p>
-                <p class="logo-tagline-small">QUESTIONS</p>
+    <!-- Active Gameplay View -->
+    <div id="game-screen" style="width: 100%; max-width: 600px; display: none; flex-direction: column; align-items: center; justify-content: space-between; height: 100%;">
+        <div class="top-bar">
+            <a href="index.html" id="btn-util-exit" class="pill-btn">← LOBBY</a>
+            <div style="text-align: center;">
+                <span style="font-family: 'Anton', sans-serif; font-size: 1.4rem; color: var(--genre-gold);">11FL?</span>
             </div>
-            <button id="btn-sound-toggle-game" class="btn-nav">SOUND: ON</button>
-        </header>
+            <button id="btn-sound-toggle-game" class="pill-btn">SOUND: ON</button>
+        </div>
 
-        <!-- Top HUD Container -->
         <div class="hud-sidebar-container" id="floor-hud-container">
             <div class="tower-stack" id="building-shaft">
                 <div class="tower-floor floor-block" data-floor="11"></div>
@@ -691,14 +153,13 @@
             </div>
 
             <div class="floor-info-box">
-                <div class="current-floor-display" id="card-floor-text"></div>
+                <div class="current-floor-display" id="card-floor-text">FLOOR 01</div>
             </div>
         </div>
 
-        <!-- Centralized Question Workspace -->
         <main class="game-layout">
             <section class="question-card">
-                <div class="card-header">
+                <div class="card-header" style="width: 100%;">
                     <div class="timer-wrapper">
                         <div id="timer-bar" class="timer-bar"></div>
                     </div>
@@ -719,10 +180,10 @@
     <!-- Modals -->
     <div id="modal-game-over" class="modal-overlay hidden">
         <div class="modal-card">
-            <h2 id="game-over-title">ELEVATOR STOPPED</h2>
-            <p id="game-over-message">Incorrect Answer!</p>
+            <h2 id="game-over-title" style="font-size: 1.2rem; font-weight: 800;">ELEVATOR STOPPED</h2>
+            <p id="game-over-message" style="margin: 8px 0; font-size: 0.85rem; color: var(--text-muted);">Incorrect Answer!</p>
             <p id="final-floor-reached"></p>
-            <div class="modal-actions">
+            <div style="display: flex; gap: 10px; margin-top: 16px;">
                 <button id="btn-try-again" class="btn-modal">TRY AGAIN</button>
                 <button id="btn-back-vault" class="btn-modal">VAULT</button>
             </div>
@@ -731,33 +192,18 @@
 
     <div id="modal-vault" class="modal-overlay hidden">
         <div class="modal-card modal-large">
-            <h2>STATS</h2>
+            <h2 style="font-size: 1.2rem; font-weight: 800;">STATS</h2>
             <div class="stats-summary-grid">
-                <div class="stat-box">
-                    <span id="stat-played" class="stat-val">0</span>
-                    <span class="stat-lbl">Played</span>
-                </div>
-                <div class="stat-box">
-                    <span id="stat-wins" class="stat-val">0</span>
-                    <span class="stat-lbl">Wins</span>
-                </div>
-                <div class="stat-box">
-                    <span id="stat-winrate" class="stat-val">0%</span>
-                    <span class="stat-lbl">Win %</span>
-                </div>
-                <div class="stat-box">
-                    <span id="stat-streak" class="stat-val">0</span>
-                    <span class="stat-lbl">Streak</span>
-                </div>
-                <div class="stat-box" style="grid-column: span 2;">
-                    <span id="stat-bestfloor" class="stat-val"></span>
-                    <span class="stat-lbl">Best Peak</span>
-                </div>
+                <div class="stat-box"><span id="stat-played" class="stat-val">0</span><span class="stat-lbl">Played</span></div>
+                <div class="stat-box"><span id="stat-wins" class="stat-val">0</span><span class="stat-lbl">Wins</span></div>
+                <div class="stat-box"><span id="stat-winrate" class="stat-val">0%</span><span class="stat-lbl">Win %</span></div>
+                <div class="stat-box"><span id="stat-streak" class="stat-val">0</span><span class="stat-lbl">Streak</span></div>
+                <div class="stat-box" style="grid-column: span 2;"><span id="stat-bestfloor" class="stat-val"></span><span class="stat-lbl">Best Peak</span></div>
             </div>
 
-            <h3>ARCHIVE VAULT</h3>
+            <h3 style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); margin-top: 12px; text-transform: uppercase;">ARCHIVE VAULT</h3>
             <div id="vault-list" class="vault-grid"></div>
-            <button id="btn-close-vault" class="btn-modal">CLOSE</button>
+            <button id="btn-close-vault" class="btn-modal" style="margin-top: 10px;">CLOSE</button>
         </div>
     </div>
 
