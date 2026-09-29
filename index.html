@@ -73,6 +73,7 @@
             letter-spacing: -1px;
             text-shadow: 0 0 20px rgba(255, 31, 45, 0.35);
             margin-bottom: 4px;
+            animation: logoColorCycle 2.6s ease-in-out forwards;
         }
 
         .hub-logo-title {
@@ -127,6 +128,37 @@
         .hub-shaft-graphic .shaft-box:nth-child(3)  { animation-delay: 0.85s; }
         .hub-shaft-graphic .shaft-box:nth-child(2)  { animation-delay: 0.95s; }
         .hub-shaft-graphic .shaft-box:nth-child(1)  { animation: sweepTopGreen 1.6s ease-in-out forwards; animation-delay: 1.05s; }
+
+        @keyframes logoColorCycle {
+            0% {
+                color: var(--accent-red);
+                text-shadow: 0 0 20px rgba(255, 31, 45, 0.35);
+            }
+            18% {
+                color: var(--color-terrace);
+                text-shadow: 0 0 20px var(--color-terrace-glow);
+            }
+            36% {
+                color: var(--color-cluegram);
+                text-shadow: 0 0 20px var(--color-cluegram-glow);
+            }
+            54% {
+                color: var(--color-questions);
+                text-shadow: 0 0 20px var(--color-questions-glow);
+            }
+            72% {
+                color: var(--color-wordclimb);
+                text-shadow: 0 0 20px var(--color-wordclimb-glow);
+            }
+            88% {
+                color: var(--color-clusters);
+                text-shadow: 0 0 20px var(--color-clusters-glow);
+            }
+            100% {
+                color: var(--accent-red);
+                text-shadow: 0 0 20px rgba(255, 31, 45, 0.35);
+            }
+        }
 
         @keyframes sweepMiddle {
             0% {
