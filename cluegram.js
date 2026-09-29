@@ -4,7 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // Current Game State Variables
-    let currentFloorIndex = 0; // 0 = Floor 1, 9 = Floor 10
+    let currentFloorIndex = 0; // 0 = 1st Floor, 9 = 10th Floor
     let userGuess = [];
     let rackTiles = [];
     let isProcessing = false;
@@ -37,6 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeVaultBtn = document.getElementById('btn-close-vault');
     const soundBtn = document.getElementById('btn-sound');
     const vaultList = document.getElementById('vault-list');
+
+    const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
 
     // Initialize Game Engine
     init();
@@ -177,6 +179,10 @@ document.addEventListener('DOMContentLoaded', () => {
         loadFloor(currentFloorIndex);
     }
 
+    function getOrdinalFloorName(floorNum) {
+        return (ordinals[floorNum - 1] || `${floorNum}th`) + " Floor";
+    }
+
     function loadFloor(index) {
         if (!activeGameData || index >= activeGameData.length) return;
 
@@ -185,9 +191,8 @@ document.addEventListener('DOMContentLoaded', () => {
         messageBox.textContent = '';
         isProcessing = false;
 
-        // Update Floor Displays
-        const formattedFloorNumber = index + 1 < 10 ? `0${index + 1}` : `${index + 1}`;
-        floorNumberVal.textContent = `FLOOR ${formattedFloorNumber}`;
+        // Update Floor Displays with Ordinals (1st Floor, 2nd Floor, etc.)
+        floorNumberVal.textContent = getOrdinalFloorName(index + 1);
         floorRuleText.textContent = `${floorData.target.length}-letter Anagram • No mistakes!`;
         clueText.textContent = floorData.clue;
 
@@ -333,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
             recordGameResult(false, currentFloorIndex + 1);
 
             setTimeout(() => {
-                alert(`Game Over! You were stopped on Floor ${currentFloorIndex + 1}.`);
+                alert(`Game Over! You were stopped on ${getOrdinalFloorName(currentFloorIndex + 1)}.`);
                 location.reload();
             }, 1200);
         }
@@ -392,7 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('stat-winrate').textContent = `${winRate}%`;
         document.getElementById('stat-streak').textContent = stats.streak;
         
-        const bestFormatted = stats.bestFloor < 10 ? `FL 0${stats.bestFloor}` : `FL ${stats.bestFloor}`;
+        const bestFormatted = getOrdinalFloorName(stats.bestFloor);
         document.getElementById('stat-bestfloor').textContent = bestFormatted;
     }
 });
