@@ -1,52 +1,52 @@
 [
   {
-    "question": "Which club won the inaugural Premier League title in 1992-93?",
-    "options": ["Manchester United", "Blackburn Rovers", "Arsenal", "Aston Villa"],
-    "answer": "Manchester United"
-  },
-  {
-    "question": "Who holds the record for the most goals in a single 38-game Premier League season?",
-    "options": ["Erling Haaland", "Alan Shearer", "Mohamed Salah", "Thierry Henry"],
+    "question": "Which Norwegian striker opened the scoring with a left-footed finish in Manchester City's weekend match?",
+    "options": ["Erling Haaland", "Alexander Sørloth", "Oscar Bobb", "Jørgen Strand Larsen"],
     "answer": "Erling Haaland"
   },
   {
-    "question": "Which player has accumulated the most overall appearances in Premier League history?",
-    "options": ["Gareth Barry", "Ryan Giggs", "James Milner", "Frank Lampard"],
-    "answer": "Gareth Barry"
+    "question": "Which English winger wearing the captain's armband assisted Arsenal's opening goal from a corner on Saturday?",
+    "options": ["Bukayo Saka", "Eberechi Eze", "Jarrod Bowen", "Anthony Gordon"],
+    "answer": "Bukayo Saka"
   },
   {
-    "question": "Who scored the famous 'Agueroooo' goal to seal the title in 2012?",
-    "options": ["Sergio Agüero", "David Silva", "Yaya Touré", "Edin Džeko"],
-    "answer": "Sergio Agüero"
+    "question": "Which former Bournemouth striker bagged a second-half brace for Tottenham Hotspur at the weekend?",
+    "options": ["Dominic Solanke", "Callum Wilson", "Josh King", "Antoine Semenyo"],
+    "answer": "Dominic Solanke"
   },
   {
-    "question": "Which team completed an entire 38-game Premier League season undefeated?",
-    "options": ["Arsenal", "Manchester City", "Chelsea", "Manchester United"],
-    "answer": "Arsenal"
+    "question": "Which Dutch defender received a straight red card for a late challenge in Liverpool's away fixture?",
+    "options": ["Virgil van Dijk", "Nathan Aké", "Micky van de Ven", "Santamaria"],
+    "answer": "Virgil van Dijk"
   },
   {
-    "question": "Who won the Golden Boot in three consecutive Premier League seasons (2003–2006)?",
-    "options": ["Thierry Henry", "Ruud van Nistelrooy", "Alan Shearer", "Didier Drogba"],
-    "answer": "Thierry Henry"
+    "question": "Which No. 10 playmaker scored Aston Villa's equalizer with a curling effort from outside the box?",
+    "options": ["Morgan Rogers", "Emi Buendía", "Jacob Ramsey", "John McGinn"],
+    "answer": "Morgan Rogers"
   },
   {
-    "question": "Which manager famously led 5000-1 outsiders Leicester City to the title in 2015-16?",
-    "options": ["Claudio Ranieri", "Nigel Pearson", "Brendan Rodgers", "Craig Shakespeare"],
-    "answer": "Claudio Ranieri"
+    "question": "Which Brazilian midfielder completed 12 ground duels and made 5 tackles in Newcastle's weekend victory?",
+    "options": ["Bruno Guimarães", "Joelinton", "Casemiro", "Lucas Paquetá"],
+    "answer": "Bruno Guimarães"
   },
   {
-    "question": "Who was the first player to record 100 Premier League assists?",
-    "options": ["Ryan Giggs", "Cesc Fàbregas", "Wayne Rooney", "Dennis Bergkamp"],
-    "answer": "Ryan Giggs"
+    "question": "Which German international goalkeeper recorded his 4th clean sheet of the season for Brighton at home?",
+    "options": ["Bart Verbruggen", "Bernd Leno", "Stefan Ortega", "Jason Steele"],
+    "answer": "Bart Verbruggen"
   },
   {
-    "question": "Which club holds the record for conceding the fewest goals in a single PL season (15)?",
-    "options": ["Chelsea", "Arsenal", "Manchester United", "Liverpool"],
-    "answer": "Chelsea"
+    "question": "Which former Lille midfielder was substituted at half-time after picking up a booking for Everton?",
+    "options": ["Tim Iroegbunam", "Amadou Onana", "Idrissa Gueye", "Abdoulaye Doucouré"],
+    "answer": "Tim Iroegbunam"
   },
   {
-    "question": "Who scored the fastest hat-trick in Premier League history (2 mins 56 secs)?",
-    "options": ["Sadio Mané", "Robbie Fowler", "Jermain Defoe", "Gabriel Agbonlahor"],
-    "answer": "Sadio Mané"
+    "question": "Which Spanish full-back reached his 150th Premier League appearance during Chelsea's derby win?",
+    "options": ["Marc Cucurella", "Pedro Porro", "Emerson Palmieri", "Alex Moreno"],
+    "answer": "Marc Cucurella"
+  },
+  {
+    "question": "Which Danish center-back won 9 aerial duels and completed 87 passes without committing a foul for Fulham?",
+    "options": ["Joachim Andersen", "Jannik Vestergaard", "Victor Kristiansen", "Rasmus Kristensen"],
+    "answer": "Joachim Andersen"
   }
 ]
