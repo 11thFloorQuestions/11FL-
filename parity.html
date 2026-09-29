@@ -40,12 +40,14 @@
             font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
             min-height: 100dvh;
+            height: 100vh;
+            height: 100dvh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            padding: 12px 10px;
-            overflow-x: hidden;
+            padding: 8px 10px;
+            overflow: hidden;
         }
 
         .top-bar {
@@ -54,16 +56,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
+            flex-shrink: 0;
         }
 
         .pill-btn {
             background: var(--surface);
             border: 1px solid var(--surface-border-light);
             color: var(--text-primary);
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 20px;
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             font-weight: 700;
             text-decoration: none;
             cursor: pointer;
@@ -75,12 +78,12 @@
             color: var(--genre-pink);
         }
 
-        /* Landing Logo Box */
+        /* Landing Logo Box (with 11FL?) */
         .game-logo-box {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             text-align: center;
             flex-shrink: 0;
         }
@@ -114,14 +117,25 @@
             text-transform: uppercase;
         }
 
-        /* Gameplay Compact Header Box */
+        /* Gameplay Compact Header Box (No 11FL?) */
         .gameplay-header-box {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             text-align: center;
             flex-shrink: 0;
+        }
+
+        .gameplay-header-box .game-logo-title {
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 1px;
+        }
+
+        .gameplay-header-box .game-logo-sub {
+            font-size: 0.55rem;
+            letter-spacing: 3px;
         }
 
         .landing-container {
@@ -129,21 +143,21 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 16px;
-            padding: 20px 16px;
+            gap: 14px;
+            padding: 16px 14px;
             width: 100%;
             max-width: 600px;
             background: var(--surface);
             border: 1px solid var(--surface-border);
             border-radius: 8px;
-            margin-top: 6px;
+            margin-top: 4px;
         }
 
         .landing-shaft-graphic {
             display: flex;
             flex-direction: column;
             width: 52px;
-            height: 150px;
+            height: 140px;
             border: 1px solid var(--surface-border);
             border-radius: 8px;
             padding: 6px;
@@ -200,9 +214,9 @@
             background-color: var(--surface);
             border: 1px solid var(--genre-pink);
             color: var(--genre-pink);
-            padding: 12px 28px;
+            padding: 11px 26px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -218,39 +232,131 @@
         }
 
         /* Gameplay Area */
-        .hud-sidebar-container { width: 100%; max-width: 600px; display: flex; align-items: stretch; gap: 12px; margin-bottom: 6px; flex-shrink: 0; }
-        .tower-stack { display: flex; flex-direction: column; gap: 2px; width: 52px; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 6px; justify-content: space-between; flex-shrink: 0; }
-        .tower-floor { height: 7px; border: 1px solid var(--surface-border); background: #111111; transition: all 0.2s ease; border-radius: 2px; }
+        .hud-sidebar-container {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            align-items: stretch;
+            gap: 8px;
+            margin-bottom: 4px;
+            flex-shrink: 0;
+        }
+
+        .tower-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            width: 44px;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            padding: 4px;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .tower-floor {
+            height: 6px;
+            border: 1px solid var(--surface-border);
+            background: #111111;
+            transition: all 0.2s ease;
+            border-radius: 2px;
+        }
+
         .tower-floor.active { border-color: var(--state-active); background: var(--state-active); box-shadow: 0 0 8px var(--state-active-glow); }
         .tower-floor.completed { border-color: var(--state-success); background: var(--state-success); box-shadow: 0 0 6px var(--state-success-glow); }
         .tower-floor.failed { border-color: var(--state-error); background: var(--state-error); box-shadow: 0 0 6px var(--state-error-glow); }
-        .floor-info-box { flex-grow: 1; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; }
-        .floor-left-group { display: flex; flex-direction: column; gap: 4px; }
-        .current-floor-display { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: 1px; }
-        .floor-rule-text { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.5px; text-transform: uppercase; }
 
-        .play-card { width: 100%; max-width: 600px; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 10px; flex-grow: 1; margin-bottom: 6px; overflow: hidden; min-height: 0; }
-        #message-box { min-height: 16px; color: var(--state-error); font-weight: 700; font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; text-align: center; }
+        .floor-info-box {
+            flex-grow: 1;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .floor-left-group { display: flex; flex-direction: column; gap: 2px; }
+        .current-floor-display { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 800; letter-spacing: 1px; }
+        .floor-rule-text { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.5px; text-transform: uppercase; }
+
+        .play-card {
+            width: 100%;
+            max-width: 600px;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            padding: 10px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            flex: 1;
+            margin-bottom: 4px;
+            overflow: hidden;
+            min-height: 0;
+        }
+
+        #message-box {
+            min-height: 14px;
+            color: var(--state-error);
+            font-weight: 700;
+            font-size: 0.68rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-align: center;
+            flex-shrink: 0;
+        }
 
         /* Draining Timer Bar */
-        .timer-bar-container { width: 100%; height: 6px; background: #111111; border: 1px solid var(--surface-border); border-radius: 4px; overflow: hidden; }
-        .timer-bar-fill { height: 100%; width: 100%; background-color: var(--state-active); box-shadow: 0 0 8px var(--state-active-glow); transition: width 0.1s linear; }
+        .timer-bar-container {
+            width: 100%;
+            height: 5px;
+            background: #111111;
+            border: 1px solid var(--surface-border);
+            border-radius: 4px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .timer-bar-fill {
+            height: 100%;
+            width: 100%;
+            background-color: var(--state-active);
+            box-shadow: 0 0 8px var(--state-active-glow);
+            transition: width 0.1s linear;
+        }
 
         /* Grid Layout for Parity Cards */
-        .parity-grid { display: grid; gap: 8px; width: 100%; max-width: 420px; margin: auto; justify-content: center; }
-        
+        .parity-grid {
+            display: grid;
+            gap: 6px;
+            width: 100%;
+            max-width: 380px;
+            flex: 1;
+            min-height: 0;
+            max-height: 52vh;
+            margin: auto;
+            align-content: center;
+            justify-content: center;
+        }
+
         .parity-tile {
             aspect-ratio: 1;
             background: #111111;
             border: 1px solid var(--surface-border-light);
-            border-radius: 8px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             perspective: 1000px;
-            padding: 8px;
+            padding: 4px;
+            max-height: 80px;
         }
 
         .parity-tile:hover {
@@ -278,8 +384,8 @@
         }
 
         .parity-tile svg {
-            width: 65%;
-            height: 65%;
+            width: 70%;
+            height: 70%;
             color: #ffffff;
             transition: transform 0.2s ease;
         }
@@ -300,27 +406,28 @@
         }
 
         footer {
-            font-size: 0.6rem;
+            font-size: 0.58rem;
             font-weight: 600;
             color: var(--text-muted);
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin-top: 4px;
+            margin-top: 2px;
             text-align: center;
+            flex-shrink: 0;
         }
 
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.92); display: flex; align-items: center; justify-content: center; z-index: 100; }
         .modal-overlay.hidden { display: none !important; }
-        .modal-card { background-color: var(--surface); border: 1px solid var(--surface-border); padding: 28px 24px; border-radius: 14px; width: 90%; max-width: 360px; text-align: center; }
+        .modal-card { background-color: var(--surface); border: 1px solid var(--surface-border); padding: 24px 20px; border-radius: 14px; width: 90%; max-width: 360px; text-align: center; }
         .modal-large { max-width: 440px; }
-        .stats-summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 18px 0 12px 0; background: var(--bg-deep); border: 1px solid var(--surface-border); border-radius: 10px; padding: 14px; }
+        .stats-summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0 12px 0; background: var(--bg-deep); border: 1px solid var(--surface-border); border-radius: 10px; padding: 12px; }
         .stat-box { display: flex; flex-direction: column; align-items: center; }
-        .stat-val { font-size: 1.25rem; font-weight: 800; color: var(--text-primary); }
-        .stat-lbl { font-size: 0.55rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-top: 3px; }
-        .vault-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(95px, 1fr)); gap: 8px; max-height: 220px; overflow-y: auto; margin: 12px 0; }
+        .stat-val { font-size: 1.2rem; font-weight: 800; color: var(--text-primary); }
+        .stat-lbl { font-size: 0.55rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-top: 2px; }
+        .vault-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(95px, 1fr)); gap: 8px; max-height: 200px; overflow-y: auto; margin: 12px 0; }
         .vault-item-btn { background-color: #111111; border: 1px solid var(--surface-border); color: var(--text-primary); padding: 10px 6px; border-radius: 8px; cursor: pointer; text-align: center; }
         .vault-item-btn:hover { border-color: var(--genre-pink); background-color: #1a1a1a; }
-        .btn-modal { flex-grow: 1; width: 100%; background-color: #111111; border: 1px solid var(--surface-border); color: var(--text-primary); padding: 12px; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; border-radius: 24px; cursor: pointer; margin-top: 10px; }
+        .btn-modal { flex-grow: 1; width: 100%; background-color: #111111; border: 1px solid var(--surface-border); color: var(--text-primary); padding: 11px; font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 700; border-radius: 24px; cursor: pointer; margin-top: 8px; }
     </style>
 </head>
 <body class="game-parity">
@@ -422,7 +529,7 @@
                 <div class="stat-box" style="grid-column: span 2;"><span id="stat-bestfloor" class="stat-val">FL 01</span><span class="stat-lbl">Best Peak</span></div>
             </div>
 
-            <h3 style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); margin-top: 12px; text-transform: uppercase;">ARCHIVE VAULT</h3>
+            <h3 style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); margin-top: 10px; text-transform: uppercase;">ARCHIVE VAULT</h3>
             <div id="vault-list" class="vault-grid"></div>
             <button id="btn-close-vault" class="btn-modal">CLOSE</button>
         </div>
@@ -430,16 +537,5 @@
 
     <script src="parity-data.js"></script>
     <script src="parity.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const startBtn = document.getElementById('start-climb-btn');
-            const gameplayHeader = document.getElementById('gameplay-header');
-            if (startBtn && gameplayHeader) {
-                startBtn.addEventListener('click', () => {
-                    gameplayHeader.style.display = 'flex';
-                });
-            }
-        });
-    </script>
 </body>
 </html>
