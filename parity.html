@@ -330,7 +330,7 @@
             transition: width 0.1s linear;
         }
 
-        /* Grid Layout for Parity Cards */
+        /* Fully Centered Dynamic Grid for Parity Cards */
         .parity-grid {
             display: grid;
             gap: 6px;
@@ -342,10 +342,14 @@
             margin: auto;
             align-content: center;
             justify-content: center;
+            justify-items: center;
+            align-items: center;
         }
 
         .parity-tile {
             aspect-ratio: 1;
+            width: 100%;
+            height: 100%;
             background: #111111;
             border: 1px solid var(--surface-border-light);
             border-radius: 6px;
@@ -384,9 +388,11 @@
         }
 
         .parity-tile svg {
-            width: 70%;
-            height: 70%;
+            width: 65%;
+            height: 65%;
             color: #ffffff;
+            display: block;
+            margin: auto;
             transition: transform 0.2s ease;
         }
 
