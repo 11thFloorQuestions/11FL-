@@ -61,7 +61,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .hub-logo-red {
@@ -98,13 +98,13 @@
             display: flex;
             flex-direction: column;
             width: 52px;
-            height: 150px;
+            height: 140px;
             border: 1px solid var(--surface-border);
             border-radius: 8px;
             padding: 6px;
             gap: 3px;
             background-color: var(--surface);
-            margin-bottom: 24px;
+            margin-bottom: 16px;
         }
 
         .shaft-box {
@@ -197,30 +197,41 @@
             }
         }
 
-        /* Menu Actions Box */
+        /* Section Label */
+        .hub-section-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        /* 2-Column Menu Grid */
         .hub-menu-box {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
             width: 100%;
-            max-width: 340px;
+            max-width: 360px;
         }
 
         .btn-hub-option {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            gap: 8px;
+            justify-content: center;
+            gap: 4px;
             background-color: var(--surface);
             border: 1px solid var(--surface-border-light);
             color: var(--text-primary);
-            padding: 14px 24px;
-            font-size: 0.95rem;
+            padding: 16px 10px;
             text-decoration: none;
             cursor: pointer;
             border-radius: 8px;
             transition: all 0.2s ease-in-out;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            text-align: center;
         }
 
         .btn-hub-option:hover {
@@ -263,6 +274,28 @@
             box-shadow: 0 6px 20px var(--color-cluegram-glow);
         }
 
+        /* Dummy Slot Styling */
+        .btn-hub-option.coming-soon {
+            border: 1px dashed var(--surface-border);
+            opacity: 0.45;
+            cursor: default;
+            box-shadow: none;
+        }
+
+        .btn-hub-option.coming-soon:hover {
+            background-color: var(--surface);
+            transform: none;
+            border-color: var(--surface-border);
+            box-shadow: none;
+        }
+
+        .hub-btn-header {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.8rem;
+        }
+
         .hub-btn-num {
             font-weight: 700;
         }
@@ -279,15 +312,12 @@
             font-weight: 600;
         }
 
-        .hub-btn-sep {
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-
         .hub-btn-game {
+            font-size: 0.85rem;
             font-weight: 300;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             color: #ffffff;
+            line-height: 1.2;
         }
     </style>
 </head>
@@ -314,37 +344,56 @@
         <div class="shaft-box"></div>
     </div>
 
+    <div class="hub-section-label">OUR DAILY GAMES</div>
+
     <div class="hub-menu-box">
         <a href="terrace.html" class="btn-hub-option terrace">
-            <span class="hub-btn-num terrace">11th</span>
-            <span class="hub-btn-floor">Floor</span>
-            <span class="hub-btn-sep">-</span>
-            <span class="hub-btn-game">Terrace Test</span>
+            <div class="hub-btn-header">
+                <span class="hub-btn-num terrace">11th</span>
+                <span class="hub-btn-floor">Floor</span>
+            </div>
+            <div class="hub-btn-game">Terrace Test</div>
         </a>
+
         <a href="cluegram.html" class="btn-hub-option cluegram">
-            <span class="hub-btn-num cluegram">11th</span>
-            <span class="hub-btn-floor">Floor</span>
-            <span class="hub-btn-sep">-</span>
-            <span class="hub-btn-game">Cluegram</span>
+            <div class="hub-btn-header">
+                <span class="hub-btn-num cluegram">11th</span>
+                <span class="hub-btn-floor">Floor</span>
+            </div>
+            <div class="hub-btn-game">Cluegram</div>
         </a>
+
         <a href="questions.html" class="btn-hub-option questions">
-            <span class="hub-btn-num questions">11th</span>
-            <span class="hub-btn-floor">Floor</span>
-            <span class="hub-btn-sep">-</span>
-            <span class="hub-btn-game">Questions</span>
+            <div class="hub-btn-header">
+                <span class="hub-btn-num questions">11th</span>
+                <span class="hub-btn-floor">Floor</span>
+            </div>
+            <div class="hub-btn-game">Questions</div>
         </a>
+
         <a href="word-climb.html" class="btn-hub-option wordclimb">
-            <span class="hub-btn-num wordclimb">11th</span>
-            <span class="hub-btn-floor">Floor</span>
-            <span class="hub-btn-sep">-</span>
-            <span class="hub-btn-game">Word Climb</span>
+            <div class="hub-btn-header">
+                <span class="hub-btn-num wordclimb">11th</span>
+                <span class="hub-btn-floor">Floor</span>
+            </div>
+            <div class="hub-btn-game">Word Climb</div>
         </a>
+
         <a href="clusters.html" class="btn-hub-option clusters">
-            <span class="hub-btn-num clusters">11th</span>
-            <span class="hub-btn-floor">Floor</span>
-            <span class="hub-btn-sep">-</span>
-            <span class="hub-btn-game">Clusters</span>
+            <div class="hub-btn-header">
+                <span class="hub-btn-num clusters">11th</span>
+                <span class="hub-btn-floor">Floor</span>
+            </div>
+            <div class="hub-btn-game">Clusters</div>
         </a>
+
+        <div class="btn-hub-option coming-soon">
+            <div class="hub-btn-header">
+                <span class="hub-btn-num" style="color: var(--text-muted);">6th</span>
+                <span class="hub-btn-floor" style="color: var(--text-muted);">Floor</span>
+            </div>
+            <div class="hub-btn-game" style="color: var(--text-muted);">Coming Soon</div>
+        </div>
     </div>
 
     <script>
@@ -426,7 +475,7 @@
             }
         }
 
-        document.querySelectorAll('.btn-hub-option').forEach(btn => {
+        document.querySelectorAll('.btn-hub-option:not(.coming-soon)').forEach(btn => {
             btn.addEventListener('click', () => {
                 triggerLobbyHaptic(15);
             });
