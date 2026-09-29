@@ -3,33 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>11th Floor Puzzles — Daily Elevator Games</title>
+    <title>Eleventh Floor Games Lobby</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@700;800&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-deep: #000000;
             --surface: #0a0a0a;
             --surface-border: #222222;
+            --surface-border-light: #333333;
+            --accent-red: #ff1f2d;
+            --accent-red-glow: rgba(255, 31, 45, 0.25);
+            --accent-green: #22c55e;
+            --accent-green-glow: rgba(34, 197, 94, 0.3);
             --text-primary: #ffffff;
             --text-muted: #888888;
-            
-            --genre-terrace: #84CC16;
-            --genre-terrace-glow: rgba(132, 204, 22, 0.3);
-            
-            --genre-magenta: #CC007E;
-            --genre-magenta-glow: rgba(204, 0, 126, 0.3);
-            
-            --genre-gold: #D4AF37;
-            --genre-gold-glow: rgba(212, 175, 55, 0.3);
-            
-            --genre-blue: #3B82F6;
-            --genre-blue-glow: rgba(59, 130, 246, 0.3);
-            
-            --genre-orange: #F97316;
-            --genre-orange-glow: rgba(249, 115, 22, 0.3);
+
+            /* Specific Game Genre Colors & Glows */
+            --color-questions: #D4AF37;
+            --color-questions-glow: rgba(212, 175, 55, 0.35);
+            --color-wordclimb: #3B82F6;
+            --color-wordclimb-glow: rgba(59, 130, 246, 0.3);
+            --color-clusters: #ff751f;
+            --color-clusters-glow: rgba(255, 117, 31, 0.35);
+            --color-cluegram: #cc007e;
+            --color-cluegram-glow: rgba(204, 0, 126, 0.35);
         }
 
         * {
@@ -49,199 +48,388 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between;
-            padding: 16px 12px;
+            justify-content: center;
+            text-align: center;
+            padding: 20px 16px;
             overflow-x: hidden;
         }
 
-        .lobby-header {
-            text-align: center;
-            margin-top: 10px;
-            margin-bottom: 20px;
+        /* Scaled-down Logo Box */
+        .hub-logo-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 16px;
         }
 
-        .lobby-main-title {
+        .hub-logo-red {
             font-family: 'Anton', sans-serif;
-            font-size: 3.6rem;
-            color: #ffffff;
-            line-height: 0.9;
+            font-size: 4.2rem;
+            font-weight: 400;
+            color: var(--accent-red);
+            line-height: 0.85;
             letter-spacing: -1px;
-            margin-bottom: 6px;
+            text-shadow: 0 0 20px rgba(255, 31, 45, 0.35);
+            margin-bottom: 4px;
         }
 
-        .lobby-sub-title {
-            font-size: 0.75rem;
-            font-weight: 700;
+        .hub-logo-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #ffffff;
+            letter-spacing: 1.5px;
+            margin-bottom: 2px;
+        }
+
+        .hub-logo-sub {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 600;
             color: var(--text-muted);
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             text-transform: uppercase;
         }
 
-        .lobby-grid {
-            width: 100%;
-            max-width: 500px;
+        /* Standardized 52px Animated Building Graphic */
+        .hub-shaft-graphic {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            flex-grow: 1;
-            justify-content: center;
+            width: 52px;
+            height: 150px;
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            padding: 6px;
+            gap: 3px;
+            background-color: var(--surface);
+            margin-bottom: 24px;
         }
 
-        .game-card {
-            background: var(--surface);
+        .shaft-box {
+            flex: 1;
+            background-color: #111111;
             border: 1px solid var(--surface-border);
-            border-radius: 12px;
-            padding: 16px 20px;
-            text-decoration: none;
-            color: var(--text-primary);
+            border-radius: 2px;
+            animation: sweepMiddle 1.2s ease-in-out forwards;
+        }
+
+        /* Sequential Upward Light Sweep + Top Green Hold + Drop to Floor 01 */
+        .hub-shaft-graphic .shaft-box:nth-child(11) { animation: sweepBottomSettle 2.6s ease-in-out forwards; animation-delay: 0.05s; }
+        .hub-shaft-graphic .shaft-box:nth-child(10) { animation-delay: 0.15s; }
+        .hub-shaft-graphic .shaft-box:nth-child(9)  { animation-delay: 0.25s; }
+        .hub-shaft-graphic .shaft-box:nth-child(8)  { animation-delay: 0.35s; }
+        .hub-shaft-graphic .shaft-box:nth-child(7)  { animation-delay: 0.45s; }
+        .hub-shaft-graphic .shaft-box:nth-child(6)  { animation-delay: 0.55s; }
+        .hub-shaft-graphic .shaft-box:nth-child(5)  { animation-delay: 0.65s; }
+        .hub-shaft-graphic .shaft-box:nth-child(4)  { animation-delay: 0.75s; }
+        .hub-shaft-graphic .shaft-box:nth-child(3)  { animation-delay: 0.85s; }
+        .hub-shaft-graphic .shaft-box:nth-child(2)  { animation-delay: 0.95s; }
+        .hub-shaft-graphic .shaft-box:nth-child(1)  { animation: sweepTopGreen 1.6s ease-in-out forwards; animation-delay: 1.05s; }
+
+        @keyframes sweepMiddle {
+            0% {
+                background-color: #111111;
+                border-color: var(--surface-border);
+                box-shadow: none;
+            }
+            30% {
+                background-color: var(--accent-red);
+                border-color: var(--accent-red);
+                box-shadow: 0 0 10px var(--accent-red-glow);
+            }
+            60%, 100% {
+                background-color: #111111;
+                border-color: var(--surface-border);
+                box-shadow: none;
+            }
+        }
+
+        @keyframes sweepTopGreen {
+            0% {
+                background-color: #111111;
+                border-color: var(--surface-border);
+                box-shadow: none;
+            }
+            20% {
+                background-color: var(--accent-green);
+                border-color: var(--accent-green);
+                box-shadow: 0 0 16px var(--accent-green-glow);
+            }
+            70% {
+                background-color: var(--accent-green);
+                border-color: var(--accent-green);
+                box-shadow: 0 0 16px var(--accent-green-glow);
+            }
+            100% {
+                background-color: #111111;
+                border-color: var(--surface-border);
+                box-shadow: none;
+            }
+        }
+
+        @keyframes sweepBottomSettle {
+            0% {
+                background-color: #111111;
+                border-color: var(--surface-border);
+                box-shadow: none;
+            }
+            15% {
+                background-color: var(--accent-red);
+                border-color: var(--accent-red);
+                box-shadow: 0 0 10px var(--accent-red-glow);
+            }
+            30% {
+                background-color: #111111;
+                border-color: var(--surface-border);
+                box-shadow: none;
+            }
+            80% {
+                background-color: #111111;
+                border-color: var(--surface-border);
+                box-shadow: none;
+            }
+            95%, 100% {
+                background-color: var(--accent-red);
+                border-color: var(--accent-red);
+                box-shadow: 0 0 8px var(--accent-red-glow);
+            }
+        }
+
+        /* Menu Actions Box */
+        .hub-menu-box {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            width: 100%;
+            max-width: 340px;
+        }
+
+        .btn-hub-option {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            transition: all 0.2s ease;
+            justify-content: flex-start;
+            gap: 8px;
+            background-color: var(--surface);
+            border: 1px solid var(--surface-border-light);
+            color: var(--text-primary);
+            padding: 14px 24px;
+            font-size: 0.95rem;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         }
 
-        .card-left {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
+        .btn-hub-option:hover {
+            background-color: #111111;
+            transform: translateY(-2px);
         }
 
-        .card-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.15rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+        .btn-hub-option:active {
+            transform: translateY(0);
         }
 
-        .card-desc {
-            font-size: 0.68rem;
-            color: var(--text-muted);
+        /* Game-Specific Outline & Glow Highlights */
+        .btn-hub-option.questions:hover,
+        .btn-hub-option.questions:active {
+            border-color: var(--color-questions);
+            box-shadow: 0 6px 20px var(--color-questions-glow);
+        }
+
+        .btn-hub-option.wordclimb:hover,
+        .btn-hub-option.wordclimb:active {
+            border-color: var(--color-wordclimb);
+            box-shadow: 0 6px 20px var(--color-wordclimb-glow);
+        }
+
+        .btn-hub-option.clusters:hover,
+        .btn-hub-option.clusters:active {
+            border-color: var(--color-clusters);
+            box-shadow: 0 6px 20px var(--color-clusters-glow);
+        }
+
+        .btn-hub-option.cluegram:hover,
+        .btn-hub-option.cluegram:active {
+            border-color: var(--color-cluegram);
+            box-shadow: 0 6px 20px var(--color-cluegram-glow);
+        }
+
+        .hub-btn-num {
+            font-weight: 700;
+        }
+
+        /* Specific Game Colors for 11th */
+        .hub-btn-num.questions { color: var(--color-questions); }
+        .hub-btn-num.wordclimb { color: var(--color-wordclimb); }
+        .hub-btn-num.clusters { color: var(--color-clusters); }
+        .hub-btn-num.cluegram { color: var(--color-cluegram); }
+
+        .hub-btn-floor {
+            color: #ffffff;
             font-weight: 600;
-            letter-spacing: 0.5px;
         }
 
-        .card-badge {
-            font-family: 'Anton', sans-serif;
-            font-size: 1.2rem;
-            padding: 4px 10px;
-            border-radius: 6px;
-            background: #111111;
-            border: 1px solid var(--surface-border);
-        }
-
-        /* 1ST: Terrace Test (Pitch Green) */
-        .card-terrace { border-color: rgba(132, 204, 22, 0.3); }
-        .card-terrace:hover {
-            border-color: var(--genre-terrace);
-            box-shadow: 0 0 16px var(--genre-terrace-glow);
-            transform: translateY(-2px);
-        }
-        .card-terrace .card-title, .card-terrace .card-badge { color: var(--genre-terrace); }
-
-        /* 2ND: Cluegram (Magenta) */
-        .card-cluegram { border-color: rgba(204, 0, 126, 0.3); }
-        .card-cluegram:hover {
-            border-color: var(--genre-magenta);
-            box-shadow: 0 0 16px var(--genre-magenta-glow);
-            transform: translateY(-2px);
-        }
-        .card-cluegram .card-title, .card-cluegram .card-badge { color: var(--genre-magenta); }
-
-        /* 3RD: Questions (Metallic Gold) */
-        .card-questions { border-color: rgba(212, 175, 55, 0.3); }
-        .card-questions:hover {
-            border-color: var(--genre-gold);
-            box-shadow: 0 0 16px var(--genre-gold-glow);
-            transform: translateY(-2px);
-        }
-        .card-questions .card-title, .card-questions .card-badge { color: var(--genre-gold); }
-
-        /* 4TH: Word Climb (Blue) */
-        .card-wordclimb { border-color: rgba(59, 130, 246, 0.3); }
-        .card-wordclimb:hover {
-            border-color: var(--genre-blue);
-            box-shadow: 0 0 16px var(--genre-blue-glow);
-            transform: translateY(-2px);
-        }
-        .card-wordclimb .card-title, .card-wordclimb .card-badge { color: var(--genre-blue); }
-
-        /* 5TH: Clusters (Orange) */
-        .card-clusters { border-color: rgba(249, 115, 22, 0.3); }
-        .card-clusters:hover {
-            border-color: var(--genre-orange);
-            box-shadow: 0 0 16px var(--genre-orange-glow);
-            transform: translateY(-2px);
-        }
-        .card-clusters .card-title, .card-clusters .card-badge { color: var(--genre-orange); }
-
-        footer {
-            margin-top: 20px;
-            font-size: 0.65rem;
+        .hub-btn-sep {
             color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .hub-btn-game {
+            font-weight: 300;
             letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-align: center;
+            color: #ffffff;
         }
     </style>
 </head>
 <body>
 
-    <header class="lobby-header">
-        <h1 class="lobby-main-title">11th FLOOR</h1>
-        <p class="lobby-sub-title">Daily Elevator Puzzles</p>
-    </header>
+    <div class="hub-logo-box">
+        <h1 class="hub-logo-red">11FL?</h1>
+        <p class="hub-logo-title">Eleventh Floor</p>
+        <p class="hub-logo-sub">GAMES LOBBY</p>
+    </div>
 
-    <main class="lobby-grid">
-        <!-- 1ST: TERRACE TEST -->
-        <a href="terrace-test.html" class="game-card card-terrace">
-            <div class="card-left">
-                <div class="card-title">Terrace Test</div>
-                <div class="card-desc">Daily Premier League Trivia</div>
-            </div>
-            <div class="card-badge">01</div>
+    <!-- Animated Building Shaft Graphic -->
+    <div class="hub-shaft-graphic">
+        <div class="shaft-box"></div>
+        <div class="shaft-box"></div>
+        <div class="shaft-box"></div>
+        <div class="shaft-box"></div>
+        <div class="shaft-box"></div>
+        <div class="shaft-box"></div>
+        <div class="shaft-box"></div>
+        <div class="shaft-box"></div>
+        <div class="shaft-box"></div>
+        <div class="shaft-box"></div>
+        <div class="shaft-box"></div>
+    </div>
+
+    <div class="hub-menu-box">
+        <a href="questions.html" class="btn-hub-option questions">
+            <span class="hub-btn-num questions">11th</span>
+            <span class="hub-btn-floor">Floor</span>
+            <span class="hub-btn-sep">-</span>
+            <span class="hub-btn-game">Questions</span>
         </a>
-
-        <!-- 2ND: CLUEGRAM -->
-        <a href="cluegram.html" class="game-card card-cluegram">
-            <div class="card-left">
-                <div class="card-title">Cluegram</div>
-                <div class="card-desc">Clued Anagram Ascent</div>
-            </div>
-            <div class="card-badge">02</div>
+        <a href="word-climb.html" class="btn-hub-option wordclimb">
+            <span class="hub-btn-num wordclimb">11th</span>
+            <span class="hub-btn-floor">Floor</span>
+            <span class="hub-btn-sep">-</span>
+            <span class="hub-btn-game">Word Climb</span>
         </a>
-
-        <!-- 3RD: QUESTIONS -->
-        <a href="questions.html" class="game-card card-questions">
-            <div class="card-left">
-                <div class="card-title">Questions</div>
-                <div class="card-desc">Daily High-Stakes Trivia</div>
-            </div>
-            <div class="card-badge">03</div>
+        <a href="clusters.html" class="btn-hub-option clusters">
+            <span class="hub-btn-num clusters">11th</span>
+            <span class="hub-btn-floor">Floor</span>
+            <span class="hub-btn-sep">-</span>
+            <span class="hub-btn-game">Clusters</span>
         </a>
-
-        <!-- 4TH: WORD CLIMB -->
-        <a href="word-climb.html" class="game-card card-wordclimb">
-            <div class="card-left">
-                <div class="card-title">Word Climb</div>
-                <div class="card-desc">9-Letter Wheel Challenge</div>
-            </div>
-            <div class="card-badge">04</div>
+        <a href="cluegram.html" class="btn-hub-option cluegram">
+            <span class="hub-btn-num cluegram">11th</span>
+            <span class="hub-btn-floor">Floor</span>
+            <span class="hub-btn-sep">-</span>
+            <span class="hub-btn-game">Cluegram</span>
         </a>
+    </div>
 
-        <!-- 5TH: CLUSTERS -->
-        <a href="clusters.html" class="game-card card-clusters">
-            <div class="card-left">
-                <div class="card-title">Clusters</div>
-                <div class="card-desc">Category Grouping Puzzle</div>
-            </div>
-            <div class="card-badge">05</div>
-        </a>
-    </main>
+    <script>
+        let lobbyAudioCtx = null;
 
-    <footer>
-        ONE MISTAKE RESETS THE CLIMB TO GROUND FLOOR.
-    </footer>
+        function triggerLobbyHaptic(pattern) {
+            if ('vibrate' in navigator) {
+                try {
+                    navigator.vibrate(pattern);
+                } catch (e) {}
+            }
+        }
 
+        function getLobbyAudioContext() {
+            if (!lobbyAudioCtx) {
+                lobbyAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (lobbyAudioCtx.state === 'suspended') {
+                lobbyAudioCtx.resume();
+            }
+            return lobbyAudioCtx;
+        }
+
+        function playLobbyDing() {
+            try {
+                const ctx = getLobbyAudioContext();
+                const now = ctx.currentTime;
+
+                const bufferSize = ctx.sampleRate * 0.012;
+                const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+                const output = noiseBuffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) {
+                    output[i] = Math.random() * 2 - 1;
+                }
+                const noise = ctx.createBufferSource();
+                noise.buffer = noiseBuffer;
+
+                const noiseFilter = ctx.createBiquadFilter();
+                noiseFilter.type = 'bandpass';
+                noiseFilter.frequency.setValueAtTime(2400, now);
+                noiseFilter.Q.setValueAtTime(4, now);
+
+                const noiseGain = ctx.createGain();
+                noiseGain.gain.setValueAtTime(0.2, now);
+                noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.012);
+
+                noise.connect(noiseFilter);
+                noiseFilter.connect(noiseGain);
+                noiseGain.connect(ctx.destination);
+                noise.start(now);
+
+                const baseFreq = 830;
+                const modes = [
+                    { freq: baseFreq * 1.0, gain: 0.35, decay: 1.6 },
+                    { freq: baseFreq * 1.58, gain: 0.18, decay: 1.1 },
+                    { freq: baseFreq * 2.24, gain: 0.10, decay: 0.7 },
+                    { freq: baseFreq * 2.91, gain: 0.05, decay: 0.4 }
+                ];
+
+                modes.forEach(mode => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(mode.freq, now);
+
+                    gain.gain.setValueAtTime(0, now);
+                    gain.gain.linearRampToValueAtTime(mode.gain, now + 0.003);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + mode.decay);
+
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+
+                    osc.start(now);
+                    osc.stop(now + mode.decay);
+                });
+            } catch (e) {
+                console.warn('Lobby audio error:', e);
+            }
+        }
+
+        document.querySelectorAll('.btn-hub-option').forEach(btn => {
+            btn.addEventListener('click', () => {
+                triggerLobbyHaptic(15);
+            });
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const unlock = () => {
+                getLobbyAudioContext();
+                document.removeEventListener('click', unlock);
+                document.removeEventListener('touchstart', unlock);
+            };
+            document.addEventListener('click', unlock);
+            document.addEventListener('touchstart', unlock);
+
+            setTimeout(() => {
+                playLobbyDing();
+            }, 1370);
+        });
+    </script>
 </body>
 </html>
