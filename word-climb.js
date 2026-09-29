@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function getOrdinalFloorHTML(floorNum) {
     const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
     const ord = ordinals[floorNum - 1] || `${floorNum}th`;
-    return `<span style="color: var(--state-active, #facc15); font-weight: 800;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
+    return `<span style="color: var(--genre-blue, #3B82F6); font-weight: 800;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
 }
 
 async function fetchFileWithFallbacks(filename) {
