@@ -48,7 +48,6 @@
             text-transform: uppercase;
         }
 
-        /* Compact header used during active gameplay (No 11FL?) */
         .gameplay-header-box {
             display: flex;
             flex-direction: column;
@@ -120,7 +119,7 @@
         .tower-floor.failed { border-color: var(--state-error); background: var(--state-error); box-shadow: 0 0 6px var(--state-error-glow); }
         .floor-info-box { flex-grow: 1; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; }
         .floor-left-group { display: flex; flex-direction: column; gap: 4px; }
-        .current-floor-display { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: 1px; color: var(--genre-magenta); }
+        .current-floor-display { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: 1px; }
         .floor-rule-text { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.5px; text-transform: uppercase; }
 
         .play-card { width: 100%; max-width: 600px; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 12px; flex-grow: 1; margin-bottom: 6px; overflow: hidden; min-height: 0; }
@@ -129,7 +128,6 @@
         .clue-label { font-size: 0.6rem; font-weight: 700; color: var(--genre-magenta); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
         .clue-text { font-family: 'Glacial Indifference', 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 700; color: #ffffff; letter-spacing: 0.5px; line-height: 1.3; }
 
-        /* Lightened Answer Slot Borders */
         #target-word-slots { display: flex; gap: 6px; justify-content: center; align-items: center; width: 100%; min-height: 42px; flex-wrap: wrap; }
         .target-slot { width: 34px; height: 42px; border: 1px solid rgba(250, 204, 21, 0.4); border-radius: 6px; background: #111111; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text-primary); cursor: pointer; transition: all 0.15s ease; }
         .target-slot.filled { border-color: var(--state-active); box-shadow: 0 0 6px var(--state-active-glow); }
@@ -226,7 +224,7 @@
 
             <div class="floor-info-box">
                 <div class="floor-left-group">
-                    <div class="current-floor-display" id="floor-number-val">1st Floor</div>
+                    <div class="current-floor-display" id="floor-number-val"><span style="color: var(--genre-magenta);">1st</span> <span style="color: #ffffff;">Floor</span></div>
                     <div class="floor-rule-text" id="floor-rule-text">5-letter Anagram • No mistakes!</div>
                 </div>
             </div>
@@ -282,7 +280,6 @@
     <script src="cluegram-data.js"></script>
     <script src="cluegram.js"></script>
     <script>
-        // Toggle compact header on gameplay start
         document.addEventListener('DOMContentLoaded', () => {
             const startBtn = document.getElementById('start-climb-btn');
             const gameplayHeader = document.getElementById('gameplay-header');
