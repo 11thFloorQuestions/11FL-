@@ -382,6 +382,9 @@ function loadNextQuestion() {
     const optionButtons = document.querySelectorAll('.options-grid .btn-option');
     optionButtons.forEach((btn, idx) => {
         btn.className = 'btn-option';
+        if (typeof btn.blur === 'function') {
+            btn.blur();
+        }
         const optionVal = shuffledOptions[idx] || null;
         btn.textContent = optionVal || '';
         btn.style.display = optionVal ? 'block' : 'none';
@@ -418,6 +421,9 @@ function handleAnswerSelect(isCorrect, buttonEl) {
     
     document.querySelectorAll('.options-grid .btn-option').forEach(btn => {
         btn.onclick = null;
+        if (typeof btn.blur === 'function') {
+            btn.blur();
+        }
     });
     
     if (isCorrect) {
