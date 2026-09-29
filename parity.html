@@ -1,1 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>11th Floor Parity — Daily Puzzle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@700;800&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --bg-deep: #000000;
+            --surface: #0a0a0a;
+            --surface-border: #222222;
+            --surface-border-light: #333333;
+            --text-primary: #ffffff;
+            --text-muted: #888888;
+            --genre-pink: #ff9999;
+            --genre-pink-glow: rgba(255, 153, 153, 0.35);
+            --state-active: #facc15;
+            --state-active-glow: rgba(250, 204, 21, 0.3);
+            --state-success: #22c55e;
+            --state-success-glow: rgba(34, 197, 94, 0.3);
+            --state-error: #ef4444;
+            --state-error-glow: rgba(239, 68, 68, 0.3);
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 10px;
+            overflow-x: hidden;
+        }
+
+        .top-bar {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .pill-btn {
+            background: var(--surface);
+            border: 1px solid var(--surface-border-light);
+            color: var(--text-primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .pill-btn:hover {
+            border-color: var(--genre-pink);
+            color: var(--genre-pink);
+        }
+
+        /* Landing Logo Box */
+        .game-logo-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 8px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .game-logo-pink {
+            font-family: 'Anton', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 400;
+            color: var(--genre-pink);
+            line-height: 0.85;
+            letter-spacing: -1px;
+            text-shadow: 0 0 20px var(--genre-pink-glow);
+            margin-bottom: 4px;
+        }
+
+        .game-logo-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: #ffffff;
+            letter-spacing: 1.5px;
+            margin-bottom: 2px;
+        }
+
+        .game-logo-sub {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--genre-pink);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* Gameplay Compact Header Box */
+        .gameplay-header-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 6px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .landing-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 16px;
+            padding: 20px 16px;
+            width: 100%;
+            max-width: 600px;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            margin-top: 6px;
+        }
+
+        .landing-shaft-graphic {
+            display: flex;
+            flex-direction: column;
+            width: 52px;
+            height: 150px;
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            padding: 6px;
+            gap: 3px;
+            background-color: var(--surface);
+        }
+
+        .landing-shaft-box {
+            flex: 1;
+            background-color: #111111;
+            border: 1px solid var(--surface-border);
+            border-radius: 2px;
+        }
+
+        .landing-shaft-graphic .landing-shaft-box { animation: sweepMiddle 1.2s ease-in-out forwards; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(11) { animation: sweepBottomSettle 2.6s ease-in-out forwards; animation-delay: 0.05s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(10) { animation-delay: 0.15s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(9)  { animation-delay: 0.25s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(8)  { animation-delay: 0.35s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(7)  { animation-delay: 0.45s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(6)  { animation-delay: 0.55s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(5)  { animation-delay: 0.65s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(4)  { animation-delay: 0.75s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(3)  { animation-delay: 0.85s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(2)  { animation-delay: 0.95s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(1)  { animation: sweepTopGreen 1.6s ease-in-out forwards; animation-delay: 1.05s; }
+
+        @keyframes sweepMiddle {
+            0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+            30% { background-color: var(--genre-pink); border-color: var(--genre-pink); box-shadow: 0 0 10px var(--genre-pink-glow); }
+            60%, 100% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+        }
+
+        @keyframes sweepTopGreen {
+            0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+            20%, 70% { background-color: var(--state-success); border-color: var(--state-success); box-shadow: 0 0 16px var(--state-success-glow); }
+            100% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+        }
+
+        @keyframes sweepBottomSettle {
+            0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+            15% { background-color: var(--genre-pink); border-color: var(--genre-pink); box-shadow: 0 0 10px var(--genre-pink-glow); }
+            30%, 80% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+            95%, 100% { background-color: var(--genre-pink); border-color: var(--genre-pink); box-shadow: 0 0 8px var(--genre-pink-glow); }
+        }
+
+        .landing-challenge-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .btn-start {
+            background-color: var(--surface);
+            border: 1px solid var(--genre-pink);
+            color: var(--genre-pink);
+            padding: 12px 28px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 24px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-start:hover {
+            background-color: var(--genre-pink);
+            color: #ffffff;
+            box-shadow: 0 4px 25px var(--genre-pink-glow);
+        }
+
+        /* Gameplay Area */
+        .hud-sidebar-container { width: 100%; max-width: 600px; display: flex; align-items: stretch; gap: 12px; margin-bottom: 6px; flex-shrink: 0; }
+        .tower-stack { display: flex; flex-direction: column; gap: 2px; width: 52px; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 6px; justify-content: space-between; flex-shrink: 0; }
+        .tower-floor { height: 7px; border: 1px solid var(--surface-border); background: #111111; transition: all 0.2s ease; border-radius: 2px; }
+        .tower-floor.active { border-color: var(--state-active); background: var(--state-active); box-shadow: 0 0 8px var(--state-active-glow); }
+        .tower-floor.completed { border-color: var(--state-success); background: var(--state-success); box-shadow: 0 0 6px var(--state-success-glow); }
+        .tower-floor.failed { border-color: var(--state-error); background: var(--state-error); box-shadow: 0 0 6px var(--state-error-glow); }
+        .floor-info-box { flex-grow: 1; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; }
+        .floor-left-group { display: flex; flex-direction: column; gap: 4px; }
+        .current-floor-display { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: 1px; }
+        .floor-rule-text { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.5px; text-transform: uppercase; }
+
+        .play-card { width: 100%; max-width: 600px; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 10px; flex-grow: 1; margin-bottom: 6px; overflow: hidden; min-height: 0; }
+        #message-box { min-height: 16px; color: var(--state-error); font-weight: 700; font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; text-align: center; }
+
+        /* Draining Timer Bar */
+        .timer-bar-container { width: 100%; height: 6px; background: #111111; border: 1px solid var(--surface-border); border-radius: 4px; overflow: hidden; }
+        .timer-bar-fill { height: 100%; width: 100%; background-color: var(--state-active); box-shadow: 0 0 8px var(--state-active-glow); transition: width 0.1s linear; }
+
+        /* Grid Layout for Parity Cards */
+        .parity-grid { display: grid; gap: 8px; width: 100%; max-width: 420px; margin: auto; justify-content: center; }
+        
+        .parity-tile {
+            aspect-ratio: 1;
+            background: #111111;
+            border: 1px solid var(--surface-border-light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            perspective: 1000px;
+            padding: 8px;
+        }
+
+        .parity-tile:hover {
+            border-color: var(--genre-pink);
+            transform: translateY(-2px);
+        }
+
+        .parity-tile.selected {
+            border-color: var(--state-active);
+            box-shadow: 0 0 10px var(--state-active-glow);
+            transform: scale(1.03);
+        }
+
+        .parity-tile.matched {
+            border-color: var(--state-success);
+            box-shadow: 0 0 10px var(--state-success-glow);
+            opacity: 0.85;
+            cursor: default;
+        }
+
+        .parity-tile.error {
+            border-color: var(--state-error);
+            box-shadow: 0 0 10px var(--state-error-glow);
+            animation: shake 0.3s ease;
+        }
+
+        .parity-tile svg {
+            width: 65%;
+            height: 65%;
+            color: #ffffff;
+            transition: transform 0.2s ease;
+        }
+
+        .parity-tile.face-down svg {
+            display: none;
+        }
+
+        .parity-tile.face-down {
+            background: #0d0d0d;
+            border-color: var(--surface-border);
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-4px); }
+            75% { transform: translateX(4px); }
+        }
+
+        footer {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 4px;
+            text-align: center;
+        }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.92); display: flex; align-items: center; justify-content: center; z-index: 100; }
+        .modal-overlay.hidden { display: none !important; }
+        .modal-card { background-color: var(--surface); border: 1px solid var(--surface-border); padding: 28px 24px; border-radius: 14px; width: 90%; max-width: 360px; text-align: center; }
+        .modal-large { max-width: 440px; }
+        .stats-summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 18px 0 12px 0; background: var(--bg-deep); border: 1px solid var(--surface-border); border-radius: 10px; padding: 14px; }
+        .stat-box { display: flex; flex-direction: column; align-items: center; }
+        .stat-val { font-size: 1.25rem; font-weight: 800; color: var(--text-primary); }
+        .stat-lbl { font-size: 0.55rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-top: 3px; }
+        .vault-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(95px, 1fr)); gap: 8px; max-height: 220px; overflow-y: auto; margin: 12px 0; }
+        .vault-item-btn { background-color: #111111; border: 1px solid var(--surface-border); color: var(--text-primary); padding: 10px 6px; border-radius: 8px; cursor: pointer; text-align: center; }
+        .vault-item-btn:hover { border-color: var(--genre-pink); background-color: #1a1a1a; }
+        .btn-modal { flex-grow: 1; width: 100%; background-color: #111111; border: 1px solid var(--surface-border); color: var(--text-primary); padding: 12px; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; border-radius: 24px; cursor: pointer; margin-top: 10px; }
+    </style>
+</head>
+<body class="game-parity">
+
+    <div style="width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 100%;">
+        <div class="top-bar">
+            <a href="index.html" class="pill-btn">← LOBBY</a>
+            <button class="pill-btn" id="btn-landing-stats">STATS / ARCHIVE</button>
+            <button class="pill-btn" id="btn-sound">SOUND: ON</button>
+        </div>
+
+        <!-- LANDING SCREEN (Full Logo with 11FL?) -->
+        <div id="start-screen" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+            <div class="game-logo-box">
+                <h1 class="game-logo-pink">11FL?</h1>
+                <p class="game-logo-title">Eleventh Floor</p>
+                <p class="game-logo-sub">PARITY</p>
+            </div>
+
+            <div class="landing-container">
+                <div class="landing-shaft-graphic">
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                </div>
+
+                <div class="landing-challenge-text">
+                    <strong>CAN YOU REACH THE 11TH FLOOR?</strong><br><br>
+                    Match all identical pairs before time runs out on each floor. One mistake or missed timer resets you to the ground floor.
+                </div>
+
+                <button id="start-climb-btn" class="btn-start">Start Climb</button>
+            </div>
+        </div>
+
+        <!-- GAMEPLAY HEADER (Shows only during play — Eleventh Floor PARITY) -->
+        <div id="gameplay-header" class="gameplay-header-box" style="display: none;">
+            <p class="game-logo-title">Eleventh Floor</p>
+            <p class="game-logo-sub">PARITY</p>
+        </div>
+
+        <!-- Gameplay HUD Header -->
+        <div class="hud-sidebar-container" id="floor-hud-container" style="display: none;">
+            <div class="tower-stack" id="tower-stack">
+                <div class="tower-floor" data-floor="11"></div>
+                <div class="tower-floor" data-floor="10"></div>
+                <div class="tower-floor" data-floor="9"></div>
+                <div class="tower-floor" data-floor="8"></div>
+                <div class="tower-floor" data-floor="7"></div>
+                <div class="tower-floor" data-floor="6"></div>
+                <div class="tower-floor" data-floor="5"></div>
+                <div class="tower-floor" data-floor="4"></div>
+                <div class="tower-floor" data-floor="3"></div>
+                <div class="tower-floor" data-floor="2"></div>
+                <div class="tower-floor" data-floor="1"></div>
+            </div>
+
+            <div class="floor-info-box">
+                <div class="floor-left-group">
+                    <div class="current-floor-display" id="floor-number-val"><span style="color: var(--genre-pink);">1st</span> <span style="color: #ffffff;">Floor</span></div>
+                    <div class="floor-rule-text" id="floor-rule-text">1 Pair • Clear Grid Before Time Expires!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Play Card Workspace -->
+        <div id="game-workspace" class="play-card" style="display: none;">
+            <div id="message-box"></div>
+
+            <div class="timer-bar-container">
+                <div id="timer-bar-fill" class="timer-bar-fill"></div>
+            </div>
+
+            <div id="parity-grid" class="parity-grid"></div>
+        </div>
+
+        <footer>
+            <div>ONE MISTAKE RESETS THE CLIMB TO 1ST FLOOR.</div>
+        </footer>
+    </div>
+
+    <!-- Stats & Archive Vault Modal -->
+    <div id="modal-vault" class="modal-overlay hidden">
+        <div class="modal-card modal-large">
+            <h2 style="font-size: 1.2rem; font-weight: 800;">STATS</h2>
+            <div class="stats-summary-grid">
+                <div class="stat-box"><span id="stat-played" class="stat-val">0</span><span class="stat-lbl">Played</span></div>
+                <div class="stat-box"><span id="stat-wins" class="stat-val">0</span><span class="stat-lbl">Wins</span></div>
+                <div class="stat-box"><span id="stat-winrate" class="stat-val">0%</span><span class="stat-lbl">Win %</span></div>
+                <div class="stat-box"><span id="stat-streak" class="stat-val">0</span><span class="stat-lbl">Streak</span></div>
+                <div class="stat-box" style="grid-column: span 2;"><span id="stat-bestfloor" class="stat-val">FL 01</span><span class="stat-lbl">Best Peak</span></div>
+            </div>
+
+            <h3 style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); margin-top: 12px; text-transform: uppercase;">ARCHIVE VAULT</h3>
+            <div id="vault-list" class="vault-grid"></div>
+            <button id="btn-close-vault" class="btn-modal">CLOSE</button>
+        </div>
+    </div>
+
+    <script src="parity-data.js"></script>
+    <script src="parity.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const startBtn = document.getElementById('start-climb-btn');
+            const gameplayHeader = document.getElementById('gameplay-header');
+            if (startBtn && gameplayHeader) {
+                startBtn.addEventListener('click', () => {
+                    gameplayHeader.style.display = 'flex';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
