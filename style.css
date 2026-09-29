@@ -7,95 +7,248 @@
   --brand-master-red: #DC2626;
 
   /* Genre Signature Colors (Floor Numbers, Headers, & Cards) */
-  --genre-gold: #EAB308;    /* Questions / Knowledge & Trivia */
+  --genre-gold: #D4AF37;    /* Questions / Knowledge & Trivia */
+  --genre-gold-glow: rgba(212, 175, 55, 0.35);
   --genre-blue: #3B82F6;    /* Word Climb / Anagrams & Word Play */
+  --genre-blue-glow: rgba(59, 130, 246, 0.3);
   --genre-magenta: #cc007e; /* Cluegram / Anagrams & Clues */
-  --genre-yellow: #FACC15;  /* Clusters / Puzzles & Pattern Logic */
+  --genre-magenta-glow: rgba(204, 0, 126, 0.35);
+  --genre-red: #ff1f2d;     /* Clusters / Puzzles & Pattern Logic */
+  --genre-red-glow: rgba(255, 31, 45, 0.35);
   --genre-silver: #94A3B8;  /* Future Maths & Spatial Logic */
 
-  /* Standardized Functional Gameplay States (Universal Across All 11 Games) */
+  /* Standardized Functional Gameplay States */
   --state-active: #FACC15;   /* Yellow: Active floor, slot borders, selected tiles */
+  --state-active-glow: rgba(250, 204, 21, 0.25);
   --state-error: #EF4444;    /* Red: Incorrect answer, invalid word, streak loss */
+  --state-error-glow: rgba(239, 68, 68, 0.3);
   --state-success: #22C55E;  /* Green: Correct answer, floor cleared, victory */
+  --state-success-glow: rgba(34, 197, 94, 0.3);
 
   /* Neutral Surface Palette */
-  --bg-dark: #09090B;        /* Pure dark canvas background */
-  --surface-card: #18181B;   /* Card / slot container background */
-  --surface-border: #27272A; /* Locked / inactive floor borders */
-  --text-main: #FFFFFF;      /* High-contrast primary text */
-  --text-muted: #A1A1AA;     /* Secondary clue text & metadata */
+  --bg-deep: #000000;
+  --surface: #0a0a0a;
+  --surface-border: #222222;
+  --text-primary: #FFFFFF;
+  --text-muted: #888888;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
 }
 
 /* ==========================================================================
-   Genre Binding Rules
+   Standardized Landing Screen Architecture (All Games)
    ========================================================================== */
 
-/* 11th Floor Questions (Gold Theme) */
-body.game-questions {
-  --genre-active: var(--genre-gold);
+.top-bar {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  flex-shrink: 0;
 }
 
-/* 11th Floor Cluegram (Magenta Theme) */
-body.game-cluegram {
-  --genre-active: var(--genre-magenta);
+.pill-btn {
+  background: transparent;
+  border: 1px solid var(--surface-border);
+  color: var(--text-muted);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* 11th Floor Word Climb (Blue Theme) */
-body.game-wordclimb {
-  --genre-active: var(--genre-blue);
+.pill-btn:hover {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+  background: var(--surface);
 }
 
-/* 11th Floor Clusters (Yellow Theme) */
-body.game-clusters {
-  --genre-active: var(--genre-yellow);
+.game-logo-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 8px;
+  text-align: center;
+  flex-shrink: 0;
 }
 
-/* 11th Floor Maths (Silver Theme) */
-body.game-maths {
-  --genre-active: var(--genre-silver);
+.game-logo-title {
+  font-family: 'Glacial Indifference', 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #ffffff;
+  letter-spacing: 1.5px;
+  margin-bottom: 2px;
 }
 
-/* ==========================================================================
-   UI Component Styling
-   ========================================================================== */
-
-/* Active Floor Number (Pulls Active Genre Color) */
-.floor-number {
-  color: var(--genre-active);
-  font-weight: 800;
-  text-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+.game-logo-sub {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
 }
 
-/* Slot Boxes & Interactive Tile Borders (Yellow Active State) */
-.slot-box,
-.interactive-tile {
-  border: 2px solid var(--state-active);
-  background-color: var(--surface-card);
-  color: var(--text-main);
-  transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.1s ease;
+/* Specific Logo Accents */
+.game-logo-gold {
+  font-family: 'Anton', sans-serif;
+  font-size: 3.2rem;
+  font-weight: 400;
+  background: linear-gradient(135deg, #FFE066 0%, #D4AF37 50%, #997A15 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 0.85;
+  letter-spacing: -1px;
+  filter: drop-shadow(0 0 12px var(--genre-gold-glow));
+  margin-bottom: 4px;
 }
 
-/* Error State (Wrong Answer / Failed Submission) */
-.slot-box.state-error,
-.interactive-tile.state-error,
-.floor-indicator.state-error {
-  border-color: var(--state-error) !important;
-  background-color: rgba(239, 68, 68, 0.15) !important;
-  color: #FCA5A5 !important;
+.game-logo-blue {
+  font-family: 'Anton', sans-serif;
+  font-size: 3.2rem;
+  font-weight: 400;
+  color: var(--genre-blue);
+  line-height: 0.85;
+  letter-spacing: -1px;
+  text-shadow: 0 0 20px var(--genre-blue-glow);
+  margin-bottom: 4px;
 }
 
-/* Victory State (Correct Answer / Floor Cleared) */
-.slot-box.state-success,
-.interactive-tile.state-success,
-.floor-indicator.state-success {
-  border-color: var(--state-success) !important;
-  background-color: rgba(34, 197, 94, 0.15) !important;
-  color: #86EFAC !important;
+.game-logo-magenta {
+  font-family: 'Anton', sans-serif;
+  font-size: 3.2rem;
+  font-weight: 400;
+  color: var(--genre-magenta);
+  line-height: 0.85;
+  letter-spacing: -1px;
+  text-shadow: 0 0 20px var(--genre-magenta-glow);
+  margin-bottom: 4px;
 }
 
-/* Reached 11th Floor Milestone Card */
-.victory-card-11th {
-  border: 2px solid var(--state-success);
-  background: radial-gradient(circle at center, rgba(34, 197, 94, 0.2) 0%, var(--bg-dark) 100%);
-  color: var(--text-main);
+.game-logo-red {
+  font-family: 'Anton', sans-serif;
+  font-size: 3.2rem;
+  font-weight: 400;
+  color: var(--genre-red);
+  line-height: 0.85;
+  letter-spacing: -1px;
+  text-shadow: 0 0 20px var(--genre-red-glow);
+  margin-bottom: 4px;
+}
+
+/* Landing Cards & Graphic Shaft */
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  padding: 20px 16px;
+  width: 100%;
+  max-width: 600px;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 8px;
+  margin-top: 6px;
+}
+
+.landing-shaft-graphic {
+  display: flex;
+  flex-direction: column;
+  width: 52px;
+  height: 150px;
+  border: 1px solid var(--surface-border);
+  border-radius: 8px;
+  padding: 6px;
+  gap: 3px;
+  background-color: var(--surface);
+}
+
+.landing-shaft-box {
+  flex: 1;
+  background-color: #111111;
+  border: 1px solid var(--surface-border);
+  border-radius: 2px;
+}
+
+.landing-challenge-text {
+  font-family: 'Glacial Indifference', 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+  max-width: 320px;
+  text-transform: uppercase;
+}
+
+.landing-challenge-text strong {
+  font-family: 'Glacial Indifference', 'Montserrat', sans-serif;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.btn-start {
+  background-color: #ffffff;
+  color: #000000;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 12px 36px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+}
+
+.btn-start:hover {
+  transform: translateY(-1px);
+}
+
+footer {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  padding-top: 8px;
 }
