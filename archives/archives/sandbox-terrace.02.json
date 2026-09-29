@@ -1,1 +1,169 @@
+[
+  {
+    "floor": 1,
+    "id": "tt-f1-001",
+    "question": "In 2022–23, Erling Haaland set the record for most goals in a 38-game Premier League season. Whose 32-goal record did he break?",
+    "options": [
+      "Mohamed Salah",
+      "Luis Suárez",
+      "Cristiano Ronaldo",
+      "Sergio Agüero"
+    ],
+    "correctIndex": 0,
+    "anchorClues": {
+      "season": "2022-23",
+      "record": "Most goals in a 38-game PL season",
+      "previousRecordHolder": "Mohamed Salah (32)"
+    }
+  },
+  {
+    "floor": 2,
+    "id": "tt-f2-001",
+    "question": "During Leicester City's 2015–16 title campaign, Jamie Vardy set a record by scoring in how many consecutive Premier League matches?",
+    "options": [
+      "11",
+      "10",
+      "12",
+      "13"
+    ],
+    "correctIndex": 0,
+    "anchorClues": {
+      "club": "Leicester City",
+      "season": "2015-16",
+      "stat": "Consecutive scoring streak record"
+    }
+  },
+  {
+    "floor": 3,
+    "id": "tt-f3-001",
+    "question": "Who shared the 2021–22 Premier League Golden Boot alongside Son Heung-min after both finished on 23 goals?",
+    "options": [
+      "Mohamed Salah",
+      "Harry Kane",
+      "Sadio Mané",
+      "Cristiano Ronaldo"
+    ],
+    "correctIndex": 0,
+    "anchorClues": {
+      "season": "2021-22",
+      "award": "Joint Golden Boot winner with Son Heung-min"
+    }
+  },
+  {
+    "floor": 4,
+    "id": "tt-f4-001",
+    "question": "Chelsea conceded an all-time record low of just 15 goals in 2004–05. How many clean sheets did Petr Čech keep that season?",
+    "options": [
+      "24",
+      "21",
+      "26",
+      "20"
+    ],
+    "correctIndex": 0,
+    "anchorClues": {
+      "club": "Chelsea",
+      "season": "2004-05",
+      "record": "Single-season clean sheet record"
+    }
+  },
+  {
+    "floor": 5,
+    "id": "tt-f5-001",
+    "question": "In May 2018, Gabriel Jesus scored a 94th-minute winner on the final day to secure Manchester City's record 100 points. Against which team?",
+    "options": [
+      "Southampton",
+      "Brighton",
+      "West Ham",
+      "Swansea City"
+    ],
+    "correctIndex": 0,
+    "anchorClues": {
+      "event": "Centurions 100th point goal",
+      "season": "2017-18 final day",
+      "scorer": "Gabriel Jesus"
+    }
+  },
+  {
+    "floor": 6,
+    "id": "tt-f6-001",
+    "question": "Sadio Mané scored the fastest hat-trick in Premier League history (2m 56s) for Southampton in 2015. Which club did he score it against?",
+    "options": [
+      "Aston Villa",
+      "Sunderland",
+      "Newcastle United",
+      "Everton"
+    ],
+    "correctIndex": 0,
+    "anchorClues": {
+      "record": "Fastest PL hat-trick",
+      "formerClub": "Southampton",
+      "year": 2015
+    }
+  },
+  {
+    "floor": 7,
+    "id": "tt-f7-001",
+    "question": "Ole Gunnar Solskjær famously scored 4 goals in 18 minutes off the bench for Man United against Nottingham Forest in 1999. What was the final score?",
+    "options": [
+      "8–1",
+      "7–0",
+      "6–1",
+      "8–2"
+    ],
+    "correctIndex": 0,
+    "anchorClues": {
+      "match": "Nottingham Forest vs Man Utd 1999",
+      "feat": "Solskjaer 4 goals as sub"
+    }
+  },
+  {
+    "floor": 8,
+    "id": "tt-f8-001",
+    "question": "Who scored the very first goal in Premier League history on August 15, 1992, playing for Sheffield United against Manchester United?",
+    "options": [
+      "Brian Deane",
+      "Alan Shearer",
+      "Teddy Sheringham",
+      "Les Ferdinand"
+    ],
+    "correctIndex": 0,
+    "anchorClues": {
+      "milestone": "Inaugural Premier League goal",
+      "date": "August 15, 1992",
+      "match": "Sheffield United vs Man Utd"
+    }
+  },
+  {
+    "floor": 9,
+    "id": "tt-f9-001",
+    "question": "Who is the only player in Premier League history to score goals for six different London clubs?",
+    "options": [
+      "Les Ferdinand",
+      "Nicolas Anelka",
+      "Darren Bent",
+      "Jermain Defoe"
+    ],
+    "correctIndex": 0,
+    "anchorClues": {
+      "record": "Scored for 6 London PL clubs",
+      "clubs": ["West Ham", "Tottenham", "Portsmouth", "Charlton", "Fulham", "QPR"]
+    }
+  },
+  {
+    "floor": 10,
+    "id": "tt-f10-001",
+    "question": "In a November 2012 match against Liverpool, who became the only player to score a goal, provide an assist, and score an own goal in the same Premier League game?",
+    "options": [
+      "Gareth Bale",
+      "Wayne Rooney",
+      "James Milner",
+      "Kevin Davies"
+    ],
+    "correctIndex": 0,
+    "anchorClues": {
+      "match": "Tottenham vs Liverpool, Nov 2012",
+      "feat": "Goal, assist, and own-goal in same match"
+    }
+  }
+]
 
