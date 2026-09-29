@@ -8,565 +8,157 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/glacial-indifference" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <style>
-        :root {
-            --bg-deep: #000000;
-            --surface: #0a0a0a;
-            --surface-border: #222222;
-            --accent-red: #ff1f2d;
-            --accent-red-glow: rgba(255, 31, 45, 0.25);
-            --accent-green: #22c55e;
-            --accent-green-glow: rgba(34, 197, 94, 0.3);
-            --text-primary: #ffffff;
-            --text-muted: #888888;
-            --tile-bg: #0f0f0f;
-            --tile-hover: #1a1a1a;
-            --tile-selected-bg: #ff1f2d;
-            --tile-selected-text: #000000;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            background-color: var(--bg-deep);
-            color: var(--text-primary);
-            font-family: 'Montserrat', sans-serif;
-            min-height: 100vh;
-            min-height: 100dvh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 20px;
-            overflow-x: hidden;
-        }
-
-        .top-bar {
-            width: 100%;
-            max-width: 600px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .pill-btn {
-            background: transparent;
-            border: 1px solid var(--surface-border);
-            color: var(--text-primary);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            padding: 6px 14px;
-            border-radius: 20px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-        }
-
-        .pill-btn:hover {
-            border-color: var(--text-muted);
-            background: var(--surface);
-        }
-
-        .game-logo-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .game-logo-red {
-            font-family: 'Anton', sans-serif;
-            font-size: 3.2rem;
-            font-weight: 400;
-            color: var(--accent-red);
-            line-height: 0.85;
-            letter-spacing: -1px;
-            text-shadow: 0 0 20px rgba(255, 31, 45, 0.35);
-            margin-bottom: 4px;
-        }
-
-        .game-logo-title {
-            font-family: 'Glacial Indifference', 'Montserrat', sans-serif;
-            font-size: 1rem;
-            font-weight: 300;
-            color: #ffffff;
-            letter-spacing: 1.5px;
-            margin-bottom: 2px;
-        }
-
-        .game-logo-sub {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.6rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
-
-        /* Standardized Landing Screen Container */
-        .landing-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 16px;
-            padding: 20px 16px;
-            width: 100%;
-            max-width: 600px;
-            background: var(--surface);
-            border: 1px solid var(--surface-border);
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-
-        /* Wider Landing Building Graphic (52px) */
-        .landing-shaft-graphic {
-            display: flex;
-            flex-direction: column;
-            width: 52px;
-            height: 150px;
-            border: 1px solid var(--surface-border);
-            border-radius: 8px;
-            padding: 6px;
-            gap: 3px;
-            background-color: var(--surface);
-        }
-
-        .shaft-box {
-            flex: 1;
-            background-color: #111111;
-            border: 1px solid var(--surface-border);
-            border-radius: 2px;
-            animation: sweepMiddle 1.2s ease-in-out forwards;
-        }
-
-        .landing-shaft-graphic .shaft-box:nth-child(11) { animation: sweepBottomSettle 2.6s ease-in-out forwards; animation-delay: 0.05s; }
-        .landing-shaft-graphic .shaft-box:nth-child(10) { animation-delay: 0.15s; }
-        .landing-shaft-graphic .shaft-box:nth-child(9)  { animation-delay: 0.25s; }
-        .landing-shaft-graphic .shaft-box:nth-child(8)  { animation-delay: 0.35s; }
-        .landing-shaft-graphic .shaft-box:nth-child(7)  { animation-delay: 0.45s; }
-        .landing-shaft-graphic .shaft-box:nth-child(6)  { animation-delay: 0.55s; }
-        .landing-shaft-graphic .shaft-box:nth-child(5)  { animation-delay: 0.65s; }
-        .landing-shaft-graphic .shaft-box:nth-child(4)  { animation-delay: 0.75s; }
-        .landing-shaft-graphic .shaft-box:nth-child(3)  { animation-delay: 0.85s; }
-        .landing-shaft-graphic .shaft-box:nth-child(2)  { animation-delay: 0.95s; }
-        .landing-shaft-graphic .shaft-box:nth-child(1)  { animation: sweepTopGreen 1.6s ease-in-out forwards; animation-delay: 1.05s; }
+        .landing-shaft-graphic .landing-shaft-box { animation: sweepMiddle 1.2s ease-in-out forwards; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(11) { animation: sweepBottomSettle 2.6s ease-in-out forwards; animation-delay: 0.05s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(10) { animation-delay: 0.15s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(9)  { animation-delay: 0.25s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(8)  { animation-delay: 0.35s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(7)  { animation-delay: 0.45s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(6)  { animation-delay: 0.55s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(5)  { animation-delay: 0.65s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(4)  { animation-delay: 0.75s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(3)  { animation-delay: 0.85s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(2)  { animation-delay: 0.95s; }
+        .landing-shaft-graphic .landing-shaft-box:nth-child(1)  { animation: sweepTopGreen 1.6s ease-in-out forwards; animation-delay: 1.05s; }
 
         @keyframes sweepMiddle {
             0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
-            30% { background-color: var(--accent-red); border-color: var(--accent-red); box-shadow: 0 0 10px var(--accent-red-glow); }
+            30% { background-color: var(--genre-red); border-color: var(--genre-red); box-shadow: 0 0 10px var(--genre-red-glow); }
             60%, 100% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
         }
 
         @keyframes sweepTopGreen {
             0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
-            20%, 70% { background-color: var(--accent-green); border-color: var(--accent-green); box-shadow: 0 0 16px var(--accent-green-glow); }
+            20%, 70% { background-color: var(--state-success); border-color: var(--state-success); box-shadow: 0 0 16px var(--state-success-glow); }
             100% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
         }
 
         @keyframes sweepBottomSettle {
             0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
-            15% { background-color: var(--accent-red); border-color: var(--accent-red); box-shadow: 0 0 10px var(--accent-red-glow); }
+            15% { background-color: var(--genre-red); border-color: var(--genre-red); box-shadow: 0 0 10px var(--genre-red-glow); }
             30%, 80% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
-            95%, 100% { background-color: var(--accent-red); border-color: var(--accent-red); box-shadow: 0 0 8px var(--accent-red-glow); }
-        }
-
-        .landing-challenge-text {
-            font-family: 'Glacial Indifference', 'Montserrat', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 400;
-            color: var(--text-muted);
-            line-height: 1.6;
-            letter-spacing: 0.5px;
-            max-width: 320px;
-            text-transform: uppercase;
-        }
-
-        .landing-challenge-text strong {
-            font-family: 'Glacial Indifference', 'Montserrat', sans-serif;
-            color: #ffffff;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-        }
-
-        .btn-start {
-            background-color: #ffffff;
-            color: #000000;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            padding: 12px 36px;
-            border-radius: 30px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+            95%, 100% { background-color: var(--genre-red); border-color: var(--genre-red); box-shadow: 0 0 8px var(--genre-red-glow); }
         }
 
         .btn-start:hover {
-            background-color: var(--accent-red);
+            background-color: var(--genre-red);
             color: #ffffff;
-            box-shadow: 0 4px 25px var(--accent-red-glow);
-            transform: translateY(-2px);
+            box-shadow: 0 4px 25px var(--genre-red-glow);
         }
 
-        .hud-sidebar-container {
-            width: 100%;
-            max-width: 600px;
-            display: flex;
-            align-items: stretch;
-            gap: 12px;
-            margin-bottom: 15px;
-        }
+        /* Gameplay Area */
+        .hud-sidebar-container { width: 100%; max-width: 600px; display: flex; align-items: stretch; gap: 12px; margin-bottom: 12px; }
+        .tower-stack { display: flex; flex-direction: column-reverse; gap: 2px; width: 52px; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 6px; justify-content: space-between; }
+        .tower-floor { height: 7px; border: 1px solid var(--surface-border); background: #111111; transition: all 0.2s ease; border-radius: 2px; }
+        .tower-floor.active { border-color: var(--genre-red); background: rgba(255, 31, 45, 0.3); box-shadow: 0 0 6px var(--genre-red-glow); }
+        .floor-info-box { flex-grow: 1; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; }
+        .current-floor-display { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: 1px; color: var(--genre-red); }
 
-        .tower-stack {
-            display: flex;
-            flex-direction: column-reverse;
-            gap: 2px;
-            width: 52px;
-            background: var(--surface);
-            border: 1px solid var(--surface-border);
-            border-radius: 8px;
-            padding: 8px;
-            justify-content: space-between;
-        }
+        .lives-container { display: flex; gap: 5px; }
+        .life-pip { width: 8px; height: 8px; background-color: var(--genre-red); border-radius: 50%; box-shadow: 0 0 6px var(--genre-red-glow); transition: all 0.2s ease; }
+        .life-pip.lost { background-color: #222222; box-shadow: none; }
 
-        .tower-floor {
-            height: 7px;
-            border: 1px solid var(--surface-border);
-            background: #111111;
-            transition: all 0.2s ease;
-            border-radius: 2px;
-        }
+        main { width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center; flex-grow: 1; justify-content: center; }
+        .puzzle-prompt { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 15px; text-align: center; letter-spacing: 0.5px; }
+        #solved-groups-container { width: 100%; display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
+        .solved-group-card { background: rgba(34, 197, 94, 0.1); border: 1px solid var(--state-success); padding: 10px 14px; display: flex; flex-direction: column; gap: 3px; border-radius: 8px; box-shadow: 0 0 15px var(--state-success-glow); }
+        .solved-group-category { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--state-success); font-weight: 700; }
+        .solved-group-words { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px; }
 
-        .tower-floor.active {
-            border-color: var(--accent-red);
-            background: rgba(255, 31, 45, 0.3);
-            box-shadow: 0 0 6px var(--accent-red-glow);
-        }
+        .tile-grid { display: grid; gap: 10px; width: 100%; margin-bottom: 20px; }
+        .grid-col-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-col-4 { grid-template-columns: repeat(4, 1fr); }
+        .cluster-tile { background-color: #0f0f0f; border: 1px solid var(--surface-border); color: var(--text-primary); font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; padding: 16px 8px; text-align: center; cursor: pointer; transition: all 0.15s ease; display: flex; align-items: center; justify-content: center; min-height: 55px; border-radius: 8px; }
+        .cluster-tile:hover { background-color: #1a1a1a; border-color: var(--genre-red); }
+        .cluster-tile.selected { background-color: var(--genre-red); color: #000000; border-color: var(--genre-red); box-shadow: 0 0 15px var(--genre-red-glow); }
+        .cluster-tile.success { background-color: var(--state-success) !important; color: #000000 !important; border-color: var(--state-success) !important; box-shadow: 0 0 20px var(--state-success-glow) !important; }
 
-        .floor-info-box {
-            flex-grow: 1;
-            background: var(--surface);
-            border: 1px solid var(--surface-border);
-            border-radius: 8px;
-            padding: 12px 18px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .action-panel { width: 100%; max-width: 600px; display: flex; gap: 12px; justify-content: center; }
+        .btn { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; padding: 12px 20px; cursor: pointer; border: 2px solid var(--genre-red); border-radius: 8px; transition: all 0.2s ease; }
+        .btn-secondary { background: transparent; color: var(--text-muted); border-color: var(--surface-border); }
+        .btn-secondary:hover { color: var(--text-primary); border-color: var(--text-muted); }
+        .btn-primary { background: var(--genre-red); color: #000000; border-color: var(--genre-red); }
+        .btn-primary:hover { background: transparent; color: var(--genre-red); box-shadow: 0 0 20px var(--genre-red-glow); }
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none !important; }
 
-        .current-floor-display {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .floor-right-group {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 8px;
-        }
-
-        .lives-container {
-            display: flex;
-            gap: 5px;
-        }
-
-        .life-pip {
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent-red);
-            border-radius: 50%;
-            box-shadow: 0 0 6px var(--accent-red-glow);
-            transition: all 0.2s ease;
-        }
-
-        .life-pip.lost {
-            background-color: #222222;
-            box-shadow: none;
-        }
-
-        main {
-            width: 100%;
-            max-width: 600px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex-grow: 1;
-            justify-content: center;
-        }
-
-        .puzzle-prompt {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 15px;
-            text-align: center;
-            letter-spacing: 0.5px;
-        }
-
-        #solved-groups-container {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 15px;
-        }
-
-        .solved-group-card {
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid var(--accent-green);
-            padding: 10px 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px var(--accent-green-glow);
-            animation: fadeIn 0.4s ease-in-out;
-        }
-
-        .solved-group-category {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent-green);
-            font-weight: 700;
-        }
-
-        .solved-group-words {
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .tile-grid {
-            display: grid;
-            gap: 10px;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .grid-col-3 {
-            grid-template-columns: repeat(3, 1fr);
-        }
-        .grid-col-4 {
-            grid-template-columns: repeat(4, 1fr);
-        }
-
-        .cluster-tile {
-            background-color: var(--tile-bg);
-            border: 1px solid var(--surface-border);
-            color: var(--text-primary);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 700;
-            padding: 16px 8px;
-            text-align: center;
-            cursor: pointer;
-            user-select: none;
-            transition: all 0.15s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 55px;
-            letter-spacing: 0.5px;
-            border-radius: 8px;
-        }
-
-        .cluster-tile:hover {
-            background-color: var(--tile-hover);
-            border-color: var(--accent-red);
-        }
-
-        .cluster-tile.selected {
-            background-color: var(--tile-selected-bg);
-            color: var(--tile-selected-text);
-            border-color: var(--tile-selected-bg);
-            box-shadow: 0 0 15px var(--accent-red-glow);
-        }
-
-        .cluster-tile.success {
-            background-color: var(--accent-green) !important;
-            color: #000000 !important;
-            border-color: var(--accent-green) !important;
-            box-shadow: 0 0 20px var(--accent-green-glow) !important;
-        }
-
-        .action-panel {
-            width: 100%;
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-        }
-
-        .btn {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            padding: 12px 20px;
-            cursor: pointer;
-            border: 2px solid var(--accent-red);
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-muted);
-            border-color: var(--surface-border);
-        }
-
-        .btn-secondary:hover {
-            color: var(--text-primary);
-            border-color: var(--text-muted);
-        }
-
-        .btn-primary {
-            background: var(--accent-red);
-            color: #000000;
-            border-color: var(--accent-red);
-        }
-
-        .btn-primary:hover {
-            background: transparent;
-            color: var(--accent-red);
-            box-shadow: 0 0 20px var(--accent-red-glow);
-        }
-
-        .btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-            box-shadow: none !important;
-        }
-
-        #penalty-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(255, 31, 45, 0.2);
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-            z-index: 999;
-        }
-
-        #penalty-overlay.flash {
-            opacity: 1;
-        }
-
-        footer {
-            width: 100%;
-            max-width: 600px;
-            text-align: center;
-            margin-top: 15px;
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            letter-spacing: 0.5px;
-        }
-
-        #status-message {
-            min-height: 20px;
-            color: var(--accent-red);
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        #penalty-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(255, 31, 45, 0.2); pointer-events: none; opacity: 0; transition: opacity 0.2s ease; z-index: 999; }
+        #penalty-overlay.flash { opacity: 1; }
+        #status-message { min-height: 20px; color: var(--genre-red); font-weight: 700; margin-bottom: 4px; }
     </style>
 </head>
 <body>
 
     <div id="penalty-overlay"></div>
 
-    <div class="top-bar">
-        <a href="index.html" class="pill-btn">← LOBBY</a>
-        <button class="pill-btn" id="btn-sound">SOUND: OFF</button>
-    </div>
-
-    <div class="game-logo-box">
-        <h1 class="game-logo-red">11FL?</h1>
-        <p class="game-logo-title">Eleventh Floor</p>
-        <p class="game-logo-sub">CLUSTERS</p>
-    </div>
-
-    <!-- Standardized Landing Screen with Animated 52px Building Graphic -->
-    <div id="start-screen" class="landing-container">
-        <div class="landing-shaft-graphic">
-            <div class="shaft-box"></div>
-            <div class="shaft-box"></div>
-            <div class="shaft-box"></div>
-            <div class="shaft-box"></div>
-            <div class="shaft-box"></div>
-            <div class="shaft-box"></div>
-            <div class="shaft-box"></div>
-            <div class="shaft-box"></div>
-            <div class="shaft-box"></div>
-            <div class="shaft-box"></div>
-            <div class="shaft-box"></div>
+    <div style="width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 100%;">
+        <div class="top-bar">
+            <a href="index.html" class="pill-btn">← LOBBY</a>
+            <button class="pill-btn" id="btn-sound">SOUND: OFF</button>
         </div>
 
-        <div class="landing-challenge-text">
-            <strong>CAN YOU REACH THE 11TH FLOOR?</strong><br><br>
-            Group the 12 tiles into categories of 3 to ascend.<br><br>
-            One mistake resets the climb to 1st floor.
+        <div class="game-logo-box">
+            <h1 class="game-logo-red">11FL?</h1>
+            <p class="game-logo-title">Eleventh Floor</p>
+            <p class="game-logo-sub" style="color: var(--text-muted);">CLUSTERS</p>
         </div>
 
-        <button id="btn-start-climb" class="btn-start">Start Climb</button>
-    </div>
+        <!-- Standardized Landing Screen -->
+        <div id="start-screen" class="landing-container">
+            <div class="landing-shaft-graphic">
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+                <div class="landing-shaft-box"></div>
+            </div>
 
-    <!-- Gameplay HUD -->
-    <div class="hud-sidebar-container" id="floor-hud-container" style="display: none;">
-        <div class="tower-stack" id="tower-stack"></div>
-        <div class="floor-info-box">
-            <div class="current-floor-display" id="floor-number-val"></div>
-            <div class="floor-right-group">
-                <div class="lives-container" id="lives-container">
-                    <div class="life-pip" id="pip-1"></div>
-                    <div class="life-pip" id="pip-2"></div>
-                    <div class="life-pip" id="pip-3"></div>
+            <div class="landing-challenge-text">
+                <strong>CAN YOU REACH THE 11TH FLOOR?</strong><br><br>
+                Group the 12 tiles into categories of 3 to ascend.<br><br>
+                One mistake resets the climb to 1st floor.
+            </div>
+
+            <button id="btn-start-climb" class="btn-start">Start Climb</button>
+        </div>
+
+        <!-- Gameplay HUD -->
+        <div class="hud-sidebar-container" id="floor-hud-container" style="display: none;">
+            <div class="tower-stack" id="tower-stack"></div>
+            <div class="floor-info-box">
+                <div class="current-floor-display" id="floor-number-val">FLOOR 01</div>
+                <div class="floor-right-group" style="display: flex; flex-direction: column; align-items: flex-end;">
+                    <div class="lives-container" id="lives-container">
+                        <div class="life-pip" id="pip-1"></div>
+                        <div class="life-pip" id="pip-2"></div>
+                        <div class="life-pip" id="pip-3"></div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <main id="game-main-content" style="display: none;">
+            <div class="puzzle-prompt" id="puzzle-prompt"></div>
+            <div id="solved-groups-container"></div>
+            <div class="tile-grid grid-col-3" id="tile-grid"></div>
+            <div class="action-panel" id="action-panel-container">
+                <button class="btn btn-secondary" id="btn-shuffle">SHUFFLE</button>
+                <button class="btn btn-primary" id="btn-submit" disabled>SUBMIT</button>
+            </div>
+        </main>
+
+        <footer>
+            <div id="status-message"></div>
+            <div>ONE MISTAKE RESETS THE CLIMB TO 1ST FLOOR.</div>
+        </footer>
     </div>
-
-    <main id="game-main-content" style="display: none;">
-        <div class="puzzle-prompt" id="puzzle-prompt"></div>
-
-        <div id="solved-groups-container"></div>
-
-        <div class="tile-grid grid-col-3" id="tile-grid"></div>
-
-        <div class="action-panel" id="action-panel-container">
-            <button class="btn btn-secondary" id="btn-shuffle">SHUFFLE</button>
-            <button class="btn btn-primary" id="btn-submit" disabled>SUBMIT</button>
-        </div>
-    </main>
-
-    <footer>
-        <div id="status-message"></div>
-        <div>ONE MISTAKE RESETS THE CLIMB TO 1ST FLOOR.</div>
-    </footer>
 
     <script src="clusters-data.js"></script>
     <script src="clusters.js"></script>
