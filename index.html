@@ -207,12 +207,12 @@
         .btn-hub-option {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 6px;
+            justify-content: flex-start;
+            gap: 8px;
             background-color: var(--surface);
             border: 1px solid var(--surface-border-light);
             color: var(--text-primary);
-            padding: 14px 20px;
+            padding: 14px 24px;
             font-size: 0.95rem;
             text-decoration: none;
             cursor: pointer;
@@ -270,6 +270,11 @@
             font-weight: 600;
         }
 
+        .hub-btn-sep {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
         .hub-btn-game {
             font-weight: 300;
             letter-spacing: 1.5px;
@@ -304,21 +309,25 @@
         <a href="questions.html" class="btn-hub-option questions">
             <span class="hub-btn-num questions">11th</span>
             <span class="hub-btn-floor">Floor</span>
+            <span class="hub-btn-sep">-</span>
             <span class="hub-btn-game">Questions</span>
         </a>
         <a href="word-climb.html" class="btn-hub-option wordclimb">
             <span class="hub-btn-num wordclimb">11th</span>
             <span class="hub-btn-floor">Floor</span>
+            <span class="hub-btn-sep">-</span>
             <span class="hub-btn-game">Word Climb</span>
         </a>
         <a href="clusters.html" class="btn-hub-option clusters">
             <span class="hub-btn-num clusters">11th</span>
             <span class="hub-btn-floor">Floor</span>
+            <span class="hub-btn-sep">-</span>
             <span class="hub-btn-game">Clusters</span>
         </a>
         <a href="cluegram.html" class="btn-hub-option cluegram">
             <span class="hub-btn-num cluegram">11th</span>
             <span class="hub-btn-floor">Floor</span>
+            <span class="hub-btn-sep">-</span>
             <span class="hub-btn-game">Cluegram</span>
         </a>
     </div>
