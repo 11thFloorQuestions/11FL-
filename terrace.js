@@ -156,8 +156,14 @@ async function fetchFileWithFallbacks(filename) {
     for (const path of candidatePaths) {
         try {
             const res = await fetch(path);
-            if (res.ok) return await res.json();
-        } catch (e) {}
+            if (res.ok) {
+                const parsed = await res.json();
+                console.log(`[Terrace Vault] Successfully loaded: ${path}`);
+                return parsed;
+            }
+        } catch (e) {
+            console.warn(`[Terrace Vault] Could not parse JSON from ${path}:`, e);
+        }
     }
     return null;
 }
@@ -168,19 +174,14 @@ async function populateVault() {
     vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">Loading archives...</div>';
 
     const foundArchives = [];
-    let consecutiveFailures = 0;
 
-    for (let archiveId = 1; archiveId <= 50; archiveId++) {
+    for (let archiveId = 1; archiveId <= 20; archiveId++) {
         const paddedId = String(archiveId).padStart(2, '0');
         const filename = `sandbox-terrace.${paddedId}.json`;
         const data = await fetchFileWithFallbacks(filename);
 
         if (data) {
             foundArchives.push({ paddedId, data });
-            consecutiveFailures = 0;
-        } else {
-            consecutiveFailures++;
-            if (consecutiveFailures >= 3) break;
         }
     }
 
@@ -292,7 +293,7 @@ function loadNextQuestion() {
 
 function startTimer() {
     clearInterval(gameState.timer);
-    const totalDuration = 30000; // 30 seconds generous thinking time
+    const totalDuration = 30000; // 30 seconds
     const startTime = Date.now();
     const timerBar = document.getElementById('timer-bar');
     if (timerBar) timerBar.style.width = '100%';
