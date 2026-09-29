@@ -48,6 +48,21 @@
             text-transform: uppercase;
         }
 
+        .landing-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 16px;
+            padding: 20px 16px;
+            width: 100%;
+            max-width: 600px;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            margin-top: 6px;
+        }
+
         .landing-shaft-graphic .landing-shaft-box { animation: sweepMiddle 1.2s ease-in-out forwards; }
         .landing-shaft-graphic .landing-shaft-box:nth-child(11) { animation: sweepBottomSettle 2.6s ease-in-out forwards; animation-delay: 0.05s; }
         .landing-shaft-graphic .landing-shaft-box:nth-child(10) { animation-delay: 0.15s; }
@@ -104,7 +119,6 @@
         .clue-label { font-size: 0.6rem; font-weight: 700; color: var(--genre-magenta); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
         .clue-text { font-family: 'Glacial Indifference', 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 700; color: #ffffff; letter-spacing: 0.5px; line-height: 1.3; }
 
-        /* Lightened Answer Slot Borders (1px thin line with refined opacity) */
         #target-word-slots { display: flex; gap: 6px; justify-content: center; align-items: center; width: 100%; min-height: 42px; flex-wrap: wrap; }
         .target-slot { width: 34px; height: 42px; border: 1px solid rgba(250, 204, 21, 0.4); border-radius: 6px; background: #111111; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text-primary); cursor: pointer; transition: all 0.15s ease; }
         .target-slot.filled { border-color: var(--state-active); box-shadow: 0 0 6px var(--state-active-glow); }
@@ -145,37 +159,39 @@
             <button class="pill-btn" id="btn-sound">SOUND: ON</button>
         </div>
 
-        <div class="game-logo-box">
-            <h1 class="game-logo-magenta">11FL?</h1>
-            <p class="game-logo-title">Eleventh Floor</p>
-            <p class="game-logo-sub">CLUEGRAM</p>
-        </div>
-
-        <!-- Landing Screen Container -->
-        <div id="start-screen" class="landing-container">
-            <div class="landing-shaft-graphic">
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
-                <div class="landing-shaft-box"></div>
+        <!-- Landing Screen View (Hides on Start) -->
+        <div id="start-screen" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 12px;">
+            <div class="game-logo-box">
+                <h1 class="game-logo-magenta">11FL?</h1>
+                <p class="game-logo-title">Eleventh Floor</p>
+                <p class="game-logo-sub">CLUEGRAM</p>
             </div>
 
-            <div class="landing-challenge-text">
-                <strong>CAN YOU REACH THE 11TH FLOOR?</strong><br><br>
-                Solve the anagrams using the clues on every floor, from 5 to 9 letters. One mistake and you lose your streak and return to the ground floor.
-            </div>
+            <div class="landing-container">
+                <div class="landing-shaft-graphic">
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                    <div class="landing-shaft-box"></div>
+                </div>
 
-            <button id="start-climb-btn" class="btn-start">Start Climb</button>
+                <div class="landing-challenge-text">
+                    <strong>CAN YOU REACH THE 11TH FLOOR?</strong><br><br>
+                    Solve the anagrams using the clues on every floor, from 5 to 9 letters. One mistake and you lose your streak and return to the ground floor.
+                </div>
+
+                <button id="start-climb-btn" class="btn-start">Start Climb</button>
+            </div>
         </div>
 
-        <!-- Gameplay HUD Header -->
+        <!-- Gameplay HUD Header (Shows on Start) -->
         <div class="hud-sidebar-container" id="floor-hud-container" style="display: none;">
             <div class="tower-stack" id="tower-stack">
                 <div class="tower-floor" data-floor="11"></div>
@@ -199,7 +215,7 @@
             </div>
         </div>
 
-        <!-- Main Play Card Workspace -->
+        <!-- Main Play Card Workspace (Shows on Start) -->
         <div id="game-workspace" class="play-card" style="display: none;">
             <div id="message-box"></div>
 
@@ -216,7 +232,7 @@
             </div>
         </div>
 
-        <!-- Action Panel Controls -->
+        <!-- Action Panel Controls (Shows on Start) -->
         <div class="action-panel" id="game-controls" style="display: none;">
             <button class="btn btn-secondary" id="action-backspace-btn">BACKSPACE</button>
             <button class="btn btn-secondary" id="action-shuffle-btn">SHUFFLE</button>
