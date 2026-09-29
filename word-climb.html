@@ -80,8 +80,14 @@
 
         .play-card { width: 100%; max-width: 600px; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 10px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 2px; flex-grow: 1; margin-bottom: 6px; overflow: hidden; min-height: 0; }
         #message-box { min-height: 16px; color: var(--state-error); font-weight: 700; font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; text-align: center; }
+        
+        /* Lightened Answer Slot Borders (Cluegram Standard) */
         #target-word-slots { display: flex; gap: 6px; justify-content: center; align-items: center; width: 100%; min-height: 38px; flex-wrap: wrap; }
-        .target-slot { width: 32px; height: 38px; border: 2px solid var(--state-active, #facc15); border-radius: 6px; background: #111111; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1rem; color: var(--text-primary); transition: all 0.15s ease; box-shadow: 0 0 6px var(--state-active-glow, rgba(250, 204, 21, 0.2)); }
+        .target-slot { width: 32px; height: 38px; border: 1px solid rgba(250, 204, 21, 0.4); border-radius: 6px; background: #111111; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1rem; color: var(--text-primary); transition: all 0.15s ease; }
+        .target-slot.filled { border-color: var(--state-active); box-shadow: 0 0 6px var(--state-active-glow); }
+        .target-slot.state-success { border-color: var(--state-success); color: var(--state-success); }
+        .target-slot.state-error { border-color: var(--state-error); color: var(--state-error); }
+
         #guess-display { display: flex; justify-content: center; gap: 4px; min-height: 28px; align-items: center; font-weight: 700; font-size: 0.9rem; letter-spacing: 2px; color: var(--text-primary); margin-bottom: 2px; }
         #wheel-container { width: min(295px, 36vh); height: min(295px, 36vh); max-width: 100%; position: relative; margin: 0 auto; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
 
