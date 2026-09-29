@@ -31,17 +31,20 @@
     const towerStack = document.getElementById('tower-stack');
     const btnSound = document.getElementById('btn-sound');
     const floorHudContainer = document.getElementById('floor-hud-container');
+    const startScreen = document.getElementById('start-screen');
+    const mainContent = document.getElementById('game-main-content');
+    const btnStartClimb = document.getElementById('btn-start-climb');
     const pips = [document.getElementById('pip-1'), document.getElementById('pip-2'), document.getElementById('pip-3')];
 
     function getOrdinalFloorHTML(floorNum) {
         const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
         const ord = ordinals[floorNum - 1] || `${floorNum}th`;
-        return `<span style="color: var(--accent-red); font-size: 1.25rem; font-weight: 700;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
+        return `<span style="color: var(--genre-orange); font-size: 1.25rem; font-weight: 700;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
     }
 
     function init() {
         if (!window.CLUSTERS_DATA) {
-            statusMessage.textContent = "ERROR: CLUSTERS DATA NOT LOADED.";
+            if (statusMessage) statusMessage.textContent = "ERROR: CLUSTERS DATA NOT LOADED.";
             return;
         }
 
@@ -51,18 +54,24 @@
 
         puzzleData = window.CLUSTERS_DATA[activeDateKey];
 
-        btnShuffle.addEventListener('click', shuffleActiveTiles);
-        btnSubmit.addEventListener('click', handleSubmission);
+        if (btnShuffle) btnShuffle.addEventListener('click', shuffleActiveTiles);
+        if (btnSubmit) btnSubmit.addEventListener('click', handleSubmission);
         
-        btnSound.addEventListener('click', () => {
-            btnSound.textContent = btnSound.textContent.includes('OFF') ? 'SOUND: ON' : 'SOUND: OFF';
-        });
+        if (btnSound) {
+            btnSound.addEventListener('click', () => {
+                btnSound.textContent = btnSound.textContent.includes('OFF') ? 'SOUND: ON' : 'SOUND: OFF';
+            });
+        }
+
+        if (btnStartClimb) {
+            btnStartClimb.addEventListener('click', startClimb);
+        }
 
         renderTowerStack(0);
-        renderIntroScreen();
     }
 
     function renderTowerStack(activeFloor) {
+        if (!towerStack) return;
         towerStack.innerHTML = '';
         for (let i = 1; i <= 10; i++) {
             const floorBar = document.createElement('div');
@@ -76,6 +85,7 @@
 
     function updateLivesDisplay() {
         pips.forEach((pip, index) => {
+            if (!pip) return;
             if (index < currentLives) {
                 pip.classList.remove('lost');
             } else {
@@ -84,33 +94,16 @@
         });
     }
 
-    function renderIntroScreen() {
-        gameState = 'intro';
-        actionPanelContainer.style.display = 'none';
-        floorHudContainer.style.display = 'none';
-        solvedGroupsContainer.innerHTML = '';
-        puzzlePrompt.textContent = "";
-        renderTowerStack(0);
-
-        tileGrid.className = 'tile-grid grid-col-3';
-        tileGrid.innerHTML = `
-            <div style="grid-column: span 3;" class="landing-container">
-                <div class="landing-challenge-text">
-                    Can you reach the 11th Floor? Fail and you're back to the ground floor.
-                </div>
-                <button class="btn-start" id="btn-start-climb">Start Climb</button>
-            </div>
-        `;
-
-        document.getElementById('btn-start-climb').addEventListener('click', startClimb);
-    }
-
     function startClimb() {
         gameState = 'playing';
         currentLives = 3;
         updateLivesDisplay();
-        floorHudContainer.style.display = 'flex';
-        actionPanelContainer.style.display = 'flex';
+
+        if (startScreen) startScreen.style.display = 'none';
+        if (floorHudContainer) floorHudContainer.style.display = 'flex';
+        if (mainContent) mainContent.style.display = 'flex';
+        if (actionPanelContainer) actionPanelContainer.style.display = 'flex';
+
         currentFloor = 1;
         loadFloor(currentFloor);
     }
@@ -122,9 +115,9 @@
         }
         renderTowerStack(currentFloor);
         selectedTiles = [];
-        solvedGroupsContainer.innerHTML = '';
-        statusMessage.textContent = '';
-        btnSubmit.disabled = true;
+        if (solvedGroupsContainer) solvedGroupsContainer.innerHTML = '';
+        if (statusMessage) statusMessage.textContent = '';
+        if (btnSubmit) btnSubmit.disabled = true;
 
         const floorConfig = puzzleData.floors[currentFloor];
         if (!floorConfig) {
@@ -135,15 +128,17 @@
         activeTiles = [...floorConfig.tiles];
         remainingGroups = floorConfig.groups.map(g => ({ ...g }));
 
-        if (currentFloor <= 4) {
-            floorPhaseTag.textContent = "ASCENT";
-            puzzlePrompt.textContent = "Find 2 groups of 3 from the 12 tiles.";
-        } else if (currentFloor >= 5 && currentFloor <= 9) {
-            floorPhaseTag.textContent = "SQUEEZE";
-            puzzlePrompt.textContent = "Find 3 groups of 3 from the 12 tiles.";
-        } else if (currentFloor === 10) {
-            floorPhaseTag.textContent = "FINAL WALL";
-            puzzlePrompt.textContent = "Sort all 16 tiles into 4 groups of 4.";
+        if (puzzlePrompt) {
+            if (currentFloor <= 4) {
+                if (floorPhaseTag) floorPhaseTag.textContent = "ASCENT";
+                puzzlePrompt.textContent = "Find 2 groups of 3 from the 12 tiles.";
+            } else if (currentFloor >= 5 && currentFloor <= 9) {
+                if (floorPhaseTag) floorPhaseTag.textContent = "SQUEEZE";
+                puzzlePrompt.textContent = "Find 3 groups of 3 from the 12 tiles.";
+            } else if (currentFloor === 10) {
+                if (floorPhaseTag) floorPhaseTag.textContent = "FINAL WALL";
+                puzzlePrompt.textContent = "Sort all 16 tiles into 4 groups of 4.";
+            }
         }
 
         shuffleArray(activeTiles);
@@ -151,6 +146,7 @@
     }
 
     function renderGrid() {
+        if (!tileGrid) return;
         tileGrid.innerHTML = '';
 
         if (currentFloor === 10) {
@@ -187,7 +183,7 @@
             }
         }
 
-        btnSubmit.disabled = (selectedTiles.length !== maxSelection);
+        if (btnSubmit) btnSubmit.disabled = (selectedTiles.length !== maxSelection);
     }
 
     function shuffleActiveTiles() {
@@ -214,7 +210,7 @@
 
         if (matchedGroupIndex > -1) {
             gameState = 'animating';
-            btnSubmit.disabled = true;
+            if (btnSubmit) btnSubmit.disabled = true;
 
             const tileElements = tileGrid.querySelectorAll('.cluster-tile');
             tileElements.forEach(el => {
@@ -224,7 +220,7 @@
                 }
             });
 
-            statusMessage.textContent = "CORRECT CLUSTER.";
+            if (statusMessage) statusMessage.textContent = "CORRECT CLUSTER.";
 
             setTimeout(() => {
                 const solvedGroup = remainingGroups.splice(matchedGroupIndex, 1)[0];
@@ -242,7 +238,7 @@
                     setTimeout(() => {
                         if (currentFloor < 10) {
                             const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
-                            statusMessage.textContent = `${ordinals[currentFloor - 1].toUpperCase()} FLOOR CLEARED. ADVANCING...`;
+                            if (statusMessage) statusMessage.textContent = `${ordinals[currentFloor - 1].toUpperCase()} FLOOR CLEARED. ADVANCING...`;
                             setTimeout(() => loadFloor(currentFloor + 1), 900);
                         } else {
                             renderVictory();
@@ -256,9 +252,9 @@
             updateLivesDisplay();
 
             if (currentLives > 0) {
-                statusMessage.textContent = `INCORRECT. ${currentLives} LIVES REMAINING.`;
+                if (statusMessage) statusMessage.textContent = `INCORRECT. ${currentLives} LIVES REMAINING.`;
                 selectedTiles = [];
-                btnSubmit.disabled = true;
+                if (btnSubmit) btnSubmit.disabled = true;
                 renderGrid();
             } else {
                 triggerBrutalReset();
@@ -267,6 +263,7 @@
     }
 
     function appendSolvedCard(group) {
+        if (!solvedGroupsContainer) return;
         const card = document.createElement('div');
         card.className = 'solved-group-card';
         card.innerHTML = `
@@ -278,13 +275,13 @@
 
     function triggerBrutalReset() {
         gameState = 'penalty';
-        btnSubmit.disabled = true;
+        if (btnSubmit) btnSubmit.disabled = true;
         
-        penaltyOverlay.classList.add('flash');
-        statusMessage.textContent = "OUT OF LIVES. DROPPED TO 1ST FLOOR.";
+        if (penaltyOverlay) penaltyOverlay.classList.add('flash');
+        if (statusMessage) statusMessage.textContent = "OUT OF LIVES. DROPPED TO 1ST FLOOR.";
 
         setTimeout(() => {
-            penaltyOverlay.classList.remove('flash');
+            if (penaltyOverlay) penaltyOverlay.classList.remove('flash');
             currentLives = 3;
             updateLivesDisplay();
             loadFloor(1);
@@ -293,24 +290,26 @@
 
     function renderVictory() {
         gameState = 'victory';
-        floorHudContainer.style.display = 'none';
-        actionPanelContainer.style.display = 'none';
-        solvedGroupsContainer.innerHTML = '';
-        puzzlePrompt.textContent = "";
+        if (floorHudContainer) floorHudContainer.style.display = 'none';
+        if (actionPanelContainer) actionPanelContainer.style.display = 'none';
+        if (solvedGroupsContainer) solvedGroupsContainer.innerHTML = '';
+        if (puzzlePrompt) puzzlePrompt.textContent = "";
         renderTowerStack(10);
 
-        tileGrid.className = 'tile-grid grid-col-3';
-        tileGrid.innerHTML = `
-            <div style="grid-column: span 3;" class="landing-container">
-                <div style="font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--accent-green); letter-spacing: 1.5px;">
-                    11TH FLOOR REACHED
+        if (tileGrid) {
+            tileGrid.className = 'tile-grid grid-col-3';
+            tileGrid.innerHTML = `
+                <div style="grid-column: span 3;" class="landing-container">
+                    <div style="font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--state-success); letter-spacing: 1.5px;">
+                        11TH FLOOR REACHED
+                    </div>
+                    <div class="landing-challenge-text">
+                        Congratulations! You have reached the 11th Floor. Come back tomorrow to continue your streak.
+                    </div>
+                    <a href="index.html" class="btn-start" style="text-decoration: none; display: inline-block; text-align: center;">RETURN TO LOBBY</a>
                 </div>
-                <div class="landing-challenge-text">
-                    Congratulations! You have reached the 11th Floor. Come back tomorrow to continue your streak.
-                </div>
-                <a href="index.html" class="btn-start" style="text-decoration: none; display: inline-block; text-align: center;">RETURN TO LOBBY</a>
-            </div>
-        `;
+            `;
+        }
     }
 
     function shuffleArray(array) {
