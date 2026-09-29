@@ -67,6 +67,7 @@ const gameState = {
     timeLeft: 15,
     questions: [],
     currentQuestionIndex: 0,
+    batchIndex: 0,
     stats: {
         played: 0,
         wins: 0,
@@ -75,17 +76,46 @@ const gameState = {
     }
 };
 
-const floorMessages = [
-    "Tough questions ahead — no mistakes!",
-    "Get this wrong and down to Ground Floor you go!",
-    "3rd Floor reached — stay sharp!",
-    "One mistake resets you to Ground Floor.",
-    "Halfway up! Keep climbing.",
-    "6th Floor — hold your focus.",
-    "Rising high above Ground Floor.",
-    "8th Floor — almost at 11th Floor!",
-    "9th Floor — 11th Floor in sight!",
-    "Final obstacle before 11th Floor!"
+const floorMessageBatches = [
+    // Batch 1: Classic Climb
+    [
+        "Tough questions ahead — no mistakes!",
+        "Get this wrong and down to Ground Floor you go!",
+        "3rd Floor reached — stay sharp!",
+        "One mistake resets you to Ground Floor.",
+        "Halfway up! Stay focused.",
+        "6th Floor unlocked — pure precision!",
+        "Ground Floor is far below now.",
+        "Almost there!",
+        "Keep going!",
+        "Final hurdle — make it count!"
+    ],
+    // Batch 2: High Energy
+    [
+        "Watch your step — no mistakes!",
+        "Miss one and back to Ground Floor!",
+        "Moving up nicely — keep going!",
+        "One slip resets the climb.",
+        "Halfway mark — stay locked in!",
+        "Great streak — hold your focus!",
+        "Ground Floor is way behind you.",
+        "You're so close!",
+        "Almost at the top!",
+        "One right answer left!"
+    ],
+    // Batch 3: Focused & Direct
+    [
+        "The climb begins — take your time.",
+        "Wrong answer sends you back down!",
+        "3rd Floor cleared — smooth sailing.",
+        "Stay cool under pressure.",
+        "Halfway to victory!",
+        "Step by step — pure focus.",
+        "High altitude — keep it clean!",
+        "Almost there!",
+        "Push through!",
+        "Final question — finish it!"
+    ]
 ];
 
 function loadSavedStats() {
@@ -327,6 +357,12 @@ async function fetchFileWithFallbacks(filename) {
 }
 
 async function startDailyClimb() {
+    const now = new Date();
+    const start = new Date(now.getFullYear(), 0, 0);
+    const diff = now - start;
+    const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
+    gameState.batchIndex = dayOfYear % floorMessageBatches.length;
+
     let data = await fetchFileWithFallbacks('questions.json');
     if (!data) data = await fetchFileWithFallbacks('sandbox.01.json');
 
@@ -340,6 +376,8 @@ async function startDailyClimb() {
 
 function loadVaultSet(paddedId, data) {
     if (data) {
+        const archiveNum = parseInt(paddedId, 10) || 1;
+        gameState.batchIndex = archiveNum % floorMessageBatches.length;
         gameState.questions = normalizeQuestions(data);
         closeModal('modal-vault');
         startGame();
@@ -373,7 +411,8 @@ function updateFloorUI() {
         cardFloorEl.innerHTML = getOrdinalFloorHTML(gameState.currentFloor);
     }
     
-    const ruleMsg = floorMessages[gameState.currentFloor - 1] || "No mistakes!";
+    const activeBatch = floorMessageBatches[gameState.batchIndex % floorMessageBatches.length] || floorMessageBatches[0];
+    const ruleMsg = activeBatch[gameState.currentFloor - 1] || "No mistakes!";
     safeSetText('floor-rule-text', ruleMsg);
 
     document.querySelectorAll('.tower-floor, .floor-block').forEach(block => {
