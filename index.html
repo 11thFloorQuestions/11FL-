@@ -20,11 +20,15 @@
             --text-primary: #ffffff;
             --text-muted: #888888;
 
-            /* Specific Game Genre Colors */
+            /* Specific Game Genre Colors & Glows */
             --color-questions: #D4AF37;
+            --color-questions-glow: rgba(212, 175, 55, 0.35);
             --color-wordclimb: #3B82F6;
+            --color-wordclimb-glow: rgba(59, 130, 246, 0.3);
             --color-clusters: #ff751f;
+            --color-clusters-glow: rgba(255, 117, 31, 0.35);
             --color-cluegram: #cc007e;
+            --color-cluegram-glow: rgba(204, 0, 126, 0.35);
         }
 
         * {
@@ -218,14 +222,37 @@
         }
 
         .btn-hub-option:hover {
-            border-color: var(--accent-red);
             background-color: #111111;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px var(--accent-red-glow);
         }
 
         .btn-hub-option:active {
             transform: translateY(0);
+        }
+
+        /* Game-Specific Outline & Glow Highlights */
+        .btn-hub-option.questions:hover,
+        .btn-hub-option.questions:active {
+            border-color: var(--color-questions);
+            box-shadow: 0 6px 20px var(--color-questions-glow);
+        }
+
+        .btn-hub-option.wordclimb:hover,
+        .btn-hub-option.wordclimb:active {
+            border-color: var(--color-wordclimb);
+            box-shadow: 0 6px 20px var(--color-wordclimb-glow);
+        }
+
+        .btn-hub-option.clusters:hover,
+        .btn-hub-option.clusters:active {
+            border-color: var(--color-clusters);
+            box-shadow: 0 6px 20px var(--color-clusters-glow);
+        }
+
+        .btn-hub-option.cluegram:hover,
+        .btn-hub-option.cluegram:active {
+            border-color: var(--color-cluegram);
+            box-shadow: 0 6px 20px var(--color-cluegram-glow);
         }
 
         .hub-btn-num {
@@ -274,22 +301,22 @@
     </div>
 
     <div class="hub-menu-box">
-        <a href="questions.html" class="btn-hub-option">
+        <a href="questions.html" class="btn-hub-option questions">
             <span class="hub-btn-num questions">11th</span>
             <span class="hub-btn-floor">Floor</span>
             <span class="hub-btn-game">Questions</span>
         </a>
-        <a href="word-climb.html" class="btn-hub-option">
+        <a href="word-climb.html" class="btn-hub-option wordclimb">
             <span class="hub-btn-num wordclimb">11th</span>
             <span class="hub-btn-floor">Floor</span>
             <span class="hub-btn-game">Word Climb</span>
         </a>
-        <a href="clusters.html" class="btn-hub-option">
+        <a href="clusters.html" class="btn-hub-option clusters">
             <span class="hub-btn-num clusters">11th</span>
             <span class="hub-btn-floor">Floor</span>
             <span class="hub-btn-game">Clusters</span>
         </a>
-        <a href="cluegram.html" class="btn-hub-option">
+        <a href="cluegram.html" class="btn-hub-option cluegram">
             <span class="hub-btn-num cluegram">11th</span>
             <span class="hub-btn-floor">Floor</span>
             <span class="hub-btn-game">Cluegram</span>
