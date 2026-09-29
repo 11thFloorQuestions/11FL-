@@ -10,171 +10,7 @@
     <link href="https://fonts.cdnfonts.com/css/glacial-indifference" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        :root {
-            --bg-deep: #000000;
-            --surface: #0a0a0a;
-            --surface-border: #222222;
-            
-            /* Genre Branding Accent: Magenta/Pink for Cluegram */
-            --genre-magenta: #cc007e;
-            --genre-magenta-glow: rgba(204, 0, 126, 0.35);
-
-            /* Standardized Gameplay States */
-            --state-active: #FACC15;       /* Yellow: Active borders, selected tiles */
-            --state-active-glow: rgba(250, 204, 21, 0.25);
-            --state-error: #EF4444;        /* Red: Wrong answer, invalid attempt */
-            --state-error-glow: rgba(239, 68, 68, 0.3);
-            --state-success: #22C55E;      /* Green: Floor cleared, victory */
-            --state-success-glow: rgba(34, 197, 94, 0.3);
-
-            --text-primary: #ffffff;
-            --text-muted: #888888;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        html, body {
-            height: 100vh;
-            height: 100dvh;
-            overflow: hidden;
-        }
-
-        body {
-            background-color: var(--bg-deep);
-            color: var(--text-primary);
-            font-family: 'Montserrat', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 16px;
-        }
-
-        .app-wrapper {
-            width: 100%;
-            max-width: 600px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100%;
-            justify-content: space-between;
-        }
-
-        /* Top Navigation Bar */
-        .top-bar {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 6px;
-            flex-shrink: 0;
-        }
-
-        .pill-btn {
-            background: transparent;
-            border: 1px solid var(--surface-border);
-            color: var(--text-muted);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            padding: 6px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .pill-btn:hover {
-            border-color: var(--text-primary);
-            color: var(--text-primary);
-            background: var(--surface);
-        }
-
-        /* Branding Logo Box (Signature Genre Magenta) */
-        .game-logo-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 8px;
-            text-align: center;
-            flex-shrink: 0;
-        }
-
-        .game-logo-magenta {
-            font-family: 'Anton', sans-serif;
-            font-size: 3.2rem;
-            font-weight: 400;
-            color: var(--genre-magenta);
-            line-height: 0.85;
-            letter-spacing: -1px;
-            text-shadow: 0 0 20px var(--genre-magenta-glow);
-            margin-bottom: 4px;
-        }
-
-        .game-logo-title {
-            font-family: 'Glacial Indifference', 'Montserrat', sans-serif;
-            font-size: 1rem;
-            font-weight: 300;
-            color: #ffffff;
-            letter-spacing: 1.5px;
-            margin-bottom: 2px;
-        }
-
-        .game-logo-sub {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.6rem;
-            font-weight: 600;
-            color: var(--genre-magenta);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
-
-        /* Landing Screen Container */
-        .landing-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 16px;
-            padding: 20px 16px;
-            width: 100%;
-            background: var(--surface);
-            border: 1px solid var(--surface-border);
-            border-radius: 8px;
-            margin-top: 6px;
-        }
-
-        .landing-shaft-graphic {
-            display: flex;
-            flex-direction: column;
-            width: 52px;
-            height: 150px;
-            border: 1px solid var(--surface-border);
-            border-radius: 8px;
-            padding: 6px;
-            gap: 3px;
-            background-color: var(--surface);
-        }
-
-        .landing-shaft-box {
-            flex: 1;
-            background-color: #111111;
-            border: 1px solid var(--surface-border);
-            border-radius: 2px;
-            animation: sweepMiddle 1.2s ease-in-out forwards;
-        }
-
+        .landing-shaft-graphic .landing-shaft-box { animation: sweepMiddle 1.2s ease-in-out forwards; }
         .landing-shaft-graphic .landing-shaft-box:nth-child(11) { animation: sweepBottomSettle 2.6s ease-in-out forwards; animation-delay: 0.05s; }
         .landing-shaft-graphic .landing-shaft-box:nth-child(10) { animation-delay: 0.15s; }
         .landing-shaft-graphic .landing-shaft-box:nth-child(9)  { animation-delay: 0.25s; }
@@ -206,522 +42,64 @@
             95%, 100% { background-color: var(--genre-magenta); border-color: var(--genre-magenta); box-shadow: 0 0 8px var(--genre-magenta-glow); }
         }
 
-        .landing-challenge-text {
-            font-family: 'Glacial Indifference', 'Montserrat', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 400;
-            color: var(--text-muted);
-            line-height: 1.6;
-            letter-spacing: 0.5px;
-            max-width: 320px;
-            text-transform: uppercase;
-        }
-
-        .landing-challenge-text strong {
-            font-family: 'Glacial Indifference', 'Montserrat', sans-serif;
-            color: #ffffff;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-        }
-
-        .btn-start {
-            background-color: #ffffff;
-            color: #000000;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            padding: 12px 36px;
-            border-radius: 30px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
-        }
-
         .btn-start:hover {
             background-color: var(--genre-magenta);
             color: #ffffff;
             box-shadow: 0 4px 25px var(--genre-magenta-glow);
         }
 
-        /* Gameplay HUD Header */
-        .hud-sidebar-container {
-            width: 100%;
-            display: flex;
-            align-items: stretch;
-            gap: 12px;
-            margin-bottom: 6px;
-            flex-shrink: 0;
-        }
+        /* Gameplay Area */
+        .hud-sidebar-container { width: 100%; max-width: 600px; display: flex; align-items: stretch; gap: 12px; margin-bottom: 6px; flex-shrink: 0; }
+        .tower-stack { display: flex; flex-direction: column; gap: 2px; width: 52px; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 6px; justify-content: space-between; flex-shrink: 0; }
+        .tower-floor { height: 7px; border: 1px solid var(--surface-border); background: #111111; transition: all 0.2s ease; border-radius: 2px; }
+        .tower-floor.active { border-color: var(--state-active); background: var(--state-active); box-shadow: 0 0 8px var(--state-active-glow); }
+        .tower-floor.completed { border-color: var(--state-success); background: var(--state-success); box-shadow: 0 0 6px var(--state-success-glow); }
+        .tower-floor.failed { border-color: var(--state-error); background: var(--state-error); box-shadow: 0 0 6px var(--state-error-glow); }
+        .floor-info-box { flex-grow: 1; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; }
+        .floor-left-group { display: flex; flex-direction: column; gap: 4px; }
+        .current-floor-display { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: 1px; color: var(--genre-magenta); }
+        .floor-rule-text { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.5px; text-transform: uppercase; }
 
-        .tower-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            width: 52px;
-            background: var(--surface);
-            border: 1px solid var(--surface-border);
-            border-radius: 8px;
-            padding: 6px;
-            justify-content: space-between;
-            flex-shrink: 0;
-        }
+        .play-card { width: 100%; max-width: 600px; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 14px 10px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 12px; flex-grow: 1; margin-bottom: 6px; overflow: hidden; min-height: 0; }
+        #message-box { min-height: 16px; color: var(--state-error); font-weight: 700; font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; text-align: center; }
+        .clue-box { width: 100%; background: #111111; border: 1px solid var(--surface-border); border-radius: 6px; padding: 10px 14px; text-align: center; box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); }
+        .clue-label { font-size: 0.6rem; font-weight: 700; color: var(--genre-magenta); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+        .clue-text { font-family: 'Glacial Indifference', 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 700; color: #ffffff; letter-spacing: 0.5px; line-height: 1.3; }
 
-        .tower-floor {
-            height: 7px;
-            border: 1px solid var(--surface-border);
-            background: #111111;
-            transition: all 0.2s ease;
-            border-radius: 2px;
-        }
+        #target-word-slots { display: flex; gap: 6px; justify-content: center; align-items: center; width: 100%; min-height: 42px; flex-wrap: wrap; }
+        .target-slot { width: 34px; height: 42px; border: 2px solid var(--state-active); border-radius: 6px; background: #111111; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text-primary); cursor: pointer; transition: all 0.15s ease; }
+        .target-slot.filled { box-shadow: 0 0 8px var(--state-active-glow); }
 
-        .tower-floor.active {
-            border-color: var(--state-active);
-            background: var(--state-active);
-            box-shadow: 0 0 8px var(--state-active-glow);
-        }
+        .rack-container { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 4px; }
+        .rack-label { font-size: 0.6rem; font-weight: 700; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
+        #letter-rack { display: flex; gap: 6px; justify-content: center; align-items: center; flex-wrap: wrap; width: 100%; }
+        .rack-tile { width: 36px; height: 44px; background: #141414; border: 1px solid var(--surface-border); border-radius: 6px; color: #ffffff; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s ease; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); }
+        .rack-tile:hover { border-color: var(--state-active); background: #1c1c1c; }
+        .rack-tile.used { opacity: 0.15; pointer-events: none; border-color: transparent; box-shadow: none; }
 
-        .tower-floor.completed {
-            border-color: var(--state-success);
-            background: var(--state-success);
-            box-shadow: 0 0 6px var(--state-success-glow);
-        }
+        .action-panel { width: 100%; max-width: 600px; display: flex; gap: 8px; justify-content: center; flex-shrink: 0; margin-bottom: 4px; }
+        .btn { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 12px 14px; cursor: pointer; border-radius: 8px; flex: 1; display: flex; align-items: center; justify-content: center; }
+        .btn-secondary { background: #111111; color: var(--text-muted); border: 1px solid var(--surface-border); }
+        .btn-secondary:hover { color: var(--text-primary); border-color: var(--text-muted); background: #181818; }
+        .btn-primary { background: #111111; color: var(--state-active); border: 1px solid var(--state-active); box-shadow: 0 0 10px var(--state-active-glow); }
 
-        .tower-floor.failed {
-            border-color: var(--state-error);
-            background: var(--state-error);
-            box-shadow: 0 0 6px var(--state-error-glow);
-        }
-
-        .floor-info-box {
-            flex-grow: 1;
-            background: var(--surface);
-            border: 1px solid var(--surface-border);
-            border-radius: 8px;
-            padding: 10px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .floor-left-group {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .current-floor-display {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: var(--genre-magenta);
-        }
-
-        .floor-rule-text {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.65rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        /* Play Card Workspace Container */
-        .play-card {
-            width: 100%;
-            background: var(--surface);
-            border: 1px solid var(--surface-border);
-            border-radius: 8px;
-            padding: 14px 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            gap: 12px;
-            flex-grow: 1;
-            margin-bottom: 6px;
-            overflow: hidden;
-            min-height: 0;
-        }
-
-        #message-box {
-            min-height: 16px;
-            color: var(--state-error);
-            font-weight: 700;
-            font-size: 0.72rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            text-align: center;
-        }
-
-        .clue-box {
-            width: 100%;
-            background: #111111;
-            border: 1px solid var(--surface-border);
-            border-radius: 6px;
-            padding: 10px 14px;
-            text-align: center;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .clue-label {
-            font-size: 0.6rem;
-            font-weight: 700;
-            color: var(--genre-magenta);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 4px;
-        }
-
-        .clue-text {
-            font-family: 'Glacial Indifference', 'Montserrat', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: 0.5px;
-            line-height: 1.3;
-        }
-
-        /* Target Slot Board (Yellow Active Borders, Red/Green States) */
-        #target-word-slots {
-            display: flex;
-            gap: 6px;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            min-height: 42px;
-            flex-wrap: wrap;
-        }
-
-        .target-slot {
-            width: 34px;
-            height: 42px;
-            border: 2px solid var(--state-active);
-            border-radius: 6px;
-            background: #111111;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Inter', sans-serif;
-            font-weight: 800;
-            font-size: 1.1rem;
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.15s ease;
-        }
-
-        .target-slot.filled {
-            box-shadow: 0 0 8px var(--state-active-glow);
-        }
-
-        .target-slot.state-error {
-            border-color: var(--state-error) !important;
-            background-color: rgba(239, 68, 68, 0.2) !important;
-            color: #FCA5A5 !important;
-            box-shadow: 0 0 12px var(--state-error-glow) !important;
-        }
-
-        .target-slot.state-success {
-            border-color: var(--state-success) !important;
-            background-color: rgba(34, 197, 94, 0.2) !important;
-            color: #86EFAC !important;
-            box-shadow: 0 0 12px var(--state-success-glow) !important;
-        }
-
-        /* Scrambled Letter Rack */
-        .rack-container {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            margin-top: 4px;
-        }
-
-        .rack-label {
-            font-size: 0.6rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        #letter-rack {
-            display: flex;
-            gap: 6px;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            width: 100%;
-        }
-
-        .rack-tile {
-            width: 36px;
-            height: 44px;
-            background: #141414;
-            border: 1px solid var(--surface-border);
-            border-radius: 6px;
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.15s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-        }
-
-        .rack-tile:hover {
-            border-color: var(--state-active);
-            background: #1c1c1c;
-        }
-
-        .rack-tile.used {
-            opacity: 0.15;
-            pointer-events: none;
-            border-color: transparent;
-            box-shadow: none;
-        }
-
-        /* Action Controls */
-        .action-panel {
-            width: 100%;
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-            flex-shrink: 0;
-            margin-bottom: 4px;
-        }
-
-        .btn {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            padding: 12px 14px;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-secondary {
-            background: #111111;
-            color: var(--text-muted);
-            border: 1px solid var(--surface-border);
-        }
-
-        .btn-secondary:hover {
-            color: var(--text-primary);
-            border-color: var(--text-muted);
-            background: #181818;
-        }
-
-        .btn-primary {
-            background: #111111;
-            color: var(--state-active);
-            border: 1px solid var(--state-active);
-            box-shadow: 0 0 10px var(--state-active-glow);
-        }
-
-        .btn-primary:hover, .btn-primary:active {
-            background: #1a1a1a;
-            border-color: var(--state-active);
-            box-shadow: 0 0 16px var(--state-active-glow);
-        }
-
-        /* Modal Overlays & Vault Styling */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.92);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-        }
-
-        .modal-overlay.hidden {
-            display: none !important;
-        }
-
-        .modal-card {
-            background-color: var(--surface);
-            border: 1px solid var(--surface-border);
-            padding: 28px 24px;
-            border-radius: 14px;
-            width: 90%;
-            max-width: 360px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-        }
-
-        .modal-large {
-            max-width: 440px;
-        }
-
-        .modal-card h2 {
-            font-size: 1.25rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: var(--text-primary);
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        .modal-card h3 {
-            font-size: 0.72rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-            margin-top: 16px;
-            text-transform: uppercase;
-        }
-
-        .stats-summary-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin: 18px 0 12px 0;
-            background: var(--bg-deep);
-            border: 1px solid var(--surface-border);
-            border-radius: 10px;
-            padding: 14px;
-        }
-
-        .stat-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .stat-val {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: var(--text-primary);
-            letter-spacing: -0.5px;
-        }
-
-        .stat-lbl {
-            font-size: 0.55rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-top: 3px;
-        }
-
-        .vault-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
-            gap: 8px;
-            max-height: 220px;
-            overflow-y: auto;
-            margin: 12px 0;
-        }
-
-        .vault-item-btn {
-            background-color: #111111;
-            border: 1px solid var(--surface-border);
-            color: var(--text-primary);
-            padding: 10px 6px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            text-align: center;
-            transition: border-color 0.15s ease;
-        }
-
-        .vault-item-btn strong {
-            font-size: 0.78rem;
-            font-weight: 700;
-        }
-
-        .vault-item-btn:hover {
-            border-color: var(--genre-magenta);
-            background-color: #1a1a1a;
-        }
-
-        .btn-modal {
-            flex-grow: 1;
-            width: 100%;
-            background-color: #111111;
-            border: 1px solid var(--surface-border);
-            color: var(--text-primary);
-            padding: 12px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 700;
-            border-radius: 24px;
-            cursor: pointer;
-            letter-spacing: 1px;
-            transition: all 0.15s ease;
-            margin-top: 10px;
-        }
-
-        .btn-modal:hover {
-            background-color: var(--text-primary);
-            color: var(--bg-deep);
-            border-color: var(--text-primary);
-        }
-
-        @media screen and (max-width: 600px), screen and (max-height: 750px) {
-            body {
-                padding: 6px 12px;
-            }
-
-            .game-logo-magenta {
-                font-size: 2.2rem;
-            }
-
-            .game-logo-title {
-                font-size: 0.85rem;
-            }
-
-            .game-logo-box {
-                margin-bottom: 4px;
-            }
-
-            .hud-sidebar-container {
-                margin-bottom: 4px;
-            }
-
-            .btn {
-                padding: 10px 8px;
-                font-size: 0.7rem;
-            }
-
-            .target-slot {
-                width: 30px;
-                height: 38px;
-                font-size: 1rem;
-            }
-
-            .rack-tile {
-                width: 32px;
-                height: 40px;
-                font-size: 1rem;
-            }
-        }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.92); display: flex; align-items: center; justify-content: center; z-index: 100; }
+        .modal-overlay.hidden { display: none !important; }
+        .modal-card { background-color: var(--surface); border: 1px solid var(--surface-border); padding: 28px 24px; border-radius: 14px; width: 90%; max-width: 360px; text-align: center; }
+        .modal-large { max-width: 440px; }
+        .stats-summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 18px 0 12px 0; background: var(--bg-deep); border: 1px solid var(--surface-border); border-radius: 10px; padding: 14px; }
+        .stat-box { display: flex; flex-direction: column; align-items: center; }
+        .stat-val { font-size: 1.25rem; font-weight: 800; color: var(--text-primary); }
+        .stat-lbl { font-size: 0.55rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-top: 3px; }
+        .vault-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(95px, 1fr)); gap: 8px; max-height: 220px; overflow-y: auto; margin: 12px 0; }
+        .vault-item-btn { background-color: #111111; border: 1px solid var(--surface-border); color: var(--text-primary); padding: 10px 6px; border-radius: 8px; cursor: pointer; text-align: center; }
+        .vault-item-btn:hover { border-color: var(--genre-magenta); background-color: #1a1a1a; }
+        .btn-modal { flex-grow: 1; width: 100%; background-color: #111111; border: 1px solid var(--surface-border); color: var(--text-primary); padding: 12px; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; border-radius: 24px; cursor: pointer; margin-top: 10px; }
     </style>
 </head>
 <body class="game-cluegram">
 
-    <div class="app-wrapper">
+    <div style="width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 100%;">
         <div class="top-bar">
             <a href="index.html" class="pill-btn">← LOBBY</a>
             <button class="pill-btn" id="btn-landing-stats">STATS / ARCHIVE</button>
@@ -731,7 +109,7 @@
         <div class="game-logo-box">
             <h1 class="game-logo-magenta">11FL?</h1>
             <p class="game-logo-title">Eleventh Floor</p>
-            <p class="game-logo-sub">CLUEGRAM</p>
+            <p class="game-logo-sub" style="color: var(--genre-magenta);">CLUEGRAM</p>
         </div>
 
         <!-- Landing Screen Container -->
@@ -786,16 +164,13 @@
         <div id="game-workspace" class="play-card" style="display: none;">
             <div id="message-box"></div>
 
-            <!-- Clue Card -->
             <div class="clue-box">
                 <div class="clue-label">FLOOR CLUE</div>
                 <div id="clue-text" class="clue-text">Loading clue...</div>
             </div>
 
-            <!-- Answer Slots -->
             <div id="target-word-slots"></div>
 
-            <!-- Scrambled Rack -->
             <div class="rack-container">
                 <div class="rack-label">SCRAMBLED LETTERS</div>
                 <div id="letter-rack"></div>
@@ -808,36 +183,25 @@
             <button class="btn btn-secondary" id="action-shuffle-btn">SHUFFLE</button>
             <button class="btn btn-primary" id="action-submit-btn">SUBMIT</button>
         </div>
+
+        <footer>
+            <div>ONE MISTAKE RESETS THE CLIMB TO 1ST FLOOR.</div>
+        </footer>
     </div>
 
     <!-- Stats & Archive Vault Modal -->
     <div id="modal-vault" class="modal-overlay hidden">
         <div class="modal-card modal-large">
-            <h2>STATS</h2>
+            <h2 style="font-size: 1.2rem; font-weight: 800;">STATS</h2>
             <div class="stats-summary-grid">
-                <div class="stat-box">
-                    <span id="stat-played" class="stat-val">0</span>
-                    <span class="stat-lbl">Played</span>
-                </div>
-                <div class="stat-box">
-                    <span id="stat-wins" class="stat-val">0</span>
-                    <span class="stat-lbl">Wins</span>
-                </div>
-                <div class="stat-box">
-                    <span id="stat-winrate" class="stat-val">0%</span>
-                    <span class="stat-lbl">Win %</span>
-                </div>
-                <div class="stat-box">
-                    <span id="stat-streak" class="stat-val">0</span>
-                    <span class="stat-lbl">Streak</span>
-                </div>
-                <div class="stat-box" style="grid-column: span 2;">
-                    <span id="stat-bestfloor" class="stat-val">FL 01</span>
-                    <span class="stat-lbl">Best Peak</span>
-                </div>
+                <div class="stat-box"><span id="stat-played" class="stat-val">0</span><span class="stat-lbl">Played</span></div>
+                <div class="stat-box"><span id="stat-wins" class="stat-val">0</span><span class="stat-lbl">Wins</span></div>
+                <div class="stat-box"><span id="stat-winrate" class="stat-val">0%</span><span class="stat-lbl">Win %</span></div>
+                <div class="stat-box"><span id="stat-streak" class="stat-val">0</span><span class="stat-lbl">Streak</span></div>
+                <div class="stat-box" style="grid-column: span 2;"><span id="stat-bestfloor" class="stat-val">FL 01</span><span class="stat-lbl">Best Peak</span></div>
             </div>
 
-            <h3>ARCHIVE VAULT</h3>
+            <h3 style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); margin-top: 12px; text-transform: uppercase;">ARCHIVE VAULT</h3>
             <div id="vault-list" class="vault-grid"></div>
             <button id="btn-close-vault" class="btn-modal">CLOSE</button>
         </div>
