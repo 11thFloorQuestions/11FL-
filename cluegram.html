@@ -10,31 +10,41 @@
     <link href="https://fonts.cdnfonts.com/css/glacial-indifference" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Streamlined Header Logo Box (No huge 11FL? title) */
         .game-logo-box {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 4px;
+            margin-bottom: 8px;
             text-align: center;
             flex-shrink: 0;
         }
 
+        .game-logo-magenta {
+            font-family: 'Anton', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 400;
+            color: var(--genre-magenta);
+            line-height: 0.85;
+            letter-spacing: -1px;
+            text-shadow: 0 0 20px var(--genre-magenta-glow);
+            margin-bottom: 4px;
+        }
+
         .game-logo-title {
             font-family: 'Glacial Indifference', 'Montserrat', sans-serif;
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 300;
             color: #ffffff;
             letter-spacing: 1.5px;
-            margin-bottom: 1px;
+            margin-bottom: 2px;
         }
 
         .game-logo-sub {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.65rem;
-            font-weight: 700;
+            font-size: 0.6rem;
+            font-weight: 600;
             color: var(--genre-magenta);
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             text-transform: uppercase;
         }
 
@@ -136,6 +146,7 @@
         </div>
 
         <div class="game-logo-box">
+            <h1 class="game-logo-magenta">11FL?</h1>
             <p class="game-logo-title">Eleventh Floor</p>
             <p class="game-logo-sub">CLUEGRAM</p>
         </div>
