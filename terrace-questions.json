@@ -1,168 +1,159 @@
 [
   {
     "floor": 1,
-    "id": "tt-f1-001",
-    "question": "In 2022–23, Erling Haaland set the record for most goals in a 38-game Premier League season. Whose 32-goal record did he break?",
+    "id": "tt-f1-002",
+    "question": "In Liverpool's 2019–20 Premier League title-winning season, how many total points did they finish with?",
     "options": [
-      "Mohamed Salah",
-      "Luis Suárez",
-      "Cristiano Ronaldo",
-      "Sergio Agüero"
+      "99",
+      "100"
     ],
     "correctIndex": 0,
     "anchorClues": {
-      "season": "2022-23",
-      "record": "Most goals in a 38-game PL season",
-      "previousRecordHolder": "Mohamed Salah (32)"
+      "club": "Liverpool",
+      "season": "2019-20",
+      "stat": "Title-winning points total"
     }
   },
   {
     "floor": 2,
-    "id": "tt-f2-001",
-    "question": "During Leicester City's 2015–16 title campaign, Jamie Vardy set a record by scoring in how many consecutive Premier League matches?",
+    "id": "tt-f2-002",
+    "question": "Which club won the inaugural Premier League title in the 1992–93 season?",
     "options": [
-      "11",
-      "10",
-      "12",
-      "13"
+      "Manchester United",
+      "Blackburn Rovers",
+      "Aston Villa"
     ],
     "correctIndex": 0,
     "anchorClues": {
-      "club": "Leicester City",
-      "season": "2015-16",
-      "stat": "Consecutive scoring streak record"
+      "season": "1992-93",
+      "milestone": "First Premier League champion"
     }
   },
   {
     "floor": 3,
-    "id": "tt-f3-001",
-    "question": "Who shared the 2021–22 Premier League Golden Boot alongside Son Heung-min after both finished on 23 goals?",
+    "id": "tt-f3-002",
+    "question": "Who holds the record for most assists in a single Premier League season (20) alongside Thierry Henry?",
     "options": [
-      "Mohamed Salah",
-      "Harry Kane",
-      "Sadio Mané",
-      "Cristiano Ronaldo"
+      "Kevin De Bruyne",
+      "Cesc Fàbregas",
+      "Mesut Özil"
     ],
     "correctIndex": 0,
     "anchorClues": {
-      "season": "2021-22",
-      "award": "Joint Golden Boot winner with Son Heung-min"
+      "record": "Single-season assist record (20)",
+      "coRecordHolder": "Thierry Henry"
     }
   },
   {
     "floor": 4,
-    "id": "tt-f4-001",
-    "question": "Chelsea conceded an all-time record low of just 15 goals in 2004–05. How many clean sheets did Petr Čech keep that season?",
+    "id": "tt-f4-002",
+    "question": "In August 2011, Manchester United famously defeated Arsenal at Old Trafford by what unbelievable scoreline?",
     "options": [
-      "24",
-      "21",
-      "26",
-      "20"
+      "8–2",
+      "6–1",
+      "7–0",
+      "5–2"
     ],
     "correctIndex": 0,
     "anchorClues": {
-      "club": "Chelsea",
-      "season": "2004-05",
-      "record": "Single-season clean sheet record"
+      "match": "Manchester United vs Arsenal, Aug 2011",
+      "venue": "Old Trafford"
     }
   },
   {
     "floor": 5,
-    "id": "tt-f5-001",
-    "question": "In May 2018, Gabriel Jesus scored a 94th-minute winner on the final day to secure Manchester City's record 100 points. Against which team?",
+    "id": "tt-f5-002",
+    "question": "Who was the first manager to reach 800 Premier League matches in charge?",
     "options": [
-      "Southampton",
-      "Brighton",
-      "West Ham",
-      "Swansea City"
+      "Sir Alex Ferguson",
+      "Arsène Wenger",
+      "David Moyes",
+      "Harry Redknapp"
     ],
     "correctIndex": 0,
     "anchorClues": {
-      "event": "Centurions 100th point goal",
-      "season": "2017-18 final day",
-      "scorer": "Gabriel Jesus"
+      "milestone": "First manager to 800 PL games",
+      "role": "Manager"
     }
   },
   {
     "floor": 6,
-    "id": "tt-f6-001",
-    "question": "Sadio Mané scored the fastest hat-trick in Premier League history (2m 56s) for Southampton in 2015. Which club did he score it against?",
+    "id": "tt-f6-002",
+    "question": "Which goalkeeper holds the all-time record for the most penalty saves in Premier League history (13)?",
     "options": [
-      "Aston Villa",
-      "Sunderland",
-      "Newcastle United",
-      "Everton"
+      "David James",
+      "Thomas Sørensen",
+      "Mark Schwarzer",
+      "Shay Given"
     ],
     "correctIndex": 0,
     "anchorClues": {
-      "record": "Fastest PL hat-trick",
-      "formerClub": "Southampton",
-      "year": 2015
+      "record": "Most PL penalty saves (13)",
+      "position": "Goalkeeper"
     }
   },
   {
     "floor": 7,
-    "id": "tt-f7-001",
-    "question": "Ole Gunnar Solskjær famously scored 4 goals in 18 minutes off the bench for Man United against Nottingham Forest in 1999. What was the final score?",
+    "id": "tt-f7-002",
+    "question": "In December 2006, Paul Scholes scored an iconic volley against Aston Villa off a corner. Who delivered the cross?",
     "options": [
-      "8–1",
-      "7–0",
-      "6–1",
-      "8–2"
+      "Ryan Giggs",
+      "Wayne Rooney",
+      "Cristiano Ronaldo",
+      "Gary Neville"
     ],
     "correctIndex": 0,
     "anchorClues": {
-      "match": "Nottingham Forest vs Man Utd 1999",
-      "feat": "Solskjaer 4 goals as sub"
+      "match": "Aston Villa vs Man Utd, Dec 2006",
+      "scorer": "Paul Scholes"
     }
   },
   {
     "floor": 8,
-    "id": "tt-f8-001",
-    "question": "Who scored the very first goal in Premier League history on August 15, 1992, playing for Sheffield United against Manchester United?",
+    "id": "tt-f8-002",
+    "question": "Which foreign country (outside the UK and Ireland) has produced the most players in Premier League history?",
     "options": [
-      "Brian Deane",
-      "Alan Shearer",
-      "Teddy Sheringham",
-      "Les Ferdinand"
+      "France",
+      "Spain",
+      "Netherlands",
+      "Brazil"
     ],
     "correctIndex": 0,
     "anchorClues": {
-      "milestone": "Inaugural Premier League goal",
-      "date": "August 15, 1992",
-      "match": "Sheffield United vs Man Utd"
+      "stat": "Most foreign players represented in PL",
+      "category": "Nationality"
     }
   },
   {
     "floor": 9,
-    "id": "tt-f9-001",
-    "question": "Who is the only player in Premier League history to score goals for six different London clubs?",
+    "id": "tt-f9-002",
+    "question": "Who was the first player to score 100 Premier League goals for two different clubs?",
     "options": [
-      "Les Ferdinand",
-      "Nicolas Anelka",
-      "Darren Bent",
-      "Jermain Defoe"
+      "Alan Shearer",
+      "Wayne Rooney",
+      "Harry Kane",
+      "Andrew Cole"
     ],
     "correctIndex": 0,
     "anchorClues": {
-      "record": "Scored for 6 London PL clubs",
-      "clubs": ["West Ham", "Tottenham", "Portsmouth", "Charlton", "Fulham", "QPR"]
+      "milestone": "100 PL goals for 2 clubs",
+      "clubs": ["Blackburn Rovers", "Newcastle United"]
     }
   },
   {
     "floor": 10,
-    "id": "tt-f10-001",
-    "question": "In a November 2012 match against Liverpool, who became the only player to score a goal, provide an assist, and score an own goal in the same Premier League game?",
+    "id": "tt-f10-002",
+    "question": "In 1995, Ipswich Town suffered a joint-record 9–0 defeat at Old Trafford. Who scored 5 goals for Manchester United in that match?",
     "options": [
-      "Gareth Bale",
-      "Wayne Rooney",
-      "James Milner",
-      "Kevin Davies"
+      "Andrew Cole",
+      "Eric Cantona",
+      "Mark Hughes",
+      "Andrei Kanchelskis"
     ],
     "correctIndex": 0,
     "anchorClues": {
-      "match": "Tottenham vs Liverpool, Nov 2012",
-      "feat": "Goal, assist, and own-goal in same match"
+      "match": "Man Utd 9–0 Ipswich Town, 1995",
+      "feat": "5 goals in single PL game"
     }
   }
 ]
