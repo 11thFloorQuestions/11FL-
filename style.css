@@ -8,7 +8,8 @@
 
   /* Genre Signature Colors (Floor Numbers, Headers, & Cards) */
   --genre-gold: #EAB308;    /* Questions / Knowledge & Trivia */
-  --genre-blue: #3B82F6;    /* Cluegram & Word Climb / Anagrams & Word Play */
+  --genre-blue: #3B82F6;    /* Word Climb / Anagrams & Word Play */
+  --genre-magenta: #cc007e; /* Cluegram / Anagrams & Clues */
   --genre-yellow: #FACC15;  /* Clusters / Puzzles & Pattern Logic */
   --genre-silver: #94A3B8;  /* Future Maths & Spatial Logic */
 
@@ -34,8 +35,12 @@ body.game-questions {
   --genre-active: var(--genre-gold);
 }
 
-/* 11th Floor Cluegram & Word Climb (Blue Theme) */
-body.game-cluegram,
+/* 11th Floor Cluegram (Magenta Theme) */
+body.game-cluegram {
+  --genre-active: var(--genre-magenta);
+}
+
+/* 11th Floor Word Climb (Blue Theme) */
 body.game-wordclimb {
   --genre-active: var(--genre-blue);
 }
