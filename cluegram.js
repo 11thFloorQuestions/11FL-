@@ -157,15 +157,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if (gameControls) gameControls.style.display = 'flex';
             if (statsModal) statsModal.classList.add('hidden');
 
+            const gameplayHeader = document.getElementById('gameplay-header');
+            if (gameplayHeader) gameplayHeader.style.display = 'flex';
+
             currentFloorIndex = 0;
             loadFloor(currentFloorIndex);
         } else {
-            alert(`Could not load Archive ${paddedId} (${filename}).`);
+            showMessage(`COULD NOT LOAD ARCHIVE ${paddedId}`);
         }
     }
 
     function startGame() {
-        // Fall back to daily puzzle set if non-archive climb is started
         if (!activeGameData || activeGameData.length === 0) {
             activeGameData = window.CLUEGRAM_DAILY_SET ? window.CLUEGRAM_DAILY_SET.floors : [];
         }
@@ -179,8 +181,9 @@ document.addEventListener('DOMContentLoaded', () => {
         loadFloor(currentFloorIndex);
     }
 
-    function getOrdinalFloorName(floorNum) {
-        return (ordinals[floorNum - 1] || `${floorNum}th`) + " Floor";
+    function getOrdinalFloorHTML(floorNum) {
+        const ord = ordinals[floorNum - 1] || `${floorNum}th`;
+        return `<span style="color: var(--genre-magenta);">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
     }
 
     function loadFloor(index) {
@@ -188,11 +191,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const floorData = activeGameData[index];
         userGuess = [];
-        messageBox.textContent = '';
+        showMessage('');
         isProcessing = false;
 
-        // Update Floor Displays with Ordinals (1st Floor, 2nd Floor, etc.)
-        floorNumberVal.textContent = getOrdinalFloorName(index + 1);
+        // Render "1st Floor" with white Floor text
+        floorNumberVal.innerHTML = getOrdinalFloorHTML(index + 1);
         floorRuleText.textContent = `${floorData.target.length}-letter Anagram • No mistakes!`;
         clueText.textContent = floorData.clue;
 
@@ -259,7 +262,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleSlotClick(index) {
         if (isProcessing || index >= userGuess.length) return;
 
-        // Remove tile from guess and un-use it in rack
         const removedTile = userGuess.splice(index, 1)[0];
         const originalTile = rackTiles.find(t => t.id === removedTile.id);
         if (originalTile) originalTile.used = false;
@@ -287,7 +289,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleShuffle() {
         if (isProcessing) return;
 
-        // Fisher-Yates shuffle on rack tiles
         for (let i = rackTiles.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [rackTiles[i], rackTiles[j]] = [rackTiles[j], rackTiles[i]];
@@ -309,25 +310,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const slots = targetSlotsContainer.querySelectorAll('.target-slot');
 
         if (submittedWord === currentFloor.target) {
-            // Success Feedback (Green)
             slots.forEach(slot => slot.classList.add('state-success'));
-            showMessage('');
+            showMessage('CORRECT ANAGRAM!');
 
             setTimeout(() => {
                 if (currentFloorIndex + 1 >= activeGameData.length) {
-                    // Reached Floor 11 Victory
                     recordGameResult(true, 11);
-                    alert("CONGRATULATIONS! YOU REACHED THE 11TH FLOOR!");
-                    location.reload();
+                    showMessage('CONGRATULATIONS! 11TH FLOOR REACHED!');
+                    setTimeout(() => {
+                        currentFloorIndex = 0;
+                        loadFloor(0);
+                    }, 2000);
                 } else {
                     currentFloorIndex++;
                     loadFloor(currentFloorIndex);
                 }
             }, 800);
         } else {
-            // Error Feedback (Red)
             slots.forEach(slot => slot.classList.add('state-error'));
-            showMessage('INCORRECT ANAGRAM — ASCENT FAILED');
+            showMessage('INCORRECT — DROPPED TO 1ST FLOOR');
 
             const towerFloors = document.querySelectorAll('.tower-floor');
             const activeTowerFloor = Array.from(towerFloors).find(
@@ -337,10 +338,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             recordGameResult(false, currentFloorIndex + 1);
 
+            // On-screen reset without browser alert or page reload
             setTimeout(() => {
-                alert(`Game Over! You were stopped on ${getOrdinalFloorName(currentFloorIndex + 1)}.`);
-                location.reload();
-            }, 1200);
+                currentFloorIndex = 0;
+                loadFloor(0);
+            }, 1500);
         }
     }
 
@@ -397,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('stat-winrate').textContent = `${winRate}%`;
         document.getElementById('stat-streak').textContent = stats.streak;
         
-        const bestFormatted = getOrdinalFloorName(stats.bestFloor);
-        document.getElementById('stat-bestfloor').textContent = bestFormatted;
+        const bestOrd = ordinals[stats.bestFloor - 1] || `${stats.bestFloor}th`;
+        document.getElementById('stat-bestfloor').textContent = `${bestOrd} Floor`;
     }
 });
