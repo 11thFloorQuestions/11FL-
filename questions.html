@@ -264,9 +264,11 @@
             cursor: pointer;
             transition: all 0.15s ease;
         }
-        .btn-option:hover {
-            border-color: var(--genre-gold);
-            background: #181818;
+        @media (hover: hover) {
+            .btn-option:hover {
+                border-color: var(--genre-gold);
+                background: #181818;
+            }
         }
         .btn-option.selected-correct {
             border-color: var(--state-success) !important;
