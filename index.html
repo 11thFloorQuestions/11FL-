@@ -31,6 +31,8 @@
             --color-clusters-glow: rgba(255, 117, 31, 0.35);
             --color-cluegram: #cc007e;
             --color-cluegram-glow: rgba(204, 0, 126, 0.35);
+            --color-parity: #ff9999;
+            --color-parity-glow: rgba(255, 153, 153, 0.35);
         }
 
         * {
@@ -134,25 +136,29 @@
                 color: var(--accent-red);
                 text-shadow: 0 0 20px rgba(255, 31, 45, 0.35);
             }
-            18% {
+            16% {
                 color: var(--color-terrace);
                 text-shadow: 0 0 20px var(--color-terrace-glow);
             }
-            36% {
+            32% {
                 color: var(--color-cluegram);
                 text-shadow: 0 0 20px var(--color-cluegram-glow);
             }
-            54% {
+            48% {
                 color: var(--color-questions);
                 text-shadow: 0 0 20px var(--color-questions-glow);
             }
-            72% {
+            64% {
                 color: var(--color-wordclimb);
                 text-shadow: 0 0 20px var(--color-wordclimb-glow);
             }
-            88% {
+            78% {
                 color: var(--color-clusters);
                 text-shadow: 0 0 20px var(--color-clusters-glow);
+            }
+            90% {
+                color: var(--color-parity);
+                text-shadow: 0 0 20px var(--color-parity-glow);
             }
             100% {
                 color: var(--accent-red);
@@ -306,19 +312,10 @@
             box-shadow: 0 6px 20px var(--color-cluegram-glow);
         }
 
-        /* Dummy Slot Styling */
-        .btn-hub-option.coming-soon {
-            border: 1px dashed var(--surface-border);
-            opacity: 0.45;
-            cursor: default;
-            box-shadow: none;
-        }
-
-        .btn-hub-option.coming-soon:hover {
-            background-color: var(--surface);
-            transform: none;
-            border-color: var(--surface-border);
-            box-shadow: none;
+        .btn-hub-option.parity:hover,
+        .btn-hub-option.parity:active {
+            border-color: var(--color-parity);
+            box-shadow: 0 6px 20px var(--color-parity-glow);
         }
 
         .hub-btn-header {
@@ -338,6 +335,7 @@
         .hub-btn-num.wordclimb { color: var(--color-wordclimb); }
         .hub-btn-num.clusters { color: var(--color-clusters); }
         .hub-btn-num.cluegram { color: var(--color-cluegram); }
+        .hub-btn-num.parity { color: var(--color-parity); }
 
         .hub-btn-floor {
             color: #ffffff;
@@ -419,13 +417,13 @@
             <div class="hub-btn-game">Clusters</div>
         </a>
 
-        <div class="btn-hub-option coming-soon">
+        <a href="parity.html" class="btn-hub-option parity">
             <div class="hub-btn-header">
-                <span class="hub-btn-num" style="color: var(--text-muted);">6th</span>
-                <span class="hub-btn-floor" style="color: var(--text-muted);">Floor</span>
+                <span class="hub-btn-num parity">11th</span>
+                <span class="hub-btn-floor">Floor</span>
             </div>
-            <div class="hub-btn-game" style="color: var(--text-muted);">Coming Soon</div>
-        </div>
+            <div class="hub-btn-game">Parity</div>
+        </a>
     </div>
 
     <script>
@@ -507,7 +505,7 @@
             }
         }
 
-        document.querySelectorAll('.btn-hub-option:not(.coming-soon)').forEach(btn => {
+        document.querySelectorAll('.btn-hub-option').forEach(btn => {
             btn.addEventListener('click', () => {
                 triggerLobbyHaptic(15);
             });
