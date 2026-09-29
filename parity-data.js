@@ -5,17 +5,17 @@
 window.PARITY_DAILY_SET = {
     title: "Minimalist Geometry & Icons",
     floors: [
-        { floor: 1, pairs: 1, timeLimit: 10, icons: ["circle"] },
-        { floor: 2, pairs: 2, timeLimit: 14, icons: ["circle", "square"] },
-        { floor: 3, pairs: 3, timeLimit: 18, icons: ["circle", "square", "triangle"] },
-        { floor: 4, pairs: 4, timeLimit: 22, icons: ["circle", "square", "triangle", "diamond"] },
-        { floor: 5, pairs: 5, timeLimit: 26, icons: ["circle", "square", "triangle", "diamond", "hexagon"] },
-        { floor: 6, pairs: 6, timeLimit: 30, icons: ["circle", "square", "triangle", "diamond", "hexagon", "star"] },
-        { floor: 7, pairs: 6, timeLimit: 26, icons: ["circle", "square", "triangle", "diamond", "hexagon", "star"] },
-        { floor: 8, pairs: 7, timeLimit: 32, icons: ["circle", "square", "triangle", "diamond", "hexagon", "star", "sun"] },
-        { floor: 9, pairs: 8, timeLimit: 36, icons: ["circle", "square", "triangle", "diamond", "hexagon", "star", "sun", "moon"] },
-        { floor: 10, pairs: 9, timeLimit: 40, icons: ["circle", "square", "triangle", "diamond", "hexagon", "star", "sun", "moon", "shield"] },
-        { floor: 11, pairs: 10, timeLimit: 44, icons: ["circle", "square", "triangle", "diamond", "hexagon", "star", "sun", "moon", "shield", "anchor"] }
+        { floor: 1, pairs: 1, timeLimit: 12, icons: ["circle"] },
+        { floor: 2, pairs: 2, timeLimit: 16, icons: ["circle", "square"] },
+        { floor: 3, pairs: 3, timeLimit: 22, icons: ["circle", "square", "triangle"] },
+        { floor: 4, pairs: 4, timeLimit: 28, icons: ["circle", "square", "triangle", "diamond"] },
+        { floor: 5, pairs: 5, timeLimit: 34, icons: ["circle", "square", "triangle", "diamond", "hexagon"] },
+        { floor: 6, pairs: 6, timeLimit: 40, icons: ["circle", "square", "triangle", "diamond", "hexagon", "star"] },
+        { floor: 7, pairs: 6, timeLimit: 38, icons: ["circle", "square", "triangle", "diamond", "hexagon", "star"] },
+        { floor: 8, pairs: 7, timeLimit: 46, icons: ["circle", "square", "triangle", "diamond", "hexagon", "star", "sun"] },
+        { floor: 9, pairs: 8, timeLimit: 54, icons: ["circle", "square", "triangle", "diamond", "hexagon", "star", "sun", "moon"] },
+        { floor: 10, pairs: 9, timeLimit: 62, icons: ["circle", "square", "triangle", "diamond", "hexagon", "star", "sun", "moon", "shield"] },
+        { floor: 11, pairs: 10, timeLimit: 70, icons: ["circle", "square", "triangle", "diamond", "hexagon", "star", "sun", "moon", "shield", "anchor"] }
     ],
     svgMap: {
         circle: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/></svg>`,
