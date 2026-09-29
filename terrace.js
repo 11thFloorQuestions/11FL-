@@ -46,7 +46,7 @@ const gameState = {
     maxFloors: 10,
     soundEnabled: true,
     timer: null,
-    timeLeft: 15,
+    timeLeft: 30,
     questions: [],
     currentQuestionIndex: 0,
     batchIndex: 0,
@@ -146,32 +146,61 @@ function renderStatsUI() {
     if (bestEl) bestEl.innerHTML = getOrdinalFloorHTML(gameState.stats.bestFloor);
 }
 
+async function fetchFileWithFallbacks(filename) {
+    const candidatePaths = [
+        `./archives/${filename}`,
+        `./${filename}`,
+        `./data/${filename}`,
+        filename
+    ];
+    for (const path of candidatePaths) {
+        try {
+            const res = await fetch(path);
+            if (res.ok) return await res.json();
+        } catch (e) {}
+    }
+    return null;
+}
+
 async function populateVault() {
     const vaultList = document.getElementById('vault-list');
     if (!vaultList) return;
-    vaultList.innerHTML = '';
-    let archiveId = 1;
+    vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">Loading archives...</div>';
 
-    while (archiveId <= 50) {
+    const foundArchives = [];
+    let consecutiveFailures = 0;
+
+    for (let archiveId = 1; archiveId <= 50; archiveId++) {
         const paddedId = String(archiveId).padStart(2, '0');
         const filename = `sandbox-terrace.${paddedId}.json`;
         const data = await fetchFileWithFallbacks(filename);
+
         if (data) {
-            const btn = document.createElement('button');
-            btn.className = 'vault-item-btn';
-            btn.innerHTML = `<strong>Archive ${paddedId}</strong>`;
-            btn.onclick = () => {
-                triggerHaptic(15);
-                loadVaultSet(paddedId, data);
-            };
-            vaultList.appendChild(btn);
+            foundArchives.push({ paddedId, data });
+            consecutiveFailures = 0;
+        } else {
+            consecutiveFailures++;
+            if (consecutiveFailures >= 3) break;
         }
-        archiveId++;
     }
 
-    if (vaultList.children.length === 0) {
-        vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">No archives found.</div>';
+    vaultList.innerHTML = '';
+
+    if (foundArchives.length === 0) {
+        vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">No archives found in /archives.</div>';
+        return;
     }
+
+    foundArchives.forEach(({ paddedId, data }) => {
+        const btn = document.createElement('button');
+        btn.className = 'vault-item-btn';
+        btn.innerHTML = `<strong>Archive ${paddedId}</strong>`;
+        btn.onclick = () => {
+            triggerHaptic(15);
+            loadVaultSet(paddedId, data);
+        };
+        vaultList.appendChild(btn);
+    });
 }
 
 function normalizeQuestions(data) {
@@ -181,22 +210,18 @@ function normalizeQuestions(data) {
     else if (Array.isArray(data.questions)) rawList = data.questions;
     else return generateFallbackQuestions();
 
-    return rawList.map(q => ({
-        question: q.question || "Question missing",
-        options: Array.isArray(q.options) ? [...q.options] : ["Option A", "Option B", "Option C", "Option D"],
-        answer: q.answer || q.correct || q.options[0]
-    }));
-}
-
-async function fetchFileWithFallbacks(filename) {
-    const candidatePaths = [`./${filename}`, `./archives/${filename}`, `./data/${filename}`, filename];
-    for (const path of candidatePaths) {
-        try {
-            const res = await fetch(path);
-            if (res.ok) return await res.json();
-        } catch (e) {}
-    }
-    return null;
+    return rawList.map(q => {
+        const opts = Array.isArray(q.options) ? [...q.options] : ["Option A", "Option B", "Option C", "Option D"];
+        let correctAns = q.answer || q.correct;
+        if (correctAns === undefined && typeof q.correctIndex === 'number' && opts[q.correctIndex] !== undefined) {
+            correctAns = opts[q.correctIndex];
+        }
+        return {
+            question: q.question || "Question missing",
+            options: opts,
+            answer: correctAns || opts[0]
+        };
+    });
 }
 
 async function startDailyClimb() {
@@ -267,7 +292,7 @@ function loadNextQuestion() {
 
 function startTimer() {
     clearInterval(gameState.timer);
-    const totalDuration = 15000;
+    const totalDuration = 30000; // 30 seconds generous thinking time
     const startTime = Date.now();
     const timerBar = document.getElementById('timer-bar');
     if (timerBar) timerBar.style.width = '100%';
