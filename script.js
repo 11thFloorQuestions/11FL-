@@ -75,6 +75,19 @@ const gameState = {
     }
 };
 
+const floorMessages = [
+    "Tough questions ahead — no mistakes!",
+    "Get this wrong and down to Ground Floor you go!",
+    "3rd Floor reached — stay sharp!",
+    "One mistake resets you to Ground Floor.",
+    "Halfway up! Keep climbing.",
+    "6th Floor — hold your focus.",
+    "Rising high above Ground Floor.",
+    "8th Floor — almost at 11th Floor!",
+    "9th Floor — 11th Floor in sight!",
+    "Final obstacle before 11th Floor!"
+];
+
 function loadSavedStats() {
     try {
         const saved = localStorage.getItem('11fl_stats');
@@ -360,6 +373,9 @@ function updateFloorUI() {
         cardFloorEl.innerHTML = getOrdinalFloorHTML(gameState.currentFloor);
     }
     
+    const ruleMsg = floorMessages[gameState.currentFloor - 1] || "No mistakes!";
+    safeSetText('floor-rule-text', ruleMsg);
+
     document.querySelectorAll('.tower-floor, .floor-block').forEach(block => {
         const floorNum = parseInt(block.getAttribute('data-floor'), 10);
         block.classList.toggle('active', floorNum === gameState.currentFloor);
