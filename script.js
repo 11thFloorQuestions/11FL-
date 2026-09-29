@@ -396,6 +396,8 @@ function loadNextQuestion() {
 
 function startTimer() {
     clearInterval(gameState.timer);
+    const totalDuration = 15000;
+    const startTime = Date.now();
     gameState.timeLeft = 15;
     const timerBar = document.getElementById('timer-bar');
     
@@ -404,16 +406,19 @@ function startTimer() {
     }
 
     gameState.timer = setInterval(() => {
-        gameState.timeLeft--;
+        const elapsed = Date.now() - startTime;
+        const remaining = Math.max(0, totalDuration - elapsed);
+        gameState.timeLeft = Math.ceil(remaining / 1000);
+
         if (timerBar) {
-            timerBar.style.width = `${(gameState.timeLeft / 15) * 100}%`;
+            timerBar.style.width = `${(remaining / totalDuration) * 100}%`;
         }
 
-        if (gameState.timeLeft <= 0) {
+        if (remaining <= 0) {
             clearInterval(gameState.timer);
             handleGameOver('TIME EXPIRED');
         }
-    }, 1000);
+    }, 50);
 }
 
 function handleAnswerSelect(isCorrect, buttonEl) {
