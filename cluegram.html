@@ -32,7 +32,7 @@
 
         .game-logo-title {
             font-family: 'Glacial Indifference', 'Montserrat', sans-serif;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 300;
             color: #ffffff;
             letter-spacing: 1.5px;
@@ -42,10 +42,20 @@
         .game-logo-sub {
             font-family: 'Montserrat', sans-serif;
             font-size: 0.6rem;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--genre-magenta);
             letter-spacing: 4px;
             text-transform: uppercase;
+        }
+
+        /* Compact header used during active gameplay (No 11FL?) */
+        .gameplay-header-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 6px;
+            text-align: center;
+            flex-shrink: 0;
         }
 
         .landing-container {
@@ -119,6 +129,7 @@
         .clue-label { font-size: 0.6rem; font-weight: 700; color: var(--genre-magenta); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
         .clue-text { font-family: 'Glacial Indifference', 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 700; color: #ffffff; letter-spacing: 0.5px; line-height: 1.3; }
 
+        /* Lightened Answer Slot Borders */
         #target-word-slots { display: flex; gap: 6px; justify-content: center; align-items: center; width: 100%; min-height: 42px; flex-wrap: wrap; }
         .target-slot { width: 34px; height: 42px; border: 1px solid rgba(250, 204, 21, 0.4); border-radius: 6px; background: #111111; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text-primary); cursor: pointer; transition: all 0.15s ease; }
         .target-slot.filled { border-color: var(--state-active); box-shadow: 0 0 6px var(--state-active-glow); }
@@ -159,8 +170,8 @@
             <button class="pill-btn" id="btn-sound">SOUND: ON</button>
         </div>
 
-        <!-- Landing Screen View (Hides on Start) -->
-        <div id="start-screen" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 12px;">
+        <!-- LANDING SCREEN (Full Logo with 11FL?) -->
+        <div id="start-screen" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
             <div class="game-logo-box">
                 <h1 class="game-logo-magenta">11FL?</h1>
                 <p class="game-logo-title">Eleventh Floor</p>
@@ -191,7 +202,13 @@
             </div>
         </div>
 
-        <!-- Gameplay HUD Header (Shows on Start) -->
+        <!-- GAMEPLAY HEADER (Shows only during play — Eleventh Floor CLUEGRAM, NO 11FL?) -->
+        <div id="gameplay-header" class="gameplay-header-box" style="display: none;">
+            <p class="game-logo-title">Eleventh Floor</p>
+            <p class="game-logo-sub">CLUEGRAM</p>
+        </div>
+
+        <!-- Gameplay HUD Header -->
         <div class="hud-sidebar-container" id="floor-hud-container" style="display: none;">
             <div class="tower-stack" id="tower-stack">
                 <div class="tower-floor" data-floor="11"></div>
@@ -215,7 +232,7 @@
             </div>
         </div>
 
-        <!-- Main Play Card Workspace (Shows on Start) -->
+        <!-- Main Play Card Workspace -->
         <div id="game-workspace" class="play-card" style="display: none;">
             <div id="message-box"></div>
 
@@ -232,7 +249,7 @@
             </div>
         </div>
 
-        <!-- Action Panel Controls (Shows on Start) -->
+        <!-- Action Panel Controls -->
         <div class="action-panel" id="game-controls" style="display: none;">
             <button class="btn btn-secondary" id="action-backspace-btn">BACKSPACE</button>
             <button class="btn btn-secondary" id="action-shuffle-btn">SHUFFLE</button>
@@ -264,5 +281,17 @@
 
     <script src="cluegram-data.js"></script>
     <script src="cluegram.js"></script>
+    <script>
+        // Toggle compact header on gameplay start
+        document.addEventListener('DOMContentLoaded', () => {
+            const startBtn = document.getElementById('start-climb-btn');
+            const gameplayHeader = document.getElementById('gameplay-header');
+            if (startBtn && gameplayHeader) {
+                startBtn.addEventListener('click', () => {
+                    gameplayHeader.style.display = 'flex';
+                });
+            }
+        });
+    </script>
 </body>
 </html>
