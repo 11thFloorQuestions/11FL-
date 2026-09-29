@@ -348,8 +348,8 @@ function renderWheel(letters) {
         btn.style.width = `${btnSize}px`;
         btn.style.height = `${btnSize}px`;
         btn.style.borderRadius = "50%";
-        btn.style.border = "2px solid #FACC15"; /* Yellow active border for interactive letters */
-        btn.style.boxShadow = "0 0 10px rgba(250, 204, 21, 0.25)";
+        btn.style.border = "1px solid #FACC15"; /* Standard 1px yellow border matching Cluegram */
+        btn.style.boxShadow = "0 0 6px rgba(250, 204, 21, 0.2)";
         btn.style.background = "#111111";
         btn.style.color = "#ffffff";
         btn.style.fontFamily = "'Inter', sans-serif";
@@ -388,7 +388,7 @@ function renderWheel(letters) {
     shuffleBtn.style.borderRadius = "50%";
     shuffleBtn.style.background = "#141414";
     shuffleBtn.style.border = "1px solid #FACC15";
-    shuffleBtn.style.boxShadow = "0 0 10px rgba(250, 204, 21, 0.25)";
+    shuffleBtn.style.boxShadow = "0 0 6px rgba(250, 204, 21, 0.25)";
     shuffleBtn.style.cursor = "pointer";
     shuffleBtn.style.display = "flex";
     shuffleBtn.style.alignItems = "center";
@@ -432,7 +432,7 @@ function updateGuessDisplay() {
 
     display.innerHTML = currentGuess
         .split("")
-        .map(c => `<span style="padding: 4px 8px; background: #111111; border: 2px solid #FACC15; border-radius: 4px; font-weight: 800; color: #ffffff; font-size: 14px; box-shadow: 0 0 8px rgba(250, 204, 21, 0.25);">${c}</span>`)
+        .map(c => `<span style="padding: 4px 8px; background: #111111; border: 1px solid #FACC15; border-radius: 4px; font-weight: 800; color: #ffffff; font-size: 14px; box-shadow: 0 0 6px rgba(250, 204, 21, 0.25);">${c}</span>`)
         .join("");
 }
 
