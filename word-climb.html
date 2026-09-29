@@ -10,6 +10,33 @@
     <link href="https://fonts.cdnfonts.com/css/glacial-indifference" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+        .top-bar {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .pill-btn {
+            background: var(--surface, #0a0a0a);
+            border: 1px solid var(--surface-border-light, #333333);
+            color: var(--text-primary, #ffffff);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .pill-btn:hover {
+            border-color: var(--genre-blue, #3B82F6);
+            color: var(--genre-blue, #3B82F6);
+        }
+
         .landing-shaft-graphic .landing-shaft-box { animation: sweepMiddle 1.2s ease-in-out forwards; }
         .landing-shaft-graphic .landing-shaft-box:nth-child(11) { animation: sweepBottomSettle 2.6s ease-in-out forwards; animation-delay: 0.05s; }
         .landing-shaft-graphic .landing-shaft-box:nth-child(10) { animation-delay: 0.15s; }
@@ -176,7 +203,7 @@
 
             <div class="floor-info-box">
                 <div class="floor-left-group">
-                    <div class="current-floor-display" id="floor-number-val"><span style="color: var(--state-active, #facc15); font-weight: 800;">1st</span> <span style="color: #ffffff;">Floor</span></div>
+                    <div class="current-floor-display" id="floor-number-val"><span style="color: var(--genre-blue, #3B82F6); font-weight: 800;">1st</span> <span style="color: #ffffff;">Floor</span></div>
                     <div class="floor-rule-text" id="floor-rule-text">5-letter English word • No mistakes!</div>
                 </div>
             </div>
