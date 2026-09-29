@@ -19,6 +19,12 @@
             --accent-green-glow: rgba(34, 197, 94, 0.3);
             --text-primary: #ffffff;
             --text-muted: #888888;
+
+            /* Specific Game Genre Colors */
+            --color-questions: #D4AF37;
+            --color-wordclimb: #3B82F6;
+            --color-clusters: #ff751f;
+            --color-cluegram: #cc007e;
         }
 
         * {
@@ -223,9 +229,14 @@
         }
 
         .hub-btn-num {
-            color: var(--accent-red);
             font-weight: 700;
         }
+
+        /* Specific Game Colors for 11th */
+        .hub-btn-num.questions { color: var(--color-questions); }
+        .hub-btn-num.wordclimb { color: var(--color-wordclimb); }
+        .hub-btn-num.clusters { color: var(--color-clusters); }
+        .hub-btn-num.cluegram { color: var(--color-cluegram); }
 
         .hub-btn-floor {
             color: #ffffff;
@@ -264,22 +275,22 @@
 
     <div class="hub-menu-box">
         <a href="questions.html" class="btn-hub-option">
-            <span class="hub-btn-num">11th</span>
+            <span class="hub-btn-num questions">11th</span>
             <span class="hub-btn-floor">Floor</span>
             <span class="hub-btn-game">Questions</span>
         </a>
         <a href="word-climb.html" class="btn-hub-option">
-            <span class="hub-btn-num">11th</span>
+            <span class="hub-btn-num wordclimb">11th</span>
             <span class="hub-btn-floor">Floor</span>
             <span class="hub-btn-game">Word Climb</span>
         </a>
         <a href="clusters.html" class="btn-hub-option">
-            <span class="hub-btn-num">11th</span>
+            <span class="hub-btn-num clusters">11th</span>
             <span class="hub-btn-floor">Floor</span>
             <span class="hub-btn-game">Clusters</span>
         </a>
         <a href="cluegram.html" class="btn-hub-option">
-            <span class="hub-btn-num">11th</span>
+            <span class="hub-btn-num cluegram">11th</span>
             <span class="hub-btn-floor">Floor</span>
             <span class="hub-btn-game">Cluegram</span>
         </a>
