@@ -15,9 +15,9 @@
             --surface: #0a0a0a;
             --surface-border: #222222;
             
-            /* Genre Branding Accent: Blue for Anagrams & Word Play */
-            --genre-blue: #3B82F6;
-            --genre-blue-glow: rgba(59, 130, 246, 0.3);
+            /* Genre Branding Accent: Magenta/Pink for Cluegram */
+            --genre-magenta: #cc007e;
+            --genre-magenta-glow: rgba(204, 0, 126, 0.35);
 
             /* Standardized Gameplay States */
             --state-active: #FACC15;       /* Yellow: Active borders, selected tiles */
@@ -101,7 +101,7 @@
             background: var(--surface);
         }
 
-        /* Branding Logo Box (Signature Genre Blue) */
+        /* Branding Logo Box (Signature Genre Magenta) */
         .game-logo-box {
             display: flex;
             flex-direction: column;
@@ -111,14 +111,14 @@
             flex-shrink: 0;
         }
 
-        .game-logo-blue {
+        .game-logo-magenta {
             font-family: 'Anton', sans-serif;
             font-size: 3.2rem;
             font-weight: 400;
-            color: var(--genre-blue);
+            color: var(--genre-magenta);
             line-height: 0.85;
             letter-spacing: -1px;
-            text-shadow: 0 0 20px var(--genre-blue-glow);
+            text-shadow: 0 0 20px var(--genre-magenta-glow);
             margin-bottom: 4px;
         }
 
@@ -135,7 +135,7 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 0.6rem;
             font-weight: 600;
-            color: var(--genre-blue);
+            color: var(--genre-magenta);
             letter-spacing: 4px;
             text-transform: uppercase;
         }
@@ -189,7 +189,7 @@
 
         @keyframes sweepMiddle {
             0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
-            30% { background-color: var(--genre-blue); border-color: var(--genre-blue); box-shadow: 0 0 10px var(--genre-blue-glow); }
+            30% { background-color: var(--genre-magenta); border-color: var(--genre-magenta); box-shadow: 0 0 10px var(--genre-magenta-glow); }
             60%, 100% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
         }
 
@@ -201,9 +201,9 @@
 
         @keyframes sweepBottomSettle {
             0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
-            15% { background-color: var(--genre-blue); border-color: var(--genre-blue); box-shadow: 0 0 10px var(--genre-blue-glow); }
+            15% { background-color: var(--genre-magenta); border-color: var(--genre-magenta); box-shadow: 0 0 10px var(--genre-magenta-glow); }
             30%, 80% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
-            95%, 100% { background-color: var(--genre-blue); border-color: var(--genre-blue); box-shadow: 0 0 8px var(--genre-blue-glow); }
+            95%, 100% { background-color: var(--genre-magenta); border-color: var(--genre-magenta); box-shadow: 0 0 8px var(--genre-magenta-glow); }
         }
 
         .landing-challenge-text {
@@ -241,9 +241,9 @@
         }
 
         .btn-start:hover {
-            background-color: var(--genre-blue);
+            background-color: var(--genre-magenta);
             color: #ffffff;
-            box-shadow: 0 4px 25px var(--genre-blue-glow);
+            box-shadow: 0 4px 25px var(--genre-magenta-glow);
         }
 
         /* Gameplay HUD Header */
@@ -317,7 +317,7 @@
             font-size: 1.1rem;
             font-weight: 800;
             letter-spacing: 1px;
-            color: var(--genre-blue);
+            color: var(--genre-magenta);
         }
 
         .floor-rule-text {
@@ -370,7 +370,7 @@
         .clue-label {
             font-size: 0.6rem;
             font-weight: 700;
-            color: var(--genre-blue);
+            color: var(--genre-magenta);
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 4px;
@@ -652,7 +652,7 @@
         }
 
         .vault-item-btn:hover {
-            border-color: var(--genre-blue);
+            border-color: var(--genre-magenta);
             background-color: #1a1a1a;
         }
 
@@ -684,7 +684,7 @@
                 padding: 6px 12px;
             }
 
-            .game-logo-blue {
+            .game-logo-magenta {
                 font-size: 2.2rem;
             }
 
@@ -729,7 +729,7 @@
         </div>
 
         <div class="game-logo-box">
-            <h1 class="game-logo-blue">11FL?</h1>
+            <h1 class="game-logo-magenta">11FL?</h1>
             <p class="game-logo-title">Eleventh Floor</p>
             <p class="game-logo-sub">CLUEGRAM</p>
         </div>
