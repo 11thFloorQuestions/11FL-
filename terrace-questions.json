@@ -5,119 +5,119 @@
   "questions": [
     {
       "floor": 1,
-      "question": "True or False: Erling Haaland scored back-to-back Premier League hat-tricks in both the 2022–23 and 2024–25 seasons.",
+      "question": "True or False: Petr Čech holds the record for the most clean sheets in Premier League history, recording 202 clean sheets.",
       "options": [
         "True",
         "False"
       ],
       "answer": "True",
-      "anchorClues": "Erling Haaland scored consecutive hat-tricks against Crystal Palace and Nottingham Forest in August 2022, and repeated the feat against Ipswich Town and West Ham United in August 2024."
+      "anchorClues": "Petr Čech kept 202 clean sheets in 443 Premier League appearances across his spells at Chelsea and Arsenal."
     },
     {
       "floor": 2,
-      "question": "Which player holds the record for the most assists in a single 38-match Premier League season, sharing the mark of 20 with Kevin De Bruyne?",
+      "question": "Which player scored the fastest goal in Premier League history, finding the net after just 7.69 seconds?",
       "options": [
-        "Thierry Henry",
-        "Cesc Fàbregas",
-        "Ryan Giggs"
+        "Shane Long",
+        "Ledley King",
+        "Philip Billing"
       ],
-      "answer": "Thierry Henry",
-      "anchorClues": "Thierry Henry set the original single-season assist record during the 2002–03 campaign for Arsenal, which was later matched by Manchester City's Kevin De Bruyne in 2019–20."
+      "answer": "Shane Long",
+      "anchorClues": "Shane Long scored for Southampton against Watford on 23 April 2019 in just 7.69 seconds from kick-off."
     },
     {
       "floor": 3,
-      "question": "Which club holds the record for the lowest points total in a single 38-match Premier League season?",
+      "question": "Which manager won the most Premier League Manager of the Month awards during his career, claiming the award 27 times?",
       "options": [
-        "Sunderland (2005–06)",
-        "Derby County (2007–08)",
-        "Huddersfield Town (2018–19)"
+        "Alex Ferguson",
+        "Arsène Wenger",
+        "Pep Guardiola"
       ],
-      "answer": "Derby County (2007–08)",
-      "anchorClues": "Derby County ended the 2007–08 season on just 11 points (1 win, 8 draws, 29 defeats), suffering the lowest tally in Premier League history."
+      "answer": "Alex Ferguson",
+      "anchorClues": "Sir Alex Ferguson won 27 Manager of the Month awards during his tenure at Manchester United, comfortably clear at the top."
     },
     {
       "floor": 4,
-      "question": "Who was the first goalkeeper to score a goal in Premier League history?",
+      "question": "Who holds the all-time record for the most Premier League assists, setting the benchmark with 162 assists?",
       "options": [
-        "Brad Friedel",
-        "Paul Robinson",
-        "Peter Schmeichel",
-        "Asmir Begović"
+        "Ryan Giggs",
+        "Cesc Fàbregas",
+        "Wayne Rooney",
+        "Kevin De Bruyne"
       ],
-      "answer": "Peter Schmeichel",
-      "anchorClues": "Peter Schmeichel volleyed home for Aston Villa against Everton in October 2001 to become the first goalkeeper to find the net in the Premier League."
+      "answer": "Ryan Giggs",
+      "anchorClues": "Ryan Giggs registered 162 assists across 21 Premier League seasons with Manchester United."
     },
     {
       "floor": 5,
-      "question": "Who was the manager when Leicester City completed their 5000–1 title victory in the 2015–16 season?",
+      "question": "Who was the first player in Premier League history to score five goals in a single match?",
       "options": [
-        "Nigel Pearson",
-        "Claudio Ranieri",
-        "Craig Shakespeare",
-        "Brendan Rodgers"
+        "Andrew Cole",
+        "Alan Shearer",
+        "Jermain Defoe",
+        "Dimitar Berbatov"
       ],
-      "answer": "Claudio Ranieri",
-      "anchorClues": "Claudio Ranieri famously led Leicester City to their unbelievable Premier League triumph in 2015–16, finishing 10 points clear at the top."
+      "answer": "Andrew Cole",
+      "anchorClues": "Andrew Cole scored five goals for Manchester United in a 9–0 win over Ipswich Town at Old Trafford on 4 March 1995."
     },
     {
       "floor": 6,
-      "question": "Who scored the fastest hat-trick in Premier League history, taking just 2 minutes and 56 seconds?",
+      "question": "Who holds the all-time record for the most penalty goals scored in Premier League history, converting 56 spot-kicks?",
       "options": [
-        "Robbie Fowler",
-        "Sadio Mané",
-        "Jermain Defoe",
-        "Sergio Agüero"
+        "Alan Shearer",
+        "Frank Lampard",
+        "Steven Gerrard",
+        "Wayne Rooney"
       ],
-      "answer": "Sadio Mané",
-      "anchorClues": "Sadio Mané scored three times in under three minutes for Southampton against Aston Villa in May 2015, breaking Robbie Fowler's long-standing 1994 record."
+      "answer": "Alan Shearer",
+      "anchorClues": "Alan Shearer scored 56 penalties in the Premier League for Blackburn Rovers and Newcastle United, six more than Frank Lampard."
     },
     {
       "floor": 7,
-      "question": "Who remains the only player to score 100 or more Premier League goals for two different clubs?",
+      "question": "Which club holds the record for the longest unbeaten home run in Premier League history, going 86 consecutive matches without defeat?",
       "options": [
-        "Alan Shearer",
-        "Wayne Rooney",
-        "Harry Kane",
-        "Andrew Cole"
+        "Chelsea",
+        "Liverpool",
+        "Manchester City",
+        "Arsenal"
       ],
-      "answer": "Alan Shearer",
-      "anchorClues": "Alan Shearer scored 112 Premier League goals for Blackburn Rovers and 148 for Newcastle United, making him the sole player to century-mark at two clubs."
+      "answer": "Chelsea",
+      "anchorClues": "Chelsea remained undefeated at Stamford Bridge across 86 consecutive Premier League matches between March 2004 and October 2008."
     },
     {
       "floor": 8,
-      "question": "Which player holds the all-time record for the most substitute appearances in Premier League history?",
+      "question": "Who scored the first-ever Premier League hat-trick, doing so in August 1992?",
       "options": [
-        "James Milner",
-        "Shane Long",
-        "Peter Crouch",
-        "Jermain Defoe"
+        "Éric Cantona",
+        "Mark Hughes",
+        "Teddy Sheringham",
+        "Dion Dublin"
       ],
-      "answer": "James Milner",
-      "anchorClues": "James Milner stands atop the table for the most appearances made off the bench in Premier League history, surpassing Peter Crouch's mark of 158."
+      "answer": "Éric Cantona",
+      "anchorClues": "Éric Cantona scored the competition's first hat-trick for Leeds United in a 5–0 victory over Tottenham Hotspur on 25 August 1992."
     },
     {
       "floor": 9,
-      "question": "During Arsenal's undefeated 2003–04 Premier League season, how many matches did they draw?",
+      "question": "Which player holds the all-time Premier League record for the most direct free-kick goals scored, with 18?",
       "options": [
-        "10",
-        "12",
-        "14",
-        "16"
+        "David Beckham",
+        "James Ward-Prowse",
+        "Gianfranco Zola",
+        "Cristiano Ronaldo"
       ],
-      "answer": "12",
-      "anchorClues": "Arsenal recorded 26 wins and 12 draws across their 38 fixtures to accumulate 90 points as 'The Invincibles'."
+      "answer": "David Beckham",
+      "anchorClues": "David Beckham scored 18 direct free-kicks during his Premier League career for Manchester United."
     },
     {
       "floor": 10,
-      "question": "Who was the first outfield player to play every single minute of a Premier League title-winning campaign?",
+      "question": "Which player holds the Premier League record for scoring against the most different opponent clubs, netting against 39 teams?",
       "options": [
-        "Gary Pallister",
-        "John Terry",
-        "Wes Morgan",
-        "César Azpilicueta"
+        "Frank Lampard",
+        "Andrew Cole",
+        "Wayne Rooney",
+        "Jermain Defoe"
       ],
-      "answer": "Gary Pallister",
-      "anchorClues": "Gary Pallister played all 3,780 minutes of Manchester United's inaugural 1992–93 Premier League-winning season."
+      "answer": "Frank Lampard",
+      "anchorClues": "Frank Lampard scored against 39 distinct Premier League clubs during his career with West Ham United, Chelsea, and Manchester City."
     }
   ]
 }
