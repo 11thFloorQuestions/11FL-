@@ -5,119 +5,119 @@
   "questions": [
     {
       "floor": 1,
-      "question": "True or False: Brighton & Hove Albion defeated Arsenal 3–0 at the American Express Stadium in September 2026.",
+      "question": "True or False: Blackburn Rovers are the only former Premier League champions to have suffered relegation to League One (the third tier of English football).",
       "options": [
         "True",
         "False"
       ],
       "answer": "True",
-      "anchorClues": "Brighton & Hove Albion recorded an impressive 3–0 home victory over Arsenal on 19 September 2026."
+      "anchorClues": "1994–95 Premier League champions Blackburn Rovers were relegated from the Championship to League One at the end of the 2016–17 season."
     },
     {
       "floor": 2,
-      "question": "Manchester City defeated Sunderland 5–3 at the Etihad Stadium in September 2026. How many total goals were scored in the match?",
+      "question": "Which club scored the fewest total goals in a single Premier League season, netting just 20 goals across 38 matches in 2007–08?",
       "options": [
-        "6",
-        "8",
-        "10"
+        "Derby County",
+        "Sunderland",
+        "Aston Villa"
       ],
-      "answer": "8",
-      "anchorClues": "Manchester City's 5–3 win over Sunderland yielded 8 goals at the Etihad Stadium on 20 September 2026."
+      "answer": "Derby County",
+      "anchorClues": "Derby County scored only 20 goals during their 2007–08 campaign while managing just a single victory all season."
     },
     {
       "floor": 3,
-      "question": "During September 2026 matchweek fixtures, Brentford recorded a 3–0 home victory over which London rival?",
+      "question": "Which player registered 20 direct assists during the 2002–03 season, establishing the original single-season Premier League record?",
       "options": [
-        "Chelsea",
-        "West Ham United",
-        "Tottenham Hotspur"
+        "Thierry Henry",
+        "Cesc Fàbregas",
+        "Mesut Özil"
       ],
-      "answer": "Chelsea",
-      "anchorClues": "Brentford defeated Chelsea 3–0 at the Gtech Community Stadium on 18 September 2026."
+      "answer": "Thierry Henry",
+      "anchorClues": "Thierry Henry set the benchmark with 20 assists for Arsenal in 2002–03, a total later matched by Kevin De Bruyne in 2019–20."
     },
     {
       "floor": 4,
-      "question": "Which manager was at the helm for Newcastle United during their iconic 5–0 victory over Manchester United in October 1996?",
+      "question": "Who scored Portsmouth's winning goal in the 2008 FA Cup Final during their famous mid-2000s Premier League era?",
       "options": [
-        "Kevin Keegan",
-        "Kenny Dalglish",
-        "Ruud Gullit",
-        "Sir Bobby Robson"
+        "Nwankwo Kanu",
+        "Niko Kranjčar",
+        "John Utaka",
+        "Milan Baroš"
       ],
-      "answer": "Kevin Keegan",
-      "anchorClues": "Kevin Keegan famously managed Newcastle United to a 5–0 win over Manchester United at St James' Park on 20 October 1996."
+      "answer": "Nwankwo Kanu",
+      "anchorClues": "Nwankwo Kanu scored the only goal in Portsmouth's 1–0 win over Cardiff City at Wembley Stadium on 17 May 2008."
     },
     {
       "floor": 5,
-      "question": "Who scored the final Premier League goal at Highbury before Arsenal moved to the Emirates Stadium in May 2006?",
+      "question": "Which player scored four goals in a single match for Arsenal during their 4–4 draw against Liverpool at Anfield in April 2009?",
       "options": [
-        "Thierry Henry",
-        "Robert Pires",
-        "Freddie Ljungberg",
-        "Robin van Persie"
+        "Andrey Arshavin",
+        "Robin van Persie",
+        "Samir Nasri",
+        "Emmanuel Adebayor"
       ],
-      "answer": "Thierry Henry",
-      "anchorClues": "Thierry Henry completed a hat-trick against Wigan Athletic on 7 May 2006, scoring the final goal ever at Highbury."
+      "answer": "Andrey Arshavin",
+      "anchorClues": "Russian playmaker Andrey Arshavin famously scored all four of Arsenal's goals in a thrilling 4–4 draw at Anfield on 21 April 2009."
     },
     {
       "floor": 6,
-      "question": "Which club holds the Premier League record for going an entire 38-match season without a single home victory?",
+      "question": "Which manager led West Ham United to a 5th-place Premier League finish in the 1998–99 season, their highest-ever top-flight finish in the Premier League era?",
       "options": [
-        "Sunderland (2005–06)",
-        "Derby County (2007–08)",
-        "Huddersfield Town (2018–19)",
-        "Aston Villa (2015–16)"
+        "Harry Redknapp",
+        "Glenn Roeder",
+        "Alan Pardew",
+        "Sam Allardyce"
       ],
-      "answer": "Sunderland (2005–06)",
-      "anchorClues": "Sunderland failed to win a home match during the 2005–06 season, finishing with 0 wins, 3 draws, and 16 defeats at the Stadium of Light."
+      "answer": "Harry Redknapp",
+      "anchorClues": "Harry Redknapp guided West Ham United to 5th place in 1998–99, accumulating 57 points with a squad featuring Paolo Di Canio and Frank Lampard."
     },
     {
       "floor": 7,
-      "question": "Which player came off the bench in the 72nd minute and scored four goals in 20 minutes against Nottingham Forest in February 1999?",
+      "question": "Which French defender made 274 Premier League appearances for Arsenal between 1998 and 2006, winning two Premier League titles and three FA Cups?",
       "options": [
-        "Ole Gunnar Solskjær",
-        "Teddy Sheringham",
-        "Dwight Yorke",
-        "Andrew Cole"
+        "Lauren",
+        "Gilles Grimandi",
+        "Pascal Cygan",
+        "Gaël Clichy"
       ],
-      "answer": "Ole Gunnar Solskjær",
-      "anchorClues": "Ole Gunnar Solskjær scored four times as a substitute during Manchester United's 8–1 win at the City Ground on 6 February 1999."
+      "answer": "Lauren",
+      "anchorClues": "Cameroon international Lauren (born in Cameroon to Equatorial Guinean parents) held down the right-back slot for Arsenal's 'Invincibles' side."
     },
     {
       "floor": 8,
-      "question": "Which goalkeeper saved three penalties for Hull City during the 2016–17 Premier League season despite the club being relegated?",
+      "question": "Who holds the record for scoring the most direct free-kick goals in Premier League history, with 18 free-kicks converted?",
       "options": [
-        "Eldin Jakupović",
-        "David Marshall",
-        "Allan McGregor",
-        "Matt Duke"
+        "David Beckham",
+        "James Ward-Prowse",
+        "Gianfranco Zola",
+        "Laurent Robert"
       ],
-      "answer": "Eldin Jakupović",
-      "anchorClues": "Eldin Jakupović saved three spot-kicks for Hull City in 2016–17, including penalties against Arsenal and Southampton."
+      "answer": "David Beckham",
+      "anchorClues": "David Beckham scored 18 direct free-kick goals for Manchester United between 1996 and 2003."
     },
     {
       "floor": 9,
-      "question": "Who scored the first official goal at the new Tottenham Hotspur Stadium upon its opening in April 2019?",
+      "question": "Which player holds the Premier League record for most goal contributions (goals + assists) in a single 38-match season, involvement in 44 total goals in 2002–03?",
       "options": [
-        "Son Heung-min",
-        "Christian Eriksen",
-        "Lucas Moura",
-        "Harry Kane"
+        "Thierry Henry",
+        "Erling Haaland",
+        "Mohamed Salah",
+        "Robin van Persie"
       ],
-      "answer": "Son Heung-min",
-      "anchorClues": "Son Heung-min scored the inaugural goal at Tottenham Hotspur Stadium during a 2–0 victory against Crystal Palace on 3 April 2019."
+      "answer": "Thierry Henry",
+      "anchorClues": "Thierry Henry scored 24 goals and registered 20 assists in 2002–03 to set the all-time 38-match goal contribution mark of 44."
     },
     {
       "floor": 10,
-      "question": "Which defender holds the Opta record for committing the most individual errors leading directly to an opposition goal in Premier League history (15 errors)?",
+      "question": "Which manager achieved the highest-ever points total for a newly promoted club in a 38-match Premier League season, accumulating 66 points with Newcastle United in 1993–94?",
       "options": [
-        "Sylvain Distin",
-        "Richard Dunne",
-        "Jamie Carragher",
-        "Phil Jagielka"
+        "Kevin Keegan",
+        "Frank Clark",
+        "George Burley",
+        "Roy Evans"
       ],
-      "answer": "Sylvain Distin",
-      "anchorClues": "Sylvain Distin committed 15 errors directly leading to goals across 469 Premier League appearances for Manchester City, Portsmouth, Everton, and Bournemouth."
+      "answer": "Kevin Keegan",
+      "anchorClues": "Kevin Keegan led newly promoted Newcastle United to a 3rd-place finish on 77 points in a 42-game season (equivalent to 66 points across 38 games)."
     }
   ]
 }
