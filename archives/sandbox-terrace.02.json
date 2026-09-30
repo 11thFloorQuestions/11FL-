@@ -1,0 +1,123 @@
+{
+  "quizId": "terrace-daily",
+  "title": "Terrace Test",
+  "themeColor": "#84CC16",
+  "questions": [
+    {
+      "floor": 1,
+      "question": "True or False: Erling Haaland scored back-to-back Premier League hat-tricks in both the 2022–23 and 2024–25 seasons.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "anchorClues": "Erling Haaland scored consecutive hat-tricks against Crystal Palace and Nottingham Forest in August 2022, and repeated the feat against Ipswich Town and West Ham United in August 2024."
+    },
+    {
+      "floor": 2,
+      "question": "Which player holds the record for the most assists in a single 38-match Premier League season, sharing the mark of 20 with Kevin De Bruyne?",
+      "options": [
+        "Thierry Henry",
+        "Cesc Fàbregas",
+        "Ryan Giggs"
+      ],
+      "answer": "Thierry Henry",
+      "anchorClues": "Thierry Henry set the original single-season assist record during the 2002–03 campaign for Arsenal, which was later matched by Manchester City's Kevin De Bruyne in 2019–20."
+    },
+    {
+      "floor": 3,
+      "question": "Which club holds the record for the lowest points total in a single 38-match Premier League season?",
+      "options": [
+        "Sunderland (2005–06)",
+        "Derby County (2007–08)",
+        "Huddersfield Town (2018–19)"
+      ],
+      "answer": "Derby County (2007–08)",
+      "anchorClues": "Derby County ended the 2007–08 season on just 11 points (1 win, 8 draws, 29 defeats), suffering the lowest tally in Premier League history."
+    },
+    {
+      "floor": 4,
+      "question": "Who was the first goalkeeper to score a goal in Premier League history?",
+      "options": [
+        "Brad Friedel",
+        "Paul Robinson",
+        "Peter Schmeichel",
+        "Asmir Begović"
+      ],
+      "answer": "Peter Schmeichel",
+      "anchorClues": "Peter Schmeichel volleyed home for Aston Villa against Everton in October 2001 to become the first goalkeeper to find the net in the Premier League."
+    },
+    {
+      "floor": 5,
+      "question": "Who was the manager when Leicester City completed their 5000–1 title victory in the 2015–16 season?",
+      "options": [
+        "Nigel Pearson",
+        "Claudio Ranieri",
+        "Craig Shakespeare",
+        "Brendan Rodgers"
+      ],
+      "answer": "Claudio Ranieri",
+      "anchorClues": "Claudio Ranieri famously led Leicester City to their unbelievable Premier League triumph in 2015–16, finishing 10 points clear at the top."
+    },
+    {
+      "floor": 6,
+      "question": "Who scored the fastest hat-trick in Premier League history, taking just 2 minutes and 56 seconds?",
+      "options": [
+        "Robbie Fowler",
+        "Sadio Mané",
+        "Jermain Defoe",
+        "Sergio Agüero"
+      ],
+      "answer": "Sadio Mané",
+      "anchorClues": "Sadio Mané scored three times in under three minutes for Southampton against Aston Villa in May 2015, breaking Robbie Fowler's long-standing 1994 record."
+    },
+    {
+      "floor": 7,
+      "question": "Who remains the only player to score 100 or more Premier League goals for two different clubs?",
+      "options": [
+        "Alan Shearer",
+        "Wayne Rooney",
+        "Harry Kane",
+        "Andrew Cole"
+      ],
+      "answer": "Alan Shearer",
+      "anchorClues": "Alan Shearer scored 112 Premier League goals for Blackburn Rovers and 148 for Newcastle United, making him the sole player to century-mark at two clubs."
+    },
+    {
+      "floor": 8,
+      "question": "Which player holds the all-time record for the most substitute appearances in Premier League history?",
+      "options": [
+        "James Milner",
+        "Shane Long",
+        "Peter Crouch",
+        "Jermain Defoe"
+      ],
+      "answer": "James Milner",
+      "anchorClues": "James Milner stands atop the table for the most appearances made off the bench in Premier League history, surpassing Peter Crouch's mark of 158."
+    },
+    {
+      "floor": 9,
+      "question": "During Arsenal's undefeated 2003–04 Premier League season, how many matches did they draw?",
+      "options": [
+        "10",
+        "12",
+        "14",
+        "16"
+      ],
+      "answer": "12",
+      "anchorClues": "Arsenal recorded 26 wins and 12 draws across their 38 fixtures to accumulate 90 points as 'The Invincibles'."
+    },
+    {
+      "floor": 10,
+      "question": "Who was the first outfield player to play every single minute of a Premier League title-winning campaign?",
+      "options": [
+        "Gary Pallister",
+        "John Terry",
+        "Wes Morgan",
+        "César Azpilicueta"
+      ],
+      "answer": "Gary Pallister",
+      "anchorClues": "Gary Pallister played all 3,780 minutes of Manchester United's inaugural 1992–93 Premier League-winning season."
+    }
+  ]
+}
