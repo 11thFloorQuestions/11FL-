@@ -1,0 +1,142 @@
+{
+  "setId": "07",
+  "title": "Terrace Test - Set 07",
+  "questions": [
+    {
+      "floor": 1,
+      "type": "boolean",
+      "question": "True or False: Muzzy Izzet recorded 14 Premier League assists for Leicester City during the 2003–04 season, finishing as the league's top assist provider despite the club suffering relegation.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "Muzzy Izzet registered 14 assists for Leicester City in 2003–04, leading the Premier League in assists despite Leicester finishing 18th in the table.",
+      "anchorClues": "Muzzy Izzet / Leicester City 2003–04"
+    },
+    {
+      "floor": 2,
+      "type": "multiple_choice",
+      "question": "Which Senegalese forward scored two goals—including a celebrated long-range swerving half-volley—for Newcastle United in a 2–0 victory over Chelsea at Stamford Bridge in May 2012?",
+      "options": [
+        "Papiss Cissé",
+        "Demba Ba",
+        "El Hadji Diouf"
+      ],
+      "answer": "Papiss Cissé",
+      "explanation": "Papiss Cissé scored both goals in Newcastle United's 2–0 win at Stamford Bridge on 2 May 2012, with his second strike winning Goal of the Season.",
+      "anchorClues": "Papiss Cissé / Chelsea vs Newcastle 2012"
+    },
+    {
+      "floor": 3,
+      "type": "multiple_choice",
+      "question": "Which West Bromwich Albion striker scored the opening goal in their final-day 2–0 win over Portsmouth in May 2005, helping the club complete the 'Great Escape' from relegation?",
+      "options": [
+        "Geoff Horsfield",
+        "Kieran Richardson",
+        "Robert Earnshaw"
+      ],
+      "answer": "Geoff Horsfield",
+      "explanation": "Geoff Horsfield came off the bench to score at The Hawthorns on 15 May 2005 as West Bromwich Albion became the first Premier League side to escape relegation after being bottom at Christmas.",
+      "anchorClues": "Geoff Horsfield / West Bromwich Albion 2004–05"
+    },
+    {
+      "floor": 4,
+      "type": "multiple_choice",
+      "question": "Which Dutch midfielder scored a 91st-minute stoppage-time header for Middlesbrough to earn a 1–1 draw away at Manchester City in November 2016?",
+      "options": [
+        "Marten de Roon",
+        "George Boateng",
+        "Boudewijn Zenden",
+        "Leroy Fer"
+      ],
+      "answer": "Marten de Roon",
+      "explanation": "Marten de Roon headed home George Friend's cross at the Etihad Stadium on 5 November 2016 to secure a 1–1 draw against Manchester City.",
+      "anchorClues": "Marten de Roon / Manchester City vs Middlesbrough 2016"
+    },
+    {
+      "floor": 5,
+      "type": "multiple_choice",
+      "question": "Which English forward finished as Charlton Athletic's top Premier League goalscorer in the 2003–04 season with 10 goals, helping them finish 7th in the top flight?",
+      "options": [
+        "Jason Euell",
+        "Shaun Bartlett",
+        "Carlton Cole",
+        "Jonatan Johansson"
+      ],
+      "answer": "Jason Euell",
+      "explanation": "Jason Euell scored 10 Premier League goals during the 2003–04 campaign as Alan Curbishley's Charlton Athletic finished 7th in the table.",
+      "anchorClues": "Jason Euell / Charlton Athletic 2003–04"
+    },
+    {
+      "floor": 6,
+      "type": "multiple_choice",
+      "question": "Which Finnish defender made 318 Premier League appearances for Liverpool between 1999 and 2009, winning two FA Cups and the UEFA Champions League during his ten seasons at Anfield?",
+      "options": [
+        "Sami Hyypiä",
+        "Stephane Henchoz",
+        "Daniel Agger",
+        "Martin Škrtel"
+      ],
+      "answer": "Sami Hyypiä",
+      "explanation": "Sami Hyypiä spent ten seasons at Liverpool, making 318 Premier League appearances and captaining the side prior to Steven Gerrard.",
+      "anchorClues": "Sami Hyypiä / Liverpool"
+    },
+    {
+      "floor": 7,
+      "type": "multiple_choice",
+      "question": "Which manager guided West Ham United to their first win at Anfield in 52 years with a 3–0 Premier League victory over Liverpool in August 2015?",
+      "options": [
+        "Slaven Bilić",
+        "Manuel Pellegrini",
+        "David Moyes",
+        "Gianfranco Zola"
+      ],
+      "answer": "Slaven Bilić",
+      "explanation": "Slaven Bilić led West Ham United to a 3–0 win at Anfield on 29 August 2015, ending a 52-year wait for an away victory over Liverpool.",
+      "anchorClues": "Slaven Bilić / Liverpool vs West Ham 2015"
+    },
+    {
+      "floor": 8,
+      "type": "multiple_choice",
+      "question": "Which French winger scored 22 Premier League goals for Newcastle United between 2001 and 2006, famous for his long-range left-footed free-kicks?",
+      "options": [
+        "Laurent Robert",
+        "Charles N'Zogbia",
+        "David Ginola",
+        "Hatem Ben Arfa"
+      ],
+      "answer": "Laurent Robert",
+      "explanation": "Laurent Robert scored 22 Premier League goals in 129 top-flight appearances for Newcastle United between August 2001 and May 2005.",
+      "anchorClues": "Laurent Robert / Newcastle United"
+    },
+    {
+      "floor": 9,
+      "type": "multiple_choice",
+      "question": "Which midfielder scored 11 Premier League goals for Portsmouth in the 2006–07 season, including a 30-yard volley against Everton that was named Premier League Goal of the Season?",
+      "options": [
+        "Matthew Taylor",
+        "Niko Kranjčar",
+        "Gary O'Neil",
+        "Pedro Mendes"
+      ],
+      "answer": "Matthew Taylor",
+      "explanation": "Matthew Taylor scored 11 Premier League goals for Harry Redknapp's Portsmouth during the 2006–07 season, including his celebrated long-range volley against Everton.",
+      "anchorClues": "Matthew Taylor / Portsmouth 2006–07"
+    },
+    {
+      "floor": 10,
+      "type": "multiple_choice",
+      "question": "Which manager guided newly promoted Nottingham Forest to a 3rd-place Premier League finish in the 1994–95 season?",
+      "options": [
+        "Frank Clark",
+        "Roy Evans",
+        "Brian Little",
+        "Peter Reid"
+      ],
+      "answer": "Frank Clark",
+      "explanation": "Frank Clark led newly promoted Nottingham Forest to 3rd place with 77 points in the 1994–95 Premier League season, securing UEFA Cup qualification.",
+      "anchorClues": "Frank Clark / Nottingham Forest 1994–95"
+    }
+  ]
+}
