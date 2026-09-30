@@ -1,0 +1,142 @@
+{
+  "setId": "06",
+  "title": "Terrace Test - Set 06",
+  "questions": [
+    {
+      "floor": 1,
+      "type": "boolean",
+      "question": "True or False: Michu scored 18 Premier League goals for Swansea City during his debut 2012–13 season.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "Michu scored 18 Premier League goals in 35 appearances for Swansea City during the 2012–13 season.",
+      "anchorClues": "Michu / Swansea City 2012–13"
+    },
+    {
+      "floor": 2,
+      "type": "multiple_choice",
+      "question": "Which manager led newly promoted Ipswich Town to a 5th-place finish in the 2000–01 Premier League season?",
+      "options": [
+        "George Burley",
+        "Joe Royle",
+        "Bryan Robson"
+      ],
+      "answer": "George Burley",
+      "explanation": "George Burley guided Ipswich Town to 5th place with 66 points in the 2000–01 season, winning the Premier League Manager of the Season award.",
+      "anchorClues": "George Burley / Ipswich Town 2000–01"
+    },
+    {
+      "floor": 3,
+      "type": "multiple_choice",
+      "question": "Which player scored the fastest hat-trick in Premier League history, taking just 2 minutes and 56 seconds for Southampton against Aston Villa in May 2015?",
+      "options": [
+        "Sadio Mané",
+        "Robbie Fowler",
+        "Gabriel Agbonlahor"
+      ],
+      "answer": "Sadio Mané",
+      "explanation": "Sadio Mané scored three goals in 2 minutes and 56 seconds during Southampton's 6–1 victory over Aston Villa on 16 May 2015.",
+      "anchorClues": "Sadio Mané / Fastest Hat-Trick"
+    },
+    {
+      "floor": 4,
+      "type": "multiple_choice",
+      "question": "Who was the first player to score four goals in a single Premier League match for Tottenham Hotspur, achieving the feat against Wimbledon in May 1998?",
+      "options": [
+        "Jürgen Klinsmann",
+        "Les Ferdinand",
+        "Teddy Sheringham",
+        "Darren Anderton"
+      ],
+      "answer": "Jürgen Klinsmann",
+      "explanation": "Jürgen Klinsmann scored four goals in Tottenham Hotspur's 6–2 away win over Wimbledon at Selhurst Park on 2 May 1998.",
+      "anchorClues": "Jürgen Klinsmann / Tottenham Hotspur"
+    },
+    {
+      "floor": 5,
+      "type": "multiple_choice",
+      "question": "Which Arsenal player scored all four of his team's goals in a 4–4 Premier League draw against Liverpool at Anfield in April 2009?",
+      "options": [
+        "Andrey Arshavin",
+        "Robin van Persie",
+        "Samir Nasri",
+        "Emmanuel Adebayor"
+      ],
+      "answer": "Andrey Arshavin",
+      "explanation": "Andrey Arshavin scored four goals at Anfield on 21 April 2009 during a thrilling 4–4 draw between Liverpool and Arsenal.",
+      "anchorClues": "Andrey Arshavin / Liverpool vs Arsenal 2009"
+    },
+    {
+      "floor": 6,
+      "type": "multiple_choice",
+      "question": "Which manager led West Ham United to a 5th-place Premier League finish in the 1998–99 season, their highest-ever finish in the Premier League era?",
+      "options": [
+        "Harry Redknapp",
+        "Glenn Roeder",
+        "Alan Pardew",
+        "Sam Allardyce"
+      ],
+      "answer": "Harry Redknapp",
+      "explanation": "Harry Redknapp guided West Ham United to 5th place in the 1998–99 Premier League season, securing 57 points.",
+      "anchorClues": "Harry Redknapp / West Ham United 1998–99"
+    },
+    {
+      "floor": 7,
+      "type": "multiple_choice",
+      "question": "Which Brazilian midfielder scored a long-range 30-yard swerving goal to help Hull City earn a 2–1 Premier League victory against Arsenal at the Emirates Stadium in September 2008?",
+      "options": [
+        "Geovanni",
+        "Elano",
+        "Afonso Alves",
+        "Juninho"
+      ],
+      "answer": "Geovanni",
+      "explanation": "Geovanni scored a dramatic equalizer from long range at the Emirates Stadium on 27 September 2008 as Hull City went on to win 2–1.",
+      "anchorClues": "Geovanni / Hull City vs Arsenal 2008"
+    },
+    {
+      "floor": 8,
+      "type": "multiple_choice",
+      "question": "In March 2007, which Tottenham Hotspur goalkeeper scored a Premier League goal from an 87-metre free-kick against Watford?",
+      "options": [
+        "Paul Robinson",
+        "Brad Friedel",
+        "Tim Howard",
+        "Shay Given"
+      ],
+      "answer": "Paul Robinson",
+      "explanation": "Paul Robinson scored directly from a long bounce free-kick against Watford goalkeeper Ben Foster on 17 March 2007.",
+      "anchorClues": "Paul Robinson / Tottenham Hotspur vs Watford 2007"
+    },
+    {
+      "floor": 9,
+      "type": "multiple_choice",
+      "question": "Which midfielder recorded 20 Premier League assists in the 2019–20 season, equalling the single-season assist record?",
+      "options": [
+        "Kevin De Bruyne",
+        "Cesc Fàbregas",
+        "Mesut Özil",
+        "David Silva"
+      ],
+      "answer": "Kevin De Bruyne",
+      "explanation": "Kevin De Bruyne registered 20 Premier League assists for Manchester City during the 2019–20 season.",
+      "anchorClues": "Kevin De Bruyne / Manchester City 2019–20"
+    },
+    {
+      "floor": 10,
+      "type": "multiple_choice",
+      "question": "Which manager took charge of Derby County during the 2007–08 season when they set the record for the lowest points total in Premier League history with 11 points?",
+      "options": [
+        "Paul Jewell",
+        "Billy Davies",
+        "Nigel Clough",
+        "Mick McCarthy"
+      ],
+      "answer": "Paul Jewell",
+      "explanation": "Paul Jewell managed Derby County for the majority of the 2007–08 season, finishing with a record-low total of 11 points.",
+      "anchorClues": "Paul Jewell / Derby County 2007–08"
+    }
+  ]
+}
