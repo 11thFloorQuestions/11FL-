@@ -1,55 +1,68 @@
 [
   {
     "floor": 1,
-    "id": "tt-f1-001",
+    "id": "tt-f1-002",
     "question": "In Liverpool's 2019–20 Premier League title-winning season, how many total points did they finish with?",
     "options": [
       "99",
-      "100",
-      "97",
-      "98"
+      "100"
     ],
-    "answer": "99"
+    "answer": "99",
+    "anchorClues": {
+      "club": "Liverpool",
+      "season": "2019-20",
+      "stat": "Title-winning points total"
+    }
   },
   {
     "floor": 2,
-    "id": "tt-f2-001",
+    "id": "tt-f2-002",
     "question": "Which club won the inaugural Premier League title in the 1992–93 season?",
     "options": [
       "Manchester United",
       "Blackburn Rovers",
-      "Aston Villa",
-      "Newcastle United"
+      "Aston Villa"
     ],
-    "answer": "Manchester United"
+    "answer": "Manchester United",
+    "anchorClues": {
+      "season": "1992-93",
+      "milestone": "First Premier League champion"
+    }
   },
   {
     "floor": 3,
-    "id": "tt-f3-001",
+    "id": "tt-f3-002",
     "question": "Who holds the record for most assists in a single Premier League season (20) alongside Thierry Henry?",
     "options": [
       "Kevin De Bruyne",
       "Cesc Fàbregas",
-      "Mesut Özil",
-      "David Silva"
+      "Mesut Özil"
     ],
-    "answer": "Kevin De Bruyne"
+    "answer": "Kevin De Bruyne",
+    "anchorClues": {
+      "record": "Single-season assist record (20)",
+      "coRecordHolder": "Thierry Henry"
+    }
   },
   {
     "floor": 4,
-    "id": "tt-f4-001",
-    "question": "In August 2011, Manchester United famously defeated Arsenal at Old Trafford by what scoreline?",
+    "id": "tt-f4-002",
+    "question": "In August 2011, Manchester United famously defeated Arsenal at Old Trafford by what unbelievable scoreline?",
     "options": [
       "8–2",
       "6–1",
       "7–0",
       "5–2"
     ],
-    "answer": "8–2"
+    "answer": "8–2",
+    "anchorClues": {
+      "match": "Manchester United vs Arsenal, Aug 2011",
+      "venue": "Old Trafford"
+    }
   },
   {
     "floor": 5,
-    "id": "tt-f5-001",
+    "id": "tt-f5-002",
     "question": "Who was the first manager to reach 800 Premier League matches in charge?",
     "options": [
       "Sir Alex Ferguson",
@@ -57,11 +70,15 @@
       "David Moyes",
       "Harry Redknapp"
     ],
-    "answer": "Sir Alex Ferguson"
+    "answer": "Sir Alex Ferguson",
+    "anchorClues": {
+      "milestone": "First manager to 800 PL games",
+      "role": "Manager"
+    }
   },
   {
     "floor": 6,
-    "id": "tt-f6-001",
+    "id": "tt-f6-002",
     "question": "Which goalkeeper holds the all-time record for the most penalty saves in Premier League history (13)?",
     "options": [
       "David James",
@@ -69,11 +86,15 @@
       "Mark Schwarzer",
       "Shay Given"
     ],
-    "answer": "David James"
+    "answer": "David James",
+    "anchorClues": {
+      "record": "Most PL penalty saves (13)",
+      "position": "Goalkeeper"
+    }
   },
   {
     "floor": 7,
-    "id": "tt-f7-001",
+    "id": "tt-f7-002",
     "question": "In December 2006, Paul Scholes scored an iconic volley against Aston Villa off a corner. Who delivered the cross?",
     "options": [
       "Ryan Giggs",
@@ -81,23 +102,31 @@
       "Cristiano Ronaldo",
       "Gary Neville"
     ],
-    "answer": "Ryan Giggs"
+    "answer": "Ryan Giggs",
+    "anchorClues": {
+      "match": "Aston Villa vs Man Utd, Dec 2006",
+      "scorer": "Paul Scholes"
+    }
   },
   {
     "floor": 8,
-    "id": "tt-f8-001",
-    "question": "Which country outside the UK and Ireland has produced the most individual players in Premier League history?",
+    "id": "tt-f8-002",
+    "question": "Which foreign country (outside the UK and Ireland) has produced the most players in Premier League history?",
     "options": [
       "France",
       "Spain",
       "Netherlands",
       "Brazil"
     ],
-    "answer": "France"
+    "answer": "France",
+    "anchorClues": {
+      "stat": "Most foreign players represented in PL",
+      "category": "Nationality"
+    }
   },
   {
     "floor": 9,
-    "id": "tt-f9-001",
+    "id": "tt-f9-002",
     "question": "Who was the first player to score 100 Premier League goals for two different clubs?",
     "options": [
       "Alan Shearer",
@@ -105,11 +134,18 @@
       "Harry Kane",
       "Andrew Cole"
     ],
-    "answer": "Alan Shearer"
+    "answer": "Alan Shearer",
+    "anchorClues": {
+      "milestone": "100 PL goals for 2 clubs",
+      "clubs": [
+        "Blackburn Rovers",
+        "Newcastle United"
+      ]
+    }
   },
   {
     "floor": 10,
-    "id": "tt-f10-001",
+    "id": "tt-f10-002",
     "question": "In 1995, Ipswich Town suffered a joint-record 9–0 defeat at Old Trafford. Who scored 5 goals for Manchester United in that match?",
     "options": [
       "Andrew Cole",
@@ -117,6 +153,10 @@
       "Mark Hughes",
       "Andrei Kanchelskis"
     ],
-    "answer": "Andrew Cole"
+    "answer": "Andrew Cole",
+    "anchorClues": {
+      "match": "Man Utd 9–0 Ipswich Town, 1995",
+      "feat": "5 goals in single PL game"
+    }
   }
 ]
