@@ -5,119 +5,139 @@
   "questions": [
     {
       "floor": 1,
-      "question": "True or False: Blackburn Rovers are the only former Premier League champions to have suffered relegation to League One (the third tier of English football).",
+      "type": "boolean",
+      "question": "True or False: Juninho Paulista was named the Premier League Player of the Season in 1996–97 while playing for Middlesbrough, despite the club being relegated from the top flight in the same campaign.",
       "options": [
         "True",
         "False"
       ],
       "answer": "True",
-      "anchorClues": "1994–95 Premier League champions Blackburn Rovers were relegated from the Championship to League One at the end of the 2016–17 season."
+      "explanation": "Juninho Paulista won the Premier League Player of the Season award for 1996–97 after inspiring Middlesbrough to both domestic cup finals, though a 3-point deduction ultimately saw Boro relegated in 19th place.",
+      "anchorClues": "Juninho Paulista / Middlesbrough 1996–97"
     },
     {
       "floor": 2,
-      "question": "Which club scored the fewest total goals in a single Premier League season, netting just 20 goals across 38 matches in 2007–08?",
+      "type": "multiple_choice",
+      "question": "Which striker joined Blackburn Rovers from Norwich City in July 1994 and scored 15 Premier League goals during their 1994–95 title-winning season?",
       "options": [
-        "Derby County",
-        "Sunderland",
-        "Aston Villa"
+        "Chris Sutton",
+        "Les Ferdinand",
+        "Stan Collymore"
       ],
-      "answer": "Derby County",
-      "anchorClues": "Derby County scored only 20 goals during their 2007–08 campaign while managing just a single victory all season."
+      "answer": "Chris Sutton",
+      "explanation": "Chris Sutton formed the famous 'SAS' partnership in his debut season at Ewood Park, scoring 15 top-flight goals to help Blackburn Rovers secure the title.",
+      "anchorClues": "Chris Sutton / Blackburn Rovers 1994–95"
     },
     {
       "floor": 3,
-      "question": "Which player registered 20 direct assists during the 2002–03 season, establishing the original single-season Premier League record?",
+      "type": "multiple_choice",
+      "question": "Which Spanish midfielder scored a famous lob from inside his own half for Liverpool in a 2–0 Premier League victory against Newcastle United at Anfield in September 2006?",
       "options": [
-        "Thierry Henry",
-        "Cesc Fàbregas",
-        "Mesut Özil"
+        "Xabi Alonso",
+        "Luis García",
+        "Mikel Arteta"
       ],
-      "answer": "Thierry Henry",
-      "anchorClues": "Thierry Henry set the benchmark with 20 assists for Arsenal in 2002–03, a total later matched by Kevin De Bruyne in 2019–20."
+      "answer": "Xabi Alonso",
+      "explanation": "Xabi Alonso spotted Newcastle goalkeeper Steve Harper off his line and struck a shot from inside his own half on 20 September 2006 to complete a 2–0 win.",
+      "anchorClues": "Xabi Alonso / Liverpool vs Newcastle 2006"
     },
     {
       "floor": 4,
-      "question": "Who scored Portsmouth's winning goal in the 2008 FA Cup Final during their famous mid-2000s Premier League era?",
+      "type": "multiple_choice",
+      "question": "Who was the first manager from outside the British Isles to win the Premier League title, leading Arsenal to victory in the 1997–98 season?",
       "options": [
-        "Nwankwo Kanu",
-        "Niko Kranjčar",
-        "John Utaka",
-        "Milan Baroš"
+        "Arsène Wenger",
+        "Ruud Gullit",
+        "Gianluca Vialli",
+        "Claudio Ranieri"
       ],
-      "answer": "Nwankwo Kanu",
-      "anchorClues": "Nwankwo Kanu scored the only goal in Portsmouth's 1–0 win over Cardiff City at Wembley Stadium on 17 May 2008."
+      "answer": "Arsène Wenger",
+      "explanation": "French manager Arsène Wenger won the Premier League title in his first full season in charge of Arsenal (1997–98), becoming the first non-British or Irish manager to lift the trophy.",
+      "anchorClues": "Arsène Wenger / Arsenal 1997–98"
     },
     {
       "floor": 5,
-      "question": "Which player scored four goals in a single match for Arsenal during their 4–4 draw against Liverpool at Anfield in April 2009?",
+      "type": "multiple_choice",
+      "question": "Which Israeli playmaker scored two goals for Southampton during their famous 6–3 Premier League victory over Manchester United at The Dell in October 1996?",
       "options": [
-        "Andrey Arshavin",
-        "Robin van Persie",
-        "Samir Nasri",
-        "Emmanuel Adebayor"
+        "Eyal Berkovic",
+        "Ronnie Ekelund",
+        "Egil Østenstad",
+        "Marian Pahars"
       ],
-      "answer": "Andrey Arshavin",
-      "anchorClues": "Russian playmaker Andrey Arshavin famously scored all four of Arsenal's goals in a thrilling 4–4 draw at Anfield on 21 April 2009."
+      "answer": "Eyal Berkovic",
+      "explanation": "Eyal Berkovic produced a masterclass at The Dell on 26 October 1996, scoring twice and providing two assists as Southampton defeated champions Manchester United 6–3.",
+      "anchorClues": "Eyal Berkovic / Southampton vs Man Utd 1996"
     },
     {
       "floor": 6,
-      "question": "Which manager led West Ham United to a 5th-place Premier League finish in the 1998–99 season, their highest-ever top-flight finish in the Premier League era?",
+      "type": "multiple_choice",
+      "question": "Which manager guided Reading to an 8th-place finish with 55 points in their inaugural Premier League campaign during the 2006–07 season?",
       "options": [
-        "Harry Redknapp",
-        "Glenn Roeder",
+        "Steve Coppell",
         "Alan Pardew",
-        "Sam Allardyce"
+        "Billy Davies",
+        "Aidy Boothroyd"
       ],
-      "answer": "Harry Redknapp",
-      "anchorClues": "Harry Redknapp guided West Ham United to 5th place in 1998–99, accumulating 57 points with a squad featuring Paolo Di Canio and Frank Lampard."
+      "answer": "Steve Coppell",
+      "explanation": "Steve Coppell led newly promoted Reading to 8th place in 2006–07, narrowly missing out on European qualification in the club's first-ever top-flight season.",
+      "anchorClues": "Steve Coppell / Reading 2006–07"
     },
     {
       "floor": 7,
-      "question": "Which French defender made 274 Premier League appearances for Arsenal between 1998 and 2006, winning two Premier League titles and three FA Cups?",
+      "type": "multiple_choice",
+      "question": "Which Nigerian forward scored a 15-minute second-half hat-trick for Arsenal to turn a 2–0 deficit into a 3–2 Premier League victory over Chelsea at Stamford Bridge in October 1999?",
       "options": [
-        "Lauren",
-        "Gilles Grimandi",
-        "Pascal Cygan",
-        "Gaël Clichy"
+        "Nwankwo Kanu",
+        "Marc Overmars",
+        "Davor Šuker",
+        "Ray Parlour"
       ],
-      "answer": "Lauren",
-      "anchorClues": "Cameroon international Lauren (born in Cameroon to Equatorial Guinean parents) held down the right-back slot for Arsenal's 'Invincibles' side."
+      "answer": "Nwankwo Kanu",
+      "explanation": "Nwankwo Kanu struck in the 75th, 83rd, and 90th minutes—including a famous winner curled in from near the corner flag—to earn Arsenal a 3–2 win at Stamford Bridge.",
+      "anchorClues": "Nwankwo Kanu / Chelsea vs Arsenal 1999"
     },
     {
       "floor": 8,
-      "question": "Who holds the record for scoring the most direct free-kick goals in Premier League history, with 18 free-kicks converted?",
+      "type": "multiple_choice",
+      "question": "Which club finished as runners-up to Manchester United in the inaugural 1992–93 Premier League season?",
       "options": [
-        "David Beckham",
-        "James Ward-Prowse",
-        "Gianfranco Zola",
-        "Laurent Robert"
+        "Aston Villa",
+        "Norwich City",
+        "Blackburn Rovers",
+        "Queens Park Rangers"
       ],
-      "answer": "David Beckham",
-      "anchorClues": "David Beckham scored 18 direct free-kick goals for Manchester United between 1996 and 2003."
+      "answer": "Aston Villa",
+      "explanation": "Aston Villa, managed by Ron Atkinson, finished 2nd in the inaugural 1992–93 Premier League season with 74 points, 10 points behind champions Manchester United.",
+      "anchorClues": "Aston Villa / 1992–93 Premier League Runners-Up"
     },
     {
       "floor": 9,
-      "question": "Which player holds the Premier League record for most goal contributions (goals + assists) in a single 38-match season, involvement in 44 total goals in 2002–03?",
+      "type": "multiple_choice",
+      "question": "Which Australian striker scored all four goals for Leeds United in a memorable 4–3 Premier League victory over Liverpool at Elland Road in November 2000?",
       "options": [
-        "Thierry Henry",
-        "Erling Haaland",
-        "Mohamed Salah",
-        "Robin van Persie"
+        "Mark Viduka",
+        "Harry Kewell",
+        "Brett Emerton",
+        "Stan Lazaridis"
       ],
-      "answer": "Thierry Henry",
-      "anchorClues": "Thierry Henry scored 24 goals and registered 20 assists in 2002–03 to set the all-time 38-match goal contribution mark of 44."
+      "answer": "Mark Viduka",
+      "explanation": "Mark Viduka netted four times against Liverpool on 4 November 2000 at Elland Road, completing a legendary comeback from 2–0 down to win 4–3.",
+      "anchorClues": "Mark Viduka / Leeds United vs Liverpool 2000"
     },
     {
       "floor": 10,
-      "question": "Which manager achieved the highest-ever points total for a newly promoted club in a 38-match Premier League season, accumulating 66 points with Newcastle United in 1993–94?",
+      "type": "multiple_choice",
+      "question": "Which club secured the 1994–95 Premier League title on the final day of the season despite suffering a 2–1 defeat away at Liverpool?",
       "options": [
-        "Kevin Keegan",
-        "Frank Clark",
-        "George Burley",
-        "Roy Evans"
+        "Blackburn Rovers",
+        "Manchester United",
+        "Nottingham Forest",
+        "Newcastle United"
       ],
-      "answer": "Kevin Keegan",
-      "anchorClues": "Kevin Keegan led newly promoted Newcastle United to a 3rd-place finish on 77 points in a 42-game season (equivalent to 66 points across 38 games)."
+      "answer": "Blackburn Rovers",
+      "explanation": "Blackburn Rovers lost 2–1 at Anfield on 14 May 1995, but won their first top-flight title in 81 years after 2nd-placed Manchester United could only draw 1–1 at West Ham United.",
+      "anchorClues": "Blackburn Rovers / 1994–95 Premier League Champions"
     }
   ]
 }
