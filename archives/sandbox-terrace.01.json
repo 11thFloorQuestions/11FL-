@@ -1,0 +1,122 @@
+[
+  {
+    "floor": 1,
+    "id": "tt-f1-001",
+    "question": "In Liverpool's 2019–20 Premier League title-winning season, how many total points did they finish with?",
+    "options": [
+      "99",
+      "100",
+      "97",
+      "98"
+    ],
+    "answer": "99"
+  },
+  {
+    "floor": 2,
+    "id": "tt-f2-001",
+    "question": "Which club won the inaugural Premier League title in the 1992–93 season?",
+    "options": [
+      "Manchester United",
+      "Blackburn Rovers",
+      "Aston Villa",
+      "Newcastle United"
+    ],
+    "answer": "Manchester United"
+  },
+  {
+    "floor": 3,
+    "id": "tt-f3-001",
+    "question": "Who holds the record for most assists in a single Premier League season (20) alongside Thierry Henry?",
+    "options": [
+      "Kevin De Bruyne",
+      "Cesc Fàbregas",
+      "Mesut Özil",
+      "David Silva"
+    ],
+    "answer": "Kevin De Bruyne"
+  },
+  {
+    "floor": 4,
+    "id": "tt-f4-001",
+    "question": "In August 2011, Manchester United famously defeated Arsenal at Old Trafford by what scoreline?",
+    "options": [
+      "8–2",
+      "6–1",
+      "7–0",
+      "5–2"
+    ],
+    "answer": "8–2"
+  },
+  {
+    "floor": 5,
+    "id": "tt-f5-001",
+    "question": "Who was the first manager to reach 800 Premier League matches in charge?",
+    "options": [
+      "Sir Alex Ferguson",
+      "Arsène Wenger",
+      "David Moyes",
+      "Harry Redknapp"
+    ],
+    "answer": "Sir Alex Ferguson"
+  },
+  {
+    "floor": 6,
+    "id": "tt-f6-001",
+    "question": "Which goalkeeper holds the all-time record for the most penalty saves in Premier League history (13)?",
+    "options": [
+      "David James",
+      "Thomas Sørensen",
+      "Mark Schwarzer",
+      "Shay Given"
+    ],
+    "answer": "David James"
+  },
+  {
+    "floor": 7,
+    "id": "tt-f7-001",
+    "question": "In December 2006, Paul Scholes scored an iconic volley against Aston Villa off a corner. Who delivered the cross?",
+    "options": [
+      "Ryan Giggs",
+      "Wayne Rooney",
+      "Cristiano Ronaldo",
+      "Gary Neville"
+    ],
+    "answer": "Ryan Giggs"
+  },
+  {
+    "floor": 8,
+    "id": "tt-f8-001",
+    "question": "Which country outside the UK and Ireland has produced the most individual players in Premier League history?",
+    "options": [
+      "France",
+      "Spain",
+      "Netherlands",
+      "Brazil"
+    ],
+    "answer": "France"
+  },
+  {
+    "floor": 9,
+    "id": "tt-f9-001",
+    "question": "Who was the first player to score 100 Premier League goals for two different clubs?",
+    "options": [
+      "Alan Shearer",
+      "Wayne Rooney",
+      "Harry Kane",
+      "Andrew Cole"
+    ],
+    "answer": "Alan Shearer"
+  },
+  {
+    "floor": 10,
+    "id": "tt-f10-001",
+    "question": "In 1995, Ipswich Town suffered a joint-record 9–0 defeat at Old Trafford. Who scored 5 goals for Manchester United in that match?",
+    "options": [
+      "Andrew Cole",
+      "Eric Cantona",
+      "Mark Hughes",
+      "Andrei Kanchelskis"
+    ],
+    "answer": "Andrew Cole"
+  }
+]
