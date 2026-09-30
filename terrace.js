@@ -148,17 +148,24 @@ function renderStatsUI() {
 }
 
 async function fetchFileWithFallbacks(filename) {
+    const timestamp = Date.now();
     const candidatePaths = [
-        `./archives/${filename}`,
-        `./${filename}`,
-        `./data/${filename}`,
-        filename
+        `./archives/${filename}?t=${timestamp}`,
+        `archives/${filename}?t=${timestamp}`,
+        `./${filename}?t=${timestamp}`,
+        `./data/${filename}?t=${timestamp}`
     ];
     for (const path of candidatePaths) {
         try {
-            const res = await fetch(path);
-            if (res.ok) return await res.json();
-        } catch (e) {}
+            const res = await fetch(path, { cache: 'no-store' });
+            if (res.ok) {
+                const parsed = await res.json();
+                console.log(`[Terrace Vault] Successfully fetched ${filename} from ${path}`);
+                return parsed;
+            }
+        } catch (e) {
+            console.warn(`[Terrace Vault] Failed fetch attempt for ${path}:`, e);
+        }
     }
     return null;
 }
