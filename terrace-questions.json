@@ -5,119 +5,119 @@
   "questions": [
     {
       "floor": 1,
-      "question": "True or False: Brighton & Hove Albion ended Arsenal's unbeaten start to the 2026–27 Premier League season with a 3–0 victory at the American Express Stadium in September 2026.",
+      "question": "True or False: Brighton & Hove Albion defeated Arsenal 3–0 at the American Express Stadium in September 2026.",
       "options": [
         "True",
         "False"
       ],
       "answer": "True",
-      "anchorClues": "Goals from Pascal Groß, Charalampos Kostoulas, and Diego Andrés sealed a memorable 3–0 home win for Brighton over defending champions Arsenal on 19 September 2026."
+      "anchorClues": "Brighton & Hove Albion recorded an impressive 3–0 home victory over Arsenal on 19 September 2026."
     },
     {
       "floor": 2,
-      "question": "During Manchester City's 5–3 victory over Sunderland in September 2026, which Sunderland forward scored a hat-trick in the defeat?",
+      "question": "Manchester City defeated Sunderland 5–3 at the Etihad Stadium in September 2026. How many total goals were scored in the match?",
       "options": [
-        "Brian Brobbey",
-        "Eliezer Mayenda",
-        "Wilson Isidor"
+        "6",
+        "8",
+        "10"
       ],
-      "answer": "Brian Brobbey",
-      "anchorClues": "Brian Brobbey scored all three of Sunderland's goals in their 5–3 loss to Manchester City at the Etihad Stadium on 20 September 2026."
+      "answer": "8",
+      "anchorClues": "Manchester City's 5–3 win over Sunderland yielded 8 goals at the Etihad Stadium on 20 September 2026."
     },
     {
       "floor": 3,
-      "question": "A Premier League record was established for the 2026–27 campaign when how many clubs started the season under a new permanent manager?",
+      "question": "During September 2026 matchweek fixtures, Brentford recorded a 3–0 home victory over which London rival?",
       "options": [
-        "7",
-        "9",
-        "11"
+        "Chelsea",
+        "West Ham United",
+        "Tottenham Hotspur"
       ],
-      "answer": "9",
-      "anchorClues": "Nine Premier League clubs started the 2026–27 season under new permanent head coaches, breaking the previous record of eight set in 2016–17."
+      "answer": "Chelsea",
+      "anchorClues": "Brentford defeated Chelsea 3–0 at the Gtech Community Stadium on 18 September 2026."
     },
     {
       "floor": 4,
-      "question": "Who holds the record for the most direct corner kick goals scored in Premier League history, netting three 'Olympico' goals directly from the corner flag?",
+      "question": "Which manager was at the helm for Newcastle United during their iconic 5–0 victory over Manchester United in October 1996?",
       "options": [
-        "Junior Stanislas",
-        "Steve Watson",
-        "David Silva",
-        "Morten Gamst Pedersen"
+        "Kevin Keegan",
+        "Kenny Dalglish",
+        "Ruud Gullit",
+        "Sir Bobby Robson"
       ],
-      "answer": "Junior Stanislas",
-      "anchorClues": "Former Bournemouth winger Junior Stanislas scored three goals directly from corner kicks during his Premier League career, more than any other player in competition history."
+      "answer": "Kevin Keegan",
+      "anchorClues": "Kevin Keegan famously managed Newcastle United to a 5–0 win over Manchester United at St James' Park on 20 October 1996."
     },
     {
       "floor": 5,
-      "question": "In September 2014, Leicester City famously defeated Manchester United 5–3 at King Power Stadium. Which Leicester player won two penalties, assisted two goals, and scored one in that comeback?",
+      "question": "Who scored the final Premier League goal at Highbury before Arsenal moved to the Emirates Stadium in May 2006?",
       "options": [
-        "Jamie Vardy",
-        "David Nugent",
-        "Esteban Cambiasso",
-        "Leonardo Ulloa"
+        "Thierry Henry",
+        "Robert Pires",
+        "Freddie Ljungberg",
+        "Robin van Persie"
       ],
-      "answer": "Jamie Vardy",
-      "anchorClues": "Jamie Vardy delivered an iconic performance by scoring once, winning two penalties, and providing two assists in Leicester's historic 5–3 win over Manchester United."
+      "answer": "Thierry Henry",
+      "anchorClues": "Thierry Henry completed a hat-trick against Wigan Athletic on 7 May 2006, scoring the final goal ever at Highbury."
     },
     {
       "floor": 6,
-      "question": "Which club holds the record for drawing the most consecutive matches in a single 38-match Premier League season, recording 7 straight draws in late 2008?",
+      "question": "Which club holds the Premier League record for going an entire 38-match season without a single home victory?",
       "options": [
-        "Manchester City",
-        "Aston Villa",
-        "Everton",
-        "Newcastle United"
+        "Sunderland (2005–06)",
+        "Derby County (2007–08)",
+        "Huddersfield Town (2018–19)",
+        "Aston Villa (2015–16)"
       ],
-      "answer": "Manchester City",
-      "anchorClues": "Manchester City drew seven consecutive Premier League fixtures between October and December 2008 under Mark Hughes."
+      "answer": "Sunderland (2005–06)",
+      "anchorClues": "Sunderland failed to win a home match during the 2005–06 season, finishing with 0 wins, 3 draws, and 16 defeats at the Stadium of Light."
     },
     {
       "floor": 7,
-      "question": "Who was the first South American player to reach 50 career goals in Premier League history?",
+      "question": "Which player came off the bench in the 72nd minute and scored four goals in 20 minutes against Nottingham Forest in February 1999?",
       "options": [
-        "Gustavo Poyet",
-        "Carlos Tevez",
-        "Sergio Agüero",
-        "Alexis Sánchez"
+        "Ole Gunnar Solskjær",
+        "Teddy Sheringham",
+        "Dwight Yorke",
+        "Andrew Cole"
       ],
-      "answer": "Gustavo Poyet",
-      "anchorClues": "Uruguayan midfielder Gustavo Poyet reached 50 Premier League goals across his spells with Chelsea and Tottenham Hotspur, achieving the mark before Carlos Tevez or Sergio Agüero."
+      "answer": "Ole Gunnar Solskjær",
+      "anchorClues": "Ole Gunnar Solskjær scored four times as a substitute during Manchester United's 8–1 win at the City Ground on 6 February 1999."
     },
     {
       "floor": 8,
-      "question": "Which goalkeeper holds the all-time Premier League record for providing the most direct assists in competition history, setting up 4 goals?",
+      "question": "Which goalkeeper saved three penalties for Hull City during the 2016–17 Premier League season despite the club being relegated?",
       "options": [
-        "Paul Robinson",
-        "Ederson",
-        "Pepe Reina",
-        "Alisson Becker"
+        "Eldin Jakupović",
+        "David Marshall",
+        "Allan McGregor",
+        "Matt Duke"
       ],
-      "answer": "Paul Robinson",
-      "anchorClues": "Paul Robinson registered four Premier League assists during his career across spells with Leeds United, Tottenham Hotspur, and Blackburn Rovers."
+      "answer": "Eldin Jakupović",
+      "anchorClues": "Eldin Jakupović saved three spot-kicks for Hull City in 2016–17, including penalties against Arsenal and Southampton."
     },
     {
       "floor": 9,
-      "question": "In May 2005, West Bromwich Albion became the first team in Premier League history to escape relegation after being bottom on Christmas Day. Who was their manager?",
+      "question": "Who scored the first official goal at the new Tottenham Hotspur Stadium upon its opening in April 2019?",
       "options": [
-        "Bryan Robson",
-        "Gary Megson",
-        "Tony Mowbray",
-        "Roy Hodgson"
+        "Son Heung-min",
+        "Christian Eriksen",
+        "Lucas Moura",
+        "Harry Kane"
       ],
-      "answer": "Bryan Robson",
-      "anchorClues": "Bryan Robson orchestrated West Brom's famous 'Great Escape' on the final day of the 2004–05 season with a 2–0 victory over Portsmouth."
+      "answer": "Son Heung-min",
+      "anchorClues": "Son Heung-min scored the inaugural goal at Tottenham Hotspur Stadium during a 2–0 victory against Crystal Palace on 3 April 2019."
     },
     {
       "floor": 10,
-      "question": "Which player holds the Premier League record for scoring the most substitute goals in a single calendar month, netting 5 goals off the bench in January 2013?",
+      "question": "Which defender holds the Opta record for committing the most individual errors leading directly to an opposition goal in Premier League history (15 errors)?",
       "options": [
-        "Adam Le Fondre",
-        "Javier Hernández",
-        "Ole Gunnar Solskjær",
-        "Olivier Giroud"
+        "Sylvain Distin",
+        "Richard Dunne",
+        "Jamie Carragher",
+        "Phil Jagielka"
       ],
-      "answer": "Adam Le Fondre",
-      "anchorClues": "Adam Le Fondre scored 5 goals as a substitute for Reading in January 2013 alone, winning the Premier League Player of the Month award in the process."
+      "answer": "Sylvain Distin",
+      "anchorClues": "Sylvain Distin committed 15 errors directly leading to goals across 469 Premier League appearances for Manchester City, Portsmouth, Everton, and Bournemouth."
     }
   ]
 }
