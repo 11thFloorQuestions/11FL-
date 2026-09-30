@@ -1,0 +1,123 @@
+{
+  "quizId": "terrace-daily",
+  "title": "Terrace Test",
+  "themeColor": "#84CC16",
+  "questions": [
+    {
+      "floor": 1,
+      "question": "True or False: Ipswich Town finished 5th in the Premier League during the 2000–01 season as a newly promoted club.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "anchorClues": "Managed by George Burley, newly promoted Ipswich Town finished 5th in 2000–01 to qualify for the UEFA Cup, with Marcus Stewart scoring 19 league goals."
+    },
+    {
+      "floor": 2,
+      "question": "Which player holds the all-time record for receiving the most yellow cards in Premier League history, accumulating 123 cautions?",
+      "options": [
+        "Gareth Barry",
+        "Lee Cattermole",
+        "Mark Noble"
+      ],
+      "answer": "Gareth Barry",
+      "anchorClues": "Gareth Barry collected 123 yellow cards across 653 Premier League appearances for Aston Villa, Manchester City, Everton, and West Bromwich Albion."
+    },
+    {
+      "floor": 3,
+      "question": "Which manager led Southampton to an 8th-place Premier League finish and the FA Cup Final during the 2002–03 campaign?",
+      "options": [
+        "Gordon Strachan",
+        "Harry Redknapp",
+        "Paul Sturrock"
+      ],
+      "answer": "Gordon Strachan",
+      "anchorClues": "Gordon Strachan guided Southampton to 8th place in the league and an FA Cup Final appearance against Arsenal in 2003."
+    },
+    {
+      "floor": 4,
+      "question": "Who scored the first Premier League goal in Swansea City's history following their promotion in 2011?",
+      "options": [
+        "Scott Sinclair",
+        "Michel Vorm",
+        "Nathan Dyer",
+        "Danny Graham"
+      ],
+      "answer": "Scott Sinclair",
+      "anchorClues": "Scott Sinclair converted a penalty against Chelsea at Stamford Bridge on 24 September 2011 to score Swansea's first-ever Premier League goal."
+    },
+    {
+      "floor": 5,
+      "question": "Which club scored a record 106 goals during the 2017–18 season to set the all-time Premier League single-season goalscoring benchmark?",
+      "options": [
+        "Manchester City",
+        "Chelsea",
+        "Liverpool",
+        "Arsenal"
+      ],
+      "answer": "Manchester City",
+      "anchorClues": "Pep Guardiola's Manchester City scored 106 goals while accumulating 100 points during their 'Centurions' campaign in 2017–18."
+    },
+    {
+      "floor": 6,
+      "question": "Who scored the first goal for Middlesbrough at the Riverside Stadium upon its opening in August 1995?",
+      "options": [
+        "Craig Hignett",
+        "Nick Barmby",
+        "Jan Åage Fjørtoft",
+        "Bryan Robson"
+      ],
+      "answer": "Craig Hignett",
+      "anchorClues": "Craig Hignett scored after 39 minutes against Chelsea on 26 August 1995 to open Middlesbrough's account at the Riverside Stadium."
+    },
+    {
+      "floor": 7,
+      "question": "Which manager was at the helm of Charlton Athletic for 15 years, establishing them in the Premier League after winning promotion in 1998?",
+      "options": [
+        "Alan Curbishley",
+        "Iain Dowie",
+        "Les Reed",
+        "Alan Pardew"
+      ],
+      "answer": "Alan Curbishley",
+      "anchorClues": "Alan Curbishley managed Charlton Athletic from 1991 to 2006, guiding them into the top flight twice and establishing them as a Premier League staple."
+    },
+    {
+      "floor": 8,
+      "question": "Which player broke the record by scoring in 11 consecutive Premier League appearances during the 2015–16 season?",
+      "options": [
+        "Jamie Vardy",
+        "Ruud van Nistelrooy",
+        "Daniel Sturridge",
+        "Ian Wright"
+      ],
+      "answer": "Jamie Vardy",
+      "anchorClues": "Jamie Vardy scored in 11 straight matches for Leicester City between August and November 2015, breaking Ruud van Nistelrooy's record of 10."
+    },
+    {
+      "floor": 9,
+      "question": "Which referee issued 12 yellow cards during the infamous 'Battle of the Bridge' fixture between Chelsea and Tottenham Hotspur in May 2016?",
+      "options": [
+        "Mark Clattenburg",
+        "Martin Atkinson",
+        "Michael Oliver",
+        "Anthony Taylor"
+      ],
+      "answer": "Mark Clattenburg",
+      "anchorClues": "Mark Clattenburg officiated the 2–2 draw at Stamford Bridge, booking nine Tottenham players and three Chelsea players as Leicester secured the title."
+    },
+    {
+      "floor": 10,
+      "question": "Who was the first non-European player to win a Premier League Golden Boot, sharing the award in the 1998–99 season with 18 goals?",
+      "options": [
+        "Dwight Yorke",
+        "Jimmy Floyd Hasselbaink",
+        "Michael Owen",
+        "Nwankwo Kanu"
+      ],
+      "answer": "Dwight Yorke",
+      "anchorClues": "Trinidad & Tobago forward Dwight Yorke scored 18 goals for Manchester United in 1998–99 to share the Golden Boot with Hasselbaink and Owen."
+    }
+  ]
+}
