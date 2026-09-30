@@ -5,119 +5,119 @@
   "questions": [
     {
       "floor": 1,
-      "question": "True or False: Petr Čech holds the record for the most clean sheets in Premier League history, recording 202 clean sheets.",
+      "question": "True or False: Brighton & Hove Albion ended Arsenal's unbeaten start to the 2026–27 Premier League season with a 3–0 victory at the American Express Stadium in September 2026.",
       "options": [
         "True",
         "False"
       ],
       "answer": "True",
-      "anchorClues": "Petr Čech kept 202 clean sheets in 443 Premier League appearances across his spells at Chelsea and Arsenal."
+      "anchorClues": "Goals from Pascal Groß, Charalampos Kostoulas, and Diego Andrés sealed a memorable 3–0 home win for Brighton over defending champions Arsenal on 19 September 2026."
     },
     {
       "floor": 2,
-      "question": "Which player scored the fastest goal in Premier League history, finding the net after just 7.69 seconds?",
+      "question": "During Manchester City's 5–3 victory over Sunderland in September 2026, which Sunderland forward scored a hat-trick in the defeat?",
       "options": [
-        "Shane Long",
-        "Ledley King",
-        "Philip Billing"
+        "Brian Brobbey",
+        "Eliezer Mayenda",
+        "Wilson Isidor"
       ],
-      "answer": "Shane Long",
-      "anchorClues": "Shane Long scored for Southampton against Watford on 23 April 2019 in just 7.69 seconds from kick-off."
+      "answer": "Brian Brobbey",
+      "anchorClues": "Brian Brobbey scored all three of Sunderland's goals in their 5–3 loss to Manchester City at the Etihad Stadium on 20 September 2026."
     },
     {
       "floor": 3,
-      "question": "Which manager won the most Premier League Manager of the Month awards during his career, claiming the award 27 times?",
+      "question": "A Premier League record was established for the 2026–27 campaign when how many clubs started the season under a new permanent manager?",
       "options": [
-        "Alex Ferguson",
-        "Arsène Wenger",
-        "Pep Guardiola"
+        "7",
+        "9",
+        "11"
       ],
-      "answer": "Alex Ferguson",
-      "anchorClues": "Sir Alex Ferguson won 27 Manager of the Month awards during his tenure at Manchester United, comfortably clear at the top."
+      "answer": "9",
+      "anchorClues": "Nine Premier League clubs started the 2026–27 season under new permanent head coaches, breaking the previous record of eight set in 2016–17."
     },
     {
       "floor": 4,
-      "question": "Who holds the all-time record for the most Premier League assists, setting the benchmark with 162 assists?",
+      "question": "Who holds the record for the most direct corner kick goals scored in Premier League history, netting three 'Olympico' goals directly from the corner flag?",
       "options": [
-        "Ryan Giggs",
-        "Cesc Fàbregas",
-        "Wayne Rooney",
-        "Kevin De Bruyne"
+        "Junior Stanislas",
+        "Steve Watson",
+        "David Silva",
+        "Morten Gamst Pedersen"
       ],
-      "answer": "Ryan Giggs",
-      "anchorClues": "Ryan Giggs registered 162 assists across 21 Premier League seasons with Manchester United."
+      "answer": "Junior Stanislas",
+      "anchorClues": "Former Bournemouth winger Junior Stanislas scored three goals directly from corner kicks during his Premier League career, more than any other player in competition history."
     },
     {
       "floor": 5,
-      "question": "Who was the first player in Premier League history to score five goals in a single match?",
+      "question": "In September 2014, Leicester City famously defeated Manchester United 5–3 at King Power Stadium. Which Leicester player won two penalties, assisted two goals, and scored one in that comeback?",
       "options": [
-        "Andrew Cole",
-        "Alan Shearer",
-        "Jermain Defoe",
-        "Dimitar Berbatov"
+        "Jamie Vardy",
+        "David Nugent",
+        "Esteban Cambiasso",
+        "Leonardo Ulloa"
       ],
-      "answer": "Andrew Cole",
-      "anchorClues": "Andrew Cole scored five goals for Manchester United in a 9–0 win over Ipswich Town at Old Trafford on 4 March 1995."
+      "answer": "Jamie Vardy",
+      "anchorClues": "Jamie Vardy delivered an iconic performance by scoring once, winning two penalties, and providing two assists in Leicester's historic 5–3 win over Manchester United."
     },
     {
       "floor": 6,
-      "question": "Who holds the all-time record for the most penalty goals scored in Premier League history, converting 56 spot-kicks?",
+      "question": "Which club holds the record for drawing the most consecutive matches in a single 38-match Premier League season, recording 7 straight draws in late 2008?",
       "options": [
-        "Alan Shearer",
-        "Frank Lampard",
-        "Steven Gerrard",
-        "Wayne Rooney"
+        "Manchester City",
+        "Aston Villa",
+        "Everton",
+        "Newcastle United"
       ],
-      "answer": "Alan Shearer",
-      "anchorClues": "Alan Shearer scored 56 penalties in the Premier League for Blackburn Rovers and Newcastle United, six more than Frank Lampard."
+      "answer": "Manchester City",
+      "anchorClues": "Manchester City drew seven consecutive Premier League fixtures between October and December 2008 under Mark Hughes."
     },
     {
       "floor": 7,
-      "question": "Which club holds the record for the longest unbeaten home run in Premier League history, going 86 consecutive matches without defeat?",
+      "question": "Who was the first South American player to reach 50 career goals in Premier League history?",
       "options": [
-        "Chelsea",
-        "Liverpool",
-        "Manchester City",
-        "Arsenal"
+        "Gustavo Poyet",
+        "Carlos Tevez",
+        "Sergio Agüero",
+        "Alexis Sánchez"
       ],
-      "answer": "Chelsea",
-      "anchorClues": "Chelsea remained undefeated at Stamford Bridge across 86 consecutive Premier League matches between March 2004 and October 2008."
+      "answer": "Gustavo Poyet",
+      "anchorClues": "Uruguayan midfielder Gustavo Poyet reached 50 Premier League goals across his spells with Chelsea and Tottenham Hotspur, achieving the mark before Carlos Tevez or Sergio Agüero."
     },
     {
       "floor": 8,
-      "question": "Who scored the first-ever Premier League hat-trick, doing so in August 1992?",
+      "question": "Which goalkeeper holds the all-time Premier League record for providing the most direct assists in competition history, setting up 4 goals?",
       "options": [
-        "Éric Cantona",
-        "Mark Hughes",
-        "Teddy Sheringham",
-        "Dion Dublin"
+        "Paul Robinson",
+        "Ederson",
+        "Pepe Reina",
+        "Alisson Becker"
       ],
-      "answer": "Éric Cantona",
-      "anchorClues": "Éric Cantona scored the competition's first hat-trick for Leeds United in a 5–0 victory over Tottenham Hotspur on 25 August 1992."
+      "answer": "Paul Robinson",
+      "anchorClues": "Paul Robinson registered four Premier League assists during his career across spells with Leeds United, Tottenham Hotspur, and Blackburn Rovers."
     },
     {
       "floor": 9,
-      "question": "Which player holds the all-time Premier League record for the most direct free-kick goals scored, with 18?",
+      "question": "In May 2005, West Bromwich Albion became the first team in Premier League history to escape relegation after being bottom on Christmas Day. Who was their manager?",
       "options": [
-        "David Beckham",
-        "James Ward-Prowse",
-        "Gianfranco Zola",
-        "Cristiano Ronaldo"
+        "Bryan Robson",
+        "Gary Megson",
+        "Tony Mowbray",
+        "Roy Hodgson"
       ],
-      "answer": "David Beckham",
-      "anchorClues": "David Beckham scored 18 direct free-kicks during his Premier League career for Manchester United."
+      "answer": "Bryan Robson",
+      "anchorClues": "Bryan Robson orchestrated West Brom's famous 'Great Escape' on the final day of the 2004–05 season with a 2–0 victory over Portsmouth."
     },
     {
       "floor": 10,
-      "question": "Which player holds the Premier League record for scoring against the most different opponent clubs, netting against 39 teams?",
+      "question": "Which player holds the Premier League record for scoring the most substitute goals in a single calendar month, netting 5 goals off the bench in January 2013?",
       "options": [
-        "Frank Lampard",
-        "Andrew Cole",
-        "Wayne Rooney",
-        "Jermain Defoe"
+        "Adam Le Fondre",
+        "Javier Hernández",
+        "Ole Gunnar Solskjær",
+        "Olivier Giroud"
       ],
-      "answer": "Frank Lampard",
-      "anchorClues": "Frank Lampard scored against 39 distinct Premier League clubs during his career with West Ham United, Chelsea, and Manchester City."
+      "answer": "Adam Le Fondre",
+      "anchorClues": "Adam Le Fondre scored 5 goals as a substitute for Reading in January 2013 alone, winning the Premier League Player of the Month award in the process."
     }
   ]
 }
