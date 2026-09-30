@@ -1,0 +1,123 @@
+{
+  "quizId": "terrace-daily",
+  "title": "Terrace Test",
+  "themeColor": "#84CC16",
+  "questions": [
+    {
+      "floor": 1,
+      "question": "True or False: In September 2026, Aston Villa's 2–1 victory over Wolverhampton Wanderers marked Unai Emery's 100th Premier League match in charge of the club.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "anchorClues": "Unai Emery reached his century of Premier League fixtures as Aston Villa manager in September 2026, celebrating with a 2–1 West Midlands derby win at Villa Park."
+    },
+    {
+      "floor": 2,
+      "question": "Which Premier League midfielder provided three assists in a single half during Chelsea's 4–1 win over West Ham United in September 2026?",
+      "options": [
+        "Cole Palmer",
+        "Enzo Fernández",
+        "Moisés Caicedo"
+      ],
+      "answer": "Enzo Fernández",
+      "anchorClues": "Enzo Fernández delivered three goal assists before the interval at the London Stadium in September 2026."
+    },
+    {
+      "floor": 3,
+      "question": "Which player holds the Premier League record for committing the most total fouls in a single 38-match season, racking up 115 fouls?",
+      "options": [
+        "Kevin Davies",
+        "Marouane Fellaini",
+        "Alexis Sánchez"
+      ],
+      "answer": "Kevin Davies",
+      "anchorClues": "Bolton Wanderers forward Kevin Davies committed 115 fouls during the 2008–09 season, setting the highest single-season tally recorded by Opta."
+    },
+    {
+      "floor": 4,
+      "question": "Who was the first player to score a Premier League hat-trick composed entirely of headers?",
+      "options": [
+        "Duncan Ferguson",
+        "Les Ferdinand",
+        "Dion Dublin",
+        "Salomon Rondón"
+      ],
+      "answer": "Duncan Ferguson",
+      "anchorClues": "Duncan Ferguson scored three headed goals for Everton in a 3–2 win against Bolton Wanderers on 28 December 1997."
+    },
+    {
+      "floor": 5,
+      "question": "Which club holds the Premier League record for the most total yellow cards received in a single season, accumulating 105 cautions?",
+      "options": [
+        "Chelsea (2023–24)",
+        "Leeds United (2021–22)",
+        "Sunderland (2014–15)",
+        "Derby County (2007–08)"
+      ],
+      "answer": "Chelsea (2023–24)",
+      "anchorClues": "Chelsea set the single-season yellow card record during the 2023–24 campaign under Mauricio Pochettino, amassing 105 total cautions."
+    },
+    {
+      "floor": 6,
+      "question": "Who scored the very first Premier League goal for Manchester City at the Etihad Stadium in August 2003?",
+      "options": [
+        "Trevor Sinclair",
+        "Nicolas Anelka",
+        "Shaun Wright-Phillips",
+        "Robbie Fowler"
+      ],
+      "answer": "Trevor Sinclair",
+      "anchorClues": "Trevor Sinclair netted after 14 minutes against Portsmouth on 23 August 2003 to open Manchester City's league account at their new home ground."
+    },
+    {
+      "floor": 7,
+      "question": "Which manager endured a 19-match winless start to a Premier League campaign with Sheffield United between November 2020 and January 2021?",
+      "options": [
+        "Chris Wilder",
+        "Paul Heckingbottom",
+        "Slaviša Jokanović",
+        "Bryan Robson"
+      ],
+      "answer": "Chris Wilder",
+      "anchorClues": "Chris Wilder suffered a 19-match winless run with Sheffield United during the 2020–21 season before finally securing a 1–0 win against Newcastle United."
+    },
+    {
+      "floor": 8,
+      "question": "Which goalkeeper scored a Premier League goal from a distance of 91.9 metres after just 13 seconds of play in November 2013?",
+      "options": [
+        "Asmir Begović",
+        "Tim Howard",
+        "Paul Robinson",
+        "Patrik Carlgren"
+      ],
+      "answer": "Asmir Begović",
+      "anchorClues": "Stoke City goalkeeper Asmir Begović beat Southampton's Artur Boruc after just 13 seconds at the Britannia Stadium on 2 November 2013."
+    },
+    {
+      "floor": 9,
+      "question": "Which player was the first in Premier League history to convert penalties with both his right foot and his left foot in the same match?",
+      "options": [
+        "Bobby Zamora",
+        "Obafemi Martins",
+        "Santi Cazorla",
+        "Diogo Jota"
+      ],
+      "answer": "Bobby Zamora",
+      "anchorClues": "Bobby Zamora converted a right-footed penalty and a left-footed penalty for Fulham against Sunderland on 30 April 2011."
+    },
+    {
+      "floor": 10,
+      "question": "Which outfield player played the highest total number of Premier League matches (310 games) without ever scoring a goal or providing a goal assist?",
+      "options": [
+        "Kenny Cunningham",
+        "Stéphane Henchoz",
+        "Des Walker",
+        "Tony Hibbert"
+      ],
+      "answer": "Kenny Cunningham",
+      "anchorClues": "Republic of Ireland defender Kenny Cunningham made 310 Premier League appearances across 12 seasons for Wimbledon and Birmingham City without scoring or registering an assist."
+    }
+  ]
+}
