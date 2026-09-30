@@ -1,5 +1,9 @@
 // 11th Floor Terrace — Daily Premier League Engine
 
+// ==========================================
+// 1. HELPER FUNCTIONS & UTILITIES
+// ==========================================
+
 function safeAddListener(id, event, handler) {
     const el = document.getElementById(id);
     if (el) {
@@ -41,6 +45,10 @@ function triggerHaptic(pattern) {
     }
 }
 
+// ==========================================
+// 2. STATE MANAGEMENT & STATS PERSISTENCE
+// ==========================================
+
 const gameState = {
     currentFloor: 1,
     maxFloors: 10,
@@ -77,16 +85,24 @@ function loadSavedStats() {
     try {
         const saved = localStorage.getItem('11fl_terrace_stats');
         if (saved) gameState.stats = { ...gameState.stats, ...JSON.parse(saved) };
-    } catch (e) {}
+    } catch (e) {
+        console.warn('Could not load stats from localStorage.');
+    }
 }
 
 function saveStats() {
     try {
         localStorage.setItem('11fl_terrace_stats', JSON.stringify(gameState.stats));
-    } catch (e) {}
+    } catch (e) {
+        console.warn('Could not save stats to localStorage.');
+    }
 }
 
 loadSavedStats();
+
+// ==========================================
+// AUDIO ENGINE
+// ==========================================
 
 const elevatorDingAudio = new Audio();
 elevatorDingAudio.src = 'ding.mp3';
@@ -99,7 +115,11 @@ function playElevatorDing() {
     } catch (e) {}
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+// ==========================================
+// 3. NAVIGATION & INITIALISATION
+// ==========================================
+
+document.addEventListener('DOMContentLoaded', () => {
     safeAddListener('btn-start-climb', 'click', () => startDailyClimb());
     safeAddListener('btn-landing-stats', 'click', () => openVault());
     safeAddListener('btn-back-vault', 'click', () => {
@@ -114,7 +134,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     safeAddListener('btn-sound-toggle', 'click', toggleSound);
 
     updateSoundUI();
-    await checkUrlParameters();
 });
 
 function toggleSound() {
@@ -129,6 +148,10 @@ function updateSoundUI() {
 
 function openModal(id) { safeToggleClass(id, 'hidden', false); }
 function closeModal(id) { safeToggleClass(id, 'hidden', true); }
+
+// ==========================================
+// 4. VAULT & STATS CONTROLS
+// ==========================================
 
 function openVault() {
     renderStatsUI();
@@ -147,141 +170,93 @@ function renderStatsUI() {
     if (bestEl) bestEl.innerHTML = getOrdinalFloorHTML(gameState.stats.bestFloor);
 }
 
-async function fetchFileWithFallbacks(filename) {
-    const timestamp = Date.now();
-    const candidatePaths = [
-        `./archives/${filename}?t=${timestamp}`,
-        `archives/${filename}?t=${timestamp}`,
-        `./${filename}?t=${timestamp}`,
-        `./data/${filename}?t=${timestamp}`
-    ];
-    for (const path of candidatePaths) {
-        try {
-            const res = await fetch(path, { cache: 'no-store' });
-            if (res.ok) {
-                const parsed = await res.json();
-                console.log(`[Terrace Vault] Successfully fetched ${filename} from ${path}`);
-                return parsed;
-            }
-        } catch (e) {
-            console.warn(`[Terrace Vault] Failed fetch attempt for ${path}:`, e);
-        }
-    }
-    return null;
-}
-
-async function fetchArchiveData(idString) {
-    const paddedId = String(idString).padStart(2, '0');
-    const rawId = String(parseInt(idString, 10));
-    
-    const candidateFilenames = [
-        `sandbox-terrace.${paddedId}.json`,
-        `sandbox-terrace.${rawId}.json`,
-        `archive_${paddedId}.json`,
-        `archive_${rawId}.json`,
-        `terrace-archive-${paddedId}.json`
-    ];
-
-    for (const filename of candidateFilenames) {
-        const data = await fetchFileWithFallbacks(filename);
-        if (data) return data;
-    }
-    return null;
-}
-
-async function checkUrlParameters() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const archiveParam = urlParams.get('archive') || urlParams.get('set');
-    if (archiveParam) {
-        const data = await fetchArchiveData(archiveParam);
-        if (data) {
-            loadVaultSet(archiveParam, data);
-        }
-    }
-}
-
 async function populateVault() {
     const vaultList = document.getElementById('vault-list');
     if (!vaultList) return;
-    vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">Loading archives...</div>';
-
-    const foundArchives = [];
-    let consecutiveFailures = 0;
-
-    for (let archiveId = 1; archiveId <= 50; archiveId++) {
-        const data = await fetchArchiveData(archiveId);
-
-        if (data) {
-            const paddedId = String(archiveId).padStart(2, '0');
-            foundArchives.push({ paddedId, data });
-            consecutiveFailures = 0;
-        } else {
-            consecutiveFailures++;
-            if (consecutiveFailures >= 5) break;
-        }
-    }
-
+    
     vaultList.innerHTML = '';
+    let archiveId = 1;
 
-    if (foundArchives.length === 0) {
-        vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">No archives found in /archives.</div>';
-        return;
+    while (archiveId <= 50) {
+        const paddedId = String(archiveId).padStart(2, '0');
+        const filename = `sandbox-terrace.${paddedId}.json`;
+        const data = await fetchFileWithFallbacks(filename);
+        
+        if (data) {
+            const btn = document.createElement('button');
+            btn.className = 'vault-item-btn';
+            btn.innerHTML = `<strong>Archive ${paddedId}</strong>`;
+            btn.onclick = () => {
+                triggerHaptic(15);
+                loadVaultSet(paddedId, data);
+            };
+            vaultList.appendChild(btn);
+        }
+        archiveId++;
     }
 
-    foundArchives.forEach(({ paddedId, data }) => {
-        const btn = document.createElement('button');
-        btn.className = 'vault-item-btn';
-        btn.innerHTML = `<strong>Archive ${paddedId}</strong>`;
-        btn.onclick = () => {
-            triggerHaptic(15);
-            loadVaultSet(paddedId, data);
-        };
-        vaultList.appendChild(btn);
-    });
+    if (vaultList.children.length === 0) {
+        vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">No archives found.</div>';
+    }
 }
+
+// ==========================================
+// 5. DATA LOADING & NORMALISATION
+// ==========================================
 
 function normalizeQuestions(data) {
     let rawList = [];
     if (!data) return generateFallbackQuestions();
 
-    if (Array.isArray(data)) {
-        rawList = data;
-    } else if (Array.isArray(data.questions)) {
-        rawList = data.questions;
-    } else if (Array.isArray(data.floors)) {
-        rawList = data.floors;
-    } else {
-        return generateFallbackQuestions();
-    }
+    if (Array.isArray(data)) rawList = data;
+    else if (Array.isArray(data.floors)) rawList = data.floors;
+    else if (Array.isArray(data.questions)) rawList = data.questions;
+    else return generateFallbackQuestions();
 
     return rawList.map(q => {
-        const opts = Array.isArray(q.options) ? [...q.options] : ["Option A", "Option B", "Option C", "Option D"];
-        let correctAns = null;
+        const options = Array.isArray(q.options) ? [...q.options] : ["Option A", "Option B", "Option C", "Option D"];
+        let answerText = "";
 
-        if (typeof q.answer === 'number' && opts[q.answer] !== undefined) {
-            correctAns = opts[q.answer];
-        } else if (typeof q.answer === 'string') {
-            correctAns = q.answer;
-        } else if (typeof q.correct === 'number' && opts[q.correct] !== undefined) {
-            correctAns = opts[q.correct];
-        } else if (typeof q.correct === 'string') {
-            correctAns = q.correct;
-        } else if (typeof q.correctIndex === 'number' && opts[q.correctIndex] !== undefined) {
-            correctAns = opts[q.correctIndex];
-        }
+        if (typeof q.answer === 'string') answerText = q.answer;
+        else if (typeof q.correct === 'string') answerText = q.correct;
+        else if (typeof q.correctAnswer === 'string') answerText = q.correctAnswer;
+        else if (typeof q.answerIndex === 'number' && options[q.answerIndex]) answerText = options[q.answerIndex];
+        else if (typeof q.correctIndex === 'number' && options[q.correctIndex]) answerText = options[q.correctIndex];
+        else if (typeof q.correct === 'number' && options[q.correct]) answerText = options[q.correct];
+        else if (typeof q.answer === 'number' && options[q.answer]) answerText = options[q.answer];
+        else answerText = options[0];
 
         return {
             question: q.question || "Question missing",
-            options: opts,
-            answer: correctAns || opts[0]
+            options: options,
+            answer: answerText
         };
     });
 }
 
+async function fetchFileWithFallbacks(filename) {
+    const candidatePaths = [
+        `./archives/${filename}`,
+        `./${filename}`,
+        `./data/${filename}`,
+        filename
+    ];
+
+    for (const path of candidatePaths) {
+        try {
+            const res = await fetch(path);
+            if (res.ok) return await res.json();
+        } catch (e) {}
+    }
+    return null;
+}
+
 async function startDailyClimb() {
     let data = await fetchFileWithFallbacks('terrace-questions.json');
+    if (!data) data = await fetchFileWithFallbacks('sandbox-terrace.01.json');
+
     gameState.questions = normalizeQuestions(data);
-    
+
     document.getElementById('landing-screen').style.display = 'none';
     document.getElementById('gameplay-header').style.display = 'flex';
     document.getElementById('floor-hud-container').style.display = 'flex';
@@ -291,18 +266,27 @@ async function startDailyClimb() {
 }
 
 function loadVaultSet(paddedId, data) {
-    gameState.questions = normalizeQuestions(data);
-    closeModal('modal-vault');
+    if (data) {
+        gameState.questions = normalizeQuestions(data);
+        closeModal('modal-vault');
 
-    document.getElementById('landing-screen').style.display = 'none';
-    document.getElementById('gameplay-header').style.display = 'flex';
-    document.getElementById('floor-hud-container').style.display = 'flex';
-    document.getElementById('game-screen').style.display = 'flex';
+        document.getElementById('landing-screen').style.display = 'none';
+        document.getElementById('gameplay-header').style.display = 'flex';
+        document.getElementById('floor-hud-container').style.display = 'flex';
+        document.getElementById('game-screen').style.display = 'flex';
 
-    startGame();
+        startGame();
+    }
 }
 
+// ==========================================
+// 6. GAME LOOP & ELEVATOR PROGRESSION
+// ==========================================
+
 function startGame() {
+    if (!gameState.questions || gameState.questions.length === 0) {
+        gameState.questions = generateFallbackQuestions();
+    }
     gameState.currentFloor = 1;
     gameState.currentQuestionIndex = 0;
     updateFloorUI();
