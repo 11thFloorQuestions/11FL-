@@ -99,7 +99,7 @@ function playElevatorDing() {
     } catch (e) {}
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     safeAddListener('btn-start-climb', 'click', () => startDailyClimb());
     safeAddListener('btn-landing-stats', 'click', () => openVault());
     safeAddListener('btn-back-vault', 'click', () => {
@@ -114,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     safeAddListener('btn-sound-toggle', 'click', toggleSound);
 
     updateSoundUI();
+    await checkUrlParameters();
 });
 
 function toggleSound() {
@@ -162,6 +163,36 @@ async function fetchFileWithFallbacks(filename) {
     return null;
 }
 
+async function fetchArchiveData(idString) {
+    const paddedId = String(idString).padStart(2, '0');
+    const rawId = String(parseInt(idString, 10));
+    
+    const candidateFilenames = [
+        `sandbox-terrace.${paddedId}.json`,
+        `sandbox-terrace.${rawId}.json`,
+        `archive_${paddedId}.json`,
+        `archive_${rawId}.json`,
+        `terrace-archive-${paddedId}.json`
+    ];
+
+    for (const filename of candidateFilenames) {
+        const data = await fetchFileWithFallbacks(filename);
+        if (data) return data;
+    }
+    return null;
+}
+
+async function checkUrlParameters() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const archiveParam = urlParams.get('archive') || urlParams.get('set');
+    if (archiveParam) {
+        const data = await fetchArchiveData(archiveParam);
+        if (data) {
+            loadVaultSet(archiveParam, data);
+        }
+    }
+}
+
 async function populateVault() {
     const vaultList = document.getElementById('vault-list');
     if (!vaultList) return;
@@ -171,16 +202,15 @@ async function populateVault() {
     let consecutiveFailures = 0;
 
     for (let archiveId = 1; archiveId <= 50; archiveId++) {
-        const paddedId = String(archiveId).padStart(2, '0');
-        const filename = `sandbox-terrace.${paddedId}.json`;
-        const data = await fetchFileWithFallbacks(filename);
+        const data = await fetchArchiveData(archiveId);
 
         if (data) {
+            const paddedId = String(archiveId).padStart(2, '0');
             foundArchives.push({ paddedId, data });
             consecutiveFailures = 0;
         } else {
             consecutiveFailures++;
-            if (consecutiveFailures >= 3) break;
+            if (consecutiveFailures >= 5) break;
         }
     }
 
@@ -206,16 +236,33 @@ async function populateVault() {
 function normalizeQuestions(data) {
     let rawList = [];
     if (!data) return generateFallbackQuestions();
-    if (Array.isArray(data)) rawList = data;
-    else if (Array.isArray(data.questions)) rawList = data.questions;
-    else return generateFallbackQuestions();
+
+    if (Array.isArray(data)) {
+        rawList = data;
+    } else if (Array.isArray(data.questions)) {
+        rawList = data.questions;
+    } else if (Array.isArray(data.floors)) {
+        rawList = data.floors;
+    } else {
+        return generateFallbackQuestions();
+    }
 
     return rawList.map(q => {
         const opts = Array.isArray(q.options) ? [...q.options] : ["Option A", "Option B", "Option C", "Option D"];
-        let correctAns = q.answer || q.correct;
-        if (correctAns === undefined && typeof q.correctIndex === 'number' && opts[q.correctIndex] !== undefined) {
+        let correctAns = null;
+
+        if (typeof q.answer === 'number' && opts[q.answer] !== undefined) {
+            correctAns = opts[q.answer];
+        } else if (typeof q.answer === 'string') {
+            correctAns = q.answer;
+        } else if (typeof q.correct === 'number' && opts[q.correct] !== undefined) {
+            correctAns = opts[q.correct];
+        } else if (typeof q.correct === 'string') {
+            correctAns = q.correct;
+        } else if (typeof q.correctIndex === 'number' && opts[q.correctIndex] !== undefined) {
             correctAns = opts[q.correctIndex];
         }
+
         return {
             question: q.question || "Question missing",
             options: opts,
@@ -292,7 +339,7 @@ function loadNextQuestion() {
 
 function startTimer() {
     clearInterval(gameState.timer);
-    const totalDuration = 30000; // 30 seconds generous thinking time
+    const totalDuration = 30000;
     const startTime = Date.now();
     const timerBar = document.getElementById('timer-bar');
     if (timerBar) timerBar.style.width = '100%';
