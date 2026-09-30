@@ -1,0 +1,123 @@
+{
+  "quizId": "terrace-daily",
+  "title": "Terrace Test",
+  "themeColor": "#84CC16",
+  "questions": [
+    {
+      "floor": 1,
+      "question": "True or False: Ryan Giggs scored in 21 consecutive Premier League seasons.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "anchorClues": "Ryan Giggs scored in every single Premier League campaign from the competition's inaugural 1992–93 season through to the 2012–13 season."
+    },
+    {
+      "floor": 2,
+      "question": "Which match stands as the highest-scoring fixture in Premier League history, featuring 11 total goals?",
+      "options": [
+        "Portsmouth 7–4 Reading",
+        "Tottenham Hotspur 9–1 Wigan Athletic",
+        "Manchester United 8–2 Arsenal"
+      ],
+      "answer": "Portsmouth 7–4 Reading",
+      "anchorClues": "Portsmouth defeated Reading 7–4 at Fratton Park on 29 September 2007, setting the record for the highest-scoring fixture in Premier League history."
+    },
+    {
+      "floor": 3,
+      "question": "Which club conceded the fewest goals in a single Premier League season, allowing just 15 goals across 38 matches?",
+      "options": [
+        "Arsenal (2003–04)",
+        "Chelsea (2004–05)",
+        "Manchester City (2017–18)"
+      ],
+      "answer": "Chelsea (2004–05)",
+      "anchorClues": "Under José Mourinho, Chelsea conceded a record-low 15 goals in 38 matches during the 2004–05 season, keeping 25 clean sheets."
+    },
+    {
+      "floor": 4,
+      "question": "Who holds the all-time record for the most penalty saves in Premier League history, stopping 13 spot-kicks?",
+      "options": [
+        "David James",
+        "Łukasz Fabiański",
+        "Petr Čech",
+        "Mark Schwarzer"
+      ],
+      "answer": "David James",
+      "anchorClues": "David James saved 13 penalties during his Premier League career across spells with Liverpool, Aston Villa, West Ham, Manchester City, and Portsmouth."
+    },
+    {
+      "floor": 5,
+      "question": "Which player holds the record for the most goals scored off the bench as a substitute in Premier League history?",
+      "options": [
+        "Olivier Giroud",
+        "Jermain Defoe",
+        "Javier Hernández",
+        "Ole Gunnar Solskjær"
+      ],
+      "answer": "Jermain Defoe",
+      "anchorClues": "Jermain Defoe scored 24 Premier League goals after coming on as a substitute, more than any other player in the competition's history."
+    },
+    {
+      "floor": 6,
+      "question": "Who scored the first goal in Premier League history, finding the net for Sheffield United against Manchester United on 15 August 1992?",
+      "options": [
+        "Brian Deane",
+        "Teddy Sheringham",
+        "Alan Shearer",
+        "Les Ferdinand"
+      ],
+      "answer": "Brian Deane",
+      "anchorClues": "Brian Deane scored after just five minutes for Sheffield United in a 2–1 victory over Manchester United on opening day of the inaugural Premier League season."
+    },
+    {
+      "floor": 7,
+      "question": "Which player shares the all-time Premier League record for the most red cards in competition history, being sent off 8 times alongside Duncan Ferguson and Richard Dunne?",
+      "options": [
+        "Patrick Vieira",
+        "Roy Keane",
+        "Lee Cattermole",
+        "Joey Barton"
+      ],
+      "answer": "Patrick Vieira",
+      "anchorClues": "Patrick Vieira was sent off 8 times during his Premier League career with Arsenal and Manchester City, sharing the all-time red card record with Duncan Ferguson and Richard Dunne."
+    },
+    {
+      "floor": 8,
+      "question": "In December 2025, Erling Haaland became the fastest player to reach 100 Premier League goals. How many matches did he take to reach the century mark?",
+      "options": [
+        "111 matches",
+        "118 matches",
+        "124 matches",
+        "130 matches"
+      ],
+      "answer": "111 matches",
+      "anchorClues": "Erling Haaland scored his 100th Premier League goal in just his 111th match, comfortably surpassing Alan Shearer's previous record of 124 matches."
+    },
+    {
+      "floor": 9,
+      "question": "Which player was the first in Premier League history to register four assists in a single match, doing so in February 1999 against Leicester City?",
+      "options": [
+        "Dennis Bergkamp",
+        "Gianfranco Zola",
+        "Eric Cantona",
+        "David Beckham"
+      ],
+      "answer": "Dennis Bergkamp",
+      "anchorClues": "Dennis Bergkamp set the record during Arsenal's 5–0 win over Leicester City on 20 February 1999, becoming the first player to register four assists in a single Premier League game."
+    },
+    {
+      "floor": 10,
+      "question": "Which defender holds the all-time Premier League record for scoring the most own goals, putting the ball into his own net 10 times?",
+      "options": [
+        "Jamie Carragher",
+        "Richard Dunne",
+        "Lewis Dunk",
+        "Phil Jagielka"
+      ],
+      "answer": "Richard Dunne",
+      "anchorClues": "Richard Dunne put the ball into his own net 10 times across 431 Premier League appearances for Everton, Manchester City, Aston Villa, and QPR."
+    }
+  ]
+}
