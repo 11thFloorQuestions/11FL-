@@ -1,0 +1,142 @@
+{
+  "setId": "15",
+  "title": "Think You Know Ball? - Set 15",
+  "questions": [
+    {
+      "floor": 1,
+      "type": "multiple_choice",
+      "question": "Which Scottish manager led Coventry City to Premier League survival for four consecutive seasons between 1997 and 2001, famously signing players like Robbie Keane and Mustapha Hadji?",
+      "options": [
+        "Gordon Strachan",
+        "Alex McLeish",
+        "George Burley",
+        "Graeme Souness"
+      ],
+      "answer": "Gordon Strachan",
+      "explanation": "Gordon Strachan managed Coventry City from 1996 to 2001, keeping the Sky Blues in the top flight with remarkable escapes before their eventual relegation in 2001.",
+      "anchorClues": "Gordon Strachan / Coventry City Premier League"
+    },
+    {
+      "floor": 2,
+      "type": "boolean",
+      "question": "True or False: Portsmouth are the only club in Premier League history to have been hit with a 9-point deduction for entering administration during a top-flight season.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "In March 2010, Portsmouth became the first Premier League club to enter administration, receiving an automatic 9-point deduction that sealed their relegation.",
+      "anchorClues": "Portsmouth 9-point administration deduction 2009–10"
+    },
+    {
+      "floor": 3,
+      "type": "multiple_choice",
+      "question": "What was the final scoreline when Tottenham Hotspur defeated Chelsea at White Hart Lane in November 2006, recording their first league win over Chelsea in 16 years?",
+      "options": [
+        "2–1",
+        "1–0",
+        "3–2",
+        "3–1"
+      ],
+      "answer": "2–1",
+      "explanation": "Aaron Lennon scored a memorable winner as Martin Jol's Spurs beat Jose Mourinho's Chelsea 2–1, ending a 32-game league winless run against their London rivals.",
+      "anchorClues": "Tottenham 2–1 Chelsea November 2006 / Aaron Lennon"
+    },
+    {
+      "floor": 4,
+      "type": "multiple_choice",
+      "question": "Which historic ground served as the home stadium for Leicester City for 111 years before the club relocated to the King Power Stadium in 2002?",
+      "options": [
+        "Filbert Street",
+        "Ayresome Park",
+        "Baseford Ground",
+        "Burnden Park"
+      ],
+      "answer": "Filbert Street",
+      "explanation": "Leicester City played at Filbert Street from 1891 until May 2002, closing the stadium with a 2–1 victory over Tottenham Hotspur.",
+      "anchorClues": "Filbert Street / Leicester City home stadium"
+    },
+    {
+      "floor": 5,
+      "type": "boolean",
+      "question": "True or False: Everton have competed in every single Premier League season since the competition's formation in 1992 without ever suffering relegation.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "Everton are one of six clubs (alongside Arsenal, Chelsea, Liverpool, Manchester United, and Tottenham Hotspur) to have maintained continuous Premier League status since 1992.",
+      "anchorClues": "Everton continuous Premier League status since 1992"
+    },
+    {
+      "floor": 6,
+      "type": "multiple_choice",
+      "question": "Which manager took charge of Fulham in December 2007 and pulled off a dramatic final-day survival before leading the West London side to the UEFA Europa League final two years later?",
+      "options": [
+        "Roy Hodgson",
+        "Chris Coleman",
+        "Lawrie Sanchez",
+        "Mark Hughes"
+      ],
+      "answer": "Roy Hodgson",
+      "explanation": "Roy Hodgson orchestrated a remarkable comeback in the closing weeks of the 2007–08 season, culminating in a 1–0 win at Portsmouth on the final day to secure survival.",
+      "anchorClues": "Roy Hodgson / Fulham survival 2007–08 and Europa League"
+    },
+    {
+      "floor": 7,
+      "type": "multiple_choice",
+      "question": "Which squad number did Australian winger Harry Kewell wear during his five seasons at Liverpool between 2003 and 2008?",
+      "options": [
+        "7",
+        "10",
+        "11",
+        "19"
+      ],
+      "answer": "7",
+      "explanation": "Harry Kewell wore the number 7 shirt for Liverpool after signing from Leeds United in 2003, featuring in the 2005 UEFA Champions League victory in Istanbul.",
+      "anchorClues": "Harry Kewell shirt number 7 / Liverpool"
+    },
+    {
+      "floor": 8,
+      "type": "multiple_choice",
+      "question": "Which French winger won both the PFA Players' Player of the Year and FWA Footballer of the Year awards in 1998–99 while playing for Tottenham Hotspur?",
+      "options": [
+        "David Ginola",
+        "Laurent Robert",
+        "Robert Pirès",
+        "Steed Malbranque"
+      ],
+      "answer": "David Ginola",
+      "explanation": "David Ginola enjoyed an outstanding 1998–99 campaign at White Hart Lane, becoming one of the few players to win both major individual awards in a season without winning the league title.",
+      "anchorClues": "David Ginola / PFA Player of the Year 1998–99 Tottenham"
+    },
+    {
+      "floor": 9,
+      "type": "multiple_choice",
+      "question": "Which English striker scored 18 Premier League goals for Coventry City during the 1997–98 season, finishing as joint-top scorer in the competition before joining Aston Villa?",
+      "options": [
+        "Dion Dublin",
+        "Darren Huckerby",
+        "Noel Whelan",
+        "Marcus Hall"
+      ],
+      "answer": "Dion Dublin",
+      "explanation": "Dion Dublin shared the Premier League Golden Boot in 1997–98 with 18 goals for Coventry City before moving to Villa Park.",
+      "anchorClues": "Dion Dublin / Coventry City and Aston Villa"
+    },
+    {
+      "floor": 10,
+      "type": "multiple_choice",
+      "question": "Which Welsh forward holds the Premier League record for scoring for seven different clubs in the competition, netting for Coventry, Newcastle, Blackburn, Liverpool, West Ham, Manchester City, and Cardiff City?",
+      "options": [
+        "Craig Bellamy",
+        "Nicolas Anelka",
+        "Peter Crouch",
+        "Les Ferdinand"
+      ],
+      "answer": "Craig Bellamy",
+      "explanation": "Craig Bellamy set the record by scoring for seven different Premier League clubs during an adventurous top-flight career spanning over 15 years.",
+      "anchorClues": "Craig Bellamy / Scored for 7 Premier League clubs record"
+    }
+  ]
+}
