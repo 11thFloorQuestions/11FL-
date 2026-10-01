@@ -1,142 +1,142 @@
 {
-  "setId": "12",
-  "title": "Think You Know Ball? - Set 12",
+  "setId": "13",
+  "title": "Think You Know Ball? - Set 13",
   "questions": [
     {
       "floor": 1,
       "type": "multiple_choice",
-      "question": "Which manager led Middlesbrough to victory in the 2004 League Cup final and guided them to the UEFA Cup final in 2006 before taking charge of the England national team?",
+      "question": "Which Italian manager guided Manchester City to their first Premier League title in the 2011–12 season, dramatically clinching the trophy on the final day?",
       "options": [
-        "Steve McClaren",
-        "Bryan Robson",
-        "Gareth Southgate",
-        "Terry Venables"
+        "Roberto Mancini",
+        "Claudio Ranieri",
+        "Gianluca Vialli",
+        "Carlo Ancelotti"
       ],
-      "answer": "Steve McClaren",
-      "explanation": "Steve McClaren enjoyed a historic spell at the Riverside Stadium, lifting Middlesbrough's first major trophy in 2004 and reaching the 2006 UEFA Cup final against Sevilla.",
-      "anchorClues": "Steve McClaren / Middlesbrough 2004 League Cup and UEFA Cup"
+      "answer": "Roberto Mancini",
+      "explanation": "Roberto Mancini led Manchester City to their dramatic first Premier League triumph in May 2012, courtesy of Sergio Agüero's famous 94th-minute winner against Queens Park Rangers.",
+      "anchorClues": "Roberto Mancini / Manchester City 2011–12 title"
     },
     {
       "floor": 2,
       "type": "boolean",
-      "question": "True or False: Arsenal's 2001–02 title-winning side holds the Premier League record for scoring in every single match of a 38-game league campaign.",
+      "question": "True or False: Arsenal's 49-game unbeaten Premier League streak was brought to an end by Manchester United at Old Trafford in October 2004.",
       "options": [
         "True",
         "False"
       ],
       "answer": "True",
-      "explanation": "Arsène Wenger's Arsenal scored in all 38 Premier League fixtures during the 2001–02 season on their way to winning the double, a record that remains unique in Premier League history.",
-      "anchorClues": "Arsenal 2001–02 / Scoring in every Premier League match"
+      "explanation": "Manchester United defeated Arsenal 2–0 in the famous 'Pizzagate' match at Old Trafford, ending the Invincibles' record 49-match unbeaten league run.",
+      "anchorClues": "Arsenal 49 unbeaten streak ended / Manchester United 2004"
     },
     {
       "floor": 3,
       "type": "multiple_choice",
-      "question": "What was the final scoreline when Tottenham Hotspur famously defeated Wigan Athletic at White Hart Lane in November 2009, with Jermain Defoe scoring five second-half goals?",
+      "question": "What was the final scoreline on the opening day of the 1996–97 season when David Beckham famously scored from his own half for Manchester United against Wimbledon at Selhurst Park?",
       "options": [
-        "9–1",
-        "8–0",
-        "9–0",
-        "7–1"
+        "3–0",
+        "2–0",
+        "4–1",
+        "3–1"
       ],
-      "answer": "9–1",
-      "explanation": "Harry Redknapp's Spurs tore apart Wigan Athletic 9–1, with Jermain Defoe netting five goals in a historic second-half display.",
-      "anchorClues": "Tottenham 9–1 Wigan Athletic 2009 / Jermain Defoe"
+      "answer": "3–0",
+      "explanation": "Manchester United won 3–0 at Selhurst Park, with David Beckham's iconic 57-yard lob over Neil Sullivan putting the seal on a comfortable away victory.",
+      "anchorClues": "David Beckham goal vs Wimbledon 1996 / 3–0 scoreline"
     },
     {
       "floor": 4,
       "type": "multiple_choice",
-      "question": "Which Scottish manager guided West Midlands side West Bromwich Albion to a famous 'Great Escape' on the final day of the 2004–05 season, becoming the first Premier League side to survive relegation after being bottom on Christmas Day?",
+      "question": "Which stadium served as West Ham United's home ground for 112 years before their move to the London Stadium in 2016?",
       "options": [
-        "Bryan Robson",
-        "Gary Megson",
-        "Tony Mowbray",
-        "Alex McLeish"
+        "Boleyn Ground",
+        "The Den",
+        "White Hart Lane",
+        "Hackney Marshes"
       ],
-      "answer": "Bryan Robson",
-      "explanation": "Former Manchester United captain Bryan Robson oversaw West Bromwich Albion's dramatic survival on Sunday 15 May 2005, following a 2–0 victory over Portsmouth at The Hawthorns.",
-      "anchorClues": "Bryan Robson / West Brom Great Escape 2004–05"
+      "answer": "Boleyn Ground",
+      "explanation": "The Boleyn Ground (popularly known as Upton Park) served as West Ham United's home from 1904 until their emotional final match against Manchester United in May 2016.",
+      "anchorClues": "Boleyn Ground / West Ham United home stadium"
     },
     {
       "floor": 5,
       "type": "boolean",
-      "question": "True or False: Chelsea's John Terry is the highest-scoring defender in Premier League history, netting 41 goals in the competition.",
+      "question": "True or False: Newly promoted Ipswich Town finished 5th in the Premier League during the 2000–01 season under George Burley, qualifying directly for the UEFA Cup.",
       "options": [
         "True",
         "False"
       ],
       "answer": "True",
-      "explanation": "John Terry scored 41 Premier League goals across 19 seasons at Stamford Bridge, placing him top of the all-time defender scoring list ahead of David Unsworth (38) and Ian Harte (28).",
-      "anchorClues": "John Terry all-time highest scoring defender Premier League"
+      "explanation": "Ipswich Town surprised the top flight in 2000–01 by finishing 5th with 66 points, missing out on Champions League qualification by just three points.",
+      "anchorClues": "Ipswich Town 5th place 2000–01 season"
     },
     {
       "floor": 6,
       "type": "multiple_choice",
-      "question": "Which Argentine striker shared the 2010–11 Premier League Golden Boot with Dimitar Berbatov after scoring 20 goals for Manchester City?",
+      "question": "Which German playmaker provided 19 Premier League assists for Arsenal during the 2015–16 season, falling just one assist short of the single-season record?",
       "options": [
-        "Carlos Tevez",
-        "Sergio Agüero",
-        "Gonzalo Higuaín",
-        "Ezequiel Lavezzi"
+        "Mesut Özil",
+        "Lukas Podolski",
+        "Michael Ballack",
+        "Bastian Schweinsteiger"
       ],
-      "answer": "Carlos Tevez",
-      "explanation": "Carlos Tevez scored 20 league goals in 2010–11 to captain Manchester City to 3rd place and share the Golden Boot award with former teammate Berbatov.",
-      "anchorClues": "Carlos Tevez / Premier League Golden Boot 2010–11 Manchester City"
+      "answer": "Mesut Özil",
+      "explanation": "Mesut Özil enjoyed a brilliant creative campaign in 2015–16, assisting 19 goals for Arsenal and setting a Premier League record by assisting in seven consecutive matches.",
+      "anchorClues": "Mesut Özil 19 assists 2015–16 / Arsenal"
     },
     {
       "floor": 7,
       "type": "multiple_choice",
-      "question": "Which iconic squad number was handed to Cristiano Ronaldo upon his arrival at Manchester United in August 2003, following the departure of David Beckham to Real Madrid?",
+      "question": "Which iconic squad number was worn by French forward Eric Cantona during his transformative five seasons at Manchester United in the 1990s?",
       "options": [
         "7",
-        "17",
-        "28",
+        "9",
+        "10",
         "11"
       ],
       "answer": "7",
-      "explanation": "Alex Ferguson insisted that 18-year-old Cristiano Ronaldo take the club's famed number 7 shirt—previously worn by Best, Robson, Cantona, and Beckham—rather than his requested number 28.",
-      "anchorClues": "Cristiano Ronaldo squad number 7 / Manchester United 2003"
+      "explanation": "Eric Cantona famously wore the number 7 shirt with his collar turned up, leading Manchester United to four Premier League titles in five seasons.",
+      "anchorClues": "Eric Cantona squad number 7 / Manchester United"
     },
     {
       "floor": 8,
       "type": "multiple_choice",
-      "question": "Which Spanish midfielder spent five seasons at Liverpool before joining Real Madrid in 2009, famous for scoring a 70-yard goal against Luton Town in the FA Cup and another from inside his own half against Newcastle United in the Premier League?",
+      "question": "Which Spanish striker scored 24 Premier League goals in his debut 2007–08 season for Liverpool, setting a new record for the most goals scored by a foreign player in a debut PL campaign?",
       "options": [
-        "Xabi Alonso",
-        "Luis García",
-        "Albert Riera",
-        "Mikel Arteta"
+        "Fernando Torres",
+        "Michu",
+        "Diego Costa",
+        "Álvaro Morata"
       ],
-      "answer": "Xabi Alonso",
-      "explanation": "Xabi Alonso pulled off his iconic long-range strike against Newcastle United from inside his own half at Anfield in September 2006.",
-      "anchorClues": "Xabi Alonso / Liverpool long-range goals Newcastle"
+      "answer": "Fernando Torres",
+      "explanation": "Fernando Torres hit 24 top-flight goals in his first season at Anfield after joining from Atlético Madrid, breaking Ruud van Nistelrooy's debut season goalscoring record.",
+      "anchorClues": "Fernando Torres 24 goals debut season 2007–08 / Liverpool"
     },
     {
       "floor": 9,
       "type": "multiple_choice",
-      "question": "Which club recorded the fewest goals scored in a single 38-game Premier League season, finding the net just 28 times during the 2006–07 campaign under Stuart Pearce?",
+      "question": "Which North London club became the first team in Premier League history to go an entire 38-game season without recording a single draw away from home, doing so during the 2018–19 campaign?",
       "options": [
-        "Manchester City",
-        "Derby County",
-        "Sunderland",
-        "Watford"
+        "Tottenham Hotspur",
+        "Arsenal",
+        "Chelsea",
+        "West Ham United"
       ],
-      "answer": "Manchester City",
-      "explanation": "Prior to modern takeovers, Manchester City scored only 28 league goals in 2006–07—including a dismal 10 goals at home all season.",
-      "anchorClues": "Manchester City 2006–07 / Fewest goals scored season"
+      "answer": "Tottenham Hotspur",
+      "explanation": "Mauricio Pochettino's Tottenham Hotspur won 11 and lost 8 of their 19 away fixtures in 2018–19, becoming the first side in PL history not to record an away draw all season.",
+      "anchorClues": "Tottenham Hotspur zero away draws 2018–19"
     },
     {
       "floor": 10,
       "type": "multiple_choice",
-      "question": "Which Nigerian striker scored Premier League hat-tricks for three different clubs, accomplishing the feat for Portsmouth, Everton, and Blackburn Rovers?",
+      "question": "Which goalkeeper holds the Premier League record for reaching 100 clean sheets in the fewest matches, taking just 180 appearances to reach the milestone?",
       "options": [
-        "Yakubu",
-        "Nwankwo Kanu",
-        "Efan Ekoku",
-        "Shola Ameobi"
+        "Petr Čech",
+        "Pepe Reina",
+        "Edwin van der Sar",
+        "Peter Schmeichel"
       ],
-      "answer": "Yakubu",
-      "explanation": "Yakubu Ayegbeni proved a prolific goalscorer across the top flight, netting PL hat-tricks for Portsmouth (2004), Everton (2007), and Blackburn Rovers (2011).",
-      "anchorClues": "Yakubu / Premier League hat-tricks three different clubs"
+      "answer": "Petr Čech",
+      "explanation": "Petr Čech reached 100 Premier League clean sheets in just 180 matches for Chelsea, comfortably beating Pepe Reina (198 games) and Peter Schmeichel (212 games).",
+      "anchorClues": "Petr Čech 100 clean sheets 180 games record"
     }
   ]
 }
