@@ -1,142 +1,142 @@
 {
-  "setId": "11",
-  "title": "Think You Know Ball? - Set 11",
+  "setId": "12",
+  "title": "Think You Know Ball? - Set 12",
   "questions": [
     {
       "floor": 1,
       "type": "multiple_choice",
-      "question": "Which manager guided Everton to a 4th-place Premier League finish in the 2004–05 season, securing their highest top-flight position since 1988?",
+      "question": "Which manager led Middlesbrough to victory in the 2004 League Cup final and guided them to the UEFA Cup final in 2006 before taking charge of the England national team?",
       "options": [
-        "David Moyes",
-        "Walter Smith",
-        "Alex McLeish",
-        "Gordon Strachan"
+        "Steve McClaren",
+        "Bryan Robson",
+        "Gareth Southgate",
+        "Terry Venables"
       ],
-      "answer": "David Moyes",
-      "explanation": "David Moyes guided Everton to 4th place in 2004–05 despite selling Wayne Rooney prior to the season, earning a Champions League qualification spot.",
-      "anchorClues": "David Moyes / Everton 4th place 2004–05"
+      "answer": "Steve McClaren",
+      "explanation": "Steve McClaren enjoyed a historic spell at the Riverside Stadium, lifting Middlesbrough's first major trophy in 2004 and reaching the 2006 UEFA Cup final against Sevilla.",
+      "anchorClues": "Steve McClaren / Middlesbrough 2004 League Cup and UEFA Cup"
     },
     {
       "floor": 2,
       "type": "boolean",
-      "question": "True or False: Leicester City were top of the Premier League table on Christmas Day during their famous 2015–16 title-winning season.",
+      "question": "True or False: Arsenal's 2001–02 title-winning side holds the Premier League record for scoring in every single match of a 38-game league campaign.",
       "options": [
         "True",
         "False"
       ],
       "answer": "True",
-      "explanation": "Claudio Ranieri's Leicester City sat top of the Premier League on Christmas Day 2015 with 38 points, exactly twelve months after occupying bottom spot on Christmas Day 2014.",
-      "anchorClues": "Leicester City Christmas top of table 2015–16"
+      "explanation": "Arsène Wenger's Arsenal scored in all 38 Premier League fixtures during the 2001–02 season on their way to winning the double, a record that remains unique in Premier League history.",
+      "anchorClues": "Arsenal 2001–02 / Scoring in every Premier League match"
     },
     {
       "floor": 3,
       "type": "multiple_choice",
-      "question": "Which Midlands club conceded only 34 goals during the 1995–96 season under Brian Little, finishing 4th in the Premier League and lifting the League Cup?",
+      "question": "What was the final scoreline when Tottenham Hotspur famously defeated Wigan Athletic at White Hart Lane in November 2009, with Jermain Defoe scoring five second-half goals?",
       "options": [
-        "Aston Villa",
-        "Coventry City",
-        "Nottingham Forest",
-        "Leicester City"
+        "9–1",
+        "8–0",
+        "9–0",
+        "7–1"
       ],
-      "answer": "Aston Villa",
-      "explanation": "Aston Villa enjoyed a stellar 1995–96 campaign, defeating Leeds United 3–0 in the League Cup final and securing a top-four Premier League finish.",
-      "anchorClues": "Brian Little Aston Villa 1995–96 / League Cup"
+      "answer": "9–1",
+      "explanation": "Harry Redknapp's Spurs tore apart Wigan Athletic 9–1, with Jermain Defoe netting five goals in a historic second-half display.",
+      "anchorClues": "Tottenham 9–1 Wigan Athletic 2009 / Jermain Defoe"
     },
     {
       "floor": 4,
       "type": "multiple_choice",
-      "question": "Which club produced a memorable upset by defeating champions Manchester City 3–2 at Carrow Road in September 2019, despite missing eight senior players through injury?",
+      "question": "Which Scottish manager guided West Midlands side West Bromwich Albion to a famous 'Great Escape' on the final day of the 2004–05 season, becoming the first Premier League side to survive relegation after being bottom on Christmas Day?",
       "options": [
-        "Norwich City",
-        "Sheffield United",
-        "Aston Villa",
-        "Bournemouth"
+        "Bryan Robson",
+        "Gary Megson",
+        "Tony Mowbray",
+        "Alex McLeish"
       ],
-      "answer": "Norwich City",
-      "explanation": "Daniel Farke's newly promoted Norwich City capitalised on defensive errors from Manchester City to claim a famous 3–2 home victory.",
-      "anchorClues": "Norwich City 3–2 Manchester City 2019"
+      "answer": "Bryan Robson",
+      "explanation": "Former Manchester United captain Bryan Robson oversaw West Bromwich Albion's dramatic survival on Sunday 15 May 2005, following a 2–0 victory over Portsmouth at The Hawthorns.",
+      "anchorClues": "Bryan Robson / West Brom Great Escape 2004–05"
     },
     {
       "floor": 5,
       "type": "boolean",
-      "question": "True or False: Gareth Bale scored a hat-trick on his final Premier League appearance for Tottenham Hotspur before moving to Real Madrid in 2013.",
+      "question": "True or False: Chelsea's John Terry is the highest-scoring defender in Premier League history, netting 41 goals in the competition.",
       "options": [
         "True",
         "False"
       ],
-      "answer": "False",
-      "explanation": "Gareth Bale scored a single spectacular 89th-minute winning goal against Sunderland on the final day of the 2012–13 season, rather than a hat-trick.",
-      "anchorClues": "Gareth Bale final Spurs match 2013"
+      "answer": "True",
+      "explanation": "John Terry scored 41 Premier League goals across 19 seasons at Stamford Bridge, placing him top of the all-time defender scoring list ahead of David Unsworth (38) and Ian Harte (28).",
+      "anchorClues": "John Terry all-time highest scoring defender Premier League"
     },
     {
       "floor": 6,
       "type": "multiple_choice",
-      "question": "What was the final scoreline when Aston Villa famously defeated reigning champions Liverpool at Villa Park in October 2020, inflicting Liverpool's heaviest top-flight defeat in 57 years?",
+      "question": "Which Argentine striker shared the 2010–11 Premier League Golden Boot with Dimitar Berbatov after scoring 20 goals for Manchester City?",
       "options": [
-        "7–2",
-        "6–1",
-        "5–2",
-        "6–2"
+        "Carlos Tevez",
+        "Sergio Agüero",
+        "Gonzalo Higuaín",
+        "Ezequiel Lavezzi"
       ],
-      "answer": "7–2",
-      "explanation": "Ollie Watkins scored a first-half hat-trick as Dean Smith's Aston Villa stunned Jürgen Klopp's champions in a remarkable 7–2 scoreline.",
-      "anchorClues": "Aston Villa 7–2 Liverpool October 2020"
+      "answer": "Carlos Tevez",
+      "explanation": "Carlos Tevez scored 20 league goals in 2010–11 to captain Manchester City to 3rd place and share the Golden Boot award with former teammate Berbatov.",
+      "anchorClues": "Carlos Tevez / Premier League Golden Boot 2010–11 Manchester City"
     },
     {
       "floor": 7,
       "type": "multiple_choice",
-      "question": "Which squad number did Uruguayan striker Luis Suárez wear during his explosive three-and-a-half seasons at Liverpool, where he scored 69 Premier League goals?",
+      "question": "Which iconic squad number was handed to Cristiano Ronaldo upon his arrival at Manchester United in August 2003, following the departure of David Beckham to Real Madrid?",
       "options": [
         "7",
-        "9",
-        "10",
-        "16"
+        "17",
+        "28",
+        "11"
       ],
       "answer": "7",
-      "explanation": "Luis Suárez wore the famous number 7 shirt at Anfield from January 2011 until his summer departure in 2014, winning the PFA Player of the Year in 2013–14.",
-      "anchorClues": "Luis Suárez shirt number 7 Liverpool"
+      "explanation": "Alex Ferguson insisted that 18-year-old Cristiano Ronaldo take the club's famed number 7 shirt—previously worn by Best, Robson, Cantona, and Beckham—rather than his requested number 28.",
+      "anchorClues": "Cristiano Ronaldo squad number 7 / Manchester United 2003"
     },
     {
       "floor": 8,
       "type": "multiple_choice",
-      "question": "Which Ivory Coast midfielder scored 20 Premier League goals during Manchester City's title-winning 2013–14 season, becoming only the second midfielder to hit 20 goals in a single PL campaign?",
+      "question": "Which Spanish midfielder spent five seasons at Liverpool before joining Real Madrid in 2009, famous for scoring a 70-yard goal against Luton Town in the FA Cup and another from inside his own half against Newcastle United in the Premier League?",
       "options": [
-        "Yaya Touré",
-        "Cheick Tioté",
-        "Wilfried Bony",
-        "Didier Zokora"
+        "Xabi Alonso",
+        "Luis García",
+        "Albert Riera",
+        "Mikel Arteta"
       ],
-      "answer": "Yaya Touré",
-      "explanation": "Yaya Touré enjoyed an incredible 2013–14 campaign, scoring 20 goals from midfield under Manuel Pellegrini as City claimed their second Premier League title.",
-      "anchorClues": "Yaya Touré 20 goals 2013–14 Manchester City"
+      "answer": "Xabi Alonso",
+      "explanation": "Xabi Alonso pulled off his iconic long-range strike against Newcastle United from inside his own half at Anfield in September 2006.",
+      "anchorClues": "Xabi Alonso / Liverpool long-range goals Newcastle"
     },
     {
       "floor": 9,
       "type": "multiple_choice",
-      "question": "Which Italian manager guided Chelsea to the 2016–17 Premier League title in his debut season in English football, setting a then-record 30 wins in a 38-game season?",
+      "question": "Which club recorded the fewest goals scored in a single 38-game Premier League season, finding the net just 28 times during the 2006–07 campaign under Stuart Pearce?",
       "options": [
-        "Antonio Conte",
-        "Roberto Mancini",
-        "Maurizio Sarri",
-        "Claudio Ranieri"
+        "Manchester City",
+        "Derby County",
+        "Sunderland",
+        "Watford"
       ],
-      "answer": "Antonio Conte",
-      "explanation": "Antonio Conte transformed Chelsea's season by switching to a 3–4–3 tactical system, leading the Blues to the title with 93 points.",
-      "anchorClues": "Antonio Conte Chelsea title 2016–17"
+      "answer": "Manchester City",
+      "explanation": "Prior to modern takeovers, Manchester City scored only 28 league goals in 2006–07—including a dismal 10 goals at home all season.",
+      "anchorClues": "Manchester City 2006–07 / Fewest goals scored season"
     },
     {
       "floor": 10,
       "type": "multiple_choice",
-      "question": "Which Spanish goalkeeper equalled the Premier League record for the most saves in a single match by making 14 saves in a 3–1 victory over Arsenal at the Emirates Stadium in December 2017?",
+      "question": "Which Nigerian striker scored Premier League hat-tricks for three different clubs, accomplishing the feat for Portsmouth, Everton, and Blackburn Rovers?",
       "options": [
-        "David de Gea",
-        "Kepa Arrizabalaga",
-        "Pepe Reina",
-        "Robert Sánchez"
+        "Yakubu",
+        "Nwankwo Kanu",
+        "Efan Ekoku",
+        "Shola Ameobi"
       ],
-      "answer": "David de Gea",
-      "explanation": "David de Gea delivered a masterclass in goal for Manchester United, making 14 saves to match the Premier League single-game record set by Tim Krul in 2013.",
-      "anchorClues": "David de Gea 14 saves vs Arsenal 2017"
+      "answer": "Yakubu",
+      "explanation": "Yakubu Ayegbeni proved a prolific goalscorer across the top flight, netting PL hat-tricks for Portsmouth (2004), Everton (2007), and Blackburn Rovers (2011).",
+      "anchorClues": "Yakubu / Premier League hat-tricks three different clubs"
     }
   ]
 }
