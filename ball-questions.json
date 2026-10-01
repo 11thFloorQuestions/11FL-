@@ -19,14 +19,14 @@
     {
       "floor": 2,
       "type": "boolean",
-      "question": "True or False: Derby County hold the record for the lowest point total in a single Premier League season, finishing the 2007–08 campaign with just 11 points.",
+      "question": "True or False: Blackburn Rovers remain the only Premier League champions to have ever been relegated from the competition.",
       "options": [
         "True",
         "False"
       ],
-      "answer": "True",
-      "explanation": "Derby County won just one league match all season in 2007–08, finishing bottom of the table with 11 points and a -69 goal difference.",
-      "anchorClues": "Derby County 2007–08 / Lowest Premier League points"
+      "answer": "False",
+      "explanation": "Blackburn Rovers were the first former champions to be relegated in 1999, but Leicester City became the second Premier League title winner to suffer relegation at the end of the 2022–23 season.",
+      "anchorClues": "Premier League champions relegated / Blackburn Rovers and Leicester City"
     },
     {
       "floor": 3,
@@ -59,14 +59,14 @@
     {
       "floor": 5,
       "type": "boolean",
-      "question": "True or False: Ryan Giggs scored in 21 consecutive Premier League seasons, finding the net in every campaign from 1992–93 through to 2012–13.",
+      "question": "True or False: Frank Lampard is one of only four players in Premier League history to score more than 200 goals in the competition.",
       "options": [
         "True",
         "False"
       ],
-      "answer": "True",
-      "explanation": "Ryan Giggs scored in 21 consecutive Premier League campaigns for Manchester United, a streak that only ended in his final season (2013–14).",
-      "anchorClues": "Ryan Giggs / Premier League scoring streak"
+      "answer": "False",
+      "explanation": "Frank Lampard scored 177 Premier League goals (4th all-time). The only three players to pass the 200-goal mark in Premier League history are Alan Shearer (260), Harry Kane (213), and Wayne Rooney (208).",
+      "anchorClues": "Frank Lampard Premier League goal tally / 200 goals club"
     },
     {
       "floor": 6,
