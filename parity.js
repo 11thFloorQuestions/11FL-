@@ -92,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         floorNumberVal.innerHTML = getOrdinalFloorHTML(index + 1);
 
-        // Starter prompt phrasing on Floor 1 vs standard rule text on higher floors
         if (index === 0) {
             floorRuleText.textContent = `1 PAIR • TAP ANY TILE TO REVEAL`;
         } else {
@@ -135,7 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const tile = document.createElement('div');
             tile.className = 'parity-tile face-down';
             
-            // Add starter pulse cue to tile 0 on floor 1
             if (isFirstFloor && index === 0) {
                 tile.classList.add('pulse-hint');
             }
@@ -167,6 +165,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateTimerBar() {
         const pct = Math.max(0, (timeRemaining / totalFloorTime) * 100);
         timerBarFill.style.width = `${pct}%`;
+
+        // Dynamic colour shift based on remaining time percentage
+        if (pct <= 20) {
+            timerBarFill.style.backgroundColor = 'var(--state-error)';
+            timerBarFill.style.boxShadow = '0 0 10px var(--state-error-glow)';
+        } else if (pct <= 50) {
+            timerBarFill.style.backgroundColor = 'var(--state-warning)';
+            timerBarFill.style.boxShadow = '0 0 8px var(--state-warning-glow)';
+        } else {
+            timerBarFill.style.backgroundColor = 'var(--state-active)';
+            timerBarFill.style.boxShadow = '0 0 8px var(--state-active-glow)';
+        }
     }
 
     function handleTileClick(tile) {
@@ -174,7 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Remove pulse hint on tap
         document.querySelectorAll('.parity-tile.pulse-hint').forEach(t => t.classList.remove('pulse-hint'));
 
         tile.classList.remove('face-down');
