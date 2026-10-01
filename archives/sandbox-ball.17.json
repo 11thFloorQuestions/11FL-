@@ -1,0 +1,142 @@
+{
+  "setId": "16",
+  "title": "Think You Know Ball? - Set 16",
+  "questions": [
+    {
+      "floor": 1,
+      "type": "multiple_choice",
+      "question": "Which manager guided Leicester City to their first-ever FA Cup triumph in May 2021, defeating Chelsea 1–0 in the final at Wembley Stadium?",
+      "options": [
+        "Brendan Rodgers",
+        "Claudio Ranieri",
+        "Nigel Pearson",
+        "Craig Shakespeare"
+      ],
+      "answer": "Brendan Rodgers",
+      "explanation": "Brendan Rodgers led Leicester City to FA Cup glory courtesy of Youri Tielemans' memorable 30-yard strike in the second half.",
+      "anchorClues": "Brendan Rodgers / Leicester City FA Cup 2021"
+    },
+    {
+      "floor": 2,
+      "type": "boolean",
+      "question": "True or False: Hull City led Arsenal 2–0 within the first eight minutes of the 2014 FA Cup Final before Arsenal fought back to win 3–2 in extra time.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "James Chester and Curtis Davies scored early goals for Steve Bruce's Hull City before Arsenal staged a famous comeback sealed by Aaron Ramsey's extra-time winner.",
+      "anchorClues": "Hull City vs Arsenal 2014 FA Cup Final"
+    },
+    {
+      "floor": 3,
+      "type": "multiple_choice",
+      "question": "Which historic stadium served as Manchester City's home ground for 80 years from 1923 until their relocation in 2003?",
+      "options": [
+        "Maine Road",
+        "Boundary Park",
+        "Burnden Park",
+        "Ayresome Park"
+      ],
+      "answer": "Maine Road",
+      "explanation": "Maine Road hosted Manchester City matches for eight decades before the club moved to the City of Manchester Stadium following the 2002 Commonwealth Games.",
+      "anchorClues": "Maine Road / Manchester City home ground"
+    },
+    {
+      "floor": 4,
+      "type": "multiple_choice",
+      "question": "What was the final scoreline when Middlesbrough recorded a stunning victory over Sven-Göran Eriksson's Manchester City on the final day of the 2007–08 season?",
+      "options": [
+        "8–1",
+        "7–0",
+        "6–1",
+        "8–2"
+      ],
+      "answer": "8–1",
+      "explanation": "Afonso Alves scored a hat-trick at the Riverside Stadium as Gareth Southgate's Middlesbrough routed ten-man Manchester City 8–1.",
+      "anchorClues": "Middlesbrough 8–1 Manchester City 2008"
+    },
+    {
+      "floor": 5,
+      "type": "boolean",
+      "question": "True or False: Tottenham Hotspur were the first team in Premier League history to qualify for the UEFA Champions League despite ending the season with a negative goal difference.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "False",
+      "explanation": "Everton achieved this distinction in 2004–05, finishing 4th under David Moyes with a -1 goal difference (45 goals scored, 46 conceded). Tottenham finished 4th in 2009–10 with a +26 goal difference.",
+      "anchorClues": "Everton 4th place negative goal difference 2004–05"
+    },
+    {
+      "floor": 6,
+      "type": "multiple_choice",
+      "question": "Which English manager led newly promoted Reading to an 8th-place Premier League finish in the 2006–07 season, accumulating 55 points in their debut top-flight campaign?",
+      "options": [
+        "Steve Coppell",
+        "Brian McDermott",
+        "Alan Pardew",
+        "Glenn Roeder"
+      ],
+      "answer": "Steve Coppell",
+      "explanation": "Steve Coppell oversaw a remarkable 2006–07 season at the Madejski Stadium, taking Reading to 8th place and narrowly missing out on European qualification.",
+      "anchorClues": "Steve Coppell / Reading 2006–07 8th place"
+    },
+    {
+      "floor": 7,
+      "type": "multiple_choice",
+      "question": "Which squad number was worn by South Korean forward Son Heung-min throughout his prolific career at Tottenham Hotspur, winning the Premier League Golden Boot while wearing it?",
+      "options": [
+        "7",
+        "10",
+        "9",
+        "11"
+      ],
+      "answer": "7",
+      "explanation": "Son Heung-min wore the number 7 shirt at Tottenham Hotspur, scoring over 100 Premier League goals for the North London club.",
+      "anchorClues": "Son Heung-min squad number 7 / Tottenham"
+    },
+    {
+      "floor": 8,
+      "type": "multiple_choice",
+      "question": "Which Spanish forward scored 18 goals in all competitions for Swansea City during a sensational 2012–13 debut season after signing from Rayo Vallecano for £2 million?",
+      "options": [
+        "Michu",
+        "Pablo Hernández",
+        "Álvaro Vázquez",
+        "Alejandro Pozuelo"
+      ],
+      "answer": "Michu",
+      "explanation": "Michu took the Premier League by storm in 2012–13 under Michael Laudrup, helping Swansea City win the League Cup and secure a top-half finish.",
+      "anchorClues": "Michu / Swansea City 2012–13"
+    },
+    {
+      "floor": 9,
+      "type": "multiple_choice",
+      "question": "Which club set the Premier League record for the most consecutive home victories, winning 24 straight league matches at home between February 2019 and July 2020?",
+      "options": [
+        "Liverpool",
+        "Manchester City",
+        "Chelsea",
+        "Manchester United"
+      ],
+      "answer": "Liverpool",
+      "explanation": "Jürgen Klopp's Liverpool won 24 consecutive league fixtures at Anfield across two seasons, breaking Manchester City's previous record of 20 straight home wins.",
+      "anchorClues": "Liverpool 24 consecutive home wins record"
+    },
+    {
+      "floor": 10,
+      "type": "multiple_choice",
+      "question": "Which French manager served as Fulham boss from 2000 to 2003, guiding the West London club into the Premier League top flight and lifting the UEFA Intertoto Cup in 2002?",
+      "options": [
+        "Jean Tigana",
+        "Gérard Houllier",
+        "Alain Perrin",
+        "Jacques Santini"
+      ],
+      "answer": "Jean Tigana",
+      "explanation": "Jean Tigana managed Fulham between 2000 and 2003, introducing stylish passing football to Craven Cottage and securing European qualification.",
+      "anchorClues": "Jean Tigana / Fulham manager 2000–2003"
+    }
+  ]
+}
