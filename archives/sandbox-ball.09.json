@@ -1,0 +1,142 @@
+{
+  "setId": "08",
+  "title": "Think You Know Ball? - Set 08",
+  "questions": [
+    {
+      "floor": 1,
+      "type": "multiple_choice",
+      "question": "Which club became the first in Premier League history to win a match after trailing by three goals at half-time, coming back from 3–0 down to win 5–3 in September 2001?",
+      "options": [
+        "Manchester United",
+        "Arsenal",
+        "Liverpool",
+        "Leeds United"
+      ],
+      "answer": "Manchester United",
+      "explanation": "Tottenham Hotspur led 3–0 at the break before Manchester United produced a remarkable five-goal second-half response at White Hart Lane.",
+      "anchorClues": "Manchester United / Tottenham Hotspur vs Man Utd 2001"
+    },
+    {
+      "floor": 2,
+      "type": "boolean",
+      "question": "True or False: Leicester City's 9–0 away victory over Southampton in October 2019 equalled the record for the biggest winning margin in Premier League history.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "Leicester City matched Manchester United's 9–0 win against Ipswich Town from 1995, setting a new record for the largest away victory in top-flight history.",
+      "anchorClues": "Southampton vs Leicester City 2019 / Premier League records"
+    },
+    {
+      "floor": 3,
+      "type": "multiple_choice",
+      "question": "In which season did Chelsea set the Premier League record for conceding the fewest goals across a single 38-game campaign, letting in just 15 goals?",
+      "options": [
+        "2004–05",
+        "2005–06",
+        "2006–07",
+        "2007–08"
+      ],
+      "answer": "2004–05",
+      "explanation": "Under José Mourinho, Chelsea kept 25 clean sheets and conceded only 15 league goals on their way to winning the title with 95 points.",
+      "anchorClues": "Chelsea defensive record / 2004–05 season"
+    },
+    {
+      "floor": 4,
+      "type": "multiple_choice",
+      "question": "Which Belgian playmaker recorded 20 Premier League assists during the 2019–20 season, equalling Thierry Henry's single-season record?",
+      "options": [
+        "Kevin De Bruyne",
+        "Eden Hazard",
+        "Romelu Lukaku",
+        "Youri Tielemans"
+      ],
+      "answer": "Kevin De Bruyne",
+      "explanation": "Kevin De Bruyne reached 20 assists for Manchester City in 2019–20, matching the benchmark set by Thierry Henry for Arsenal in 2002–03.",
+      "anchorClues": "Kevin De Bruyne / Premier League assist record"
+    },
+    {
+      "floor": 5,
+      "type": "multiple_choice",
+      "question": "Which Italian manager guided Chelsea to their first Premier League title in five years during the 2009–10 season, with his side scoring a then-record 103 league goals?",
+      "options": [
+        "Carlo Ancelotti",
+        "Claudio Ranieri",
+        "Roberto Di Matteo",
+        "Gianluca Vialli"
+      ],
+      "answer": "Carlo Ancelotti",
+      "explanation": "Carlo Ancelotti won the Premier League and FA Cup double in his debut season at Stamford Bridge, breaking the 100-goal barrier in the process.",
+      "anchorClues": "Carlo Ancelotti / Chelsea 2009–10"
+    },
+    {
+      "floor": 6,
+      "type": "boolean",
+      "question": "True or False: Arsenal went through the entire 2003–04 'Invincibles' season without suffering a single defeat in any domestic cup competition.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "False",
+      "explanation": "While unbeaten across all 38 Premier League fixtures, Arsenal suffered domestic cup exits against Manchester United in the FA Cup semi-finals and Middlesbrough in the League Cup semi-finals.",
+      "anchorClues": "Arsenal Invincibles 2003–04 / Domestic cups"
+    },
+    {
+      "floor": 7,
+      "type": "multiple_choice",
+      "question": "Which squad number was famously assigned to French central defender William Gallas upon his arrival at Arsenal in August 2006, despite normally being reserved for attacking playmakers?",
+      "options": [
+        "10",
+        "7",
+        "8",
+        "11"
+      ],
+      "answer": "10",
+      "explanation": "Arsène Wenger handed the number 10 shirt—vacated by the retiring Dennis Bergkamp—to defender William Gallas to relieve pressure on future attacking signings.",
+      "anchorClues": "William Gallas / Arsenal squad numbers"
+    },
+    {
+      "floor": 8,
+      "type": "multiple_choice",
+      "question": "Which Ivory Coast international scored 29 Premier League goals during Chelsea's 2009–10 title-winning season to claim his second Golden Boot?",
+      "options": [
+        "Didier Drogba",
+        "Salomon Kalou",
+        "Wilfried Bony",
+        "Yaya Touré"
+      ],
+      "answer": "Didier Drogba",
+      "explanation": "Didier Drogba scored a hat-trick on the final day against Wigan Athletic to reach 29 goals, edging past Wayne Rooney to claim the Golden Boot.",
+      "anchorClues": "Didier Drogba / Premier League Golden Boot 2009–10"
+    },
+    {
+      "floor": 9,
+      "type": "multiple_choice",
+      "question": "Which club defeated Manchester United 3–1 in April 1996 after forcing them to change their grey away kit at half-time, before beating them 6–3 at home six months later?",
+      "options": [
+        "Southampton",
+        "Newcastle United",
+        "Blackburn Rovers",
+        "Sheffield Wednesday"
+      ],
+      "answer": "Southampton",
+      "explanation": "Southampton famously defeated Alex Ferguson's side at The Dell twice in 1996, including the infamous grey-shirt swap match in April.",
+      "anchorClues": "Southampton vs Manchester United 1996"
+    },
+    {
+      "floor": 10,
+      "type": "multiple_choice",
+      "question": "Which Spanish midfielder is the only player in Premier League history to record four assists in a single match on two separate occasions, accomplishing the feat for two different London clubs?",
+      "options": [
+        "Cesc Fàbregas",
+        "Santi Cazorla",
+        "Mikel Arteta",
+        "Juan Mata"
+      ],
+      "answer": "Cesc Fàbregas",
+      "explanation": "Cesc Fàbregas set up four goals for Arsenal against Blackburn Rovers in October 2009, and repeated the four-assist match for Chelsea against Bournemouth in April 2016.",
+      "anchorClues": "Cesc Fàbregas / Four assists single match"
+    }
+  ]
+}
