@@ -1,4 +1,4 @@
-// 11th Floor Terrace — Daily Premier League Engine
+// Think You Know Ball? — Daily Premier League Engine
 
 // ==========================================
 // 1. HELPER FUNCTIONS & UTILITIES
@@ -413,7 +413,7 @@ function handleVictory() {
     safeSetText('game-over-title', '');
     const msgEl = document.getElementById('game-over-message');
     if (msgEl) {
-        msgEl.innerHTML = '<span class="congrats-green">Congratulations!</span> You\'ve cleared the Terrace and reached the 11th Floor.<br><br>Come back tomorrow to continue your streak.';
+        msgEl.innerHTML = '<span class="congrats-green">Congratulations!</span> You\'ve cleared Think You Know Ball? and reached the 11th Floor.<br><br>Come back tomorrow to continue your streak.';
     }
     safeSetText('final-floor-reached', '');
     openModal('modal-game-over');
