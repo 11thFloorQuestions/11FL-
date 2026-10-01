@@ -163,19 +163,30 @@
         .tower-floor.active { border-color: var(--state-active, #facc15); background: var(--state-active, #facc15); box-shadow: 0 0 8px rgba(250, 204, 21, 0.3); }
         .tower-floor.completed { border-color: var(--state-success, #22c55e); background: var(--state-success, #22c55e); box-shadow: 0 0 6px rgba(34, 197, 94, 0.3); }
         .tower-floor.failed { border-color: var(--state-error, #ef4444); background: var(--state-error, #ef4444); box-shadow: 0 0 6px rgba(239, 68, 68, 0.3); }
-        .floor-info-box { flex-grow: 1; background: var(--surface, #0a0a0a); border: 1px solid var(--surface-border, #222222); border-radius: 8px; padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; }
-        .floor-left-group { display: flex; flex-direction: column; gap: 4px; }
+
+        .floor-info-box {
+            flex-grow: 1;
+            background-color: var(--surface, #0a0a0a);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 60' fill='none' stroke='rgba(132, 204, 22, 0.22)' stroke-width='1.5'%3E%3Crect x='40' y='5' width='80' height='50' /%3E%3Crect x='90' y='20' width='30' height='20' /%3E%3Ccircle cx='75' cy='30' r='2' fill='rgba(132, 204, 22, 0.22)' /%3E%3Cpath d='M 40,20 A 18,18 0 0,0 40,40' /%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: auto 82%;
+            border: 1px solid var(--surface-border, #222222);
+            border-radius: 8px;
+            padding: 10px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+        }
+        .floor-left-group { display: flex; flex-direction: column; gap: 4px; z-index: 1; }
         .current-floor-display { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: 1px; }
         .floor-rule-text { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 600; color: var(--text-muted, #888888); letter-spacing: 0.5px; text-transform: uppercase; }
 
         .play-card {
             width: 100%;
             max-width: 600px;
-            background-color: var(--surface, #0a0a0a);
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150' fill='none' stroke='rgba(132, 204, 22, 0.12)' stroke-width='2'%3E%3Crect x='15' y='0' width='170' height='95' /%3E%3Crect x='55' y='0' width='90' height='35' /%3E%3Ccircle cx='100' cy='60' r='3' fill='rgba(132, 204, 22, 0.12)' /%3E%3Cpath d='M 72,95 A 35,35 0 0,0 128,95' /%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: center 28px;
-            background-size: 85% auto;
+            background: var(--surface, #0a0a0a);
             border: 1px solid var(--surface-border, #222222);
             border-radius: 8px;
             padding: 14px 12px;
@@ -188,14 +199,6 @@
             margin-bottom: 6px;
             overflow: hidden;
             min-height: 0;
-        }
-
-        @media (max-width: 600px) {
-            .play-card {
-                background-size: 90% auto;
-                background-position: center 26px;
-                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150' fill='none' stroke='rgba(132, 204, 22, 0.15)' stroke-width='2'%3E%3Crect x='15' y='0' width='170' height='95' /%3E%3Crect x='55' y='0' width='90' height='35' /%3E%3Ccircle cx='100' cy='60' r='3' fill='rgba(132, 204, 22, 0.15)' /%3E%3Cpath d='M 72,95 A 35,35 0 0,0 128,95' /%3E%3C/svg%3E");
-            }
         }
 
         .timer-track { width: 100%; height: 4px; background: #111111; border-radius: 2px; overflow: hidden; }
