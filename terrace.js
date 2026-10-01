@@ -222,8 +222,8 @@ function normalizeQuestions(data) {
         else if (typeof q.correctAnswer === 'string') answerText = q.correctAnswer;
         else if (typeof q.answerIndex === 'number' && options[q.answerIndex]) answerText = options[q.answerIndex];
         else if (typeof q.correctIndex === 'number' && options[q.correctIndex]) answerText = options[q.correctIndex];
-        else if (typeof q.correct === 'number' && options[q.correct]) answerText = options[q.correct];
-        else if (typeof q.answer === 'number' && options[q.answer]) answerText = options[q.answer];
+        else if (typeof q.correct === 'number' && options[q.correct]) answerText = options[0];
+        else if (typeof q.answer === 'number' && options[q.answer]) answerText = options[0];
         else answerText = options[0];
 
         return {
@@ -319,6 +319,9 @@ function loadNextQuestion() {
 
     optionButtons.forEach((btn, idx) => {
         btn.className = 'btn-option';
+        if (typeof btn.blur === 'function') {
+            btn.blur();
+        }
         const optionVal = shuffledOptions[idx] || null;
         btn.textContent = optionVal || '';
         btn.style.display = optionVal ? 'flex' : 'none';
@@ -350,7 +353,13 @@ function startTimer() {
 
 function handleAnswerSelect(isCorrect, buttonEl) {
     clearInterval(gameState.timer);
-    document.querySelectorAll('.options-grid .btn-option').forEach(btn => btn.onclick = null);
+    
+    document.querySelectorAll('.options-grid .btn-option').forEach(btn => {
+        btn.onclick = null;
+        if (typeof btn.blur === 'function') {
+            btn.blur();
+        }
+    });
 
     if (isCorrect) {
         if (buttonEl) buttonEl.classList.add('selected-correct');
