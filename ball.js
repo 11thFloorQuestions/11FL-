@@ -83,7 +83,7 @@ const floorMessageBatches = [
 
 function loadSavedStats() {
     try {
-        const saved = localStorage.getItem('11fl_terrace_stats');
+        const saved = localStorage.getItem('11fl_ball_stats') || localStorage.getItem('11fl_terrace_stats');
         if (saved) gameState.stats = { ...gameState.stats, ...JSON.parse(saved) };
     } catch (e) {
         console.warn('Could not load stats from localStorage.');
@@ -92,7 +92,7 @@ function loadSavedStats() {
 
 function saveStats() {
     try {
-        localStorage.setItem('11fl_terrace_stats', JSON.stringify(gameState.stats));
+        localStorage.setItem('11fl_ball_stats', JSON.stringify(gameState.stats));
     } catch (e) {
         console.warn('Could not save stats to localStorage.');
     }
@@ -179,8 +179,12 @@ async function populateVault() {
 
     while (archiveId <= 50) {
         const paddedId = String(archiveId).padStart(2, '0');
-        const filename = `sandbox-terrace.${paddedId}.json`;
-        const data = await fetchFileWithFallbacks(filename);
+        
+        // Try ball naming first, fallback to terrace
+        let data = await fetchFileWithFallbacks(`sandbox-ball.${paddedId}.json`);
+        if (!data) {
+            data = await fetchFileWithFallbacks(`sandbox-terrace.${paddedId}.json`);
+        }
         
         if (data) {
             const btn = document.createElement('button');
@@ -236,23 +240,29 @@ function normalizeQuestions(data) {
 
 async function fetchFileWithFallbacks(filename) {
     const candidatePaths = [
-        `./archives/${filename}`,
-        `./${filename}`,
-        `./data/${filename}`,
+        `./${filename}`,                      // 1. Check Root Directory first
+        `./archives/${filename}`,             // 2. Check Archives subfolder
+        `./assets/data/floors/${filename}`,   // 3. Check Assets subfolder
+        `./data/${filename}`,                 // 4. Check Data subfolder
         filename
     ];
 
     for (const path of candidatePaths) {
         try {
             const res = await fetch(path);
-            if (res.ok) return await res.json();
+            if (res.ok) {
+                const data = await res.json();
+                if (data) return data;
+            }
         } catch (e) {}
     }
     return null;
 }
 
 async function startDailyClimb() {
-    let data = await fetchFileWithFallbacks('terrace-questions.json');
+    let data = await fetchFileWithFallbacks('ball-questions.json');
+    if (!data) data = await fetchFileWithFallbacks('sandbox-ball.01.json');
+    if (!data) data = await fetchFileWithFallbacks('terrace-questions.json');
     if (!data) data = await fetchFileWithFallbacks('sandbox-terrace.01.json');
 
     gameState.questions = normalizeQuestions(data);
