@@ -1,142 +1,142 @@
 {
-  "setId": "09",
-  "title": "Think You Know Ball? - Set 09",
+  "setId": "10",
+  "title": "Think You Know Ball? - Set 10",
   "questions": [
     {
       "floor": 1,
       "type": "multiple_choice",
-      "question": "Which manager holds the Premier League record for reaching 100 victories in the fewest matches, achieving the milestone in just 134 games?",
+      "question": "Which stadium served as Arsenal's home ground for European matches during the 1998–99 and 1999–2000 UEFA Champions League campaigns, prior to their move to the Emirates Stadium in 2006?",
       "options": [
-        "Pep Guardiola",
-        "José Mourinho",
-        "Jürgen Klopp",
-        "Alex Ferguson"
+        "Wembley Stadium",
+        "Highbury",
+        "White Hart Lane",
+        "Upton Park"
       ],
-      "answer": "Pep Guardiola",
-      "explanation": "Pep Guardiola reached 100 Premier League wins in 134 matches with Manchester City, surpassing José Mourinho's previous benchmark of 142 games.",
-      "anchorClues": "Pep Guardiola / 100 Premier League wins record"
+      "answer": "Wembley Stadium",
+      "explanation": "Arsenal played their home Champions League group matches at Wembley Stadium for two seasons to accommodate higher crowd capacities before returning to Highbury.",
+      "anchorClues": "Arsenal Champions League Wembley Stadium / Highbury era"
     },
     {
       "floor": 2,
       "type": "boolean",
-      "question": "True or False: Blackburn Rovers remain the only Premier League champions to have ever been relegated from the competition.",
+      "question": "True or False: Swindon Town hold the record for the most goals conceded in a single Premier League season, letting in 100 goals during the 1993–94 campaign.",
       "options": [
         "True",
         "False"
       ],
-      "answer": "False",
-      "explanation": "Blackburn Rovers were the first former champions to be relegated in 1999, but Leicester City became the second Premier League title winner to suffer relegation at the end of the 2022–23 season.",
-      "anchorClues": "Premier League champions relegated / Blackburn Rovers and Leicester City"
+      "answer": "True",
+      "explanation": "Swindon Town conceded 100 goals in 42 matches during the 1993–94 season, a Premier League record for a single campaign.",
+      "anchorClues": "Swindon Town 100 goals conceded 1993–94"
     },
     {
       "floor": 3,
       "type": "multiple_choice",
-      "question": "Which English manager guided Portsmouth to FA Cup victory in 2008 and previously led West Ham United to a 5th-place Premier League finish in 1998–99?",
+      "question": "Which manager won three Premier League Manager of the Month awards during the 2013–14 season while in charge of Liverpool, leading them to a second-place finish?",
       "options": [
-        "Harry Redknapp",
-        "Sam Allardyce",
-        "Alan Curbishley",
+        "Brendan Rodgers",
+        "Rafael Benítez",
+        "Kenny Dalglish",
         "Roy Hodgson"
       ],
-      "answer": "Harry Redknapp",
-      "explanation": "Harry Redknapp established West Ham in the top six in 1999 before guiding Portsmouth to FA Cup glory a decade later.",
-      "anchorClues": "Harry Redknapp / West Ham United and Portsmouth"
+      "answer": "Brendan Rodgers",
+      "explanation": "Brendan Rodgers was named Manager of the Month in August 2013, February 2014, and March 2014 as Liverpool pushed Manchester City to the final day of the title race.",
+      "anchorClues": "Brendan Rodgers / Liverpool 2013–14 season"
     },
     {
       "floor": 4,
       "type": "multiple_choice",
-      "question": "Which stadium hosted the highest-scoring match in Premier League history, a 7–4 victory for Reading against Portsmouth in September 2007?",
+      "question": "Which club was on the receiving end when Dimitar Berbatov scored five goals in a single Premier League match during a 7–1 victory at Old Trafford in November 2010?",
       "options": [
-        "Madejski Stadium",
-        "Fratton Park",
-        "The Hawthorns",
-        "Vicarage Road"
+        "Blackburn Rovers",
+        "Wigan Athletic",
+        "Sunderland",
+        "Bolton Wanderers"
       ],
-      "answer": "Madejski Stadium",
-      "explanation": "Reading defeated Portsmouth 7–4 at the Madejski Stadium, setting the Premier League record for the most goals scored in a single match with 11 total goals.",
-      "anchorClues": "Madejski Stadium / Reading 7–4 Portsmouth 2007"
+      "answer": "Blackburn Rovers",
+      "explanation": "Dimitar Berbatov became the fourth player in Premier League history to score five goals in a single match as Manchester United swept aside Blackburn Rovers 7–1.",
+      "anchorClues": "Dimitar Berbatov 5 goals vs Blackburn Rovers 2010"
     },
     {
       "floor": 5,
       "type": "boolean",
-      "question": "True or False: Frank Lampard is one of only four players in Premier League history to score more than 200 goals in the competition.",
+      "question": "True or False: Ole Gunnar Solskjær is the only substitute in Premier League history to score four goals after coming off the bench in a single match.",
       "options": [
         "True",
         "False"
       ],
-      "answer": "False",
-      "explanation": "Frank Lampard scored 177 Premier League goals (4th all-time). The only three players to pass the 200-goal mark in Premier League history are Alan Shearer (260), Harry Kane (213), and Wayne Rooney (208).",
-      "anchorClues": "Frank Lampard Premier League goal tally / 200 goals club"
+      "answer": "True",
+      "explanation": "Solskjær came off the bench in the 72nd minute against Nottingham Forest in February 1999 and scored four goals in just twelve minutes during Manchester United's 8–1 win at the City Ground.",
+      "anchorClues": "Ole Gunnar Solskjær four goals sub vs Nottingham Forest 1999"
     },
     {
       "floor": 6,
       "type": "multiple_choice",
-      "question": "What was the final scoreline when Newcastle United famously defeated reigning champions Manchester United at St James' Park in October 1996, capped by Philippe Albert's iconic lob?",
+      "question": "What was the final scoreline on the last day of the 2012–13 season when West Bromwich Albion famously drew with Manchester United in Sir Alex Ferguson's 1,500th and final match as manager?",
       "options": [
-        "5–0",
-        "4–1",
-        "3–0",
-        "4–3"
+        "5–5",
+        "4–4",
+        "3–3",
+        "6–6"
       ],
-      "answer": "5–0",
-      "explanation": "Newcastle United produced a memorable performance to beat Manchester United 5–0, with Peacock, Ginola, Ferdinand, Shearer, and Albert all scoring.",
-      "anchorClues": "Newcastle United 5–0 Manchester United 1996"
+      "answer": "5–5",
+      "explanation": "In a memorable thriller at The Hawthorns, Romelu Lukaku scored a second-half hat-trick for West Brom as the match finished 5–5, the highest-scoring draw in Premier League history.",
+      "anchorClues": "West Brom 5–5 Manchester United 2013 / Alex Ferguson final match"
     },
     {
       "floor": 7,
       "type": "multiple_choice",
-      "question": "Which squad number did French winger Robert Pirès wear throughout his silver-laden six seasons at Arsenal, establishing it as one of the club's most iconic modern shirts?",
+      "question": "Which squad number did James Milner wear during his eight seasons at Liverpool, winning every major domestic and European trophy under Jürgen Klopp?",
       "options": [
         "7",
         "10",
-        "11",
-        "8"
+        "14",
+        "26"
       ],
       "answer": "7",
-      "explanation": "Robert Pirès wore the number 7 shirt for Arsenal between 2000 and 2006, scoring 62 Premier League goals and winning two titles under Arsène Wenger.",
-      "anchorClues": "Robert Pirès / Arsenal squad numbers"
+      "explanation": "James Milner wore the number 7 shirt at Anfield from 2015 to 2023, making over 200 Premier League appearances for Liverpool.",
+      "anchorClues": "James Milner squad number Liverpool / Number 7"
     },
     {
       "floor": 8,
       "type": "multiple_choice",
-      "question": "Which club set the Premier League record for the most consecutive wins in a single campaign, winning 18 straight matches between August and December 2017?",
+      "question": "Which striker scored 30 Premier League goals for Sunderland during the 1999–2000 season to win the European Golden Shoe, remaining the last Englishman to win the award until 2024?",
       "options": [
-        "Manchester City",
-        "Liverpool",
-        "Chelsea",
-        "Arsenal"
+        "Kevin Phillips",
+        "Les Ferdinand",
+        "Alan Shearer",
+        "Michael Owen"
       ],
-      "answer": "Manchester City",
-      "explanation": "Pep Guardiola's Manchester City won 18 consecutive league matches during their 100-point 'Centurions' campaign in 2017–18 (a record later matched by Liverpool in 2019–20).",
-      "anchorClues": "Manchester City / 18 consecutive win record"
+      "answer": "Kevin Phillips",
+      "explanation": "Kevin Phillips scored 30 league goals for newly promoted Sunderland in 1999–2000, earning the European Golden Shoe.",
+      "anchorClues": "Kevin Phillips European Golden Shoe / Sunderland 1999–2000"
     },
     {
       "floor": 9,
       "type": "multiple_choice",
-      "question": "Which Dutch striker scored 24 Premier League goals in his debut season for Manchester United in 2001–02, ending his Old Trafford career with 95 top-flight goals in 150 appearances?",
+      "question": "Which goalkeeper holds the Premier League record for the most penalty saves in the competition's history, stopping 13 spot-kicks across his spells with Portsmouth, Manchester City, and England?",
       "options": [
-        "Ruud van Nistelrooy",
-        "Robin van Persie",
-        "Jimmy Floyd Hasselbaink",
-        "Roy Makaay"
+        "David James",
+        "Mark Schwarzer",
+        "Shay Given",
+        "Brad Friedel"
       ],
-      "answer": "Ruud van Nistelrooy",
-      "explanation": "Ruud van Nistelrooy enjoyed a prolific spell at Manchester United between 2001 and 2006, winning the Premier League Golden Boot in 2002–03.",
-      "anchorClues": "Ruud van Nistelrooy / Manchester United goalscorer"
+      "answer": "David James",
+      "explanation": "David James saved 13 Premier League penalties during his top-flight career, more than any other goalkeeper in the league's history.",
+      "anchorClues": "David James Premier League penalty saves record"
     },
     {
       "floor": 10,
       "type": "multiple_choice",
-      "question": "Which French midfielder became the first outfield player in Premier League history to win back-to-back Premier League titles with two different clubs, accomplishing the feat in 2015–16 and 2016–17?",
+      "question": "Which striker set the Premier League record for the most assists provided in a single match, setting up four goals in a single 5–2 victory over Southampton in September 2020?",
       "options": [
-        "N'Golo Kanté",
-        "Claude Makélélé",
-        "Patrick Vieira",
-        "Emmanuel Petit"
+        "Harry Kane",
+        "Son Heung-min",
+        "Paul Pogba",
+        "Dennis Bergkamp"
       ],
-      "answer": "N'Golo Kanté",
-      "explanation": "N'Golo Kanté anchored Leicester City's title-winning midfield in 2015–16 before joining Chelsea and winning the title again the following season.",
-      "anchorClues": "N'Golo Kanté / Back-to-back titles Leicester and Chelsea"
+      "answer": "Harry Kane",
+      "explanation": "Harry Kane set up all four of Son Heung-min's goals against Southampton before scoring himself, becoming the first player to assist four goals for a single teammate in one Premier League match.",
+      "anchorClues": "Harry Kane 4 assists to Son / Tottenham vs Southampton 2020"
     }
   ]
 }
