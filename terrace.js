@@ -353,7 +353,7 @@ function startTimer() {
 
 function handleAnswerSelect(isCorrect, buttonEl) {
     clearInterval(gameState.timer);
-    
+
     document.querySelectorAll('.options-grid .btn-option').forEach(btn => {
         btn.onclick = null;
         if (typeof btn.blur === 'function') {
