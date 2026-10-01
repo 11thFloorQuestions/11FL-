@@ -91,14 +91,20 @@ document.addEventListener('DOMContentLoaded', () => {
         showMessage('');
 
         floorNumberVal.innerHTML = getOrdinalFloorHTML(index + 1);
-        floorRuleText.textContent = `${floorData.pairs} Pair${floorData.pairs > 1 ? 's' : ''} • Clear Grid Before Time Expires!`;
+
+        // Starter prompt phrasing on Floor 1 vs standard rule text on higher floors
+        if (index === 0) {
+            floorRuleText.textContent = `1 PAIR • TAP ANY TILE TO REVEAL`;
+        } else {
+            floorRuleText.textContent = `${floorData.pairs} Pair${floorData.pairs > 1 ? 's' : ''} • Clear Grid Before Time Expires!`;
+        }
 
         updateTowerStack(index + 1);
-        buildGrid(floorData);
+        buildGrid(floorData, index === 0);
         startTimer(floorData.timeLimit);
     }
 
-    function buildGrid(floorData) {
+    function buildGrid(floorData, isFirstFloor) {
         parityGrid.innerHTML = '';
         const icons = floorData.icons.slice(0, floorData.pairs);
         const deck = [...icons, ...icons];
@@ -128,6 +134,12 @@ document.addEventListener('DOMContentLoaded', () => {
         deck.forEach((iconKey, index) => {
             const tile = document.createElement('div');
             tile.className = 'parity-tile face-down';
+            
+            // Add starter pulse cue to tile 0 on floor 1
+            if (isFirstFloor && index === 0) {
+                tile.classList.add('pulse-hint');
+            }
+
             tile.dataset.icon = iconKey;
             tile.dataset.index = index;
             tile.innerHTML = window.PARITY_DAILY_SET.svgMap[iconKey] || '';
@@ -161,6 +173,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isProcessing || tile.classList.contains('matched') || tile.classList.contains('selected') || selectedTiles.length >= 2) {
             return;
         }
+
+        // Remove pulse hint on tap
+        document.querySelectorAll('.parity-tile.pulse-hint').forEach(t => t.classList.remove('pulse-hint'));
 
         tile.classList.remove('face-down');
         tile.classList.add('selected');
@@ -289,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const winRate = stats.played > 0 ? Math.round((stats.wins / stats.played) * 100) : 0;
         document.getElementById('stat-winrate').textContent = `${winRate}%`;
-        document.getElementById('stat-streak').textContent = stats.streak;
+        document.getElementById('stat-streak').textContent = `${stats.streak}`;
 
         const bestOrd = ordinals[stats.bestFloor - 1] || `${stats.bestFloor}th`;
         document.getElementById('stat-bestfloor').textContent = `${bestOrd} Floor`;
