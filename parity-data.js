@@ -1,33 +1,33 @@
 // ==========================================================================
 // 11th Floor Parity — Daily Dataset & Curated Vector Pairs
-// Theme: Nature & Elements
+// Theme: Football & Stadium Culture
 // ==========================================================================
 
 window.PARITY_DAILY_SET = {
-    title: "Nature & Elements",
+    title: "Football & Stadium Culture",
     floors: [
-        { floor: 1, pairs: 1, timeLimit: 12, icons: ["leaf"] },
-        { floor: 2, pairs: 2, timeLimit: 16, icons: ["leaf", "flame"] },
-        { floor: 3, pairs: 3, timeLimit: 22, icons: ["leaf", "flame", "droplet"] },
-        { floor: 4, pairs: 4, timeLimit: 28, icons: ["leaf", "flame", "droplet", "lightning"] },
-        { floor: 5, pairs: 5, timeLimit: 34, icons: ["leaf", "flame", "droplet", "lightning", "cloud"] },
-        { floor: 6, pairs: 6, timeLimit: 40, icons: ["leaf", "flame", "droplet", "lightning", "cloud", "mountain"] },
-        { floor: 7, pairs: 6, timeLimit: 38, icons: ["leaf", "flame", "droplet", "lightning", "cloud", "mountain"] },
-        { floor: 8, pairs: 7, timeLimit: 46, icons: ["leaf", "flame", "droplet", "lightning", "cloud", "mountain", "compass"] },
-        { floor: 9, pairs: 8, timeLimit: 54, icons: ["leaf", "flame", "droplet", "lightning", "cloud", "mountain", "compass", "key"] },
-        { floor: 10, pairs: 9, timeLimit: 62, icons: ["leaf", "flame", "droplet", "lightning", "cloud", "mountain", "compass", "key", "crown"] },
-        { floor: 11, pairs: 10, timeLimit: 70, icons: ["leaf", "flame", "droplet", "lightning", "cloud", "mountain", "compass", "key", "crown", "gem"] }
+        { floor: 1, pairs: 1, timeLimit: 12, icons: ["whistle"] },
+        { floor: 2, pairs: 2, timeLimit: 16, icons: ["whistle", "football"] },
+        { floor: 3, pairs: 3, timeLimit: 22, icons: ["whistle", "football", "trophy"] },
+        { floor: 4, pairs: 4, timeLimit: 28, icons: ["whistle", "football", "trophy", "flag"] },
+        { floor: 5, pairs: 5, timeLimit: 34, icons: ["whistle", "football", "trophy", "flag", "boot"] },
+        { floor: 6, pairs: 6, timeLimit: 40, icons: ["whistle", "football", "trophy", "flag", "boot", "shirt"] },
+        { floor: 7, pairs: 6, timeLimit: 38, icons: ["whistle", "football", "trophy", "flag", "boot", "shirt"] },
+        { floor: 8, pairs: 7, timeLimit: 46, icons: ["whistle", "football", "trophy", "flag", "boot", "shirt", "card"] },
+        { floor: 9, pairs: 8, timeLimit: 54, icons: ["whistle", "football", "trophy", "flag", "boot", "shirt", "card", "subboard"] },
+        { floor: 10, pairs: 9, timeLimit: 62, icons: ["whistle", "football", "trophy", "flag", "boot", "shirt", "card", "subboard", "stopwatch"] },
+        { floor: 11, pairs: 10, timeLimit: 70, icons: ["whistle", "football", "trophy", "flag", "boot", "shirt", "card", "subboard", "stopwatch", "pitch"] }
     ],
     svgMap: {
-        leaf: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A9 9 0 0 0 20 11 9 9 0 0 0 2 2a9 9 0 0 0 9 18z"/><path d="M2 2l18 18"/></svg>`,
-        flame: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3z"/></svg>`,
-        droplet: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>`,
-        lightning: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
-        cloud: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 3 16.3h15a5 5 0 0 0 0-10z"/></svg>`,
-        mountain: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l4 8 5-5 5 15H2L8 3z"/></svg>`,
-        compass: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>`,
-        key: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-3 3l-2.5 2.5M3 21l8.5-8.5M11.5 12.5A4.5 4.5 0 1 0 7 8a4.5 4.5 0 0 0 4.5 4.5z"/></svg>`,
-        crown: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z"/></svg>`,
-        gem: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 18 3 22 9 12 21 2 9 6 3"/></svg>`
+        whistle: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path d="M15 9h6v4h-3l-2 3h-3"/></svg>`,
+        football: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polygon points="12 7 15 9 14 13 10 13 9 9 12 7"/></svg>`,
+        trophy: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2"/><path d="M18 9h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.45 1-1 1H7v4h10v-4h-2c-.55 0-1-.45-1-1v-2.34"/><path d="M18 3H6v7a6 6 0 0 0 12 0V3z"/></svg>`,
+        flag: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>`,
+        boot: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17h18a2 2 0 0 0 2-2v-3a4 4 0 0 0-4-4h-3L11 3H7v5L2 13v4z"/><circle cx="5" cy="19" r="1"/><circle cx="11" cy="19" r="1"/><circle cx="17" cy="19" r="1"/></svg>`,
+        shirt: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>`,
+        card: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="2"/></svg>`,
+        subboard: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20l2-4M16 20l-2-4"/><path d="M7 10l2-2 2 2M17 10l-2 2-2-2"/></svg>`,
+        stopwatch: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M10 2h4"/><path d="M12 2v3"/></svg>`,
+        pitch: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="2" width="18" height="20" rx="2"/><line x1="3" y1="12" x2="21" y2="12"/><circle cx="12" cy="12" r="3"/><path d="M8 2v3h8V2"/><path d="M8 22v-3h8v3"/></svg>`
     }
 };
