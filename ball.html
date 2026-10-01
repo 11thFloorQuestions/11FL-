@@ -177,7 +177,9 @@
 
         .options-grid { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .btn-option { width: 100%; min-height: 48px; background: #111111; border: 1px solid rgba(250, 204, 21, 0.4); border-radius: 8px; color: #ffffff; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.15s ease; padding: 8px 10px; display: flex; align-items: center; justify-content: center; text-align: center; }
-        .btn-option:hover { border-color: var(--state-active, #facc15); background: #181818; }
+        @media (hover: hover) {
+            .btn-option:hover { border-color: var(--state-active, #facc15); background: #181818; }
+        }
         .btn-option.selected-correct { border-color: var(--state-success, #22c55e); background: rgba(34, 197, 94, 0.2); color: #86EFAC; }
         .btn-option.selected-wrong { border-color: var(--state-error, #ef4444); background: rgba(239, 68, 68, 0.2); color: #FCA5A5; }
 
