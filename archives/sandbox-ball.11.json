@@ -1,0 +1,142 @@
+{
+  "setId": "10",
+  "title": "Think You Know Ball? - Set 10",
+  "questions": [
+    {
+      "floor": 1,
+      "type": "multiple_choice",
+      "question": "Which stadium served as Arsenal's home ground for European matches during the 1998–99 and 1999–2000 UEFA Champions League campaigns, prior to their move to the Emirates Stadium in 2006?",
+      "options": [
+        "Wembley Stadium",
+        "Highbury",
+        "White Hart Lane",
+        "Upton Park"
+      ],
+      "answer": "Wembley Stadium",
+      "explanation": "Arsenal played their home Champions League group matches at Wembley Stadium for two seasons to accommodate higher crowd capacities before returning to Highbury.",
+      "anchorClues": "Arsenal Champions League Wembley Stadium / Highbury era"
+    },
+    {
+      "floor": 2,
+      "type": "boolean",
+      "question": "True or False: Swindon Town hold the record for the most goals conceded in a single Premier League season, letting in 100 goals during the 1993–94 campaign.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "Swindon Town conceded 100 goals in 42 matches during the 1993–94 season, a Premier League record for a single campaign.",
+      "anchorClues": "Swindon Town 100 goals conceded 1993–94"
+    },
+    {
+      "floor": 3,
+      "type": "multiple_choice",
+      "question": "Which manager won three Premier League Manager of the Month awards during the 2013–14 season while in charge of Liverpool, leading them to a second-place finish?",
+      "options": [
+        "Brendan Rodgers",
+        "Rafael Benítez",
+        "Kenny Dalglish",
+        "Roy Hodgson"
+      ],
+      "answer": "Brendan Rodgers",
+      "explanation": "Brendan Rodgers was named Manager of the Month in August 2013, February 2014, and March 2014 as Liverpool pushed Manchester City to the final day of the title race.",
+      "anchorClues": "Brendan Rodgers / Liverpool 2013–14 season"
+    },
+    {
+      "floor": 4,
+      "type": "multiple_choice",
+      "question": "Which club was on the receiving end when Dimitar Berbatov scored five goals in a single Premier League match during a 7–1 victory at Old Trafford in November 2010?",
+      "options": [
+        "Blackburn Rovers",
+        "Wigan Athletic",
+        "Sunderland",
+        "Bolton Wanderers"
+      ],
+      "answer": "Blackburn Rovers",
+      "explanation": "Dimitar Berbatov became the fourth player in Premier League history to score five goals in a single match as Manchester United swept aside Blackburn Rovers 7–1.",
+      "anchorClues": "Dimitar Berbatov 5 goals vs Blackburn Rovers 2010"
+    },
+    {
+      "floor": 5,
+      "type": "boolean",
+      "question": "True or False: Ole Gunnar Solskjær is the only substitute in Premier League history to score four goals after coming off the bench in a single match.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "Solskjær came off the bench in the 72nd minute against Nottingham Forest in February 1999 and scored four goals in just twelve minutes during Manchester United's 8–1 win at the City Ground.",
+      "anchorClues": "Ole Gunnar Solskjær four goals sub vs Nottingham Forest 1999"
+    },
+    {
+      "floor": 6,
+      "type": "multiple_choice",
+      "question": "What was the final scoreline on the last day of the 2012–13 season when West Bromwich Albion famously drew with Manchester United in Sir Alex Ferguson's 1,500th and final match as manager?",
+      "options": [
+        "5–5",
+        "4–4",
+        "3–3",
+        "6–6"
+      ],
+      "answer": "5–5",
+      "explanation": "In a memorable thriller at The Hawthorns, Romelu Lukaku scored a second-half hat-trick for West Brom as the match finished 5–5, the highest-scoring draw in Premier League history.",
+      "anchorClues": "West Brom 5–5 Manchester United 2013 / Alex Ferguson final match"
+    },
+    {
+      "floor": 7,
+      "type": "multiple_choice",
+      "question": "Which squad number did James Milner wear during his eight seasons at Liverpool, winning every major domestic and European trophy under Jürgen Klopp?",
+      "options": [
+        "7",
+        "10",
+        "14",
+        "26"
+      ],
+      "answer": "7",
+      "explanation": "James Milner wore the number 7 shirt at Anfield from 2015 to 2023, making over 200 Premier League appearances for Liverpool.",
+      "anchorClues": "James Milner squad number Liverpool / Number 7"
+    },
+    {
+      "floor": 8,
+      "type": "multiple_choice",
+      "question": "Which striker scored 30 Premier League goals for Sunderland during the 1999–2000 season to win the European Golden Shoe, remaining the last Englishman to win the award until 2024?",
+      "options": [
+        "Kevin Phillips",
+        "Les Ferdinand",
+        "Alan Shearer",
+        "Michael Owen"
+      ],
+      "answer": "Kevin Phillips",
+      "explanation": "Kevin Phillips scored 30 league goals for newly promoted Sunderland in 1999–2000, earning the European Golden Shoe.",
+      "anchorClues": "Kevin Phillips European Golden Shoe / Sunderland 1999–2000"
+    },
+    {
+      "floor": 9,
+      "type": "multiple_choice",
+      "question": "Which goalkeeper holds the Premier League record for the most penalty saves in the competition's history, stopping 13 spot-kicks across his spells with Portsmouth, Manchester City, and England?",
+      "options": [
+        "David James",
+        "Mark Schwarzer",
+        "Shay Given",
+        "Brad Friedel"
+      ],
+      "answer": "David James",
+      "explanation": "David James saved 13 Premier League penalties during his top-flight career, more than any other goalkeeper in the league's history.",
+      "anchorClues": "David James Premier League penalty saves record"
+    },
+    {
+      "floor": 10,
+      "type": "multiple_choice",
+      "question": "Which striker set the Premier League record for the most assists provided in a single match, setting up four goals in a single 5–2 victory over Southampton in September 2020?",
+      "options": [
+        "Harry Kane",
+        "Son Heung-min",
+        "Paul Pogba",
+        "Dennis Bergkamp"
+      ],
+      "answer": "Harry Kane",
+      "explanation": "Harry Kane set up all four of Son Heung-min's goals against Southampton before scoring himself, becoming the first player to assist four goals for a single teammate in one Premier League match.",
+      "anchorClues": "Harry Kane 4 assists to Son / Tottenham vs Southampton 2020"
+    }
+  ]
+}
