@@ -1,0 +1,142 @@
+{
+  "setId": "19",
+  "title": "Think You Know Ball? - Set 19",
+  "questions": [
+    {
+      "floor": 1,
+      "type": "multiple_choice",
+      "question": "Which club holds the Premier League record for the most consecutive drawn matches in a single season, recording seven straight draws during the autumn of 2009?",
+      "options": [
+        "Manchester City",
+        "Aston Villa",
+        "Everton",
+        "Newcastle United"
+      ],
+      "answer": "Manchester City",
+      "explanation": "Under Mark Hughes, Manchester City drew seven consecutive league fixtures between September and November 2009, setting a top-flight record.",
+      "anchorClues": "Manchester City 7 consecutive draws 2009"
+    },
+    {
+      "floor": 2,
+      "type": "boolean",
+      "question": "True or False: Fulham's Craven Cottage features the Johnny Haynes Stand, which is officially designated as a Grade II listed structure.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "Designed by celebrated architect Archibald Leitch and opened in 1905, the Johnny Haynes Stand remains the oldest seating structure in English professional football and holds Grade II listed status.",
+      "anchorClues": "Craven Cottage Johnny Haynes Stand Grade II listed"
+    },
+    {
+      "floor": 3,
+      "type": "multiple_choice",
+      "question": "Which Portuguese manager guided Wolverhampton Wanderers to consecutive 7th-place Premier League finishes in 2018–19 and 2019–20 following their promotion from the Championship?",
+      "options": [
+        "Nuno Espírito Santo",
+        "Bruno Lage",
+        "Marco Silva",
+        "André Villas-Boas"
+      ],
+      "answer": "Nuno Espírito Santo",
+      "explanation": "Nuno Espírito Santo established Wolves as a top-half force immediately upon their return to the top flight, securing European qualification in 2019.",
+      "anchorClues": "Nuno Espírito Santo / Wolves 7th place finishes"
+    },
+    {
+      "floor": 4,
+      "type": "multiple_choice",
+      "question": "In August 2021, Brentford marked their debut match in the Premier League with a famous 2–0 victory over Arsenal at which new home ground?",
+      "options": [
+        "Brentford Community Stadium",
+        "Griffin Park",
+        "Loftus Road",
+        "Meadow Lane"
+      ],
+      "answer": "Brentford Community Stadium",
+      "explanation": "Brentford left their historic Griffin Park home in 2020 and opened their top-flight era at the Brentford Community Stadium with an opening-night win against Arsenal.",
+      "anchorClues": "Brentford Community Stadium / Brentford 2–0 Arsenal 2021"
+    },
+    {
+      "floor": 5,
+      "type": "boolean",
+      "question": "True or False: Peter Crouch holds the record for the most total substitute appearances in Premier League history.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "False",
+      "explanation": "Peter Crouch held the record with 158 substitute appearances for many years, but James Milner subsequently broke the mark, becoming the first player to surpass 200 appearances off the bench.",
+      "anchorClues": "James Milner substitute appearances record Premier League"
+    },
+    {
+      "floor": 6,
+      "type": "multiple_choice",
+      "question": "Which club staged the greatest comeback in Premier League history by recovering from 4–0 down at half-time to draw 4–4 against Arsenal in February 2011, capped by Cheick Tioté's late volley?",
+      "options": [
+        "Newcastle United",
+        "West Ham United",
+        "Leeds United",
+        "Everton"
+      ],
+      "answer": "Newcastle United",
+      "explanation": "Newcastle United rallied from 4–0 behind at St James' Park, with Tioté's iconic 87th-minute thunderbolt completing an unprecedented four-goal comeback.",
+      "anchorClues": "Newcastle United 4–4 Arsenal 2011 / Cheick Tioté"
+    },
+    {
+      "floor": 7,
+      "type": "multiple_choice",
+      "question": "Which squad number was worn by English winger Aaron Lennon during his decade at Tottenham Hotspur, during which he made over 260 Premier League appearances for the North London club?",
+      "options": [
+        "7",
+        "11",
+        "17",
+        "22"
+      ],
+      "answer": "7",
+      "explanation": "Aaron Lennon occupied Tottenham Hotspur's number 7 shirt from 2005 through to 2015, becoming a mainstay on the right wing at White Hart Lane.",
+      "anchorClues": "Aaron Lennon shirt number 7 / Tottenham Hotspur"
+    },
+    {
+      "floor": 8,
+      "type": "multiple_choice",
+      "question": "Which Nigerian forward became the first African player to reach 50 Premier League goals, accomplishing the milestone across spells with Arsenal, West Bromwich Albion, and Portsmouth?",
+      "options": [
+        "Nwankwo Kanu",
+        "Efan Ekoku",
+        "Emmanuel Adebayor",
+        "Obafemi Martins"
+      ],
+      "answer": "Nwankwo Kanu",
+      "explanation": "Nwankwo Kanu arrived in the Premier League in 1999 and scored 54 goals across his top-flight career, becoming the first African player to reach the 50-goal milestone.",
+      "anchorClues": "Nwankwo Kanu 50 Premier League goals African record"
+    },
+    {
+      "floor": 9,
+      "type": "multiple_choice",
+      "question": "Which French World Cup winner made over 140 Premier League appearances for Chelsea between 1998 and 2004, serving as club captain prior to John Terry inheriting the armband?",
+      "options": [
+        "Marcel Desailly",
+        "Frank Leboeuf",
+        "Alain Goma",
+        "Mikaël Silvestre"
+      ],
+      "answer": "Marcel Desailly",
+      "explanation": "Marcel Desailly anchored Chelsea's defence for six seasons and captained the side during their transformation into top-four regulars under Claudio Ranieri.",
+      "anchorClues": "Marcel Desailly / Chelsea captain"
+    },
+    {
+      "floor": 10,
+      "type": "multiple_choice",
+      "question": "Which goalkeeper set the Premier League record for the longest individual run without conceding a goal, keeping 14 consecutive clean sheets (1,311 minutes) during the 2008–09 season?",
+      "options": [
+        "Edwin van der Sar",
+        "Petr Čech",
+        "Jens Lehmann",
+        "Pepe Reina"
+      ],
+      "answer": "Edwin van der Sar",
+      "explanation": "Edwin van der Sar went unbeaten for 14 straight Premier League matches for Manchester United between November 2008 and March 2009, setting an all-time top-flight record.",
+      "anchorClues": "Edwin van der Sar 1,311 minutes clean sheet record"
+    }
+  ]
+}
