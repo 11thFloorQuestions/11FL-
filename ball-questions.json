@@ -1,142 +1,142 @@
 {
-  "setId": "10",
-  "title": "Think You Know Ball? - Set 10",
+  "setId": "11",
+  "title": "Think You Know Ball? - Set 11",
   "questions": [
     {
       "floor": 1,
       "type": "multiple_choice",
-      "question": "Which stadium served as Arsenal's home ground for European matches during the 1998–99 and 1999–2000 UEFA Champions League campaigns, prior to their move to the Emirates Stadium in 2006?",
+      "question": "Which manager guided Everton to a 4th-place Premier League finish in the 2004–05 season, securing their highest top-flight position since 1988?",
       "options": [
-        "Wembley Stadium",
-        "Highbury",
-        "White Hart Lane",
-        "Upton Park"
+        "David Moyes",
+        "Walter Smith",
+        "Alex McLeish",
+        "Gordon Strachan"
       ],
-      "answer": "Wembley Stadium",
-      "explanation": "Arsenal played their home Champions League group matches at Wembley Stadium for two seasons to accommodate higher crowd capacities before returning to Highbury.",
-      "anchorClues": "Arsenal Champions League Wembley Stadium / Highbury era"
+      "answer": "David Moyes",
+      "explanation": "David Moyes guided Everton to 4th place in 2004–05 despite selling Wayne Rooney prior to the season, earning a Champions League qualification spot.",
+      "anchorClues": "David Moyes / Everton 4th place 2004–05"
     },
     {
       "floor": 2,
       "type": "boolean",
-      "question": "True or False: Swindon Town hold the record for the most goals conceded in a single Premier League season, letting in 100 goals during the 1993–94 campaign.",
+      "question": "True or False: Leicester City were top of the Premier League table on Christmas Day during their famous 2015–16 title-winning season.",
       "options": [
         "True",
         "False"
       ],
       "answer": "True",
-      "explanation": "Swindon Town conceded 100 goals in 42 matches during the 1993–94 season, a Premier League record for a single campaign.",
-      "anchorClues": "Swindon Town 100 goals conceded 1993–94"
+      "explanation": "Claudio Ranieri's Leicester City sat top of the Premier League on Christmas Day 2015 with 38 points, exactly twelve months after occupying bottom spot on Christmas Day 2014.",
+      "anchorClues": "Leicester City Christmas top of table 2015–16"
     },
     {
       "floor": 3,
       "type": "multiple_choice",
-      "question": "Which manager won three Premier League Manager of the Month awards during the 2013–14 season while in charge of Liverpool, leading them to a second-place finish?",
+      "question": "Which Midlands club conceded only 34 goals during the 1995–96 season under Brian Little, finishing 4th in the Premier League and lifting the League Cup?",
       "options": [
-        "Brendan Rodgers",
-        "Rafael Benítez",
-        "Kenny Dalglish",
-        "Roy Hodgson"
+        "Aston Villa",
+        "Coventry City",
+        "Nottingham Forest",
+        "Leicester City"
       ],
-      "answer": "Brendan Rodgers",
-      "explanation": "Brendan Rodgers was named Manager of the Month in August 2013, February 2014, and March 2014 as Liverpool pushed Manchester City to the final day of the title race.",
-      "anchorClues": "Brendan Rodgers / Liverpool 2013–14 season"
+      "answer": "Aston Villa",
+      "explanation": "Aston Villa enjoyed a stellar 1995–96 campaign, defeating Leeds United 3–0 in the League Cup final and securing a top-four Premier League finish.",
+      "anchorClues": "Brian Little Aston Villa 1995–96 / League Cup"
     },
     {
       "floor": 4,
       "type": "multiple_choice",
-      "question": "Which club was on the receiving end when Dimitar Berbatov scored five goals in a single Premier League match during a 7–1 victory at Old Trafford in November 2010?",
+      "question": "Which club produced a memorable upset by defeating champions Manchester City 3–2 at Carrow Road in September 2019, despite missing eight senior players through injury?",
       "options": [
-        "Blackburn Rovers",
-        "Wigan Athletic",
-        "Sunderland",
-        "Bolton Wanderers"
+        "Norwich City",
+        "Sheffield United",
+        "Aston Villa",
+        "Bournemouth"
       ],
-      "answer": "Blackburn Rovers",
-      "explanation": "Dimitar Berbatov became the fourth player in Premier League history to score five goals in a single match as Manchester United swept aside Blackburn Rovers 7–1.",
-      "anchorClues": "Dimitar Berbatov 5 goals vs Blackburn Rovers 2010"
+      "answer": "Norwich City",
+      "explanation": "Daniel Farke's newly promoted Norwich City capitalised on defensive errors from Manchester City to claim a famous 3–2 home victory.",
+      "anchorClues": "Norwich City 3–2 Manchester City 2019"
     },
     {
       "floor": 5,
       "type": "boolean",
-      "question": "True or False: Ole Gunnar Solskjær is the only substitute in Premier League history to score four goals after coming off the bench in a single match.",
+      "question": "True or False: Gareth Bale scored a hat-trick on his final Premier League appearance for Tottenham Hotspur before moving to Real Madrid in 2013.",
       "options": [
         "True",
         "False"
       ],
-      "answer": "True",
-      "explanation": "Solskjær came off the bench in the 72nd minute against Nottingham Forest in February 1999 and scored four goals in just twelve minutes during Manchester United's 8–1 win at the City Ground.",
-      "anchorClues": "Ole Gunnar Solskjær four goals sub vs Nottingham Forest 1999"
+      "answer": "False",
+      "explanation": "Gareth Bale scored a single spectacular 89th-minute winning goal against Sunderland on the final day of the 2012–13 season, rather than a hat-trick.",
+      "anchorClues": "Gareth Bale final Spurs match 2013"
     },
     {
       "floor": 6,
       "type": "multiple_choice",
-      "question": "What was the final scoreline on the last day of the 2012–13 season when West Bromwich Albion famously drew with Manchester United in Sir Alex Ferguson's 1,500th and final match as manager?",
+      "question": "What was the final scoreline when Aston Villa famously defeated reigning champions Liverpool at Villa Park in October 2020, inflicting Liverpool's heaviest top-flight defeat in 57 years?",
       "options": [
-        "5–5",
-        "4–4",
-        "3–3",
-        "6–6"
+        "7–2",
+        "6–1",
+        "5–2",
+        "6–2"
       ],
-      "answer": "5–5",
-      "explanation": "In a memorable thriller at The Hawthorns, Romelu Lukaku scored a second-half hat-trick for West Brom as the match finished 5–5, the highest-scoring draw in Premier League history.",
-      "anchorClues": "West Brom 5–5 Manchester United 2013 / Alex Ferguson final match"
+      "answer": "7–2",
+      "explanation": "Ollie Watkins scored a first-half hat-trick as Dean Smith's Aston Villa stunned Jürgen Klopp's champions in a remarkable 7–2 scoreline.",
+      "anchorClues": "Aston Villa 7–2 Liverpool October 2020"
     },
     {
       "floor": 7,
       "type": "multiple_choice",
-      "question": "Which squad number did James Milner wear during his eight seasons at Liverpool, winning every major domestic and European trophy under Jürgen Klopp?",
+      "question": "Which squad number did Uruguayan striker Luis Suárez wear during his explosive three-and-a-half seasons at Liverpool, where he scored 69 Premier League goals?",
       "options": [
         "7",
+        "9",
         "10",
-        "14",
-        "26"
+        "16"
       ],
       "answer": "7",
-      "explanation": "James Milner wore the number 7 shirt at Anfield from 2015 to 2023, making over 200 Premier League appearances for Liverpool.",
-      "anchorClues": "James Milner squad number Liverpool / Number 7"
+      "explanation": "Luis Suárez wore the famous number 7 shirt at Anfield from January 2011 until his summer departure in 2014, winning the PFA Player of the Year in 2013–14.",
+      "anchorClues": "Luis Suárez shirt number 7 Liverpool"
     },
     {
       "floor": 8,
       "type": "multiple_choice",
-      "question": "Which striker scored 30 Premier League goals for Sunderland during the 1999–2000 season to win the European Golden Shoe, remaining the last Englishman to win the award until 2024?",
+      "question": "Which Ivory Coast midfielder scored 20 Premier League goals during Manchester City's title-winning 2013–14 season, becoming only the second midfielder to hit 20 goals in a single PL campaign?",
       "options": [
-        "Kevin Phillips",
-        "Les Ferdinand",
-        "Alan Shearer",
-        "Michael Owen"
+        "Yaya Touré",
+        "Cheick Tioté",
+        "Wilfried Bony",
+        "Didier Zokora"
       ],
-      "answer": "Kevin Phillips",
-      "explanation": "Kevin Phillips scored 30 league goals for newly promoted Sunderland in 1999–2000, earning the European Golden Shoe.",
-      "anchorClues": "Kevin Phillips European Golden Shoe / Sunderland 1999–2000"
+      "answer": "Yaya Touré",
+      "explanation": "Yaya Touré enjoyed an incredible 2013–14 campaign, scoring 20 goals from midfield under Manuel Pellegrini as City claimed their second Premier League title.",
+      "anchorClues": "Yaya Touré 20 goals 2013–14 Manchester City"
     },
     {
       "floor": 9,
       "type": "multiple_choice",
-      "question": "Which goalkeeper holds the Premier League record for the most penalty saves in the competition's history, stopping 13 spot-kicks across his spells with Portsmouth, Manchester City, and England?",
+      "question": "Which Italian manager guided Chelsea to the 2016–17 Premier League title in his debut season in English football, setting a then-record 30 wins in a 38-game season?",
       "options": [
-        "David James",
-        "Mark Schwarzer",
-        "Shay Given",
-        "Brad Friedel"
+        "Antonio Conte",
+        "Roberto Mancini",
+        "Maurizio Sarri",
+        "Claudio Ranieri"
       ],
-      "answer": "David James",
-      "explanation": "David James saved 13 Premier League penalties during his top-flight career, more than any other goalkeeper in the league's history.",
-      "anchorClues": "David James Premier League penalty saves record"
+      "answer": "Antonio Conte",
+      "explanation": "Antonio Conte transformed Chelsea's season by switching to a 3–4–3 tactical system, leading the Blues to the title with 93 points.",
+      "anchorClues": "Antonio Conte Chelsea title 2016–17"
     },
     {
       "floor": 10,
       "type": "multiple_choice",
-      "question": "Which striker set the Premier League record for the most assists provided in a single match, setting up four goals in a single 5–2 victory over Southampton in September 2020?",
+      "question": "Which Spanish goalkeeper equalled the Premier League record for the most saves in a single match by making 14 saves in a 3–1 victory over Arsenal at the Emirates Stadium in December 2017?",
       "options": [
-        "Harry Kane",
-        "Son Heung-min",
-        "Paul Pogba",
-        "Dennis Bergkamp"
+        "David de Gea",
+        "Kepa Arrizabalaga",
+        "Pepe Reina",
+        "Robert Sánchez"
       ],
-      "answer": "Harry Kane",
-      "explanation": "Harry Kane set up all four of Son Heung-min's goals against Southampton before scoring himself, becoming the first player to assist four goals for a single teammate in one Premier League match.",
-      "anchorClues": "Harry Kane 4 assists to Son / Tottenham vs Southampton 2020"
+      "answer": "David de Gea",
+      "explanation": "David de Gea delivered a masterclass in goal for Manchester United, making 14 saves to match the Premier League single-game record set by Tim Krul in 2013.",
+      "anchorClues": "David de Gea 14 saves vs Arsenal 2017"
     }
   ]
 }
