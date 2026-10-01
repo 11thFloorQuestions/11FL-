@@ -1,0 +1,142 @@
+{
+  "setId": "14",
+  "title": "Think You Know Ball? - Set 14",
+  "questions": [
+    {
+      "floor": 1,
+      "type": "multiple_choice",
+      "question": "Which manager led Charlton Athletic to back-to-back top-half Premier League finishes in 2003–04 and 2004–05 during his 15-year tenure at The Valley?",
+      "options": [
+        "Alan Curbishley",
+        "Steve Coppell",
+        "Iain Dowie",
+        "Peter Reid"
+      ],
+      "answer": "Alan Curbishley",
+      "explanation": "Alan Curbishley established Charlton Athletic as a staple top-flight side, securing 7th and 11th-place finishes before stepping down in 2006.",
+      "anchorClues": "Alan Curbishley / Charlton Athletic Premier League"
+    },
+    {
+      "floor": 2,
+      "type": "boolean",
+      "question": "True or False: Bradford City secured Premier League survival on the final day of the 1999–2000 season by defeating Liverpool 1–0 at Valley Parade.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "David Wetherall scored a famous early header to beat Liverpool 1–0, completing a miracle escape for Paul Jewell's side and relegating Wimbledon instead.",
+      "anchorClues": "Bradford City 1–0 Liverpool 2000 / Final day survival"
+    },
+    {
+      "floor": 3,
+      "type": "multiple_choice",
+      "question": "What was the final scoreline when Arsenal defeated Manchester United at Highbury in November 2001, remembered for Fabien Barthez gifting late goals to Sylvain Wiltord and Thierry Henry?",
+      "options": [
+        "3–1",
+        "2–1",
+        "3–2",
+        "2–0"
+      ],
+      "answer": "3–1",
+      "explanation": "Arsenal came from behind after Paul Scholes' opener to win 3–1, capitalising on two costly errors from United goalkeeper Fabien Barthez.",
+      "anchorClues": "Arsenal 3–1 Manchester United 2001 / Barthez mistakes"
+    },
+    {
+      "floor": 4,
+      "type": "multiple_choice",
+      "question": "Which iconic ground served as Southampton's home stadium for 103 years prior to their move to St Mary's Stadium in 2001?",
+      "options": [
+        "The Dell",
+        "Fratton Park",
+        "Elm Park",
+        "Victoria Ground"
+      ],
+      "answer": "The Dell",
+      "explanation": "Southampton played at the compact 15,000-capacity Dell ground from 1898 until May 2001, closing its history with a 3–2 win over Arsenal.",
+      "anchorClues": "The Dell / Southampton home stadium"
+    },
+    {
+      "floor": 5,
+      "type": "boolean",
+      "question": "True or False: Oleksandr Zinchenko was the first Ukrainian player to win a Premier League winner's medal.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "False",
+      "explanation": "Defender Oleg Luzhny was the first Ukrainian to win the Premier League title, doing so with Arsène Wenger's Arsenal during their 2001–02 double-winning campaign.",
+      "anchorClues": "First Ukrainian Premier League winner / Oleg Luzhny Arsenal"
+    },
+    {
+      "floor": 6,
+      "type": "multiple_choice",
+      "question": "Which striker scored the very first goal in Premier League history, finding the net after five minutes for Sheffield United against Manchester United in August 1992?",
+      "options": [
+        "Brian Deane",
+        "Teddy Sheringham",
+        "Alan Shearer",
+        "Mark Hughes"
+      ],
+      "answer": "Brian Deane",
+      "explanation": "Brian Deane wrote his name into top-flight history by heading past Peter Schmeichel at Bramall Lane in Sheffield United's 2–1 victory on 15 August 1992.",
+      "anchorClues": "Brian Deane / First Premier League goal August 1992"
+    },
+    {
+      "floor": 7,
+      "type": "multiple_choice",
+      "question": "Which squad number was worn by Matt Le Tissier throughout Southampton's entire Premier League era at The Dell, cementing his legendary status on the South Coast?",
+      "options": [
+        "7",
+        "10",
+        "8",
+        "9"
+      ],
+      "answer": "7",
+      "explanation": "Matt Le Tissier famously wore the number 7 shirt for Southampton, netting 100 Premier League goals for the Saints with his unmatched technical skill.",
+      "anchorClues": "Matt Le Tissier squad number 7 / Southampton"
+    },
+    {
+      "floor": 8,
+      "type": "multiple_choice",
+      "question": "Which club scored a staggering 106 goals during the 2017–18 campaign, setting the single-season record for the most goals scored by a team in Premier League history?",
+      "options": [
+        "Manchester City",
+        "Liverpool",
+        "Chelsea",
+        "Arsenal"
+      ],
+      "answer": "Manchester City",
+      "explanation": "Pep Guardiola's 'Centurions' scored 106 goals across 38 fixtures in 2017–18, surpassing Chelsea's previous record of 103 set in 2009–10.",
+      "anchorClues": "Manchester City 106 goals single season record 2017–18"
+    },
+    {
+      "floor": 9,
+      "type": "multiple_choice",
+      "question": "Which Bulgarian midfielder served as Aston Villa club captain and made over 180 Premier League appearances for the West Midlands club between 2006 and 2012?",
+      "options": [
+        "Stiliyan Petrov",
+        "Dimitar Berbatov",
+        "Martin Petrov",
+        "Radostin Kishishev"
+      ],
+      "answer": "Stiliyan Petrov",
+      "explanation": "Stiliyan Petrov joined Aston Villa from Celtic in 2006 and became a beloved leader at Villa Park, captaining Martin O'Neill's side to top-six finishes.",
+      "anchorClues": "Stiliyan Petrov / Aston Villa captain"
+    },
+    {
+      "floor": 10,
+      "type": "multiple_choice",
+      "question": "Which Danish football icon guided Swansea City to their first major trophy by winning the 2013 League Cup final 5–0, securing European football in their second PL season?",
+      "options": [
+        "Michael Laudrup",
+        "Jan Mølby",
+        "Morten Olsen",
+        "Thomas Frank"
+      ],
+      "answer": "Michael Laudrup",
+      "explanation": "Michael Laudrup managed Swansea City during a glittering 2012–13 campaign, playing stylish football and lifting the League Cup at Wembley against Bradford City.",
+      "anchorClues": "Michael Laudrup / Swansea City League Cup 2013"
+    }
+  ]
+}
