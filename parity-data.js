@@ -1,32 +1,32 @@
 // ==========================================================================
 // 11th Floor Parity — Daily Dataset & Curated Vector Pairs
-// Theme: Classic Fruit Machine (10 Sequential Floors)
+// Theme: "Guess Who?" Retro Avatars (10 Sequential Floors)
 // ==========================================================================
 
 window.PARITY_DAILY_SET = {
-    title: "Classic Fruit Machine",
+    title: "Guess Who? Retro Avatars",
     floors: [
-        { floor: 1, pairs: 1, timeLimit: 12, icons: ["cherry"] },
-        { floor: 2, pairs: 2, timeLimit: 16, icons: ["cherry", "lemon"] },
-        { floor: 3, pairs: 3, timeLimit: 22, icons: ["cherry", "lemon", "bell"] },
-        { floor: 4, pairs: 4, timeLimit: 28, icons: ["cherry", "lemon", "bell", "seven"] },
-        { floor: 5, pairs: 5, timeLimit: 34, icons: ["cherry", "lemon", "bell", "seven", "bar"] },
-        { floor: 6, pairs: 6, timeLimit: 40, icons: ["cherry", "lemon", "bell", "seven", "bar", "plum"] },
-        { floor: 7, pairs: 7, timeLimit: 46, icons: ["cherry", "lemon", "bell", "seven", "bar", "plum", "watermelon"] },
-        { floor: 8, pairs: 8, timeLimit: 52, icons: ["cherry", "lemon", "bell", "seven", "bar", "plum", "watermelon", "horseshoe"] },
-        { floor: 9, pairs: 9, timeLimit: 58, icons: ["cherry", "lemon", "bell", "seven", "bar", "plum", "watermelon", "horseshoe", "clover"] },
-        { floor: 10, pairs: 10, timeLimit: 64, icons: ["cherry", "lemon", "bell", "seven", "bar", "plum", "watermelon", "horseshoe", "clover", "diamond"] }
+        { floor: 1, pairs: 1, timeLimit: 12, icons: ["detective"] },
+        { floor: 2, pairs: 2, timeLimit: 16, icons: ["detective", "chef"] },
+        { floor: 3, pairs: 3, timeLimit: 22, icons: ["detective", "chef", "pirate"] },
+        { floor: 4, pairs: 4, timeLimit: 28, icons: ["detective", "chef", "pirate", "spectacles"] },
+        { floor: 5, pairs: 5, timeLimit: 34, icons: ["detective", "chef", "pirate", "spectacles", "beanie"] },
+        { floor: 6, pairs: 6, timeLimit: 40, icons: ["detective", "chef", "pirate", "spectacles", "beanie", "monocle"] },
+        { floor: 7, pairs: 7, timeLimit: 46, icons: ["detective", "chef", "pirate", "spectacles", "beanie", "monocle", "dj"] },
+        { floor: 8, pairs: 8, timeLimit: 52, icons: ["detective", "chef", "pirate", "spectacles", "beanie", "monocle", "dj", "astronaut"] },
+        { floor: 9, pairs: 9, timeLimit: 58, icons: ["detective", "chef", "pirate", "spectacles", "beanie", "monocle", "dj", "astronaut", "beret"] },
+        { floor: 10, pairs: 10, timeLimit: 64, icons: ["detective", "chef", "pirate", "spectacles", "beanie", "monocle", "dj", "astronaut", "beret", "disguise"] }
     ],
     svgMap: {
-        cherry: `<svg viewBox="0 0 24 24"><circle cx="7" cy="16" r="4" fill="#ef4444"/><circle cx="16" cy="17" r="4" fill="#ef4444"/><path d="M7 12 Q 12 3 15 2 Q 13 8 16 13" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/><path d="M11 5 C 13 2, 18 2, 17 6 C 14 6, 12 5, 11 5 Z" fill="#22c55e"/></svg>`,
-        lemon: `<svg viewBox="0 0 24 24"><path d="M4 12 C 4 6, 10 3, 16 4 C 20 6, 21 12, 19 17 C 16 21, 8 21, 4 12 Z" fill="#facc15" stroke="#eab308" stroke-width="1.5"/></svg>`,
-        bell: `<svg viewBox="0 0 24 24"><path d="M12 2 C 8 2, 6 6, 6 12 L 4 16 L 20 16 L 18 12 C 18 6, 16 2, 12 2 Z" fill="#fbbf24" stroke="#d97706" stroke-width="1"/><circle cx="12" cy="18" r="2.5" fill="#f59e0b"/></svg>`,
-        seven: `<svg viewBox="0 0 24 24"><text x="12" y="19" font-family="'Anton', sans-serif" font-size="20" font-weight="900" fill="#dc2626" text-anchor="middle" stroke="#fef08a" stroke-width="0.8">7</text></svg>`,
-        bar: `<svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="2" fill="#2563eb" stroke="#ffffff" stroke-width="1.5"/><text x="12" y="14.5" font-family="'Anton', sans-serif" font-size="8" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="1">BAR</text></svg>`,
-        plum: `<svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5" fill="#a855f7" stroke="#7e22ce" stroke-width="1"/><path d="M12 5.5 C 12 3, 14 2, 16 2" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/></svg>`,
-        watermelon: `<svg viewBox="0 0 24 24"><path d="M3 8 C 3 17, 21 17, 21 8 Z" fill="#ec4899" stroke="#16a34a" stroke-width="2.5"/><circle cx="9" cy="11" r="1" fill="#000000"/><circle cx="12" cy="13" r="1" fill="#000000"/><circle cx="15" cy="11" r="1" fill="#000000"/></svg>`,
-        horseshoe: `<svg viewBox="0 0 24 24"><path d="M6 4 V 12 C 6 17, 18 17, 18 12 V 4" fill="none" stroke="#e2e8f0" stroke-width="4.5" stroke-linecap="square"/><path d="M6 4 V 12 C 6 17, 18 17, 18 12 V 4" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="1 3"/></svg>`,
-        clover: `<svg viewBox="0 0 24 24"><circle cx="12" cy="7.5" r="3" fill="#22c55e"/><circle cx="7.5" cy="12" r="3" fill="#22c55e"/><circle cx="16.5" cy="12" r="3" fill="#22c55e"/><circle cx="12" cy="16.5" r="3" fill="#22c55e"/><path d="M12 15 L 12 22" stroke="#15803d" stroke-width="2" stroke-linecap="round"/></svg>`,
-        diamond: `<svg viewBox="0 0 24 24"><polygon points="12,2 21,9 12,22 3,9" fill="#06b6d4" stroke="#cff4fc" stroke-width="1.5"/><polygon points="12,2 16,9 12,22" fill="#0891b2"/></svg>`
+        detective: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#3b82f6"/><path d="M5 10 C 6 6, 18 6, 19 10 L 21 11 H 3 Z" fill="#1e293b"/><rect x="7" y="11" width="10" height="2" fill="#ef4444"/><ellipse cx="12" cy="15" rx="3" ry="2" fill="#fde047"/><rect x="8" y="14" width="8" height="2" fill="#020617"/></svg>`,
+        chef: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#ef4444"/><path d="M8 10 C 6 6, 18 6, 16 10 Z" fill="#ffffff"/><rect x="8" y="10" width="8" height="3" fill="#f8fafc"/><path d="M7 16 C 9 18, 15 18, 17 16" fill="none" stroke="#020617" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="14" r="1" fill="#020617"/><circle cx="15" cy="14" r="1" fill="#020617"/></svg>`,
+        pirate: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#10b981"/><path d="M4 8 C 8 2, 16 2, 20 8 H 4 Z" fill="#020617"/><circle cx="9" cy="12" r="2.5" fill="#020617"/><line x1="4" y1="10" x2="14" y2="14" stroke="#020617" stroke-width="1.5"/><circle cx="15" cy="12" r="1" fill="#020617"/><path d="M10 17 Q 12 19 14 17" stroke="#020617" stroke-width="1.5" fill="none"/></svg>`,
+        spectacles: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#f59e0b"/><rect x="5" y="10" width="5" height="4" rx="1" fill="#ef4444"/><rect x="14" y="10" width="5" height="4" rx="1" fill="#3b82f6"/><line x1="10" y1="12" x2="14" y2="12" stroke="#ffffff" stroke-width="2"/><path d="M9 17 Q 12 19 15 17" stroke="#ffffff" stroke-width="1.5" fill="none"/></svg>`,
+        beanie: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#8b5cf6"/><path d="M6 10 C 6 4, 18 4, 18 10 Z" fill="#ec4899"/><rect x="5" y="9" width="14" height="3" rx="1" fill="#f472b6"/><circle cx="12" cy="4" r="1.5" fill="#ffffff"/><circle cx="9" cy="15" r="1" fill="#ffffff"/><circle cx="15" cy="15" r="1" fill="#ffffff"/><path d="M8 18 C 10 21, 14 21, 16 18" fill="#d97706"/></svg>`,
+        monocle: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#f43f5e"/><rect x="7" y="4" width="10" height="6" fill="#0f172a"/><rect x="5" y="10" width="14" height="1" fill="#0f172a"/><circle cx="15" cy="13" r="2.5" fill="none" stroke="#facc15" stroke-width="1.5"/><line x1="17.5" y1="13" x2="19" y2="19" stroke="#facc15" stroke-width="1"/><circle cx="9" cy="13" r="1" fill="#0f172a"/></svg>`,
+        dj: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#06b6d4"/><rect x="3" y="10" width="3" height="6" rx="1" fill="#1e293b"/><rect x="18" y="10" width="3" height="6" rx="1" fill="#1e293b"/><path d="M4 10 C 4 4, 20 4, 20 10" fill="none" stroke="#1e293b" stroke-width="2"/><circle cx="9" cy="13" r="1.5" fill="#ffffff"/><circle cx="15" cy="13" r="1.5" fill="#ffffff"/><rect x="7" y="12" width="10" height="2" fill="#020617"/></svg>`,
+        astronaut: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#64748b"/><circle cx="12" cy="12" r="6" fill="#020617" stroke="#e2e8f0" stroke-width="1.5"/><path d="M8 10 C 10 8, 14 8, 16 10 C 14 12, 10 12, 8 10 Z" fill="#fbbf24" opacity="0.8"/></svg>`,
+        beret: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#14b8a6"/><path d="M4 10 C 4 6, 20 6, 20 10 Z" fill="#dc2626"/><circle cx="12" cy="5" r="1" fill="#dc2626"/><circle cx="9" cy="14" r="1" fill="#0f172a"/><circle cx="15" cy="14" r="1" fill="#0f172a"/><path d="M9 17 Q 12 18 15 17" stroke="#0f172a" stroke-width="1.5" fill="none"/></svg>`,
+        disguise: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#a855f7"/><circle cx="8" cy="10" r="2.5" fill="#0f172a"/><circle cx="16" cy="10" r="2.5" fill="#0f172a"/><line x1="10.5" y1="10" x2="13.5" y2="10" stroke="#0f172a" stroke-width="2"/><ellipse cx="12" cy="14" rx="2.5" ry="2" fill="#f87171"/><path d="M6 16 Q 12 21 18 16" fill="#0f172a"/></svg>`
     }
 };
