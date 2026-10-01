@@ -1,6 +1,6 @@
 // ==========================================================================
 // 11th Floor Parity — Daily Dataset & Curated Vector Pairs
-// Theme: Classic Fruit Machine / Pub Casino
+// Theme: Classic Fruit Machine (10 Sequential Floors)
 // ==========================================================================
 
 window.PARITY_DAILY_SET = {
@@ -12,11 +12,10 @@ window.PARITY_DAILY_SET = {
         { floor: 4, pairs: 4, timeLimit: 28, icons: ["cherry", "lemon", "bell", "seven"] },
         { floor: 5, pairs: 5, timeLimit: 34, icons: ["cherry", "lemon", "bell", "seven", "bar"] },
         { floor: 6, pairs: 6, timeLimit: 40, icons: ["cherry", "lemon", "bell", "seven", "bar", "plum"] },
-        { floor: 7, pairs: 6, timeLimit: 38, icons: ["cherry", "lemon", "bell", "seven", "bar", "plum"] },
-        { floor: 8, pairs: 7, timeLimit: 46, icons: ["cherry", "lemon", "bell", "seven", "bar", "plum", "watermelon"] },
-        { floor: 9, pairs: 8, timeLimit: 54, icons: ["cherry", "lemon", "bell", "seven", "bar", "plum", "watermelon", "horseshoe"] },
-        { floor: 10, pairs: 9, timeLimit: 62, icons: ["cherry", "lemon", "bell", "seven", "bar", "plum", "watermelon", "horseshoe", "clover"] },
-        { floor: 11, pairs: 10, timeLimit: 70, icons: ["cherry", "lemon", "bell", "seven", "bar", "plum", "watermelon", "horseshoe", "clover", "diamond"] }
+        { floor: 7, pairs: 7, timeLimit: 46, icons: ["cherry", "lemon", "bell", "seven", "bar", "plum", "watermelon"] },
+        { floor: 8, pairs: 8, timeLimit: 52, icons: ["cherry", "lemon", "bell", "seven", "bar", "plum", "watermelon", "horseshoe"] },
+        { floor: 9, pairs: 9, timeLimit: 58, icons: ["cherry", "lemon", "bell", "seven", "bar", "plum", "watermelon", "horseshoe", "clover"] },
+        { floor: 10, pairs: 10, timeLimit: 64, icons: ["cherry", "lemon", "bell", "seven", "bar", "plum", "watermelon", "horseshoe", "clover", "diamond"] }
     ],
     svgMap: {
         cherry: `<svg viewBox="0 0 24 24"><circle cx="7" cy="16" r="4" fill="#ef4444"/><circle cx="16" cy="17" r="4" fill="#ef4444"/><path d="M7 12 Q 12 3 15 2 Q 13 8 16 13" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/><path d="M11 5 C 13 2, 18 2, 17 6 C 14 6, 12 5, 11 5 Z" fill="#22c55e"/></svg>`,
