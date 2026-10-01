@@ -1,0 +1,142 @@
+{
+  "setId": "09",
+  "title": "Think You Know Ball? - Set 09",
+  "questions": [
+    {
+      "floor": 1,
+      "type": "multiple_choice",
+      "question": "Which manager holds the Premier League record for reaching 100 victories in the fewest matches, achieving the milestone in just 134 games?",
+      "options": [
+        "Pep Guardiola",
+        "José Mourinho",
+        "Jürgen Klopp",
+        "Alex Ferguson"
+      ],
+      "answer": "Pep Guardiola",
+      "explanation": "Pep Guardiola reached 100 Premier League wins in 134 matches with Manchester City, surpassing José Mourinho's previous benchmark of 142 games.",
+      "anchorClues": "Pep Guardiola / 100 Premier League wins record"
+    },
+    {
+      "floor": 2,
+      "type": "boolean",
+      "question": "True or False: Blackburn Rovers remain the only Premier League champions to have ever been relegated from the competition.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "False",
+      "explanation": "Blackburn Rovers were the first former champions to be relegated in 1999, but Leicester City became the second Premier League title winner to suffer relegation at the end of the 2022–23 season.",
+      "anchorClues": "Premier League champions relegated / Blackburn Rovers and Leicester City"
+    },
+    {
+      "floor": 3,
+      "type": "multiple_choice",
+      "question": "Which English manager guided Portsmouth to FA Cup victory in 2008 and previously led West Ham United to a 5th-place Premier League finish in 1998–99?",
+      "options": [
+        "Harry Redknapp",
+        "Sam Allardyce",
+        "Alan Curbishley",
+        "Roy Hodgson"
+      ],
+      "answer": "Harry Redknapp",
+      "explanation": "Harry Redknapp established West Ham in the top six in 1999 before guiding Portsmouth to FA Cup glory a decade later.",
+      "anchorClues": "Harry Redknapp / West Ham United and Portsmouth"
+    },
+    {
+      "floor": 4,
+      "type": "multiple_choice",
+      "question": "Which stadium hosted the highest-scoring match in Premier League history, a 7–4 victory for Reading against Portsmouth in September 2007?",
+      "options": [
+        "Madejski Stadium",
+        "Fratton Park",
+        "The Hawthorns",
+        "Vicarage Road"
+      ],
+      "answer": "Madejski Stadium",
+      "explanation": "Reading defeated Portsmouth 7–4 at the Madejski Stadium, setting the Premier League record for the most goals scored in a single match with 11 total goals.",
+      "anchorClues": "Madejski Stadium / Reading 7–4 Portsmouth 2007"
+    },
+    {
+      "floor": 5,
+      "type": "boolean",
+      "question": "True or False: Frank Lampard is one of only four players in Premier League history to score more than 200 goals in the competition.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "False",
+      "explanation": "Frank Lampard scored 177 Premier League goals (4th all-time). The only three players to pass the 200-goal mark in Premier League history are Alan Shearer (260), Harry Kane (213), and Wayne Rooney (208).",
+      "anchorClues": "Frank Lampard Premier League goal tally / 200 goals club"
+    },
+    {
+      "floor": 6,
+      "type": "multiple_choice",
+      "question": "What was the final scoreline when Newcastle United famously defeated reigning champions Manchester United at St James' Park in October 1996, capped by Philippe Albert's iconic lob?",
+      "options": [
+        "5–0",
+        "4–1",
+        "3–0",
+        "4–3"
+      ],
+      "answer": "5–0",
+      "explanation": "Newcastle United produced a memorable performance to beat Manchester United 5–0, with Peacock, Ginola, Ferdinand, Shearer, and Albert all scoring.",
+      "anchorClues": "Newcastle United 5–0 Manchester United 1996"
+    },
+    {
+      "floor": 7,
+      "type": "multiple_choice",
+      "question": "Which squad number did French winger Robert Pirès wear throughout his silver-laden six seasons at Arsenal, establishing it as one of the club's most iconic modern shirts?",
+      "options": [
+        "7",
+        "10",
+        "11",
+        "8"
+      ],
+      "answer": "7",
+      "explanation": "Robert Pirès wore the number 7 shirt for Arsenal between 2000 and 2006, scoring 62 Premier League goals and winning two titles under Arsène Wenger.",
+      "anchorClues": "Robert Pirès / Arsenal squad numbers"
+    },
+    {
+      "floor": 8,
+      "type": "multiple_choice",
+      "question": "Which club set the Premier League record for the most consecutive wins in a single campaign, winning 18 straight matches between August and December 2017?",
+      "options": [
+        "Manchester City",
+        "Liverpool",
+        "Chelsea",
+        "Arsenal"
+      ],
+      "answer": "Manchester City",
+      "explanation": "Pep Guardiola's Manchester City won 18 consecutive league matches during their 100-point 'Centurions' campaign in 2017–18 (a record later matched by Liverpool in 2019–20).",
+      "anchorClues": "Manchester City / 18 consecutive win record"
+    },
+    {
+      "floor": 9,
+      "type": "multiple_choice",
+      "question": "Which Dutch striker scored 24 Premier League goals in his debut season for Manchester United in 2001–02, ending his Old Trafford career with 95 top-flight goals in 150 appearances?",
+      "options": [
+        "Ruud van Nistelrooy",
+        "Robin van Persie",
+        "Jimmy Floyd Hasselbaink",
+        "Roy Makaay"
+      ],
+      "answer": "Ruud van Nistelrooy",
+      "explanation": "Ruud van Nistelrooy enjoyed a prolific spell at Manchester United between 2001 and 2006, winning the Premier League Golden Boot in 2002–03.",
+      "anchorClues": "Ruud van Nistelrooy / Manchester United goalscorer"
+    },
+    {
+      "floor": 10,
+      "type": "multiple_choice",
+      "question": "Which French midfielder became the first outfield player in Premier League history to win back-to-back Premier League titles with two different clubs, accomplishing the feat in 2015–16 and 2016–17?",
+      "options": [
+        "N'Golo Kanté",
+        "Claude Makélélé",
+        "Patrick Vieira",
+        "Emmanuel Petit"
+      ],
+      "answer": "N'Golo Kanté",
+      "explanation": "N'Golo Kanté anchored Leicester City's title-winning midfield in 2015–16 before joining Chelsea and winning the title again the following season.",
+      "anchorClues": "N'Golo Kanté / Back-to-back titles Leicester and Chelsea"
+    }
+  ]
+}
