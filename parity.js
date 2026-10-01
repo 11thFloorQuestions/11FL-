@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let matchedPairsCount = 0;
     let isProcessing = false;
     let soundEnabled = true;
+    let activeDataSet = null;
     let activeGameData = [];
     let timerInterval = null;
     let timeRemaining = 0;
@@ -38,7 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
     init();
 
     function init() {
-        activeGameData = window.PARITY_DAILY_SET ? window.PARITY_DAILY_SET.floors : [];
+        activeDataSet = window.PARITY_DAILY_SET || null;
+        activeGameData = activeDataSet ? activeDataSet.floors : [];
         bindEvents();
         updateStatsDisplay();
     }
@@ -61,9 +63,66 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    async function fetchFileWithFallbacks(filename) {
+        const candidatePaths = [
+            `./${filename}`,
+            `./archives/${filename}`,
+            `./assets/data/floors/${filename}`,
+            `./data/${filename}`,
+            filename
+        ];
+
+        for (const path of candidatePaths) {
+            try {
+                const res = await fetch(path);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data) return data;
+                }
+            } catch (e) {}
+        }
+        return null;
+    }
+
+    async function populateVault() {
+        if (!vaultList) return;
+        vaultList.innerHTML = '';
+        let archiveId = 1;
+
+        while (archiveId <= 50) {
+            const paddedId = String(archiveId).padStart(2, '0');
+            const data = await fetchFileWithFallbacks(`sandbox-parity.${paddedId}.json`);
+
+            if (data) {
+                const btn = document.createElement('button');
+                btn.className = 'vault-item-btn';
+                btn.innerHTML = `<strong>Archive ${paddedId}</strong>`;
+                btn.onclick = () => {
+                    loadVaultSet(data);
+                };
+                vaultList.appendChild(btn);
+            }
+            archiveId++;
+        }
+
+        if (vaultList.children.length === 0) {
+            vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">No archives found.</div>';
+        }
+    }
+
+    function loadVaultSet(data) {
+        if (data && data.floors) {
+            activeDataSet = data;
+            activeGameData = data.floors;
+            statsModal.classList.add('hidden');
+            startGame();
+        }
+    }
+
     function startGame() {
         if (!activeGameData || activeGameData.length === 0) {
-            activeGameData = window.PARITY_DAILY_SET ? window.PARITY_DAILY_SET.floors : [];
+            activeDataSet = window.PARITY_DAILY_SET || null;
+            activeGameData = activeDataSet ? activeDataSet.floors : [];
         }
 
         startScreen.style.display = 'none';
@@ -108,13 +167,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const icons = floorData.icons.slice(0, floorData.pairs);
         const deck = [...icons, ...icons];
 
-        // Shuffle deck
         for (let i = deck.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [deck[i], deck[j]] = [deck[j], deck[i]];
         }
 
-        // Configure optimal column counts for screen fitting
         const count = deck.length;
         if (count <= 4) {
             parityGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
@@ -130,17 +187,19 @@ document.addEventListener('DOMContentLoaded', () => {
             parityGrid.style.gap = '4px';
         }
 
+        const svgMap = activeDataSet ? activeDataSet.svgMap : {};
+
         deck.forEach((iconKey, index) => {
             const tile = document.createElement('div');
             tile.className = 'parity-tile face-down';
-            
+
             if (isFirstFloor && index === 0) {
                 tile.classList.add('pulse-hint');
             }
 
             tile.dataset.icon = iconKey;
             tile.dataset.index = index;
-            tile.innerHTML = window.PARITY_DAILY_SET.svgMap[iconKey] || '';
+            tile.innerHTML = svgMap[iconKey] || '';
             tile.addEventListener('click', () => handleTileClick(tile));
             parityGrid.appendChild(tile);
         });
@@ -166,7 +225,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const pct = Math.max(0, (timeRemaining / totalFloorTime) * 100);
         timerBarFill.style.width = `${pct}%`;
 
-        // Dynamic colour shift based on remaining time percentage
         if (pct <= 20) {
             timerBarFill.style.backgroundColor = 'var(--state-error)';
             timerBarFill.style.boxShadow = '0 0 10px var(--state-error-glow)';
@@ -317,10 +375,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const bestOrd = ordinals[stats.bestFloor - 1] || `${stats.bestFloor}th`;
         document.getElementById('stat-bestfloor').textContent = `${bestOrd} Floor`;
-    }
-
-    async function populateVault() {
-        if (!vaultList) return;
-        vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">Archive Vault Coming Soon</div>';
     }
 });
