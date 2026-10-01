@@ -1,0 +1,142 @@
+{
+  "setId": "17",
+  "title": "Think You Know Ball? - Set 17",
+  "questions": [
+    {
+      "floor": 1,
+      "type": "multiple_choice",
+      "question": "Which manager led Leeds United to the top-flight league title in 1991–92, remaining the last English manager to win the top division in English football?",
+      "options": [
+        "Howard Wilkinson",
+        "George Graham",
+        "Wilf McGuinness",
+        "Ron Atkinson"
+      ],
+      "answer": "Howard Wilkinson",
+      "explanation": "Howard Wilkinson guided Leeds United to the Division One title in 1991–92, the final season before the launch of the Premier League, and remains the last English manager to win England's top flight.",
+      "anchorClues": "Howard Wilkinson / Leeds United last English manager title"
+    },
+    {
+      "floor": 2,
+      "type": "boolean",
+      "question": "True or False: Sam Allardyce was never relegated from the Premier League as a manager until taking charge of West Bromwich Albion in the 2020–21 season.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "Known as a relegation escape specialist across spells with Bolton, Blackburn, West Ham, Sunderland, and Everton, Allardyce suffered his first Premier League relegation with West Bromwich Albion in 2021.",
+      "anchorClues": "Sam Allardyce Premier League relegation record"
+    },
+    {
+      "floor": 3,
+      "type": "multiple_choice",
+      "question": "What was the final scoreline when Arsenal defeated Middlesbrough at Highbury in August 2004, coming from behind to match Nottingham Forest's record 42-game unbeaten league run?",
+      "options": [
+        "5–3",
+        "4–2",
+        "3–1",
+        "5–2"
+      ],
+      "answer": "5–3",
+      "explanation": "In a thrilling contest at Highbury, Arsenal trailed 3–1 before roaring back to win 5–3, equalling Nottingham Forest's historic 42-game unbeaten streak.",
+      "anchorClues": "Arsenal 5–3 Middlesbrough 2004 / 42 unbeaten record"
+    },
+    {
+      "floor": 4,
+      "type": "multiple_choice",
+      "question": "Which stadium served as Bolton Wanderers' home ground from 1997 through their iconic Premier League decade under Sam Allardyce, replacing their historic home at Burnden Park?",
+      "options": [
+        "Reebok Stadium",
+        "Boundary Park",
+        "The Hawthorns",
+        "Ewood Park"
+      ],
+      "answer": "Reebok Stadium",
+      "explanation": "Bolton Wanderers moved to the 28,000-capacity Reebok Stadium in August 1997, hosting European football and memorable victories over top-four sides.",
+      "anchorClues": "Reebok Stadium / Bolton Wanderers home ground"
+    },
+    {
+      "floor": 5,
+      "type": "boolean",
+      "question": "True or False: James Vaughan remains the youngest goalscorer in Premier League history, finding the net at the age of 16 years and 271 days.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "James Vaughan scored on his debut for Everton against Crystal Palace in April 2005, breaking Wayne Rooney's record to become the youngest goalscorer in Premier League history.",
+      "anchorClues": "James Vaughan / Youngest Premier League goalscorer"
+    },
+    {
+      "floor": 6,
+      "type": "multiple_choice",
+      "question": "Which club produced a major shock by defeating runaway league leaders Liverpool 3–0 at Vicarage Road in February 2020, ending Liverpool's 44-game unbeaten streak?",
+      "options": [
+        "Watford",
+        "Bournemouth",
+        "Norwich City",
+        "Crystal Palace"
+      ],
+      "answer": "Watford",
+      "explanation": "Nigel Pearson's Watford ended Liverpool's 18-match winning run and 44-match unbeaten streak with a stunning 3–0 victory, thanks to two goals from Ismaïla Sarr and one from Troy Deeney.",
+      "anchorClues": "Watford 3–0 Liverpool 2020 / Unbeaten streak ended"
+    },
+    {
+      "floor": 7,
+      "type": "multiple_choice",
+      "question": "Which squad number was worn by English winger Steve McManaman during his nine senior seasons at Liverpool, making over 270 Premier League appearances before moving to Real Madrid in 1999?",
+      "options": [
+        "7",
+        "10",
+        "11",
+        "17"
+      ],
+      "answer": "7",
+      "explanation": "Steve McManaman wore the iconic number 7 shirt at Anfield throughout the 1990s, becoming one of the most creative wingers of the early Premier League era.",
+      "anchorClues": "Steve McManaman shirt number 7 / Liverpool"
+    },
+    {
+      "floor": 8,
+      "type": "multiple_choice",
+      "question": "Which Belgian defender scored a memorable 35-yard strike against Leicester City in May 2019 to secure a crucial 1–0 win and put Manchester City on the brink of the Premier League title?",
+      "options": [
+        "Vincent Kompany",
+        "Jan Vertonghen",
+        "Toby Alderweireld",
+        "Thomas Vermaelen"
+      ],
+      "answer": "Vincent Kompany",
+      "explanation": "Manchester City captain Vincent Kompany unleashed an extraordinary long-range shot into the top corner at the Etihad Stadium to score the winning goal in his penultimate appearance for the club.",
+      "anchorClues": "Vincent Kompany goal vs Leicester City 2019"
+    },
+    {
+      "floor": 9,
+      "type": "multiple_choice",
+      "question": "Which Spanish manager led Wigan Athletic to FA Cup glory in 2013 and kept them in the Premier League for four consecutive seasons before taking charge of Everton?",
+      "options": [
+        "Roberto Martínez",
+        "Unai Emery",
+        "Javi Gracia",
+        "Aitor Karanka"
+      ],
+      "answer": "Roberto Martínez",
+      "explanation": "Roberto Martínez established a reputation for attractive passing football at Wigan Athletic, guiding them to dramatic top-flight survivals before winning the FA Cup in 2013.",
+      "anchorClues": "Roberto Martínez / Wigan Athletic manager"
+    },
+    {
+      "floor": 10,
+      "type": "multiple_choice",
+      "question": "Which legendary striker holds the Premier League record for the most hat-tricks scored in a single season, netting five hat-tricks during the 1995–96 campaign?",
+      "options": [
+        "Alan Shearer",
+        "Thierry Henry",
+        "Ruud van Nistelrooy",
+        "Andrew Cole"
+      ],
+      "answer": "Alan Shearer",
+      "explanation": "Alan Shearer scored five hat-tricks for Blackburn Rovers during his 31-goal 1995–96 season, setting a single-season hat-trick record that remains unbroken.",
+      "anchorClues": "Alan Shearer five hat-tricks single season record 1995–96"
+    }
+  ]
+}
