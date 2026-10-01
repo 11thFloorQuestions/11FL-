@@ -1,0 +1,142 @@
+{
+  "setId": "20",
+  "title": "Think You Know Ball? - Set 20",
+  "questions": [
+    {
+      "floor": 1,
+      "type": "multiple_choice",
+      "question": "Which manager led Blackburn Rovers to their historic Premier League title triumph in the 1994–95 season, ending Manchester United's early dominance?",
+      "options": [
+        "Kenny Dalglish",
+        "Ray Harford",
+        "Roy Hodgson",
+        "Howard Kendall"
+      ],
+      "answer": "Kenny Dalglish",
+      "explanation": "Kenny Dalglish managed Blackburn Rovers to the top-flight crown in 1994–95, becoming only the second manager to win the English top-flight title with two different clubs.",
+      "anchorClues": "Kenny Dalglish / Blackburn Rovers 1994–95 title"
+    },
+    {
+      "floor": 2,
+      "type": "boolean",
+      "question": "True or False: Aston Villa played in every single Premier League season from its inception in 1992 until suffering their first relegation in 2016.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "Aston Villa were founder members of the Premier League in 1992–93 and maintained an unbroken 24-year top-flight tenure until finishing bottom at the end of the 2015–16 campaign.",
+      "anchorClues": "Aston Villa continuous Premier League run 1992–2016"
+    },
+    {
+      "floor": 3,
+      "type": "multiple_choice",
+      "question": "Which historic ground served as Stoke City's home stadium for 119 years before the club relocated to the Britannia Stadium in 1997?",
+      "options": [
+        "Victoria Ground",
+        "Burnden Park",
+        "Ayresome Park",
+        "Fellows Park"
+      ],
+      "answer": "Victoria Ground",
+      "explanation": "Stoke City played at the Victoria Ground from 1878 until May 1997, making it the oldest ground in the Football League at the time of its closure.",
+      "anchorClues": "Victoria Ground / Stoke City home stadium"
+    },
+    {
+      "floor": 4,
+      "type": "multiple_choice",
+      "question": "Which club defeated Manchester United at Old Trafford on the final day of the 2006–07 season thanks to a Carlos Tevez goal, securing their Premier League survival at the expense of Sheffield United?",
+      "options": [
+        "West Ham United",
+        "Wigan Athletic",
+        "Fulham",
+        "Charlton Athletic"
+      ],
+      "answer": "West Ham United",
+      "explanation": "Carlos Tevez scored the only goal in a 1–0 win for Alan Curbishley's West Ham United at Old Trafford, capping a run of seven wins from their final nine matches to escape relegation.",
+      "anchorClues": "West Ham United 1–0 Manchester United 2007 / Carlos Tevez"
+    },
+    {
+      "floor": 5,
+      "type": "boolean",
+      "question": "True or False: Chelsea set the Premier League record for the most home goals scored in a single 19-match campaign, netting 68 goals at Stamford Bridge during the 2009–10 title-winning season.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "Under Carlo Ancelotti in 2009–10, Chelsea scored a staggering 68 goals in 19 league fixtures at Stamford Bridge, including 7–0, 7–1, and 8–0 victories.",
+      "anchorClues": "Chelsea 68 home goals record 2009–10 season"
+    },
+    {
+      "floor": 6,
+      "type": "multiple_choice",
+      "question": "Which Spanish winger scored 18 Premier League goals for Liverpool between 2004 and 2007, forming a popular wide attacking partnership under Rafa Benítez?",
+      "options": [
+        "Luis García",
+        "Albert Riera",
+        "Fernando Morientes",
+        "Xisco"
+      ],
+      "answer": "Luis García",
+      "explanation": "Luis García enjoyed three memorable seasons at Anfield under Rafa Benítez, contributing key Premier League goals alongside his famous European performances.",
+      "anchorClues": "Luis García / Liverpool 2004–2007"
+    },
+    {
+      "floor": 7,
+      "type": "multiple_choice",
+      "question": "Which squad number did Chilean forward Alexis Sánchez wear during his standout 2016–17 Premier League campaign for Arsenal, in which he netted 24 league goals?",
+      "options": [
+        "7",
+        "17",
+        "9",
+        "11"
+      ],
+      "answer": "7",
+      "explanation": "Alexis Sánchez switched to the iconic number 7 shirt at Arsenal prior to the 2016–17 season, delivering a sensational 24-goal campaign for the Gunners.",
+      "anchorClues": "Alexis Sánchez squad number 7 / Arsenal"
+    },
+    {
+      "floor": 8,
+      "type": "multiple_choice",
+      "question": "Which French manager took charge of Liverpool in 1998—initially as joint-manager alongside Roy Evans—and led the club to a historic cup treble in the 2000–01 season?",
+      "options": [
+        "Gérard Houllier",
+        "Alain Perrin",
+        "Jean Tigana",
+        "Jacques Santini"
+      ],
+      "answer": "Gérard Houllier",
+      "explanation": "Gérard Houllier spent six seasons as Liverpool manager between 1998 and 2004, guiding the Reds to 2nd and 3rd-place Premier League finishes alongside five major trophies.",
+      "anchorClues": "Gérard Houllier / Liverpool manager 1998–2004"
+    },
+    {
+      "floor": 9,
+      "type": "multiple_choice",
+      "question": "Which club established the Premier League record for the most consecutive away wins in the competition's history, winning 14 straight away fixtures between February and October 2021?",
+      "options": [
+        "Manchester City",
+        "Liverpool",
+        "Chelsea",
+        "Arsenal"
+      ],
+      "answer": "Manchester City",
+      "explanation": "Pep Guardiola's Manchester City won 14 consecutive Premier League away matches in 2021, shattering the previous record of 11 away wins jointly held by Chelsea and Manchester City.",
+      "anchorClues": "Manchester City 14 consecutive away wins record 2021"
+    },
+    {
+      "floor": 10,
+      "type": "multiple_choice",
+      "question": "Which striker is the only player in Premier League history to score a hat-trick composed entirely of headers in a single match, accomplishing the feat for Everton against West Ham United in November 1997?",
+      "options": [
+        "Duncan Ferguson",
+        "Les Ferdinand",
+        "Niall Quinn",
+        "Dion Dublin"
+      ],
+      "answer": "Duncan Ferguson",
+      "explanation": "Duncan Ferguson scored three headed goals in Everton's 3–1 victory over West Ham United at Goodison Park in November 1997, a unique accomplishment in Premier League history.",
+      "anchorClues": "Duncan Ferguson header hat-trick / Everton vs West Ham 1997"
+    }
+  ]
+}
