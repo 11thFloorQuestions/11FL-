@@ -20,10 +20,12 @@
             --genre-pink-glow: rgba(255, 153, 153, 0.35);
             --state-active: #facc15;
             --state-active-glow: rgba(250, 204, 21, 0.3);
-            --state-success: #22c55e;
-            --state-success-glow: rgba(34, 197, 94, 0.3);
+            --state-warning: #f97316;
+            --state-warning-glow: rgba(249, 115, 22, 0.35);
             --state-error: #ef4444;
             --state-error-glow: rgba(239, 68, 68, 0.3);
+            --state-success: #22c55e;
+            --state-success-glow: rgba(34, 197, 94, 0.3);
         }
 
         * {
@@ -313,7 +315,7 @@
             flex-shrink: 0;
         }
 
-        /* Draining Timer Bar */
+        /* Dynamic Timer Bar */
         .timer-bar-container {
             width: 100%;
             height: 5px;
@@ -329,7 +331,7 @@
             width: 100%;
             background-color: var(--state-active);
             box-shadow: 0 0 8px var(--state-active-glow);
-            transition: width 0.1s linear;
+            transition: width 0.1s linear, background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         /* Parity Card Grid & High-Contrast Tile Styling */
