@@ -12,8 +12,8 @@
         :root {
             --bg-deep: #000000;
             --surface: #0a0a0a;
-            --surface-border: #222222;
-            --surface-border-light: #333333;
+            --surface-border: #262626;
+            --surface-border-light: #3a3a3a;
             --text-primary: #ffffff;
             --text-muted: #888888;
             --genre-pink: #ff9999;
@@ -78,7 +78,7 @@
             color: var(--genre-pink);
         }
 
-        /* Landing Logo Box (with 11FL?) */
+        /* Landing Logo Box */
         .game-logo-box {
             display: flex;
             flex-direction: column;
@@ -117,7 +117,7 @@
             text-transform: uppercase;
         }
 
-        /* Gameplay Compact Header Box (No 11FL?) */
+        /* Gameplay Compact Header Box */
         .gameplay-header-box {
             display: flex;
             flex-direction: column;
@@ -148,9 +148,10 @@
             width: 100%;
             max-width: 600px;
             background: var(--surface);
-            border: 1px solid var(--surface-border);
+            border: 1px solid var(--surface-border-light);
             border-radius: 8px;
             margin-top: 4px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
         }
 
         .landing-shaft-graphic {
@@ -158,16 +159,16 @@
             flex-direction: column;
             width: 52px;
             height: 140px;
-            border: 1px solid var(--surface-border);
+            border: 1px solid var(--surface-border-light);
             border-radius: 8px;
             padding: 6px;
             gap: 3px;
-            background-color: var(--surface);
+            background-color: #111111;
         }
 
         .landing-shaft-box {
             flex: 1;
-            background-color: #111111;
+            background-color: #080808;
             border: 1px solid var(--surface-border);
             border-radius: 2px;
         }
@@ -186,21 +187,21 @@
         .landing-shaft-graphic .landing-shaft-box:nth-child(1)  { animation: sweepTopGreen 1.6s ease-in-out forwards; animation-delay: 1.05s; }
 
         @keyframes sweepMiddle {
-            0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+            0% { background-color: #080808; border-color: var(--surface-border); box-shadow: none; }
             30% { background-color: var(--genre-pink); border-color: var(--genre-pink); box-shadow: 0 0 10px var(--genre-pink-glow); }
-            60%, 100% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+            60%, 100% { background-color: #080808; border-color: var(--surface-border); box-shadow: none; }
         }
 
         @keyframes sweepTopGreen {
-            0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+            0% { background-color: #080808; border-color: var(--surface-border); box-shadow: none; }
             20%, 70% { background-color: var(--state-success); border-color: var(--state-success); box-shadow: 0 0 16px var(--state-success-glow); }
-            100% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+            100% { background-color: #080808; border-color: var(--surface-border); box-shadow: none; }
         }
 
         @keyframes sweepBottomSettle {
-            0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+            0% { background-color: #080808; border-color: var(--surface-border); box-shadow: none; }
             15% { background-color: var(--genre-pink); border-color: var(--genre-pink); box-shadow: 0 0 10px var(--genre-pink-glow); }
-            30%, 80% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
+            30%, 80% { background-color: #080808; border-color: var(--surface-border); box-shadow: none; }
             95%, 100% { background-color: var(--genre-pink); border-color: var(--genre-pink); box-shadow: 0 0 8px var(--genre-pink-glow); }
         }
 
@@ -248,7 +249,7 @@
             gap: 2px;
             width: 44px;
             background: var(--surface);
-            border: 1px solid var(--surface-border);
+            border: 1px solid var(--surface-border-light);
             border-radius: 8px;
             padding: 4px;
             justify-content: space-between;
@@ -270,7 +271,7 @@
         .floor-info-box {
             flex-grow: 1;
             background: var(--surface);
-            border: 1px solid var(--surface-border);
+            border: 1px solid var(--surface-border-light);
             border-radius: 8px;
             padding: 8px 12px;
             display: flex;
@@ -280,13 +281,13 @@
 
         .floor-left-group { display: flex; flex-direction: column; gap: 2px; }
         .current-floor-display { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 800; letter-spacing: 1px; }
-        .floor-rule-text { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.5px; text-transform: uppercase; }
+        .floor-rule-text { font-family: 'Montserrat', sans-serif; font-size: 0.62rem; font-weight: 700; color: var(--genre-pink); letter-spacing: 0.8px; text-transform: uppercase; }
 
         .play-card {
             width: 100%;
             max-width: 600px;
             background: var(--surface);
-            border: 1px solid var(--surface-border);
+            border: 1px solid var(--surface-border-light);
             border-radius: 8px;
             padding: 10px 8px;
             display: flex;
@@ -298,6 +299,7 @@
             margin-bottom: 4px;
             overflow: hidden;
             min-height: 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
         #message-box {
@@ -330,10 +332,10 @@
             transition: width 0.1s linear;
         }
 
-        /* Fully Centered Dynamic Grid for Parity Cards */
+        /* Parity Card Grid & High-Contrast Tile Styling */
         .parity-grid {
             display: grid;
-            gap: 6px;
+            gap: 8px;
             width: 100%;
             max-width: 380px;
             flex: 1;
@@ -350,9 +352,9 @@
             aspect-ratio: 1;
             width: 100%;
             height: 100%;
-            background: #111111;
+            background: #161616;
             border: 1px solid var(--surface-border-light);
-            border-radius: 6px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -361,29 +363,36 @@
             perspective: 1000px;
             padding: 4px;
             max-height: 80px;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
         }
 
         .parity-tile:hover {
             border-color: var(--genre-pink);
+            background: #1f1f1f;
             transform: translateY(-2px);
+            box-shadow: 0 0 12px var(--genre-pink-glow);
         }
 
         .parity-tile.selected {
             border-color: var(--state-active);
-            box-shadow: 0 0 10px var(--state-active-glow);
+            background: #222215;
+            box-shadow: 0 0 12px var(--state-active-glow);
             transform: scale(1.03);
         }
 
         .parity-tile.matched {
             border-color: var(--state-success);
-            box-shadow: 0 0 10px var(--state-success-glow);
-            opacity: 0.85;
+            background: #122417;
+            box-shadow: 0 0 12px var(--state-success-glow);
+            opacity: 0.9;
             cursor: default;
         }
 
         .parity-tile.error {
             border-color: var(--state-error);
-            box-shadow: 0 0 10px var(--state-error-glow);
+            background: #281414;
+            box-shadow: 0 0 12px var(--state-error-glow);
             animation: shake 0.3s ease;
         }
 
@@ -396,13 +405,38 @@
             transition: transform 0.2s ease;
         }
 
+        /* Sleek Card Back Emblem for Face-Down State */
+        .parity-tile.face-down {
+            background: #141414;
+            border: 1px solid #383838;
+        }
+
         .parity-tile.face-down svg {
             display: none;
         }
 
-        .parity-tile.face-down {
-            background: #0d0d0d;
-            border-color: var(--surface-border);
+        .parity-tile.face-down::after {
+            content: "?";
+            font-family: 'Anton', sans-serif;
+            font-size: 1.3rem;
+            color: var(--genre-pink);
+            opacity: 0.35;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .parity-tile.face-down:hover::after {
+            opacity: 0.85;
+            transform: scale(1.1);
+        }
+
+        /* Starter Prompt Pulse Cue for Floor 1 */
+        .parity-tile.pulse-hint {
+            animation: starterPulse 1.4s infinite ease-in-out;
+        }
+
+        @keyframes starterPulse {
+            0%, 100% { border-color: #383838; box-shadow: none; }
+            50% { border-color: var(--genre-pink); box-shadow: 0 0 14px var(--genre-pink-glow); }
         }
 
         @keyframes shake {
@@ -424,7 +458,7 @@
 
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.92); display: flex; align-items: center; justify-content: center; z-index: 100; }
         .modal-overlay.hidden { display: none !important; }
-        .modal-card { background-color: var(--surface); border: 1px solid var(--surface-border); padding: 24px 20px; border-radius: 14px; width: 90%; max-width: 360px; text-align: center; }
+        .modal-card { background-color: var(--surface); border: 1px solid var(--surface-border-light); padding: 24px 20px; border-radius: 14px; width: 90%; max-width: 360px; text-align: center; }
         .modal-large { max-width: 440px; }
         .stats-summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0 12px 0; background: var(--bg-deep); border: 1px solid var(--surface-border); border-radius: 10px; padding: 12px; }
         .stat-box { display: flex; flex-direction: column; align-items: center; }
@@ -433,7 +467,7 @@
         .vault-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(95px, 1fr)); gap: 8px; max-height: 200px; overflow-y: auto; margin: 12px 0; }
         .vault-item-btn { background-color: #111111; border: 1px solid var(--surface-border); color: var(--text-primary); padding: 10px 6px; border-radius: 8px; cursor: pointer; text-align: center; }
         .vault-item-btn:hover { border-color: var(--genre-pink); background-color: #1a1a1a; }
-        .btn-modal { flex-grow: 1; width: 100%; background-color: #111111; border: 1px solid var(--surface-border); color: var(--text-primary); padding: 11px; font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 700; border-radius: 24px; cursor: pointer; margin-top: 8px; }
+        .btn-modal { flex-grow: 1; width: 100%; background-color: #111111; border: 1px solid var(--surface-border-light); color: var(--text-primary); padding: 11px; font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 700; border-radius: 24px; cursor: pointer; margin-top: 8px; }
     </style>
 </head>
 <body class="game-parity">
@@ -445,7 +479,7 @@
             <button class="pill-btn" id="btn-sound">SOUND: ON</button>
         </div>
 
-        <!-- LANDING SCREEN (Full Logo with 11FL?) -->
+        <!-- LANDING SCREEN -->
         <div id="start-screen" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
             <div class="game-logo-box">
                 <h1 class="game-logo-pink">11FL?</h1>
@@ -477,7 +511,7 @@
             </div>
         </div>
 
-        <!-- GAMEPLAY HEADER (Shows only during play — Eleventh Floor PARITY) -->
+        <!-- GAMEPLAY HEADER -->
         <div id="gameplay-header" class="gameplay-header-box" style="display: none;">
             <p class="game-logo-title">Eleventh Floor</p>
             <p class="game-logo-sub">PARITY</p>
@@ -502,7 +536,7 @@
             <div class="floor-info-box">
                 <div class="floor-left-group">
                     <div class="current-floor-display" id="floor-number-val"><span style="color: var(--genre-pink);">1st</span> <span style="color: #ffffff;">Floor</span></div>
-                    <div class="floor-rule-text" id="floor-rule-text">1 Pair • Clear Grid Before Time Expires!</div>
+                    <div class="floor-rule-text" id="floor-rule-text">1 PAIR • TAP ANY TILE TO REVEAL</div>
                 </div>
             </div>
         </div>
