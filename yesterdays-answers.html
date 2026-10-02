@@ -286,7 +286,7 @@
             color: #FCA5A5;
         }
 
-        /* Word Climb Specific Layout */
+        /* Blossom-Style Word Climb Layout */
         .wheel-letters-row {
             display: flex;
             gap: 5px;
@@ -296,8 +296,8 @@
         }
 
         .letter-bubble {
-            width: 24px;
-            height: 24px;
+            width: 26px;
+            height: 26px;
             border-radius: 50%;
             background: #141414;
             border: 1px solid var(--surface-border-light);
@@ -306,8 +306,42 @@
             justify-content: center;
             font-family: 'Inter', sans-serif;
             font-weight: 700;
-            font-size: 0.72rem;
+            font-size: 0.75rem;
             color: #ffffff;
+        }
+
+        .blossom-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 4px;
+            margin: 4px 0;
+            background: #080808;
+            border: 1px solid #1a1a1a;
+            border-radius: 4px;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .blossom-stat-val {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--color-wordclimb);
+        }
+
+        .blossom-stat-lbl {
+            font-size: 0.48rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .word-accordion-container {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            max-height: 220px;
+            overflow-y: auto;
+            padding-right: 4px;
+            scrollbar-width: thin;
         }
 
         .cluster-group-box {
@@ -464,7 +498,7 @@
 
     <script>
         /* ==========================================================================
-           FULL 10-FLOOR DATASETS FOR ALL 6 GAMES
+           FULL DATASETS FOR ALL 6 GAMES
            ========================================================================== */
         const gameDataStore = {
             ball: {
@@ -516,22 +550,18 @@
                 ]
             },
             wordclimb: {
-                title: "11th Floor Word Climb — Master Set 'COMPLAINT'",
+                title: "11th Floor Word Climb — Master Board 'COMPLAINT'",
                 type: "wordclimb",
                 masterWord: "COMPLAINT",
                 wheelLetters: ["C", "O", "M", "P", "L", "A", "I", "N", "T"],
-                floors: [
-                    { floor: 1, targetLen: 5, targetWord: "CLAIM", sampleValid: ["CLAIM", "CAMP", "COMP", "PLAIN", "PLANT"] },
-                    { floor: 2, targetLen: 5, targetWord: "PLANT", sampleValid: ["PLANT", "POINT", "MANIC", "PILOT", "TAMP"] },
-                    { floor: 3, targetLen: 5, targetWord: "PANIC", sampleValid: ["PANIC", "LIMIT", "MINT", "ATOM", "LICO"] },
-                    { floor: 4, targetLen: 6, targetWord: "ACTION", sampleValid: ["ACTION", "COMPACT", "IMPACT", "PATROL"] },
-                    { floor: 5, targetLen: 6, targetWord: "PALM" , sampleValid: ["PALM", "COMPLAIN", "DOMAIN", "OPTIMA"] },
-                    { floor: 6, targetLen: 6, targetWord: "PORTAL", sampleValid: ["PORTAL", "MANIAC", "LAMIAC", "CAPTAN"] },
-                    { floor: 7, targetLen: 7, targetWord: "COMPACT", sampleValid: ["COMPACT", "CAPTAIN", "COMPLAIN"] },
-                    { floor: 8, targetLen: 7, targetWord: "CAPTAIN", sampleValid: ["CAPTAIN", "PLATINUM", "COMPLAIN"] },
-                    { floor: 9, targetLen: 8, targetWord: "COMPLAIN", sampleValid: ["COMPLAIN", "COMPLAINT"] },
-                    { floor: 10, targetLen: 9, targetWord: "COMPLAINT", sampleValid: ["COMPLAINT"] }
-                ]
+                counts: { len5: 42, len6: 28, len7: 14, len8: 5, len9: 1 },
+                wordsByLength: {
+                    5: ["CLAIM", "CLAMP", "COMPT", "PLAIN", "PLANT", "POINT", "ACTION", "PANIC", "LIPOMA", "TAMPO"],
+                    6: ["ACTION", "COMPACT", "IMPACT", "PATROL", "PORTAL", "LAMENT", "MENTAL", "CAPTON"],
+                    7: ["COMPACT", "CAPTAIN", "COMPLAIN", "OPTIMAL", "PATROL"],
+                    8: ["COMPLAIN", "COMPLAINT", "OPTIMAL"],
+                    9: ["COMPLAINT"]
+                }
             },
             clusters: {
                 title: "11th Floor Clusters — Puzzle #01: Global Alignment",
@@ -628,35 +658,43 @@
             } else if (data.type === 'wordclimb') {
                 const wheelBubbles = data.wheelLetters.map(l => `<div class="letter-bubble">${l}</div>`).join('');
                 
-                // Wheel Header
+                // Wheel Header + Blossom-Style Totals Grid
                 container.innerHTML += `
-                    <div class="cluster-group-box" style="border-color: var(--color-wordclimb); margin-bottom: 4px;">
-                        <div class="cluster-cat-title" style="color: var(--color-wordclimb);">DAILY 9-LETTER MASTER WHEEL</div>
+                    <div class="cluster-group-box" style="border-color: var(--color-wordclimb); margin-bottom: 2px;">
+                        <div class="cluster-cat-title" style="color: var(--color-wordclimb); text-align: center;">DAILY MASTER WHEEL</div>
                         <div class="wheel-letters-row">${wheelBubbles}</div>
-                        <div style="font-size: 0.58rem; color: var(--text-muted); text-align: center;">Master Word: <strong style="color: #ffffff;">${data.masterWord}</strong></div>
+                        <div style="font-size: 0.58rem; color: var(--text-muted); text-align: center; margin-top: 2px;">Master 9-Letter Target: <strong style="color: #ffffff;">${data.masterWord}</strong></div>
+                    </div>
+
+                    <div class="blossom-stats-grid">
+                        <div><div class="blossom-stat-val">${data.counts.len5}</div><div class="blossom-stat-lbl">5-Letter</div></div>
+                        <div><div class="blossom-stat-val">${data.counts.len6}</div><div class="blossom-stat-lbl">6-Letter</div></div>
+                        <div><div class="blossom-stat-val">${data.counts.len7}</div><div class="blossom-stat-lbl">7-Letter</div></div>
+                        <div><div class="blossom-stat-val">${data.counts.len8}</div><div class="blossom-stat-lbl">8-Letter</div></div>
+                        <div><div class="blossom-stat-val">${data.counts.len9}</div><div class="blossom-stat-lbl">9-Letter</div></div>
                     </div>
                 `;
 
-                data.floors.forEach(item => {
-                    const floorOrd = ordinals[item.floor - 1] || `${item.floor}th`;
-                    const sampleList = item.sampleValid.map(w => `<span class="opt-chip ${w === item.targetWord ? 'correct-chip' : ''}" style="padding: 3px 5px; font-size: 0.58rem;">${w}</span>`).join(' ');
-
-                    container.innerHTML += `
-                        <div class="floor-card">
-                            <div class="floor-card-header">
-                                <div class="floor-number-badge">${floorOrd} Floor</div>
-                                <div class="floor-type-tag">${item.targetLen}-LETTER REQUIRED</div>
+                // Scrollable Accordion for All Available Words Grouped by Length (5 to 9)
+                let accordionSections = '';
+                [5, 6, 7, 8, 9].forEach(len => {
+                    const words = data.wordsByLength[len] || [];
+                    if (words.length > 0) {
+                        const wordChips = words.map(w => `<span class="opt-chip ${w === data.masterWord ? 'correct-chip' : ''}" style="padding: 3px 6px; font-size: 0.58rem;">${w}</span>`).join(' ');
+                        accordionSections += `
+                            <div class="cluster-group-box">
+                                <div class="cluster-cat-title">✓ ${len}-LETTER VALID WORDS (${words.length})</div>
+                                <div class="cluster-words-row">${wordChips}</div>
                             </div>
-                            <div class="floor-card-body">
-                                <div class="q-text">Target Goal: <strong style="color: var(--color-wordclimb);">${item.targetWord}</strong></div>
-                                <div class="cluster-group-box">
-                                    <div class="cluster-cat-title">✓ VALID SUBMISSION EXAMPLES</div>
-                                    <div class="cluster-words-row">${sampleList}</div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
+                        `;
+                    }
                 });
+
+                container.innerHTML += `
+                    <div class="word-accordion-container">
+                        ${accordionSections}
+                    </div>
+                `;
             } else if (data.type === 'clusters') {
                 Object.keys(data.floors).forEach(floorNum => {
                     const fData = data.floors[floorNum];
