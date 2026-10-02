@@ -149,7 +149,7 @@
 
         .promo-text {
             font-family: 'Impact', sans-serif;
-            font-size: 1.35rem;
+            font-size: 1.4rem;
             font-weight: normal;
             letter-spacing: 0.5px;
             line-height: 1.15;
@@ -168,14 +168,14 @@
             transform: translateY(0);
         }
 
-        /* Inline Coloured Highlight: Pure Color & Shadow Glow Pulse (NO SIZE / SCALE CHANGES) */
+        /* Inline Coloured Highlight */
         .promo-text .highlight {
             color: var(--accent-green);
             text-shadow: 0 0 12px var(--accent-green-glow), 2px 2px 4px rgba(0,0,0,0.9);
             animation: inlineGlowPulse 1.2s ease-in-out infinite alternate;
         }
 
-        /* Multiline Pop ("YOU DON'T!"): Stomp Scale Animation */
+        /* Multiline Pop ("YOU DON'T!") */
         .promo-text .pop {
             display: inline-block;
             color: var(--accent-red);
@@ -204,7 +204,7 @@
             100% { transform: scale(1.22); text-shadow: 0 0 22px rgba(255, 31, 45, 0.6); }
         }
 
-        /* Mock Mobile Device Container */
+        /* Mock Mobile Device Container with Entry Scale Animation */
         .promo-mock-device {
             width: 220px;
             height: 290px;
@@ -219,6 +219,16 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.8);
             z-index: 5;
             flex-shrink: 0;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .promo-mock-device.ready {
+            transform: scale(1);
+        }
+
+        .promo-mock-device.idle {
+            transform: scale(0.96);
+            opacity: 0.85;
         }
 
         /* Scaled Gameplay Viewport */
@@ -425,7 +435,7 @@
         </div>
 
         <!-- Mock Mobile Frame containing Think You Know Ball UI -->
-        <div class="promo-mock-device">
+        <div class="promo-mock-device idle" id="mock-device">
             <div class="promo-game-viewport">
                 <!-- Gameplay HUD Header -->
                 <div class="hud-sidebar-container">
@@ -490,17 +500,26 @@
         document.getElementById('brand-game-title').innerText = gameConfig.title;
 
         /* ==========================================================================
-           PROMO SCRIPT SEQUENCE
+           SYNCHRONISED SCRIPT SEQUENCE & GAMEPLAY ENGINE
            ========================================================================== */
         const sequence = [
-            { text: "STOP WASTING YOUR TIME ON <span class='highlight'>AI SLOP</span> FOOTBALL QUIZZES.", duration: 2300 },
-            { text: "EVERY QUESTION IS FACT-CHECKED BY A <span class='highlight'>REAL HUMAN</span>.", duration: 2300 },
-            { text: "THINK YOU KNOW BALL?", duration: 1100, delayedAppend: "<br><span class='pop'>YOU DON'T!</span>", appendDelay: 900, durationAfterAppend: 2000 },
+            { 
+                text: "THINK YOU KNOW BALL?", 
+                duration: 900, 
+                delayedAppend: "<br><span class='pop'>YOU DON'T!</span>", 
+                appendDelay: 800, 
+                durationAfterAppend: 1800,
+                onAppend: () => triggerGameplayStart() // Device swings into action right on "YOU DON'T!"
+            },
+            { text: "NEW TRIVIA DROPS <span class='highlight'>DAILY AT 11AM UK</span>.", duration: 2400 },
+            { text: "STOP WASTING TIME ON <span class='highlight'>AI SLOP</span> QUIZZES.", duration: 2300 },
+            { text: "EVERY QUESTION FACT-CHECKED BY A <span class='highlight'>REAL HUMAN</span>.", duration: 2300 },
             { text: "<span class='highlight'>GAME 001</span> DROPPING SOON.", duration: 2200 }
         ];
 
         let currentIndex = 0;
         const textSlot = document.getElementById('text-slot');
+        const mockDevice = document.getElementById('mock-device');
 
         function runPromoScript() {
             if (currentIndex >= sequence.length) {
@@ -514,6 +533,9 @@
             if (currentItem.delayedAppend) {
                 setTimeout(() => {
                     textSlot.innerHTML = currentItem.text + currentItem.delayedAppend;
+                    if (typeof currentItem.onAppend === 'function') {
+                        currentItem.onAppend();
+                    }
                     setTimeout(() => {
                         textSlot.classList.remove('active');
                         setTimeout(() => {
@@ -534,7 +556,7 @@
         }
 
         /* ==========================================================================
-           AUTHENTIC ELEVATOR CLIMB SIMULATION (Humor + Gettable Fail + Current Footy Digs)
+           AUTHENTIC ELEVATOR CLIMB SIMULATION
            ========================================================================== */
         const sampleQuestions = [
             { question: "Which club won the inaugural Premier League title in 1992-93?", options: ["Manchester United", "Blackburn Rovers", "Arsenal", "Aston Villa"], answer: "Manchester United" },
@@ -550,6 +572,7 @@
         let currentFloor = 1;
         let questionIndex = 0;
         let timerInterval = null;
+        let gameplayRunning = false;
 
         function shuffleArray(array) {
             const arr = [...array];
@@ -596,6 +619,17 @@
             }, 50);
         }
 
+        function triggerGameplayStart() {
+            mockDevice.classList.remove('idle');
+            mockDevice.classList.add('ready');
+            if (!gameplayRunning) {
+                gameplayRunning = true;
+                currentFloor = 1;
+                questionIndex = 0;
+                playClimbStep();
+            }
+        }
+
         function playClimbStep() {
             const currentQ = sampleQuestions[questionIndex];
             document.getElementById('question-text').textContent = currentQ.question;
@@ -638,17 +672,24 @@
                     if (activeBlock) activeBlock.classList.add('failed');
 
                     setTimeout(() => {
-                        currentFloor = 1;
-                        questionIndex = 0;
-                        playClimbStep();
+                        mockDevice.classList.remove('ready');
+                        mockDevice.classList.add('idle');
+                        gameplayRunning = false;
                     }, 2000);
                 }
             }, 1400);
         }
 
         window.onload = () => {
-            playClimbStep();
-            setTimeout(runPromoScript, 500);
+            // Set initial preview state
+            const firstQ = sampleQuestions[0];
+            document.getElementById('question-text').textContent = firstQ.question;
+            const buttons = document.querySelectorAll('.options-grid .btn-option');
+            buttons.forEach((btn, idx) => {
+                btn.textContent = firstQ.options[idx] || '';
+            });
+
+            setTimeout(runPromoScript, 400);
         };
     </script>
 </body>
