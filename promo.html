@@ -66,7 +66,7 @@
             overflow: hidden;
         }
 
-        /* Lobby Logo Block with Color Cycle */
+        /* Lobby Logo Block with Slow Color Cycle */
         .promo-hub-logo-box {
             display: flex;
             flex-direction: column;
@@ -82,7 +82,7 @@
             letter-spacing: -1px;
             text-shadow: 0 0 20px rgba(255, 31, 45, 0.35);
             margin-bottom: 4px;
-            animation: logoColorCycle 2.6s ease-in-out infinite;
+            animation: logoColorCycle 8s ease-in-out infinite;
         }
 
         .promo-hub-logo-title {
@@ -216,15 +216,15 @@
             color: #ffffff;
         }
 
-        /* Keyframes mirroring lobby color cycle */
+        /* Slow, smooth color cycle */
         @keyframes logoColorCycle {
-            0% { color: var(--accent-red); text-shadow: 0 0 20px rgba(255, 31, 45, 0.35); }
-            16% { color: var(--color-terrace); text-shadow: 0 0 20px var(--color-terrace-glow); }
-            32% { color: var(--color-cluegram); text-shadow: 0 0 20px rgba(204, 0, 126, 0.35); }
-            48% { color: var(--color-questions); text-shadow: 0 0 20px rgba(212, 175, 55, 0.35); }
-            64% { color: var(--color-wordclimb); text-shadow: 0 0 20px rgba(59, 130, 246, 0.35); }
-            78% { color: var(--color-clusters); text-shadow: 0 0 20px rgba(255, 117, 31, 0.35); }
-            90% { color: var(--color-parity); text-shadow: 0 0 20px rgba(255, 153, 153, 0.35); }
+            0%   { color: var(--accent-red); text-shadow: 0 0 20px rgba(255, 31, 45, 0.35); }
+            14%  { color: var(--color-terrace); text-shadow: 0 0 20px var(--color-terrace-glow); }
+            28%  { color: var(--color-cluegram); text-shadow: 0 0 20px rgba(204, 0, 126, 0.35); }
+            42%  { color: var(--color-questions); text-shadow: 0 0 20px rgba(212, 175, 55, 0.35); }
+            56%  { color: var(--color-wordclimb); text-shadow: 0 0 20px rgba(59, 130, 246, 0.35); }
+            70%  { color: var(--color-clusters); text-shadow: 0 0 20px rgba(255, 117, 31, 0.35); }
+            84%  { color: var(--color-parity); text-shadow: 0 0 20px rgba(255, 153, 153, 0.35); }
             100% { color: var(--accent-red); text-shadow: 0 0 20px rgba(255, 31, 45, 0.35); }
         }
     </style>
