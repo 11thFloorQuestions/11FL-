@@ -10,49 +10,6 @@
     <link href="https://fonts.cdnfonts.com/css/glacial-indifference" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        :root {
-            --bg-deep: #000000;
-            --surface: #0a0a0a;
-            --surface-border: #222222;
-            --surface-border-light: #333333;
-            --accent-red: #ff1f2d;
-            --accent-red-glow: rgba(255, 31, 45, 0.35);
-            --genre-blue: #3B82F6;
-            --genre-blue-glow: rgba(59, 130, 246, 0.35);
-            --text-primary: #ffffff;
-            --text-muted: #888888;
-
-            /* Full Lobby Color Cycle Palette */
-            --color-terrace: #84CC16;
-            --color-terrace-glow: rgba(132, 204, 22, 0.35);
-            --color-questions: #D4AF37;
-            --color-wordclimb: #3B82F6;
-            --color-clusters: #ff751f;
-            --color-cluegram: #cc007e;
-            --color-parity: #ff9999;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body.game-wordclimb {
-            background-color: var(--bg-deep);
-            color: var(--text-primary);
-            font-family: 'Montserrat', sans-serif;
-            min-height: 100vh;
-            min-height: 100dvh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 12px;
-            overflow-x: hidden;
-        }
-
         .top-bar {
             width: 100%;
             max-width: 600px;
@@ -80,59 +37,6 @@
             color: var(--genre-blue, #3B82F6);
         }
 
-        /* Unified Logo Box matching Landing Page & Promo */
-        .hub-logo-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 8px;
-            text-align: center;
-            flex-shrink: 0;
-        }
-
-        .hub-logo-red {
-            font-family: 'Anton', sans-serif;
-            font-size: 3.8rem;
-            font-weight: 400;
-            color: var(--accent-red);
-            line-height: 0.85;
-            letter-spacing: -1px;
-            text-shadow: 0 0 20px rgba(255, 31, 45, 0.35);
-            margin-bottom: 4px;
-            animation: logoColorCycle 8s ease-in-out infinite;
-        }
-
-        .hub-logo-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 300;
-            color: #ffffff;
-            letter-spacing: 1.5px;
-            margin-bottom: 2px;
-        }
-
-        .hub-logo-sub {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.65rem;
-            font-weight: 600;
-            color: var(--genre-blue);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
-
-        /* Slow 8-second color transition cycle matching Promo */
-        @keyframes logoColorCycle {
-            0%   { color: var(--accent-red); text-shadow: 0 0 20px rgba(255, 31, 45, 0.35); }
-            14%  { color: var(--color-terrace); text-shadow: 0 0 20px var(--color-terrace-glow); }
-            28%  { color: var(--color-cluegram); text-shadow: 0 0 20px rgba(204, 0, 126, 0.35); }
-            42%  { color: var(--color-questions); text-shadow: 0 0 20px rgba(212, 175, 55, 0.35); }
-            56%  { color: var(--color-wordclimb); text-shadow: 0 0 20px rgba(59, 130, 246, 0.35); }
-            70%  { color: var(--color-clusters); text-shadow: 0 0 20px rgba(255, 117, 31, 0.35); }
-            84%  { color: var(--color-parity); text-shadow: 0 0 20px rgba(255, 153, 153, 0.35); }
-            100% { color: var(--accent-red); text-shadow: 0 0 20px rgba(255, 31, 45, 0.35); }
-        }
-
-        /* Animated Shaft Graphic */
         .landing-shaft-graphic .landing-shaft-box { animation: sweepMiddle 1.2s ease-in-out forwards; }
         .landing-shaft-graphic .landing-shaft-box:nth-child(11) { animation: sweepBottomSettle 2.6s ease-in-out forwards; animation-delay: 0.05s; }
         .landing-shaft-graphic .landing-shaft-box:nth-child(10) { animation-delay: 0.15s; }
@@ -154,7 +58,7 @@
 
         @keyframes sweepTopGreen {
             0% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
-            20%, 70% { background-color: var(--state-success, #22c55e); border-color: var(--state-success, #22c55e); box-shadow: 0 0 16px rgba(34, 197, 94, 0.4); }
+            20%, 70% { background-color: var(--state-success); border-color: var(--state-success); box-shadow: 0 0 16px var(--state-success-glow); }
             100% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
         }
 
@@ -163,6 +67,15 @@
             15% { background-color: var(--genre-blue); border-color: var(--genre-blue); box-shadow: 0 0 10px var(--genre-blue-glow); }
             30%, 80% { background-color: #111111; border-color: var(--surface-border); box-shadow: none; }
             95%, 100% { background-color: var(--genre-blue); border-color: var(--genre-blue); box-shadow: 0 0 8px var(--genre-blue-glow); }
+        }
+
+        .game-logo-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 8px;
+            text-align: center;
+            flex-shrink: 0;
         }
 
         .gameplay-header-box {
@@ -180,70 +93,27 @@
             box-shadow: 0 4px 25px var(--genre-blue-glow);
         }
 
-        /* Gameplay Area & Responsive Workspace */
+        /* Gameplay Area */
         .hud-sidebar-container { width: 100%; max-width: 600px; display: flex; align-items: stretch; gap: 12px; margin-bottom: 6px; flex-shrink: 0; }
         .tower-stack { display: flex; flex-direction: column; gap: 2px; width: 52px; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 6px; justify-content: space-between; flex-shrink: 0; }
         .tower-floor { height: 7px; border: 1px solid var(--surface-border); background: #111111; transition: all 0.2s ease; border-radius: 2px; }
-        .tower-floor.active { border-color: var(--state-active, #facc15); background: var(--state-active, #facc15); box-shadow: 0 0 8px rgba(250, 204, 21, 0.4); }
-        .tower-floor.completed { border-color: var(--state-success, #22c55e); background: var(--state-success, #22c55e); box-shadow: 0 0 6px rgba(34, 197, 94, 0.4); }
-        .tower-floor.failed { border-color: var(--state-error, #ef4444); background: var(--state-error, #ef4444); box-shadow: 0 0 6px rgba(239, 68, 68, 0.4); }
+        .tower-floor.active { border-color: var(--state-active); background: var(--state-active); box-shadow: 0 0 8px var(--state-active-glow); }
+        .tower-floor.completed { border-color: var(--state-success); background: var(--state-success); box-shadow: 0 0 6px var(--state-success-glow); }
+        .tower-floor.failed { border-color: var(--state-error); background: var(--state-error); box-shadow: 0 0 6px var(--state-error-glow); }
         .floor-info-box { flex-grow: 1; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; }
         .floor-left-group { display: flex; flex-direction: column; gap: 4px; }
         .current-floor-display { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: 1px; }
         .floor-rule-text { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.5px; text-transform: uppercase; }
 
-        /* Flexible Play Card Area for Dynamic Answer Lengths */
-        .play-card { 
-            width: 100%; 
-            max-width: 600px; 
-            background: var(--surface); 
-            border: 1px solid var(--surface-border); 
-            border-radius: 8px; 
-            padding: 10px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: flex-start; 
-            gap: 6px; 
-            flex-grow: 1; 
-            margin-bottom: 6px; 
-            overflow-y: auto; 
-            min-height: 260px;
-            scrollbar-width: thin;
-        }
-
-        #message-box { min-height: 16px; color: var(--state-error, #ef4444); font-weight: 700; font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; text-align: center; }
+        .play-card { width: 100%; max-width: 600px; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 10px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 2px; flex-grow: 1; margin-bottom: 6px; overflow: hidden; min-height: 0; }
+        #message-box { min-height: 16px; color: var(--state-error); font-weight: 700; font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; text-align: center; }
         
-        #target-word-slots { 
-            display: flex; 
-            gap: 6px; 
-            justify-content: center; 
-            align-items: center; 
-            width: 100%; 
-            min-height: 42px; 
-            flex-wrap: wrap; 
-            padding: 4px 0;
-        }
-
-        .target-slot { 
-            width: 32px; 
-            height: 38px; 
-            border: 1px solid rgba(250, 204, 21, 0.4); 
-            border-radius: 6px; 
-            background: #111111; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-family: 'Inter', sans-serif; 
-            font-weight: 800; 
-            font-size: 1rem; 
-            color: var(--text-primary); 
-            transition: all 0.15s ease; 
-        }
-
-        .target-slot.filled { border-color: var(--state-active, #facc15); box-shadow: 0 0 6px rgba(250, 204, 21, 0.4); }
-        .target-slot.state-success { border-color: var(--state-success, #22c55e); color: var(--state-success, #22c55e); }
-        .target-slot.state-error { border-color: var(--state-error, #ef4444); color: var(--state-error, #ef4444); }
+        /* Lightened Answer Slot Borders (Cluegram Standard) */
+        #target-word-slots { display: flex; gap: 6px; justify-content: center; align-items: center; width: 100%; min-height: 38px; flex-wrap: wrap; }
+        .target-slot { width: 32px; height: 38px; border: 1px solid rgba(250, 204, 21, 0.4); border-radius: 6px; background: #111111; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1rem; color: var(--text-primary); transition: all 0.15s ease; }
+        .target-slot.filled { border-color: var(--state-active); box-shadow: 0 0 6px var(--state-active-glow); }
+        .target-slot.state-success { border-color: var(--state-success); color: var(--state-success); }
+        .target-slot.state-error { border-color: var(--state-error); color: var(--state-error); }
 
         #guess-display { display: flex; justify-content: center; gap: 4px; min-height: 28px; align-items: center; font-weight: 700; font-size: 0.9rem; letter-spacing: 2px; color: var(--text-primary); margin-bottom: 2px; }
         #wheel-container { width: min(295px, 36vh); height: min(295px, 36vh); max-width: 100%; position: relative; margin: 0 auto; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
@@ -252,7 +122,7 @@
         .btn { font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; padding: 12px 20px; cursor: pointer; border-radius: 8px; flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; }
         .btn-secondary { background: #111111; color: var(--text-muted); border: 1px solid var(--surface-border); }
         .btn-secondary:hover { color: var(--text-primary); border-color: var(--text-muted); background: #181818; }
-        .btn-primary { background: #111111; color: var(--state-active, #facc15); border: 1px solid var(--state-active, #facc15); box-shadow: 0 0 10px rgba(250, 204, 21, 0.25); }
+        .btn-primary { background: #111111; color: var(--state-active, #facc15); border: 1px solid var(--state-active, #facc15); box-shadow: 0 0 10px var(--state-active-glow, rgba(250, 204, 21, 0.25)); }
 
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.92); display: flex; align-items: center; justify-content: center; z-index: 100; }
         .modal-overlay.hidden { display: none !important; }
@@ -277,12 +147,12 @@
             <button class="pill-btn" id="btn-sound">SOUND: ON</button>
         </div>
 
-        <!-- LANDING SCREEN (Proportional Logo with 11FL?) -->
+        <!-- LANDING SCREEN (Full Blue Logo with 11FL?) -->
         <div id="start-screen" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-            <div class="hub-logo-box">
-                <h1 class="hub-logo-red">11FL?</h1>
-                <p class="hub-logo-title">Eleventh Floor</p>
-                <p class="hub-logo-sub">WORD CLIMB</p>
+            <div class="game-logo-box">
+                <h1 class="game-logo-blue">11FL?</h1>
+                <p class="game-logo-title">Eleventh Floor</p>
+                <p class="game-logo-sub" style="color: var(--genre-blue);">WORD CLIMB</p>
             </div>
 
             <div class="landing-container">
@@ -309,10 +179,10 @@
             </div>
         </div>
 
-        <!-- GAMEPLAY HEADER (Eleventh Floor WORD CLIMB) -->
+        <!-- GAMEPLAY HEADER (Eleventh Floor WORD CLIMB, NO 11FL?) -->
         <div id="gameplay-header" class="gameplay-header-box" style="display: none;">
-            <p class="hub-logo-title">Eleventh Floor</p>
-            <p class="hub-logo-sub">WORD CLIMB</p>
+            <p class="game-logo-title">Eleventh Floor</p>
+            <p class="game-logo-sub" style="color: var(--genre-blue);">WORD CLIMB</p>
         </div>
 
         <!-- Gameplay HUD Header -->
