@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>11th Floor Promo Generator</title>
+    <style>
+        :root {
+            --bg-colour: #0a0a0a;
+            --panel-bg: #1a1a1a;
+            --text-main: #f0f0f0;
+            --text-muted: #888888;
+            --accent-green: #00ff00;
+            --border-colour: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-colour);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Safe zone for TikTok - keeps content in the middle */
+        #game-container {
+            width: 90%;
+            max-width: 400px;
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .header {
+            border-bottom: 2px solid var(--border-colour);
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .floor-tag {
+            color: var(--accent-green);
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        .question-box {
+            background-color: var(--panel-bg);
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            border-left: 4px solid var(--accent-green);
+            min-height: 120px;
+        }
+
+        .answers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .answer-btn {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 2px solid var(--border-colour);
+            padding: 15px 10px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        /* Simulated States */
+        .answer-btn.simulate-hover {
+            border-color: #555;
+            background-color: #222;
+        }
+
+        .answer-btn.correct {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+            background-color: rgba(0, 255, 0, 0.1);
+            font-weight: bold;
+        }
+
+        #cta-overlay {
+            opacity: 0;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: opacity 0.5s ease;
+        }
+
+        #start-btn {
+            background-color: var(--accent-green);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Setup Button -->
+    <button id="start-btn" onclick="startSequence()">Start Recording Sequence</button>
+
+    <!-- Main Game UI -->
+    <div id="game-container">
+        <div class="header">
+            <div class="floor-tag" id="floor-display">10th Floor</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">FINAL HURDLE — MAKE IT COUNT!</div>
+        </div>
+
+        <div class="question-box" id="question-display">
+            <!-- Question text injected here -->
+        </div>
+
+        <div class="answers-grid">
+            <div class="answer-btn" id="ans-0"></div>
+            <div class="answer-btn" id="ans-1"></div>
+            <div class="answer-btn" id="ans-2"></div>
+            <div class="answer-btn" id="ans-3"></div>
+        </div>
+
+        <div id="cta-overlay">
+            Did you get it right?<br>
+            <span style="color: var(--accent-green); font-size: 1.2rem;">Drop a comment below!</span>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // EDIT YOUR DAILY PROMO QUESTION HERE
+        // ==========================================
+        const promoData = {
+            floor: "10th Floor",
+            question: "Which Dutch forward holds the Premier League record for scoring in the most consecutive away matches, finding the net in nine straight appearances during the 2010–11 season?",
+            answers: [
+                "Jimmy Floyd Hasselbaink",
+                "Ruud van Nistelrooy", 
+                "Robin van Persie",    
+                "Dennis Bergkamp"      
+            ],
+            correctIndex: 2, // 0=Hasselbaink, 1=Ruud, 2=RVP, 3=Bergkamp
+            wrongHoverIndex: 1 // Which wrong answer should it briefly "think" about?
+        };
+        // ==========================================
+
+        function startSequence() {
+            // Hide start button, show game
+            document.getElementById('start-btn').style.display = 'none';
+            document.getElementById('game-container').style.display = 'flex';
+
+            // Populate data
+            document.getElementById('floor-display').innerText = promoData.floor;
+            document.getElementById('question-display').innerText = promoData.question;
+            for(let i = 0; i < 4; i++) {
+                document.getElementById('ans-' + i).innerText = promoData.answers[i];
+            }
+
+            // SEQUENCE TIMINGS (in milliseconds)
+            
+            // 1. Wait 3.5 seconds, then simulate hovering over a wrong answer
+            setTimeout(() => {
+                document.getElementById('ans-' + promoData.wrongHoverIndex).classList.add('simulate-hover');
+            }, 3500);
+
+            // 2. Wait another 1 second, remove the hover (changing their mind)
+            setTimeout(() => {
+                document.getElementById('ans-' + promoData.wrongHoverIndex).classList.remove('simulate-hover');
+            }, 4500);
+
+            // 3. Wait 0.5 seconds, select the correct answer
+            setTimeout(() => {
+                const correctBtn = document.getElementById('ans-' + promoData.correctIndex);
+                correctBtn.classList.add('correct');
+                correctBtn.innerText = promoData.answers[promoData.correctIndex] + " ✓"; 
+            }, 5000);
+
+            // 4. Wait 1.5 seconds, show the Call To Action
+            setTimeout(() => {
+                document.getElementById('cta-overlay').style.opacity = '1';
+            }, 6500);
+        }
+    </script>
+</body>
+</html>
