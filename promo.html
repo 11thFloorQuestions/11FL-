@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>11th Floor Games - Promo Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #000000;
+            --surface: #0a0a0a;
+            --surface-border: #222222;
+            --surface-border-light: #333333;
+            --accent-red: #ff1f2d;
+            --accent-red-glow: rgba(255, 31, 45, 0.25);
+            --accent-green: #22c55e;
+            --text-primary: #ffffff;
+            --text-muted: #888888;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            height: 100vh;
+            height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Strict 9:16 Mobile Vertical Frame for Screen Recording */
+        .promo-canvas {
+            width: 360px;
+            height: 640px;
+            background-color: var(--bg-deep);
+            border: 2px solid var(--surface-border);
+            border-radius: 12px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.9);
+            overflow: hidden;
+        }
+
+        /* Header Branding matching Lobby */
+        .promo-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0.9;
+        }
+
+        .promo-logo-red {
+            font-family: 'Anton', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 400;
+            color: var(--accent-red);
+            line-height: 0.85;
+            letter-spacing: -1px;
+            text-shadow: 0 0 20px rgba(255, 31, 45, 0.35);
+            margin-bottom: 4px;
+        }
+
+        .promo-logo-title {
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 1.5px;
+            color: #ffffff;
+        }
+
+        /* Dynamic Script Display Area */
+        .promo-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 0 10px;
+            text-align: center;
+        }
+
+        .promo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.4;
+            color: var(--text-primary);
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            position: absolute;
+            width: 85%;
+        }
+
+        .promo-text.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .highlight {
+            color: var(--accent-green);
+        }
+
+        /* Footer Building Shaft Indicator */
+        .promo-footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .promo-shaft-graphic {
+            display: flex;
+            width: 120px;
+            height: 16px;
+            border: 1px solid var(--surface-border);
+            border-radius: 4px;
+            padding: 2px;
+            gap: 2px;
+            background-color: var(--surface);
+        }
+
+        .shaft-mini-box {
+            flex: 1;
+            background-color: #111111;
+            border-radius: 1px;
+        }
+
+        .shaft-mini-box.active-floor {
+            background-color: var(--accent-green);
+            box-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
+        }
+
+        .promo-game-badge {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="promo-canvas">
+        <!-- Brand Header -->
+        <div class="promo-header">
+            <h1 class="promo-logo-red" id="brand-logo-text">11FL?</h1>
+            <p class="promo-logo-title" id="brand-game-title">Think You Know Ball?</p>
+        </div>
+
+        <!-- Dynamic Text Sequence -->
+        <div class="promo-body">
+            <div id="text-slot" class="promo-text"></div>
+        </div>
+
+        <!-- Footer / Building Indicator -->
+        <div class="promo-footer">
+            <div class="promo-shaft-graphic" id="shaft-graphic">
+                <!-- 11 mini floors representing the building structure -->
+                <div class="shaft-mini-box"></div>
+                <div class="shaft-mini-box"></div>
+                <div class="shaft-mini-box"></div>
+                <div class="shaft-mini-box"></div>
+                <div class="shaft-mini-box"></div>
+                <div class="shaft-mini-box"></div>
+                <div class="shaft-mini-box"></div>
+                <div class="shaft-mini-box"></div>
+                <div class="shaft-mini-box"></div>
+                <div class="shaft-mini-box"></div>
+                <div class="shaft-mini-box active-floor"></div>
+            </div>
+            <div class="promo-game-badge" id="brand-genre-badge">Daily Football Quiz</div>
+        </div>
+    </div>
+
+    <script>
+        /* ==========================================================================
+           MODULAR CONFIGURATION: Easily switch game focus or copy for any title
+           ========================================================================== */
+        const gameConfig = {
+            title: "Think You Know Ball?",
+            genreBadge: "Daily Football Quiz · 11am UK",
+            accentColor: "#22c55e", // Terrace Green
+            glowColor: "rgba(34, 197, 94, 0.4)"
+        };
+
+        // Apply config to DOM
+        document.documentElement.style.setProperty('--accent-green', gameConfig.accentColor);
+        document.getElementById('brand-game-title').innerText = gameConfig.title;
+        document.getElementById('brand-genre-badge').innerText = gameConfig.genreBadge;
+
+        /* ==========================================================================
+           PROMO SCRIPT SEQUENCE (Exact agreed text timing)
+           ========================================================================== */
+        const sequence = [
+            { text: "Stop wasting your time on <span class='highlight'>AI slop</span> football quizzes.", duration: 2000 },
+            { text: "Every single question is fact-checked and cursed over by a <span class='highlight'>real human</span>.", duration: 2000 },
+            { text: "New game every single day at <span class='highlight'>11am UK</span>.", duration: 1500 },
+            { text: "Think You Know Ball?<br><span class='highlight'>You don't.</span>", duration: 2500 }
+        ];
+
+        let currentIndex = 0;
+        const textSlot = document.getElementById('text-slot');
+
+        function runPromo() {
+            if (currentIndex >= sequence.length) {
+                currentIndex = 0; // Smooth loop for clean screen recording
+            }
+
+            const currentItem = sequence[currentIndex];
+            textSlot.innerHTML = currentItem.text;
+            textSlot.classList.add('active');
+
+            setTimeout(() => {
+                textSlot.classList.remove('active');
+                setTimeout(() => {
+                    currentIndex++;
+                    runPromo();
+                }, 350); // Matches CSS fade transition
+            }, currentItem.duration);
+        }
+
+        // Kick off sequence on load
+        window.onload = () => {
+            setTimeout(runPromo, 600);
+        };
+    </script>
+</body>
+</html>
