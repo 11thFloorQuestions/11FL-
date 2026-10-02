@@ -15,7 +15,7 @@
             --accent-red: #ff1f2d;
             --accent-red-glow: rgba(255, 31, 45, 0.35);
             --accent-green: #84CC16;
-            --accent-green-glow: rgba(132, 204, 22, 0.35);
+            --accent-green-glow: rgba(132, 204, 22, 0.45);
             --text-primary: #ffffff;
             --text-muted: #888888;
 
@@ -132,7 +132,7 @@
             margin-top: 1px;
         }
 
-        /* Dedicated Promo Script Zone ABOVE the Game Device (TikTok Safe Zone) */
+        /* Dedicated Promo Script Zone ABOVE the Game Device */
         .promo-body {
             height: 65px;
             width: 100%;
@@ -168,19 +168,30 @@
             transform: translateY(0);
         }
 
-        /* Universal Stomp & Pulse Animation for ALL Coloured Words */
+        /* Inline Coloured Highlight: Pure Color & Shadow Glow Pulse (NO SIZE / SCALE CHANGES) */
         .promo-text .highlight {
-            display: inline-block;
             color: var(--accent-green);
-            text-shadow: 0 0 16px var(--accent-green-glow), 2px 2px 6px rgba(0,0,0,0.9);
-            animation: stompImpact 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, pulseGreen 1.2s ease-in-out infinite 0.35s alternate;
+            text-shadow: 0 0 12px var(--accent-green-glow), 2px 2px 4px rgba(0,0,0,0.9);
+            animation: inlineGlowPulse 1.2s ease-in-out infinite alternate;
         }
 
+        /* Multiline Pop ("YOU DON'T!"): Stomp Scale Animation (Safe because it's on a standalone line) */
         .promo-text .pop {
             display: inline-block;
             color: var(--accent-red);
             text-shadow: 0 0 16px var(--accent-red-glow), 2px 2px 6px rgba(0,0,0,0.9);
             animation: stompImpact 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, pulseRed 1.2s ease-in-out infinite 0.35s alternate;
+        }
+
+        @keyframes inlineGlowPulse {
+            0% {
+                color: #84CC16;
+                text-shadow: 0 0 8px rgba(132, 204, 22, 0.4), 2px 2px 4px rgba(0,0,0,0.9);
+            }
+            100% {
+                color: #a3e635;
+                text-shadow: 0 0 20px rgba(163, 230, 53, 0.9), 0 0 30px rgba(132, 204, 22, 0.6), 2px 2px 4px rgba(0,0,0,0.9);
+            }
         }
 
         @keyframes stompImpact {
@@ -191,11 +202,6 @@
         @keyframes pulseRed {
             0% { transform: scale(1.15); text-shadow: 0 0 12px var(--accent-red-glow); }
             100% { transform: scale(1.22); text-shadow: 0 0 22px rgba(255, 31, 45, 0.6); }
-        }
-
-        @keyframes pulseGreen {
-            0% { transform: scale(1.15); text-shadow: 0 0 12px var(--accent-green-glow); }
-            100% { transform: scale(1.22); text-shadow: 0 0 22px rgba(132, 204, 22, 0.7); }
         }
 
         /* Mock Mobile Device Container */
@@ -483,7 +489,7 @@
         document.getElementById('brand-game-title').innerText = gameConfig.title;
 
         /* ==========================================================================
-           PROMO SCRIPT SEQUENCE (With Delayed Stomp Punchline for "YOU DON'T!")
+           PROMO SCRIPT SEQUENCE
            ========================================================================== */
         const sequence = [
             { text: "STOP WASTING YOUR TIME ON <span class='highlight'>AI SLOP</span> FOOTBALL QUIZZES.", duration: 2300 },
