@@ -117,18 +117,18 @@
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: var(--accent-green);
+            color: #ffffff;
             margin-bottom: 2px;
         }
 
-        /* More Prominent Game Title */
+        /* Prominent Game Title in Game Accent Green */
         .promo-game-title {
             font-family: 'Anton', sans-serif;
-            font-size: 1.15rem;
+            font-size: 1.25rem;
             letter-spacing: 0.8px;
-            color: #ffffff;
+            color: var(--accent-green);
             text-transform: uppercase;
-            text-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+            text-shadow: 0 0 14px var(--accent-green-glow);
             margin-top: 1px;
         }
 
@@ -168,11 +168,12 @@
             transform: translateY(0);
         }
 
+        /* Universal Stomp & Pulse Animation for ALL Coloured Words */
         .promo-text .highlight {
-            color: var(--accent-green);
-            text-shadow: 0 0 10px var(--accent-green-glow), 2px 2px 4px rgba(0,0,0,0.9);
             display: inline-block;
-            animation: pulseGlow 1.8s ease-in-out infinite alternate;
+            color: var(--accent-green);
+            text-shadow: 0 0 16px var(--accent-green-glow), 2px 2px 6px rgba(0,0,0,0.9);
+            animation: stompImpact 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, pulseGreen 1.2s ease-in-out infinite 0.35s alternate;
         }
 
         .promo-text .pop {
@@ -192,9 +193,9 @@
             100% { transform: scale(1.22); text-shadow: 0 0 22px rgba(255, 31, 45, 0.6); }
         }
 
-        @keyframes pulseGlow {
-            0% { text-shadow: 0 0 8px var(--accent-green-glow); }
-            100% { text-shadow: 0 0 16px rgba(132, 204, 22, 0.7); }
+        @keyframes pulseGreen {
+            0% { transform: scale(1.15); text-shadow: 0 0 12px var(--accent-green-glow); }
+            100% { transform: scale(1.22); text-shadow: 0 0 22px rgba(132, 204, 22, 0.7); }
         }
 
         /* Mock Mobile Device Container */
@@ -482,12 +483,12 @@
         document.getElementById('brand-game-title').innerText = gameConfig.title;
 
         /* ==========================================================================
-           PROMO SCRIPT SEQUENCE
+           PROMO SCRIPT SEQUENCE (With Delayed Stomp Punchline for "YOU DON'T!")
            ========================================================================== */
         const sequence = [
-            { text: "STOP WASTING YOUR TIME ON <span class='highlight'>AI SLOP</span> FOOTBALL QUIZZES.", duration: 2200 },
-            { text: "EVERY QUESTION IS FACT-CHECKED BY A <span class='highlight'>REAL HUMAN</span>.", duration: 2200 },
-            { text: "THINK YOU KNOW BALL?<br><span class='pop'>YOU DON'T!</span>", duration: 2500 }
+            { text: "STOP WASTING YOUR TIME ON <span class='highlight'>AI SLOP</span> FOOTBALL QUIZZES.", duration: 2300 },
+            { text: "EVERY QUESTION IS FACT-CHECKED BY A <span class='highlight'>REAL HUMAN</span>.", duration: 2300 },
+            { text: "THINK YOU KNOW BALL?", duration: 1200, delayedAppend: "<br><span class='pop'>YOU DON'T!</span>", appendDelay: 900, durationAfterAppend: 2200 }
         ];
 
         let currentIndex = 0;
@@ -502,13 +503,26 @@
             textSlot.innerHTML = currentItem.text;
             textSlot.classList.add('active');
 
-            setTimeout(() => {
-                textSlot.classList.remove('active');
+            if (currentItem.delayedAppend) {
                 setTimeout(() => {
-                    currentIndex++;
-                    runPromoScript();
-                }, 300);
-            }, currentItem.duration);
+                    textSlot.innerHTML = currentItem.text + currentItem.delayedAppend;
+                    setTimeout(() => {
+                        textSlot.classList.remove('active');
+                        setTimeout(() => {
+                            currentIndex++;
+                            runPromoScript();
+                        }, 300);
+                    }, currentItem.durationAfterAppend);
+                }, currentItem.appendDelay);
+            } else {
+                setTimeout(() => {
+                    textSlot.classList.remove('active');
+                    setTimeout(() => {
+                        currentIndex++;
+                        runPromoScript();
+                    }, 300);
+                }, currentItem.duration);
+            }
         }
 
         /* ==========================================================================
