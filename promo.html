@@ -12,12 +12,21 @@
             --bg-deep: #000000;
             --surface: #0a0a0a;
             --surface-border: #222222;
-            --surface-border-light: #333333;
             --accent-red: #ff1f2d;
             --accent-red-glow: rgba(255, 31, 45, 0.25);
             --accent-green: #22c55e;
+            --accent-green-glow: rgba(34, 197, 94, 0.3);
             --text-primary: #ffffff;
             --text-muted: #888888;
+
+            /* Game Genre Colors matching Lobby */
+            --color-terrace: #84CC16;
+            --color-terrace-glow: rgba(132, 204, 22, 0.35);
+            --color-questions: #D4AF37;
+            --color-wordclimb: #3B82F6;
+            --color-clusters: #ff751f;
+            --color-cluegram: #cc007e;
+            --color-parity: #ff9999;
         }
 
         * {
@@ -52,38 +61,66 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            padding: 30px 20px;
+            padding: 24px 16px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.9);
             overflow: hidden;
         }
 
-        /* Header Branding matching Lobby */
-        .promo-header {
+        /* Lobby Logo Block with Color Cycle */
+        .promo-hub-logo-box {
             display: flex;
             flex-direction: column;
             align-items: center;
-            opacity: 0.9;
         }
 
-        .promo-logo-red {
+        .promo-hub-logo-red {
             font-family: 'Anton', sans-serif;
-            font-size: 3.2rem;
+            font-size: 3.6rem;
             font-weight: 400;
             color: var(--accent-red);
             line-height: 0.85;
             letter-spacing: -1px;
             text-shadow: 0 0 20px rgba(255, 31, 45, 0.35);
             margin-bottom: 4px;
+            animation: logoColorCycle 2.6s ease-in-out infinite;
         }
 
-        .promo-logo-title {
-            font-size: 1rem;
+        .promo-hub-logo-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
             font-weight: 300;
-            letter-spacing: 1.5px;
             color: #ffffff;
+            letter-spacing: 1.5px;
+            margin-bottom: 2px;
         }
 
-        /* Dynamic Script Display Area */
+        .promo-hub-logo-sub {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .promo-presents {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-green);
+        }
+
+        .promo-game-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.35rem;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+            margin-top: 2px;
+        }
+
+        /* Dynamic Impact Script Display Area */
         .promo-body {
             flex: 1;
             display: flex;
@@ -96,13 +133,15 @@
         }
 
         .promo-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-            line-height: 1.4;
-            color: var(--text-primary);
+            font-family: 'Impact', sans-serif;
+            font-size: 2.4rem;
+            font-weight: normal;
+            letter-spacing: 1px;
+            line-height: 1.25;
+            color: #ffffff;
             opacity: 0;
             transform: translateY(15px);
-            transition: opacity 0.35s ease, transform 0.35s ease;
+            transition: opacity 0.3s ease, transform 0.3s ease;
             position: absolute;
             width: 85%;
         }
@@ -112,107 +151,145 @@
             transform: translateY(0);
         }
 
-        .highlight {
+        .promo-text .highlight {
             color: var(--accent-green);
+            text-shadow: 0 0 12px var(--accent-green-glow);
         }
 
-        /* Footer Building Shaft Indicator */
+        .promo-text .pop {
+            display: inline-block;
+            transform: scale(1.15);
+            color: var(--accent-red);
+            text-shadow: 0 0 16px var(--accent-red-glow);
+        }
+
+        /* Footer Vertical Building Shaft Graphic */
         .promo-footer {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 8px;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 10px;
         }
 
         .promo-shaft-graphic {
             display: flex;
-            width: 120px;
-            height: 16px;
+            flex-direction: column;
+            width: 28px;
+            height: 70px;
             border: 1px solid var(--surface-border);
             border-radius: 4px;
-            padding: 2px;
+            padding: 3px;
             gap: 2px;
             background-color: var(--surface);
         }
 
-        .shaft-mini-box {
+        .shaft-box {
             flex: 1;
             background-color: #111111;
             border-radius: 1px;
         }
 
-        .shaft-mini-box.active-floor {
+        .shaft-box.active-top {
             background-color: var(--accent-green);
-            box-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
+            box-shadow: 0 0 8px var(--accent-green-glow);
         }
 
-        .promo-game-badge {
-            font-size: 0.7rem;
-            font-weight: 600;
+        .promo-badge-stack {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .promo-brand-tag {
+            font-size: 0.65rem;
+            font-weight: 700;
             letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--text-muted);
+        }
+
+        .promo-drop-time {
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #ffffff;
+        }
+
+        /* Keyframes mirroring lobby color cycle */
+        @keyframes logoColorCycle {
+            0% { color: var(--accent-red); text-shadow: 0 0 20px rgba(255, 31, 45, 0.35); }
+            16% { color: var(--color-terrace); text-shadow: 0 0 20px var(--color-terrace-glow); }
+            32% { color: var(--color-cluegram); text-shadow: 0 0 20px rgba(204, 0, 126, 0.35); }
+            48% { color: var(--color-questions); text-shadow: 0 0 20px rgba(212, 175, 55, 0.35); }
+            64% { color: var(--color-wordclimb); text-shadow: 0 0 20px rgba(59, 130, 246, 0.35); }
+            78% { color: var(--color-clusters); text-shadow: 0 0 20px rgba(255, 117, 31, 0.35); }
+            90% { color: var(--color-parity); text-shadow: 0 0 20px rgba(255, 153, 153, 0.35); }
+            100% { color: var(--accent-red); text-shadow: 0 0 20px rgba(255, 31, 45, 0.35); }
         }
     </style>
 </head>
 <body>
 
     <div class="promo-canvas">
-        <!-- Brand Header -->
-        <div class="promo-header">
-            <h1 class="promo-logo-red" id="brand-logo-text">11FL?</h1>
-            <p class="promo-logo-title" id="brand-game-title">Think You Know Ball?</p>
+        <!-- Lobby Logo Block -->
+        <div class="promo-hub-logo-box">
+            <h1 class="promo-hub-logo-red">11FL?</h1>
+            <p class="promo-hub-logo-title">Eleventh Floor</p>
+            <p class="promo-hub-logo-sub">GAMES LOBBY</p>
+            <div class="promo-presents">PRESENTS</div>
+            <div class="promo-game-title" id="brand-game-title">Think You Know Ball?</div>
         </div>
 
-        <!-- Dynamic Text Sequence -->
+        <!-- Dynamic Impact Script Display Area -->
         <div class="promo-body">
             <div id="text-slot" class="promo-text"></div>
         </div>
 
-        <!-- Footer / Building Indicator -->
+        <!-- Footer / Vertical Building Indicator -->
         <div class="promo-footer">
-            <div class="promo-shaft-graphic" id="shaft-graphic">
-                <!-- 11 mini floors representing the building structure -->
-                <div class="shaft-mini-box"></div>
-                <div class="shaft-mini-box"></div>
-                <div class="shaft-mini-box"></div>
-                <div class="shaft-mini-box"></div>
-                <div class="shaft-mini-box"></div>
-                <div class="shaft-mini-box"></div>
-                <div class="shaft-mini-box"></div>
-                <div class="shaft-mini-box"></div>
-                <div class="shaft-mini-box"></div>
-                <div class="shaft-mini-box"></div>
-                <div class="shaft-mini-box active-floor"></div>
+            <div class="promo-shaft-graphic">
+                <div class="shaft-box active-top"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
+                <div class="shaft-box"></div>
             </div>
-            <div class="promo-game-badge" id="brand-genre-badge">Daily Football Quiz</div>
+            <div class="promo-badge-stack">
+                <span class="promo-brand-tag">11th Floor Games</span>
+                <span class="promo-drop-time">DAILY AT 11AM UK</span>
+            </div>
         </div>
     </div>
 
     <script>
         /* ==========================================================================
-           MODULAR CONFIGURATION: Easily switch game focus or copy for any title
+           MODULAR CONFIGURATION: Switch game settings easily
            ========================================================================== */
         const gameConfig = {
             title: "Think You Know Ball?",
-            genreBadge: "Daily Football Quiz · 11am UK",
-            accentColor: "#22c55e", // Terrace Green
-            glowColor: "rgba(34, 197, 94, 0.4)"
+            accentColor: "#84CC16", // Terrace Green
+            glowColor: "rgba(132, 204, 22, 0.35)"
         };
 
-        // Apply config to DOM
         document.documentElement.style.setProperty('--accent-green', gameConfig.accentColor);
+        document.documentElement.style.setProperty('--accent-green-glow', gameConfig.glowColor);
         document.getElementById('brand-game-title').innerText = gameConfig.title;
-        document.getElementById('brand-genre-badge').innerText = gameConfig.genreBadge;
 
         /* ==========================================================================
-           PROMO SCRIPT SEQUENCE (Exact agreed text timing)
+           PROMO SCRIPT SEQUENCE (Impact Font, Clean Flow)
            ========================================================================== */
         const sequence = [
-            { text: "Stop wasting your time on <span class='highlight'>AI slop</span> football quizzes.", duration: 2000 },
-            { text: "Every single question is fact-checked and cursed over by a <span class='highlight'>real human</span>.", duration: 2000 },
-            { text: "New game every single day at <span class='highlight'>11am UK</span>.", duration: 1500 },
-            { text: "Think You Know Ball?<br><span class='highlight'>You don't.</span>", duration: 2500 }
+            { text: "STOP WASTING YOUR TIME ON <span class='highlight'>AI SLOP</span> FOOTBALL QUIZZES.", duration: 2000 },
+            { text: "EVERY QUESTION IS FACT-CHECKED AND CURSED OVER BY A <span class='highlight'>REAL HUMAN</span>.", duration: 2000 },
+            { text: "NEW GAME EVERY SINGLE DAY AT <span class='highlight'>11AM UK</span>.", duration: 1500 },
+            { text: "THINK YOU KNOW BALL?<br><span class='pop'>YOU DON'T!</span>", duration: 2500 }
         ];
 
         let currentIndex = 0;
@@ -232,13 +309,13 @@
                 setTimeout(() => {
                     currentIndex++;
                     runPromo();
-                }, 350); // Matches CSS fade transition
+                }, 300); // Matches CSS transition
             }, currentItem.duration);
         }
 
         // Kick off sequence on load
         window.onload = () => {
-            setTimeout(runPromo, 600);
+            setTimeout(runPromo, 500);
         };
     </script>
 </body>
