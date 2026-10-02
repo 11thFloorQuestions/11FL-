@@ -13,7 +13,7 @@
             --surface: #0a0a0a;
             --surface-border: #222222;
             --accent-red: #ff1f2d;
-            --accent-red-glow: rgba(255, 31, 45, 0.25);
+            --accent-red-glow: rgba(255, 31, 45, 0.35);
             --accent-green: #84CC16;
             --accent-green-glow: rgba(132, 204, 22, 0.35);
             --text-primary: #ffffff;
@@ -67,12 +67,12 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            padding: 12px 12px 12px 12px;
+            padding: 10px 12px 10px 12px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.9);
             overflow: hidden;
         }
 
-        /* Lobby Logo Block with Refined Spacing */
+        /* Lobby Logo Block */
         .promo-hub-logo-box {
             display: flex;
             flex-direction: column;
@@ -83,7 +83,7 @@
 
         .promo-hub-logo-red {
             font-family: 'Anton', sans-serif;
-            font-size: 2.1rem;
+            font-size: 2.0rem;
             font-weight: 400;
             color: var(--accent-red);
             line-height: 0.85;
@@ -95,7 +95,7 @@
 
         .promo-hub-logo-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             font-weight: 300;
             color: #ffffff;
             letter-spacing: 1.5px;
@@ -104,33 +104,37 @@
 
         .promo-hub-logo-sub {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.48rem;
+            font-size: 0.45rem;
             font-weight: 600;
             color: var(--text-muted);
             letter-spacing: 3px;
             text-transform: uppercase;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         .promo-presents {
-            font-size: 0.45rem;
+            font-size: 0.42rem;
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--accent-green);
-            margin-bottom: 1px;
+            margin-bottom: 2px;
         }
 
+        /* More Prominent Game Title */
         .promo-game-title {
             font-family: 'Anton', sans-serif;
-            font-size: 0.92rem;
-            letter-spacing: 0.5px;
+            font-size: 1.15rem;
+            letter-spacing: 0.8px;
             color: #ffffff;
+            text-transform: uppercase;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+            margin-top: 1px;
         }
 
-        /* Dedicated Promo Script Display Zone ABOVE the Mock Device (TikTok Safe Zone) */
+        /* Dedicated Promo Script Zone ABOVE the Game Device (TikTok Safe Zone) */
         .promo-body {
-            height: 60px;
+            height: 65px;
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -145,14 +149,14 @@
 
         .promo-text {
             font-family: 'Impact', sans-serif;
-            font-size: 1.35rem;
+            font-size: 1.4rem;
             font-weight: normal;
             letter-spacing: 0.5px;
             line-height: 1.15;
             color: #ffffff;
             opacity: 0;
             transform: translateY(4px);
-            transition: opacity 0.25s ease, transform 0.25s ease;
+            transition: opacity 0.2s ease, transform 0.2s ease;
             position: absolute;
             width: 100%;
             padding: 0 6px;
@@ -167,19 +171,36 @@
         .promo-text .highlight {
             color: var(--accent-green);
             text-shadow: 0 0 10px var(--accent-green-glow), 2px 2px 4px rgba(0,0,0,0.9);
+            display: inline-block;
+            animation: pulseGlow 1.8s ease-in-out infinite alternate;
         }
 
         .promo-text .pop {
             display: inline-block;
-            transform: scale(1.08);
             color: var(--accent-red);
-            text-shadow: 0 0 12px var(--accent-red-glow), 2px 2px 4px rgba(0,0,0,0.9);
+            text-shadow: 0 0 16px var(--accent-red-glow), 2px 2px 6px rgba(0,0,0,0.9);
+            animation: stompImpact 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, pulseRed 1.2s ease-in-out infinite 0.35s alternate;
+        }
+
+        @keyframes stompImpact {
+            0% { transform: scale(2.4); opacity: 0; }
+            100% { transform: scale(1.15); opacity: 1; }
+        }
+
+        @keyframes pulseRed {
+            0% { transform: scale(1.15); text-shadow: 0 0 12px var(--accent-red-glow); }
+            100% { transform: scale(1.22); text-shadow: 0 0 22px rgba(255, 31, 45, 0.6); }
+        }
+
+        @keyframes pulseGlow {
+            0% { text-shadow: 0 0 8px var(--accent-green-glow); }
+            100% { text-shadow: 0 0 16px rgba(132, 204, 22, 0.7); }
         }
 
         /* Mock Mobile Device Container */
         .promo-mock-device {
             width: 220px;
-            height: 295px;
+            height: 290px;
             background-color: var(--surface);
             border: 2px solid var(--surface-border);
             border-radius: 10px;
@@ -193,11 +214,11 @@
             flex-shrink: 0;
         }
 
-        /* Scaled Gameplay Viewport using Exact Game Code HTML */
+        /* Scaled Gameplay Viewport */
         .promo-game-viewport {
             width: 320px;
-            height: 430px;
-            transform: scale(0.685);
+            height: 425px;
+            transform: scale(0.675);
             transform-origin: center center;
             display: flex;
             flex-direction: column;
@@ -560,7 +581,6 @@
             updateFloorHUD();
             startTimerBar(2200);
 
-            // Shuffle options for true random positioning across the 4 grid slots
             const shuffledOptions = shuffleArray(currentQ.options);
             const buttons = document.querySelectorAll('.options-grid .btn-option');
 
@@ -570,37 +590,31 @@
                 btn.textContent = optText;
             });
 
-            // Simulate selection after 1.4 seconds
             setTimeout(() => {
                 const isFinalFailStep = (questionIndex === sampleQuestions.length - 1);
 
                 if (!isFinalFailStep) {
-                    // Highlight Correct Answer Green
                     buttons.forEach(btn => {
                         if (btn.textContent === currentQ.answer) {
                             btn.classList.add('selected-correct');
                         }
                     });
 
-                    // Advance floor
                     setTimeout(() => {
                         currentFloor++;
                         questionIndex++;
                         playClimbStep();
                     }, 700);
                 } else {
-                    // Trigger Gettable Fail State on Leicester City question
                     buttons.forEach(btn => {
                         if (btn.textContent === currentQ.failChoice) {
                             btn.classList.add('selected-wrong');
                         }
                     });
 
-                    // Set tower block state to red error
                     const activeBlock = document.querySelector(`.tower-floor[data-floor="${currentFloor}"]`);
                     if (activeBlock) activeBlock.classList.add('failed');
 
-                    // Hold on the error state, then reset loop back to 1st Floor
                     setTimeout(() => {
                         currentFloor = 1;
                         questionIndex = 0;
