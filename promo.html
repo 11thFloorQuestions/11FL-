@@ -67,12 +67,12 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            padding: 14px 12px 10px 12px;
+            padding: 12px 12px 12px 12px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.9);
             overflow: hidden;
         }
 
-        /* Lobby Logo Block with Slow Color Cycle */
+        /* Lobby Logo Block with Refined Spacing */
         .promo-hub-logo-box {
             display: flex;
             flex-direction: column;
@@ -83,7 +83,7 @@
 
         .promo-hub-logo-red {
             font-family: 'Anton', sans-serif;
-            font-size: 2.2rem;
+            font-size: 2.1rem;
             font-weight: 400;
             color: var(--accent-red);
             line-height: 0.85;
@@ -95,7 +95,7 @@
 
         .promo-hub-logo-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 300;
             color: #ffffff;
             letter-spacing: 1.5px;
@@ -104,34 +104,82 @@
 
         .promo-hub-logo-sub {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.5rem;
+            font-size: 0.48rem;
             font-weight: 600;
             color: var(--text-muted);
             letter-spacing: 3px;
             text-transform: uppercase;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
 
         .promo-presents {
-            font-size: 0.48rem;
+            font-size: 0.45rem;
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--accent-green);
+            margin-bottom: 1px;
         }
 
         .promo-game-title {
             font-family: 'Anton', sans-serif;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             letter-spacing: 0.5px;
             color: #ffffff;
-            margin-top: 1px;
+        }
+
+        /* Dedicated Promo Script Display Zone ABOVE the Mock Device (TikTok Safe Zone) */
+        .promo-body {
+            height: 60px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 20;
+            position: relative;
+            flex-shrink: 0;
+            margin: 2px 0;
+        }
+
+        .promo-text {
+            font-family: 'Impact', sans-serif;
+            font-size: 1.35rem;
+            font-weight: normal;
+            letter-spacing: 0.5px;
+            line-height: 1.15;
+            color: #ffffff;
+            opacity: 0;
+            transform: translateY(4px);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            position: absolute;
+            width: 100%;
+            padding: 0 6px;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.95);
+        }
+
+        .promo-text.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .promo-text .highlight {
+            color: var(--accent-green);
+            text-shadow: 0 0 10px var(--accent-green-glow), 2px 2px 4px rgba(0,0,0,0.9);
+        }
+
+        .promo-text .pop {
+            display: inline-block;
+            transform: scale(1.08);
+            color: var(--accent-red);
+            text-shadow: 0 0 12px var(--accent-red-glow), 2px 2px 4px rgba(0,0,0,0.9);
         }
 
         /* Mock Mobile Device Container */
         .promo-mock-device {
             width: 220px;
-            height: 300px;
+            height: 295px;
             background-color: var(--surface);
             border: 2px solid var(--surface-border);
             border-radius: 10px;
@@ -148,8 +196,8 @@
         /* Scaled Gameplay Viewport using Exact Game Code HTML */
         .promo-game-viewport {
             width: 320px;
-            height: 436px;
-            transform: scale(0.6875);
+            height: 430px;
+            transform: scale(0.685);
             transform-origin: center center;
             display: flex;
             flex-direction: column;
@@ -290,51 +338,11 @@
             box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
         }
 
-        /* Dedicated Script Display Overlay Area (No overlapping with frame) */
-        .promo-body {
-            height: 75px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            z-index: 20;
-            position: relative;
-            flex-shrink: 0;
-        }
-
-        .promo-text {
-            font-family: 'Impact', sans-serif;
-            font-size: 1.45rem;
-            font-weight: normal;
-            letter-spacing: 0.5px;
-            line-height: 1.15;
-            color: #ffffff;
-            opacity: 0;
-            transform: translateY(6px);
-            transition: opacity 0.25s ease, transform 0.25s ease;
-            position: absolute;
-            width: 100%;
-            padding: 0 6px;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.95);
-        }
-
-        .promo-text.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .promo-text .highlight {
-            color: var(--accent-green);
-            text-shadow: 0 0 10px var(--accent-green-glow), 2px 2px 4px rgba(0,0,0,0.9);
-        }
-
-        .promo-text .pop {
-            display: inline-block;
-            transform: scale(1.08);
-            color: var(--accent-red);
-            text-shadow: 0 0 12px var(--accent-red-glow), 2px 2px 4px rgba(0,0,0,0.9);
+        .btn-option.selected-wrong { 
+            border-color: var(--state-error); 
+            background: rgba(239, 68, 68, 0.25); 
+            color: #FCA5A5; 
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
         }
 
         /* Footer Text */
@@ -382,7 +390,12 @@
             <div class="promo-game-title" id="brand-game-title">Think You Know Ball?</div>
         </div>
 
-        <!-- Mock Mobile Frame containing the exact Think You Know Ball UI -->
+        <!-- Dedicated Promo Script Zone ABOVE the Game Device -->
+        <div class="promo-body">
+            <div id="text-slot" class="promo-text"></div>
+        </div>
+
+        <!-- Mock Mobile Frame containing Think You Know Ball UI -->
         <div class="promo-mock-device">
             <div class="promo-game-viewport">
                 <!-- Gameplay HUD Header -->
@@ -427,11 +440,6 @@
             </div>
         </div>
 
-        <!-- Dedicated Non-Overlapping Promo Impact Text Slot -->
-        <div class="promo-body">
-            <div id="text-slot" class="promo-text"></div>
-        </div>
-
         <!-- Clean Footer Text -->
         <div class="promo-footer">
             <span class="promo-footer-text">New Game Everyday at 11am UK</span>
@@ -440,7 +448,7 @@
 
     <script>
         /* ==========================================================================
-           MODULAR CONFIGURATION: Easily update titles and accents
+           MODULAR CONFIGURATION
            ========================================================================== */
         const gameConfig = {
             title: "Think You Know Ball?",
@@ -483,7 +491,7 @@
         }
 
         /* ==========================================================================
-           AUTHENTIC 10-FLOOR ELEVATOR CLIMB GAMEPLAY SIMULATOR
+           AUTHENTIC ELEVATOR CLIMB SIMULATION (Random Answers + Gettable Fail)
            ========================================================================== */
         const sampleQuestions = [
             { question: "Which club won the inaugural Premier League title in 1992-93?", options: ["Manchester United", "Blackburn Rovers", "Arsenal", "Aston Villa"], answer: "Manchester United" },
@@ -492,10 +500,7 @@
             { question: "Who scored the famous 'Agueroooo' goal to seal the title in 2012?", options: ["Sergio Agüero", "David Silva", "Yaya Touré", "Edin Džeko"], answer: "Sergio Agüero" },
             { question: "Which team completed an entire 38-game Premier League season undefeated?", options: ["Arsenal", "Manchester City", "Chelsea", "Manchester United"], answer: "Arsenal" },
             { question: "Who won the Golden Boot in three consecutive Premier League seasons (2003–2006)?", options: ["Thierry Henry", "Ruud van Nistelrooy", "Alan Shearer", "Didier Drogba"], answer: "Thierry Henry" },
-            { question: "Which manager famously led 5000-1 outsiders Leicester City to the title in 2015-16?", options: ["Claudio Ranieri", "Nigel Pearson", "Brendan Rodgers", "Craig Shakespeare"], answer: "Claudio Ranieri" },
-            { question: "Who was the first player to record 100 Premier League assists?", options: ["Ryan Giggs", "Cesc Fàbregas", "Wayne Rooney", "Dennis Bergkamp"], answer: "Ryan Giggs" },
-            { question: "Which club holds the record for conceding the fewest goals in a single PL season (15)?", options: ["Chelsea", "Arsenal", "Manchester United", "Liverpool"], answer: "Chelsea" },
-            { question: "Who scored the fastest hat-trick in Premier League history (2 mins 56 secs)?", options: ["Sadio Mané", "Robbie Fowler", "Jermain Defoe", "Gabriel Agbonlahor"], answer: "Sadio Mané" }
+            { question: "Which manager famously led 5000-1 outsiders Leicester City to the title in 2015-16?", options: ["Claudio Ranieri", "Nigel Pearson", "Brendan Rodgers", "Craig Shakespeare"], answer: "Claudio Ranieri", failChoice: "Nigel Pearson" }
         ];
 
         const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
@@ -503,17 +508,24 @@
         let questionIndex = 0;
         let timerInterval = null;
 
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
         function getOrdinalFloorHTML(floorNum) {
             const ord = ordinals[floorNum - 1] || `${floorNum}th`;
             return `<span style="color: var(--genre-terrace, #84CC16); font-weight: 800;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
         }
 
         function updateFloorHUD() {
-            // Update Ordinal Text Display
             const floorTextEl = document.getElementById('card-floor-text');
             if (floorTextEl) floorTextEl.innerHTML = getOrdinalFloorHTML(currentFloor);
 
-            // Update Tower Stack Blocks
             document.querySelectorAll('.tower-floor').forEach(block => {
                 const floorNum = parseInt(block.getAttribute('data-floor'), 10);
                 block.classList.toggle('active', floorNum === currentFloor);
@@ -542,42 +554,60 @@
         }
 
         function playClimbStep() {
-            const currentQ = sampleQuestions[questionIndex % sampleQuestions.length];
+            const currentQ = sampleQuestions[questionIndex];
             document.getElementById('question-text').textContent = currentQ.question;
 
             updateFloorHUD();
-            startTimerBar(2500);
+            startTimerBar(2200);
 
+            // Shuffle options for true random positioning across the 4 grid slots
+            const shuffledOptions = shuffleArray(currentQ.options);
             const buttons = document.querySelectorAll('.options-grid .btn-option');
-            let correctBtn = null;
 
             buttons.forEach((btn, idx) => {
                 btn.className = 'btn-option';
-                const optText = currentQ.options[idx] || '';
+                const optText = shuffledOptions[idx] || '';
                 btn.textContent = optText;
-                if (optText === currentQ.answer) {
-                    correctBtn = btn;
-                }
             });
 
-            // Simulate answer selection after 1.5 seconds
+            // Simulate selection after 1.4 seconds
             setTimeout(() => {
-                if (correctBtn) {
-                    correctBtn.classList.add('selected-correct');
+                const isFinalFailStep = (questionIndex === sampleQuestions.length - 1);
+
+                if (!isFinalFailStep) {
+                    // Highlight Correct Answer Green
+                    buttons.forEach(btn => {
+                        if (btn.textContent === currentQ.answer) {
+                            btn.classList.add('selected-correct');
+                        }
+                    });
+
+                    // Advance floor
+                    setTimeout(() => {
+                        currentFloor++;
+                        questionIndex++;
+                        playClimbStep();
+                    }, 700);
+                } else {
+                    // Trigger Gettable Fail State on Leicester City question
+                    buttons.forEach(btn => {
+                        if (btn.textContent === currentQ.failChoice) {
+                            btn.classList.add('selected-wrong');
+                        }
+                    });
+
+                    // Set tower block state to red error
+                    const activeBlock = document.querySelector(`.tower-floor[data-floor="${currentFloor}"]`);
+                    if (activeBlock) activeBlock.classList.add('failed');
+
+                    // Hold on the error state, then reset loop back to 1st Floor
+                    setTimeout(() => {
+                        currentFloor = 1;
+                        questionIndex = 0;
+                        playClimbStep();
+                    }, 2000);
                 }
-
-                // Advance to next floor step after brief pause
-                setTimeout(() => {
-                    currentFloor++;
-                    questionIndex++;
-
-                    if (currentFloor > 10) {
-                        currentFloor = 1; // Reset loop to Floor 1 for continuous studio recording
-                    }
-
-                    playClimbStep();
-                }, 800);
-            }, 1500);
+            }, 1400);
         }
 
         window.onload = () => {
