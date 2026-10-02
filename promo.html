@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Think You Know Ball? — Promo Studio</title>
+    <title>11th Floor Games - Promo Studio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
@@ -12,11 +12,21 @@
             --bg-deep: #000000;
             --surface: #0a0a0a;
             --surface-border: #222222;
-            --genre-terrace: #84CC16;
-            --genre-terrace-glow: rgba(132, 204, 22, 0.3);
+            --accent-red: #ff1f2d;
+            --accent-red-glow: rgba(255, 31, 45, 0.25);
+            --accent-green: #22c55e;
+            --accent-green-glow: rgba(34, 197, 94, 0.3);
             --text-primary: #ffffff;
             --text-muted: #888888;
-            --state-error: #ef4444;
+
+            /* Game Genre Colors matching Lobby */
+            --color-terrace: #84CC16;
+            --color-terrace-glow: rgba(132, 204, 22, 0.35);
+            --color-questions: #D4AF37;
+            --color-wordclimb: #3B82F6;
+            --color-clusters: #ff751f;
+            --color-cluegram: #cc007e;
+            --color-parity: #ff9999;
         }
 
         * {
@@ -51,132 +61,99 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            padding: 24px 16px;
+            padding: 20px 16px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.9);
             overflow: hidden;
         }
 
-        /* Clean Circular Brand Emblem Header */
-        .promo-emblem {
-            width: 72px;
-            height: 72px;
-            background: var(--surface);
-            border: 2px solid var(--genre-terrace);
-            border-radius: 50%;
+        /* Lobby Logo Block with Slow Color Cycle */
+        .promo-hub-logo-box {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 16px var(--genre-terrace-glow);
-            margin-bottom: 4px;
+            z-index: 10;
         }
 
-        .promo-emblem-text {
+        .promo-hub-logo-red {
             font-family: 'Anton', sans-serif;
-            font-size: 1.8rem;
-            color: var(--genre-terrace);
-            line-height: 1;
+            font-size: 3.2rem;
+            font-weight: 400;
+            color: var(--accent-red);
+            line-height: 0.85;
+            letter-spacing: -1px;
+            text-shadow: 0 0 20px rgba(255, 31, 45, 0.35);
+            margin-bottom: 3px;
+            animation: logoColorCycle 8s ease-in-out infinite;
         }
 
-        .promo-brand-title {
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--text-muted);
+        .promo-hub-logo-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: #ffffff;
+            letter-spacing: 1.5px;
             margin-bottom: 2px;
         }
 
-        .promo-game-name {
-            font-family: 'Anton', sans-serif;
-            font-size: 1.15rem;
-            letter-spacing: 0.5px;
-            color: #ffffff;
+        .promo-hub-logo-sub {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.55rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 4px;
             text-transform: uppercase;
+            margin-bottom: 6px;
         }
 
-        /* Mock Mobile Device Frame for Game Flow */
+        .promo-presents {
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-green);
+        }
+
+        .promo-game-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+            margin-top: 2px;
+        }
+
+        /* Mock Mobile Game Viewport Container in the Middle */
         .promo-mock-device {
-            width: 280px;
-            height: 340px;
+            width: 220px;
+            height: 310px;
             background-color: var(--surface);
-            border: 1px solid var(--surface-border);
-            border-radius: 10px;
+            border: 2px solid var(--surface-border);
+            border-radius: 8px;
             position: relative;
             overflow: hidden;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+            z-index: 5;
         }
 
-        /* Simulated mini HUD & gameplay inside mock device */
-        .mock-tower-bar {
+        /* If embedding an iframe or background video loop of the game */
+        .promo-game-frame {
             width: 100%;
-            display: flex;
-            gap: 2px;
-            height: 6px;
-            margin-bottom: 10px;
+            height: 100%;
+            border: none;
+            pointer-events: none;
+            opacity: 0.65;
+            transform: scale(0.85);
         }
 
-        .mock-floor {
-            flex: 1;
-            background: #111111;
-            border-radius: 1px;
-            border: 1px solid var(--surface-border);
-        }
-
-        .mock-floor.active {
-            background: var(--genre-terrace);
-            border-color: var(--genre-terrace);
-            box-shadow: 0 0 6px var(--genre-terrace-glow);
-        }
-
-        .mock-question-box {
-            width: 100%;
-            background: #111111;
-            border: 1px solid var(--surface-border);
-            border-radius: 6px;
-            padding: 10px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 10px;
-            line-height: 1.3;
-        }
-
-        .mock-options {
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-        }
-
-        .mock-opt {
-            background: #111111;
-            border: 1px solid var(--surface-border);
-            border-radius: 4px;
-            padding: 8px 4px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-align: center;
-            color: #ffffff;
-        }
-
-        .mock-opt.correct {
-            border-color: var(--genre-terrace);
-            background: rgba(132, 204, 22, 0.2);
-            color: #bbf7d0;
-        }
-
-        /* Dynamic Impact Script Overlay */
+        /* Dynamic Impact Script Display Area Overlaying the Center */
         .promo-body {
             position: absolute;
             top: 48%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 88%;
+            width: 90%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -188,7 +165,7 @@
 
         .promo-text {
             font-family: 'Impact', sans-serif;
-            font-size: 2.2rem;
+            font-size: 2.1rem;
             font-weight: normal;
             letter-spacing: 1px;
             line-height: 1.2;
@@ -198,7 +175,7 @@
             transition: opacity 0.25s ease, transform 0.25s ease;
             position: absolute;
             width: 100%;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.95), -2px -2px 8px rgba(0,0,0,0.95), 0 0 12px rgba(0,0,0,0.9);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.9), -2px -2px 8px rgba(0,0,0,0.9);
         }
 
         .promo-text.active {
@@ -207,25 +184,25 @@
         }
 
         .promo-text .highlight {
-            color: var(--genre-terrace);
-            text-shadow: 0 0 12px var(--genre-terrace-glow), 2px 2px 6px rgba(0,0,0,0.95);
+            color: var(--accent-green);
+            text-shadow: 0 0 12px var(--accent-green-glow), 2px 2px 6px rgba(0,0,0,0.9);
         }
 
         .promo-text .pop {
             display: inline-block;
-            transform: scale(1.12);
-            color: var(--state-error);
-            text-shadow: 0 0 16px rgba(239, 68, 68, 0.4), 2px 2px 6px rgba(0,0,0,0.95);
+            transform: scale(1.15);
+            color: var(--accent-red);
+            text-shadow: 0 0 16px var(--accent-red-glow), 2px 2px 6px rgba(0,0,0,0.9);
         }
 
-        /* Clean Footer */
+        /* Clean Bottom Footer */
         .promo-footer {
             display: flex;
             justify-content: center;
             align-items: center;
             width: 100%;
             z-index: 10;
-            padding-bottom: 2px;
+            padding-bottom: 4px;
         }
 
         .promo-footer-text {
@@ -236,61 +213,69 @@
             color: var(--text-muted);
             text-align: center;
         }
+
+        /* Slow, smooth color cycle */
+        @keyframes logoColorCycle {
+            0%   { color: var(--accent-red); text-shadow: 0 0 20px rgba(255, 31, 45, 0.35); }
+            14%  { color: var(--color-terrace); text-shadow: 0 0 20px var(--color-terrace-glow); }
+            28%  { color: var(--color-cluegram); text-shadow: 0 0 20px rgba(204, 0, 126, 0.35); }
+            42%  { color: var(--color-questions); text-shadow: 0 0 20px rgba(212, 175, 55, 0.35); }
+            56%  { color: var(--color-wordclimb); text-shadow: 0 0 20px rgba(59, 130, 246, 0.35); }
+            70%  { color: var(--color-clusters); text-shadow: 0 0 20px rgba(255, 117, 31, 0.35); }
+            84%  { color: var(--color-parity); text-shadow: 0 0 20px rgba(255, 153, 153, 0.35); }
+            100% { color: var(--accent-red); text-shadow: 0 0 20px rgba(255, 31, 45, 0.35); }
+        }
     </style>
 </head>
 <body>
 
     <div class="promo-canvas">
-        <!-- Clean Brand Emblem Header -->
-        <div style="display: flex; flex-direction: column; align-items: center;">
-            <div class="promo-emblem">
-                <span class="promo-emblem-text">?</span>
-            </div>
-            <span class="promo-brand-title">11th Floor Games</span>
-            <h1 class="promo-game-name">Think You Know Ball?</h1>
+        <!-- Lobby Logo Block -->
+        <div class="promo-hub-logo-box">
+            <h1 class="promo-hub-logo-red">11FL?</h1>
+            <p class="promo-hub-logo-title">Eleventh Floor</p>
+            <p class="promo-hub-logo-sub">GAMES LOBBY</p>
+            <div class="promo-presents">PRESENTS</div>
+            <div class="promo-game-title" id="brand-game-title">Think You Know Ball?</div>
         </div>
 
-        <!-- Mock Device Frame displaying game aesthetic -->
+        <!-- Mock Mobile Frame for Game Playback/Background Motion -->
         <div class="promo-mock-device">
-            <div class="mock-tower-bar">
-                <div class="mock-floor active"></div>
-                <div class="mock-floor"></div>
-                <div class="mock-floor"></div>
-                <div class="mock-floor"></div>
-                <div class="mock-floor"></div>
-                <div class="mock-floor"></div>
-                <div class="mock-floor"></div>
-                <div class="mock-floor"></div>
-                <div class="mock-floor"></div>
-                <div class="mock-floor"></div>
-                <div class="mock-floor"></div>
-            </div>
-            <div class="mock-question-box">
-                Which club became the first team to defeat Pep Guardiola's Manchester City in the Premier League during their 'Centurions' 2017–18 campaign?
-            </div>
-            <div class="mock-options">
-                <div class="mock-opt correct">Liverpool</div>
-                <div class="mock-opt">Manchester United</div>
-                <div class="mock-opt">Tottenham Hotspur</div>
-                <div class="mock-opt">Chelsea</div>
-            </div>
+            <!-- You can link ball.html here or use it as a live background view -->
+            <iframe src="ball.html" class="promo-game-frame" scrolling="no"></iframe>
         </div>
 
-        <!-- Dynamic Impact Script Overlay -->
+        <!-- Dynamic Impact Script Display Area -->
         <div class="promo-body">
             <div id="text-slot" class="promo-text"></div>
         </div>
 
-        <!-- Clean Footer -->
+        <!-- Clean Footer Text -->
         <div class="promo-footer">
             <span class="promo-footer-text">New Game Everyday at 11am UK</span>
         </div>
     </div>
 
     <script>
+        /* ==========================================================================
+           MODULAR CONFIGURATION: Switch game settings easily
+           ========================================================================== */
+        const gameConfig = {
+            title: "Think You Know Ball?",
+            accentColor: "#84CC16", // Terrace Green
+            glowColor: "rgba(132, 204, 22, 0.35)"
+        };
+
+        document.documentElement.style.setProperty('--accent-green', gameConfig.accentColor);
+        document.documentElement.style.setProperty('--accent-green-glow', gameConfig.glowColor);
+        document.getElementById('brand-game-title').innerText = gameConfig.title;
+
+        /* ==========================================================================
+           PROMO SCRIPT SEQUENCE (Impact Font, Clean Flow)
+           ========================================================================== */
         const sequence = [
             { text: "STOP WASTING YOUR TIME ON <span class='highlight'>AI SLOP</span> FOOTBALL QUIZZES.", duration: 2000 },
-            { text: "EVERY QUESTION IS FACT-CHECKED BY A <span class='highlight'>REAL HUMAN</span>.", duration: 2000 },
+            { text: "EVERY QUESTION IS FACT-CHECKED AND CURSED OVER BY A <span class='highlight'>REAL HUMAN</span>.", duration: 2000 },
             { text: "THINK YOU KNOW BALL?<br><span class='pop'>YOU DON'T!</span>", duration: 2500 }
         ];
 
@@ -299,7 +284,7 @@
 
         function runPromo() {
             if (currentIndex >= sequence.length) {
-                currentIndex = 0;
+                currentIndex = 0; // Smooth loop for clean screen recording
             }
 
             const currentItem = sequence[currentIndex];
@@ -311,10 +296,11 @@
                 setTimeout(() => {
                     currentIndex++;
                     runPromo();
-                }, 300);
+                }, 300); // Matches CSS transition
             }, currentItem.duration);
         }
 
+        // Kick off sequence on load
         window.onload = () => {
             setTimeout(runPromo, 500);
         };
