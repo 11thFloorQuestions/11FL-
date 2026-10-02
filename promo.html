@@ -67,7 +67,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            padding: 12px 12px 8px 12px;
+            padding: 14px 12px 10px 12px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.9);
             overflow: hidden;
         }
@@ -83,7 +83,7 @@
 
         .promo-hub-logo-red {
             font-family: 'Anton', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 400;
             color: var(--accent-red);
             line-height: 0.85;
@@ -104,7 +104,7 @@
 
         .promo-hub-logo-sub {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.55rem;
+            font-size: 0.5rem;
             font-weight: 600;
             color: var(--text-muted);
             letter-spacing: 3px;
@@ -113,7 +113,7 @@
         }
 
         .promo-presents {
-            font-size: 0.5rem;
+            font-size: 0.48rem;
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -128,28 +128,28 @@
             margin-top: 1px;
         }
 
-        /* Scaled Down Mock Mobile Viewport Container */
+        /* Mock Mobile Device Container */
         .promo-mock-device {
-            width: 200px;
-            height: 270px;
+            width: 220px;
+            height: 300px;
             background-color: var(--surface);
-            border: 1.5px solid var(--surface-border);
-            border-radius: 8px;
+            border: 2px solid var(--surface-border);
+            border-radius: 10px;
             position: relative;
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.8);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
             z-index: 5;
             flex-shrink: 0;
         }
 
-        /* Scaled Embedded Gameplay Frame */
+        /* Scaled Gameplay Viewport using Exact Game Code HTML */
         .promo-game-viewport {
             width: 320px;
-            height: 432px;
-            transform: scale(0.625);
+            height: 436px;
+            transform: scale(0.6875);
             transform-origin: center center;
             display: flex;
             flex-direction: column;
@@ -159,7 +159,138 @@
             pointer-events: none;
         }
 
-        /* Dedicated Non-Overlapping Text Area */
+        /* Gameplay HUD & Tower Stack */
+        .hud-sidebar-container { 
+            width: 100%; 
+            display: flex; 
+            align-items: stretch; 
+            gap: 8px; 
+            margin-bottom: 6px; 
+            flex-shrink: 0; 
+        }
+
+        .tower-stack { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 2px; 
+            width: 44px; 
+            background: var(--surface); 
+            border: 1px solid var(--surface-border); 
+            border-radius: 6px; 
+            padding: 5px; 
+            justify-content: space-between; 
+            flex-shrink: 0; 
+        }
+
+        .tower-floor { 
+            height: 6px; 
+            border: 1px solid var(--surface-border); 
+            background: #111111; 
+            transition: all 0.25s ease; 
+            border-radius: 1px; 
+        }
+
+        .tower-floor.active { 
+            border-color: var(--state-active); 
+            background: var(--state-active); 
+            box-shadow: 0 0 6px rgba(250, 204, 21, 0.4); 
+        }
+
+        .tower-floor.completed { 
+            border-color: var(--state-success); 
+            background: var(--state-success); 
+            box-shadow: 0 0 5px rgba(34, 197, 94, 0.4); 
+        }
+
+        .tower-floor.failed { 
+            border-color: var(--state-error); 
+            background: var(--state-error); 
+            box-shadow: 0 0 5px rgba(239, 68, 68, 0.4); 
+        }
+
+        .floor-info-box {
+            flex-grow: 1;
+            background-color: var(--surface);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100' fill='none' stroke='rgba(255, 255, 255, 0.08)' stroke-width='1'%3E%3Crect x='4' y='4' width='192' height='92' /%3E%3Cline x1='100' y1='4' x2='100' y2='96' /%3E%3Ccircle cx='100' cy='50' r='18' /%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100% 100%;
+            border: 1px solid var(--surface-border);
+            border-radius: 6px;
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .floor-left-group { display: flex; flex-direction: column; gap: 2px; z-index: 1; }
+        .current-floor-display { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 800; letter-spacing: 0.5px; }
+        .floor-rule-text { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.5px; text-transform: uppercase; }
+
+        /* Gameplay Card & Options */
+        .play-card {
+            width: 100%;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: 6px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-grow: 1;
+            overflow: hidden;
+        }
+
+        .timer-track { width: 100%; height: 4px; background: #111111; border-radius: 2px; overflow: hidden; }
+        .timer-fill { height: 100%; background: var(--state-active); width: 100%; transition: width 0.05s linear; }
+        
+        .question-box {
+            width: 100%;
+            background: #111111;
+            border: 1px solid var(--surface-border);
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .question-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+
+        .options-grid { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .btn-option { 
+            width: 100%; 
+            min-height: 42px; 
+            background: #111111; 
+            border: 1px solid rgba(250, 204, 21, 0.4); 
+            border-radius: 6px; 
+            color: #ffffff; 
+            font-family: 'Montserrat', sans-serif; 
+            font-size: 0.7rem; 
+            font-weight: 700; 
+            padding: 6px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            transition: all 0.2s ease;
+        }
+
+        .btn-option.selected-correct { 
+            border-color: var(--state-success); 
+            background: rgba(34, 197, 94, 0.25); 
+            color: #86EFAC; 
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+        }
+
+        /* Dedicated Script Display Overlay Area (No overlapping with frame) */
         .promo-body {
             height: 75px;
             width: 100%;
@@ -175,7 +306,7 @@
 
         .promo-text {
             font-family: 'Impact', sans-serif;
-            font-size: 1.35rem;
+            font-size: 1.45rem;
             font-weight: normal;
             letter-spacing: 0.5px;
             line-height: 1.15;
@@ -185,8 +316,8 @@
             transition: opacity 0.25s ease, transform 0.25s ease;
             position: absolute;
             width: 100%;
-            padding: 0 8px;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.9);
+            padding: 0 6px;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.95);
         }
 
         .promo-text.active {
@@ -206,7 +337,7 @@
             text-shadow: 0 0 12px var(--accent-red-glow), 2px 2px 4px rgba(0,0,0,0.9);
         }
 
-        /* Clean Bottom Footer */
+        /* Footer Text */
         .promo-footer {
             display: flex;
             justify-content: center;
@@ -225,69 +356,6 @@
             color: var(--text-muted);
             text-align: center;
         }
-
-        /* Inline TYKB Mini Styles */
-        .hud-sidebar-container { width: 100%; display: flex; align-items: stretch; gap: 8px; margin-bottom: 4px; flex-shrink: 0; }
-        .tower-stack { display: flex; flex-direction: column; gap: 2px; width: 36px; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 6px; padding: 4px; justify-content: space-between; flex-shrink: 0; }
-        .tower-floor { height: 5px; border: 1px solid var(--surface-border); background: #111111; transition: all 0.2s ease; border-radius: 1px; }
-        .tower-floor.active { border-color: var(--state-active); background: var(--state-active); box-shadow: 0 0 6px rgba(250, 204, 21, 0.3); }
-        .tower-floor.completed { border-color: var(--state-success); background: var(--state-success); box-shadow: 0 0 4px rgba(34, 197, 94, 0.3); }
-        .tower-floor.failed { border-color: var(--state-error); background: var(--state-error); box-shadow: 0 0 4px rgba(239, 68, 68, 0.3); }
-
-        .floor-info-box {
-            flex-grow: 1;
-            background-color: var(--surface);
-            border: 1px solid var(--surface-border);
-            border-radius: 6px;
-            padding: 6px 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .floor-left-group { display: flex; flex-direction: column; gap: 2px; z-index: 1; }
-        .current-floor-display { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 800; letter-spacing: 0.5px; }
-        .floor-rule-text { font-family: 'Montserrat', sans-serif; font-size: 0.55rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.5px; text-transform: uppercase; }
-
-        .play-card {
-            width: 100%;
-            background: var(--surface);
-            border: 1px solid var(--surface-border);
-            border-radius: 6px;
-            padding: 10px 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-            flex-grow: 1;
-            overflow: hidden;
-        }
-
-        .timer-track { width: 100%; height: 3px; background: #111111; border-radius: 2px; overflow: hidden; }
-        .timer-fill { height: 100%; background: var(--state-active); width: 100%; transition: width 0.05s linear; }
-        
-        .question-box {
-            width: 100%;
-            background: #111111;
-            border: 1px solid var(--surface-border);
-            border-radius: 4px;
-            padding: 8px 10px;
-            text-align: center;
-        }
-
-        .question-text {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #ffffff;
-            line-height: 1.25;
-        }
-
-        .options-grid { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-        .btn-option { width: 100%; min-height: 36px; background: #111111; border: 1px solid rgba(250, 204, 21, 0.4); border-radius: 6px; color: #ffffff; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 700; padding: 4px 6px; display: flex; align-items: center; justify-content: center; text-align: center; }
 
         /* Slow, smooth color cycle */
         @keyframes logoColorCycle {
@@ -314,7 +382,7 @@
             <div class="promo-game-title" id="brand-game-title">Think You Know Ball?</div>
         </div>
 
-        <!-- Mock Mobile Frame for Game Playback -->
+        <!-- Mock Mobile Frame containing the exact Think You Know Ball UI -->
         <div class="promo-mock-device">
             <div class="promo-game-viewport">
                 <!-- Gameplay HUD Header -->
@@ -359,7 +427,7 @@
             </div>
         </div>
 
-        <!-- Dedicated Non-Overlapping Dynamic Impact Script Area -->
+        <!-- Dedicated Non-Overlapping Promo Impact Text Slot -->
         <div class="promo-body">
             <div id="text-slot" class="promo-text"></div>
         </div>
@@ -372,7 +440,7 @@
 
     <script>
         /* ==========================================================================
-           MODULAR CONFIGURATION: Switch game settings easily
+           MODULAR CONFIGURATION: Easily update titles and accents
            ========================================================================== */
         const gameConfig = {
             title: "Think You Know Ball?",
@@ -385,7 +453,7 @@
         document.getElementById('brand-game-title').innerText = gameConfig.title;
 
         /* ==========================================================================
-           PROMO SCRIPT SEQUENCE (Impact Font, Clean Non-Overlapping Flow)
+           PROMO SCRIPT SEQUENCE
            ========================================================================== */
         const sequence = [
             { text: "STOP WASTING YOUR TIME ON <span class='highlight'>AI SLOP</span> FOOTBALL QUIZZES.", duration: 2200 },
@@ -396,7 +464,7 @@
         let currentIndex = 0;
         const textSlot = document.getElementById('text-slot');
 
-        function runPromo() {
+        function runPromoScript() {
             if (currentIndex >= sequence.length) {
                 currentIndex = 0;
             }
@@ -409,35 +477,112 @@
                 textSlot.classList.remove('active');
                 setTimeout(() => {
                     currentIndex++;
-                    runPromo();
+                    runPromoScript();
                 }, 300);
             }, currentItem.duration);
         }
 
         /* ==========================================================================
-           GAME SIMULATION LOOP FOR PROMO DISPLAY
+           AUTHENTIC 10-FLOOR ELEVATOR CLIMB GAMEPLAY SIMULATOR
            ========================================================================== */
         const sampleQuestions = [
             { question: "Which club won the inaugural Premier League title in 1992-93?", options: ["Manchester United", "Blackburn Rovers", "Arsenal", "Aston Villa"], answer: "Manchester United" },
             { question: "Who holds the record for most goals in a single 38-game Premier League season?", options: ["Erling Haaland", "Alan Shearer", "Mohamed Salah", "Thierry Henry"], answer: "Erling Haaland" },
-            { question: "Which player has accumulated the most overall appearances in PL history?", options: ["Gareth Barry", "Ryan Giggs", "James Milner", "Frank Lampard"], answer: "Gareth Barry" }
+            { question: "Which player has accumulated the most overall appearances in PL history?", options: ["Gareth Barry", "Ryan Giggs", "James Milner", "Frank Lampard"], answer: "Gareth Barry" },
+            { question: "Who scored the famous 'Agueroooo' goal to seal the title in 2012?", options: ["Sergio Agüero", "David Silva", "Yaya Touré", "Edin Džeko"], answer: "Sergio Agüero" },
+            { question: "Which team completed an entire 38-game Premier League season undefeated?", options: ["Arsenal", "Manchester City", "Chelsea", "Manchester United"], answer: "Arsenal" },
+            { question: "Who won the Golden Boot in three consecutive Premier League seasons (2003–2006)?", options: ["Thierry Henry", "Ruud van Nistelrooy", "Alan Shearer", "Didier Drogba"], answer: "Thierry Henry" },
+            { question: "Which manager famously led 5000-1 outsiders Leicester City to the title in 2015-16?", options: ["Claudio Ranieri", "Nigel Pearson", "Brendan Rodgers", "Craig Shakespeare"], answer: "Claudio Ranieri" },
+            { question: "Who was the first player to record 100 Premier League assists?", options: ["Ryan Giggs", "Cesc Fàbregas", "Wayne Rooney", "Dennis Bergkamp"], answer: "Ryan Giggs" },
+            { question: "Which club holds the record for conceding the fewest goals in a single PL season (15)?", options: ["Chelsea", "Arsenal", "Manchester United", "Liverpool"], answer: "Chelsea" },
+            { question: "Who scored the fastest hat-trick in Premier League history (2 mins 56 secs)?", options: ["Sadio Mané", "Robbie Fowler", "Jermain Defoe", "Gabriel Agbonlahor"], answer: "Sadio Mané" }
         ];
 
-        let qIndex = 0;
-        function updateMockGameplay() {
-            const q = sampleQuestions[qIndex % sampleQuestions.length];
-            document.getElementById('question-text').textContent = q.question;
-            const btns = document.querySelectorAll('.options-grid .btn-option');
-            btns.forEach((btn, idx) => {
-                btn.textContent = q.options[idx] || '';
+        const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
+        let currentFloor = 1;
+        let questionIndex = 0;
+        let timerInterval = null;
+
+        function getOrdinalFloorHTML(floorNum) {
+            const ord = ordinals[floorNum - 1] || `${floorNum}th`;
+            return `<span style="color: var(--genre-terrace, #84CC16); font-weight: 800;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
+        }
+
+        function updateFloorHUD() {
+            // Update Ordinal Text Display
+            const floorTextEl = document.getElementById('card-floor-text');
+            if (floorTextEl) floorTextEl.innerHTML = getOrdinalFloorHTML(currentFloor);
+
+            // Update Tower Stack Blocks
+            document.querySelectorAll('.tower-floor').forEach(block => {
+                const floorNum = parseInt(block.getAttribute('data-floor'), 10);
+                block.classList.toggle('active', floorNum === currentFloor);
+                block.classList.toggle('completed', floorNum < currentFloor);
+                block.classList.remove('failed');
             });
-            qIndex++;
+        }
+
+        function startTimerBar(durationMs) {
+            clearInterval(timerInterval);
+            const timerBar = document.getElementById('timer-bar');
+            if (!timerBar) return;
+
+            timerBar.style.width = '100%';
+            const startTime = Date.now();
+
+            timerInterval = setInterval(() => {
+                const elapsed = Date.now() - startTime;
+                const remaining = Math.max(0, durationMs - elapsed);
+                timerBar.style.width = `${(remaining / durationMs) * 100}%`;
+
+                if (remaining <= 0) {
+                    clearInterval(timerInterval);
+                }
+            }, 50);
+        }
+
+        function playClimbStep() {
+            const currentQ = sampleQuestions[questionIndex % sampleQuestions.length];
+            document.getElementById('question-text').textContent = currentQ.question;
+
+            updateFloorHUD();
+            startTimerBar(2500);
+
+            const buttons = document.querySelectorAll('.options-grid .btn-option');
+            let correctBtn = null;
+
+            buttons.forEach((btn, idx) => {
+                btn.className = 'btn-option';
+                const optText = currentQ.options[idx] || '';
+                btn.textContent = optText;
+                if (optText === currentQ.answer) {
+                    correctBtn = btn;
+                }
+            });
+
+            // Simulate answer selection after 1.5 seconds
+            setTimeout(() => {
+                if (correctBtn) {
+                    correctBtn.classList.add('selected-correct');
+                }
+
+                // Advance to next floor step after brief pause
+                setTimeout(() => {
+                    currentFloor++;
+                    questionIndex++;
+
+                    if (currentFloor > 10) {
+                        currentFloor = 1; // Reset loop to Floor 1 for continuous studio recording
+                    }
+
+                    playClimbStep();
+                }, 800);
+            }, 1500);
         }
 
         window.onload = () => {
-            updateMockGameplay();
-            setInterval(updateMockGameplay, 4000);
-            setTimeout(runPromo, 500);
+            playClimbStep();
+            setTimeout(runPromoScript, 500);
         };
     </script>
 </body>
