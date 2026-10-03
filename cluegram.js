@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameWorkspace = document.getElementById('game-workspace');
     const gameControls = document.getElementById('game-controls');
     const gameplayHeader = document.getElementById('gameplay-header');
+    const victoryScreen = document.getElementById('victory-screen');
+    const victoryStatsBtn = document.getElementById('btn-victory-stats');
     
     const floorNumberVal = document.getElementById('floor-number-val');
     const floorRuleText = document.getElementById('floor-rule-text');
@@ -45,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
     init();
 
     function init() {
-        // Resilient data loading: supports both direct array and .floors wrapper
         if (window.CLUEGRAM_DAILY_SET) {
             activeGameData = Array.isArray(window.CLUEGRAM_DAILY_SET) 
                 ? window.CLUEGRAM_DAILY_SET 
@@ -68,6 +69,14 @@ document.addEventListener('DOMContentLoaded', () => {
             statsBtn.addEventListener('click', () => {
                 if (statsModal) statsModal.classList.remove('hidden');
                 populateVault();
+            });
+        }
+
+        if (victoryStatsBtn) {
+            victoryStatsBtn.addEventListener('click', () => {
+                if (statsModal) statsModal.classList.remove('hidden');
+                populateVault();
+                resetToStartScreen();
             });
         }
 
@@ -99,8 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Dynamic file loader with fallback path resolution
-    async function fetchFileWithFallbacks(filename) {
+    function fetchFileWithFallbacks(filename) {
         const candidatePaths = [
             `./archives/${filename}`,
             `./${filename}`,
@@ -108,15 +116,17 @@ document.addEventListener('DOMContentLoaded', () => {
             filename
         ];
 
-        for (const path of candidatePaths) {
-            try {
-                const res = await fetch(path);
-                if (res.ok) {
-                    return await res.json();
-                }
-            } catch (e) {}
-        }
-        return null;
+        return new Promise(async (resolve) => {
+            for (const path of candidatePaths) {
+                try {
+                    const res = await fetch(path);
+                    if (res.ok) {
+                        return resolve(await res.json());
+                    }
+                } catch (e) {}
+            }
+            resolve(null);
+        });
     }
 
     async function populateVault() {
@@ -175,6 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
             activeGameData = extractedFloors;
 
             if (startScreen) startScreen.style.display = 'none';
+            if (victoryScreen) victoryScreen.style.display = 'none';
             if (hudContainer) hudContainer.style.display = 'flex';
             if (gameWorkspace) gameWorkspace.style.display = 'flex';
             if (gameControls) gameControls.style.display = 'flex';
@@ -200,6 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!activeGameData || activeGameData.length === 0) return;
 
         if (startScreen) startScreen.style.display = 'none';
+        if (victoryScreen) victoryScreen.style.display = 'none';
         if (hudContainer) hudContainer.style.display = 'flex';
         if (gameWorkspace) gameWorkspace.style.display = 'flex';
         if (gameControls) gameControls.style.display = 'flex';
@@ -207,6 +219,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         currentFloorIndex = 0;
         loadFloor(currentFloorIndex);
+    }
+
+    function resetToStartScreen() {
+        if (victoryScreen) victoryScreen.style.display = 'none';
+        if (hudContainer) hudContainer.style.display = 'none';
+        if (gameWorkspace) gameWorkspace.style.display = 'none';
+        if (gameControls) gameControls.style.display = 'none';
+        if (gameplayHeader) gameplayHeader.style.display = 'none';
+        if (startScreen) startScreen.style.display = 'flex';
     }
 
     function getOrdinalFloorHTML(floorNum) {
@@ -228,7 +249,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateTowerStack(index + 1);
 
-        // Build Target Answer Slots
         if (targetSlotsContainer) {
             targetSlotsContainer.innerHTML = '';
             for (let i = 0; i < floorData.target.length; i++) {
@@ -240,7 +260,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Build Scrambled Rack
         rackTiles = floorData.scrambled.split('').map((char, i) => ({
             id: i,
             letter: char,
@@ -347,11 +366,14 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 if (currentFloorIndex + 1 >= activeGameData.length) {
                     recordGameResult(true, 11);
-                    showMessage('CONGRATULATIONS! 11TH FLOOR REACHED!', true);
-                    setTimeout(() => {
-                        currentFloorIndex = 0;
-                        loadFloor(0);
-                    }, 2000);
+                    
+                    if (hudContainer) hudContainer.style.display = 'none';
+                    if (gameWorkspace) gameWorkspace.style.display = 'none';
+                    if (gameControls) gameControls.style.display = 'none';
+                    if (gameplayHeader) gameplayHeader.style.display = 'none';
+                    
+                    if (victoryScreen) victoryScreen.style.display = 'flex';
+                    
                 } else {
                     currentFloorIndex++;
                     loadFloor(currentFloorIndex);
