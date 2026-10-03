@@ -80,6 +80,20 @@
             color: var(--genre-pink);
         }
 
+        /* Active Timer Display */
+        .header-timer {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--state-active);
+            letter-spacing: 1px;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            padding: 4px 12px;
+            border-radius: 12px;
+            display: none;
+        }
+
         /* Landing Logo Box */
         .game-logo-box {
             display: flex;
@@ -407,7 +421,7 @@
             transition: transform 0.2s ease;
         }
 
-        /* Sleek Card Back Emblem for Face-Down State */
+        /* Card Back Emblem for Face-Down State */
         .parity-tile.face-down {
             background: #141414;
             border: 1px solid #383838;
@@ -431,7 +445,7 @@
             transform: scale(1.1);
         }
 
-        /* Starter Prompt Pulse Cue for Floor 1 */
+        /* Starter Pulse Cue for Floor 1 */
         .parity-tile.pulse-hint {
             animation: starterPulse 1.4s infinite ease-in-out;
         }
@@ -470,6 +484,12 @@
         .vault-item-btn { background-color: #111111; border: 1px solid var(--surface-border); color: var(--text-primary); padding: 10px 6px; border-radius: 8px; cursor: pointer; text-align: center; }
         .vault-item-btn:hover { border-color: var(--genre-pink); background-color: #1a1a1a; }
         .btn-modal { flex-grow: 1; width: 100%; background-color: #111111; border: 1px solid var(--surface-border-light); color: var(--text-primary); padding: 11px; font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 700; border-radius: 24px; cursor: pointer; margin-top: 8px; }
+
+        /* Victory Receipt Card */
+        .victory-receipt { width: 100%; max-width: 320px; background: #111111; border: 1px solid var(--genre-pink); border-radius: 12px; padding: 20px 20px; margin: 16px 0 20px 0; box-shadow: 0 0 25px var(--genre-pink-glow); display: flex; flex-direction: column; gap: 14px; text-align: left; }
+        .victory-row { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--surface-border-light); padding-bottom: 8px; }
+        .victory-label { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .victory-data { font-size: 1rem; font-family: 'Inter', sans-serif; font-weight: 800; color: #ffffff; letter-spacing: 0.5px; }
     </style>
 </head>
 <body class="game-parity">
@@ -477,7 +497,7 @@
     <div style="width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 100%;">
         <div class="top-bar">
             <a href="index.html" class="pill-btn">← LOBBY</a>
-            <button class="pill-btn" id="btn-landing-stats">STATS / ARCHIVE</button>
+            <div id="active-game-timer" class="header-timer">00:00</div>
             <button class="pill-btn" id="btn-sound">SOUND: ON</button>
         </div>
 
@@ -509,7 +529,10 @@
                     Match all identical pairs before time runs out on each floor. One mistake or missed timer resets you to the ground floor.
                 </div>
 
-                <button id="start-climb-btn" class="btn-start">Start Climb</button>
+                <div style="display: flex; gap: 8px; margin-top: 4px;">
+                    <button id="btn-landing-stats" class="pill-btn" style="padding: 10px 18px; border-radius: 24px;">STATS / ARCHIVE</button>
+                    <button id="start-climb-btn" class="btn-start">Start Climb</button>
+                </div>
             </div>
         </div>
 
@@ -554,8 +577,44 @@
             <div id="parity-grid" class="parity-grid"></div>
         </div>
 
+        <!-- VICTORY SCREEN LAYOUT -->
+        <div id="victory-screen" style="display: none; width: 100%; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10px 16px; flex-grow: 1;">
+            
+            <div class="game-logo-box" style="margin-bottom: 0;">
+                <h1 class="game-logo-pink">11FL?</h1>
+                <p class="game-logo-title">Eleventh Floor</p>
+                <p class="game-logo-sub">PARITY</p>
+            </div>
+
+            <div class="victory-receipt">
+                <div style="font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 800; letter-spacing: 3px; color: var(--genre-pink); text-transform: uppercase; text-align: center; margin-bottom: 2px;">DESTINATION REACHED</div>
+                <div style="font-family: 'Anton', sans-serif; font-size: 2rem; color: #ffffff; letter-spacing: 1px; margin-bottom: 4px; text-align: center;">PERFECT</div>
+                
+                <div class="victory-row">
+                    <span class="victory-label">Time Elapsed</span>
+                    <span id="victory-time-display" class="victory-data">00:00</span>
+                </div>
+                
+                <div class="victory-row">
+                    <span class="victory-label">Accuracy</span>
+                    <span class="victory-data" style="color: var(--state-success);">100% (10/10)</span>
+                </div>
+                
+                <div class="victory-row" style="border-bottom: none; padding-bottom: 0;">
+                    <span class="victory-label">Active Streak</span>
+                    <span id="victory-streak-display" class="victory-data" style="color: var(--state-active);">0 Days</span>
+                </div>
+            </div>
+
+            <button id="btn-victory-stats" class="btn-start" style="width: 100%; max-width: 320px; margin-bottom: 12px; background-color: var(--genre-pink); color: #ffffff; border-color: var(--genre-pink);">VIEW STATS & ARCHIVES</button>
+            
+            <div style="font-size: 0.65rem; color: var(--text-muted); font-weight: 600; letter-spacing: 1px; max-width: 280px; line-height: 1.5;">
+                Unlock all past daily games and custom quizzes for £2 a month or a discounted price of £20 a year in the Archive Vault.
+            </div>
+        </div>
+
         <footer>
-            <div>ONE MISTAKE RESETS THE CLIMB TO 1ST FLOOR.</div>
+            <div id="footer-text">ONE MISTAKE RESETS THE CLIMB TO 1ST FLOOR.</div>
         </footer>
     </div>
 
