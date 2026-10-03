@@ -118,8 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchFileWithFallbacks(filename) {
         const candidatePaths = [
-            `./${filename}`,
             `./archives/${filename}`,
+            `./${filename}`,
             `./assets/data/floors/${filename}`,
             `./data/${filename}`,
             filename
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">Loading Archives...</div>';
         
         const fetchPromises = [];
-        for (let i = 1; i <= 100; i++) {
+        for (let i = 1; i <= 50; i++) {
             const paddedId = String(i).padStart(2, '0');
             fetchPromises.push(fetchFileWithFallbacks(`sandbox-parity.${paddedId}.json`).then(data => ({ id: paddedId, data })));
         }
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const buttons = [];
 
         results.forEach(({ id, data }) => {
-            if (data) {
+            if (data && data.floors) {
                 const btn = document.createElement('button');
                 btn.className = 'vault-item-btn';
                 btn.innerHTML = `<strong>Archive ${id}</strong>`;
@@ -257,7 +257,10 @@ document.addEventListener('DOMContentLoaded', () => {
             parityGrid.style.gap = '4px';
         }
 
-        const svgMap = activeDataSet ? activeDataSet.svgMap : {};
+        // Dynamically extract svgMap from activeDataSet (works seamlessly for daily set or loaded archive)
+        const svgMap = (activeDataSet && activeDataSet.svgMap) 
+            ? activeDataSet.svgMap 
+            : (window.PARITY_DAILY_SET ? window.PARITY_DAILY_SET.svgMap : {});
 
         deck.forEach((iconKey, index) => {
             const tile = document.createElement('div');
