@@ -564,11 +564,9 @@ function handleGameOver(reason) {
     safeSetText('game-over-title', 'ELEVATOR STOPPED');
     safeSetText('game-over-message', reason);
     
-    const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
-    const ord = ordinals[gameState.currentFloor - 1] || `${gameState.currentFloor}th`;
     const finalEl = document.getElementById('final-floor-reached');
     if (finalEl) {
-        finalEl.innerHTML = `Stopped at <span style="color: var(--state-error, #EF4444); font-weight: 800;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
+        finalEl.innerHTML = `Stopped at ${getOrdinalFloorHTML(gameState.currentFloor)}`;
     }
     
     openModal('modal-game-over');
