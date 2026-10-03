@@ -1,0 +1,54 @@
+{
+  "floors": [
+    {
+      "question": "Which landmark London skyscraper is officially named 30 St Mary Axe?",
+      "options": ["The Gherkin", "The Shard", "The Walkie Talkie", "The Cheesegrater"],
+      "answer": "The Gherkin"
+    },
+    {
+      "question": "What is the capital city of Australia?",
+      "options": ["Canberra", "Sydney", "Melbourne", "Brisbane"],
+      "answer": "Canberra"
+    },
+    {
+      "question": "Which British scientist is credited with discovering penicillin in 1928?",
+      "options": ["Alexander Fleming", "Louis Pasteur", "Edward Jenner", "Joseph Lister"],
+      "answer": "Alexander Fleming"
+    },
+    {
+      "question": "In which body of water is the Isle of Man situated?",
+      "options": ["Irish Sea", "North Sea", "English Channel", "Celtic Sea"],
+      "answer": "Irish Sea"
+    },
+    {
+      "question": "Who authored the 1813 classic novel Pride and Prejudice?",
+      "options": ["Jane Austen", "Charlotte Brontë", "George Eliot", "Mary Shelley"],
+      "answer": "Jane Austen"
+    },
+    {
+      "question": "What is the SI unit of electrical resistance?",
+      "options": ["Ohm", "Volt", "Ampere", "Watt"],
+      "answer": "Ohm"
+    },
+    {
+      "question": "Which monarch was the last ruler of the House of Tudor?",
+      "options": ["Elizabeth I", "Henry VIII", "Edward VI", "Mary I"],
+      "answer": "Elizabeth I"
+    },
+    {
+      "question": "What is the main chemical element that makes up bronze alongside copper?",
+      "options": ["Tin", "Zinc", "Nickel", "Lead"],
+      "answer": "Tin"
+    },
+    {
+      "question": "Which English philosopher wrote the 1651 political work Leviathan?",
+      "options": ["Thomas Hobbes", "John Locke", "David Hume", "Francis Bacon"],
+      "answer": "Thomas Hobbes"
+    },
+    {
+      "question": "Which island group includes Ibiza, Majorca, and Minorca?",
+      "options": ["Balearic Islands", "Canary Islands", "Cyclades", "Azores"],
+      "answer": "Balearic Islands"
+    }
+  ]
+}
