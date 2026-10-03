@@ -14,6 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let timeRemaining = 0;
     let totalFloorTime = 0;
 
+    // Overall Active Match Timer
+    let gameStartTime = 0;
+    let activeGameTimerInterval = null;
+    let totalElapsedSeconds = 0;
+
     const STATS_KEY = '11th_floor_parity_stats';
 
     const startScreen = document.getElementById('start-screen');
@@ -21,6 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameplayHeader = document.getElementById('gameplay-header');
     const hudContainer = document.getElementById('floor-hud-container');
     const gameWorkspace = document.getElementById('game-workspace');
+    const victoryScreen = document.getElementById('victory-screen');
+
+    const activeGameTimer = document.getElementById('active-game-timer');
+    const victoryTimeDisplay = document.getElementById('victory-time-display');
+    const victoryStreakDisplay = document.getElementById('victory-streak-display');
+    const footerText = document.getElementById('footer-text');
 
     const floorNumberVal = document.getElementById('floor-number-val');
     const floorRuleText = document.getElementById('floor-rule-text');
@@ -30,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const statsModal = document.getElementById('modal-vault');
     const statsBtn = document.getElementById('btn-landing-stats');
+    const victoryStatsBtn = document.getElementById('btn-victory-stats');
     const closeVaultBtn = document.getElementById('btn-close-vault');
     const soundBtn = document.getElementById('btn-sound');
     const vaultList = document.getElementById('vault-list');
@@ -48,19 +60,60 @@ document.addEventListener('DOMContentLoaded', () => {
     function bindEvents() {
         startClimbBtn.addEventListener('click', startGame);
 
-        statsBtn.addEventListener('click', () => {
-            statsModal.classList.remove('hidden');
-            populateVault();
-        });
+        if (statsBtn) {
+            statsBtn.addEventListener('click', () => {
+                statsModal.classList.remove('hidden');
+                populateVault();
+            });
+        }
+
+        if (victoryStatsBtn) {
+            victoryStatsBtn.addEventListener('click', () => {
+                statsModal.classList.remove('hidden');
+                populateVault();
+            });
+        }
 
         closeVaultBtn.addEventListener('click', () => {
             statsModal.classList.add('hidden');
+            if (victoryScreen && victoryScreen.style.display !== 'none') {
+                resetToStartScreen();
+            }
         });
 
         soundBtn.addEventListener('click', () => {
             soundEnabled = !soundEnabled;
             soundBtn.textContent = `SOUND: ${soundEnabled ? 'ON' : 'OFF'}`;
         });
+    }
+
+    // --- Active Match Timer ---
+    function startMatchTimer() {
+        stopMatchTimer();
+        totalElapsedSeconds = 0;
+        gameStartTime = Date.now();
+        if (activeGameTimer) {
+            activeGameTimer.style.display = 'block';
+            activeGameTimer.textContent = '00:00';
+        }
+        activeGameTimerInterval = setInterval(updateMatchTimerDisplay, 1000);
+    }
+
+    function stopMatchTimer() {
+        if (activeGameTimerInterval) clearInterval(activeGameTimerInterval);
+    }
+
+    function updateMatchTimerDisplay() {
+        totalElapsedSeconds = Math.floor((Date.now() - gameStartTime) / 1000);
+        if (activeGameTimer) {
+            activeGameTimer.textContent = formatTime(totalElapsedSeconds);
+        }
+    }
+
+    function formatTime(totalSeconds) {
+        const m = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
+        const s = (totalSeconds % 60).toString().padStart(2, '0');
+        return `${m}:${s}`;
     }
 
     async function fetchFileWithFallbacks(filename) {
@@ -126,12 +179,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         startScreen.style.display = 'none';
+        if (victoryScreen) victoryScreen.style.display = 'none';
         gameplayHeader.style.display = 'flex';
         hudContainer.style.display = 'flex';
         gameWorkspace.style.display = 'flex';
+        if (footerText) footerText.style.display = 'block';
 
         currentFloorIndex = 0;
+        startMatchTimer();
         loadFloor(currentFloorIndex);
+    }
+
+    function resetToStartScreen() {
+        if (victoryScreen) victoryScreen.style.display = 'none';
+        if (hudContainer) hudContainer.style.display = 'none';
+        if (gameWorkspace) gameWorkspace.style.display = 'none';
+        if (gameplayHeader) gameplayHeader.style.display = 'none';
+        if (activeGameTimer) activeGameTimer.style.display = 'none';
+        if (startScreen) startScreen.style.display = 'flex';
     }
 
     function getOrdinalFloorHTML(floorNum) {
@@ -270,16 +335,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const floorData = activeGameData[currentFloorIndex];
             if (matchedPairsCount === floorData.pairs) {
                 clearInterval(timerInterval);
-                showMessage('PARITY MATCHED!');
+                showMessage('PARITY MATCHED!', true);
 
                 setTimeout(() => {
                     if (currentFloorIndex + 1 >= activeGameData.length) {
-                        recordGameResult(true, 11);
-                        showMessage('CONGRATULATIONS! 11TH FLOOR REACHED!');
-                        setTimeout(() => {
-                            currentFloorIndex = 0;
-                            loadFloor(0);
-                        }, 2000);
+                        stopMatchTimer();
+                        const newStats = recordGameResult(true, 11);
+
+                        if (victoryTimeDisplay) victoryTimeDisplay.textContent = formatTime(totalElapsedSeconds);
+                        if (victoryStreakDisplay) victoryStreakDisplay.textContent = `${newStats.streak} Days`;
+
+                        if (hudContainer) hudContainer.style.display = 'none';
+                        if (gameWorkspace) gameWorkspace.style.display = 'none';
+                        if (gameplayHeader) gameplayHeader.style.display = 'none';
+                        if (activeGameTimer) activeGameTimer.style.display = 'none';
+                        if (footerText) footerText.style.display = 'none';
+
+                        if (victoryScreen) victoryScreen.style.display = 'flex';
                     } else {
                         currentFloorIndex++;
                         loadFloor(currentFloorIndex);
@@ -304,7 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleFloorFailure(reason) {
         isProcessing = true;
-        showMessage(reason);
+        showMessage(reason, false);
 
         const towerFloors = document.querySelectorAll('.tower-floor');
         const activeTowerFloor = Array.from(towerFloors).find(
@@ -312,10 +384,12 @@ document.addEventListener('DOMContentLoaded', () => {
         );
         if (activeTowerFloor) activeTowerFloor.classList.add('failed');
 
+        stopMatchTimer();
         recordGameResult(false, currentFloorIndex + 1);
 
         setTimeout(() => {
             currentFloorIndex = 0;
+            startMatchTimer();
             loadFloor(0);
         }, 1500);
     }
@@ -334,8 +408,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function showMessage(msg) {
+    function showMessage(msg, isSuccess = false) {
         messageBox.textContent = msg;
+        messageBox.style.color = isSuccess ? 'var(--state-success)' : 'var(--state-error)';
     }
 
     function recordGameResult(isWin, peakFloor) {
@@ -354,6 +429,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         localStorage.setItem(STATS_KEY, JSON.stringify(stats));
         updateStatsDisplay();
+        return stats;
     }
 
     function getStats() {
