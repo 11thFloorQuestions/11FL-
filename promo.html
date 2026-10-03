@@ -479,9 +479,9 @@
             </div>
         </div>
 
-        <!-- Clean Footer Text: Game 001 Dropping Soon -->
+        <!-- Clean Footer Text: Game 001 Dropping Saturday 11am (UK) -->
         <div class="promo-footer">
-            <span class="promo-footer-text">GAME 001 — DROPPING SOON</span>
+            <span class="promo-footer-text">GAME 001 DROPPING SATURDAY 11AM (UK)</span>
         </div>
     </div>
 
@@ -514,7 +514,8 @@
             { text: "MADE BY <span class='highlight'>HUMANS!</span>", duration: 2400 },
             { text: "NEW DAILY <span class='highlight'>FOOTBALL QUIZ!</span>", duration: 2300 },
             { text: "NO SECOND CHANCES FOR A <span class='highlight'>DAILY STREAK!</span>", duration: 2400 },
-            { text: "<span class='highlight'>GAME 001</span> DROPPING SOON.", duration: 2200 }
+            { text: "FOLLOW TO <span class='highlight'>PLAY DAY ONE!</span>", duration: 2200 },
+            { text: "GAME 001 DROPPING <span class='highlight'>SATURDAY 11AM (UK)</span>", duration: 2200 }
         ];
 
         let currentIndex = 0;
@@ -556,7 +557,7 @@
         }
 
         /* ==========================================================================
-           AUTHENTIC ELEVATOR CLIMB SIMULATION (8TH FLOOR FAIL RUN)
+           AUTHENTIC ELEVATOR CLIMB SIMULATION (FAST-PACED FROM FLOOR 6)
            ========================================================================== */
         const sampleQuestions = [
             { question: "Which Premier League defender earned a recent Player of the Month nomination?", options: ["Lewis Dunk", "Lewis Capoldi", "Lewis Cook", "Lewis Hall"], answer: "Lewis Dunk" },
@@ -636,7 +637,14 @@
             document.getElementById('question-text').textContent = currentQ.question;
 
             updateFloorHUD();
-            startTimerBar(2200);
+
+            // Dynamic speed acceleration starting at Floor 6
+            const isFastPhase = (currentFloor >= 6);
+            const timerDuration = isFastPhase ? 1000 : 2200;
+            const answerHighlightDelay = isFastPhase ? 600 : 1400;
+            const nextFloorTransitionDelay = isFastPhase ? 300 : 700;
+
+            startTimerBar(timerDuration);
 
             const shuffledOptions = shuffleArray(currentQ.options);
             const buttons = document.querySelectorAll('.options-grid .btn-option');
@@ -661,7 +669,7 @@
                         currentFloor++;
                         questionIndex++;
                         playClimbStep();
-                    }, 700);
+                    }, nextFloorTransitionDelay);
                 } else {
                     buttons.forEach(btn => {
                         if (btn.textContent === currentQ.failChoice) {
@@ -678,7 +686,7 @@
                         gameplayRunning = false;
                     }, 2000);
                 }
-            }, 1400);
+            }, answerHighlightDelay);
         }
 
         window.onload = () => {
