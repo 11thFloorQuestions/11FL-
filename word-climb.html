@@ -37,6 +37,20 @@
             color: var(--genre-blue, #3B82F6);
         }
 
+        /* Active Timer Display */
+        .header-timer {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--state-active, #facc15);
+            letter-spacing: 1px;
+            background: var(--surface, #0a0a0a);
+            border: 1px solid var(--surface-border, #222222);
+            padding: 4px 12px;
+            border-radius: 12px;
+            display: none;
+        }
+
         .landing-shaft-graphic .landing-shaft-box { animation: sweepMiddle 1.2s ease-in-out forwards; }
         .landing-shaft-graphic .landing-shaft-box:nth-child(11) { animation: sweepBottomSettle 2.6s ease-in-out forwards; animation-delay: 0.05s; }
         .landing-shaft-graphic .landing-shaft-box:nth-child(10) { animation-delay: 0.15s; }
@@ -108,7 +122,6 @@
         .play-card { width: 100%; max-width: 600px; background: var(--surface); border: 1px solid var(--surface-border); border-radius: 8px; padding: 10px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 2px; flex-grow: 1; margin-bottom: 6px; overflow: hidden; min-height: 0; }
         #message-box { min-height: 16px; color: var(--state-error); font-weight: 700; font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; text-align: center; }
         
-        /* Lightened Answer Slot Borders & Tight Mobile Layout Fix */
         #target-word-slots { 
             display: flex; 
             gap: 4px; 
@@ -158,8 +171,14 @@
         .stat-lbl { font-size: 0.55rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-top: 3px; }
         .vault-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(95px, 1fr)); gap: 8px; max-height: 220px; overflow-y: auto; margin: 12px 0; }
         .vault-item-btn { background-color: #111111; border: 1px solid var(--surface-border); color: var(--text-primary); padding: 10px 6px; border-radius: 8px; cursor: pointer; text-align: center; }
-        .vault-item-btn:hover { border-color: var(--genre-blue); background-color: #1a1a1a; }
+        .vault-item-btn:hover { border-color: var(--genre-blue, #3B82F6); background-color: #1a1a1a; }
         .btn-modal { flex-grow: 1; width: 100%; background-color: #111111; border: 1px solid var(--surface-border); color: var(--text-primary); padding: 12px; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; border-radius: 24px; cursor: pointer; margin-top: 10px; }
+
+        /* Victory Receipt Card */
+        .victory-receipt { width: 100%; max-width: 320px; background: #111111; border: 1px solid var(--genre-blue, #3B82F6); border-radius: 12px; padding: 20px 20px; margin: 16px 0 20px 0; box-shadow: 0 0 25px rgba(59, 130, 246, 0.3); display: flex; flex-direction: column; gap: 14px; text-align: left; }
+        .victory-row { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--surface-border-light, #333333); padding-bottom: 8px; }
+        .victory-label { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .victory-data { font-size: 1rem; font-family: 'Inter', sans-serif; font-weight: 800; color: #ffffff; letter-spacing: 0.5px; }
     </style>
 </head>
 <body class="game-wordclimb">
@@ -167,16 +186,16 @@
     <div style="width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; height: 100%;">
         <div class="top-bar">
             <a href="index.html" class="pill-btn">← LOBBY</a>
-            <button class="pill-btn" id="btn-landing-stats">STATS / ARCHIVE</button>
+            <div id="active-game-timer" class="header-timer">00:00</div>
             <button class="pill-btn" id="btn-sound">SOUND: ON</button>
         </div>
 
-        <!-- LANDING SCREEN (Full Blue Logo with 11FL?) -->
+        <!-- LANDING SCREEN -->
         <div id="start-screen" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
             <div class="game-logo-box">
                 <h1 class="game-logo-blue">11FL?</h1>
                 <p class="game-logo-title">Eleventh Floor</p>
-                <p class="game-logo-sub" style="color: var(--genre-blue);">WORD CLIMB</p>
+                <p class="game-logo-sub" style="color: var(--genre-blue, #3B82F6);">WORD CLIMB</p>
             </div>
 
             <div class="landing-container">
@@ -199,14 +218,17 @@
                     Find valid English words on every floor, from 5 to 9 letters. One mistake and you lose your streak and are sent back to Ground Floor.
                 </div>
 
-                <button id="start-climb-btn" class="btn-start">Start Climb</button>
+                <div style="display: flex; gap: 8px; margin-top: 4px;">
+                    <button id="btn-landing-stats" class="pill-btn" style="padding: 10px 18px; border-radius: 24px;">STATS / ARCHIVE</button>
+                    <button id="start-climb-btn" class="btn-start">Start Climb</button>
+                </div>
             </div>
         </div>
 
-        <!-- GAMEPLAY HEADER (Eleventh Floor WORD CLIMB, NO 11FL?) -->
+        <!-- GAMEPLAY HEADER -->
         <div id="gameplay-header" class="gameplay-header-box" style="display: none;">
             <p class="game-logo-title">Eleventh Floor</p>
-            <p class="game-logo-sub" style="color: var(--genre-blue);">WORD CLIMB</p>
+            <p class="game-logo-sub" style="color: var(--genre-blue, #3B82F6);">WORD CLIMB</p>
         </div>
 
         <!-- Gameplay HUD Header -->
@@ -247,8 +269,44 @@
             <button class="btn btn-primary" id="action-submit-btn">SUBMIT</button>
         </div>
 
+        <!-- ECOSYSTEM VICTORY SCREEN LAYOUT -->
+        <div id="victory-screen" style="display: none; width: 100%; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10px 16px; flex-grow: 1;">
+            
+            <div class="game-logo-box" style="margin-bottom: 0;">
+                <h1 class="game-logo-blue">11FL?</h1>
+                <p class="game-logo-title">Eleventh Floor</p>
+                <p class="game-logo-sub" style="color: var(--genre-blue, #3B82F6);">WORD CLIMB</p>
+            </div>
+
+            <div class="victory-receipt">
+                <div style="font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 800; letter-spacing: 3px; color: var(--genre-blue, #3B82F6); text-transform: uppercase; text-align: center; margin-bottom: 2px;">DESTINATION REACHED</div>
+                <div style="font-family: 'Anton', sans-serif; font-size: 2rem; color: #ffffff; letter-spacing: 1px; margin-bottom: 4px; text-align: center;">PERFECT</div>
+                
+                <div class="victory-row">
+                    <span class="victory-label">Time Elapsed</span>
+                    <span id="victory-time-display" class="victory-data">00:00</span>
+                </div>
+                
+                <div class="victory-row">
+                    <span class="victory-label">Accuracy</span>
+                    <span class="victory-data" style="color: var(--state-success, #22c55e);">100% (10/10)</span>
+                </div>
+                
+                <div class="victory-row" style="border-bottom: none; padding-bottom: 0;">
+                    <span class="victory-label">Active Streak</span>
+                    <span id="victory-streak-display" class="victory-data" style="color: var(--state-active, #facc15);">0 Days</span>
+                </div>
+            </div>
+
+            <button id="btn-victory-stats" class="btn-start" style="width: 100%; max-width: 320px; margin-bottom: 12px; background-color: var(--genre-blue, #3B82F6); color: #ffffff; border-color: var(--genre-blue, #3B82F6);">VIEW STATS & ARCHIVES</button>
+            
+            <div style="font-size: 0.65rem; color: var(--text-muted, #888888); font-weight: 600; letter-spacing: 1px; max-width: 280px; line-height: 1.5;">
+                Unlock all past daily games and custom quizzes for £2 a month or a discounted price of £20 a year in the Archive Vault.
+            </div>
+        </div>
+
         <footer>
-            <div>ONE MISTAKE RESETS THE CLIMB TO GROUND FLOOR.</div>
+            <div id="footer-text">ONE MISTAKE RESETS THE CLIMB TO GROUND FLOOR.</div>
         </footer>
     </div>
 
@@ -261,7 +319,7 @@
                 <div class="stat-box"><span id="stat-wins" class="stat-val">0</span><span class="stat-lbl">Wins</span></div>
                 <div class="stat-box"><span id="stat-winrate" class="stat-val">0%</span><span class="stat-lbl">Win %</span></div>
                 <div class="stat-box"><span id="stat-streak" class="stat-val">0</span><span class="stat-lbl">Streak</span></div>
-                <div class="stat-box" style="grid-column: span 2;"><span id="stat-bestfloor" class="stat-val"></span><span class="stat-lbl">Best Peak</span></div>
+                <div class="stat-box" style="grid-column: span 2;"><span id="stat-bestfloor" class="stat-val">FL 01</span><span class="stat-lbl">Best Peak</span></div>
             </div>
 
             <h3 style="font-size: 0.72rem; font-weight: 700; color: var(--text-muted); margin-top: 12px; text-transform: uppercase;">ARCHIVE VAULT</h3>
