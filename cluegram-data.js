@@ -47,9 +47,9 @@ window.CLUEGRAM_DAILY_SET = [
     floor: 6,
     length: 7,
     domain: "Zoology & Wildlife",
-    scrambled: "PANZEECHIM",
-    target: "CHIMPANZEE",
-    clue: "Highly intelligent African ape that lives in complex social groups and uses tools in the wild."
+    scrambled: "RADPOLE",
+    target: "LEOPARD",
+    clue: "Solitary wild cat recognized for its rosette-patterned coat and exceptional tree-climbing ability."
   },
   {
     floor: 7,
