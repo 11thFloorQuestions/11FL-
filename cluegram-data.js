@@ -18,8 +18,8 @@ window.CLUEGRAM_DAILY_SET = {
         {
             floor: 3,
             scrambled: "TRONAC",
-            target: "CANTON",
-            clue: "A political subdivision of a country, most notably one of the Swiss states."
+            target: "CRATON",
+            clue: "A large, stable block of the earth's crust forming the ancient core of a continent."
         },
         {
             floor: 4,
