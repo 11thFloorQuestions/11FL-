@@ -1,54 +1,54 @@
 {
   "floors": [
     {
-      "question": "Which English city is home to the famous Clifton Suspension Bridge?",
-      "options": ["Bristol", "Bath", "Exeter", "Plymouth"],
-      "answer": "Bristol"
+      "question": "Which luxury Italian brand famously caused an internet stir by selling a trash bag pouch made of calfskin for over 1,700 dollars?",
+      "options": ["Balenciaga", "Gucci", "Bottega Veneta", "Versace"],
+      "answer": "Balenciaga"
     },
     {
-      "question": "What is the rarest naturally occurring gas in Earth's atmosphere?",
-      "options": ["Radon", "Xenon", "Krypton", "Neon"],
-      "answer": "Radon"
+      "question": "What is the name of the fictional law firm at the centre of the hit television legal drama Suits?",
+      "options": ["Pearson Hardman", "Sterling Cooper", "Waystar RoyCo", "Hamlin Hamlin & McGill"],
+      "answer": "Pearson Hardman"
     },
     {
-      "question": "Which British Prime Minister signed the Anglo-Irish Treaty in 1921?",
-      "options": ["David Lloyd George", "Stanley Baldwin", "Ramsay MacDonald", "H. H. Asquith"],
-      "answer": "David Lloyd George"
+      "question": "Which traditional Japanese condiment gets its pungent heat from mustard-like allyl isothiocyanate rather than capsicum?",
+      "options": ["Wasabi", "Shichimi Togarashi", "Yuzu Kosho", "Ponzu"],
+      "answer": "Wasabi"
     },
     {
-      "question": "What chemical element has the atomic number 1 on the periodic table?",
-      "options": ["Hydrogen", "Helium", "Lithium", "Carbon"],
-      "answer": "Hydrogen"
+      "question": "Which global pop star released the record-breaking 2024 album titled The Tortured Poets Department?",
+      "options": ["Taylor Swift", "Billie Eilish", "Sabrina Carpenter", "Olivia Rodrigo"],
+      "answer": "Taylor Swift"
     },
     {
-      "question": "Who composed the famous 18th-century orchestral suite Water Music?",
-      "options": ["George Frideric Handel", "Johann Sebastian Bach", "Henry Purcell", "Antonio Vivaldi"],
-      "answer": "George Frideric Handel"
+      "question": "What term refers to the precise temperature control method of cooking food vacuum-sealed in a plastic pouch inside a water bath?",
+      "options": ["Sous-vide", "Confit", "Flambé", "Braising"],
+      "answer": "Sous-vide"
     },
     {
-      "question": "Which sea separates the Italian peninsula from the Balkan peninsula?",
-      "options": ["Adriatic Sea", "Tyrrhenian Sea", "Ionian Sea", "Ligurian Sea"],
-      "answer": "Adriatic Sea"
+      "question": "Which 1970s interior design trend featured sunken seating areas cut into living room floors to encourage intimate conversation?",
+      "options": ["Conversation Pit", "Brutalist Nook", "Open Concept", "Mezzanine Lounge"],
+      "answer": "Conversation Pit"
     },
     {
-      "question": "In which year did the Great Fire of London destroy much of the city?",
-      "options": ["1666", "1605", "1688", "1642"],
-      "answer": "1666"
+      "question": "Which tech billionaire famously rebranded Twitter to the single letter X in 2023, liquidating decades of brand equity overnight?",
+      "options": ["Elon Musk", "Mark Zuckerberg", "Jeff Bezos", "Peter Thiel"],
+      "answer": "Elon Musk"
     },
     {
-      "question": "Which English author wrote the dystopian novel Brave New World in 1932?",
-      "options": ["Aldous Huxley", "George Orwell", "H. G. Wells", "Arthur Koestler"],
-      "answer": "Aldous Huxley"
+      "question": "What culinary term refers to cutting vegetables into very small, uniform cubes measuring roughly two to three millimetres on each side?",
+      "options": ["Brunoise", "Julienne", "Chiffonade", "Macedoine"],
+      "answer": "Brunoise"
     },
     {
-      "question": "What is the deepest known point in the Earth's oceans?",
-      "options": ["Challenger Deep", "Puerto Rico Trench", "Java Trench", "South Sandwich Trench"],
-      "answer": "Challenger Deep"
+      "question": "Which legendary American director helmed the 2023 biographical epic Oppenheimer, sweeping seven Academy Awards including Best Picture?",
+      "options": ["Christopher Nolan", "Denis Villeneuve", "Martin Scorsese", "Quentin Tarantino"],
+      "answer": "Christopher Nolan"
     },
     {
-      "question": "Which Scottish physicist introduced the classical theory of electromagnetic radiation in 1865?",
-      "options": ["James Clerk Maxwell", "Lord Kelvin", "Michael Faraday", "Ernest Rutherford"],
-      "answer": "James Clerk Maxwell"
+      "question": "Which high-society annual gala, held on the first Monday in May at the Metropolitan Museum of Art, is chaired by Anna Wintour?",
+      "options": ["The Met Gala", "The Venice Biennale", "The CFDA Awards", "The Serpentine Summer Party"],
+      "answer": "The Met Gala"
     }
   ]
 }
