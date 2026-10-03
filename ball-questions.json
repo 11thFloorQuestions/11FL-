@@ -1,142 +1,142 @@
 {
-  "setId": "18",
-  "title": "Think You Know Ball? - Set 18",
+  "setId": "22",
+  "title": "Think You Know Ball? - Set 22",
   "questions": [
     {
       "floor": 1,
       "type": "multiple_choice",
-      "question": "Which manager guided West Ham United to a 7th-place Premier League finish and the FA Cup final in the 2005–06 season, securing European qualification in their first year back in the top flight?",
+      "question": "Which Premier League club’s stadium roof famously became a viral swimming pool during a torrential downpour in May 2024, earning it the affectionate terrace nickname 'Waterfall Trafford'?",
       "options": [
-        "Alan Pardew",
-        "Glenn Roeder",
-        "Harry Redknapp",
-        "Gianfranco Zola"
+        "Manchester United",
+        "Everton",
+        "Newcastle United",
+        "Aston Villa"
       ],
-      "answer": "Alan Pardew",
-      "explanation": "Alan Pardew won promotion with West Ham in 2005 and immediately led them to a 7th-place finish and an unforgettable 3–3 FA Cup final against Liverpool.",
-      "anchorClues": "Alan Pardew / West Ham United 2005–06 season"
+      "answer": "Manchester United",
+      "explanation": "Old Trafford suffered severe roof leaks during a 1–0 defeat to Arsenal, leading away fans to chant about taking a swim in the Stretford End.",
+      "anchorClues": "Old Trafford waterfall roof leak / Manchester United"
     },
     {
       "floor": 2,
       "type": "boolean",
-      "question": "True or False: Sunderland's Stadium of Light hosted the senior England national team for a competitive UEFA European Championship qualifier in April 2003.",
+      "question": "True or False: Manchester City officially lodged a comprehensive legal appeal in October 2026 following the independent commission's initial verdict regarding Premier League financial rule charges.",
       "options": [
         "True",
         "False"
       ],
       "answer": "True",
-      "explanation": "England played Turkey at the Stadium of Light in a Euro 2004 qualifier on 2 April 2003, securing a 2–0 victory thanks to goals from Darius Vassell and David Beckham.",
-      "anchorClues": "Stadium of Light / England vs Turkey Euro 2004 qualifier"
+      "explanation": "Manchester City confirmed on 1 October 2026 that they had formally lodged an appeal against the commission's opinion, maintaining their innocence.",
+      "anchorClues": "Manchester City legal appeal / Premier League financial charges October 2026"
     },
     {
       "floor": 3,
       "type": "multiple_choice",
-      "question": "Which club became the first team to defeat Pep Guardiola's Manchester City in the Premier League during their 'Centurions' 2017–18 campaign, ending City's 22-match unbeaten league run in January 2018?",
+      "question": "Which young manager hit the ground running with an unbeaten month in August 2024, becoming the youngest permanent manager to win a Premier League Manager of the Month award?",
       "options": [
-        "Liverpool",
-        "Manchester United",
-        "Tottenham Hotspur",
-        "Chelsea"
+        "Fabian Hürzeler",
+        "Andoni Iraola",
+        "Russell Martin",
+        "Kieran McKenna"
       ],
-      "answer": "Liverpool",
-      "explanation": "Jürgen Klopp's Liverpool earned a thrilling 4–3 victory at Anfield in January 2018, handing Manchester City their first league defeat of the season.",
-      "anchorClues": "Liverpool beat Manchester City 4–3 January 2018"
+      "answer": "Fabian Hürzeler",
+      "explanation": "Brighton boss Fabian Hürzeler took the award in August 2024 aged just 31 years and 173 days, following wins over Everton and Manchester United.",
+      "anchorClues": "Fabian Hürzeler youngest Manager of the Month / Brighton"
     },
     {
       "floor": 4,
       "type": "multiple_choice",
-      "question": "Which historic ground served as Derby County's home stadium for 102 years before the club relocated to Pride Park Stadium in 1997?",
+      "question": "Which club held the record for conceding the fewest goals in a single Premier League home campaign, shipping just 4 goals on home turf in 2001–02?",
       "options": [
-        "Baseball Ground",
-        "Victoria Ground",
-        "County Ground",
-        "Ayresome Park"
+        "Fulham",
+        "Manchester United",
+        "Liverpool",
+        "Arsenal"
       ],
-      "answer": "Baseball Ground",
-      "explanation": "Derby County played at the famous Baseball Ground from 1895 until May 1997, hosting their first Premier League campaign there in 1996–97.",
-      "anchorClues": "Baseball Ground / Derby County home stadium"
+      "answer": "Fulham",
+      "explanation": "Fulham allowed just 4 opposition goals at Craven Cottage during the 2001–02 top-flight season, setting an incredibly tight defensive record.",
+      "anchorClues": "Fulham 4 goals conceded at home / Craven Cottage 2001–02"
     },
     {
       "floor": 5,
       "type": "boolean",
-      "question": "True or False: Chelsea went through their entire 2004–05 title-winning Premier League campaign without suffering a single defeat at Stamford Bridge.",
+      "question": "True or False: Middlesbrough became the first team in Premier League history to field a starting XI composed entirely of 11 English players for a match in May 2006.",
       "options": [
         "True",
         "False"
       ],
       "answer": "True",
-      "explanation": "José Mourinho turned Stamford Bridge into a fortress in 2004–05, with Chelsea recording 14 wins and 5 draws at home while conceding just six league goals in SW6.",
-      "anchorClues": "Chelsea unbeaten home record Stamford Bridge 2004–05"
+      "explanation": "Steve McClaren named an all-English starting 11 against Fulham on the final day of the 2005–06 season, resting key stars ahead of the UEFA Cup final.",
+      "anchorClues": "Middlesbrough all-English starting 11 / May 2006"
     },
     {
       "floor": 6,
       "type": "multiple_choice",
-      "question": "Which club spent 128 days at the top of the Premier League table during the 2013–14 campaign—the most of any team that season—before eventually finishing in 4th place?",
+      "question": "Which player scored the fastest ever Premier League hat-trick after coming off the bench, striking three times in just 19 minutes against Nottingham Forest in February 1999?",
       "options": [
-        "Arsenal",
-        "Liverpool",
-        "Chelsea",
-        "Manchester City"
+        "Ole Gunnar Solskjær",
+        "Jermain Defoe",
+        "Nwankwo Kanu",
+        "Les Ferdinand"
       ],
-      "answer": "Arsenal",
-      "explanation": "Arsène Wenger's Arsenal led the table for a total of 128 days between September 2013 and February 2014 before late-season stumbles saw Manchester City claim the title.",
-      "anchorClues": "Arsenal 128 days top of Premier League table 2013–14"
+      "answer": "Ole Gunnar Solskjær",
+      "explanation": "Ole Gunnar Solskjær came on in the 72nd minute at the City Ground and bagged four goals, complete with an 8-minute blitz between his 1st and 3rd goals.",
+      "anchorClues": "Ole Gunnar Solskjær substitute hat-trick / Manchester United vs Nottingham Forest"
     },
     {
       "floor": 7,
       "type": "multiple_choice",
-      "question": "Which squad number was assigned to French midfielder N'Golo Kanté throughout his trophy-laden seven seasons at Chelsea, winning the Premier League, Champions League, and FA Cup?",
+      "question": "Which squad number was assigned to James Milner upon his transfer to Aston Villa from Newcastle United in the summer of 2008?",
       "options": [
         "7",
-        "6",
-        "14",
-        "8"
+        "11",
+        "8",
+        "20"
       ],
       "answer": "7",
-      "explanation": "N'Golo Kanté wore the number 7 shirt for Chelsea between 2016 and 2023, making 269 appearances across all competitions.",
-      "anchorClues": "N'Golo Kanté shirt number 7 / Chelsea"
+      "explanation": "James Milner took over the vacant number 7 shirt at Villa Park following his permanent £12m arrival from St. James' Park.",
+      "anchorClues": "James Milner squad number 7 / Aston Villa 2008"
     },
     {
       "floor": 8,
       "type": "multiple_choice",
-      "question": "Which club brought an end to Chelsea's record 86-game unbeaten home league run at Stamford Bridge with a 1–0 victory in October 2008?",
+      "question": "Which referee holds the all-time record for issuing the most red cards in Premier League history, sending off 89 players across his top-flight officiating career?",
       "options": [
-        "Liverpool",
-        "Manchester United",
-        "Arsenal",
-        "Tottenham Hotspur"
+        "Mike Dean",
+        "Martin Atkinson",
+        "Graham Poll",
+        "Phil Dowd"
       ],
-      "answer": "Liverpool",
-      "explanation": "A deflected strike from Xabi Alonso earned Rafa Benítez's Liverpool a 1–0 victory at Stamford Bridge, ending Chelsea's four-year, 86-match unbeaten home streak.",
-      "anchorClues": "Liverpool end Chelsea 86 home unbeaten run 2008"
+      "answer": "Mike Dean",
+      "explanation": "Mike Dean handed out a record 89 red cards during his 560 Premier League matches between 2000 and 2022.",
+      "anchorClues": "Mike Dean 89 red cards record / Premier League referee"
     },
     {
       "floor": 9,
       "type": "multiple_choice",
-      "question": "Which manager took charge of Southampton in January 2013 and guided them to an 8th-place Premier League finish with 56 points in his only full season at the club?",
+      "question": "Which club scored 102 Premier League goals in the 2009–10 campaign, becoming the first side in top-flight history to breach the 100-goal mark in a single season?",
       "options": [
-        "Mauricio Pochettino",
-        "Ronald Koeman",
-        "Claude Puel",
-        "Ralph Hasenhüttl"
+        "Chelsea",
+        "Manchester City",
+        "Arsenal",
+        "Manchester United"
       ],
-      "answer": "Mauricio Pochettino",
-      "explanation": "Mauricio Pochettino transformed Southampton's playing style during the 2013–14 season before being appointed Tottenham Hotspur manager in May 2014.",
-      "anchorClues": "Mauricio Pochettino / Southampton manager 2013–14"
+      "answer": "Chelsea",
+      "explanation": "Carlo Ancelotti's Chelsea set a then-record 103 goals (later adjusted to 102 officially in statistical record books due to an own-goal ruling) on their way to the double.",
+      "anchorClues": "Chelsea 102 goals 2009–10 season / Carlo Ancelotti"
     },
     {
       "floor": 10,
       "type": "multiple_choice",
-      "question": "Which Dutch forward holds the Premier League record for scoring in the most consecutive away matches, finding the net in nine straight away appearances during the 2010–11 season?",
+      "question": "Which Nigerian forward holds the record for scoring in the most consecutive Premier League appearances for Everton, finding the net in 7 straight matches during the 1994–95 season?",
       "options": [
-        "Robin van Persie",
-        "Ruud van Nistelrooy",
-        "Jimmy Floyd Hasselbaink",
-        "Dennis Bergkamp"
+        "Daniel Amokachi",
+        "Yakubu",
+        "Victor Anichebe",
+        "Joseph Yobo"
       ],
-      "answer": "Robin van Persie",
-      "explanation": "Robin van Persie scored in nine consecutive Premier League away fixtures for Arsenal between January and May 2011, establishing a top-flight record.",
-      "anchorClues": "Robin van Persie 9 consecutive away goals record 2010–11"
+      "answer": "Daniel Amokachi",
+      "explanation": "Daniel 'The Bull' Amokachi went on a blistering scoring run in the winter of 1994–95 for Joe Royle's Everton side.",
+      "anchorClues": "Daniel Amokachi consecutive goalscoring record / Everton 1994–95"
     }
   ]
 }
