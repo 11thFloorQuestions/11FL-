@@ -10,6 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let isProcessing = false;
     let soundEnabled = true;
     let activeGameData = [];
+    
+    // Timer Variables
+    let startTime = 0;
+    let timerInterval = null;
+    let timeElapsedSeconds = 0;
 
     // Local Storage Player Stats Key
     const STATS_KEY = '11th_floor_cluegram_stats';
@@ -21,8 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameWorkspace = document.getElementById('game-workspace');
     const gameControls = document.getElementById('game-controls');
     const gameplayHeader = document.getElementById('gameplay-header');
+    
     const victoryScreen = document.getElementById('victory-screen');
     const victoryStatsBtn = document.getElementById('btn-victory-stats');
+    const victoryTimeDisplay = document.getElementById('victory-time-display');
+    const victoryStreakDisplay = document.getElementById('victory-streak-display');
+    const activeGameTimer = document.getElementById('active-game-timer');
+    const footerText = document.getElementById('footer-text');
     
     const floorNumberVal = document.getElementById('floor-number-val');
     const floorRuleText = document.getElementById('floor-rule-text');
@@ -76,13 +86,16 @@ document.addEventListener('DOMContentLoaded', () => {
             victoryStatsBtn.addEventListener('click', () => {
                 if (statsModal) statsModal.classList.remove('hidden');
                 populateVault();
-                resetToStartScreen();
             });
         }
 
         if (closeVaultBtn) {
             closeVaultBtn.addEventListener('click', () => {
                 if (statsModal) statsModal.classList.add('hidden');
+                // If closing modal from victory screen, reset game silently to landing
+                if (victoryScreen && victoryScreen.style.display !== 'none') {
+                    resetToStartScreen();
+                }
             });
         }
 
@@ -93,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Global Keyboard Inputs
         document.addEventListener('keydown', (e) => {
             if (!gameWorkspace || gameWorkspace.style.display === 'none' || isProcessing) return;
 
@@ -108,21 +120,43 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function fetchFileWithFallbacks(filename) {
-        const candidatePaths = [
-            `./archives/${filename}`,
-            `./${filename}`,
-            `./data/${filename}`,
-            filename
-        ];
+    // --- Timer Functions ---
+    function startTimer() {
+        stopTimer();
+        timeElapsedSeconds = 0;
+        startTime = Date.now();
+        if (activeGameTimer) {
+            activeGameTimer.style.display = 'block';
+            activeGameTimer.textContent = '00:00';
+        }
+        timerInterval = setInterval(updateTimerDisplay, 1000);
+    }
 
+    function stopTimer() {
+        if (timerInterval) clearInterval(timerInterval);
+    }
+
+    function updateTimerDisplay() {
+        timeElapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+        if (activeGameTimer) {
+            activeGameTimer.textContent = formatTime(timeElapsedSeconds);
+        }
+    }
+
+    function formatTime(totalSeconds) {
+        const m = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
+        const s = (totalSeconds % 60).toString().padStart(2, '0');
+        return `${m}:${s}`;
+    }
+
+    // --- Data Loading ---
+    function fetchFileWithFallbacks(filename) {
+        const candidatePaths = [`./archives/${filename}`, `./${filename}`, `./data/${filename}`, filename];
         return new Promise(async (resolve) => {
             for (const path of candidatePaths) {
                 try {
                     const res = await fetch(path);
-                    if (res.ok) {
-                        return resolve(await res.json());
-                    }
+                    if (res.ok) return resolve(await res.json());
                 } catch (e) {}
             }
             resolve(null);
@@ -131,18 +165,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function populateVault() {
         if (!vaultList) return;
-
         vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">Loading Archives...</div>';
         
-        const MAX_ARCHIVES = 51;
         const fetchPromises = [];
-
-        for (let i = 1; i <= MAX_ARCHIVES; i++) {
+        for (let i = 1; i <= 51; i++) {
             const paddedId = String(i).padStart(2, '0');
-            const filename = `cluegram-${paddedId}.json`;
-            fetchPromises.push(
-                fetchFileWithFallbacks(filename).then(data => ({ id: paddedId, data }))
-            );
+            fetchPromises.push(fetchFileWithFallbacks(`cluegram-${paddedId}.json`).then(data => ({ id: paddedId, data })));
         }
 
         const results = await Promise.all(fetchPromises);
@@ -153,9 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const btn = document.createElement('button');
                 btn.className = 'vault-item-btn';
                 btn.innerHTML = `<strong>Archive ${id}</strong>`;
-                btn.onclick = () => {
-                    loadVaultArchive(id);
-                };
+                btn.onclick = () => loadVaultArchive(id);
                 buttons.push(btn);
             }
         });
@@ -169,31 +195,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function loadVaultArchive(paddedId) {
-        const filename = `cluegram-${paddedId}.json`;
-        const data = await fetchFileWithFallbacks(filename);
-
+        const data = await fetchFileWithFallbacks(`cluegram-${paddedId}.json`);
         let extractedFloors = [];
-        if (data) {
-            if (Array.isArray(data)) {
-                extractedFloors = data;
-            } else if (data.floors && Array.isArray(data.floors)) {
-                extractedFloors = data.floors;
-            }
-        }
+        if (data) extractedFloors = Array.isArray(data) ? data : (data.floors || []);
 
         if (extractedFloors.length > 0) {
             activeGameData = extractedFloors;
-
-            if (startScreen) startScreen.style.display = 'none';
-            if (victoryScreen) victoryScreen.style.display = 'none';
-            if (hudContainer) hudContainer.style.display = 'flex';
-            if (gameWorkspace) gameWorkspace.style.display = 'flex';
-            if (gameControls) gameControls.style.display = 'flex';
-            if (statsModal) statsModal.classList.add('hidden');
-            if (gameplayHeader) gameplayHeader.style.display = 'flex';
-
-            currentFloorIndex = 0;
-            loadFloor(currentFloorIndex);
+            launchGameUI();
         } else {
             showMessage(`COULD NOT LOAD ARCHIVE ${paddedId}`, false);
         }
@@ -207,17 +215,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     : (window.CLUEGRAM_DAILY_SET.floors || []);
             }
         }
-
         if (!activeGameData || activeGameData.length === 0) return;
+        launchGameUI();
+    }
 
+    function launchGameUI() {
         if (startScreen) startScreen.style.display = 'none';
         if (victoryScreen) victoryScreen.style.display = 'none';
         if (hudContainer) hudContainer.style.display = 'flex';
         if (gameWorkspace) gameWorkspace.style.display = 'flex';
         if (gameControls) gameControls.style.display = 'flex';
+        if (statsModal) statsModal.classList.add('hidden');
         if (gameplayHeader) gameplayHeader.style.display = 'flex';
+        if (footerText) footerText.style.display = 'block';
 
         currentFloorIndex = 0;
+        startTimer();
         loadFloor(currentFloorIndex);
     }
 
@@ -227,9 +240,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (gameWorkspace) gameWorkspace.style.display = 'none';
         if (gameControls) gameControls.style.display = 'none';
         if (gameplayHeader) gameplayHeader.style.display = 'none';
+        if (activeGameTimer) activeGameTimer.style.display = 'none';
         if (startScreen) startScreen.style.display = 'flex';
     }
 
+    // --- Core Logic ---
     function getOrdinalFloorHTML(floorNum) {
         const ord = ordinals[floorNum - 1] || `${floorNum}th`;
         return `<span style="color: var(--genre-magenta);">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
@@ -279,7 +294,6 @@ document.addEventListener('DOMContentLoaded', () => {
             tileElem.addEventListener('click', () => handleTileClick(tile));
             letterRackContainer.appendChild(tileElem);
         });
-
         renderTargetSlots();
     }
 
@@ -300,7 +314,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleTileClick(tile) {
         if (tile.used || isProcessing) return;
-
         const currentFloor = activeGameData[currentFloorIndex];
         if (userGuess.length < currentFloor.target.length) {
             tile.used = true;
@@ -311,34 +324,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleSlotClick(index) {
         if (isProcessing || index >= userGuess.length) return;
-
         const removedTile = userGuess.splice(index, 1)[0];
         const originalTile = rackTiles.find(t => t.id === removedTile.id);
         if (originalTile) originalTile.used = false;
-
         renderRack();
     }
 
     function selectFirstAvailableLetter(letter) {
         const availableTile = rackTiles.find(t => !t.used && t.letter === letter);
-        if (availableTile) {
-            handleTileClick(availableTile);
-        }
+        if (availableTile) handleTileClick(availableTile);
     }
 
     function handleBackspace() {
         if (userGuess.length === 0 || isProcessing) return;
-
         const removedTile = userGuess.pop();
         const originalTile = rackTiles.find(t => t.id === removedTile.id);
         if (originalTile) originalTile.used = false;
-
         renderRack();
     }
 
     function handleShuffle() {
         if (isProcessing) return;
-
         for (let i = rackTiles.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [rackTiles[i], rackTiles[j]] = [rackTiles[j], rackTiles[i]];
@@ -348,7 +354,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleSubmit() {
         if (isProcessing) return;
-
         const currentFloor = activeGameData[currentFloorIndex];
         if (userGuess.length < currentFloor.target.length) {
             showMessage('FILL ALL SLOTS BEFORE SUBMITTING', false);
@@ -365,12 +370,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setTimeout(() => {
                 if (currentFloorIndex + 1 >= activeGameData.length) {
-                    recordGameResult(true, 11);
+                    stopTimer();
+                    const newStats = recordGameResult(true, 11);
+                    
+                    // Populate and Show Victory Screen
+                    if (victoryTimeDisplay) victoryTimeDisplay.textContent = formatTime(timeElapsedSeconds);
+                    if (victoryStreakDisplay) victoryStreakDisplay.textContent = `${newStats.streak} Days`;
                     
                     if (hudContainer) hudContainer.style.display = 'none';
                     if (gameWorkspace) gameWorkspace.style.display = 'none';
                     if (gameControls) gameControls.style.display = 'none';
                     if (gameplayHeader) gameplayHeader.style.display = 'none';
+                    if (activeGameTimer) activeGameTimer.style.display = 'none';
+                    if (footerText) footerText.style.display = 'none';
                     
                     if (victoryScreen) victoryScreen.style.display = 'flex';
                     
@@ -389,10 +401,12 @@ document.addEventListener('DOMContentLoaded', () => {
             );
             if (activeTowerFloor) activeTowerFloor.classList.add('failed');
 
+            stopTimer();
             recordGameResult(false, currentFloorIndex + 1);
 
             setTimeout(() => {
                 currentFloorIndex = 0;
+                startTimer();
                 loadFloor(0);
             }, 1500);
         }
@@ -434,6 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         localStorage.setItem(STATS_KEY, JSON.stringify(stats));
         updateStatsDisplay();
+        return stats; // Return updated stats to pass to victory screen
     }
 
     function getStats() {
