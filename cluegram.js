@@ -92,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (closeVaultBtn) {
             closeVaultBtn.addEventListener('click', () => {
                 if (statsModal) statsModal.classList.add('hidden');
-                // If closing modal from victory screen, reset game silently to landing
                 if (victoryScreen && victoryScreen.style.display !== 'none') {
                     resetToStartScreen();
                 }
@@ -373,7 +372,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     stopTimer();
                     const newStats = recordGameResult(true, 11);
                     
-                    // Populate and Show Victory Screen
                     if (victoryTimeDisplay) victoryTimeDisplay.textContent = formatTime(timeElapsedSeconds);
                     if (victoryStreakDisplay) victoryStreakDisplay.textContent = `${newStats.streak} Days`;
                     
@@ -448,7 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         localStorage.setItem(STATS_KEY, JSON.stringify(stats));
         updateStatsDisplay();
-        return stats; // Return updated stats to pass to victory screen
+        return stats;
     }
 
     function getStats() {
