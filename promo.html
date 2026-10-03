@@ -542,7 +542,7 @@
                         
                         <div class="victory-row" style="border-bottom: none; padding-bottom: 0;">
                             <span class="victory-label">Active Streak</span>
-                            <span class="victory-data" style="color: var(--state-active);">12 Days</span>
+                            <span class="victory-data" style="color: var(--state-active);">3 Days</span>
                         </div>
 
                         <button class="btn-victory-stats">VIEW STATS & ARCHIVES</button>
@@ -622,7 +622,7 @@
         }
 
         /* ==========================================================================
-           FULL 10-QUESTION GAMEPLAY RUN (SPEED-UP FLOORS 1-4, READABLE FLOORS 5-10)
+           10-QUESTION GAMEPLAY RUN (UNIFORM PACING & SPEED ACROSS ALL FLOORS)
            ========================================================================== */
         const sampleQuestions = [
             { floor: 1, question: "Which Premier League club's stadium roof famously became a viral swimming pool in May 2024?", options: ["Manchester United", "Everton", "Newcastle United", "Aston Villa"], answer: "Manchester United" },
@@ -683,11 +683,10 @@
                 updateFloorHUD(currentQ.floor);
                 document.getElementById('question-text').textContent = currentQ.question;
 
-                // Speed-up early floors 1-4, slow down for readability from Floor 5 onwards
-                const isEarlyFloor = (currentQ.floor <= 4);
-                const timerMs = isEarlyFloor ? 400 : 1800;
-                const highlightDelay = isEarlyFloor ? 300 : 1200;
-                const nextStepDelay = isEarlyFloor ? 150 : 500;
+                // Completely uniform timer speed across every floor (1500ms duration per floor)
+                const timerMs = 1500;
+                const highlightDelay = 1000;
+                const nextStepDelay = 350;
 
                 startTimerBar(timerMs);
 
