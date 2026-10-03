@@ -86,7 +86,7 @@
             border: 1px solid var(--surface-border);
             padding: 4px 12px;
             border-radius: 12px;
-            display: none; /* Hidden on landing */
+            display: none;
         }
 
         /* Landing Logo Box */
@@ -291,7 +291,7 @@
         .btn-modal { flex-grow: 1; width: 100%; background-color: #111111; border: 1px solid var(--surface-border); color: var(--text-primary); padding: 12px; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; border-radius: 24px; cursor: pointer; margin-top: 10px; }
 
         /* Victory Receipt Card */
-        .victory-receipt { width: 100%; max-width: 320px; background: #111111; border: 1px solid var(--genre-magenta); border-radius: 12px; padding: 24px 20px; margin: 20px 0; box-shadow: 0 0 25px var(--genre-magenta-glow); display: flex; flex-direction: column; gap: 16px; text-align: left; }
+        .victory-receipt { width: 100%; max-width: 320px; background: #111111; border: 1px solid var(--genre-magenta); border-radius: 12px; padding: 20px 20px; margin: 16px 0 20px 0; box-shadow: 0 0 25px var(--genre-magenta-glow); display: flex; flex-direction: column; gap: 14px; text-align: left; }
         .victory-row { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--surface-border-light); padding-bottom: 8px; }
         .victory-label { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
         .victory-data { font-size: 1rem; font-family: 'Inter', sans-serif; font-weight: 800; color: #ffffff; letter-spacing: 0.5px; }
@@ -394,13 +394,19 @@
             <button class="btn btn-primary" id="action-submit-btn">SUBMIT</button>
         </div>
 
-        <!-- NEW SLEEK VICTORY SCREEN -->
+        <!-- UPDATED VICTORY SCREEN WITH STANDARD LOGO & INTERNAL DESTINATION BOX -->
         <div id="victory-screen" style="display: none; width: 100%; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 10px 16px; flex-grow: 1;">
-            <h1 class="game-logo-magenta" style="font-size: 4rem; line-height: 1; margin-bottom: 4px;">11TH FLOOR</h1>
-            <h2 style="font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 800; letter-spacing: 4px; color: #ffffff; text-transform: uppercase;">Destination Reached</h2>
             
+            <!-- Standard Ecosystem Logo Block -->
+            <div class="game-logo-box" style="margin-bottom: 0;">
+                <h1 class="game-logo-magenta">11FL?</h1>
+                <p class="game-logo-title">Eleventh Floor</p>
+                <p class="game-logo-sub">CLUEGRAM</p>
+            </div>
+
             <div class="victory-receipt">
-                <div style="font-family: 'Anton', sans-serif; font-size: 2.2rem; color: #ffffff; letter-spacing: 1px; margin-bottom: 4px; text-align: center;">CLUEGRAM</div>
+                <div style="font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 800; letter-spacing: 3px; color: var(--genre-magenta); text-transform: uppercase; text-align: center; margin-bottom: 2px;">DESTINATION REACHED</div>
+                <div style="font-family: 'Anton', sans-serif; font-size: 2rem; color: #ffffff; letter-spacing: 1px; margin-bottom: 4px; text-align: center;">FLAWLESS CLEAR</div>
                 
                 <div class="victory-row">
                     <span class="victory-label">Time Elapsed</span>
@@ -409,7 +415,7 @@
                 
                 <div class="victory-row">
                     <span class="victory-label">Accuracy</span>
-                    <span class="victory-data" style="color: var(--state-success);">FLAWLESS</span>
+                    <span class="victory-data" style="color: var(--state-success);">100% (10/10)</span>
                 </div>
                 
                 <div class="victory-row" style="border-bottom: none; padding-bottom: 0;">
