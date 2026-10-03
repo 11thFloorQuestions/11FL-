@@ -139,27 +139,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function populateVault() {
         if (!vaultList) return;
-        vaultList.innerHTML = '';
-        let archiveId = 1;
+        vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">Loading Archives...</div>';
+        
+        const fetchPromises = [];
+        for (let i = 1; i <= 100; i++) {
+            const paddedId = String(i).padStart(2, '0');
+            fetchPromises.push(fetchFileWithFallbacks(`sandbox-parity.${paddedId}.json`).then(data => ({ id: paddedId, data })));
+        }
 
-        while (archiveId <= 50) {
-            const paddedId = String(archiveId).padStart(2, '0');
-            const data = await fetchFileWithFallbacks(`sandbox-parity.${paddedId}.json`);
+        const results = await Promise.all(fetchPromises);
+        const buttons = [];
 
+        results.forEach(({ id, data }) => {
             if (data) {
                 const btn = document.createElement('button');
                 btn.className = 'vault-item-btn';
-                btn.innerHTML = `<strong>Archive ${paddedId}</strong>`;
-                btn.onclick = () => {
-                    loadVaultSet(data);
-                };
-                vaultList.appendChild(btn);
+                btn.innerHTML = `<strong>Archive ${id}</strong>`;
+                btn.onclick = () => loadVaultSet(data);
+                buttons.push(btn);
             }
-            archiveId++;
-        }
+        });
 
-        if (vaultList.children.length === 0) {
+        vaultList.innerHTML = '';
+        if (buttons.length === 0) {
             vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">No archives found.</div>';
+        } else {
+            buttons.forEach(btn => vaultList.appendChild(btn));
         }
     }
 
