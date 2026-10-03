@@ -45,7 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
     init();
 
     function init() {
-        activeGameData = (window.CLUEGRAM_DAILY_SET && window.CLUEGRAM_DAILY_SET.floors) ? window.CLUEGRAM_DAILY_SET.floors : [];
+        // Resilient data loading: supports both direct array and .floors wrapper
+        if (window.CLUEGRAM_DAILY_SET) {
+            activeGameData = Array.isArray(window.CLUEGRAM_DAILY_SET) 
+                ? window.CLUEGRAM_DAILY_SET 
+                : (window.CLUEGRAM_DAILY_SET.floors || []);
+        } else {
+            activeGameData = [];
+        }
+        
         bindEvents();
         updateStatsDisplay();
     }
@@ -154,8 +162,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const filename = `cluegram-${paddedId}.json`;
         const data = await fetchFileWithFallbacks(filename);
 
-        if (data && data.floors && data.floors.length > 0) {
-            activeGameData = data.floors;
+        let extractedFloors = [];
+        if (data) {
+            if (Array.isArray(data)) {
+                extractedFloors = data;
+            } else if (data.floors && Array.isArray(data.floors)) {
+                extractedFloors = data.floors;
+            }
+        }
+
+        if (extractedFloors.length > 0) {
+            activeGameData = extractedFloors;
 
             if (startScreen) startScreen.style.display = 'none';
             if (hudContainer) hudContainer.style.display = 'flex';
@@ -173,7 +190,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function startGame() {
         if (!activeGameData || activeGameData.length === 0) {
-            activeGameData = (window.CLUEGRAM_DAILY_SET && window.CLUEGRAM_DAILY_SET.floors) ? window.CLUEGRAM_DAILY_SET.floors : [];
+            if (window.CLUEGRAM_DAILY_SET) {
+                activeGameData = Array.isArray(window.CLUEGRAM_DAILY_SET) 
+                    ? window.CLUEGRAM_DAILY_SET 
+                    : (window.CLUEGRAM_DAILY_SET.floors || []);
+            }
         }
 
         if (!activeGameData || activeGameData.length === 0) return;
