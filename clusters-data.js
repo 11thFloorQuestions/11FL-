@@ -1,116 +1,67 @@
-/**
- * ============================================================================
- * 11TH FLOOR CLUSTERS - DAILY PUZZLE DATA (clusters-data.js)
- * ============================================================================
- * Standard: Airtight global logic, clean categorical separation, zero overlap.
- * ============================================================================
- */
+// 11th Floor Cluegram — Daily Puzzle Datasets
 
-window.CLUSTERS_DATA = {
-  "2026-09-26": {
-    date: "2026-09-26",
-    title: "Puzzle #01: Global Alignment",
-    floors: {
-      // Floor 01: 12 Tiles (2 groups of 3 + 6 clean distractors)
-      1: {
-        type: "distractor-12",
-        tiles: ["LONDON", "PARIS", "TOKYO", "NILE", "AMAZON", "YANGTZE", "PIANO", "GUITAR", "VIOLIN", "DRUM", "FLUTE", "TRUMPET"],
-        groups: [
-          { words: ["LONDON", "PARIS", "TOKYO"], category: "Major global capital cities" },
-          { words: ["NILE", "AMAZON", "YANGTZE"], category: "Major world rivers" }
-        ]
-      },
-      // Floor 02: 12 Tiles (2 groups of 3 + 6 clean distractors)
-      2: {
-        type: "distractor-12",
-        tiles: ["GOLD", "SILVER", "BRONZE", "DIAMOND", "RUBY", "EMERALD", "SQUARE", "CIRCLE", "TRIANGLE", "RECTANGLE", "OVAL", "PENTAGON"],
-        groups: [
-          { words: ["GOLD", "SILVER", "BRONZE"], category: "Precious metals / podium medals" },
-          { words: ["DIAMOND", "RUBY", "EMERALD"], category: "Precious gemstones" }
-        ]
-      },
-      // Floor 03: 12 Tiles (2 groups of 3 + 6 clean distractors)
-      3: {
-        type: "distractor-12",
-        tiles: ["MARS", "VENUS", "JUPITER", "LION", "TIGER", "LEOPARD", "EAGLE", "HAWK", "FALCON", "OWL", "CROW", "SWAN"],
-        groups: [
-          { words: ["MARS", "VENUS", "JUPITER"], category: "Planets of the solar system" },
-          { words: ["LION", "TIGER", "LEOPARD"], category: "Large wild cats" }
-        ]
-      },
-      // Floor 04: 12 Tiles (2 groups of 3 + 6 clean distractors)
-      4: {
-        type: "distractor-12",
-        tiles: ["RED", "BLUE", "GREEN", "OAK", "PINE", "MAPLE", "APPLE", "BANANA", "ORANGE", "GRAPE", "MANGO", "PEACH"],
-        groups: [
-          { words: ["RED", "BLUE", "GREEN"], category: "Primary and standard colors" },
-          { words: ["OAK", "PINE", "MAPLE"], category: "Common tree species" }
-        ]
-      },
-
-      // Floors 05–09: 12 Tiles (3 groups of 3 = 9 correct, 3 distractors)
-      5: {
-        type: "distractor-12-three",
-        tiles: ["FOOTBALL", "TENNIS", "CRICKET", "CHESS", "POKER", "BRIDGE", "VIOLIN", "CELLO", "FLUTE", "PYTHON", "VIPER", "COBRA"],
-        groups: [
-          { words: ["FOOTBALL", "TENNIS", "CRICKET"], category: "Popular global ball sports" },
-          { words: ["CHESS", "POKER", "BRIDGE"], category: "Strategic tabletop / card games" },
-          { words: ["VIOLIN", "CELLO", "FLUTE"], category: "Orchestral instruments" }
-        ]
-      },
-      6: {
-        type: "distractor-12-three",
-        tiles: ["IRON", "COPPER", "TIN", "WHEAT", "RICE", "MAIZE", "MILK", "WATER", "JUICE", "SOFA", "TABLE", "CHAIR"],
-        groups: [
-          { words: ["IRON", "COPPER", "TIN"], category: "Industrial base metals" },
-          { words: ["WHEAT", "RICE", "MAIZE"], category: "Major global staple grains" },
-          { words: ["MILK", "WATER", "JUICE"], category: "Common daily beverages" }
-        ]
-      },
-      7: {
-        type: "distractor-12-three",
-        tiles: ["PLATO", "ARISTOTLE", "SOCRATES", "BACH", "MOZART", "BEETHOVEN", "NEWTON", "EINSTEIN", "DARWIN", "SHAKESPEARE", "DANTE", "HOMER"],
-        groups: [
-          { words: ["PLATO", "ARISTOTLE", "SOCRATES"], category: "Ancient Greek philosophers" },
-          { words: ["BACH", "MOZART", "BEETHOVEN"], category: "Classical composers" },
-          { words: ["NEWTON", "EINSTEIN", "DARWIN"], category: "Revolutionary scientists" }
-        ]
-      },
-      8: {
-        type: "distractor-12-three",
-        tiles: ["PACIFIC", "ATLANTIC", "INDIAN", "EVEREST", "K2", "KILIMANJARO", "SAHARA", "GOBI", "KALAHARI", "LYON", "MARSEILLE", "NICE"],
-        groups: [
-          { words: ["PACIFIC", "ATLANTIC", "INDIAN"], category: "Major world oceans" },
-          { words: ["EVEREST", "K2", "KILIMANJARO"], category: "Highest mountain peaks" },
-          { words: ["SAHARA", "GOBI", "KALAHARI"], category: "Major global deserts" }
-        ]
-      },
-      9: {
-        type: "distractor-12-three",
-        tiles: ["TUDOR", "STUART", "WINDSOR", "SPRING", "SUMMER", "AUTUMN", "NORTH", "SOUTH", "EAST", "RAIN", "SNOW", "WIND"],
-        groups: [
-          { words: ["TUDOR", "STUART", "WINDSOR"], category: "Historic royal houses / dynasties" },
-          { words: ["SPRING", "SUMMER", "AUTUMN"], category: "Temperate calendar seasons" },
-          { words: ["NORTH", "SOUTH", "EAST"], category: "Primary cardinal directions" }
-        ]
-      },
-
-      // Floor 10: Final 16-Tile Wall (4 groups of 4)
-      10: {
-        type: "wall-16",
-        tiles: [
-          "THAMES", "SEVERN", "TRENT", "CLYDE",
-          "GOLD", "SILVER", "BRONZE", "PLATINUM",
-          "MARBLE", "GRANITE", "SLATE", "CHALK",
-          "OXFORD", "BOND", "FLEET", "LOMBARD"
-        ],
-        groups: [
-          { words: ["THAMES", "SEVERN", "TRENT", "CLYDE"], category: "Major regional river systems" },
-          { words: ["GOLD", "SILVER", "BRONZE", "PLATINUM"], category: "Precious metals / podium medals" },
-          { words: ["MARBLE", "GRANITE", "SLATE", "CHALK"], category: "Types of geological stone" },
-          { words: ["OXFORD", "BOND", "FLEET", "LOMBARD"], category: "Famous historic thoroughfares" }
-        ]
-      }
-    }
-  }
+window.CLUEGRAM_DAILY_SET = {
+    date: "Daily Set 05",
+    floors: [
+        {
+            floor: 1,
+            scrambled: "VILNA",
+            target: "ANVIL",
+            clue: "A heavy iron block on which heated metals are hammered into shape."
+        },
+        {
+            floor: 2,
+            scrambled: "CIEPS",
+            target: "SPICE",
+            clue: "An aromatic vegetable substance used to season or flavour food."
+        },
+        {
+            floor: 3,
+            scrambled: "TRONAC",
+            target: "CANTON",
+            clue: "A political subdivision of a country, most notably one of the Swiss states."
+        },
+        {
+            floor: 4,
+            scrambled: "DIRGEL",
+            target: "GLIDER",
+            clue: "A light aircraft designed to fly without using an engine."
+        },
+        {
+            floor: 5,
+            scrambled: "RALMAMI",
+            target: "AIRMAIL",
+            clue: "A system of transporting mail globally using aircraft."
+        },
+        {
+            floor: 6,
+            scrambled: "OCTAPIN",
+            target: "CAPTAIN",
+            clue: "The officer in command of a vessel, aircraft, or sports team."
+        },
+        {
+            floor: 7,
+            scrambled: "ONALSTIL",
+            target: "STALLION",
+            clue: "An uncastrated adult male horse, especially one kept for breeding."
+        },
+        {
+            floor: 8,
+            scrambled: "HLIMEDSO",
+            target: "DEMOLISH",
+            clue: "To completely tear down or destroy a building or structure."
+        },
+        {
+            floor: 9,
+            scrambled: "DROTTNEOC",
+            target: "CONTORTED",
+            clue: "Twisted or pulled out of its normal, natural shape."
+        },
+        {
+            floor: 10,
+            scrambled: "CUSRINOEX",
+            target: "EXCURSION",
+            clue: "A short journey or leisure outing, typically taken for pleasure."
+        }
+    ]
 };
