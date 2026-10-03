@@ -1,8 +1,6 @@
-// Think You Know Ball? — Daily Premier League Engine
-
-// ==========================================
-// 1. HELPER FUNCTIONS & UTILITIES
-// ==========================================
+// ==========================================================================
+// 11th Floor TYKB (Think You Know Ball?) — Core Game Engine
+// ==========================================================================
 
 function safeAddListener(id, event, handler) {
     const el = document.getElementById(id);
@@ -16,12 +14,16 @@ function safeAddListener(id, event, handler) {
 
 function safeSetText(id, text) {
     const el = document.getElementById(id);
-    if (el) el.textContent = text;
+    if (el) {
+        el.textContent = text;
+    }
 }
 
 function safeToggleClass(id, className, force) {
     const el = document.getElementById(id);
-    if (el) el.classList.toggle(className, force);
+    if (el) {
+        el.classList.toggle(className, force);
+    }
 }
 
 function shuffleArray(array) {
@@ -36,17 +38,25 @@ function shuffleArray(array) {
 function getOrdinalFloorHTML(floorNum) {
     const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
     const ord = ordinals[floorNum - 1] || `${floorNum}th`;
-    return `<span style="color: var(--genre-terrace, #84CC16); font-weight: 800;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
+    return `<span style="color: var(--genre-pitch, #22c55e); font-weight: 800;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
 }
+
+
+// ==========================================
+// HAPTIC FEEDBACK ENGINE
+// ==========================================
 
 function triggerHaptic(pattern) {
     if ('vibrate' in navigator) {
-        try { navigator.vibrate(pattern); } catch (e) {}
+        try {
+            navigator.vibrate(pattern);
+        } catch (e) {}
     }
 }
 
+
 // ==========================================
-// 2. STATE MANAGEMENT & STATS PERSISTENCE
+// STATE MANAGEMENT & PERSISTENCE
 // ==========================================
 
 const gameState = {
@@ -54,10 +64,13 @@ const gameState = {
     maxFloors: 10,
     soundEnabled: true,
     timer: null,
-    timeLeft: 30,
+    timeLeft: 20,
     questions: [],
     currentQuestionIndex: 0,
     batchIndex: 0,
+    startTime: 0,
+    timerInterval: null,
+    timeElapsedSeconds: 0,
     stats: {
         played: 0,
         wins: 0,
@@ -66,25 +79,29 @@ const gameState = {
     }
 };
 
+const STATS_KEY = '11th_floor_tykb_stats';
+
 const floorMessageBatches = [
     [
-        "Premier League trivia begins — no mistakes!",
-        "Miss one and down to Ground Floor you go!",
-        "3rd Floor reached — smooth sailing.",
-        "One mistake resets you to Ground Floor.",
-        "Halfway up! Stay focused.",
-        "6th Floor unlocked — pure precision!",
-        "Ground Floor is far below now.",
-        "Almost there!",
-        "Keep going!",
-        "Final hurdle — make it count!"
+        "Terrace banter warmth — get climbing!",
+        "Matchweek trends incoming — stay sharp!",
+        "Topical Premier League heat ahead!",
+        "Tactical records — watch your step!",
+        "Historical achievements (1992–present)!",
+        "Deep Premier League stats unlocked!",
+        "Squad Number assignment rules apply!",
+        "Terrace Expert level trivia begins!",
+        "Niche records ahead — stay locked in!",
+        "Final floor hurdle — earn Floor 11!"
     ]
 ];
 
 function loadSavedStats() {
     try {
-        const saved = localStorage.getItem('11fl_ball_stats') || localStorage.getItem('11fl_terrace_stats');
-        if (saved) gameState.stats = { ...gameState.stats, ...JSON.parse(saved) };
+        const saved = localStorage.getItem(STATS_KEY);
+        if (saved) {
+            gameState.stats = { ...gameState.stats, ...JSON.parse(saved) };
+        }
     } catch (e) {
         console.warn('Could not load stats from localStorage.');
     }
@@ -92,13 +109,49 @@ function loadSavedStats() {
 
 function saveStats() {
     try {
-        localStorage.setItem('11fl_ball_stats', JSON.stringify(gameState.stats));
+        localStorage.setItem(STATS_KEY, JSON.stringify(gameState.stats));
     } catch (e) {
         console.warn('Could not save stats to localStorage.');
     }
 }
 
 loadSavedStats();
+
+
+// ==========================================
+// GAMEPLAY SESSION STOPWATCH TIMER
+// ==========================================
+
+function startSessionTimer() {
+    stopSessionTimer();
+    gameState.timeElapsedSeconds = 0;
+    gameState.startTime = Date.now();
+    const activeGameTimer = document.getElementById("active-game-timer");
+    if (activeGameTimer) {
+        activeGameTimer.style.display = "block";
+        activeGameTimer.textContent = "00:00";
+    }
+    gameState.timerInterval = setInterval(updateSessionTimerDisplay, 1000);
+}
+
+function stopSessionTimer() {
+    if (gameState.timerInterval) clearInterval(gameState.timerInterval);
+}
+
+function updateSessionTimerDisplay() {
+    gameState.timeElapsedSeconds = Math.floor((Date.now() - gameState.startTime) / 1000);
+    const activeGameTimer = document.getElementById("active-game-timer");
+    if (activeGameTimer) {
+        activeGameTimer.textContent = formatTime(gameState.timeElapsedSeconds);
+    }
+}
+
+function formatTime(totalSeconds) {
+    const m = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
+    const s = (totalSeconds % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+}
+
 
 // ==========================================
 // AUDIO ENGINE
@@ -111,47 +164,116 @@ function playElevatorDing() {
     if (!gameState.soundEnabled) return;
     try {
         elevatorDingAudio.currentTime = 0;
-        elevatorDingAudio.play().catch(() => {});
-    } catch (e) {}
+        elevatorDingAudio.play().catch(e => {
+            elevatorDingAudio.src = 'assets/audio/ding.mp3';
+            elevatorDingAudio.play().catch(() => {});
+        });
+    } catch (e) {
+        console.warn('Audio playback error:', e);
+    }
 }
 
+function triggerLandingPageDing() {
+    setTimeout(() => {
+        playElevatorDing();
+    }, 1370);
+}
+
+
 // ==========================================
-// 3. NAVIGATION & INITIALISATION
+// NAVIGATION & CONTROLS
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    safeAddListener('btn-start-climb', 'click', () => startDailyClimb());
+    safeAddListener('btn-start-climb', 'click', () => {
+        startDailyClimb();
+    });
+
     safeAddListener('btn-landing-stats', 'click', () => openVault());
+    
+    safeAddListener('btn-victory-stats', 'click', () => {
+        openVault();
+    });
+
     safeAddListener('btn-back-vault', 'click', () => {
         closeModal('modal-game-over');
         openVault();
     });
-    safeAddListener('btn-close-vault', 'click', () => closeModal('modal-vault'));
+
+    safeAddListener('btn-close-vault', 'click', () => {
+        closeModal('modal-vault');
+        const victoryScreen = document.getElementById('victory-screen');
+        if (victoryScreen && victoryScreen.style.display !== 'none') {
+            resetToLandingScreen();
+        }
+    });
+
     safeAddListener('btn-try-again', 'click', () => {
         closeModal('modal-game-over');
-        startGame();
+        if (gameState.questions && gameState.questions.length > 0) {
+            startGame();
+        } else {
+            startDailyClimb();
+        }
     });
+
     safeAddListener('btn-sound-toggle', 'click', toggleSound);
 
     updateSoundUI();
 });
 
-function toggleSound() {
-    gameState.soundEnabled = !gameState.soundEnabled;
-    if (gameState.soundEnabled) playElevatorDing();
-    updateSoundUI();
+function resetToLandingScreen() {
+    stopSessionTimer();
+    const screens = ['victory-screen', 'game-screen', 'floor-hud-container', 'gameplay-header', 'active-game-timer', 'footer-text'];
+    screens.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    });
+    const landing = document.getElementById('landing-screen');
+    if (landing) landing.style.display = 'flex';
+}
+
+function showScreen(screenId) {
+    const victoryScreen = document.getElementById('victory-screen');
+    if (victoryScreen) victoryScreen.style.display = 'none';
+
+    const screens = ['landing-screen', 'game-screen'];
+    screens.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.style.display = (id === screenId) ? 'flex' : 'none';
+        }
+    });
+    if (screenId === 'landing-screen') {
+        triggerLandingPageDing();
+    }
 }
 
 function updateSoundUI() {
-    safeSetText('btn-sound-toggle', `SOUND: ${gameState.soundEnabled ? 'ON' : 'OFF'}`);
+    const label = `SOUND: ${gameState.soundEnabled ? 'ON' : 'OFF'}`;
+    safeSetText('btn-sound-toggle', label);
 }
 
-function openModal(id) { safeToggleClass(id, 'hidden', false); }
-function closeModal(id) { safeToggleClass(id, 'hidden', true); }
+function toggleSound() {
+    gameState.soundEnabled = !gameState.soundEnabled;
+    if (gameState.soundEnabled) {
+        playElevatorDing();
+    }
+    updateSoundUI();
+}
+
 
 // ==========================================
-// 4. VAULT & STATS CONTROLS
+// MODAL & VAULT CONTROLS
 // ==========================================
+
+function openModal(modalId) {
+    safeToggleClass(modalId, 'hidden', false);
+}
+
+function closeModal(modalId) {
+    safeToggleClass(modalId, 'hidden', true);
+}
 
 function openVault() {
     renderStatsUI();
@@ -160,31 +282,35 @@ function openVault() {
 }
 
 function renderStatsUI() {
-    const winRate = gameState.stats.played > 0 ? Math.round((gameState.stats.wins / gameState.stats.played) * 100) : 0;
+    const winRate = gameState.stats.played > 0 
+        ? Math.round((gameState.stats.wins / gameState.stats.played) * 100) 
+        : 0;
+
     safeSetText('stat-played', gameState.stats.played);
     safeSetText('stat-wins', gameState.stats.wins);
     safeSetText('stat-winrate', `${winRate}%`);
     safeSetText('stat-streak', gameState.stats.streak);
 
     const bestEl = document.getElementById('stat-bestfloor');
-    if (bestEl) bestEl.innerHTML = getOrdinalFloorHTML(gameState.stats.bestFloor);
+    if (bestEl) {
+        bestEl.innerHTML = getOrdinalFloorHTML(gameState.stats.bestFloor);
+    }
 }
 
 async function populateVault() {
     const vaultList = document.getElementById('vault-list');
     if (!vaultList) return;
     
-    vaultList.innerHTML = '';
+    vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">Loading Archives...</div>';
+    
     let archiveId = 1;
+    const MAX_ARCHIVES = 100;
+    const buttons = [];
 
-    while (archiveId <= 50) {
+    while (archiveId <= MAX_ARCHIVES) {
         const paddedId = String(archiveId).padStart(2, '0');
-        
-        // Try ball naming first, fallback to terrace
-        let data = await fetchFileWithFallbacks(`sandbox-ball.${paddedId}.json`);
-        if (!data) {
-            data = await fetchFileWithFallbacks(`sandbox-terrace.${paddedId}.json`);
-        }
+        const filename = `sandbox-ball.${paddedId}.json`;
+        const data = await fetchFileWithFallbacks(filename);
         
         if (data) {
             const btn = document.createElement('button');
@@ -194,40 +320,43 @@ async function populateVault() {
                 triggerHaptic(15);
                 loadVaultSet(paddedId, data);
             };
-            vaultList.appendChild(btn);
+            buttons.push(btn);
         }
         archiveId++;
     }
 
-    if (vaultList.children.length === 0) {
+    vaultList.innerHTML = '';
+    if (buttons.length === 0) {
         vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">No archives found.</div>';
+    } else {
+        buttons.forEach(btn => vaultList.appendChild(btn));
     }
 }
 
+
 // ==========================================
-// 5. DATA LOADING & NORMALISATION
+// DATA LOADING & NORMALIZATION
 // ==========================================
 
 function normalizeQuestions(data) {
     let rawList = [];
-    if (!data) return generateFallbackQuestions();
-
+    if (!data) return [];
+    
     if (Array.isArray(data)) rawList = data;
     else if (Array.isArray(data.floors)) rawList = data.floors;
     else if (Array.isArray(data.questions)) rawList = data.questions;
-    else return generateFallbackQuestions();
 
     return rawList.map(q => {
         const options = Array.isArray(q.options) ? [...q.options] : ["Option A", "Option B", "Option C", "Option D"];
+        
         let answerText = "";
-
         if (typeof q.answer === 'string') answerText = q.answer;
         else if (typeof q.correct === 'string') answerText = q.correct;
         else if (typeof q.correctAnswer === 'string') answerText = q.correctAnswer;
+        else if (typeof q.correct_answer === 'string') answerText = q.correct_answer;
         else if (typeof q.answerIndex === 'number' && options[q.answerIndex]) answerText = options[q.answerIndex];
         else if (typeof q.correctIndex === 'number' && options[q.correctIndex]) answerText = options[q.correctIndex];
         else if (typeof q.correct === 'number' && options[q.correct]) answerText = options[0];
-        else if (typeof q.answer === 'number' && options[q.answer]) answerText = options[0];
         else answerText = options[0];
 
         return {
@@ -240,10 +369,10 @@ function normalizeQuestions(data) {
 
 async function fetchFileWithFallbacks(filename) {
     const candidatePaths = [
-        `./${filename}`,                      // 1. Check Root Directory first
-        `./archives/${filename}`,             // 2. Check Archives subfolder
-        `./assets/data/floors/${filename}`,   // 3. Check Assets subfolder
-        `./data/${filename}`,                 // 4. Check Data subfolder
+        `./${filename}`,
+        `./assets/data/floors/${filename}`,
+        `./archives/${filename}`,
+        `./data/${filename}`,
         filename
     ];
 
@@ -251,8 +380,7 @@ async function fetchFileWithFallbacks(filename) {
         try {
             const res = await fetch(path);
             if (res.ok) {
-                const data = await res.json();
-                if (data) return data;
+                return await res.json();
             }
         } catch (e) {}
     }
@@ -261,72 +389,90 @@ async function fetchFileWithFallbacks(filename) {
 
 async function startDailyClimb() {
     let data = await fetchFileWithFallbacks('ball-questions.json');
-    if (!data) data = await fetchFileWithFallbacks('sandbox-ball.01.json');
-    if (!data) data = await fetchFileWithFallbacks('terrace-questions.json');
-    if (!data) data = await fetchFileWithFallbacks('sandbox-terrace.01.json');
+    if (!data) data = await fetchFileWithFallbacks('sandbox-ball.22.json');
 
-    gameState.questions = normalizeQuestions(data);
-
-    document.getElementById('landing-screen').style.display = 'none';
-    document.getElementById('gameplay-header').style.display = 'flex';
-    document.getElementById('floor-hud-container').style.display = 'flex';
-    document.getElementById('game-screen').style.display = 'flex';
-
-    startGame();
+    if (data) {
+        gameState.questions = normalizeQuestions(data);
+    }
+    launchGameUI();
 }
 
 function loadVaultSet(paddedId, data) {
     if (data) {
         gameState.questions = normalizeQuestions(data);
         closeModal('modal-vault');
-
-        document.getElementById('landing-screen').style.display = 'none';
-        document.getElementById('gameplay-header').style.display = 'flex';
-        document.getElementById('floor-hud-container').style.display = 'flex';
-        document.getElementById('game-screen').style.display = 'flex';
-
-        startGame();
+        launchGameUI();
     }
 }
 
+function launchGameUI() {
+    const landing = document.getElementById('landing-screen');
+    const victory = document.getElementById('victory-screen');
+    const hud = document.getElementById('floor-hud-container');
+    const workspace = document.getElementById('game-workspace');
+    const header = document.getElementById('gameplay-header');
+    const footer = document.getElementById('footer-text');
+
+    if (landing) landing.style.display = 'none';
+    if (victory) victory.style.display = 'none';
+    if (hud) hud.style.display = 'flex';
+    if (workspace) workspace.style.display = 'flex';
+    if (header) header.style.display = 'flex';
+    if (footer) footer.style.display = 'block';
+
+    startSessionTimer();
+    startGame();
+}
+
+
 // ==========================================
-// 6. GAME LOOP & ELEVATOR PROGRESSION
+// GAME LOOP & ELEVATOR PROGRESSION
 // ==========================================
 
 function startGame() {
-    if (!gameState.questions || gameState.questions.length === 0) {
-        gameState.questions = generateFallbackQuestions();
-    }
     gameState.currentFloor = 1;
     gameState.currentQuestionIndex = 0;
+    showScreen('game-screen');
+    
+    const hud = document.getElementById('floor-hud-container');
+    const header = document.getElementById('gameplay-header');
+    if (hud) hud.style.display = 'flex';
+    if (header) header.style.display = 'flex';
+
     updateFloorUI();
     loadNextQuestion();
 }
 
 function updateFloorUI() {
     const cardFloorEl = document.getElementById('card-floor-text');
-    if (cardFloorEl) cardFloorEl.innerHTML = getOrdinalFloorHTML(gameState.currentFloor);
-
+    if (cardFloorEl) {
+        cardFloorEl.innerHTML = getOrdinalFloorHTML(gameState.currentFloor);
+    }
+    
     const activeBatch = floorMessageBatches[0];
-    safeSetText('floor-rule-text', activeBatch[gameState.currentFloor - 1] || "No mistakes!");
+    const ruleMsg = activeBatch[gameState.currentFloor - 1] || "No mistakes!";
+    safeSetText('floor-rule-text', ruleMsg);
 
-    document.querySelectorAll('.tower-floor').forEach(block => {
+    document.querySelectorAll('.tower-floor, .floor-block').forEach(block => {
         const floorNum = parseInt(block.getAttribute('data-floor'), 10);
         block.classList.toggle('active', floorNum === gameState.currentFloor);
+        block.classList.toggle('active-floor', floorNum === gameState.currentFloor);
         block.classList.toggle('completed', floorNum < gameState.currentFloor);
         block.classList.remove('failed');
     });
 }
 
 function loadNextQuestion() {
-    startTimer();
+    startQuestionTimer();
+    
     const currentQ = gameState.questions[gameState.currentQuestionIndex];
     if (!currentQ) return;
 
     safeSetText('question-text', currentQ.question);
+    
     const shuffledOptions = shuffleArray(currentQ.options);
-    const optionButtons = document.querySelectorAll('.options-grid .btn-option');
-
+    
+    const optionButtons = document.querySelectorAll('#options-grid .btn-option');
     optionButtons.forEach((btn, idx) => {
         btn.className = 'btn-option';
         if (typeof btn.blur === 'function') {
@@ -334,25 +480,32 @@ function loadNextQuestion() {
         }
         const optionVal = shuffledOptions[idx] || null;
         btn.textContent = optionVal || '';
-        btn.style.display = optionVal ? 'flex' : 'none';
-
+        btn.style.display = optionVal ? 'block' : 'none';
+        
         const isCorrect = (optionVal === currentQ.answer);
-        btn.onclick = () => handleAnswerSelect(isCorrect, btn);
+        btn.onclick = () => handleAnswerSelect(isCorrect, btn); 
     });
 }
 
-function startTimer() {
+function startQuestionTimer() {
     clearInterval(gameState.timer);
-    const totalDuration = 30000;
+    const totalDuration = 20000;
     const startTime = Date.now();
+    gameState.timeLeft = 20;
     const timerBar = document.getElementById('timer-bar');
-    if (timerBar) timerBar.style.width = '100%';
+    
+    if (timerBar) {
+        timerBar.style.width = '100%';
+    }
 
     gameState.timer = setInterval(() => {
         const elapsed = Date.now() - startTime;
         const remaining = Math.max(0, totalDuration - elapsed);
+        gameState.timeLeft = Math.ceil(remaining / 1000);
 
-        if (timerBar) timerBar.style.width = `${(remaining / totalDuration) * 100}%`;
+        if (timerBar) {
+            timerBar.style.width = `${(remaining / totalDuration) * 100}%`;
+        }
 
         if (remaining <= 0) {
             clearInterval(gameState.timer);
@@ -363,19 +516,19 @@ function startTimer() {
 
 function handleAnswerSelect(isCorrect, buttonEl) {
     clearInterval(gameState.timer);
-
-    document.querySelectorAll('.options-grid .btn-option').forEach(btn => {
+    
+    document.querySelectorAll('#options-grid .btn-option').forEach(btn => {
         btn.onclick = null;
         if (typeof btn.blur === 'function') {
             btn.blur();
         }
     });
-
+    
     if (isCorrect) {
         if (buttonEl) buttonEl.classList.add('selected-correct');
         playElevatorDing();
         triggerHaptic([35, 40, 35]);
-
+        
         setTimeout(() => {
             if (gameState.currentFloor >= gameState.maxFloors) {
                 handleVictory();
@@ -392,63 +545,63 @@ function handleAnswerSelect(isCorrect, buttonEl) {
     } else {
         if (buttonEl) buttonEl.classList.add('selected-wrong');
         triggerHaptic([80, 50, 120]);
-
+        
         const activeBlock = document.querySelector(`.tower-floor[data-floor="${gameState.currentFloor}"]`);
         if (activeBlock) activeBlock.classList.add('failed');
 
-        setTimeout(() => handleGameOver('INCORRECT ANSWER'), 800);
+        setTimeout(() => {
+            handleGameOver('INCORRECT ANSWER');
+        }, 800);
     }
 }
 
 function handleGameOver(reason) {
+    stopSessionTimer();
     gameState.stats.played++;
     gameState.stats.streak = 0;
     saveStats();
-
+    
     safeSetText('game-over-title', 'ELEVATOR STOPPED');
     safeSetText('game-over-message', reason);
-
+    
     const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
     const ord = ordinals[gameState.currentFloor - 1] || `${gameState.currentFloor}th`;
     const finalEl = document.getElementById('final-floor-reached');
     if (finalEl) {
-        finalEl.innerHTML = `Stopped at <span style="color: var(--state-error, #ef4444); font-weight: 800;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
+        finalEl.innerHTML = `Stopped at <span style="color: var(--state-error, #EF4444); font-weight: 800;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
     }
-
+    
     openModal('modal-game-over');
 }
 
 function handleVictory() {
+    stopSessionTimer();
     gameState.currentFloor = 11;
     gameState.stats.played++;
     gameState.stats.wins++;
     gameState.stats.streak++;
     gameState.stats.bestFloor = 11;
     saveStats();
-
-    updateFloorUI();
+    
     triggerHaptic([50, 50, 50, 50, 100]);
+    
+    const victoryTimeDisplay = document.getElementById('victory-time-display');
+    const victoryStreakDisplay = document.getElementById('victory-streak-display');
+    const hudContainer = document.getElementById('floor-hud-container');
+    const gameWorkspace = document.getElementById('game-workspace');
+    const gameplayHeader = document.getElementById('gameplay-header');
+    const activeGameTimer = document.getElementById('active-game-timer');
+    const victoryScreen = document.getElementById('victory-screen');
+    const footerText = document.getElementById('footer-text');
 
-    safeSetText('game-over-title', '');
-    const msgEl = document.getElementById('game-over-message');
-    if (msgEl) {
-        msgEl.innerHTML = '<span class="congrats-green">Congratulations!</span> You\'ve cleared Think You Know Ball? and reached the 11th Floor.<br><br>Come back tomorrow to continue your streak.';
-    }
-    safeSetText('final-floor-reached', '');
-    openModal('modal-game-over');
-}
+    if (victoryTimeDisplay) victoryTimeDisplay.textContent = formatTime(gameState.timeElapsedSeconds);
+    if (victoryStreakDisplay) victoryStreakDisplay.textContent = `${gameState.stats.streak} Days`;
 
-function generateFallbackQuestions() {
-    return [
-        { question: "Which club won the inaugural Premier League title in 1992-93?", options: ["Manchester United", "Blackburn Rovers", "Arsenal", "Aston Villa"], answer: "Manchester United" },
-        { question: "Who holds the record for the most goals in a single 38-game Premier League season?", options: ["Erling Haaland", "Alan Shearer", "Mohamed Salah", "Thierry Henry"], answer: "Erling Haaland" },
-        { question: "Which player has accumulated the most overall appearances in Premier League history?", options: ["Gareth Barry", "Ryan Giggs", "James Milner", "Frank Lampard"], answer: "Gareth Barry" },
-        { question: "Who scored the famous 'Agueroooo' goal to seal the title in 2012?", options: ["Sergio Agüero", "David Silva", "Yaya Touré", "Edin Džeko"], answer: "Sergio Agüero" },
-        { question: "Which team completed an entire 38-game Premier League season undefeated?", options: ["Arsenal", "Manchester City", "Chelsea", "Manchester United"], answer: "Arsenal" },
-        { question: "Who won the Golden Boot in three consecutive Premier League seasons (2003–2006)?", options: ["Thierry Henry", "Ruud van Nistelrooy", "Alan Shearer", "Didier Drogba"], answer: "Thierry Henry" },
-        { question: "Which manager famously led 5000-1 outsiders Leicester City to the title in 2015-16?", options: ["Claudio Ranieri", "Nigel Pearson", "Brendan Rodgers", "Craig Shakespeare"], answer: "Claudio Ranieri" },
-        { question: "Who was the first player to record 100 Premier League assists?", options: ["Ryan Giggs", "Cesc Fàbregas", "Wayne Rooney", "Dennis Bergkamp"], answer: "Ryan Giggs" },
-        { question: "Which club holds the record for conceding the fewest goals in a single PL season (15)?", options: ["Chelsea", "Arsenal", "Manchester United", "Liverpool"], answer: "Chelsea" },
-        { question: "Who scored the fastest hat-trick in Premier League history (2 mins 56 secs)?", options: ["Sadio Mané", "Robbie Fowler", "Jermain Defoe", "Gabriel Agbonlahor"], answer: "Sadio Mané" }
-    ];
+    if (hudContainer) hudContainer.style.display = 'none';
+    if (gameWorkspace) gameWorkspace.style.display = 'none';
+    if (gameplayHeader) gameplayHeader.style.display = 'none';
+    if (activeGameTimer) activeGameTimer.style.display = 'none';
+    if (footerText) footerText.style.display = 'none';
+
+    if (victoryScreen) victoryScreen.style.display = 'flex';
 }
