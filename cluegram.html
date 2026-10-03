@@ -243,17 +243,60 @@
             line-height: 1.35;
         }
 
-        /* Lightened Answer Slot Borders */
-        #target-word-slots { display: flex; gap: 6px; justify-content: center; align-items: center; width: 100%; min-height: 42px; flex-wrap: wrap; }
-        .target-slot { width: 34px; height: 42px; border: 1px solid rgba(250, 204, 21, 0.4); border-radius: 6px; background: #111111; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text-primary); cursor: pointer; transition: all 0.15s ease; }
+        /* Lightened Answer Slot Borders & Tight Mobile Layout Fix */
+        #target-word-slots { 
+            display: flex; 
+            gap: 4px; 
+            justify-content: center; 
+            align-items: center; 
+            width: 100%; 
+            min-height: 42px; 
+            flex-wrap: nowrap; 
+        }
+        .target-slot { 
+            width: clamp(26px, 8.5vw, 34px); 
+            height: 42px; 
+            border: 1px solid rgba(250, 204, 21, 0.4); 
+            border-radius: 6px; 
+            background: #111111; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-family: 'Inter', sans-serif; 
+            font-weight: 800; 
+            font-size: clamp(0.9rem, 3.5vw, 1.1rem); 
+            letter-spacing: -0.5px; 
+            color: var(--text-primary); 
+            cursor: pointer; 
+            transition: all 0.15s ease; 
+            flex-shrink: 0; 
+        }
         .target-slot.filled { border-color: var(--state-active); box-shadow: 0 0 6px var(--state-active-glow); }
         .target-slot.state-success { border-color: var(--state-success); color: var(--state-success); }
         .target-slot.state-error { border-color: var(--state-error); color: var(--state-error); }
 
         .rack-container { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 4px; }
         .rack-label { font-size: 0.6rem; font-weight: 700; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
-        #letter-rack { display: flex; gap: 6px; justify-content: center; align-items: center; flex-wrap: wrap; width: 100%; }
-        .rack-tile { width: 36px; height: 44px; background: #141414; border: 1px solid var(--surface-border); border-radius: 6px; color: #ffffff; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s ease; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); }
+        #letter-rack { display: flex; gap: 4px; justify-content: center; align-items: center; flex-wrap: nowrap; width: 100%; }
+        .rack-tile { 
+            width: clamp(26px, 8.5vw, 36px); 
+            height: 44px; 
+            background: #141414; 
+            border: 1px solid var(--surface-border); 
+            border-radius: 6px; 
+            color: #ffffff; 
+            font-family: 'Inter', sans-serif; 
+            font-weight: 700; 
+            font-size: clamp(0.9rem, 3.5vw, 1.1rem); 
+            letter-spacing: -0.5px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer; 
+            transition: all 0.15s ease; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); 
+            flex-shrink: 0; 
+        }
         .rack-tile:hover { border-color: var(--state-active); background: #1c1c1c; }
         .rack-tile.used { opacity: 0.15; pointer-events: none; border-color: transparent; box-shadow: none; }
 
