@@ -233,7 +233,6 @@
         #message-box { min-height: 16px; color: var(--state-error); font-weight: 700; font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; text-align: center; }
         .clue-box { width: 100%; background: #111111; border: 1px solid var(--surface-border); border-radius: 6px; padding: 12px 14px; text-align: center; box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); }
 
-        /* Sleek Montserrat Clue Font */
         .clue-text {
             font-family: 'Montserrat', sans-serif;
             font-size: 0.9rem;
@@ -243,7 +242,6 @@
             line-height: 1.35;
         }
 
-        /* Lightened Answer Slot Borders & Tight Mobile Layout Fix */
         #target-word-slots { 
             display: flex; 
             gap: 4px; 
@@ -339,7 +337,7 @@
             <button class="pill-btn" id="btn-sound">SOUND: ON</button>
         </div>
 
-        <!-- LANDING SCREEN (Full Logo with 11FL?) -->
+        <!-- LANDING SCREEN -->
         <div id="start-screen" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
             <div class="game-logo-box">
                 <h1 class="game-logo-magenta">11FL?</h1>
@@ -371,7 +369,7 @@
             </div>
         </div>
 
-        <!-- GAMEPLAY HEADER (Shows only during play — Eleventh Floor CLUEGRAM, NO 11FL?) -->
+        <!-- GAMEPLAY HEADER -->
         <div id="gameplay-header" class="gameplay-header-box" style="display: none;">
             <p class="game-logo-title">Eleventh Floor</p>
             <p class="game-logo-sub">CLUEGRAM</p>
@@ -422,6 +420,20 @@
             <button class="btn btn-secondary" id="action-backspace-btn">BACKSPACE</button>
             <button class="btn btn-secondary" id="action-shuffle-btn">SHUFFLE</button>
             <button class="btn btn-primary" id="action-submit-btn">SUBMIT</button>
+        </div>
+
+        <!-- VICTORY SCREEN (Static for screenshots) -->
+        <div id="victory-screen" style="display: none; width: 100%; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 16px; padding: 20px 16px; flex-grow: 1;">
+            <h1 class="game-logo-magenta" style="font-size: 4.5rem; line-height: 1; margin-bottom: 0;">11TH<br>FLOOR</h1>
+            <h2 style="font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 800; letter-spacing: 3px; color: #ffffff;">ASCENSION COMPLETE</h2>
+            <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.5; max-width: 300px; margin-bottom: 12px;">You have successfully navigated all 10 levels without a single mistake.</p>
+            
+            <div style="width: 100%; max-width: 280px; padding: 24px; background: var(--surface); border: 1px solid var(--state-success); border-radius: 12px; box-shadow: 0 0 20px var(--state-success-glow); margin-bottom: 20px;">
+                <div style="font-size: 0.75rem; font-weight: 700; color: var(--state-success); letter-spacing: 3px; margin-bottom: 10px; text-transform: uppercase;">Daily Clear</div>
+                <div style="font-size: 2.2rem; font-family: 'Anton', sans-serif; color: #ffffff; letter-spacing: 2px;">FLAWLESS</div>
+            </div>
+
+            <button id="btn-victory-stats" class="btn-start" style="width: 100%; max-width: 280px;">VIEW STATS & ARCHIVES</button>
         </div>
 
         <footer>
