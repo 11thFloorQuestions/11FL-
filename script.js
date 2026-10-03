@@ -68,6 +68,9 @@ const gameState = {
     questions: [],
     currentQuestionIndex: 0,
     batchIndex: 0,
+    startTime: 0,
+    timerInterval: null,
+    timeElapsedSeconds: 0,
     stats: {
         played: 0,
         wins: 0,
@@ -141,6 +144,41 @@ loadSavedStats();
 
 
 // ==========================================
+// GAMEPLAY SESSION STOPWATCH TIMER
+// ==========================================
+
+function startSessionTimer() {
+    stopSessionTimer();
+    gameState.timeElapsedSeconds = 0;
+    gameState.startTime = Date.now();
+    const activeGameTimer = document.getElementById("active-game-timer");
+    if (activeGameTimer) {
+        activeGameTimer.style.display = "block";
+        activeGameTimer.textContent = "00:00";
+    }
+    gameState.timerInterval = setInterval(updateSessionTimerDisplay, 1000);
+}
+
+function stopSessionTimer() {
+    if (gameState.timerInterval) clearInterval(gameState.timerInterval);
+}
+
+function updateSessionTimerDisplay() {
+    gameState.timeElapsedSeconds = Math.floor((Date.now() - gameState.startTime) / 1000);
+    const activeGameTimer = document.getElementById("active-game-timer");
+    if (activeGameTimer) {
+        activeGameTimer.textContent = formatTime(gameState.timeElapsedSeconds);
+    }
+}
+
+function formatTime(totalSeconds) {
+    const m = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
+    const s = (totalSeconds % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+}
+
+
+// ==========================================
 // AUDIO ENGINE (EXACT SOUND FILE PLAYBACK)
 // ==========================================
 
@@ -176,18 +214,25 @@ document.addEventListener('DOMContentLoaded', () => {
         startDailyClimb();
     });
 
-    safeAddListener('btn-util-exit', 'click', () => {
-        resetGame();
-        showScreen('landing-screen');
+    safeAddListener('btn-landing-stats', 'click', () => openVault());
+    
+    safeAddListener('btn-victory-stats', 'click', () => {
+        openVault();
     });
 
-    safeAddListener('btn-landing-stats', 'click', () => openVault());
     safeAddListener('btn-back-vault', 'click', () => {
         closeModal('modal-game-over');
         openVault();
     });
 
-    safeAddListener('btn-close-vault', 'click', () => closeModal('modal-vault'));
+    safeAddListener('btn-close-vault', 'click', () => {
+        closeModal('modal-vault');
+        const victoryScreen = document.getElementById('victory-screen');
+        if (victoryScreen && victoryScreen.style.display !== 'none') {
+            resetToLandingScreen();
+        }
+    });
+
     safeAddListener('btn-try-again', 'click', () => {
         closeModal('modal-game-over');
         if (gameState.questions && gameState.questions.length > 0) {
@@ -198,12 +243,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     safeAddListener('btn-sound-toggle', 'click', toggleSound);
-    safeAddListener('btn-sound-toggle-game', 'click', toggleSound);
 
     updateSoundUI();
 });
 
+function resetToLandingScreen() {
+    stopSessionTimer();
+    const screens = ['victory-screen', 'game-screen', 'floor-hud-container', 'gameplay-header', 'active-game-timer', 'footer-text'];
+    screens.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+    });
+    const landing = document.getElementById('landing-screen');
+    if (landing) landing.style.display = 'flex';
+}
+
 function showScreen(screenId) {
+    const victoryScreen = document.getElementById('victory-screen');
+    if (victoryScreen) victoryScreen.style.display = 'none';
+
     const screens = ['landing-screen', 'game-screen'];
     screens.forEach(id => {
         const el = document.getElementById(id);
@@ -224,7 +282,6 @@ function showScreen(screenId) {
 function updateSoundUI() {
     const label = `SOUND: ${gameState.soundEnabled ? 'ON' : 'OFF'}`;
     safeSetText('btn-sound-toggle', label);
-    safeSetText('btn-sound-toggle-game', label);
 }
 
 function toggleSound() {
@@ -377,7 +434,8 @@ async function startDailyClimb() {
     } else {
         gameState.questions = generateFallbackQuestions();
     }
-    startGame();
+    
+    launchGameUI();
 }
 
 function loadVaultSet(paddedId, data) {
@@ -386,8 +444,27 @@ function loadVaultSet(paddedId, data) {
         gameState.batchIndex = archiveNum % floorMessageBatches.length;
         gameState.questions = normalizeQuestions(data);
         closeModal('modal-vault');
-        startGame();
+        launchGameUI();
     }
+}
+
+function launchGameUI() {
+    const landing = document.getElementById('landing-screen');
+    const victory = document.getElementById('victory-screen');
+    const hud = document.getElementById('floor-hud-container');
+    const workspace = document.getElementById('game-workspace');
+    const header = document.getElementById('gameplay-header');
+    const footer = document.getElementById('footer-text');
+
+    if (landing) landing.style.display = 'none';
+    if (victory) victory.style.display = 'none';
+    if (hud) hud.style.display = 'flex';
+    if (workspace) workspace.style.display = 'flex';
+    if (header) header.style.display = 'flex';
+    if (footer) footer.style.display = 'block';
+
+    startSessionTimer();
+    startGame();
 }
 
 
@@ -402,6 +479,12 @@ function startGame() {
     gameState.currentFloor = 1;
     gameState.currentQuestionIndex = 0;
     showScreen('game-screen');
+    
+    const hud = document.getElementById('floor-hud-container');
+    const header = document.getElementById('gameplay-header');
+    if (hud) hud.style.display = 'flex';
+    if (header) header.style.display = 'flex';
+
     updateFloorUI();
     loadNextQuestion();
 }
@@ -431,7 +514,7 @@ function updateFloorUI() {
 }
 
 function loadNextQuestion() {
-    startTimer();
+    startQuestionTimer();
     
     const currentQ = gameState.questions[gameState.currentQuestionIndex];
     if (!currentQ) return;
@@ -440,7 +523,7 @@ function loadNextQuestion() {
     
     const shuffledOptions = shuffleArray(currentQ.options);
     
-    const optionButtons = document.querySelectorAll('.options-grid .btn-option');
+    const optionButtons = document.querySelectorAll('#options-grid .btn-option');
     optionButtons.forEach((btn, idx) => {
         btn.className = 'btn-option';
         if (typeof btn.blur === 'function') {
@@ -455,7 +538,7 @@ function loadNextQuestion() {
     });
 }
 
-function startTimer() {
+function startQuestionTimer() {
     clearInterval(gameState.timer);
     const totalDuration = 15000;
     const startTime = Date.now();
@@ -485,7 +568,7 @@ function startTimer() {
 function handleAnswerSelect(isCorrect, buttonEl) {
     clearInterval(gameState.timer);
     
-    document.querySelectorAll('.options-grid .btn-option').forEach(btn => {
+    document.querySelectorAll('#options-grid .btn-option').forEach(btn => {
         btn.onclick = null;
         if (typeof btn.blur === 'function') {
             btn.blur();
@@ -524,6 +607,7 @@ function handleAnswerSelect(isCorrect, buttonEl) {
 }
 
 function handleGameOver(reason) {
+    stopSessionTimer();
     gameState.stats.played++;
     gameState.stats.streak = 0;
     saveStats();
@@ -542,6 +626,7 @@ function handleGameOver(reason) {
 }
 
 function handleVictory() {
+    stopSessionTimer();
     gameState.currentFloor = 11;
     gameState.stats.played++;
     gameState.stats.wins++;
@@ -549,17 +634,27 @@ function handleVictory() {
     gameState.stats.bestFloor = 11;
     saveStats();
     
-    updateFloorUI();
     triggerHaptic([50, 50, 50, 50, 100]);
     
-    safeSetText('game-over-title', '');
-    const msgEl = document.getElementById('game-over-message');
-    if (msgEl) {
-        msgEl.innerHTML = '<span class="congrats-green">Congratulations!</span> You\'ve reached the 11th Floor.<br><br>Come back tomorrow to continue your streak.';
-    }
-    safeSetText('final-floor-reached', '');
-    
-    openModal('modal-game-over');
+    const victoryTimeDisplay = document.getElementById('victory-time-display');
+    const victoryStreakDisplay = document.getElementById('victory-streak-display');
+    const hudContainer = document.getElementById('floor-hud-container');
+    const gameWorkspace = document.getElementById('game-workspace');
+    const gameplayHeader = document.getElementById('gameplay-header');
+    const activeGameTimer = document.getElementById('active-game-timer');
+    const victoryScreen = document.getElementById('victory-screen');
+    const footerText = document.getElementById('footer-text');
+
+    if (victoryTimeDisplay) victoryTimeDisplay.textContent = formatTime(gameState.timeElapsedSeconds);
+    if (victoryStreakDisplay) victoryStreakDisplay.textContent = `${gameState.stats.streak} Days`;
+
+    if (hudContainer) hudContainer.style.display = 'none';
+    if (gameWorkspace) gameWorkspace.style.display = 'none';
+    if (gameplayHeader) gameplayHeader.style.display = 'none';
+    if (activeGameTimer) activeGameTimer.style.display = 'none';
+    if (footerText) footerText.style.display = 'none';
+
+    if (victoryScreen) victoryScreen.style.display = 'flex';
 }
 
 function generateFallbackQuestions() {
