@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
             currentFloorIndex = 0;
             loadFloor(currentFloorIndex);
         } else {
-            showMessage(`COULD NOT LOAD ARCHIVE ${paddedId}`);
+            showMessage(`COULD NOT LOAD ARCHIVE ${paddedId}`, false);
         }
     }
 
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const floorData = activeGameData[index];
         userGuess = [];
-        showMessage('');
+        showMessage('', false);
         isProcessing = false;
 
         // Render "1st Floor" with white Floor text
@@ -301,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const currentFloor = activeGameData[currentFloorIndex];
         if (userGuess.length < currentFloor.target.length) {
-            showMessage('FILL ALL SLOTS BEFORE SUBMITTING');
+            showMessage('FILL ALL SLOTS BEFORE SUBMITTING', false);
             return;
         }
 
@@ -311,12 +311,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (submittedWord === currentFloor.target) {
             slots.forEach(slot => slot.classList.add('state-success'));
-            showMessage('CORRECT ANAGRAM!');
+            showMessage('CORRECT ANAGRAM!', true);
 
             setTimeout(() => {
                 if (currentFloorIndex + 1 >= activeGameData.length) {
                     recordGameResult(true, 11);
-                    showMessage('CONGRATULATIONS! 11TH FLOOR REACHED!');
+                    showMessage('CONGRATULATIONS! 11TH FLOOR REACHED!', true);
                     setTimeout(() => {
                         currentFloorIndex = 0;
                         loadFloor(0);
@@ -328,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 800);
         } else {
             slots.forEach(slot => slot.classList.add('state-error'));
-            showMessage('INCORRECT — DROPPED TO 1ST FLOOR');
+            showMessage('INCORRECT — DROPPED TO 1ST FLOOR', false);
 
             const towerFloors = document.querySelectorAll('.tower-floor');
             const activeTowerFloor = Array.from(towerFloors).find(
@@ -360,8 +360,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function showMessage(msg) {
+    function showMessage(msg, isSuccess = false) {
+        if (!messageBox) return;
         messageBox.textContent = msg;
+        messageBox.style.color = isSuccess ? 'var(--state-success)' : 'var(--state-error)';
     }
 
     function recordGameResult(isWin, peakFloor) {
