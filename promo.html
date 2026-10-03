@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>11th Floor Games - Promo Studio</title>
+    <title>11th Floor Games - Promo Studio (Victory Run)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@700;800&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-deep: #000000;
             --surface: #0a0a0a;
             --surface-border: #222222;
+            --surface-border-light: #333333;
             --accent-red: #ff1f2d;
             --accent-red-glow: rgba(255, 31, 45, 0.35);
             --accent-green: #84CC16;
@@ -70,6 +71,28 @@
             padding: 10px 12px 10px 12px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.9);
             overflow: hidden;
+        }
+
+        /* Camera Flash Effect for Social Screenshot */
+        .camera-flash {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 99;
+        }
+
+        .camera-flash.trigger {
+            animation: flashPulse 0.4s ease-out forwards;
+        }
+
+        @keyframes flashPulse {
+            0% { opacity: 0.9; }
+            100% { opacity: 0; }
         }
 
         /* Lobby Logo Block */
@@ -376,11 +399,37 @@
             box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
         }
 
-        .btn-option.selected-wrong { 
-            border-color: var(--state-error); 
-            background: rgba(239, 68, 68, 0.25); 
-            color: #FCA5A5; 
-            box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+        /* Ecosystem Victory Receipt Card Layout (Matches ball.html) */
+        .victory-receipt { 
+            width: 100%; 
+            background: #111111; 
+            border: 1px solid var(--genre-terrace); 
+            border-radius: 10px; 
+            padding: 16px; 
+            box-shadow: 0 0 25px var(--genre-terrace-glow); 
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px; 
+            text-align: left; 
+        }
+
+        .victory-row { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--surface-border-light); padding-bottom: 6px; }
+        .victory-label { font-size: 0.65rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .victory-data { font-size: 0.95rem; font-family: 'Inter', sans-serif; font-weight: 800; color: #ffffff; letter-spacing: 0.5px; }
+
+        .btn-victory-stats {
+            width: 100%;
+            background-color: var(--genre-terrace);
+            color: #000000;
+            border: none;
+            padding: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 800;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
         }
 
         /* Footer Text */
@@ -404,7 +453,6 @@
             text-align: center;
         }
 
-        /* Slow, smooth color cycle */
         @keyframes logoColorCycle {
             0%   { color: var(--accent-red); text-shadow: 0 0 20px rgba(255, 31, 45, 0.35); }
             14%  { color: var(--color-terrace); text-shadow: 0 0 20px var(--color-terrace-glow); }
@@ -420,6 +468,8 @@
 <body>
 
     <div class="promo-canvas">
+        <div class="camera-flash" id="camera-flash"></div>
+
         <!-- Lobby Logo Block -->
         <div class="promo-hub-logo-box">
             <h1 class="promo-hub-logo-red">11FL?</h1>
@@ -434,61 +484,86 @@
             <div id="text-slot" class="promo-text"></div>
         </div>
 
-        <!-- Mock Mobile Frame containing Think You Know Ball UI -->
-        <div class="promo-mock-device idle" id="mock-device">
+        <!-- Mock Mobile Frame -->
+        <div class="promo-mock-device ready" id="mock-device">
             <div class="promo-game-viewport">
-                <!-- Gameplay HUD Header -->
-                <div class="hud-sidebar-container">
-                    <div class="tower-stack">
-                        <div class="tower-floor" data-floor="11"></div>
-                        <div class="tower-floor" data-floor="10"></div>
-                        <div class="tower-floor" data-floor="9"></div>
-                        <div class="tower-floor" data-floor="8"></div>
-                        <div class="tower-floor" data-floor="7"></div>
-                        <div class="tower-floor" data-floor="6"></div>
-                        <div class="tower-floor" data-floor="5"></div>
-                        <div class="tower-floor" data-floor="4"></div>
-                        <div class="tower-floor" data-floor="3"></div>
-                        <div class="tower-floor" data-floor="2"></div>
-                        <div class="tower-floor" data-floor="1"></div>
+                
+                <!-- Active Gameplay Container (Floors 6-10) -->
+                <div id="gameplay-container" style="width: 100%; display: flex; flex-direction: column; height: 100%; justify-content: space-between;">
+                    <div class="hud-sidebar-container">
+                        <div class="tower-stack">
+                            <div class="tower-floor" data-floor="11"></div>
+                            <div class="tower-floor" data-floor="10"></div>
+                            <div class="tower-floor" data-floor="9"></div>
+                            <div class="tower-floor" data-floor="8"></div>
+                            <div class="tower-floor" data-floor="7"></div>
+                            <div class="tower-floor" data-floor="6"></div>
+                            <div class="tower-floor" data-floor="5"></div>
+                            <div class="tower-floor" data-floor="4"></div>
+                            <div class="tower-floor" data-floor="3"></div>
+                            <div class="tower-floor" data-floor="2"></div>
+                            <div class="tower-floor" data-floor="1"></div>
+                        </div>
+
+                        <div class="floor-info-box">
+                            <div class="floor-left-group">
+                                <div class="current-floor-display" id="card-floor-text"><span style="color: var(--genre-terrace); font-weight: 800;">6th</span> <span style="color: #ffffff;">Floor</span></div>
+                                <div class="floor-rule-text" id="floor-rule-text">No mistakes!</div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="floor-info-box">
-                        <div class="floor-left-group">
-                            <div class="current-floor-display" id="card-floor-text"><span style="color: var(--genre-terrace); font-weight: 800;">1st</span> <span style="color: #ffffff;">Floor</span></div>
-                            <div class="floor-rule-text" id="floor-rule-text">No mistakes!</div>
+                    <div class="play-card">
+                        <div class="timer-track"><div id="timer-bar" class="timer-fill"></div></div>
+                        
+                        <div class="question-box">
+                            <div id="question-text" class="question-text">Loading question...</div>
+                        </div>
+
+                        <div class="options-grid">
+                            <button class="btn-option"></button>
+                            <button class="btn-option"></button>
+                            <button class="btn-option"></button>
+                            <button class="btn-option"></button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Game Screen Workspace -->
-                <div class="play-card">
-                    <div class="timer-track"><div id="timer-bar" class="timer-fill"></div></div>
-                    
-                    <div class="question-box">
-                        <div id="question-text" class="question-text">Loading question...</div>
-                    </div>
+                <!-- Final Victory Receipt Screen (Reveals at Floor 11 Victory) -->
+                <div id="victory-container" style="display: none; width: 100%; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                    <div class="victory-receipt">
+                        <div style="font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 800; letter-spacing: 2px; color: var(--genre-terrace); text-transform: uppercase; text-align: center;">DESTINATION REACHED</div>
+                        <div style="font-family: 'Anton', sans-serif; font-size: 1.6rem; color: #ffffff; letter-spacing: 1px; text-align: center; margin-bottom: 2px;">PERFECT</div>
+                        
+                        <div class="victory-row">
+                            <span class="victory-label">Time Elapsed</span>
+                            <span class="victory-data">01:42</span>
+                        </div>
+                        
+                        <div class="victory-row">
+                            <span class="victory-label">Accuracy</span>
+                            <span class="victory-data" style="color: var(--state-success);">100% (10/10)</span>
+                        </div>
+                        
+                        <div class="victory-row" style="border-bottom: none; padding-bottom: 0;">
+                            <span class="victory-label">Active Streak</span>
+                            <span class="victory-data" style="color: var(--state-active);">12 Days</span>
+                        </div>
 
-                    <div class="options-grid">
-                        <button class="btn-option"></button>
-                        <button class="btn-option"></button>
-                        <button class="btn-option"></button>
-                        <button class="btn-option"></button>
+                        <button class="btn-victory-stats">VIEW STATS & ARCHIVES</button>
                     </div>
                 </div>
+
             </div>
         </div>
 
-        <!-- Clean Footer Text: Game 001 Dropping Saturday 11am (UK) -->
+        <!-- Clean Footer Text -->
         <div class="promo-footer">
             <span class="promo-footer-text">GAME 001 DROPPING SATURDAY 11AM (UK)</span>
         </div>
     </div>
 
     <script>
-        /* ==========================================================================
-           MODULAR CONFIGURATION
-           ========================================================================== */
         const gameConfig = {
             title: "Think You Know Ball?",
             accentColor: "#84CC16",
@@ -500,7 +575,7 @@
         document.getElementById('brand-game-title').innerText = gameConfig.title;
 
         /* ==========================================================================
-           SYNCHRONISED SCRIPT SEQUENCE & GAMEPLAY ENGINE
+           TEXT OVERLAY CAPTION LOOP
            ========================================================================== */
         const sequence = [
             { 
@@ -508,19 +583,17 @@
                 duration: 900, 
                 delayedAppend: "<br><span class='pop'>YOU DON'T!</span>", 
                 appendDelay: 800, 
-                durationAfterAppend: 1800,
-                onAppend: () => triggerGameplayStart() // Device swings into action right on "YOU DON'T!"
+                durationAfterAppend: 1800 
             },
-            { text: "MADE BY <span class='highlight'>HUMANS!</span>", duration: 2400 },
-            { text: "NEW DAILY <span class='highlight'>FOOTBALL QUIZ!</span>", duration: 2300 },
-            { text: "NO SECOND CHANCES FOR A <span class='highlight'>DAILY STREAK!</span>", duration: 2400 },
+            { text: "MADE BY <span class='highlight'>HUMANS!</span>", duration: 2200 },
+            { text: "NEW DAILY <span class='highlight'>FOOTBALL QUIZ!</span>", duration: 2200 },
+            { text: "NO SECOND CHANCES FOR A <span class='highlight'>DAILY STREAK!</span>", duration: 2200 },
             { text: "FOLLOW TO <span class='highlight'>PLAY DAY ONE!</span>", duration: 2200 },
-            { text: "GAME 001 DROPPING <span class='highlight'>SATURDAY 11AM (UK)</span>", duration: 2200 }
+            { text: "GAME 001 DROPPING <span class='highlight'>SATURDAY 11AM (UK)</span>", duration: 2400 }
         ];
 
         let currentIndex = 0;
         const textSlot = document.getElementById('text-slot');
-        const mockDevice = document.getElementById('mock-device');
 
         function runPromoScript() {
             if (currentIndex >= sequence.length) {
@@ -534,9 +607,6 @@
             if (currentItem.delayedAppend) {
                 setTimeout(() => {
                     textSlot.innerHTML = currentItem.text + currentItem.delayedAppend;
-                    if (typeof currentItem.onAppend === 'function') {
-                        currentItem.onAppend();
-                    }
                     setTimeout(() => {
                         textSlot.classList.remove('active');
                         setTimeout(() => {
@@ -557,24 +627,19 @@
         }
 
         /* ==========================================================================
-           AUTHENTIC ELEVATOR CLIMB SIMULATION (FAST-PACED FROM FLOOR 6)
+           FAST CLIMB SIMULATION STARTING AT FLOOR 6 -> VICTORY RECEIPT
            ========================================================================== */
         const sampleQuestions = [
-            { question: "Which Premier League defender earned a recent Player of the Month nomination?", options: ["Lewis Dunk", "Lewis Capoldi", "Lewis Cook", "Lewis Hall"], answer: "Lewis Dunk" },
-            { question: "Which team recently brought a team of 115 high-priced lawyers to Premier League hearings?", options: ["Manchester City", "Manchester City FC", "Chelsea", "Everton"], answer: "Manchester City" },
-            { question: "Who registered the fastest hat-trick in Premier League history at 2 minutes 56 seconds?", options: ["Sadio Mané", "Robbie Fowler", "Jermain Defoe", "Gabriel Agbonlahor"], answer: "Sadio Mané" },
-            { question: "Which goalkeeper holds the record for the most clean sheets in Premier League history?", options: ["Petr Čech", "David James", "Mark Schwarzer", "David de Gea"], answer: "Petr Čech" },
-            { question: "Which team completed an entire 38-game Premier League campaign without suffering a single defeat?", options: ["Arsenal", "Manchester City", "Chelsea", "Manchester United"], answer: "Arsenal" },
-            { question: "Who is the all-time leading assist provider in Premier League history with 162 assists?", options: ["Ryan Giggs", "Cesc Fàbregas", "Wayne Rooney", "Kevin De Bruyne"], answer: "Ryan Giggs" },
-            { question: "Which player scored the most Premier League goals exclusively using his left foot?", options: ["Mohamed Salah", "Robbie Fowler", "Robin van Persie", "Ryan Giggs"], answer: "Mohamed Salah" },
-            { question: "Which player holds the joint-record for the most red cards in Premier League history?", options: ["Richard Dunne", "Roy Keane", "Joey Barton", "Vinnie Jones"], answer: "Richard Dunne", failChoice: "Roy Keane" }
+            { floor: 6, question: "Which player scored the fastest ever Premier League hat-trick after coming off the bench?", options: ["Ole Gunnar Solskjær", "Jermain Defoe", "Nwankwo Kanu", "Les Ferdinand"], answer: "Ole Gunnar Solskjær" },
+            { floor: 7, question: "Which squad number was assigned to James Milner upon his transfer to Aston Villa in 2008?", options: ["7", "11", "8", "20"], answer: "7" },
+            { floor: 8, question: "Which referee holds the all-time record for issuing the most red cards in Premier League history?", options: ["Mike Dean", "Martin Atkinson", "Graham Poll", "Phil Dowd"], answer: "Mike Dean" },
+            { floor: 9, question: "Which club scored 102 Premier League goals in the 2009–10 campaign, breaching the 100-goal mark first?", options: ["Chelsea", "Manchester City", "Arsenal", "Manchester United"], answer: "Chelsea" },
+            { floor: 10, question: "Which forward scored in 7 consecutive Premier League games for Everton in 1994–95?", options: ["Daniel Amokachi", "Yakubu", "Victor Anichebe", "Joseph Yobo"], answer: "Daniel Amokachi" }
         ];
 
         const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
-        let currentFloor = 1;
-        let questionIndex = 0;
+        let qIndex = 0;
         let timerInterval = null;
-        let gameplayRunning = false;
 
         function shuffleArray(array) {
             const arr = [...array];
@@ -585,20 +650,14 @@
             return arr;
         }
 
-        function getOrdinalFloorHTML(floorNum) {
+        function updateFloorHUD(floorNum) {
             const ord = ordinals[floorNum - 1] || `${floorNum}th`;
-            return `<span style="color: var(--genre-terrace, #84CC16); font-weight: 800;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
-        }
-
-        function updateFloorHUD() {
-            const floorTextEl = document.getElementById('card-floor-text');
-            if (floorTextEl) floorTextEl.innerHTML = getOrdinalFloorHTML(currentFloor);
+            document.getElementById('card-floor-text').innerHTML = `<span style="color: var(--genre-terrace); font-weight: 800;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
 
             document.querySelectorAll('.tower-floor').forEach(block => {
-                const floorNum = parseInt(block.getAttribute('data-floor'), 10);
-                block.classList.toggle('active', floorNum === currentFloor);
-                block.classList.toggle('completed', floorNum < currentFloor);
-                block.classList.remove('failed');
+                const f = parseInt(block.getAttribute('data-floor'), 10);
+                block.classList.toggle('active', f === floorNum);
+                block.classList.toggle('completed', f < floorNum);
             });
         }
 
@@ -614,51 +673,29 @@
                 const elapsed = Date.now() - startTime;
                 const remaining = Math.max(0, durationMs - elapsed);
                 timerBar.style.width = `${(remaining / durationMs) * 100}%`;
-
-                if (remaining <= 0) {
-                    clearInterval(timerInterval);
-                }
+                if (remaining <= 0) clearInterval(timerInterval);
             }, 50);
         }
 
-        function triggerGameplayStart() {
-            mockDevice.classList.remove('idle');
-            mockDevice.classList.add('ready');
-            if (!gameplayRunning) {
-                gameplayRunning = true;
-                currentFloor = 1;
-                questionIndex = 0;
-                playClimbStep();
-            }
-        }
-
         function playClimbStep() {
-            const currentQ = sampleQuestions[questionIndex];
-            document.getElementById('question-text').textContent = currentQ.question;
+            if (qIndex < sampleQuestions.length) {
+                const currentQ = sampleQuestions[qIndex];
+                updateFloorHUD(currentQ.floor);
+                document.getElementById('question-text').textContent = currentQ.question;
 
-            updateFloorHUD();
+                // Rapid timer pace matching the fast promo scroll
+                startTimerBar(1000);
 
-            // Dynamic speed acceleration starting at Floor 6
-            const isFastPhase = (currentFloor >= 6);
-            const timerDuration = isFastPhase ? 1000 : 2200;
-            const answerHighlightDelay = isFastPhase ? 600 : 1400;
-            const nextFloorTransitionDelay = isFastPhase ? 300 : 700;
+                const shuffledOptions = shuffleArray(currentQ.options);
+                const buttons = document.querySelectorAll('.options-grid .btn-option');
 
-            startTimerBar(timerDuration);
+                buttons.forEach((btn, idx) => {
+                    btn.className = 'btn-option';
+                    btn.textContent = shuffledOptions[idx] || '';
+                });
 
-            const shuffledOptions = shuffleArray(currentQ.options);
-            const buttons = document.querySelectorAll('.options-grid .btn-option');
-
-            buttons.forEach((btn, idx) => {
-                btn.className = 'btn-option';
-                const optText = shuffledOptions[idx] || '';
-                btn.textContent = optText;
-            });
-
-            setTimeout(() => {
-                const isFinalFailStep = (questionIndex === sampleQuestions.length - 1);
-
-                if (!isFinalFailStep) {
+                // Fast option highlight
+                setTimeout(() => {
                     buttons.forEach(btn => {
                         if (btn.textContent === currentQ.answer) {
                             btn.classList.add('selected-correct');
@@ -666,39 +703,31 @@
                     });
 
                     setTimeout(() => {
-                        currentFloor++;
-                        questionIndex++;
+                        qIndex++;
                         playClimbStep();
-                    }, nextFloorTransitionDelay);
-                } else {
-                    buttons.forEach(btn => {
-                        if (btn.textContent === currentQ.failChoice) {
-                            btn.classList.add('selected-wrong');
-                        }
-                    });
+                    }, 250);
+                }, 550);
+            } else {
+                // VICTORY TRANSITION
+                document.getElementById('gameplay-container').style.display = 'none';
+                document.getElementById('victory-container').style.display = 'flex';
 
-                    const activeBlock = document.querySelector(`.tower-floor[data-floor="${currentFloor}"]`);
-                    if (activeBlock) activeBlock.classList.add('failed');
+                // Complete all floors in tower stack
+                document.querySelectorAll('.tower-floor').forEach(block => {
+                    block.classList.add('completed');
+                    block.classList.remove('active');
+                });
 
-                    setTimeout(() => {
-                        mockDevice.classList.remove('ready');
-                        mockDevice.classList.add('idle');
-                        gameplayRunning = false;
-                    }, 2000);
-                }
-            }, answerHighlightDelay);
+                // Flash screenshot animation to indicate social sharing
+                setTimeout(() => {
+                    document.getElementById('camera-flash').classList.add('trigger');
+                }, 400);
+            }
         }
 
         window.onload = () => {
-            // Set initial preview state
-            const firstQ = sampleQuestions[0];
-            document.getElementById('question-text').textContent = firstQ.question;
-            const buttons = document.querySelectorAll('.options-grid .btn-option');
-            buttons.forEach((btn, idx) => {
-                btn.textContent = firstQ.options[idx] || '';
-            });
-
-            setTimeout(runPromoScript, 400);
+            runPromoScript();
+            setTimeout(playClimbStep, 600);
         };
     </script>
 </body>
