@@ -1,285 +1,54 @@
-// ==========================================================================
-// 11th Floor Questions — Core Game Engine & Archive Integration
-// ==========================================================================
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Current Game State Variables
-    let currentFloorIndex = 0; // 0 = 1st Floor, 9 = 10th Floor
-    let isProcessing = false;
-    let soundEnabled = true;
-    let activeGameData = [];
-
-    // Local Storage Player Stats Key
-    const STATS_KEY = '11th_floor_questions_stats';
-
-    // DOM Element References
-    const startScreen = document.getElementById('start-screen');
-    const startClimbBtn = document.getElementById('start-climb-btn');
-    const hudContainer = document.getElementById('floor-hud-container');
-    const gameWorkspace = document.getElementById('game-workspace');
-    
-    const floorNumberVal = document.getElementById('floor-number-val');
-    const floorRuleText = document.getElementById('floor-rule-text');
-    const questionText = document.getElementById('question-text');
-    const optionsContainer = document.getElementById('options-container');
-    const messageBox = document.getElementById('message-box');
-
-    const statsModal = document.getElementById('modal-vault');
-    const statsBtn = document.getElementById('btn-landing-stats');
-    const closeVaultBtn = document.getElementById('btn-close-vault');
-    const soundBtn = document.getElementById('btn-sound');
-    const vaultList = document.getElementById('vault-list');
-
-    const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
-
-    // Initialize Game Engine
-    init();
-
-    function init() {
-        activeGameData = window.QUESTIONS_DAILY_SET ? window.QUESTIONS_DAILY_SET.floors : [];
-        bindEvents();
-        updateStatsDisplay();
+{
+  "floors": [
+    {
+      "question": "Which English city is home to the famous Clifton Suspension Bridge?",
+      "options": ["Bristol", "Bath", "Exeter", "Plymouth"],
+      "answer": "Bristol"
+    },
+    {
+      "question": "What is the rarest naturally occurring gas in Earth's atmosphere?",
+      "options": ["Radon", "Xenon", "Krypton", "Neon"],
+      "answer": "Radon"
+    },
+    {
+      "question": "Which British Prime Minister signed the Anglo-Irish Treaty in 1921?",
+      "options": ["David Lloyd George", "Stanley Baldwin", "Ramsay MacDonald", "H. H. Asquith"],
+      "answer": "David Lloyd George"
+    },
+    {
+      "question": "What chemical element has the atomic number 1 on the periodic table?",
+      "options": ["Hydrogen", "Helium", "Lithium", "Carbon"],
+      "answer": "Hydrogen"
+    },
+    {
+      "question": "Who composed the famous 18th-century orchestral suite Water Music?",
+      "options": ["George Frideric Handel", "Johann Sebastian Bach", "Henry Purcell", "Antonio Vivaldi"],
+      "answer": "George Frideric Handel"
+    },
+    {
+      "question": "Which sea separates the Italian peninsula from the Balkan peninsula?",
+      "options": ["Adriatic Sea", "Tyrrhenian Sea", "Ionian Sea", "Ligurian Sea"],
+      "answer": "Adriatic Sea"
+    },
+    {
+      "question": "In which year did the Great Fire of London destroy much of the city?",
+      "options": ["1666", "1605", "1688", "1642"],
+      "answer": "1666"
+    },
+    {
+      "question": "Which English author wrote the dystopian novel Brave New World in 1932?",
+      "options": ["Aldous Huxley", "George Orwell", "H. G. Wells", "Arthur Koestler"],
+      "answer": "Aldous Huxley"
+    },
+    {
+      "question": "What is the deepest known point in the Earth's oceans?",
+      "options": ["Challenger Deep", "Puerto Rico Trench", "Java Trench", "South Sandwich Trench"],
+      "answer": "Challenger Deep"
+    },
+    {
+      "question": "Which Scottish physicist introduced the classical theory of electromagnetic radiation in 1865?",
+      "options": ["James Clerk Maxwell", "Lord Kelvin", "Michael Faraday", "Ernest Rutherford"],
+      "answer": "James Clerk Maxwell"
     }
-
-    function bindEvents() {
-        startClimbBtn.addEventListener('click', startGame);
-
-        statsBtn.addEventListener('click', () => {
-            statsModal.classList.remove('hidden');
-            populateVault();
-        });
-
-        closeVaultBtn.addEventListener('click', () => {
-            statsModal.classList.add('hidden');
-        });
-
-        soundBtn.addEventListener('click', () => {
-            soundEnabled = !soundEnabled;
-            soundBtn.textContent = `SOUND: ${soundEnabled ? 'ON' : 'OFF'}`;
-        });
-    }
-
-    async function fetchFileWithFallbacks(filename) {
-        const candidatePaths = [
-            `./archives/${filename}`,
-            `./${filename}`,
-            `./data/${filename}`,
-            filename
-        ];
-
-        for (const path of candidatePaths) {
-            try {
-                const res = await fetch(path);
-                if (res.ok) {
-                    return await res.json();
-                }
-            } catch (e) {}
-        }
-        return null;
-    }
-
-    async function populateVault() {
-        if (!vaultList) return;
-
-        vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">Loading Archives...</div>';
-        
-        const MAX_ARCHIVES = 50;
-        const fetchPromises = [];
-
-        for (let i = 1; i <= MAX_ARCHIVES; i++) {
-            const paddedId = String(i).padStart(2, '0');
-            const filename = `questions-${paddedId}.json`;
-            fetchPromises.push(
-                fetchFileWithFallbacks(filename).then(data => ({ id: paddedId, data }))
-            );
-        }
-
-        const results = await Promise.all(fetchPromises);
-        const buttons = [];
-
-        results.forEach(({ id, data }) => {
-            if (data) {
-                const btn = document.createElement('button');
-                btn.className = 'vault-item-btn';
-                btn.innerHTML = `<strong>Archive ${id}</strong>`;
-                btn.onclick = () => {
-                    loadVaultArchive(id);
-                };
-                buttons.push(btn);
-            }
-        });
-
-        vaultList.innerHTML = '';
-        if (buttons.length === 0) {
-            vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">No archives found.</div>';
-        } else {
-            buttons.forEach(btn => vaultList.appendChild(btn));
-        }
-    }
-
-    async function loadVaultArchive(paddedId) {
-        const filename = `questions-${paddedId}.json`;
-        const data = await fetchFileWithFallbacks(filename);
-
-        if (data && data.floors && data.floors.length > 0) {
-            activeGameData = data.floors;
-
-            if (startScreen) startScreen.style.display = 'none';
-            if (hudContainer) hudContainer.style.display = 'flex';
-            if (gameWorkspace) gameWorkspace.style.display = 'flex';
-            if (statsModal) statsModal.classList.add('hidden');
-
-            const gameplayHeader = document.getElementById('gameplay-header');
-            if (gameplayHeader) gameplayHeader.style.display = 'flex';
-
-            currentFloorIndex = 0;
-            loadFloor(currentFloorIndex);
-        } else {
-            showMessage(`COULD NOT LOAD ARCHIVE ${paddedId}`);
-        }
-    }
-
-    function startGame() {
-        if (!activeGameData || activeGameData.length === 0) {
-            activeGameData = window.QUESTIONS_DAILY_SET ? window.QUESTIONS_DAILY_SET.floors : [];
-        }
-
-        startScreen.style.display = 'none';
-        hudContainer.style.display = 'flex';
-        gameWorkspace.style.display = 'flex';
-
-        currentFloorIndex = 0;
-        loadFloor(currentFloorIndex);
-    }
-
-    function getOrdinalFloorHTML(floorNum) {
-        const ord = ordinals[floorNum - 1] || `${floorNum}th`;
-        return `<span style="color: var(--genre-gold);">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
-    }
-
-    function loadFloor(index) {
-        if (!activeGameData || index >= activeGameData.length) return;
-
-        const floorData = activeGameData[index];
-        showMessage('');
-        isProcessing = false;
-
-        floorNumberVal.innerHTML = getOrdinalFloorHTML(index + 1);
-        floorRuleText.textContent = `Trivia Challenge • No mistakes!`;
-        questionText.textContent = floorData.question;
-
-        updateTowerStack(index + 1);
-
-        // Render Options
-        optionsContainer.innerHTML = '';
-        floorData.options.forEach((optText, optIdx) => {
-            const btn = document.createElement('button');
-            btn.className = 'option-btn';
-            btn.innerHTML = `<span>${optText}</span>`;
-            btn.addEventListener('click', () => handleOptionSelect(optIdx, floorData.answerIndex));
-            optionsContainer.appendChild(btn);
-        });
-    }
-
-    function handleOptionSelect(selectedIndex, correctIndex) {
-        if (isProcessing) return;
-        isProcessing = true;
-
-        const buttons = optionsContainer.querySelectorAll('.option-btn');
-        
-        if (selectedIndex === correctIndex) {
-            buttons[selectedIndex].classList.add('selected-correct');
-            showMessage('CORRECT ANSWER!');
-
-            setTimeout(() => {
-                if (currentFloorIndex + 1 >= activeGameData.length) {
-                    recordGameResult(true, 11);
-                    showMessage('CONGRATULATIONS! 11TH FLOOR REACHED!');
-                    setTimeout(() => {
-                        currentFloorIndex = 0;
-                        loadFloor(0);
-                    }, 2000);
-                } else {
-                    currentFloorIndex++;
-                    loadFloor(currentFloorIndex);
-                }
-            }, 800);
-        } else {
-            buttons[selectedIndex].classList.add('selected-incorrect');
-            if (buttons[correctIndex]) {
-                buttons[correctIndex].classList.add('selected-correct');
-            }
-            showMessage('INCORRECT — DROPPED TO 1ST FLOOR');
-
-            const towerFloors = document.querySelectorAll('.tower-floor');
-            const activeTowerFloor = Array.from(towerFloors).find(
-                f => parseInt(f.dataset.floor) === currentFloorIndex + 1
-            );
-            if (activeTowerFloor) activeTowerFloor.classList.add('failed');
-
-            recordGameResult(false, currentFloorIndex + 1);
-
-            setTimeout(() => {
-                currentFloorIndex = 0;
-                loadFloor(0);
-            }, 1500);
-        }
-    }
-
-    function updateTowerStack(activeFloorNum) {
-        const towerFloors = document.querySelectorAll('.tower-floor');
-        towerFloors.forEach(floorElem => {
-            const floorVal = parseInt(floorElem.dataset.floor);
-            floorElem.classList.remove('active', 'completed', 'failed');
-
-            if (floorVal === activeFloorNum) {
-                floorElem.classList.add('active');
-            } else if (floorVal < activeFloorNum) {
-                floorElem.classList.add('completed');
-            }
-        });
-    }
-
-    function showMessage(msg) {
-        messageBox.textContent = msg;
-    }
-
-    function recordGameResult(isWin, peakFloor) {
-        const stats = getStats();
-        stats.played++;
-        if (isWin) {
-            stats.wins++;
-            stats.streak++;
-        } else {
-            stats.streak = 0;
-        }
-
-        if (peakFloor > stats.bestFloor) {
-            stats.bestFloor = peakFloor;
-        }
-
-        localStorage.setItem(STATS_KEY, JSON.stringify(stats));
-        updateStatsDisplay();
-    }
-
-    function getStats() {
-        const raw = localStorage.getItem(STATS_KEY);
-        if (!raw) {
-            return { played: 0, wins: 0, streak: 0, bestFloor: 1 };
-        }
-        return JSON.parse(raw);
-    }
-
-    function updateStatsDisplay() {
-        const stats = getStats();
-        document.getElementById('stat-played').textContent = stats.played;
-        document.getElementById('stat-wins').textContent = stats.wins;
-        
-        const winRate = stats.played > 0 ? Math.round((stats.wins / stats.played) * 100) : 0;
-        document.getElementById('stat-winrate').textContent = `${winRate}%`;
-        document.getElementById('stat-streak').textContent = stats.streak;
-        
-        const bestOrd = ordinals[stats.bestFloor - 1] || `${stats.bestFloor}th`;
-        document.getElementById('stat-bestfloor').textContent = `${bestOrd} Floor`;
-    }
-});
+  ]
+}
