@@ -91,7 +91,7 @@
         }
 
         @keyframes flashPulse {
-            0% { opacity: 0.9; }
+            0% { opacity: 0.95; }
             100% { opacity: 0; }
         }
 
@@ -247,11 +247,6 @@
 
         .promo-mock-device.ready {
             transform: scale(1);
-        }
-
-        .promo-mock-device.idle {
-            transform: scale(0.96);
-            opacity: 0.85;
         }
 
         /* Scaled Gameplay Viewport */
@@ -444,9 +439,9 @@
         }
 
         .promo-footer-text {
-            font-size: 0.68rem;
+            font-size: 0.65rem;
             font-weight: 800;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             color: var(--accent-green);
             text-shadow: 0 0 8px var(--accent-green-glow);
@@ -488,7 +483,7 @@
         <div class="promo-mock-device ready" id="mock-device">
             <div class="promo-game-viewport">
                 
-                <!-- Active Gameplay Container (Floors 6-10) -->
+                <!-- Active Gameplay Container -->
                 <div id="gameplay-container" style="width: 100%; display: flex; flex-direction: column; height: 100%; justify-content: space-between;">
                     <div class="hud-sidebar-container">
                         <div class="tower-stack">
@@ -507,7 +502,7 @@
 
                         <div class="floor-info-box">
                             <div class="floor-left-group">
-                                <div class="current-floor-display" id="card-floor-text"><span style="color: var(--genre-terrace); font-weight: 800;">6th</span> <span style="color: #ffffff;">Floor</span></div>
+                                <div class="current-floor-display" id="card-floor-text"><span style="color: var(--genre-terrace); font-weight: 800;">1st</span> <span style="color: #ffffff;">Floor</span></div>
                                 <div class="floor-rule-text" id="floor-rule-text">No mistakes!</div>
                             </div>
                         </div>
@@ -529,7 +524,7 @@
                     </div>
                 </div>
 
-                <!-- Final Victory Receipt Screen (Reveals at Floor 11 Victory) -->
+                <!-- Final Victory Receipt Screen -->
                 <div id="victory-container" style="display: none; width: 100%; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
                     <div class="victory-receipt">
                         <div style="font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 800; letter-spacing: 2px; color: var(--genre-terrace); text-transform: uppercase; text-align: center;">DESTINATION REACHED</div>
@@ -559,7 +554,7 @@
 
         <!-- Clean Footer Text -->
         <div class="promo-footer">
-            <span class="promo-footer-text">GAME 001 DROPPING SATURDAY 11AM (UK)</span>
+            <span class="promo-footer-text">GAME 001 DROPS SATURDAY AT 11AM (UK)</span>
         </div>
     </div>
 
@@ -575,7 +570,7 @@
         document.getElementById('brand-game-title').innerText = gameConfig.title;
 
         /* ==========================================================================
-           TEXT OVERLAY CAPTION LOOP
+           TEXT OVERLAY SCRIPT LOOP (CLIMAXES ON DROP ANNOUNCEMENT)
            ========================================================================== */
         const sequence = [
             { 
@@ -583,13 +578,13 @@
                 duration: 900, 
                 delayedAppend: "<br><span class='pop'>YOU DON'T!</span>", 
                 appendDelay: 800, 
-                durationAfterAppend: 1800 
+                durationAfterAppend: 2000 
             },
             { text: "MADE BY <span class='highlight'>HUMANS!</span>", duration: 2200 },
             { text: "NEW DAILY <span class='highlight'>FOOTBALL QUIZ!</span>", duration: 2200 },
-            { text: "NO SECOND CHANCES FOR A <span class='highlight'>DAILY STREAK!</span>", duration: 2200 },
-            { text: "FOLLOW TO <span class='highlight'>PLAY DAY ONE!</span>", duration: 2200 },
-            { text: "GAME 001 DROPPING <span class='highlight'>SATURDAY 11AM (UK)</span>", duration: 2400 }
+            { text: "NO SECOND CHANCES FOR A <span class='highlight'>DAILY STREAK!</span>", duration: 2400 },
+            { text: "FOLLOW TO <span class='highlight'>PLAY DAY ONE!</span>", duration: 2400 },
+            { text: "GAME 001 DROPS <span class='highlight'>SATURDAY AT 11AM (UK)</span>", duration: 3200 }
         ];
 
         let currentIndex = 0;
@@ -627,13 +622,18 @@
         }
 
         /* ==========================================================================
-           FAST CLIMB SIMULATION STARTING AT FLOOR 6 -> VICTORY RECEIPT
+           FULL 10-QUESTION GAMEPLAY RUN (SPEED-UP FLOORS 1-4, READABLE FLOORS 5-10)
            ========================================================================== */
         const sampleQuestions = [
+            { floor: 1, question: "Which Premier League club's stadium roof famously became a viral swimming pool in May 2024?", options: ["Manchester United", "Everton", "Newcastle United", "Aston Villa"], answer: "Manchester United" },
+            { floor: 2, question: "True or False: Manchester City officially lodged a comprehensive legal appeal in October 2026?", options: ["True", "False"], answer: "True" },
+            { floor: 3, question: "Which young manager hit the ground running with an unbeaten month in August 2024?", options: ["Fabian Hürzeler", "Andoni Iraola", "Russell Martin", "Kieran McKenna"], answer: "Fabian Hürzeler" },
+            { floor: 4, question: "Which club held the record for conceding the fewest goals in a single home campaign (4 goals)?", options: ["Fulham", "Manchester United", "Liverpool", "Arsenal"], answer: "Fulham" },
+            { floor: 5, question: "True or False: Middlesbrough fielded a starting XI of 11 English players in May 2006?", options: ["True", "False"], answer: "True" },
             { floor: 6, question: "Which player scored the fastest ever Premier League hat-trick after coming off the bench?", options: ["Ole Gunnar Solskjær", "Jermain Defoe", "Nwankwo Kanu", "Les Ferdinand"], answer: "Ole Gunnar Solskjær" },
             { floor: 7, question: "Which squad number was assigned to James Milner upon his transfer to Aston Villa in 2008?", options: ["7", "11", "8", "20"], answer: "7" },
             { floor: 8, question: "Which referee holds the all-time record for issuing the most red cards in Premier League history?", options: ["Mike Dean", "Martin Atkinson", "Graham Poll", "Phil Dowd"], answer: "Mike Dean" },
-            { floor: 9, question: "Which club scored 102 Premier League goals in the 2009–10 campaign, breaching the 100-goal mark first?", options: ["Chelsea", "Manchester City", "Arsenal", "Manchester United"], answer: "Chelsea" },
+            { floor: 9, question: "Which club scored 102 Premier League goals in 2009–10, breaching the 100-goal mark first?", options: ["Chelsea", "Manchester City", "Arsenal", "Manchester United"], answer: "Chelsea" },
             { floor: 10, question: "Which forward scored in 7 consecutive Premier League games for Everton in 1994–95?", options: ["Daniel Amokachi", "Yakubu", "Victor Anichebe", "Joseph Yobo"], answer: "Daniel Amokachi" }
         ];
 
@@ -683,8 +683,13 @@
                 updateFloorHUD(currentQ.floor);
                 document.getElementById('question-text').textContent = currentQ.question;
 
-                // Rapid timer pace matching the fast promo scroll
-                startTimerBar(1000);
+                // Speed-up early floors 1-4, slow down for readability from Floor 5 onwards
+                const isEarlyFloor = (currentQ.floor <= 4);
+                const timerMs = isEarlyFloor ? 400 : 1800;
+                const highlightDelay = isEarlyFloor ? 300 : 1200;
+                const nextStepDelay = isEarlyFloor ? 150 : 500;
+
+                startTimerBar(timerMs);
 
                 const shuffledOptions = shuffleArray(currentQ.options);
                 const buttons = document.querySelectorAll('.options-grid .btn-option');
@@ -692,9 +697,9 @@
                 buttons.forEach((btn, idx) => {
                     btn.className = 'btn-option';
                     btn.textContent = shuffledOptions[idx] || '';
+                    btn.style.display = shuffledOptions[idx] ? 'flex' : 'none';
                 });
 
-                // Fast option highlight
                 setTimeout(() => {
                     buttons.forEach(btn => {
                         if (btn.textContent === currentQ.answer) {
@@ -705,20 +710,19 @@
                     setTimeout(() => {
                         qIndex++;
                         playClimbStep();
-                    }, 250);
-                }, 550);
+                    }, nextStepDelay);
+                }, highlightDelay);
             } else {
-                // VICTORY TRANSITION
+                // VICTORY TRANSITION AT FLOOR 11
                 document.getElementById('gameplay-container').style.display = 'none';
                 document.getElementById('victory-container').style.display = 'flex';
 
-                // Complete all floors in tower stack
                 document.querySelectorAll('.tower-floor').forEach(block => {
                     block.classList.add('completed');
                     block.classList.remove('active');
                 });
 
-                // Flash screenshot animation to indicate social sharing
+                // Camera flash screenshot effect
                 setTimeout(() => {
                     document.getElementById('camera-flash').classList.add('trigger');
                 }, 400);
