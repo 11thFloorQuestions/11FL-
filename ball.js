@@ -1,454 +1,425 @@
-// Think You Know Ball? — Daily Premier League Engine
-
-// ==========================================
-// 1. HELPER FUNCTIONS & UTILITIES
-// ==========================================
-
-function safeAddListener(id, event, handler) {
-    const el = document.getElementById(id);
-    if (el) {
-        el.addEventListener(event, (e) => {
-            triggerHaptic(15);
-            handler(e);
-        });
-    }
-}
-
-function safeSetText(id, text) {
-    const el = document.getElementById(id);
-    if (el) el.textContent = text;
-}
-
-function safeToggleClass(id, className, force) {
-    const el = document.getElementById(id);
-    if (el) el.classList.toggle(className, force);
-}
-
-function shuffleArray(array) {
-    const arr = [...array];
-    for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr;
-}
-
-function getOrdinalFloorHTML(floorNum) {
-    const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
-    const ord = ordinals[floorNum - 1] || `${floorNum}th`;
-    return `<span style="color: var(--genre-terrace, #84CC16); font-weight: 800;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
-}
-
-function triggerHaptic(pattern) {
-    if ('vibrate' in navigator) {
-        try { navigator.vibrate(pattern); } catch (e) {}
-    }
-}
-
-// ==========================================
-// 2. STATE MANAGEMENT & STATS PERSISTENCE
-// ==========================================
-
-const gameState = {
-    currentFloor: 1,
-    maxFloors: 10,
-    soundEnabled: true,
-    timer: null,
-    timeLeft: 30,
-    questions: [],
-    currentQuestionIndex: 0,
-    batchIndex: 0,
-    stats: {
-        played: 0,
-        wins: 0,
-        streak: 0,
-        bestFloor: 1
-    }
-};
-
-const floorMessageBatches = [
-    [
-        "Premier League trivia begins — no mistakes!",
-        "Miss one and down to Ground Floor you go!",
-        "3rd Floor reached — smooth sailing.",
-        "One mistake resets you to Ground Floor.",
-        "Halfway up! Stay focused.",
-        "6th Floor unlocked — pure precision!",
-        "Ground Floor is far below now.",
-        "Almost there!",
-        "Keep going!",
-        "Final hurdle — make it count!"
-    ]
-];
-
-function loadSavedStats() {
-    try {
-        const saved = localStorage.getItem('11fl_ball_stats') || localStorage.getItem('11fl_terrace_stats');
-        if (saved) gameState.stats = { ...gameState.stats, ...JSON.parse(saved) };
-    } catch (e) {
-        console.warn('Could not load stats from localStorage.');
-    }
-}
-
-function saveStats() {
-    try {
-        localStorage.setItem('11fl_ball_stats', JSON.stringify(gameState.stats));
-    } catch (e) {
-        console.warn('Could not save stats to localStorage.');
-    }
-}
-
-loadSavedStats();
-
-// ==========================================
-// AUDIO ENGINE
-// ==========================================
-
-const elevatorDingAudio = new Audio();
-elevatorDingAudio.src = 'ding.mp3';
-
-function playElevatorDing() {
-    if (!gameState.soundEnabled) return;
-    try {
-        elevatorDingAudio.currentTime = 0;
-        elevatorDingAudio.play().catch(() => {});
-    } catch (e) {}
-}
-
-// ==========================================
-// 3. NAVIGATION & INITIALISATION
-// ==========================================
+// ==========================================================================
+// 11th Floor TYKB — Core Engine, Timer Mechanics & Receipt Rendering
+// ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    safeAddListener('btn-start-climb', 'click', () => startDailyClimb());
-    safeAddListener('btn-landing-stats', 'click', () => openVault());
-    safeAddListener('btn-back-vault', 'click', () => {
-        closeModal('modal-game-over');
-        openVault();
-    });
-    safeAddListener('btn-close-vault', 'click', () => closeModal('modal-vault'));
-    safeAddListener('btn-try-again', 'click', () => {
-        closeModal('modal-game-over');
-        startGame();
-    });
-    safeAddListener('btn-sound-toggle', 'click', toggleSound);
+    let currentFloorIndex = 0;
+    let isProcessing = false;
+    let soundEnabled = true;
+    let activeDataSet = null;
+    let activeGameData = [];
+    let timerInterval = null;
+    let timeRemaining = 0;
+    let totalFloorTime = 0;
 
-    updateSoundUI();
-});
+    // Overall Active Match Timer
+    let gameStartTime = 0;
+    let activeGameTimerInterval = null;
+    let totalElapsedSeconds = 0;
 
-function toggleSound() {
-    gameState.soundEnabled = !gameState.soundEnabled;
-    if (gameState.soundEnabled) playElevatorDing();
-    updateSoundUI();
-}
+    const STATS_KEY = '11th_floor_tykb_stats';
 
-function updateSoundUI() {
-    safeSetText('btn-sound-toggle', `SOUND: ${gameState.soundEnabled ? 'ON' : 'OFF'}`);
-}
+    const startScreen = document.getElementById('start-screen');
+    const startClimbBtn = document.getElementById('start-climb-btn');
+    const gameplayHeader = document.getElementById('gameplay-header');
+    const hudContainer = document.getElementById('floor-hud-container');
+    const gameWorkspace = document.getElementById('game-workspace');
+    const victoryScreen = document.getElementById('victory-screen');
 
-function openModal(id) { safeToggleClass(id, 'hidden', false); }
-function closeModal(id) { safeToggleClass(id, 'hidden', true); }
+    const activeGameTimer = document.getElementById('active-game-timer');
+    const receiptTagHeader = document.getElementById('receipt-tag-header');
+    const receiptMainTitle = document.getElementById('receipt-main-title');
+    const victoryFloorsDisplay = document.getElementById('victory-floors-display');
+    const victoryTimeDisplay = document.getElementById('victory-time-display');
+    const victoryPaceDisplay = document.getElementById('victory-pace-display');
+    const victoryResultDisplay = document.getElementById('victory-result-display');
+    const victoryStreakDisplay = document.getElementById('victory-streak-display');
+    const footerText = document.getElementById('footer-text');
 
-// ==========================================
-// 4. VAULT & STATS CONTROLS
-// ==========================================
+    const floorNumberVal = document.getElementById('floor-number-val');
+    const floorRuleText = document.getElementById('floor-rule-text');
+    const questionText = document.getElementById('question-text');
+    const optionsGrid = document.getElementById('options-grid');
+    const messageBox = document.getElementById('message-box');
+    const timerBarFill = document.getElementById('timer-bar-fill');
 
-function openVault() {
-    renderStatsUI();
-    populateVault();
-    openModal('modal-vault');
-}
-
-function renderStatsUI() {
-    const winRate = gameState.stats.played > 0 ? Math.round((gameState.stats.wins / gameState.stats.played) * 100) : 0;
-    safeSetText('stat-played', gameState.stats.played);
-    safeSetText('stat-wins', gameState.stats.wins);
-    safeSetText('stat-winrate', `${winRate}%`);
-    safeSetText('stat-streak', gameState.stats.streak);
-
-    const bestEl = document.getElementById('stat-bestfloor');
-    if (bestEl) bestEl.innerHTML = getOrdinalFloorHTML(gameState.stats.bestFloor);
-}
-
-async function populateVault() {
+    const statsModal = document.getElementById('modal-vault');
+    const statsBtn = document.getElementById('btn-landing-stats');
+    const victoryStatsBtn = document.getElementById('btn-victory-stats');
+    const closeVaultBtn = document.getElementById('btn-close-vault');
+    const soundBtn = document.getElementById('btn-sound');
     const vaultList = document.getElementById('vault-list');
-    if (!vaultList) return;
-    
-    vaultList.innerHTML = '';
-    let archiveId = 1;
-
-    while (archiveId <= 50) {
-        const paddedId = String(archiveId).padStart(2, '0');
-        
-        // Try ball naming first, fallback to terrace
-        let data = await fetchFileWithFallbacks(`sandbox-ball.${paddedId}.json`);
-        if (!data) {
-            data = await fetchFileWithFallbacks(`sandbox-terrace.${paddedId}.json`);
-        }
-        
-        if (data) {
-            const btn = document.createElement('button');
-            btn.className = 'vault-item-btn';
-            btn.innerHTML = `<strong>Archive ${paddedId}</strong>`;
-            btn.onclick = () => {
-                triggerHaptic(15);
-                loadVaultSet(paddedId, data);
-            };
-            vaultList.appendChild(btn);
-        }
-        archiveId++;
-    }
-
-    if (vaultList.children.length === 0) {
-        vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">No archives found.</div>';
-    }
-}
-
-// ==========================================
-// 5. DATA LOADING & NORMALISATION
-// ==========================================
-
-function normalizeQuestions(data) {
-    let rawList = [];
-    if (!data) return generateFallbackQuestions();
-
-    if (Array.isArray(data)) rawList = data;
-    else if (Array.isArray(data.floors)) rawList = data.floors;
-    else if (Array.isArray(data.questions)) rawList = data.questions;
-    else return generateFallbackQuestions();
-
-    return rawList.map(q => {
-        const options = Array.isArray(q.options) ? [...q.options] : ["Option A", "Option B", "Option C", "Option D"];
-        let answerText = "";
-
-        if (typeof q.answer === 'string') answerText = q.answer;
-        else if (typeof q.correct === 'string') answerText = q.correct;
-        else if (typeof q.correctAnswer === 'string') answerText = q.correctAnswer;
-        else if (typeof q.answerIndex === 'number' && options[q.answerIndex]) answerText = options[q.answerIndex];
-        else if (typeof q.correctIndex === 'number' && options[q.correctIndex]) answerText = options[q.correctIndex];
-        else if (typeof q.correct === 'number' && options[q.correct]) answerText = options[0];
-        else if (typeof q.answer === 'number' && options[q.answer]) answerText = options[0];
-        else answerText = options[0];
-
-        return {
-            question: q.question || "Question missing",
-            options: options,
-            answer: answerText
-        };
-    });
-}
-
-async function fetchFileWithFallbacks(filename) {
-    const candidatePaths = [
-        `./${filename}`,                      // 1. Check Root Directory first
-        `./archives/${filename}`,             // 2. Check Archives subfolder
-        `./assets/data/floors/${filename}`,   // 3. Check Assets subfolder
-        `./data/${filename}`,                 // 4. Check Data subfolder
-        filename
-    ];
-
-    for (const path of candidatePaths) {
-        try {
-            const res = await fetch(path);
-            if (res.ok) {
-                const data = await res.json();
-                if (data) return data;
-            }
-        } catch (e) {}
-    }
-    return null;
-}
-
-async function startDailyClimb() {
-    let data = await fetchFileWithFallbacks('ball-questions.json');
-    if (!data) data = await fetchFileWithFallbacks('sandbox-ball.01.json');
-    if (!data) data = await fetchFileWithFallbacks('terrace-questions.json');
-    if (!data) data = await fetchFileWithFallbacks('sandbox-terrace.01.json');
-
-    gameState.questions = normalizeQuestions(data);
-
-    document.getElementById('landing-screen').style.display = 'none';
-    document.getElementById('gameplay-header').style.display = 'flex';
-    document.getElementById('floor-hud-container').style.display = 'flex';
-    document.getElementById('game-screen').style.display = 'flex';
-
-    startGame();
-}
-
-function loadVaultSet(paddedId, data) {
-    if (data) {
-        gameState.questions = normalizeQuestions(data);
-        closeModal('modal-vault');
-
-        document.getElementById('landing-screen').style.display = 'none';
-        document.getElementById('gameplay-header').style.display = 'flex';
-        document.getElementById('floor-hud-container').style.display = 'flex';
-        document.getElementById('game-screen').style.display = 'flex';
-
-        startGame();
-    }
-}
-
-// ==========================================
-// 6. GAME LOOP & ELEVATOR PROGRESSION
-// ==========================================
-
-function startGame() {
-    if (!gameState.questions || gameState.questions.length === 0) {
-        gameState.questions = generateFallbackQuestions();
-    }
-    gameState.currentFloor = 1;
-    gameState.currentQuestionIndex = 0;
-    updateFloorUI();
-    loadNextQuestion();
-}
-
-function updateFloorUI() {
-    const cardFloorEl = document.getElementById('card-floor-text');
-    if (cardFloorEl) cardFloorEl.innerHTML = getOrdinalFloorHTML(gameState.currentFloor);
-
-    const activeBatch = floorMessageBatches[0];
-    safeSetText('floor-rule-text', activeBatch[gameState.currentFloor - 1] || "No mistakes!");
-
-    document.querySelectorAll('.tower-floor').forEach(block => {
-        const floorNum = parseInt(block.getAttribute('data-floor'), 10);
-        block.classList.toggle('active', floorNum === gameState.currentFloor);
-        block.classList.toggle('completed', floorNum < gameState.currentFloor);
-        block.classList.remove('failed');
-    });
-}
-
-function loadNextQuestion() {
-    startTimer();
-    const currentQ = gameState.questions[gameState.currentQuestionIndex];
-    if (!currentQ) return;
-
-    safeSetText('question-text', currentQ.question);
-    const shuffledOptions = shuffleArray(currentQ.options);
-    const optionButtons = document.querySelectorAll('.options-grid .btn-option');
-
-    optionButtons.forEach((btn, idx) => {
-        btn.className = 'btn-option';
-        if (typeof btn.blur === 'function') {
-            btn.blur();
-        }
-        const optionVal = shuffledOptions[idx] || null;
-        btn.textContent = optionVal || '';
-        btn.style.display = optionVal ? 'flex' : 'none';
-
-        const isCorrect = (optionVal === currentQ.answer);
-        btn.onclick = () => handleAnswerSelect(isCorrect, btn);
-    });
-}
-
-function startTimer() {
-    clearInterval(gameState.timer);
-    const totalDuration = 30000;
-    const startTime = Date.now();
-    const timerBar = document.getElementById('timer-bar');
-    if (timerBar) timerBar.style.width = '100%';
-
-    gameState.timer = setInterval(() => {
-        const elapsed = Date.now() - startTime;
-        const remaining = Math.max(0, totalDuration - elapsed);
-
-        if (timerBar) timerBar.style.width = `${(remaining / totalDuration) * 100}%`;
-
-        if (remaining <= 0) {
-            clearInterval(gameState.timer);
-            handleGameOver('TIME EXPIRED');
-        }
-    }, 50);
-}
-
-function handleAnswerSelect(isCorrect, buttonEl) {
-    clearInterval(gameState.timer);
-
-    document.querySelectorAll('.options-grid .btn-option').forEach(btn => {
-        btn.onclick = null;
-        if (typeof btn.blur === 'function') {
-            btn.blur();
-        }
-    });
-
-    if (isCorrect) {
-        if (buttonEl) buttonEl.classList.add('selected-correct');
-        playElevatorDing();
-        triggerHaptic([35, 40, 35]);
-
-        setTimeout(() => {
-            if (gameState.currentFloor >= gameState.maxFloors) {
-                handleVictory();
-            } else {
-                gameState.currentFloor++;
-                gameState.currentQuestionIndex++;
-                if (gameState.currentFloor > gameState.stats.bestFloor) {
-                    gameState.stats.bestFloor = gameState.currentFloor;
-                }
-                updateFloorUI();
-                loadNextQuestion();
-            }
-        }, 800);
-    } else {
-        if (buttonEl) buttonEl.classList.add('selected-wrong');
-        triggerHaptic([80, 50, 120]);
-
-        const activeBlock = document.querySelector(`.tower-floor[data-floor="${gameState.currentFloor}"]`);
-        if (activeBlock) activeBlock.classList.add('failed');
-
-        setTimeout(() => handleGameOver('INCORRECT ANSWER'), 800);
-    }
-}
-
-function handleGameOver(reason) {
-    gameState.stats.played++;
-    gameState.stats.streak = 0;
-    saveStats();
-
-    safeSetText('game-over-title', 'ELEVATOR STOPPED');
-    safeSetText('game-over-message', reason);
 
     const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
-    const ord = ordinals[gameState.currentFloor - 1] || `${gameState.currentFloor}th`;
-    const finalEl = document.getElementById('final-floor-reached');
-    if (finalEl) {
-        finalEl.innerHTML = `Stopped at <span style="color: var(--state-error, #ef4444); font-weight: 800;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
+
+    init();
+
+    function init() {
+        activeDataSet = window.TYKB_DAILY_SET || null;
+        activeGameData = activeDataSet ? activeDataSet.floors : [];
+        bindEvents();
+        updateStatsDisplay();
     }
 
-    openModal('modal-game-over');
-}
+    function bindEvents() {
+        startClimbBtn.addEventListener('click', startGame);
 
-function handleVictory() {
-    gameState.currentFloor = 11;
-    gameState.stats.played++;
-    gameState.stats.wins++;
-    gameState.stats.streak++;
-    gameState.stats.bestFloor = 11;
-    saveStats();
+        if (statsBtn) {
+            statsBtn.addEventListener('click', () => {
+                statsModal.classList.remove('hidden');
+                populateVault();
+            });
+        }
 
-    updateFloorUI();
-    triggerHaptic([50, 50, 50, 50, 100]);
+        if (victoryStatsBtn) {
+            victoryStatsBtn.addEventListener('click', () => {
+                statsModal.classList.remove('hidden');
+                populateVault();
+            });
+        }
 
-    safeSetText('game-over-title', '');
-    const msgEl = document.getElementById('game-over-message');
-    if (msgEl) {
-        msgEl.innerHTML = '<span class="congrats-green">Congratulations!</span> You\'ve cleared Think You Know Ball? and reached the 11th Floor.<br><br>Come back tomorrow to continue your streak.';
+        closeVaultBtn.addEventListener('click', () => {
+            statsModal.classList.add('hidden');
+            if (victoryScreen && victoryScreen.style.display !== 'none') {
+                resetToStartScreen();
+            }
+        });
+
+        soundBtn.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            soundBtn.textContent = `SOUND: ${soundEnabled ? 'ON' : 'OFF'}`;
+        });
     }
-    safeSetText('final-floor-reached', '');
-    openModal('modal-game-over');
-}
 
-function generateFallbackQuestions() {
-    return [
-        { question: "Which club won the inaugural Premier League title in 1992-93?", options: ["Manchester United", "Blackburn Rovers", "Arsenal", "Aston Villa"], answer: "Manchester United" },
-        { question: "Who holds the record for the most goals in a single 38-game Premier League season?", options: ["Erling Haaland", "Alan Shearer", "Mohamed Salah", "Thierry Henry"], answer: "Erling Haaland" },
-        { question: "Which player has accumulated the most overall appearances in Premier League history?", options: ["Gareth Barry", "Ryan Giggs", "James Milner", "Frank Lampard"], answer: "Gareth Barry" },
-        { question: "Who scored the famous 'Agueroooo' goal to seal the title in 2012?", options: ["Sergio Agüero", "David Silva", "Yaya Touré", "Edin Džeko"], answer: "Sergio Agüero" },
-        { question: "Which team completed an entire 38-game Premier League season undefeated?", options: ["Arsenal", "Manchester City", "Chelsea", "Manchester United"], answer: "Arsenal" },
-        { question: "Who won the Golden Boot in three consecutive Premier League seasons (2003–2006)?", options: ["Thierry Henry", "Ruud van Nistelrooy", "Alan Shearer", "Didier Drogba"], answer: "Thierry Henry" },
-        { question: "Which manager famously led 5000-1 outsiders Leicester City to the title in 2015-16?", options: ["Claudio Ranieri", "Nigel Pearson", "Brendan Rodgers", "Craig Shakespeare"], answer: "Claudio Ranieri" },
-        { question: "Who was the first player to record 100 Premier League assists?", options: ["Ryan Giggs", "Cesc Fàbregas", "Wayne Rooney", "Dennis Bergkamp"], answer: "Ryan Giggs" },
-        { question: "Which club holds the record for conceding the fewest goals in a single PL season (15)?", options: ["Chelsea", "Arsenal", "Manchester United", "Liverpool"], answer: "Chelsea" },
-        { question: "Who scored the fastest hat-trick in Premier League history (2 mins 56 secs)?", options: ["Sadio Mané", "Robbie Fowler", "Jermain Defoe", "Gabriel Agbonlahor"], answer: "Sadio Mané" }
-    ];
-}
+    function startMatchTimer() {
+        stopMatchTimer();
+        totalElapsedSeconds = 0;
+        gameStartTime = Date.now();
+        if (activeGameTimer) {
+            activeGameTimer.style.display = 'block';
+            activeGameTimer.textContent = '00:00';
+        }
+        activeGameTimerInterval = setInterval(updateMatchTimerDisplay, 1000);
+    }
+
+    function stopMatchTimer() {
+        if (activeGameTimerInterval) clearInterval(activeGameTimerInterval);
+    }
+
+    function updateMatchTimerDisplay() {
+        totalElapsedSeconds = Math.floor((Date.now() - gameStartTime) / 1000);
+        if (activeGameTimer) {
+            activeGameTimer.textContent = formatTime(totalElapsedSeconds);
+        }
+    }
+
+    function formatTime(totalSeconds) {
+        const m = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
+        const s = (totalSeconds % 60).toString().padStart(2, '0');
+        return `${m}:${s}`;
+    }
+
+    async function fetchFileWithFallbacks(filename) {
+        const candidatePaths = [
+            `./archives/${filename}`,
+            `./${filename}`,
+            `./assets/data/floors/${filename}`,
+            `./data/${filename}`,
+            filename
+        ];
+
+        for (const path of candidatePaths) {
+            try {
+                const res = await fetch(path);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data) return data;
+                }
+            } catch (e) {}
+        }
+        return null;
+    }
+
+    async function populateVault() {
+        if (!vaultList) return;
+        vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">Loading Archives...</div>';
+        
+        const fetchPromises = [];
+        for (let i = 1; i <= 50; i++) {
+            const paddedId = String(i).padStart(2, '0');
+            fetchPromises.push(fetchFileWithFallbacks(`sandbox-ball.${paddedId}.json`).then(data => ({ id: paddedId, data })));
+        }
+
+        const results = await Promise.all(fetchPromises);
+        const buttons = [];
+
+        results.forEach(({ id, data }) => {
+            if (data && data.floors) {
+                const btn = document.createElement('button');
+                btn.className = 'vault-item-btn';
+                btn.innerHTML = `<strong>Archive ${id}</strong>`;
+                btn.onclick = () => loadVaultSet(data);
+                buttons.push(btn);
+            }
+        });
+
+        vaultList.innerHTML = '';
+        if (buttons.length === 0) {
+            vaultList.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-muted); font-size: 0.75rem; padding: 10px;">No archives found.</div>';
+        } else {
+            buttons.forEach(btn => vaultList.appendChild(btn));
+        }
+    }
+
+    function loadVaultSet(data) {
+        if (data && data.floors) {
+            activeDataSet = data;
+            activeGameData = data.floors;
+            statsModal.classList.add('hidden');
+            startGame();
+        }
+    }
+
+    function startGame() {
+        if (!activeGameData || activeGameData.length === 0) {
+            activeDataSet = window.TYKB_DAILY_SET || null;
+            activeGameData = activeDataSet ? activeDataSet.floors : [];
+        }
+
+        startScreen.style.display = 'none';
+        if (victoryScreen) victoryScreen.style.display = 'none';
+        gameplayHeader.style.display = 'flex';
+        hudContainer.style.display = 'flex';
+        gameWorkspace.style.display = 'flex';
+        if (footerText) footerText.style.display = 'block';
+
+        currentFloorIndex = 0;
+        startMatchTimer();
+        loadFloor(currentFloorIndex);
+    }
+
+    function resetToStartScreen() {
+        if (victoryScreen) victoryScreen.style.display = 'none';
+        if (hudContainer) hudContainer.style.display = 'none';
+        if (gameWorkspace) gameWorkspace.style.display = 'none';
+        if (gameplayHeader) gameplayHeader.style.display = 'none';
+        if (activeGameTimer) activeGameTimer.style.display = 'none';
+        if (startScreen) startScreen.style.display = 'flex';
+    }
+
+    function getOrdinalFloorHTML(floorNum) {
+        const ord = ordinals[floorNum - 1] || `${floorNum}th`;
+        return `<span style="color: var(--genre-yellow);">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
+    }
+
+    function loadFloor(index) {
+        if (!activeGameData || index >= activeGameData.length) return;
+
+        clearInterval(timerInterval);
+        const floorData = activeGameData[index];
+        isProcessing = false;
+        showMessage('');
+
+        floorNumberVal.innerHTML = getOrdinalFloorHTML(index + 1);
+        floorRuleText.textContent = `1 QUESTION • SELECT THE CORRECT ANSWER`;
+
+        updateTowerStack(index + 1);
+        displayQuestion(floorData);
+        startTimer(floorData.timeLimit || 15);
+    }
+
+    function displayQuestion(floorData) {
+        questionText.textContent = floorData.question;
+        optionsGrid.innerHTML = '';
+
+        floorData.options.forEach((optionStr) => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.textContent = optionStr;
+            btn.addEventListener('click', () => handleOptionSelect(btn, optionStr, floorData.answer));
+            optionsGrid.appendChild(btn);
+        });
+    }
+
+    function startTimer(seconds) {
+        timeRemaining = seconds;
+        totalFloorTime = seconds;
+        updateTimerBar();
+
+        timerInterval = setInterval(() => {
+            timeRemaining -= 0.1;
+            updateTimerBar();
+
+            if (timeRemaining <= 0) {
+                clearInterval(timerInterval);
+                handleFloorFailure('TIME EXPIRED');
+            }
+        }, 100);
+    }
+
+    function updateTimerBar() {
+        const pct = Math.max(0, (timeRemaining / totalFloorTime) * 100);
+        timerBarFill.style.width = `${pct}%`;
+
+        if (pct <= 20) {
+            timerBarFill.style.backgroundColor = 'var(--state-error)';
+            timerBarFill.style.boxShadow = '0 0 10px var(--state-error-glow)';
+        } else if (pct <= 50) {
+            timerBarFill.style.backgroundColor = 'var(--state-warning)';
+            timerBarFill.style.boxShadow = '0 0 8px var(--state-warning-glow)';
+        } else {
+            timerBarFill.style.backgroundColor = 'var(--state-active)';
+            timerBarFill.style.boxShadow = '0 0 8px var(--state-active-glow)';
+        }
+    }
+
+    function handleOptionSelect(selectedBtn, selectedStr, correctStr) {
+        if (isProcessing) return;
+        isProcessing = true;
+        clearInterval(timerInterval);
+
+        if (selectedStr === correctStr) {
+            selectedBtn.classList.add('correct');
+            showMessage('CORRECT!', true);
+
+            setTimeout(() => {
+                if (currentFloorIndex + 1 >= activeGameData.length) {
+                    stopMatchTimer();
+                    const newStats = recordGameResult(true, 11);
+                    renderReceipt(true, 10, newStats, '10/10 Perfect Clear');
+                } else {
+                    currentFloorIndex++;
+                    loadFloor(currentFloorIndex);
+                }
+            }, 700);
+        } else {
+            selectedBtn.classList.add('wrong');
+            
+            const allBtns = optionsGrid.querySelectorAll('.option-btn');
+            allBtns.forEach(btn => {
+                if (btn.textContent === correctStr) {
+                    btn.classList.add('correct');
+                }
+            });
+
+            const failedFloorNum = currentFloorIndex + 1;
+            setTimeout(() => {
+                handleFloorFailure(`INCORRECT ON FLOOR ${failedFloorNum}`);
+            }, 800);
+        }
+    }
+
+    function handleFloorFailure(reason) {
+        showMessage(`${reason} — DROPPED TO 1ST FLOOR`, false);
+
+        const towerFloors = document.querySelectorAll('.tower-floor');
+        const activeTowerFloor = Array.from(towerFloors).find(
+            f => parseInt(f.dataset.floor) === currentFloorIndex + 1
+        );
+        if (activeTowerFloor) activeTowerFloor.classList.add('failed');
+
+        stopMatchTimer();
+        const peakFloor = currentFloorIndex + 1;
+        const newStats = recordGameResult(false, peakFloor);
+
+        // If player achieved a high peak (Floor 7+), show receipt screen; otherwise reset to Floor 1
+        setTimeout(() => {
+            if (peakFloor >= 7) {
+                renderReceipt(false, peakFloor - 1, newStats, `${reason}`);
+            } else {
+                currentFloorIndex = 0;
+                startMatchTimer();
+                loadFloor(0);
+            }
+        }, 1400);
+    }
+
+    function renderReceipt(isPerfect, clearedFloors, stats, resultMsg) {
+        if (isPerfect) {
+            receiptTagHeader.textContent = "DESTINATION REACHED";
+            receiptMainTitle.textContent = "PERFECT";
+            victoryFloorsDisplay.textContent = "Floor 10 / 10";
+            victoryFloorsDisplay.style.color = "var(--state-success)";
+        } else {
+            receiptTagHeader.textContent = "PEAK ELEVATION REACHED";
+            receiptMainTitle.textContent = `FLOOR ${String(clearedFloors + 1).padStart(2, '0')}`;
+            victoryFloorsDisplay.textContent = `Floor ${clearedFloors} / 10`;
+            victoryFloorsDisplay.style.color = "var(--genre-yellow)";
+        }
+
+        const floorsCount = Math.max(1, clearedFloors);
+        const avgPace = (totalElapsedSeconds / floorsCount).toFixed(1);
+
+        if (victoryTimeDisplay) victoryTimeDisplay.textContent = formatTime(totalElapsedSeconds);
+        if (victoryPaceDisplay) victoryPaceDisplay.textContent = `${avgPace}s / floor`;
+        if (victoryResultDisplay) victoryResultDisplay.textContent = resultMsg;
+        if (victoryStreakDisplay) victoryStreakDisplay.textContent = `${stats.streak} Days`;
+
+        if (hudContainer) hudContainer.style.display = 'none';
+        if (gameWorkspace) gameWorkspace.style.display = 'none';
+        if (gameplayHeader) gameplayHeader.style.display = 'none';
+        if (activeGameTimer) activeGameTimer.style.display = 'none';
+        if (footerText) footerText.style.display = 'none';
+
+        if (victoryScreen) victoryScreen.style.display = 'flex';
+    }
+
+    function updateTowerStack(activeFloorNum) {
+        const towerFloors = document.querySelectorAll('.tower-floor');
+        towerFloors.forEach(floorElem => {
+            const floorVal = parseInt(floorElem.dataset.floor);
+            floorElem.classList.remove('active', 'completed', 'failed');
+
+            if (floorVal === activeFloorNum) {
+                floorElem.classList.add('active');
+            } else if (floorVal < activeFloorNum) {
+                floorElem.classList.add('completed');
+            }
+        });
+    }
+
+    function showMessage(msg, isSuccess = false) {
+        messageBox.textContent = msg;
+        messageBox.style.color = isSuccess ? 'var(--state-success)' : 'var(--state-error)';
+    }
+
+    function recordGameResult(isWin, peakFloor) {
+        const stats = getStats();
+        stats.played++;
+        if (isWin) {
+            stats.wins++;
+            stats.streak++;
+        } else {
+            stats.streak = 0;
+        }
+
+        if (peakFloor > stats.bestFloor) {
+            stats.bestFloor = peakFloor;
+        }
+
+        localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+        updateStatsDisplay();
+        return stats;
+    }
+
+    function getStats() {
+        const raw = localStorage.getItem(STATS_KEY);
+        if (!raw) {
+            return { played: 0, wins: 0, streak: 0, bestFloor: 1 };
+        }
+        return JSON.parse(raw);
+    }
+
+    function updateStatsDisplay() {
+        const stats = getStats();
+        document.getElementById('stat-played').textContent = stats.played;
+        document.getElementById('stat-wins').textContent = stats.wins;
+
+        const winRate = stats.played > 0 ? Math.round((stats.wins / stats.played) * 100) : 0;
+        document.getElementById('stat-winrate').textContent = `${winRate}%`;
+        document.getElementById('stat-streak').textContent = `${stats.streak}`;
+
+        const bestOrd = ordinals[stats.bestFloor - 1] || `${stats.bestFloor}th`;
+        document.getElementById('stat-bestfloor').textContent = `${bestOrd} Floor`;
+    }
+});
