@@ -9,7 +9,7 @@ window.CLUEGRAM_DAILY_SET = [
     domain: "Botany & Flora",
     scrambled: "LEAPT",
     target: "PETAL",
-    clue: "A brightly coloured modified leaf that forms the outer part of a flower to attract pollinators."
+    clue: "A delicate floral appendage designed to catch the eye of passing pollinators."
   },
   {
     floor: 2,
@@ -17,7 +17,7 @@ window.CLUEGRAM_DAILY_SET = [
     domain: "Maritime Navigation",
     scrambled: "ORANS",
     target: "SONAR",
-    clue: "A system for the detection of objects under water by emitting sound pulses."
+    clue: "An acoustic navigation system relying on the propagation of sound pulses beneath the waves."
   },
   {
     floor: 3,
@@ -25,7 +25,7 @@ window.CLUEGRAM_DAILY_SET = [
     domain: "Anatomy & Physiology",
     scrambled: "SLIPEV",
     target: "PELVIS",
-    clue: "The large bony frame at the base of the spine to which the lower limbs are attached."
+    clue: "The basin-shaped skeletal structure connecting the spine to the lower extremities."
   },
   {
     floor: 4,
@@ -33,7 +33,7 @@ window.CLUEGRAM_DAILY_SET = [
     domain: "Textiles & Weaving",
     scrambled: "NIBBOB",
     target: "BOBBIN",
-    clue: "A cylinder or spindle on which yarn or thread is wound in sewing machines."
+    clue: "A small spindle or cylinder used to hold thread in domestic sewing apparatus."
   },
   {
     floor: 5,
@@ -41,7 +41,7 @@ window.CLUEGRAM_DAILY_SET = [
     domain: "Astronomy & Astrophysics",
     scrambled: "SPICELE",
     target: "ECLIPSE",
-    clue: "An astronomical event that occurs when one celestial body is obscured by another."
+    clue: "A transient astronomical alignment causing the obscuration of one celestial body by another."
   },
   {
     floor: 6,
@@ -49,7 +49,7 @@ window.CLUEGRAM_DAILY_SET = [
     domain: "Architecture & Design",
     scrambled: "CLAYBON",
     target: "BALCONY",
-    clue: "A platform enclosed by a wall or balustrade on the outside of a building."
+    clue: "An elevated architectural platform projecting from a building, typically enclosed by a balustrade."
   },
   {
     floor: 7,
@@ -57,7 +57,7 @@ window.CLUEGRAM_DAILY_SET = [
     domain: "Meteorology & Climate",
     scrambled: "CAVEROTS",
     target: "OVERCAST",
-    clue: "A weather condition where the sky is heavily covered with clouds, blocking direct sunlight."
+    clue: "A meteorological state characterised by heavy cloud cover obscuring the firmament."
   },
   {
     floor: 8,
@@ -65,7 +65,7 @@ window.CLUEGRAM_DAILY_SET = [
     domain: "Musical Instruments",
     scrambled: "TRENICAL",
     target: "CLARINET",
-    clue: "A woodwind instrument with a single-reed mouthpiece and a cylindrical tube."
+    clue: "A cylindrical woodwind instrument featuring a single-reed mouthpiece and a flared bell."
   },
   {
     floor: 9,
@@ -73,7 +73,7 @@ window.CLUEGRAM_DAILY_SET = [
     domain: "Geology & Mineralogy",
     scrambled: "MELTONIES",
     target: "LIMESTONE",
-    clue: "A hard sedimentary rock composed mainly of calcium carbonate, commonly used in building."
+    clue: "A prevalent sedimentary rock composed primarily of skeletal fragments and calcium carbonate."
   },
   {
     floor: 10,
@@ -81,6 +81,6 @@ window.CLUEGRAM_DAILY_SET = [
     domain: "Automotive Engineering",
     scrambled: "REDLYNCIS",
     target: "CYLINDERS",
-    clue: "The central working parts of an engine within which the pistons travel."
+    clue: "The vital tubular chambers within a combustion engine where the pistons operate."
   }
 ];
