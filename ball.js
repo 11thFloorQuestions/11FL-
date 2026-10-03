@@ -41,6 +41,12 @@ function getOrdinalFloorHTML(floorNum) {
     return `<span style="color: var(--genre-pitch, #22c55e); font-weight: 800;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
 }
 
+function getFailedOrdinalFloorHTML(floorNum) {
+    const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
+    const ord = ordinals[floorNum - 1] || `${floorNum}th`;
+    return `<span style="color: var(--state-error, #EF4444); font-weight: 800;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
+}
+
 
 // ==========================================
 // HAPTIC FEEDBACK ENGINE
@@ -566,7 +572,7 @@ function handleGameOver(reason) {
     
     const finalEl = document.getElementById('final-floor-reached');
     if (finalEl) {
-        finalEl.innerHTML = `Stopped at ${getOrdinalFloorHTML(gameState.currentFloor)}`;
+        finalEl.innerHTML = `Stopped at ${getFailedOrdinalFloorHTML(gameState.currentFloor)}`;
     }
     
     openModal('modal-game-over');
