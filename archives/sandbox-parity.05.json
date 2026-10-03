@@ -1,0 +1,27 @@
+{
+  "title": "Isometric Architectural Monuments",
+  "floors": [
+    { "floor": 1, "pairs": 1, "timeLimit": 12, "icons": ["pyramid"] },
+    { "floor": 2, "pairs": 2, "timeLimit": 16, "icons": ["pyramid", "tower"] },
+    { "floor": 3, "pairs": 3, "timeLimit": 22, "icons": ["pyramid", "tower", "arch"] },
+    { "floor": 4, "pairs": 4, "timeLimit": 28, "icons": ["pyramid", "tower", "arch", "dome"] },
+    { "floor": 5, "pairs": 5, "timeLimit": 34, "icons": ["pyramid", "tower", "arch", "dome", "obelisk"] },
+    { "floor": 6, "pairs": 6, "timeLimit": 40, "icons": ["pyramid", "tower", "arch", "dome", "obelisk", "pagoda"] },
+    { "floor": 7, "pairs": 7, "timeLimit": 46, "icons": ["pyramid", "tower", "arch", "dome", "obelisk", "pagoda", "column"] },
+    { "floor": 8, "pairs": 8, "timeLimit": 52, "icons": ["pyramid", "tower", "arch", "dome", "obelisk", "pagoda", "column", "bridge"] },
+    { "floor": 9, "pairs": 9, "timeLimit": 58, "icons": ["pyramid", "tower", "arch", "dome", "obelisk", "pagoda", "column", "bridge", "lighthouse"] },
+    { "floor": 10, "pairs": 10, "timeLimit": 64, "icons": ["pyramid", "tower", "arch", "dome", "obelisk", "pagoda", "column", "bridge", "lighthouse", "ziggurat"] }
+  ],
+  "svgMap": {
+    "pyramid": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9.5\" fill=\"#121824\" stroke=\"#2A364F\" stroke-width=\"1.2\"/><polygon points=\"12,4 4,17 12,19\" fill=\"#FFC857\"/><polygon points=\"12,4 12,19 20,17\" fill=\"#E5A93C\"/></svg>",
+    "tower": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9.5\" fill=\"#121824\" stroke=\"#2A364F\" stroke-width=\"1.2\"/><polygon points=\"12,3 7,19 12,19\" fill=\"#00B4D8\"/><polygon points=\"12,3 12,19 17,19\" fill=\"#0077B6\"/><rect x=\"9.5\" y=\"11\" width=\"2\" height=\"3\" fill=\"#121824\"/></svg>",
+    "arch": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9.5\" fill=\"#121824\" stroke=\"#2A364F\" stroke-width=\"1.2\"/><path d=\"M6 19 L6 11 A6 6 0 0 1 18 11 L18 19 L15 19 L15 12 A3 3 0 0 0 9 12 L9 19 Z\" fill=\"#E63946\"/><path d=\"M12 5 A6 6 0 0 1 18 11 L18 19 L15 19 L15 12 A3 3 0 0 0 12 9 Z\" fill=\"#BA181B\"/></svg>",
+    "dome": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9.5\" fill=\"#121824\" stroke=\"#2A364F\" stroke-width=\"1.2\"/><path d=\"M5 16 A7 7 0 0 1 19 16 Z\" fill=\"#457B9D\"/><path d=\"M12 9 A7 7 0 0 1 19 16 L12 16 Z\" fill=\"#1D3557\"/><rect x=\"4\" y=\"16\" width=\"16\" height=\"2\" fill=\"#F1FAEE\"/></svg>",
+    "obelisk": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9.5\" fill=\"#121824\" stroke=\"#2A364F\" stroke-width=\"1.2\"/><polygon points=\"12,3 9,7 12,7\" fill=\"#FFC857\"/><polygon points=\"12,3 12,7 15,7\" fill=\"#E5A93C\"/><polygon points=\"9,7 8,19 12,19 12,7\" fill=\"#E2E2E2\"/><polygon points=\"12,7 12,19 16,19 15,7\" fill=\"#B0B0B0\"/></svg>",
+    "pagoda": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9.5\" fill=\"#121824\" stroke=\"#2A364F\" stroke-width=\"1.2\"/><path d=\"M7 8 L17 8 L15 5 L9 5 Z\" fill=\"#E63946\"/><path d=\"M5 13 L19 13 L17 10 L7 10 Z\" fill=\"#E63946\"/><path d=\"M4 18 L20 18 L18 15 L6 15 Z\" fill=\"#E63946\"/><rect x=\"10\" y=\"18\" width=\"4\" height=\"2\" fill=\"#FFC857\"/></svg>",
+    "column": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9.5\" fill=\"#121824\" stroke=\"#2A364F\" stroke-width=\"1.2\"/><rect x=\"7\" y=\"5\" width=\"10\" height=\"2\" rx=\"0.5\" fill=\"#F1FAEE\"/><rect x=\"8.5\" y=\"7\" width=\"3.5\" height=\"10\" fill=\"#E2E2E2\"/><rect x=\"12\" y=\"7\" width=\"3.5\" height=\"10\" fill=\"#B0B0B0\"/><rect x=\"7\" y=\"17\" width=\"10\" height=\"2\" rx=\"0.5\" fill=\"#F1FAEE\"/></svg>",
+    "bridge": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9.5\" fill=\"#121824\" stroke=\"#2A364F\" stroke-width=\"1.2\"/><path d=\"M4 16 Q12 8 20 16 L20 18 L4 18 Z\" fill=\"none\" stroke=\"#00B4D8\" stroke-width=\"2\"/><line x1=\"7\" y1=\"14\" x2=\"7\" y2=\"18\" stroke=\"#0077B6\" stroke-width=\"1.5\"/><line x1=\"12\" y1=\"10\" x2=\"12\" y2=\"18\" stroke=\"#0077B6\" stroke-width=\"1.5\"/><line x1=\"17\" y1=\"14\" x2=\"17\" y2=\"18\" stroke=\"#0077B6\" stroke-width=\"1.5\"/></svg>",
+    "lighthouse": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9.5\" fill=\"#121824\" stroke=\"#2A364F\" stroke-width=\"1.2\"/><polygon points=\"9,19 15,19 14,8 10,8\" fill=\"#F1FAEE\"/><polygon points=\"12,19 15,19 14,8 12,8\" fill=\"#E63946\"/><rect x=\"10\" y=\"5\" width=\"4\" height=\"3\" fill=\"#FFC857\"/><polygon points=\"12,2 9,5 15,5\" fill=\"#1D3557\"/></svg>",
+    "ziggurat": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9.5\" fill=\"#121824\" stroke=\"#2A364F\" stroke-width=\"1.2\"/><rect x=\"4\" y=\"15\" width=\"16\" height=\"4\" fill=\"#FFC857\"/><rect x=\"7\" y=\"11\" width=\"10\" height=\"4\" fill=\"#E5A93C\"/><rect x=\"9.5\" y=\"7\" width=\"5\" height=\"4\" fill=\"#C18528\"/></svg>"
+  }
+}
