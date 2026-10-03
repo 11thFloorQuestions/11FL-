@@ -16,9 +16,9 @@
       "answer": "Wasabi"
     },
     {
-      "question": "Which global pop star released the record-breaking 2024 album titled The Tortured Poets Department?",
-      "options": ["Taylor Swift", "Billie Eilish", "Sabrina Carpenter", "Olivia Rodrigo"],
-      "answer": "Taylor Swift"
+      "question": "In one of the most bizarre moments in modern political history, Donald Trump's 2020 legal team accidentally booked a press conference next to a crematorium and a sex shop instead of a luxury hotel. What was the venue called?",
+      "options": ["Four Seasons Total Landscaping", "Ritz-Carlton Garden Supplies", "Mar-a-Lago Turf Services", "Trump International Lawn & Order"],
+      "answer": "Four Seasons Total Landscaping"
     },
     {
       "question": "What term refers to the precise temperature control method of cooking food vacuum-sealed in a plastic pouch inside a water bath?",
@@ -31,7 +31,7 @@
       "answer": "Conversation Pit"
     },
     {
-      "question": "Which tech billionaire famously rebranded Twitter to the single letter X in 2023, liquidating decades of brand equity overnight?",
+      "question": "Which James Bond villain-type tech billionaire famously rebranded Twitter to the single letter X in 2023, liquidating decades of brand equity overnight?",
       "options": ["Elon Musk", "Mark Zuckerberg", "Jeff Bezos", "Peter Thiel"],
       "answer": "Elon Musk"
     },
@@ -46,9 +46,9 @@
       "answer": "Christopher Nolan"
     },
     {
-      "question": "Which high-society annual gala, held on the first Monday in May at the Metropolitan Museum of Art, is chaired by Anna Wintour?",
-      "options": ["The Met Gala", "The Venice Biennale", "The CFDA Awards", "The Serpentine Summer Party"],
-      "answer": "The Met Gala"
+      "question": "In 2021, which legendary French haute couture house was appointed to redesign the official ceremonial robes for the members of the prestigious Académie Française?",
+      "options": ["Chanel", "Dior", "Givenchy", "Saint Laurent"],
+      "answer": "Chanel"
     }
   ]
 }
