@@ -8,9 +8,20 @@ let initialDailyWheel = [];
 let wheelLetters = [];
 let validWordSet = null;
 
+// Timer Variables
+let startTime = 0;
+let timerInterval = null;
+let timeElapsedSeconds = 0;
+
+// Local Storage Player Stats Key
+const STATS_KEY = '11th_floor_wordclimb_stats';
+
 document.addEventListener("DOMContentLoaded", () => {
     setupLandingScreen();
     setupVaultModal();
+    bindExtraEvents();
+    updateStatsDisplay();
+
     window.addEventListener("resize", () => {
         if (wheelLetters.length > 0) {
             renderWheel(wheelLetters);
@@ -22,6 +33,37 @@ function getOrdinalFloorHTML(floorNum) {
     const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
     const ord = ordinals[floorNum - 1] || `${floorNum}th`;
     return `<span style="color: var(--genre-blue, #3B82F6); font-weight: 800;">${ord}</span> <span style="color: #ffffff;">Floor</span>`;
+}
+
+// --- Timer Functions ---
+function startTimer() {
+    stopTimer();
+    timeElapsedSeconds = 0;
+    startTime = Date.now();
+    const activeGameTimer = document.getElementById("active-game-timer");
+    if (activeGameTimer) {
+        activeGameTimer.style.display = "block";
+        activeGameTimer.textContent = "00:00";
+    }
+    timerInterval = setInterval(updateTimerDisplay, 1000);
+}
+
+function stopTimer() {
+    if (timerInterval) clearInterval(timerInterval);
+}
+
+function updateTimerDisplay() {
+    timeElapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+    const activeGameTimer = document.getElementById("active-game-timer");
+    if (activeGameTimer) {
+        activeGameTimer.textContent = formatTime(timeElapsedSeconds);
+    }
+}
+
+function formatTime(totalSeconds) {
+    const m = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
+    const s = (totalSeconds % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
 }
 
 async function fetchFileWithFallbacks(filename) {
@@ -104,6 +146,22 @@ function setupVaultModal() {
     if (closeBtn && vaultModal) {
         closeBtn.addEventListener("click", () => {
             vaultModal.classList.add("hidden");
+            const victoryScreen = document.getElementById("victory-screen");
+            if (victoryScreen && victoryScreen.style.display !== "none") {
+                resetToStartScreen();
+            }
+        });
+    }
+}
+
+function bindExtraEvents() {
+    const victoryStatsBtn = document.getElementById("btn-victory-stats");
+    const statsModal = document.getElementById("modal-vault");
+
+    if (victoryStatsBtn) {
+        victoryStatsBtn.addEventListener("click", () => {
+            if (statsModal) statsModal.classList.remove("hidden");
+            populateVault();
         });
     }
 }
@@ -133,10 +191,6 @@ async function populateVault() {
     }
 }
 
-/**
- * Shuffles an array of letters and guarantees it does not spell the target master word
- * clockwise starting from any position on the wheel.
- */
 function shuffleAndVerifyWheel(letters, masterWord) {
     let arr = [...letters];
     const target = (masterWord || "").toUpperCase();
@@ -176,18 +230,22 @@ async function loadVaultArchive(paddedId) {
         wheelLetters = [...initialDailyWheel];
 
         const startScreen = document.getElementById("start-screen");
+        const victoryScreen = document.getElementById("victory-screen");
         const gameplayHeader = document.getElementById("gameplay-header");
         const gameWorkspace = document.getElementById("game-workspace");
         const hudContainer = document.getElementById("floor-hud-container");
         const gameControls = document.getElementById("game-controls");
         const vaultModal = document.getElementById("modal-vault");
+        const footerText = document.getElementById("footer-text");
 
         if (startScreen) startScreen.style.display = "none";
+        if (victoryScreen) victoryScreen.style.display = "none";
         if (gameplayHeader) gameplayHeader.style.display = "flex";
         if (hudContainer) hudContainer.style.display = "flex";
         if (gameWorkspace) gameWorkspace.style.display = "flex";
         if (gameControls) gameControls.style.display = "flex";
         if (vaultModal) vaultModal.classList.add("hidden");
+        if (footerText) footerText.style.display = "block";
 
         startNewGame();
     } else {
@@ -197,19 +255,41 @@ async function loadVaultArchive(paddedId) {
 
 function launchGameWorkspace() {
     const startScreen = document.getElementById("start-screen");
+    const victoryScreen = document.getElementById("victory-screen");
     const gameplayHeader = document.getElementById("gameplay-header");
     const gameWorkspace = document.getElementById("game-workspace");
     const hudContainer = document.getElementById("floor-hud-container");
     const gameControls = document.getElementById("game-controls");
+    const footerText = document.getElementById("footer-text");
 
     if (startScreen) startScreen.style.display = "none";
+    if (victoryScreen) victoryScreen.style.display = "none";
     if (gameplayHeader) gameplayHeader.style.display = "flex";
     if (hudContainer) hudContainer.style.display = "flex";
     if (gameWorkspace) gameWorkspace.style.display = "flex";
     if (gameControls) gameControls.style.display = "flex";
+    if (footerText) footerText.style.display = "block";
 
     initDailyPuzzle();
     startNewGame();
+}
+
+function resetToStartScreen() {
+    const victoryScreen = document.getElementById("victory-screen");
+    const hudContainer = document.getElementById("floor-hud-container");
+    const gameWorkspace = document.getElementById("game-workspace");
+    const gameControls = document.getElementById("game-controls");
+    const gameplayHeader = document.getElementById("gameplay-header");
+    const activeGameTimer = document.getElementById("active-game-timer");
+    const startScreen = document.getElementById("start-screen");
+
+    if (victoryScreen) victoryScreen.style.display = "none";
+    if (hudContainer) hudContainer.style.display = "none";
+    if (gameWorkspace) gameWorkspace.style.display = "none";
+    if (gameControls) gameControls.style.display = "none";
+    if (gameplayHeader) gameplayHeader.style.display = "none";
+    if (activeGameTimer) activeGameTimer.style.display = "none";
+    if (startScreen) startScreen.style.display = "flex";
 }
 
 function initDailyPuzzle() {
@@ -246,6 +326,7 @@ function startNewGame() {
 
     wheelLetters = [...initialDailyWheel];
 
+    startTimer();
     setupFloor(currentFloor);
     attachControlHandlers();
 }
@@ -265,7 +346,6 @@ function setupFloor(floor) {
         floorVal.innerHTML = getOrdinalFloorHTML(floor);
     }
 
-    // Dynamic Floor Rule Reminder
     const reqLen = getRequiredWordLength(floor);
     const ruleText = document.getElementById("floor-rule-text");
     if (ruleText) {
@@ -348,7 +428,7 @@ function renderWheel(letters) {
         btn.style.width = `${btnSize}px`;
         btn.style.height = `${btnSize}px`;
         btn.style.borderRadius = "50%";
-        btn.style.border = "1px solid #FACC15"; /* Standard 1px yellow border matching Cluegram */
+        btn.style.border = "1px solid #FACC15";
         btn.style.boxShadow = "0 0 6px rgba(250, 204, 21, 0.2)";
         btn.style.background = "#111111";
         btn.style.color = "#ffffff";
@@ -464,7 +544,6 @@ function handleSubmission() {
         isTransitioning = true;
         showMessage("WRONG WORD! DROPPING TO GROUND FLOOR...", true);
 
-        // Flash target slots red on error
         const slotsContainer = document.getElementById("target-word-slots");
         if (slotsContainer) {
             const slots = slotsContainer.querySelectorAll(".target-slot");
@@ -474,6 +553,9 @@ function handleSubmission() {
                 s.style.background = "rgba(239, 68, 68, 0.2)";
             });
         }
+
+        stopTimer();
+        recordGameResult(false, currentFloor);
 
         setTimeout(() => {
             startNewGame();
@@ -497,37 +579,30 @@ function fillTargetSlots(word) {
 }
 
 function handleVictory() {
-    const floorVal = document.getElementById("floor-number-val");
-    if (floorVal) floorVal.innerHTML = getOrdinalFloorHTML(11);
+    stopTimer();
+    const newStats = recordGameResult(true, 11);
 
-    const ruleText = document.getElementById("floor-rule-text");
-    if (ruleText) ruleText.textContent = "VICTORY ACHIEVED!";
+    const victoryTimeDisplay = document.getElementById("victory-time-display");
+    const victoryStreakDisplay = document.getElementById("victory-streak-display");
+    const hudContainer = document.getElementById("floor-hud-container");
+    const gameWorkspace = document.getElementById("game-workspace");
+    const gameControls = document.getElementById("game-controls");
+    const gameplayHeader = document.getElementById("gameplay-header");
+    const activeGameTimer = document.getElementById("active-game-timer");
+    const victoryScreen = document.getElementById("victory-screen");
+    const footerText = document.getElementById("footer-text");
 
-    updateElevatorShaft(11);
+    if (victoryTimeDisplay) victoryTimeDisplay.textContent = formatTime(timeElapsedSeconds);
+    if (victoryStreakDisplay) victoryStreakDisplay.textContent = `${newStats.streak} Days`;
 
-    const messageBox = document.getElementById("message-box");
-    if (messageBox) messageBox.textContent = "";
+    if (hudContainer) hudContainer.style.display = "none";
+    if (gameWorkspace) gameWorkspace.style.display = "none";
+    if (gameControls) gameControls.style.display = "none";
+    if (gameplayHeader) gameplayHeader.style.display = "none";
+    if (activeGameTimer) activeGameTimer.style.display = "none";
+    if (footerText) footerText.style.display = "none";
 
-    const guessDisplay = document.getElementById("guess-display");
-    if (guessDisplay) guessDisplay.innerHTML = "";
-
-    const wheelContainer = document.getElementById("wheel-container");
-    if (wheelContainer) wheelContainer.innerHTML = "";
-
-    const slotsContainer = document.getElementById("target-word-slots");
-    if (slotsContainer) {
-        slotsContainer.innerHTML = `
-            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; padding: 20px 10px; text-align: center; gap: 12px;">
-                <div style="font-size: 2rem;">🏆</div>
-                <div style="color: #22c55e; font-weight: 800; font-size: 1rem; line-height: 1.4; letter-spacing: 0.5px;">
-                    Congratulations! You've reached the 11th Floor.
-                </div>
-                <div style="color: #888888; font-size: 0.8rem; line-height: 1.4; font-weight: 500;">
-                    Come back tomorrow to continue your streak.
-                </div>
-            </div>
-        `;
-    }
+    if (victoryScreen) victoryScreen.style.display = "flex";
 }
 
 function showMessage(text, isError = false) {
@@ -536,4 +611,53 @@ function showMessage(text, isError = false) {
         msg.textContent = text;
         msg.style.color = isError ? "#EF4444" : "#22c55e";
     }
+}
+
+// --- Player Stats & Persistence ---
+function recordGameResult(isWin, peakFloor) {
+    const stats = getStats();
+    stats.played++;
+    if (isWin) {
+        stats.wins++;
+        stats.streak++;
+    } else {
+        stats.streak = 0;
+    }
+
+    if (peakFloor > stats.bestFloor) {
+        stats.bestFloor = peakFloor;
+    }
+
+    localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+    updateStatsDisplay();
+    return stats;
+}
+
+function getStats() {
+    const raw = localStorage.getItem(STATS_KEY);
+    if (!raw) {
+        return { played: 0, wins: 0, streak: 0, bestFloor: 1 };
+    }
+    return JSON.parse(raw);
+}
+
+function updateStatsDisplay() {
+    const stats = getStats();
+    const playedElem = document.getElementById('stat-played');
+    const winsElem = document.getElementById('stat-wins');
+    const winrateElem = document.getElementById('stat-winrate');
+    const streakElem = document.getElementById('stat-streak');
+    const bestfloorElem = document.getElementById('stat-bestfloor');
+
+    const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
+
+    if (playedElem) playedElem.textContent = stats.played;
+    if (winsElem) winsElem.textContent = stats.wins;
+    
+    const winRate = stats.played > 0 ? Math.round((stats.wins / stats.played) * 100) : 0;
+    if (winrateElem) winrateElem.textContent = `${winRate}%`;
+    if (streakElem) streakElem.textContent = stats.streak;
+    
+    const bestOrd = ordinals[stats.bestFloor - 1] || `${stats.bestFloor}th`;
+    if (bestfloorElem) bestfloorElem.textContent = `${bestOrd} Floor`;
 }
