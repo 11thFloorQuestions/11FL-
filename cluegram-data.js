@@ -1,67 +1,80 @@
-// 11th Floor Cluegram — Daily Puzzle Datasets (Game 04)
+// 11th Floor Cluegram — Daily Puzzle Datasets
 
 window.CLUEGRAM_DAILY_SET = {
-    date: "Daily Set 04",
+    date: "Daily Set 05",
     floors: [
         {
             floor: 1,
-            scrambled: "LANGE",
-            target: "ANGEL",
-            clue: "A spiritual celestial creature typically depicted in white robes with wings."
+            scrambled: "ONCRO",
+            target: "CRONO", // Wait, let's use proper English dictionary word: CRONIC is 6. Let's use ACORN -> RANCH? No, ANAGRAM:
+            // 5 letters: ANVIL
+            scrambled: "VILNA",
+            target: "ANVIL",
+            clue: "A heavy iron block on which heated metals are hammered into shape."
         },
         {
             floor: 2,
-            scrambled: "PELAM",
-            target: "MAPLE",
-            clue: "A hardwood tree famous for its distinctive lobed leaves and sweet syrup."
+            scrambled: "SPOUT",
+            target: "POUST", // Let's use SPICE
+            scrambled: "CIEPS",
+            target: "SPICE",
+            clue: "An aromatic vegetable substance used to season or flavour food."
         },
         {
             floor: 3,
-            scrambled: "TLANEM",
-            target: "MANTLE",
-            clue: "An ornamental structure surrounding a fireplace, or a cloak of authority."
+            scrambled: "TRONAC",
+            target: "CANTON",
+            clue: "A subdivision of a country, most notably one of the Swiss states."
         },
         {
             floor: 4,
-            scrambled: "CANLOF",
-            target: "FALCON",
-            clue: "A predatory bird known for incredible diving speed while hunting prey."
+            scrambled: "GLIDON",
+            target: "INGOLD", // Let's use GONG: GLIDER
+            scrambled: "DIRGEL",
+            target: "GLIDER",
+            clue: "A light aircraft designed to fly without using an engine."
         },
         {
             floor: 5,
-            scrambled: "XINOEHP",
-            target: "PHOENIX",
-            clue: "A mythical bird that periodically combusts and regenerates from its own ashes."
+            scrambled: "ARCANAM",
+            target: "MACABRE",
+            clue: "Disturbing and horrific because of involvement with or depiction of death."
         },
         {
             floor: 6,
-            scrambled: "TREAHTE",
-            target: "THEATRE",
-            clue: "A venue designed for live dramatic performances, plays, or music."
+            scrambled: "OCTAPIN",
+            target: "CAPTAIN",
+            clue: "The person in command of a merchant vessel, warship, or sports team."
         },
         {
             floor: 7,
-            scrambled: "TARCCATA",
-            target: "CATARACT",
-            clue: "A large, powerful waterfall, or a clouding of the lens in the eye."
+            scrambled: "ONALSTIL",
+            target: "STALLION",
+            clue: "An uncastrated adult male horse, particularly one kept for breeding."
         },
         {
             floor: 8,
-            scrambled: "DLASAPIE",
-            target: "PALISADE",
-            clue: "A defensive fence made from tall wooden stakes driven firmly into the ground."
+            scrambled: "TISALNEO",
+            target: "ISOLATE", // 7 letters. Let's make floor 8 an 8-letter word: DOMINOES -> DEMOLISH
+            scrambled: "HLIMEDSO",
+            target: "DEMOLISH",
+            clue: "To completely pull down or destroy a building or structure."
         },
         {
             floor: 9,
-            scrambled: "NNOACSIES",
-            target: "ASCENSION",
-            clue: "The act of rising to a higher position, rank, or spiritual realm."
+            scrambled: "RCINOTOAD",
+            target: "CONTORTED", // 9 letters
+            scrambled: "DROTTNEOC",
+            target: "CONTORTED",
+            clue: "Twisted or bent out of the normal, natural shape."
         },
         {
             floor: 10,
-            scrambled: "LAUCOGETA",
-            target: "CATALOGUE",
-            clue: "A systematically arranged publication detailing an entire collection or inventory."
+            scrambled: "SINOXECUR",
+            target: "EXCURSION", // 9 letters
+            scrambled: "CUSRINOEX",
+            target: "EXCURSION",
+            clue: "A short journey or trip, especially one taken as a leisure activity."
         }
     ]
 };
