@@ -1,1 +1,143 @@
+{
+  "setId": "18",
+  "title": "Think You Know Ball? - Set 18",
+  "questions": [
+    {
+      "floor": 1,
+      "type": "multiple_choice",
+      "question": "Which manager guided West Ham United to a 7th-place Premier League finish and the FA Cup final in the 2005–06 season, securing European qualification in their first year back in the top flight?",
+      "options": [
+        "Alan Pardew",
+        "Glenn Roeder",
+        "Harry Redknapp",
+        "Gianfranco Zola"
+      ],
+      "answer": "Alan Pardew",
+      "explanation": "Alan Pardew won promotion with West Ham in 2005 and immediately led them to a 7th-place finish and an unforgettable 3–3 FA Cup final against Liverpool.",
+      "anchorClues": "Alan Pardew / West Ham United 2005–06 season"
+    },
+    {
+      "floor": 2,
+      "type": "boolean",
+      "question": "True or False: Sunderland's Stadium of Light hosted the senior England national team for a competitive UEFA European Championship qualifier in April 2003.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "England played Turkey at the Stadium of Light in a Euro 2004 qualifier on 2 April 2003, securing a 2–0 victory thanks to goals from Darius Vassell and David Beckham.",
+      "anchorClues": "Stadium of Light / England vs Turkey Euro 2004 qualifier"
+    },
+    {
+      "floor": 3,
+      "type": "multiple_choice",
+      "question": "Which club became the first team to defeat Pep Guardiola's Manchester City in the Premier League during their 'Centurions' 2017–18 campaign, ending City's 22-match unbeaten league run in January 2018?",
+      "options": [
+        "Liverpool",
+        "Manchester United",
+        "Tottenham Hotspur",
+        "Chelsea"
+      ],
+      "answer": "Liverpool",
+      "explanation": "Jürgen Klopp's Liverpool earned a thrilling 4–3 victory at Anfield in January 2018, handing Manchester City their first league defeat of the season.",
+      "anchorClues": "Liverpool beat Manchester City 4–3 January 2018"
+    },
+    {
+      "floor": 4,
+      "type": "multiple_choice",
+      "question": "Which historic ground served as Derby County's home stadium for 102 years before the club relocated to Pride Park Stadium in 1997?",
+      "options": [
+        "Baseball Ground",
+        "Victoria Ground",
+        "County Ground",
+        "Ayresome Park"
+      ],
+      "answer": "Baseball Ground",
+      "explanation": "Derby County played at the famous Baseball Ground from 1895 until May 1997, hosting their first Premier League campaign there in 1996–97.",
+      "anchorClues": "Baseball Ground / Derby County home stadium"
+    },
+    {
+      "floor": 5,
+      "type": "boolean",
+      "question": "True or False: Chelsea went through their entire 2004–05 title-winning Premier League campaign without suffering a single defeat at Stamford Bridge.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "answer": "True",
+      "explanation": "José Mourinho turned Stamford Bridge into a fortress in 2004–05, with Chelsea recording 14 wins and 5 draws at home while conceding just six league goals in SW6.",
+      "anchorClues": "Chelsea unbeaten home record Stamford Bridge 2004–05"
+    },
+    {
+      "floor": 6,
+      "type": "multiple_choice",
+      "question": "Which club spent 128 days at the top of the Premier League table during the 2013–14 campaign—the most of any team that season—before eventually finishing in 4th place?",
+      "options": [
+        "Arsenal",
+        "Liverpool",
+        "Chelsea",
+        "Manchester City"
+      ],
+      "answer": "Arsenal",
+      "explanation": "Arsène Wenger's Arsenal led the table for a total of 128 days between September 2013 and February 2014 before late-season stumbles saw Manchester City claim the title.",
+      "anchorClues": "Arsenal 128 days top of Premier League table 2013–14"
+    },
+    {
+      "floor": 7,
+      "type": "multiple_choice",
+      "question": "Which squad number was assigned to French midfielder N'Golo Kanté throughout his trophy-laden seven seasons at Chelsea, winning the Premier League, Champions League, and FA Cup?",
+      "options": [
+        "7",
+        "6",
+        "14",
+        "8"
+      ],
+      "answer": "7",
+      "explanation": "N'Golo Kanté wore the number 7 shirt for Chelsea between 2016 and 2023, making 269 appearances across all competitions.",
+      "anchorClues": "N'Golo Kanté shirt number 7 / Chelsea"
+    },
+    {
+      "floor": 8,
+      "type": "multiple_choice",
+      "question": "Which club brought an end to Chelsea's record 86-game unbeaten home league run at Stamford Bridge with a 1–0 victory in October 2008?",
+      "options": [
+        "Liverpool",
+        "Manchester United",
+        "Arsenal",
+        "Tottenham Hotspur"
+      ],
+      "answer": "Liverpool",
+      "explanation": "A deflected strike from Xabi Alonso earned Rafa Benítez's Liverpool a 1–0 victory at Stamford Bridge, ending Chelsea's four-year, 86-match unbeaten home streak.",
+      "anchorClues": "Liverpool end Chelsea 86 home unbeaten run 2008"
+    },
+    {
+      "floor": 9,
+      "type": "multiple_choice",
+      "question": "Which manager took charge of Southampton in January 2013 and guided them to an 8th-place Premier League finish with 56 points in his only full season at the club?",
+      "options": [
+        "Mauricio Pochettino",
+        "Ronald Koeman",
+        "Claude Puel",
+        "Ralph Hasenhüttl"
+      ],
+      "answer": "Mauricio Pochettino",
+      "explanation": "Mauricio Pochettino transformed Southampton's playing style during the 2013–14 season before being appointed Tottenham Hotspur manager in May 2014.",
+      "anchorClues": "Mauricio Pochettino / Southampton manager 2013–14"
+    },
+    {
+      "floor": 10,
+      "type": "multiple_choice",
+      "question": "Which Dutch forward holds the Premier League record for scoring in the most consecutive away matches, finding the net in nine straight away appearances during the 2010–11 season?",
+      "options": [
+        "Robin van Persie",
+        "Ruud van Nistelrooy",
+        "Jimmy Floyd Hasselbaink",
+        "Dennis Bergkamp"
+      ],
+      "answer": "Robin van Persie",
+      "explanation": "Robin van Persie scored in nine consecutive Premier League away fixtures for Arsenal between January and May 2011, establishing a top-flight record.",
+      "anchorClues": "Robin van Persie 9 consecutive away goals record 2010–11"
+    }
+  ]
+}
 
