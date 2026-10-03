@@ -1,0 +1,27 @@
+{
+  "title": "Classic Casino Playing Cards",
+  "floors": [
+    { "floor": 1, "pairs": 1, "timeLimit": 12, "icons": ["spade"] },
+    { "floor": 2, "pairs": 2, "timeLimit": 16, "icons": ["spade", "heart"] },
+    { "floor": 3, "pairs": 3, "timeLimit": 22, "icons": ["spade", "heart", "diamond"] },
+    { "floor": 4, "pairs": 4, "timeLimit": 28, "icons": ["spade", "heart", "diamond", "club"] },
+    { "floor": 5, "pairs": 5, "timeLimit": 34, "icons": ["spade", "heart", "diamond", "club", "joker"] },
+    { "floor": 6, "pairs": 6, "timeLimit": 40, "icons": ["spade", "heart", "diamond", "club", "joker", "crown"] },
+    { "floor": 7, "pairs": 7, "timeLimit": 46, "icons": ["spade", "heart", "diamond", "club", "joker", "crown", "dice"] },
+    { "floor": 8, "pairs": 8, "timeLimit": 52, "icons": ["spade", "heart", "diamond", "club", "joker", "crown", "dice", "chip"] },
+    { "floor": 9, "pairs": 9, "timeLimit": 58, "icons": ["spade", "heart", "diamond", "club", "joker", "crown", "dice", "chip", "ace"] },
+    { "floor": 10, "pairs": 10, "timeLimit": 64, "icons": ["spade", "heart", "diamond", "club", "joker", "crown", "dice", "chip", "ace", "royalty"] }
+  ],
+  "svgMap": {
+    "spade": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9.5\" fill=\"#111622\" stroke=\"#232D42\" stroke-width=\"1.2\"/><path d=\"M12 4 C8 9, 4 12, 4 15 C4 17.5, 6 19, 8.5 19 C10 19, 11 18, 12 17 C13 18, 14 19, 15.5 19 C18 19, 20 17.5, 20 15 C20 12, 16 9, 12 4 Z\" fill=\"#F8FAFC\"/><path d=\"M11 16 L13 16 L14 20 L10 20 Z\" fill=\"#F8FAFC\"/></svg>",
+    "heart": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9.5\" fill=\"#111622\" stroke=\"#232D42\" stroke-width=\"1.2\"/><path d=\"M12 20 C12 20, 4 14, 4 9.5 C4 6.5, 6.5 4.5, 9.5 4.5 C11 4.5, 11.8 5.2, 12 5.8 C12.2 5.2, 13 4.5, 14.5 4.5 C17.5 4.5, 20 6.5, 20 9.5 C20 14, 12 20, 12 20 Z\" fill=\"#EF4444\"/></svg>",
+    "diamond": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9.5\" fill=\"#111622\" stroke=\"#232D42\" stroke-width=\"1.2\"/><polygon points=\"12,4 19,12 12,20 5,12\" fill=\"#EF4444\"/></svg>",
+    "club": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9.5\" fill=\"#111622\" stroke=\"#232D42\" stroke-width=\"1.2\"/><circle cx=\"12\" cy=\"8\" r=\"3.5\" fill=\"#F8FAFC\"/><circle cx=\"8\" cy=\"13\" r=\"3.5\" fill=\"#F8FAFC\"/><circle cx=\"16\" cy=\"13\" r=\"3.5\" fill=\"#F8FAFC\"/><polygon points=\"11,13 13,13 14,20 10,20\" fill=\"#F8FAFC\"/></svg>",
+    "joker": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9.5\" fill=\"#111622\" stroke=\"#232D42\" stroke-width=\"1.2\"/><path d=\"M6 14 C6 8, 12 5, 12 5 C12 5, 18 8, 18 14 Z\" fill=\"#FACC15\"/><circle cx=\"6\" cy=\"14\" r=\"1.5\" fill=\"#EF4444\"/><circle cx=\"18\" cy=\"14\" r=\"1.5\" fill=\"#00F0FF\"/><rect x=\"8\" y=\"14\" width=\"8\" height=\"3\" rx=\"1\" fill=\"#F8FAFC\"/><path d=\"M9 18 Q12 20 15 18\" fill=\"none\" stroke=\"#EF4444\" stroke-width=\"1.5\"/></svg>",
+    "crown": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9.5\" fill=\"#111622\" stroke=\"#232D42\" stroke-width=\"1.2\"/><polygon points=\"4,18 20,18 19,9 15,13 12,7 9,13 5,9\" fill=\"#FACC15\"/><circle cx=\"5\" cy=\"8\" r=\"1\" fill=\"#EF4444\"/><circle cx=\"12\" cy=\"6\" r=\"1\" fill=\"#00F0FF\"/><circle cx=\"19\" cy=\"8\" r=\"1\" fill=\"#EF4444\"/></svg>",
+    "dice": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9.5\" fill=\"#111622\" stroke=\"#232D42\" stroke-width=\"1.2\"/><rect x=\"6\" y=\"6\" width=\"12\" height=\"12\" rx=\"2.5\" fill=\"#F8FAFC\"/><circle cx=\"9\" cy=\"9\" r=\"1\" fill=\"#111622\"/><circle cx=\"15\" cy=\"9\" r=\"1\" fill=\"#111622\"/><circle cx=\"12\" cy=\"12\" r=\"1\" fill=\"#EF4444\"/><circle cx=\"9\" cy=\"15\" r=\"1\" fill=\"#111622\"/><circle cx=\"15\" cy=\"15\" r=\"1\" fill=\"#111622\"/></svg>",
+    "chip": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9.5\" fill=\"#111622\" stroke=\"#232D42\" stroke-width=\"1.2\"/><circle cx=\"12\" cy=\"12\" r=\"7.5\" fill=\"#00F0FF\" stroke=\"#F8FAFC\" stroke-width=\"1.5\" stroke-dasharray=\"3 2\"/><circle cx=\"12\" cy=\"12\" r=\"4.5\" fill=\"#111622\"/><circle cx=\"12\" cy=\"12\" r=\"3\" fill=\"none\" stroke=\"#F8FAFC\" stroke-width=\"1\"/></svg>",
+    "ace": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9.5\" fill=\"#111622\" stroke=\"#232D42\" stroke-width=\"1.2\"/><rect x=\"7\" y=\"5\" width=\"10\" height=\"14\" rx=\"1.5\" fill=\"#F8FAFC\"/><path d=\"M12 8 L8 15 L10 15 L10.8 13.5 L13.2 13.5 L14 15 L16 15 Z\" fill=\"#EF4444\"/><line x1=\"11.2\" y1=\"12\" x2=\"12.8\" y2=\"12\" stroke=\"#F8FAFC\" stroke-width=\"1\"/></svg>",
+    "royalty": "<svg viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9.5\" fill=\"#111622\" stroke=\"#232D42\" stroke-width=\"1.2\"/><circle cx=\"12\" cy=\"12\" r=\"7\" fill=\"#FACC15\"/><path d=\"M8 10 C8 8, 16 8, 16 10 L15 15 L9 15 Z\" fill=\"#EF4444\"/><rect x=\"8\" y=\"15\" width=\"8\" height=\"2\" fill=\"#F8FAFC\"/></svg>"
+  }
+}
