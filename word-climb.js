@@ -293,30 +293,10 @@ function resetToStartScreen() {
 }
 
 function initDailyPuzzle() {
-    masterNineLetterWord = "COMPLAINT";
-    const initialArr = seededShuffle(masterNineLetterWord.split(""), getDayOfYear());
+    masterNineLetterWord = "CHARTERED";
+    const initialArr = ["R", "E", "C", "A", "T", "D", "H", "E", "R"];
     initialDailyWheel = shuffleAndVerifyWheel(initialArr, masterNineLetterWord);
     wheelLetters = [...initialDailyWheel];
-}
-
-function getDayOfYear() {
-    const now = new Date();
-    const start = new Date(now.getFullYear(), 0, 0);
-    const diff = now - start;
-    const oneDay = 1000 * 60 * 60 * 24;
-    return Math.floor(diff / oneDay);
-}
-
-function seededShuffle(array, seed) {
-    let m = array.length, t, i;
-    while (m) {
-        seed = (seed * 9301 + 49297) % 233280;
-        i = Math.floor((seed / 233280) * m--);
-        t = array[m];
-        array[m] = array[i];
-        array[i] = t;
-    }
-    return array;
 }
 
 function startNewGame() {
