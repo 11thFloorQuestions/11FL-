@@ -155,13 +155,16 @@
             transform: translateY(0);
         }
 
-        /* Updated highlight to gameplay yellow with minimal glow */
         .promo-text .highlight {
             color: var(--state-active);
             text-shadow: 0 0 4px rgba(250, 204, 21, 0.3);
         }
 
-        /* Standard red pop for "YOU DON'T!" */
+        .promo-text .white-text {
+            color: #ffffff;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
+        }
+
         .promo-text .pop {
             display: inline-block;
             color: var(--accent-red);
@@ -353,7 +356,7 @@
             font-weight: 800;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: var(--accent-green);
+            color: #ffffff;
             text-align: center;
         }
 
@@ -439,7 +442,7 @@
         </div>
 
         <div class="promo-footer">
-            <span class="promo-footer-text">STARTS SATURDAY AT 11AM (UK)</span>
+            <span class="promo-footer-text">STARTS SATURDAY</span>
         </div>
     </div>
 
@@ -452,7 +455,7 @@
         document.documentElement.style.setProperty('--accent-green', gameConfig.accentColor);
         document.getElementById('brand-game-title').innerText = gameConfig.title;
 
-        /* REVISED TEXT LOOP WITH GAMEPLAY YELLOW HIGHLIGHTS */
+        /* SCRIPT LOOP (STARTS SATURDAY IS WHITE TEXT) */
         const sequence = [
             { 
                 text: "THINK YOU KNOW BALL?", 
@@ -465,7 +468,7 @@
             { text: "THE 11AM <span class='highlight'>DAILY QUIZ!</span>", duration: 2200 },
             { text: "NO SECOND CHANCES FOR A <span class='highlight'>DAILY STREAK!</span>", duration: 2400 },
             { text: "FOLLOW TO <span class='highlight'>PLAY DAY ONE!</span>", duration: 2400 },
-            { text: "<span class='highlight'>STARTS SATURDAY!</span>", duration: 3200 }
+            { text: "<span class='white-text'>STARTS SATURDAY!</span>", duration: 3200 }
         ];
 
         let currentIndex = 0;
@@ -621,8 +624,9 @@
         }
 
         window.onload = () => {
+            // Both text script and gameplay start immediately together
             runPromoScript();
-            setTimeout(playClimbStep, 800);
+            playClimbStep();
         };
     </script>
 </body>
