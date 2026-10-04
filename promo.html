@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>11th Floor Games - Promo Studio (Victory Run)</title>
+    <title>11th Floor Games - Promo Studio (Pub Banter Fail Run)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@700;800&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
@@ -20,20 +20,12 @@
             --text-primary: #ffffff;
             --text-muted: #888888;
 
-            /* Game Genre Colors matching Lobby */
-            --color-terrace: #84CC16;
-            --color-terrace-glow: rgba(132, 204, 22, 0.35);
-            --color-questions: #D4AF37;
-            --color-wordclimb: #3B82F6;
-            --color-clusters: #ff751f;
-            --color-cluegram: #cc007e;
-            --color-parity: #ff9999;
-
             --genre-terrace: #84CC16;
             --genre-terrace-glow: rgba(132, 204, 22, 0.3);
             --state-active: #facc15;
             --state-success: #22c55e;
             --state-error: #ef4444;
+            --state-error-glow: rgba(239, 68, 68, 0.35);
         }
 
         * {
@@ -56,7 +48,6 @@
             overflow: hidden;
         }
 
-        /* Strict 9:16 Mobile Vertical Frame for Screen Recording */
         .promo-canvas {
             width: 360px;
             height: 640px;
@@ -68,34 +59,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 12px 10px 12px;
+            padding: 10px 12px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.9);
             overflow: hidden;
         }
 
-        /* Camera Flash Effect for Social Screenshot */
-        .camera-flash {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #ffffff;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 99;
-        }
-
-        .camera-flash.trigger {
-            animation: flashPulse 0.4s ease-out forwards;
-        }
-
-        @keyframes flashPulse {
-            0% { opacity: 0.95; }
-            100% { opacity: 0; }
-        }
-
-        /* Lobby Logo Block */
         .promo-hub-logo-box {
             display: flex;
             flex-direction: column;
@@ -144,7 +112,6 @@
             margin-bottom: 2px;
         }
 
-        /* Prominent Game Title in Game Accent Green */
         .promo-game-title {
             font-family: 'Anton', sans-serif;
             font-size: 1.25rem;
@@ -155,7 +122,6 @@
             margin-top: 1px;
         }
 
-        /* Dedicated Promo Script Zone ABOVE the Game Device */
         .promo-body {
             height: 65px;
             width: 100%;
@@ -191,14 +157,12 @@
             transform: translateY(0);
         }
 
-        /* Inline Coloured Highlight */
         .promo-text .highlight {
             color: var(--accent-green);
             text-shadow: 0 0 12px var(--accent-green-glow), 2px 2px 4px rgba(0,0,0,0.9);
             animation: inlineGlowPulse 1.2s ease-in-out infinite alternate;
         }
 
-        /* Multiline Pop ("YOU DON'T!") */
         .promo-text .pop {
             display: inline-block;
             color: var(--accent-red);
@@ -207,14 +171,8 @@
         }
 
         @keyframes inlineGlowPulse {
-            0% {
-                color: #84CC16;
-                text-shadow: 0 0 8px rgba(132, 204, 22, 0.4), 2px 2px 4px rgba(0,0,0,0.9);
-            }
-            100% {
-                color: #a3e635;
-                text-shadow: 0 0 20px rgba(163, 230, 53, 0.9), 0 0 30px rgba(132, 204, 22, 0.6), 2px 2px 4px rgba(0,0,0,0.9);
-            }
+            0% { color: #84CC16; text-shadow: 0 0 8px rgba(132, 204, 22, 0.4); }
+            100% { color: #a3e635; text-shadow: 0 0 20px rgba(163, 230, 53, 0.9); }
         }
 
         @keyframes stompImpact {
@@ -227,7 +185,6 @@
             100% { transform: scale(1.22); text-shadow: 0 0 22px rgba(255, 31, 45, 0.6); }
         }
 
-        /* Mock Mobile Device Container with Entry Scale Animation */
         .promo-mock-device {
             width: 220px;
             height: 290px;
@@ -242,14 +199,8 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.8);
             z-index: 5;
             flex-shrink: 0;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .promo-mock-device.ready {
-            transform: scale(1);
-        }
-
-        /* Scaled Gameplay Viewport */
         .promo-game-viewport {
             width: 320px;
             height: 425px;
@@ -263,7 +214,6 @@
             pointer-events: none;
         }
 
-        /* Gameplay HUD & Tower Stack */
         .hud-sidebar-container { 
             width: 100%; 
             display: flex; 
@@ -309,30 +259,24 @@
         .tower-floor.failed { 
             border-color: var(--state-error); 
             background: var(--state-error); 
-            box-shadow: 0 0 5px rgba(239, 68, 68, 0.4); 
+            box-shadow: 0 0 8px var(--state-error-glow); 
         }
 
         .floor-info-box {
             flex-grow: 1;
             background-color: var(--surface);
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100' fill='none' stroke='rgba(255, 255, 255, 0.08)' stroke-width='1'%3E%3Crect x='4' y='4' width='192' height='92' /%3E%3Cline x1='100' y1='4' x2='100' y2='96' /%3E%3Ccircle cx='100' cy='50' r='18' /%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 100% 100%;
             border: 1px solid var(--surface-border);
             border-radius: 6px;
             padding: 8px 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            overflow: hidden;
         }
 
-        .floor-left-group { display: flex; flex-direction: column; gap: 2px; z-index: 1; }
-        .current-floor-display { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 800; letter-spacing: 0.5px; }
-        .floor-rule-text { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.5px; text-transform: uppercase; }
+        .floor-left-group { display: flex; flex-direction: column; gap: 2px; }
+        .current-floor-display { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 800; }
+        .floor-rule-text { font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; }
 
-        /* Gameplay Card & Options */
         .play-card {
             width: 100%;
             background: var(--surface);
@@ -350,7 +294,7 @@
 
         .timer-track { width: 100%; height: 4px; background: #111111; border-radius: 2px; overflow: hidden; }
         .timer-fill { height: 100%; background: var(--state-active); width: 100%; transition: width 0.05s linear; }
-        
+
         .question-box {
             width: 100%;
             background: #111111;
@@ -365,7 +309,7 @@
             font-size: 0.78rem;
             font-weight: 600;
             color: #ffffff;
-            line-height: 1.3;
+            line-height: 1.35;
         }
 
         .options-grid { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -394,40 +338,23 @@
             box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
         }
 
-        /* Ecosystem Victory Receipt Card Layout (Matches ball.html) */
-        .victory-receipt { 
-            width: 100%; 
-            background: #111111; 
-            border: 1px solid var(--genre-terrace); 
-            border-radius: 10px; 
+        .btn-option.selected-wrong { 
+            border-color: var(--state-error); 
+            background: rgba(239, 68, 68, 0.25); 
+            color: #FCA5A5; 
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+        }
+
+        .modal-card { 
+            background-color: var(--surface); 
+            border: 1px solid var(--state-error); 
             padding: 16px; 
-            box-shadow: 0 0 25px var(--genre-terrace-glow); 
-            display: flex; 
-            flex-direction: column; 
-            gap: 10px; 
-            text-align: left; 
+            border-radius: 10px; 
+            width: 100%; 
+            text-align: center;
+            box-shadow: 0 0 20px var(--state-error-glow);
         }
 
-        .victory-row { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--surface-border-light); padding-bottom: 6px; }
-        .victory-label { font-size: 0.65rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
-        .victory-data { font-size: 0.95rem; font-family: 'Inter', sans-serif; font-weight: 800; color: #ffffff; letter-spacing: 0.5px; }
-
-        .btn-victory-stats {
-            width: 100%;
-            background-color: var(--genre-terrace);
-            color: #000000;
-            border: none;
-            padding: 10px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 800;
-            border-radius: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 4px;
-        }
-
-        /* Footer Text */
         .promo-footer {
             display: flex;
             justify-content: center;
@@ -463,9 +390,6 @@
 <body>
 
     <div class="promo-canvas">
-        <div class="camera-flash" id="camera-flash"></div>
-
-        <!-- Lobby Logo Block -->
         <div class="promo-hub-logo-box">
             <h1 class="promo-hub-logo-red">11FL?</h1>
             <p class="promo-hub-logo-title">Eleventh Floor</p>
@@ -474,16 +398,13 @@
             <div class="promo-game-title" id="brand-game-title">Think You Know Ball?</div>
         </div>
 
-        <!-- Dedicated Promo Script Zone ABOVE the Game Device -->
         <div class="promo-body">
             <div id="text-slot" class="promo-text"></div>
         </div>
 
-        <!-- Mock Mobile Frame -->
-        <div class="promo-mock-device ready" id="mock-device">
+        <div class="promo-mock-device" id="mock-device">
             <div class="promo-game-viewport">
                 
-                <!-- Active Gameplay Container -->
                 <div id="gameplay-container" style="width: 100%; display: flex; flex-direction: column; height: 100%; justify-content: space-between;">
                     <div class="hud-sidebar-container">
                         <div class="tower-stack">
@@ -524,35 +445,17 @@
                     </div>
                 </div>
 
-                <!-- Final Victory Receipt Screen -->
-                <div id="victory-container" style="display: none; width: 100%; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
-                    <div class="victory-receipt">
-                        <div style="font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 800; letter-spacing: 2px; color: var(--genre-terrace); text-transform: uppercase; text-align: center;">DESTINATION REACHED</div>
-                        <div style="font-family: 'Anton', sans-serif; font-size: 1.6rem; color: #ffffff; letter-spacing: 1px; text-align: center; margin-bottom: 2px;">PERFECT</div>
-                        
-                        <div class="victory-row">
-                            <span class="victory-label">Time Elapsed</span>
-                            <span class="victory-data">01:42</span>
-                        </div>
-                        
-                        <div class="victory-row">
-                            <span class="victory-label">Accuracy</span>
-                            <span class="victory-data" style="color: var(--state-success);">100% (10/10)</span>
-                        </div>
-                        
-                        <div class="victory-row" style="border-bottom: none; padding-bottom: 0;">
-                            <span class="victory-label">Active Streak</span>
-                            <span class="victory-data" style="color: var(--state-active);">3 Days</span>
-                        </div>
-
-                        <button class="btn-victory-stats">VIEW STATS & ARCHIVES</button>
+                <div id="fail-container" style="display: none; width: 100%; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                    <div class="modal-card">
+                        <h2 style="font-size: 1.1rem; font-weight: 800; color: var(--state-error); margin-bottom: 6px;">ELEVATOR STOPPED</h2>
+                        <p style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 10px;">INCORRECT ANSWER</p>
+                        <p style="font-size: 0.85rem; font-weight: 700;">Stopped at <span style="color: var(--state-error);">4th Floor</span></p>
                     </div>
                 </div>
 
             </div>
         </div>
 
-        <!-- Clean Footer Text -->
         <div class="promo-footer">
             <span class="promo-footer-text">GAME 001 DROPS SATURDAY AT 11AM (UK)</span>
         </div>
@@ -569,9 +472,6 @@
         document.documentElement.style.setProperty('--accent-green-glow', gameConfig.glowColor);
         document.getElementById('brand-game-title').innerText = gameConfig.title;
 
-        /* ==========================================================================
-           TEXT OVERLAY SCRIPT LOOP (CLIMAXES ON DROP ANNOUNCEMENT)
-           ========================================================================== */
         const sequence = [
             { 
                 text: "THINK YOU KNOW BALL?", 
@@ -580,9 +480,8 @@
                 appendDelay: 800, 
                 durationAfterAppend: 2000 
             },
-            { text: "MADE BY <span class='highlight'>HUMANS!</span>", duration: 2200 },
-            { text: "NEW DAILY <span class='highlight'>FOOTBALL QUIZ!</span>", duration: 2200 },
-            { text: "NO SECOND CHANCES FOR A <span class='highlight'>DAILY STREAK!</span>", duration: 2400 },
+            { text: "WRITTEN BY <span class='highlight'>REAL HUMANS!</span>", duration: 2200 },
+            { text: "WOULD YOU HAVE <span class='pop'>GOT THIS RIGHT?</span>", duration: 2400 },
             { text: "FOLLOW TO <span class='highlight'>PLAY DAY ONE!</span>", duration: 2400 },
             { text: "GAME 001 DROPS <span class='highlight'>SATURDAY AT 11AM (UK)</span>", duration: 3200 }
         ];
@@ -622,33 +521,39 @@
         }
 
         /* ==========================================================================
-           10-QUESTION GAMEPLAY RUN (UNIFORM PACING & SPEED ACROSS ALL FLOORS)
+           CONVERSATIONAL / PUB BANTER QUESTIONS (FLOORS 1-4 FAIL)
            ========================================================================== */
         const sampleQuestions = [
-            { floor: 1, question: "Which Premier League club's stadium roof famously became a viral swimming pool in May 2024?", options: ["Manchester United", "Everton", "Newcastle United", "Aston Villa"], answer: "Manchester United" },
-            { floor: 2, question: "True or False: Manchester City officially lodged a comprehensive legal appeal in October 2026?", options: ["True", "False"], answer: "True" },
-            { floor: 3, question: "Which young manager hit the ground running with an unbeaten month in August 2024?", options: ["Fabian Hürzeler", "Andoni Iraola", "Russell Martin", "Kieran McKenna"], answer: "Fabian Hürzeler" },
-            { floor: 4, question: "Which club held the record for conceding the fewest goals in a single home campaign (4 goals)?", options: ["Fulham", "Manchester United", "Liverpool", "Arsenal"], answer: "Fulham" },
-            { floor: 5, question: "True or False: Middlesbrough fielded a starting XI of 11 English players in May 2006?", options: ["True", "False"], answer: "True" },
-            { floor: 6, question: "Which player scored the fastest ever Premier League hat-trick after coming off the bench?", options: ["Ole Gunnar Solskjær", "Jermain Defoe", "Nwankwo Kanu", "Les Ferdinand"], answer: "Ole Gunnar Solskjær" },
-            { floor: 7, question: "Which squad number was assigned to James Milner upon his transfer to Aston Villa in 2008?", options: ["7", "11", "8", "20"], answer: "7" },
-            { floor: 8, question: "Which referee holds the all-time record for issuing the most red cards in Premier League history?", options: ["Mike Dean", "Martin Atkinson", "Graham Poll", "Phil Dowd"], answer: "Mike Dean" },
-            { floor: 9, question: "Which club scored 102 Premier League goals in 2009–10, breaching the 100-goal mark first?", options: ["Chelsea", "Manchester City", "Arsenal", "Manchester United"], answer: "Chelsea" },
-            { floor: 10, question: "Which forward scored in 7 consecutive Premier League games for Everton in 1994–95?", options: ["Daniel Amokachi", "Yakubu", "Victor Anichebe", "Joseph Yobo"], answer: "Daniel Amokachi" }
+            { 
+                floor: 1, 
+                question: "How many of England's goal scorers last night were actually Premier League players?", 
+                options: ["3 Players", "5 Players", "All 7", "Just 1"], 
+                answer: "5 Players" 
+            },
+            { 
+                floor: 2, 
+                question: "Which manager famously blamed a loss on 'the grass being too tall' after a match?", 
+                options: ["Jürgen Klopp", "Mikel Arteta", "Erik ten Hag", "Jose Mourinho"], 
+                answer: "Jürgen Klopp" 
+            },
+            { 
+                floor: 3, 
+                question: "What is the official VAR response when a clear handball check takes 7 minutes?", 
+                options: ["Process Error", "Good Process", "Lines Wrong", "Ref Offline"], 
+                answer: "Good Process" 
+            },
+            { 
+                floor: 4, 
+                question: "Which current Premier League star eats 5,000 calories of raw heart and liver a day?", 
+                options: ["Erling Haaland", "Adama Traoré", "James Maddison", "Darwin Núñez"], 
+                answer: "Erling Haaland",
+                wrongChoice: "Adama Traoré" // Triggers the real-time fail state
+            }
         ];
 
         const ordinals = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th"];
         let qIndex = 0;
         let timerInterval = null;
-
-        function shuffleArray(array) {
-            const arr = [...array];
-            for (let i = arr.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [arr[i], arr[j]] = [arr[j], arr[i]];
-            }
-            return arr;
-        }
 
         function updateFloorHUD(floorNum) {
             const ord = ordinals[floorNum - 1] || `${floorNum}th`;
@@ -658,6 +563,7 @@
                 const f = parseInt(block.getAttribute('data-floor'), 10);
                 block.classList.toggle('active', f === floorNum);
                 block.classList.toggle('completed', f < floorNum);
+                block.classList.remove('failed');
             });
         }
 
@@ -683,48 +589,54 @@
                 updateFloorHUD(currentQ.floor);
                 document.getElementById('question-text').textContent = currentQ.question;
 
-                // Completely uniform timer speed across every floor (1500ms duration per floor)
-                const timerMs = 1500;
-                const highlightDelay = 1000;
-                const nextStepDelay = 350;
+                const timerMs = 2800;
+                const selectDelay = 2000;
+                const transitionDelay = 800;
 
                 startTimerBar(timerMs);
 
-                const shuffledOptions = shuffleArray(currentQ.options);
                 const buttons = document.querySelectorAll('.options-grid .btn-option');
-
                 buttons.forEach((btn, idx) => {
                     btn.className = 'btn-option';
-                    btn.textContent = shuffledOptions[idx] || '';
-                    btn.style.display = shuffledOptions[idx] ? 'flex' : 'none';
+                    btn.textContent = currentQ.options[idx] || '';
+                    btn.style.display = currentQ.options[idx] ? 'flex' : 'none';
                 });
 
                 setTimeout(() => {
-                    buttons.forEach(btn => {
-                        if (btn.textContent === currentQ.answer) {
-                            btn.classList.add('selected-correct');
-                        }
-                    });
+                    if (currentQ.floor < 4) {
+                        buttons.forEach(btn => {
+                            if (btn.textContent === currentQ.answer) {
+                                btn.classList.add('selected-correct');
+                            }
+                        });
 
-                    setTimeout(() => {
-                        qIndex++;
-                        playClimbStep();
-                    }, nextStepDelay);
-                }, highlightDelay);
-            } else {
-                // VICTORY TRANSITION AT FLOOR 11
-                document.getElementById('gameplay-container').style.display = 'none';
-                document.getElementById('victory-container').style.display = 'flex';
+                        setTimeout(() => {
+                            qIndex++;
+                            playClimbStep();
+                        }, transitionDelay);
+                    } else {
+                        buttons.forEach(btn => {
+                            if (btn.textContent === currentQ.wrongChoice) {
+                                btn.classList.add('selected-wrong');
+                            }
+                        });
 
-                document.querySelectorAll('.tower-floor').forEach(block => {
-                    block.classList.add('completed');
-                    block.classList.remove('active');
-                });
+                        const activeBlock = document.querySelector(`.tower-floor[data-floor="4"]`);
+                        if (activeBlock) activeBlock.classList.add('failed');
 
-                // Camera flash screenshot effect
-                setTimeout(() => {
-                    document.getElementById('camera-flash').classList.add('trigger');
-                }, 400);
+                        setTimeout(() => {
+                            document.getElementById('gameplay-container').style.display = 'none';
+                            document.getElementById('fail-container').style.display = 'flex';
+
+                            setTimeout(() => {
+                                document.getElementById('fail-container').style.display = 'none';
+                                document.getElementById('gameplay-container').style.display = 'flex';
+                                qIndex = 0;
+                                playClimbStep();
+                            }, 2800);
+                        }, 700);
+                    }
+                }, selectDelay);
             }
         }
 
