@@ -455,7 +455,6 @@
         document.documentElement.style.setProperty('--accent-green', gameConfig.accentColor);
         document.getElementById('brand-game-title').innerText = gameConfig.title;
 
-        /* SCRIPT LOOP (STARTS SATURDAY IS WHITE TEXT) */
         const sequence = [
             { 
                 text: "THINK YOU KNOW BALL?", 
@@ -468,7 +467,7 @@
             { text: "THE 11AM <span class='highlight'>DAILY QUIZ!</span>", duration: 2200 },
             { text: "NO SECOND CHANCES FOR A <span class='highlight'>DAILY STREAK!</span>", duration: 2400 },
             { text: "FOLLOW TO <span class='highlight'>PLAY DAY ONE!</span>", duration: 2400 },
-            { text: "<span class='white-text'>STARTS SATURDAY!</span>", duration: 3200 }
+            { text: "<span class='white-text'>STARTS</span> <span class='highlight'>SATURDAY!</span>", duration: 3200 }
         ];
 
         let currentIndex = 0;
@@ -505,7 +504,6 @@
             }
         }
 
-        /* REAL-TIME PACED QUESTIONS (5 seconds per question) */
         const sampleQuestions = [
             { 
                 floor: 1, 
@@ -624,7 +622,6 @@
         }
 
         window.onload = () => {
-            // Both text script and gameplay start immediately together
             runPromoScript();
             playClimbStep();
         };
