@@ -472,20 +472,20 @@
         document.documentElement.style.setProperty('--accent-green-glow', gameConfig.glowColor);
         document.getElementById('brand-game-title').innerText = gameConfig.title;
 
-        /* Text overlay pacing for a 30s video */
+        /* TEXT LOOP EXACTLY AS PREVIOUSLY RELEASED */
         const sequence = [
             { 
                 text: "THINK YOU KNOW BALL?", 
-                duration: 1200, 
+                duration: 900, 
                 delayedAppend: "<br><span class='pop'>YOU DON'T!</span>", 
-                appendDelay: 1000, 
-                durationAfterAppend: 2800 
+                appendDelay: 800, 
+                durationAfterAppend: 2000 
             },
-            { text: "WRITTEN BY <span class='highlight'>REAL FOOTBALL FANS!</span>", duration: 3800 },
-            { text: "WOULD YOU HAVE <span class='pop'>GOT THIS RIGHT?</span>", duration: 4000 },
-            { text: "ONE MISTAKE = <span class='pop'>GROUND FLOOR!</span>", duration: 4000 },
-            { text: "FOLLOW TO <span class='highlight'>PLAY DAY ONE!</span>", duration: 3500 },
-            { text: "GAME 001 DROPS <span class='highlight'>SATURDAY AT 11AM (UK)</span>", duration: 4000 }
+            { text: "MADE BY <span class='highlight'>HUMANS!</span>", duration: 2200 },
+            { text: "NEW DAILY <span class='highlight'>FOOTBALL QUIZ!</span>", duration: 2200 },
+            { text: "NO SECOND CHANCES FOR A <span class='highlight'>DAILY STREAK!</span>", duration: 2400 },
+            { text: "FOLLOW TO <span class='highlight'>PLAY DAY ONE!</span>", duration: 2400 },
+            { text: "GAME 001 DROPS <span class='highlight'>SATURDAY AT 11AM (UK)</span>", duration: 3200 }
         ];
 
         let currentIndex = 0;
@@ -508,7 +508,7 @@
                         setTimeout(() => {
                             currentIndex++;
                             runPromoScript();
-                        }, 400);
+                        }, 300);
                     }, currentItem.durationAfterAppend);
                 }, currentItem.appendDelay);
             } else {
@@ -517,12 +517,12 @@
                     setTimeout(() => {
                         currentIndex++;
                         runPromoScript();
-                    }, 400);
+                    }, 300);
                 }, currentItem.duration);
             }
         }
 
-        /* 5-second per question real-time pacing */
+        /* REAL-TIME PACED QUESTIONS (5 seconds per question) */
         const sampleQuestions = [
             { 
                 floor: 1, 
@@ -547,7 +547,7 @@
                 question: "Which team currently sits 5th in the Premier League table?", 
                 options: ["Liverpool", "Leeds", "Brentford", "Brighton"], 
                 answer: "Leeds",
-                wrongChoice: "Liverpool" // Mock fail selection
+                wrongChoice: "Liverpool"
             }
         ];
 
