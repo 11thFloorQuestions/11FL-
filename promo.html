@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>11th Floor Games - Promo Studio (Pub Banter Fail Run)</title>
+    <title>11th Floor Games - Promo Studio (Real-Time Fail Run)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@700;800&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
@@ -472,18 +472,20 @@
         document.documentElement.style.setProperty('--accent-green-glow', gameConfig.glowColor);
         document.getElementById('brand-game-title').innerText = gameConfig.title;
 
+        /* Text overlay pacing for a 30s video */
         const sequence = [
             { 
                 text: "THINK YOU KNOW BALL?", 
-                duration: 900, 
+                duration: 1200, 
                 delayedAppend: "<br><span class='pop'>YOU DON'T!</span>", 
-                appendDelay: 800, 
-                durationAfterAppend: 2000 
+                appendDelay: 1000, 
+                durationAfterAppend: 2800 
             },
-            { text: "WRITTEN BY <span class='highlight'>REAL HUMANS!</span>", duration: 2200 },
-            { text: "WOULD YOU HAVE <span class='pop'>GOT THIS RIGHT?</span>", duration: 2400 },
-            { text: "FOLLOW TO <span class='highlight'>PLAY DAY ONE!</span>", duration: 2400 },
-            { text: "GAME 001 DROPS <span class='highlight'>SATURDAY AT 11AM (UK)</span>", duration: 3200 }
+            { text: "WRITTEN BY <span class='highlight'>REAL FOOTBALL FANS!</span>", duration: 3800 },
+            { text: "WOULD YOU HAVE <span class='pop'>GOT THIS RIGHT?</span>", duration: 4000 },
+            { text: "ONE MISTAKE = <span class='pop'>GROUND FLOOR!</span>", duration: 4000 },
+            { text: "FOLLOW TO <span class='highlight'>PLAY DAY ONE!</span>", duration: 3500 },
+            { text: "GAME 001 DROPS <span class='highlight'>SATURDAY AT 11AM (UK)</span>", duration: 4000 }
         ];
 
         let currentIndex = 0;
@@ -506,7 +508,7 @@
                         setTimeout(() => {
                             currentIndex++;
                             runPromoScript();
-                        }, 300);
+                        }, 400);
                     }, currentItem.durationAfterAppend);
                 }, currentItem.appendDelay);
             } else {
@@ -515,39 +517,37 @@
                     setTimeout(() => {
                         currentIndex++;
                         runPromoScript();
-                    }, 300);
+                    }, 400);
                 }, currentItem.duration);
             }
         }
 
-        /* ==========================================================================
-           CONVERSATIONAL / PUB BANTER QUESTIONS (FLOORS 1-4 FAIL)
-           ========================================================================== */
+        /* 5-second per question real-time pacing */
         const sampleQuestions = [
             { 
                 floor: 1, 
                 question: "How many of England's goal scorers last night were actually Premier League players?", 
-                options: ["3 Players", "5 Players", "All 7", "Just 1"], 
-                answer: "5 Players" 
+                options: ["2 Players", "4 Players", "All 7", "Just 1"], 
+                answer: "2 Players" 
             },
             { 
                 floor: 2, 
-                question: "Which manager famously blamed a loss on 'the grass being too tall' after a match?", 
+                question: "Which Premier League club does England's current goalkeeper play for?", 
+                options: ["Everton", "Spurs", "Sunderland", "Aston Villa"], 
+                answer: "Everton" 
+            },
+            { 
+                floor: 3, 
+                question: "Which manager famously blamed a defeat on 'the grass being too tall and the ball too round'?", 
                 options: ["Jürgen Klopp", "Mikel Arteta", "Erik ten Hag", "Jose Mourinho"], 
                 answer: "Jürgen Klopp" 
             },
             { 
-                floor: 3, 
-                question: "What is the official VAR response when a clear handball check takes 7 minutes?", 
-                options: ["Process Error", "Good Process", "Lines Wrong", "Ref Offline"], 
-                answer: "Good Process" 
-            },
-            { 
                 floor: 4, 
-                question: "Which current Premier League star eats 5,000 calories of raw heart and liver a day?", 
-                options: ["Erling Haaland", "Adama Traoré", "James Maddison", "Darwin Núñez"], 
-                answer: "Erling Haaland",
-                wrongChoice: "Adama Traoré" // Triggers the real-time fail state
+                question: "Which team currently sits 5th in the Premier League table?", 
+                options: ["Liverpool", "Leeds", "Brentford", "Brighton"], 
+                answer: "Leeds",
+                wrongChoice: "Liverpool" // Mock fail selection
             }
         ];
 
@@ -589,9 +589,9 @@
                 updateFloorHUD(currentQ.floor);
                 document.getElementById('question-text').textContent = currentQ.question;
 
-                const timerMs = 2800;
-                const selectDelay = 2000;
-                const transitionDelay = 800;
+                const timerMs = 5000;
+                const selectDelay = 3600; 
+                const transitionDelay = 1000;
 
                 startTimerBar(timerMs);
 
@@ -633,8 +633,8 @@
                                 document.getElementById('gameplay-container').style.display = 'flex';
                                 qIndex = 0;
                                 playClimbStep();
-                            }, 2800);
-                        }, 700);
+                            }, 3500);
+                        }, 900);
                     }
                 }, selectDelay);
             }
@@ -642,7 +642,7 @@
 
         window.onload = () => {
             runPromoScript();
-            setTimeout(playClimbStep, 600);
+            setTimeout(playClimbStep, 800);
         };
     </script>
 </body>
